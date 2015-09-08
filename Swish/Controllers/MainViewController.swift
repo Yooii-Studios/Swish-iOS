@@ -10,6 +10,7 @@ import UIKit
 import SnapKit
 
 class MainViewController: UIViewController {
+    
     var cameraButton: UIButton!
     var pickPhotosButton: UIButton!
     var myInfoButton: UIButton!
@@ -61,10 +62,14 @@ class MainViewController: UIViewController {
     
     func pickPhotosButtonDidTap(sender: UIButton!) {
         NSLog("pickPhotosButtonDidTap")
+        let photoPickerViewController = PhotoPickerViewController()
+        showViewController(photoPickerViewController, sender: self)
     }
     
     func myInfoButtonDidTap(sender: UIButton!) {
         NSLog("myInfoButtonDidTap")
+        let myInfoViewController = MyInfoViewController()
+        showViewController(myInfoViewController, sender: self)
     }
     
     override func didReceiveMemoryWarning() {
