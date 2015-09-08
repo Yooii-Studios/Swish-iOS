@@ -15,18 +15,10 @@
 		F245DCBB1B9E7B2D0072308B /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = F245DCBA1B9E7B2D0072308B /* Assets.xcassets */; };
 		F245DCBE1B9E7B2D0072308B /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = F245DCBC1B9E7B2D0072308B /* LaunchScreen.storyboard */; };
 		F245DCC91B9E7B2D0072308B /* SwishTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = F245DCC81B9E7B2D0072308B /* SwishTests.swift */; };
-		F245DCD41B9E7B2D0072308B /* SwishUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = F245DCD31B9E7B2D0072308B /* SwishUITests.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
 		F245DCC51B9E7B2D0072308B /* PBXContainerItemProxy */ = {
-			isa = PBXContainerItemProxy;
-			containerPortal = F245DCA51B9E7B2D0072308B /* Project object */;
-			proxyType = 1;
-			remoteGlobalIDString = F245DCAC1B9E7B2D0072308B;
-			remoteInfo = Swish;
-		};
-		F245DCD01B9E7B2D0072308B /* PBXContainerItemProxy */ = {
 			isa = PBXContainerItemProxy;
 			containerPortal = F245DCA51B9E7B2D0072308B /* Project object */;
 			proxyType = 1;
@@ -49,9 +41,6 @@
 		F245DCC41B9E7B2D0072308B /* SwishTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = SwishTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		F245DCC81B9E7B2D0072308B /* SwishTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SwishTests.swift; sourceTree = "<group>"; };
 		F245DCCA1B9E7B2D0072308B /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
-		F245DCCF1B9E7B2D0072308B /* SwishUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = SwishUITests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
-		F245DCD31B9E7B2D0072308B /* SwishUITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SwishUITests.swift; sourceTree = "<group>"; };
-		F245DCD51B9E7B2D0072308B /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		F2C287D01B9E8287000C1608 /* Swish-Bridging-Header.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; name = "Swish-Bridging-Header.h"; path = "Controllers/Swish-Bridging-Header.h"; sourceTree = "<group>"; };
 		F2EDD338D07BE381CAD26509 /* Pods.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = Pods.release.xcconfig; path = "Pods/Target Support Files/Pods/Pods.release.xcconfig"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
@@ -66,13 +55,6 @@
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 		F245DCC11B9E7B2D0072308B /* Frameworks */ = {
-			isa = PBXFrameworksBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-		};
-		F245DCCC1B9E7B2D0072308B /* Frameworks */ = {
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
@@ -104,7 +86,6 @@
 			children = (
 				F245DCAF1B9E7B2D0072308B /* Swish */,
 				F245DCC71B9E7B2D0072308B /* SwishTests */,
-				F245DCD21B9E7B2D0072308B /* SwishUITests */,
 				F245DCAE1B9E7B2D0072308B /* Products */,
 				DE54F92649363466E8A8F365 /* Pods */,
 				07236F8C5ED4E2128B4AAE4B /* Frameworks */,
@@ -116,7 +97,6 @@
 			children = (
 				F245DCAD1B9E7B2D0072308B /* Swish.app */,
 				F245DCC41B9E7B2D0072308B /* SwishTests.xctest */,
-				F245DCCF1B9E7B2D0072308B /* SwishUITests.xctest */,
 			);
 			name = Products;
 			sourceTree = "<group>";
@@ -146,15 +126,6 @@
 				F245DCCA1B9E7B2D0072308B /* Info.plist */,
 			);
 			path = SwishTests;
-			sourceTree = "<group>";
-		};
-		F245DCD21B9E7B2D0072308B /* SwishUITests */ = {
-			isa = PBXGroup;
-			children = (
-				F245DCD31B9E7B2D0072308B /* SwishUITests.swift */,
-				F245DCD51B9E7B2D0072308B /* Info.plist */,
-			);
-			path = SwishUITests;
 			sourceTree = "<group>";
 		};
 		F245DCE11B9E7CBA0072308B /* Controllers */ = {
@@ -227,24 +198,6 @@
 			productReference = F245DCC41B9E7B2D0072308B /* SwishTests.xctest */;
 			productType = "com.apple.product-type.bundle.unit-test";
 		};
-		F245DCCE1B9E7B2D0072308B /* SwishUITests */ = {
-			isa = PBXNativeTarget;
-			buildConfigurationList = F245DCDE1B9E7B2D0072308B /* Build configuration list for PBXNativeTarget "SwishUITests" */;
-			buildPhases = (
-				F245DCCB1B9E7B2D0072308B /* Sources */,
-				F245DCCC1B9E7B2D0072308B /* Frameworks */,
-				F245DCCD1B9E7B2D0072308B /* Resources */,
-			);
-			buildRules = (
-			);
-			dependencies = (
-				F245DCD11B9E7B2D0072308B /* PBXTargetDependency */,
-			);
-			name = SwishUITests;
-			productName = SwishUITests;
-			productReference = F245DCCF1B9E7B2D0072308B /* SwishUITests.xctest */;
-			productType = "com.apple.product-type.bundle.ui-testing";
-		};
 /* End PBXNativeTarget section */
 
 /* Begin PBXProject section */
@@ -260,10 +213,6 @@
 						DevelopmentTeam = AD75U9C2NK;
 					};
 					F245DCC31B9E7B2D0072308B = {
-						CreatedOnToolsVersion = 7.0;
-						TestTargetID = F245DCAC1B9E7B2D0072308B;
-					};
-					F245DCCE1B9E7B2D0072308B = {
 						CreatedOnToolsVersion = 7.0;
 						TestTargetID = F245DCAC1B9E7B2D0072308B;
 					};
@@ -284,7 +233,6 @@
 			targets = (
 				F245DCAC1B9E7B2D0072308B /* Swish */,
 				F245DCC31B9E7B2D0072308B /* SwishTests */,
-				F245DCCE1B9E7B2D0072308B /* SwishUITests */,
 			);
 		};
 /* End PBXProject section */
@@ -301,13 +249,6 @@
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 		F245DCC21B9E7B2D0072308B /* Resources */ = {
-			isa = PBXResourcesBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-		};
-		F245DCCD1B9E7B2D0072308B /* Resources */ = {
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
@@ -383,14 +324,6 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
-		F245DCCB1B9E7B2D0072308B /* Sources */ = {
-			isa = PBXSourcesBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-				F245DCD41B9E7B2D0072308B /* SwishUITests.swift in Sources */,
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-		};
 /* End PBXSourcesBuildPhase section */
 
 /* Begin PBXTargetDependency section */
@@ -398,11 +331,6 @@
 			isa = PBXTargetDependency;
 			target = F245DCAC1B9E7B2D0072308B /* Swish */;
 			targetProxy = F245DCC51B9E7B2D0072308B /* PBXContainerItemProxy */;
-		};
-		F245DCD11B9E7B2D0072308B /* PBXTargetDependency */ = {
-			isa = PBXTargetDependency;
-			target = F245DCAC1B9E7B2D0072308B /* Swish */;
-			targetProxy = F245DCD01B9E7B2D0072308B /* PBXContainerItemProxy */;
 		};
 /* End PBXTargetDependency section */
 
@@ -566,30 +494,6 @@
 			};
 			name = Release;
 		};
-		F245DCDF1B9E7B2D0072308B /* Debug */ = {
-			isa = XCBuildConfiguration;
-			buildSettings = {
-				INFOPLIST_FILE = SwishUITests/Info.plist;
-				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
-				PRODUCT_BUNDLE_IDENTIFIER = com.yooiistudios.swish.SwishUITests;
-				PRODUCT_NAME = "$(TARGET_NAME)";
-				TEST_TARGET_NAME = Swish;
-				USES_XCTRUNNER = YES;
-			};
-			name = Debug;
-		};
-		F245DCE01B9E7B2D0072308B /* Release */ = {
-			isa = XCBuildConfiguration;
-			buildSettings = {
-				INFOPLIST_FILE = SwishUITests/Info.plist;
-				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
-				PRODUCT_BUNDLE_IDENTIFIER = com.yooiistudios.swish.SwishUITests;
-				PRODUCT_NAME = "$(TARGET_NAME)";
-				TEST_TARGET_NAME = Swish;
-				USES_XCTRUNNER = YES;
-			};
-			name = Release;
-		};
 /* End XCBuildConfiguration section */
 
 /* Begin XCConfigurationList section */
@@ -616,15 +520,6 @@
 			buildConfigurations = (
 				F245DCDC1B9E7B2D0072308B /* Debug */,
 				F245DCDD1B9E7B2D0072308B /* Release */,
-			);
-			defaultConfigurationIsVisible = 0;
-			defaultConfigurationName = Release;
-		};
-		F245DCDE1B9E7B2D0072308B /* Build configuration list for PBXNativeTarget "SwishUITests" */ = {
-			isa = XCConfigurationList;
-			buildConfigurations = (
-				F245DCDF1B9E7B2D0072308B /* Debug */,
-				F245DCE01B9E7B2D0072308B /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;
