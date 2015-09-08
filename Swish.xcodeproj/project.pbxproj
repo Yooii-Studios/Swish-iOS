@@ -8,7 +8,7 @@
 
 /* Begin PBXBuildFile section */
 		F245DCB11B9E7B2D0072308B /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = F245DCB01B9E7B2D0072308B /* AppDelegate.swift */; };
-		F245DCB31B9E7B2D0072308B /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = F245DCB21B9E7B2D0072308B /* ViewController.swift */; };
+		F245DCB31B9E7B2D0072308B /* MainViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = F245DCB21B9E7B2D0072308B /* MainViewController.swift */; };
 		F245DCB61B9E7B2D0072308B /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = F245DCB41B9E7B2D0072308B /* Main.storyboard */; };
 		F245DCB91B9E7B2D0072308B /* Swish.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = F245DCB71B9E7B2D0072308B /* Swish.xcdatamodeld */; };
 		F245DCBB1B9E7B2D0072308B /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = F245DCBA1B9E7B2D0072308B /* Assets.xcassets */; };
@@ -37,7 +37,7 @@
 /* Begin PBXFileReference section */
 		F245DCAD1B9E7B2D0072308B /* Swish.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Swish.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		F245DCB01B9E7B2D0072308B /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
-		F245DCB21B9E7B2D0072308B /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
+		F245DCB21B9E7B2D0072308B /* MainViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainViewController.swift; sourceTree = "<group>"; };
 		F245DCB51B9E7B2D0072308B /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
 		F245DCB81B9E7B2D0072308B /* Swish.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = Swish.xcdatamodel; sourceTree = "<group>"; };
 		F245DCBA1B9E7B2D0072308B /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
@@ -99,8 +99,11 @@
 		F245DCAF1B9E7B2D0072308B /* Swish */ = {
 			isa = PBXGroup;
 			children = (
+				F245DCE41B9E7CD40072308B /* Helpers */,
+				F245DCE21B9E7CC20072308B /* Models */,
+				F245DCE31B9E7CC60072308B /* Views */,
+				F245DCE11B9E7CBA0072308B /* Controllers */,
 				F245DCB01B9E7B2D0072308B /* AppDelegate.swift */,
-				F245DCB21B9E7B2D0072308B /* ViewController.swift */,
 				F245DCB41B9E7B2D0072308B /* Main.storyboard */,
 				F245DCBA1B9E7B2D0072308B /* Assets.xcassets */,
 				F245DCBC1B9E7B2D0072308B /* LaunchScreen.storyboard */,
@@ -126,6 +129,35 @@
 				F245DCD51B9E7B2D0072308B /* Info.plist */,
 			);
 			path = SwishUITests;
+			sourceTree = "<group>";
+		};
+		F245DCE11B9E7CBA0072308B /* Controllers */ = {
+			isa = PBXGroup;
+			children = (
+				F245DCB21B9E7B2D0072308B /* MainViewController.swift */,
+			);
+			path = Controllers;
+			sourceTree = "<group>";
+		};
+		F245DCE21B9E7CC20072308B /* Models */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = Models;
+			sourceTree = "<group>";
+		};
+		F245DCE31B9E7CC60072308B /* Views */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = Views;
+			sourceTree = "<group>";
+		};
+		F245DCE41B9E7CD40072308B /* Helpers */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = Helpers;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -195,6 +227,7 @@
 				TargetAttributes = {
 					F245DCAC1B9E7B2D0072308B = {
 						CreatedOnToolsVersion = 7.0;
+						DevelopmentTeam = AD75U9C2NK;
 					};
 					F245DCC31B9E7B2D0072308B = {
 						CreatedOnToolsVersion = 7.0;
@@ -258,7 +291,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				F245DCB31B9E7B2D0072308B /* ViewController.swift in Sources */,
+				F245DCB31B9E7B2D0072308B /* MainViewController.swift in Sources */,
 				F245DCB11B9E7B2D0072308B /* AppDelegate.swift in Sources */,
 				F245DCB91B9E7B2D0072308B /* Swish.xcdatamodeld in Sources */,
 			);
@@ -402,7 +435,9 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				CODE_SIGN_IDENTITY = "iPhone Developer";
 				INFOPLIST_FILE = Swish/Info.plist;
+				IPHONEOS_DEPLOYMENT_TARGET = 8.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = com.yooiistudios.swish.Swish;
 				PRODUCT_NAME = "$(TARGET_NAME)";
@@ -413,7 +448,9 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				CODE_SIGN_IDENTITY = "iPhone Developer";
 				INFOPLIST_FILE = Swish/Info.plist;
+				IPHONEOS_DEPLOYMENT_TARGET = 8.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = com.yooiistudios.swish.Swish;
 				PRODUCT_NAME = "$(TARGET_NAME)";
@@ -487,6 +524,7 @@
 				F245DCDA1B9E7B2D0072308B /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 		F245DCDB1B9E7B2D0072308B /* Build configuration list for PBXNativeTarget "SwishTests" */ = {
 			isa = XCConfigurationList;
@@ -495,6 +533,7 @@
 				F245DCDD1B9E7B2D0072308B /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 		F245DCDE1B9E7B2D0072308B /* Build configuration list for PBXNativeTarget "SwishUITests" */ = {
 			isa = XCConfigurationList;
@@ -503,6 +542,7 @@
 				F245DCE01B9E7B2D0072308B /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
 
