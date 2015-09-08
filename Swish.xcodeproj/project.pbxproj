@@ -41,7 +41,7 @@
 		F245DCC41B9E7B2D0072308B /* SwishTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = SwishTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		F245DCC81B9E7B2D0072308B /* SwishTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SwishTests.swift; sourceTree = "<group>"; };
 		F245DCCA1B9E7B2D0072308B /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
-		F2C287D01B9E8287000C1608 /* Swish-Bridging-Header.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; name = "Swish-Bridging-Header.h"; path = "Controllers/Swish-Bridging-Header.h"; sourceTree = "<group>"; };
+		F2C287D01B9E8287000C1608 /* Swish-Bridging-Header.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "Swish-Bridging-Header.h"; sourceTree = "<group>"; };
 		F2EDD338D07BE381CAD26509 /* Pods.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = Pods.release.xcconfig; path = "Pods/Target Support Files/Pods/Pods.release.xcconfig"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
