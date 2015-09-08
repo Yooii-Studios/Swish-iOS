@@ -1,0 +1,523 @@
+// !$*UTF8*$!
+{
+	archiveVersion = 1;
+	classes = {
+	};
+	objectVersion = 46;
+	objects = {
+
+/* Begin PBXBuildFile section */
+		F245DCB11B9E7B2D0072308B /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = F245DCB01B9E7B2D0072308B /* AppDelegate.swift */; };
+		F245DCB31B9E7B2D0072308B /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = F245DCB21B9E7B2D0072308B /* ViewController.swift */; };
+		F245DCB61B9E7B2D0072308B /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = F245DCB41B9E7B2D0072308B /* Main.storyboard */; };
+		F245DCB91B9E7B2D0072308B /* Swish.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = F245DCB71B9E7B2D0072308B /* Swish.xcdatamodeld */; };
+		F245DCBB1B9E7B2D0072308B /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = F245DCBA1B9E7B2D0072308B /* Assets.xcassets */; };
+		F245DCBE1B9E7B2D0072308B /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = F245DCBC1B9E7B2D0072308B /* LaunchScreen.storyboard */; };
+		F245DCC91B9E7B2D0072308B /* SwishTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = F245DCC81B9E7B2D0072308B /* SwishTests.swift */; };
+		F245DCD41B9E7B2D0072308B /* SwishUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = F245DCD31B9E7B2D0072308B /* SwishUITests.swift */; };
+/* End PBXBuildFile section */
+
+/* Begin PBXContainerItemProxy section */
+		F245DCC51B9E7B2D0072308B /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = F245DCA51B9E7B2D0072308B /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = F245DCAC1B9E7B2D0072308B;
+			remoteInfo = Swish;
+		};
+		F245DCD01B9E7B2D0072308B /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = F245DCA51B9E7B2D0072308B /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = F245DCAC1B9E7B2D0072308B;
+			remoteInfo = Swish;
+		};
+/* End PBXContainerItemProxy section */
+
+/* Begin PBXFileReference section */
+		F245DCAD1B9E7B2D0072308B /* Swish.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Swish.app; sourceTree = BUILT_PRODUCTS_DIR; };
+		F245DCB01B9E7B2D0072308B /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
+		F245DCB21B9E7B2D0072308B /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
+		F245DCB51B9E7B2D0072308B /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
+		F245DCB81B9E7B2D0072308B /* Swish.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = Swish.xcdatamodel; sourceTree = "<group>"; };
+		F245DCBA1B9E7B2D0072308B /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
+		F245DCBD1B9E7B2D0072308B /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
+		F245DCBF1B9E7B2D0072308B /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		F245DCC41B9E7B2D0072308B /* SwishTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = SwishTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
+		F245DCC81B9E7B2D0072308B /* SwishTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SwishTests.swift; sourceTree = "<group>"; };
+		F245DCCA1B9E7B2D0072308B /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		F245DCCF1B9E7B2D0072308B /* SwishUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = SwishUITests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
+		F245DCD31B9E7B2D0072308B /* SwishUITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SwishUITests.swift; sourceTree = "<group>"; };
+		F245DCD51B9E7B2D0072308B /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+/* End PBXFileReference section */
+
+/* Begin PBXFrameworksBuildPhase section */
+		F245DCAA1B9E7B2D0072308B /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		F245DCC11B9E7B2D0072308B /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		F245DCCC1B9E7B2D0072308B /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXFrameworksBuildPhase section */
+
+/* Begin PBXGroup section */
+		F245DCA41B9E7B2D0072308B = {
+			isa = PBXGroup;
+			children = (
+				F245DCAF1B9E7B2D0072308B /* Swish */,
+				F245DCC71B9E7B2D0072308B /* SwishTests */,
+				F245DCD21B9E7B2D0072308B /* SwishUITests */,
+				F245DCAE1B9E7B2D0072308B /* Products */,
+			);
+			sourceTree = "<group>";
+		};
+		F245DCAE1B9E7B2D0072308B /* Products */ = {
+			isa = PBXGroup;
+			children = (
+				F245DCAD1B9E7B2D0072308B /* Swish.app */,
+				F245DCC41B9E7B2D0072308B /* SwishTests.xctest */,
+				F245DCCF1B9E7B2D0072308B /* SwishUITests.xctest */,
+			);
+			name = Products;
+			sourceTree = "<group>";
+		};
+		F245DCAF1B9E7B2D0072308B /* Swish */ = {
+			isa = PBXGroup;
+			children = (
+				F245DCB01B9E7B2D0072308B /* AppDelegate.swift */,
+				F245DCB21B9E7B2D0072308B /* ViewController.swift */,
+				F245DCB41B9E7B2D0072308B /* Main.storyboard */,
+				F245DCBA1B9E7B2D0072308B /* Assets.xcassets */,
+				F245DCBC1B9E7B2D0072308B /* LaunchScreen.storyboard */,
+				F245DCBF1B9E7B2D0072308B /* Info.plist */,
+				F245DCB71B9E7B2D0072308B /* Swish.xcdatamodeld */,
+			);
+			path = Swish;
+			sourceTree = "<group>";
+		};
+		F245DCC71B9E7B2D0072308B /* SwishTests */ = {
+			isa = PBXGroup;
+			children = (
+				F245DCC81B9E7B2D0072308B /* SwishTests.swift */,
+				F245DCCA1B9E7B2D0072308B /* Info.plist */,
+			);
+			path = SwishTests;
+			sourceTree = "<group>";
+		};
+		F245DCD21B9E7B2D0072308B /* SwishUITests */ = {
+			isa = PBXGroup;
+			children = (
+				F245DCD31B9E7B2D0072308B /* SwishUITests.swift */,
+				F245DCD51B9E7B2D0072308B /* Info.plist */,
+			);
+			path = SwishUITests;
+			sourceTree = "<group>";
+		};
+/* End PBXGroup section */
+
+/* Begin PBXNativeTarget section */
+		F245DCAC1B9E7B2D0072308B /* Swish */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = F245DCD81B9E7B2D0072308B /* Build configuration list for PBXNativeTarget "Swish" */;
+			buildPhases = (
+				F245DCA91B9E7B2D0072308B /* Sources */,
+				F245DCAA1B9E7B2D0072308B /* Frameworks */,
+				F245DCAB1B9E7B2D0072308B /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+			);
+			name = Swish;
+			productName = Swish;
+			productReference = F245DCAD1B9E7B2D0072308B /* Swish.app */;
+			productType = "com.apple.product-type.application";
+		};
+		F245DCC31B9E7B2D0072308B /* SwishTests */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = F245DCDB1B9E7B2D0072308B /* Build configuration list for PBXNativeTarget "SwishTests" */;
+			buildPhases = (
+				F245DCC01B9E7B2D0072308B /* Sources */,
+				F245DCC11B9E7B2D0072308B /* Frameworks */,
+				F245DCC21B9E7B2D0072308B /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+				F245DCC61B9E7B2D0072308B /* PBXTargetDependency */,
+			);
+			name = SwishTests;
+			productName = SwishTests;
+			productReference = F245DCC41B9E7B2D0072308B /* SwishTests.xctest */;
+			productType = "com.apple.product-type.bundle.unit-test";
+		};
+		F245DCCE1B9E7B2D0072308B /* SwishUITests */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = F245DCDE1B9E7B2D0072308B /* Build configuration list for PBXNativeTarget "SwishUITests" */;
+			buildPhases = (
+				F245DCCB1B9E7B2D0072308B /* Sources */,
+				F245DCCC1B9E7B2D0072308B /* Frameworks */,
+				F245DCCD1B9E7B2D0072308B /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+				F245DCD11B9E7B2D0072308B /* PBXTargetDependency */,
+			);
+			name = SwishUITests;
+			productName = SwishUITests;
+			productReference = F245DCCF1B9E7B2D0072308B /* SwishUITests.xctest */;
+			productType = "com.apple.product-type.bundle.ui-testing";
+		};
+/* End PBXNativeTarget section */
+
+/* Begin PBXProject section */
+		F245DCA51B9E7B2D0072308B /* Project object */ = {
+			isa = PBXProject;
+			attributes = {
+				LastUpgradeCheck = 0700;
+				ORGANIZATIONNAME = "Wooseong Kim";
+				TargetAttributes = {
+					F245DCAC1B9E7B2D0072308B = {
+						CreatedOnToolsVersion = 7.0;
+					};
+					F245DCC31B9E7B2D0072308B = {
+						CreatedOnToolsVersion = 7.0;
+						TestTargetID = F245DCAC1B9E7B2D0072308B;
+					};
+					F245DCCE1B9E7B2D0072308B = {
+						CreatedOnToolsVersion = 7.0;
+						TestTargetID = F245DCAC1B9E7B2D0072308B;
+					};
+				};
+			};
+			buildConfigurationList = F245DCA81B9E7B2D0072308B /* Build configuration list for PBXProject "Swish" */;
+			compatibilityVersion = "Xcode 3.2";
+			developmentRegion = English;
+			hasScannedForEncodings = 0;
+			knownRegions = (
+				en,
+				Base,
+			);
+			mainGroup = F245DCA41B9E7B2D0072308B;
+			productRefGroup = F245DCAE1B9E7B2D0072308B /* Products */;
+			projectDirPath = "";
+			projectRoot = "";
+			targets = (
+				F245DCAC1B9E7B2D0072308B /* Swish */,
+				F245DCC31B9E7B2D0072308B /* SwishTests */,
+				F245DCCE1B9E7B2D0072308B /* SwishUITests */,
+			);
+		};
+/* End PBXProject section */
+
+/* Begin PBXResourcesBuildPhase section */
+		F245DCAB1B9E7B2D0072308B /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				F245DCBE1B9E7B2D0072308B /* LaunchScreen.storyboard in Resources */,
+				F245DCBB1B9E7B2D0072308B /* Assets.xcassets in Resources */,
+				F245DCB61B9E7B2D0072308B /* Main.storyboard in Resources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		F245DCC21B9E7B2D0072308B /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		F245DCCD1B9E7B2D0072308B /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXResourcesBuildPhase section */
+
+/* Begin PBXSourcesBuildPhase section */
+		F245DCA91B9E7B2D0072308B /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				F245DCB31B9E7B2D0072308B /* ViewController.swift in Sources */,
+				F245DCB11B9E7B2D0072308B /* AppDelegate.swift in Sources */,
+				F245DCB91B9E7B2D0072308B /* Swish.xcdatamodeld in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		F245DCC01B9E7B2D0072308B /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				F245DCC91B9E7B2D0072308B /* SwishTests.swift in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		F245DCCB1B9E7B2D0072308B /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				F245DCD41B9E7B2D0072308B /* SwishUITests.swift in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXSourcesBuildPhase section */
+
+/* Begin PBXTargetDependency section */
+		F245DCC61B9E7B2D0072308B /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = F245DCAC1B9E7B2D0072308B /* Swish */;
+			targetProxy = F245DCC51B9E7B2D0072308B /* PBXContainerItemProxy */;
+		};
+		F245DCD11B9E7B2D0072308B /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = F245DCAC1B9E7B2D0072308B /* Swish */;
+			targetProxy = F245DCD01B9E7B2D0072308B /* PBXContainerItemProxy */;
+		};
+/* End PBXTargetDependency section */
+
+/* Begin PBXVariantGroup section */
+		F245DCB41B9E7B2D0072308B /* Main.storyboard */ = {
+			isa = PBXVariantGroup;
+			children = (
+				F245DCB51B9E7B2D0072308B /* Base */,
+			);
+			name = Main.storyboard;
+			sourceTree = "<group>";
+		};
+		F245DCBC1B9E7B2D0072308B /* LaunchScreen.storyboard */ = {
+			isa = PBXVariantGroup;
+			children = (
+				F245DCBD1B9E7B2D0072308B /* Base */,
+			);
+			name = LaunchScreen.storyboard;
+			sourceTree = "<group>";
+		};
+/* End PBXVariantGroup section */
+
+/* Begin XCBuildConfiguration section */
+		F245DCD61B9E7B2D0072308B /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++0x";
+				CLANG_CXX_LIBRARY = "libc++";
+				CLANG_ENABLE_MODULES = YES;
+				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
+				CLANG_WARN_EMPTY_BODY = YES;
+				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_UNREACHABLE_CODE = YES;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
+				COPY_PHASE_STRIP = NO;
+				DEBUG_INFORMATION_FORMAT = dwarf;
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				ENABLE_TESTABILITY = YES;
+				GCC_C_LANGUAGE_STANDARD = gnu99;
+				GCC_DYNAMIC_NO_PIC = NO;
+				GCC_NO_COMMON_BLOCKS = YES;
+				GCC_OPTIMIZATION_LEVEL = 0;
+				GCC_PREPROCESSOR_DEFINITIONS = (
+					"DEBUG=1",
+					"$(inherited)",
+				);
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
+				GCC_WARN_UNDECLARED_SELECTOR = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
+				GCC_WARN_UNUSED_FUNCTION = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 9.0;
+				MTL_ENABLE_DEBUG_INFO = YES;
+				ONLY_ACTIVE_ARCH = YES;
+				SDKROOT = iphoneos;
+				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
+				TARGETED_DEVICE_FAMILY = "1,2";
+			};
+			name = Debug;
+		};
+		F245DCD71B9E7B2D0072308B /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++0x";
+				CLANG_CXX_LIBRARY = "libc++";
+				CLANG_ENABLE_MODULES = YES;
+				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
+				CLANG_WARN_EMPTY_BODY = YES;
+				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_UNREACHABLE_CODE = YES;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
+				COPY_PHASE_STRIP = NO;
+				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
+				ENABLE_NS_ASSERTIONS = NO;
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				GCC_C_LANGUAGE_STANDARD = gnu99;
+				GCC_NO_COMMON_BLOCKS = YES;
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
+				GCC_WARN_UNDECLARED_SELECTOR = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
+				GCC_WARN_UNUSED_FUNCTION = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 9.0;
+				MTL_ENABLE_DEBUG_INFO = NO;
+				SDKROOT = iphoneos;
+				TARGETED_DEVICE_FAMILY = "1,2";
+				VALIDATE_PRODUCT = YES;
+			};
+			name = Release;
+		};
+		F245DCD91B9E7B2D0072308B /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				INFOPLIST_FILE = Swish/Info.plist;
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
+				PRODUCT_BUNDLE_IDENTIFIER = com.yooiistudios.swish.Swish;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+			};
+			name = Debug;
+		};
+		F245DCDA1B9E7B2D0072308B /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				INFOPLIST_FILE = Swish/Info.plist;
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
+				PRODUCT_BUNDLE_IDENTIFIER = com.yooiistudios.swish.Swish;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+			};
+			name = Release;
+		};
+		F245DCDC1B9E7B2D0072308B /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				BUNDLE_LOADER = "$(TEST_HOST)";
+				INFOPLIST_FILE = SwishTests/Info.plist;
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
+				PRODUCT_BUNDLE_IDENTIFIER = com.yooiistudios.swish.SwishTests;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/Swish.app/Swish";
+			};
+			name = Debug;
+		};
+		F245DCDD1B9E7B2D0072308B /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				BUNDLE_LOADER = "$(TEST_HOST)";
+				INFOPLIST_FILE = SwishTests/Info.plist;
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
+				PRODUCT_BUNDLE_IDENTIFIER = com.yooiistudios.swish.SwishTests;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/Swish.app/Swish";
+			};
+			name = Release;
+		};
+		F245DCDF1B9E7B2D0072308B /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				INFOPLIST_FILE = SwishUITests/Info.plist;
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
+				PRODUCT_BUNDLE_IDENTIFIER = com.yooiistudios.swish.SwishUITests;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				TEST_TARGET_NAME = Swish;
+				USES_XCTRUNNER = YES;
+			};
+			name = Debug;
+		};
+		F245DCE01B9E7B2D0072308B /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				INFOPLIST_FILE = SwishUITests/Info.plist;
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
+				PRODUCT_BUNDLE_IDENTIFIER = com.yooiistudios.swish.SwishUITests;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				TEST_TARGET_NAME = Swish;
+				USES_XCTRUNNER = YES;
+			};
+			name = Release;
+		};
+/* End XCBuildConfiguration section */
+
+/* Begin XCConfigurationList section */
+		F245DCA81B9E7B2D0072308B /* Build configuration list for PBXProject "Swish" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				F245DCD61B9E7B2D0072308B /* Debug */,
+				F245DCD71B9E7B2D0072308B /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		F245DCD81B9E7B2D0072308B /* Build configuration list for PBXNativeTarget "Swish" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				F245DCD91B9E7B2D0072308B /* Debug */,
+				F245DCDA1B9E7B2D0072308B /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+		};
+		F245DCDB1B9E7B2D0072308B /* Build configuration list for PBXNativeTarget "SwishTests" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				F245DCDC1B9E7B2D0072308B /* Debug */,
+				F245DCDD1B9E7B2D0072308B /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+		};
+		F245DCDE1B9E7B2D0072308B /* Build configuration list for PBXNativeTarget "SwishUITests" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				F245DCDF1B9E7B2D0072308B /* Debug */,
+				F245DCE01B9E7B2D0072308B /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+		};
+/* End XCConfigurationList section */
+
+/* Begin XCVersionGroup section */
+		F245DCB71B9E7B2D0072308B /* Swish.xcdatamodeld */ = {
+			isa = XCVersionGroup;
+			children = (
+				F245DCB81B9E7B2D0072308B /* Swish.xcdatamodel */,
+			);
+			currentVersion = F245DCB81B9E7B2D0072308B /* Swish.xcdatamodel */;
+			path = Swish.xcdatamodeld;
+			sourceTree = "<group>";
+			versionGroupType = wrapper.xcdatamodel;
+		};
+/* End XCVersionGroup section */
+	};
+	rootObject = F245DCA51B9E7B2D0072308B /* Project object */;
+}
