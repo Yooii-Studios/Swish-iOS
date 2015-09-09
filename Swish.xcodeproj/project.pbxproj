@@ -15,6 +15,8 @@
 		F245DCBB1B9E7B2D0072308B /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = F245DCBA1B9E7B2D0072308B /* Assets.xcassets */; };
 		F245DCBE1B9E7B2D0072308B /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = F245DCBC1B9E7B2D0072308B /* LaunchScreen.storyboard */; };
 		F245DCC91B9E7B2D0072308B /* SwishTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = F245DCC81B9E7B2D0072308B /* SwishTests.swift */; };
+		F266D9021B9F159D00BDEB75 /* MyInfoViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = F266D9011B9F159D00BDEB75 /* MyInfoViewController.swift */; settings = {ASSET_TAGS = (); }; };
+		F266D9041B9F15D500BDEB75 /* PhotoPickerViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = F266D9031B9F15D500BDEB75 /* PhotoPickerViewController.swift */; settings = {ASSET_TAGS = (); }; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -41,6 +43,8 @@
 		F245DCC41B9E7B2D0072308B /* SwishTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = SwishTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		F245DCC81B9E7B2D0072308B /* SwishTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SwishTests.swift; sourceTree = "<group>"; };
 		F245DCCA1B9E7B2D0072308B /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		F266D9011B9F159D00BDEB75 /* MyInfoViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MyInfoViewController.swift; sourceTree = "<group>"; };
+		F266D9031B9F15D500BDEB75 /* PhotoPickerViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PhotoPickerViewController.swift; sourceTree = "<group>"; };
 		F2C287D01B9E8287000C1608 /* Swish-Bridging-Header.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; name = "Swish-Bridging-Header.h"; path = "Controllers/Swish-Bridging-Header.h"; sourceTree = "<group>"; };
 		F2EDD338D07BE381CAD26509 /* Pods.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = Pods.release.xcconfig; path = "Pods/Target Support Files/Pods/Pods.release.xcconfig"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
@@ -132,6 +136,8 @@
 			isa = PBXGroup;
 			children = (
 				F245DCB21B9E7B2D0072308B /* MainViewController.swift */,
+				F266D9011B9F159D00BDEB75 /* MyInfoViewController.swift */,
+				F266D9031B9F15D500BDEB75 /* PhotoPickerViewController.swift */,
 			);
 			path = Controllers;
 			sourceTree = "<group>";
@@ -310,8 +316,10 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				F266D9041B9F15D500BDEB75 /* PhotoPickerViewController.swift in Sources */,
 				F245DCB31B9E7B2D0072308B /* MainViewController.swift in Sources */,
 				F245DCB11B9E7B2D0072308B /* AppDelegate.swift in Sources */,
+				F266D9021B9F159D00BDEB75 /* MyInfoViewController.swift in Sources */,
 				F245DCB91B9E7B2D0072308B /* Swish.xcdatamodeld in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
