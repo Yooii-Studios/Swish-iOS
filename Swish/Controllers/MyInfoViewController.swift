@@ -31,7 +31,6 @@ class MyInfoViewController: UIViewController {
             make.bottom.equalTo(self.view).offset(-50)
             make.centerX.equalTo(self.view)
         }
-        
     }
     
     func dismissButtonDidTap(sender: UIButton!) {
@@ -43,7 +42,6 @@ class MyInfoViewController: UIViewController {
         // Dispose of any resources that can be recreated.
     }
     
-
     /*
     // MARK: - Navigation
 
@@ -53,5 +51,4 @@ class MyInfoViewController: UIViewController {
         // Pass the selected object to the new view controller.
     }
     */
-
 }
