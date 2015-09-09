@@ -1,17 +1,30 @@
 PODS:
   - Alamofire (2.0.0-beta.4)
   - DateTools (1.7.0)
+  - Realm (0.95.0):
+    - Realm/Headers (= 0.95.0)
+  - Realm/Headers (0.95.0)
+  - RealmSwift (0.95.0):
+    - Realm (= 0.95.0)
   - SnapKit (0.13.0)
 
 DEPENDENCIES:
   - Alamofire (from `https://github.com/Alamofire/Alamofire.git`, branch `swift-2.0`)
   - DateTools
+  - Realm (from `https://github.com/realm/realm-cocoa.git`, branch `swift-2.0`)
+  - RealmSwift (from `https://github.com/realm/realm-cocoa.git`, branch `swift-2.0`)
   - SnapKit (from `https://github.com/SnapKit/SnapKit.git`, branch `swift-2.0`)
 
 EXTERNAL SOURCES:
   Alamofire:
     :branch: swift-2.0
     :git: https://github.com/Alamofire/Alamofire.git
+  Realm:
+    :branch: swift-2.0
+    :git: https://github.com/realm/realm-cocoa.git
+  RealmSwift:
+    :branch: swift-2.0
+    :git: https://github.com/realm/realm-cocoa.git
   SnapKit:
     :branch: swift-2.0
     :git: https://github.com/SnapKit/SnapKit.git
@@ -20,6 +33,12 @@ CHECKOUT OPTIONS:
   Alamofire:
     :commit: 1108ae4461baa99d9c4898c213ec3e2e2956fab3
     :git: https://github.com/Alamofire/Alamofire.git
+  Realm:
+    :commit: e51348f34142e821bef704a71b21b6002464871f
+    :git: https://github.com/realm/realm-cocoa.git
+  RealmSwift:
+    :commit: e51348f34142e821bef704a71b21b6002464871f
+    :git: https://github.com/realm/realm-cocoa.git
   SnapKit:
     :commit: 4f19419528baa3dfaca20e26fea2be410ddc79e2
     :git: https://github.com/SnapKit/SnapKit.git
@@ -27,6 +46,8 @@ CHECKOUT OPTIONS:
 SPEC CHECKSUMS:
   Alamofire: 20df1a4740a69d7cf6caf7fd06b8a8fc782f1ebd
   DateTools: 53288ee8b905fdc75897a1e6b5cc0144b14cba60
+  Realm: 1c28007bd496af94dba8c76d50719164e706a521
+  RealmSwift: 9864524dd99c2cb7b4643c29513ef8447fe63724
   SnapKit: 69fe274c71511df89a5591c11437a8b826bfa9eb
 
 COCOAPODS: 0.38.2
