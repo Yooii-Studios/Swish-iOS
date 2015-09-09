@@ -7,6 +7,15 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		579673761B9FFE2000382247 /* SwishDatabase.swift in Sources */ = {isa = PBXBuildFile; fileRef = 579673751B9FFE2000382247 /* SwishDatabase.swift */; settings = {ASSET_TAGS = (); }; };
+		579673821B9FFE6500382247 /* Photo.swift in Sources */ = {isa = PBXBuildFile; fileRef = 579673801B9FFE6500382247 /* Photo.swift */; settings = {ASSET_TAGS = (); }; };
+		579673831B9FFE6500382247 /* PhotoState.swift in Sources */ = {isa = PBXBuildFile; fileRef = 579673811B9FFE6500382247 /* PhotoState.swift */; settings = {ASSET_TAGS = (); }; };
+		579673881B9FFE6C00382247 /* Me.swift in Sources */ = {isa = PBXBuildFile; fileRef = 579673841B9FFE6C00382247 /* Me.swift */; settings = {ASSET_TAGS = (); }; };
+		579673891B9FFE6C00382247 /* OpponentUser.swift in Sources */ = {isa = PBXBuildFile; fileRef = 579673851B9FFE6C00382247 /* OpponentUser.swift */; settings = {ASSET_TAGS = (); }; };
+		5796738A1B9FFE6C00382247 /* User.swift in Sources */ = {isa = PBXBuildFile; fileRef = 579673861B9FFE6C00382247 /* User.swift */; settings = {ASSET_TAGS = (); }; };
+		5796738B1B9FFE6C00382247 /* UserActivityRecord.swift in Sources */ = {isa = PBXBuildFile; fileRef = 579673871B9FFE6C00382247 /* UserActivityRecord.swift */; settings = {ASSET_TAGS = (); }; };
+		5796738E1B9FFE7200382247 /* ChatMessage.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5796738C1B9FFE7200382247 /* ChatMessage.swift */; settings = {ASSET_TAGS = (); }; };
+		5796738F1B9FFE7200382247 /* ChatMessageSendState.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5796738D1B9FFE7200382247 /* ChatMessageSendState.swift */; settings = {ASSET_TAGS = (); }; };
 		85DC322EC01B0FA668E09AEF /* Pods.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 1329CF0406A3CA7D132A3E08 /* Pods.framework */; settings = {ATTRIBUTES = (Weak, ); }; };
 		F245DCB11B9E7B2D0072308B /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = F245DCB01B9E7B2D0072308B /* AppDelegate.swift */; };
 		F245DCB31B9E7B2D0072308B /* MainViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = F245DCB21B9E7B2D0072308B /* MainViewController.swift */; };
@@ -29,6 +38,15 @@
 
 /* Begin PBXFileReference section */
 		1329CF0406A3CA7D132A3E08 /* Pods.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		579673751B9FFE2000382247 /* SwishDatabase.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SwishDatabase.swift; sourceTree = "<group>"; };
+		579673801B9FFE6500382247 /* Photo.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = Photo.swift; path = Photo/Photo.swift; sourceTree = "<group>"; };
+		579673811B9FFE6500382247 /* PhotoState.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = PhotoState.swift; path = Photo/PhotoState.swift; sourceTree = "<group>"; };
+		579673841B9FFE6C00382247 /* Me.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = Me.swift; path = User/Me.swift; sourceTree = "<group>"; };
+		579673851B9FFE6C00382247 /* OpponentUser.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = OpponentUser.swift; path = User/OpponentUser.swift; sourceTree = "<group>"; };
+		579673861B9FFE6C00382247 /* User.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = User.swift; path = User/User.swift; sourceTree = "<group>"; };
+		579673871B9FFE6C00382247 /* UserActivityRecord.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = UserActivityRecord.swift; path = User/UserActivityRecord.swift; sourceTree = "<group>"; };
+		5796738C1B9FFE7200382247 /* ChatMessage.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = ChatMessage.swift; path = Chat/ChatMessage.swift; sourceTree = "<group>"; };
+		5796738D1B9FFE7200382247 /* ChatMessageSendState.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = ChatMessageSendState.swift; path = Chat/ChatMessageSendState.swift; sourceTree = "<group>"; };
 		C0256DF10FDFE7249524B3FB /* Pods.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = Pods.debug.xcconfig; path = "Pods/Target Support Files/Pods/Pods.debug.xcconfig"; sourceTree = "<group>"; };
 		F245DCAD1B9E7B2D0072308B /* Swish.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Swish.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		F245DCB01B9E7B2D0072308B /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
@@ -72,6 +90,43 @@
 			name = Frameworks;
 			sourceTree = "<group>";
 		};
+		579673721B9FFB6400382247 /* Stores */ = {
+			isa = PBXGroup;
+			children = (
+				579673751B9FFE2000382247 /* SwishDatabase.swift */,
+			);
+			path = Stores;
+			sourceTree = "<group>";
+		};
+		5796737D1B9FFE3800382247 /* Chat */ = {
+			isa = PBXGroup;
+			children = (
+				5796738C1B9FFE7200382247 /* ChatMessage.swift */,
+				5796738D1B9FFE7200382247 /* ChatMessageSendState.swift */,
+			);
+			name = Chat;
+			sourceTree = "<group>";
+		};
+		5796737E1B9FFE3A00382247 /* User */ = {
+			isa = PBXGroup;
+			children = (
+				579673841B9FFE6C00382247 /* Me.swift */,
+				579673851B9FFE6C00382247 /* OpponentUser.swift */,
+				579673861B9FFE6C00382247 /* User.swift */,
+				579673871B9FFE6C00382247 /* UserActivityRecord.swift */,
+			);
+			name = User;
+			sourceTree = "<group>";
+		};
+		5796737F1B9FFE3E00382247 /* Photo */ = {
+			isa = PBXGroup;
+			children = (
+				579673801B9FFE6500382247 /* Photo.swift */,
+				579673811B9FFE6500382247 /* PhotoState.swift */,
+			);
+			name = Photo;
+			sourceTree = "<group>";
+		};
 		DE54F92649363466E8A8F365 /* Pods */ = {
 			isa = PBXGroup;
 			children = (
@@ -104,6 +159,7 @@
 		F245DCAF1B9E7B2D0072308B /* Swish */ = {
 			isa = PBXGroup;
 			children = (
+				579673721B9FFB6400382247 /* Stores */,
 				F245DCE41B9E7CD40072308B /* Helpers */,
 				F245DCE21B9E7CC20072308B /* Models */,
 				F245DCE31B9E7CC60072308B /* Views */,
@@ -139,6 +195,9 @@
 		F245DCE21B9E7CC20072308B /* Models */ = {
 			isa = PBXGroup;
 			children = (
+				5796737F1B9FFE3E00382247 /* Photo */,
+				5796737E1B9FFE3A00382247 /* User */,
+				5796737D1B9FFE3800382247 /* Chat */,
 			);
 			path = Models;
 			sourceTree = "<group>";
@@ -311,8 +370,17 @@
 			buildActionMask = 2147483647;
 			files = (
 				F245DCB31B9E7B2D0072308B /* MainViewController.swift in Sources */,
+				579673761B9FFE2000382247 /* SwishDatabase.swift in Sources */,
 				F245DCB11B9E7B2D0072308B /* AppDelegate.swift in Sources */,
 				F245DCB91B9E7B2D0072308B /* Swish.xcdatamodeld in Sources */,
+				579673831B9FFE6500382247 /* PhotoState.swift in Sources */,
+				5796738E1B9FFE7200382247 /* ChatMessage.swift in Sources */,
+				5796738A1B9FFE6C00382247 /* User.swift in Sources */,
+				579673881B9FFE6C00382247 /* Me.swift in Sources */,
+				579673821B9FFE6500382247 /* Photo.swift in Sources */,
+				5796738F1B9FFE7200382247 /* ChatMessageSendState.swift in Sources */,
+				5796738B1B9FFE6C00382247 /* UserActivityRecord.swift in Sources */,
+				579673891B9FFE6C00382247 /* OpponentUser.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
