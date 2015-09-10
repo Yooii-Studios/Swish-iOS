@@ -12,7 +12,7 @@ import CoreLocation
 
 class Photo: Object {
     typealias ID = Int64
-    internal static let invalidId: ID = -1
+    static let invalidId: ID = -1
     private static let defaultPhotoState = PhotoState.Waiting
     
     // Mark: Attributes
@@ -99,18 +99,16 @@ class Photo: Object {
     override static func ignoredProperties() -> [String] {
         return ["departLocation", "arrivedLocation", "photoState"]
     }
-}
-
-final class PhotoBuilder {
-    final class func create(id: Photo.ID, builder: (Photo) -> ()) -> Photo {
+    
+    final class func create(id: ID, builder: (Photo) -> () = RealmObjectBuilder.builder) -> Photo {
         let photo = Photo(id: id)
         builder(photo)
         return photo
     }
     
-    final class func create(intId: Int, builder: (Photo) -> ()) -> Photo {
-        return create(Photo.ID(intId), builder: builder)
-    }
+//    final class func create(intId: Int, builder: (Photo) -> ()) -> Photo {
+//        return create(ID(intId), builder: builder)
+//    }
 }
 
 func == (left: Photo, right: Photo) -> Bool {

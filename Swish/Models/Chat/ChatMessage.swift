@@ -56,10 +56,9 @@ final class ChatMessage: Object {
     override static func ignoredProperties() -> [String] {
         return ["state"]
     }
-}
-
-final class ChatMessageBuilder {
-    final class func create(message: String, builder: (ChatMessage) -> ()) -> ChatMessage {
+    
+    final class func create(message: String,
+        builder: (ChatMessage) -> () = RealmObjectBuilder.builder) -> ChatMessage {
         let chatMessage = ChatMessage(message: message)
         builder(chatMessage)
         return chatMessage

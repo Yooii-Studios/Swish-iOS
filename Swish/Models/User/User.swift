@@ -48,26 +48,6 @@ class User: Object {
         self.id = id
     }
     
-//    required init() {
-//        super.init()
-//    }
-//    
-//    required init(realm: RLMRealm, schema: RLMObjectSchema) {
-//        super.init(realm: realm, schema: schema)
-//    }
-    
-    
-//    // Mark: Realm support
-//    dynamic var sentPhotoCount: Int {
-//        return userActivityRecord.sentPhotoCount
-//    }
-//    dynamic var likedPhotoCount: Int {
-//        return userActivityRecord.likedPhotoCount
-//    }
-//    dynamic var dislikedPhotoCount: Int {
-//        return userActivityRecord.dislikedPhotoCount
-//    }
-    
     override static func primaryKey() -> String? {
         return "id"
     }

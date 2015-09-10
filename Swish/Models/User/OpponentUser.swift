@@ -17,29 +17,25 @@ final class OpponentUser: User {
     // required
     dynamic var fetchedTimeIntervalSince1970 = invalidFetchedTime
     
-//    convenience required init(id: String, builder: (OpponentUser) -> ()) {
-//        self.init(id: id, builder: builder as! (User) -> ())
-//        builder(self)
-//    }
-    
     private convenience init(id: String, fetchedTimeIntervalSince1970: NSTimeInterval) {
-//        super.init(id: id)
         self.init()
         self.id = id
         self.fetchedTimeIntervalSince1970 = fetchedTimeIntervalSince1970
+    }
+    
+    final class func create(id: User.ID, fetchedTimeIntervalSince1970: NSTimeInterval = NSDate().timeIntervalSince1970,
+        builder: (OpponentUser) -> () = RealmObjectBuilder.builder) -> OpponentUser {
+            let me = OpponentUser(id: id, fetchedTimeIntervalSince1970: fetchedTimeIntervalSince1970)
+            builder(me)
+            return me
     }
 }
 
 final class PhotoMetadata: Object {
     dynamic var url = ""
-}
-
-
-final class OpponentUserBuilder {
-    class func create(id: User.ID, fetchedTimeIntervalSince1970: NSTimeInterval = NSDate().timeIntervalSince1970,
-            builder: (OpponentUser) -> ()) -> OpponentUser {
-        let me = OpponentUser(id: id, fetchedTimeIntervalSince1970: fetchedTimeIntervalSince1970)
-        builder(me)
-        return me
+    
+    convenience init(url: String) {
+        self.init()
+        self.url = url
     }
 }

@@ -16,15 +16,13 @@ final class Me: User {
     dynamic var currentExp = 0
     
     private convenience init(id: String, token: String) {
-        //        super.init(id: id)
         self.init()
         self.id = id
         self.token = token
     }
-}
-
-final class MeBuilder {
-    final class func create(userId: User.ID, token: String, builder: (Me) -> ()) -> Me {
+    
+    final class func create(userId: User.ID, token: String,
+        builder: (Me) -> () = RealmObjectBuilder.builder) -> Me {
         let me = Me(id: userId, token: token)
         builder(me)
         return me

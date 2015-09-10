@@ -39,12 +39,9 @@ final class SwishDatabase {
     
     
     class func object<T: Object>(comparator: (target: T) -> Bool) -> T? {
-        for object in objects(T) {
-            if comparator(target: object) {
-                return object
-            }
+        for object in objects(T) where comparator(target: object) {
+            return object
         }
-        
         return nil
     }
     
@@ -62,13 +59,12 @@ final class SwishDatabase {
     
     class func delete<T: Object>(comparator: (target: T) -> Bool) {
         let objects = realm.objects(T)
-        for object in objects {
-            if comparator(target: object) {
-                write {
-                    realm.delete(object)
-                }
-                break
+        for object in objects where comparator(target: object) {
+            write {
+                // TODO: consider cascading through referencing objects
+                realm.delete(object)
             }
+            break
         }
     }
     
@@ -87,6 +83,10 @@ final class SwishDatabase {
         }
     }
     
+    class func write(block: (() -> Void)) {
+        let _ = try? realm.write(block)
+    }
+    
     // MARK: - Me
     class func me() -> Me {
         // Assume always have Me
@@ -101,7 +101,6 @@ final class SwishDatabase {
     
     // MARK: - OpponentUser
     class func opponentUser(id: User.ID) -> OpponentUser? {
-        // Assume always have Me
         let users = rawObjects(OpponentUser).filter("id = '\(id)'")
         return users.count > 0 ? users[0] : nil;
     }
@@ -120,19 +119,19 @@ final class SwishDatabase {
     }
     
     class func saveReceivedPhoto(userId: User.ID, photo: Photo) {
-        let user = OpponentUserBuilder.create(userId, fetchedTimeIntervalSince1970: NSDate().timeIntervalSince1970, builder: { (OpponentUser) -> () in })
+        let user = OpponentUser.create(userId, fetchedTimeIntervalSince1970: NSDate().timeIntervalSince1970, builder: { (OpponentUser) -> () in })
         saveOpponentUser(user)
         write {
             user.photos.append(photo)
         }
     }
     
-    class func photoWithId(id: Photo.ID) throws -> Photo {
+    class func photoWithId(id: Photo.ID) -> Photo? {
         let photoCandidates = rawObjects(Photo).filter("id = \(id)")
         if photoCandidates.count > 0 {
             return photoCandidates[0]
         }
-        throw RealmHelperError.PhotoNotFound
+        return nil
     }
     
     class func receivedPhotos() -> Array<Photo> {
@@ -158,10 +157,11 @@ final class SwishDatabase {
     }
     
     class func unreadMessageCount(id: Photo.ID) -> Int {
-        if let photo = try? photoWithId(id) {
-            return photo.unreadMessageCount
-        }
-        return 0
+        return photoWithId(id)?.unreadMessageCount ?? 0
+//        if let photo = photoWithId(id) {
+//            return photo.unreadMessageCount
+//        }
+//        return 0
     }
     
     class func markChatRoomOpened(id: Photo.ID) {
@@ -207,16 +207,22 @@ final class SwishDatabase {
     }
     
     // MARK: - Chat Message
-    class func saveChatMessages(photo: Photo, chatMessage: ChatMessage) {
+    class func saveChatMessage(photo: Photo, chatMessage: ChatMessage) {
         write {
             photo.chatMessages.append(chatMessage)
+        }
+    }
+    
+    class func saveChatMessages(photo: Photo, chatMessages: Array<ChatMessage>) {
+        write {
+            photo.chatMessages.appendContentsOf(chatMessages)
         }
     }
     
     class func loadChatMessages(photoId: Photo.ID, startIndex: Int, amount: Int) -> Array<ChatMessage> {
         var result = Array<ChatMessage>()
         
-        if let messagesInPhoto = try? photoWithId(photoId).chatMessages {
+        if let messagesInPhoto = photoWithId(photoId)?.chatMessages {
             let endIndex = startIndex + amount
             let hasInvalidIndexRange = endIndex <= startIndex
                 || startIndex >= messagesInPhoto.count
@@ -253,10 +259,8 @@ final class SwishDatabase {
     // MARK: - Class functions
     private class func objects<T: Object>(filter: (object: T) -> Bool) -> Array<T> {
         var resultObjects = Array<T>()
-        for object in objects(T) {
-            if filter(object: object) {
-                resultObjects.append(object)
-            }
+        for object in objects(T) where filter(object: object) {
+            resultObjects.append(object)
         }
         
         return resultObjects
@@ -267,15 +271,11 @@ final class SwishDatabase {
     }
     
     private class func writePhoto(id: Photo.ID, block: (Photo) -> Void) {
-        if let photo = try? photoWithId(id) {
+        if let photo = photoWithId(id) {
             write {
                 block(photo)
             }
         }
-    }
-    
-    private class func write(block: (() -> Void)) {
-        let _ = try? realm.write(block)
     }
     
     private class func convertToArray<T: Object>(src: Results<T>) -> Array<T> {
