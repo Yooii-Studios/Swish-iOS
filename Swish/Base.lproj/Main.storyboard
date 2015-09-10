@@ -3,6 +3,7 @@
     <dependencies>
         <deployment identifier="iOS"/>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="8151.3"/>
+        <capability name="Constraints to layout margins" minToolsVersion="6.0"/>
     </dependencies>
     <scenes>
         <!--Main View Controller-->
@@ -47,6 +48,13 @@
                                     <segue destination="icq-7B-1aW" kind="show" id="i9h-l1-snm"/>
                                 </connections>
                             </button>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="eDq-p4-cL7">
+                                <rect key="frame" x="50" y="50" width="113" height="30"/>
+                                <state key="normal" title="Dressing Screen"/>
+                                <connections>
+                                    <segue destination="Loa-El-XZR" kind="show" id="vks-kS-Dea"/>
+                                </connections>
+                            </button>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
                         <constraints>
@@ -54,15 +62,12 @@
                             <constraint firstItem="38O-QE-yw0" firstAttribute="leading" secondItem="u3H-n2-e6j" secondAttribute="trailing" constant="40" id="BOZ-EK-3QG"/>
                             <constraint firstItem="u3H-n2-e6j" firstAttribute="leading" secondItem="Nt9-sb-Yqm" secondAttribute="trailing" constant="40" id="CpT-cq-Oeh"/>
                             <constraint firstItem="Nt9-sb-Yqm" firstAttribute="bottom" secondItem="u3H-n2-e6j" secondAttribute="bottom" id="G4v-uP-8bv"/>
+                            <constraint firstItem="eDq-p4-cL7" firstAttribute="leading" secondItem="8bC-Xf-vdC" secondAttribute="leadingMargin" constant="30" id="MXO-qz-ARi"/>
                             <constraint firstItem="u3H-n2-e6j" firstAttribute="centerX" secondItem="8bC-Xf-vdC" secondAttribute="centerX" id="Olj-60-3AT"/>
+                            <constraint firstItem="eDq-p4-cL7" firstAttribute="top" secondItem="y3c-jy-aDJ" secondAttribute="bottom" constant="30" id="hzX-QF-gsO"/>
                             <constraint firstItem="wfy-db-euE" firstAttribute="top" secondItem="u3H-n2-e6j" secondAttribute="bottom" constant="50" id="t3Y-hT-X1J"/>
                         </constraints>
                     </view>
-                    <connections>
-                        <outlet property="cameraButton" destination="Nt9-sb-Yqm" id="EGj-gN-nkz"/>
-                        <outlet property="myInfoButton" destination="38O-QE-yw0" id="gBI-CW-BI7"/>
-                        <outlet property="pickPhotosButton" destination="u3H-n2-e6j" id="mce-LU-nGR"/>
-                    </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="dkx-z0-nzr" sceneMemberID="firstResponder"/>
             </objects>
@@ -82,6 +87,14 @@
                 <placeholder placeholderIdentifier="IBFirstResponder" id="GnG-iz-cQv" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="1460" y="750"/>
+        </scene>
+        <!--Dressing-->
+        <scene sceneID="ga2-Gb-K0f">
+            <objects>
+                <viewControllerPlaceholder storyboardName="Dressing" id="Loa-El-XZR" sceneMemberID="viewController"/>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="NDm-Kv-dtp" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="514" y="1149"/>
         </scene>
     </scenes>
 </document>
