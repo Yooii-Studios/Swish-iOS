@@ -16,11 +16,72 @@
                     <view key="view" contentMode="scaleToFill" id="8bC-Xf-vdC">
                         <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="u3H-n2-e6j">
+                                <rect key="frame" x="260" y="520" width="81" height="30"/>
+                                <state key="normal" title="Pick Photos"/>
+                                <state key="highlighted">
+                                    <color key="titleColor" red="0.25098040699958801" green="0.0" blue="0.50196081399917603" alpha="1" colorSpace="calibratedRGB"/>
+                                </state>
+                                <connections>
+                                    <segue destination="xlX-1R-86C" kind="show" id="Rty-l1-8Y6"/>
+                                </connections>
+                            </button>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Nt9-sb-Yqm">
+                                <rect key="frame" x="166" y="520" width="54" height="30"/>
+                                <state key="normal" title="Camera"/>
+                                <state key="highlighted">
+                                    <color key="titleColor" red="0.25098040699958801" green="0.0" blue="0.50196081399917603" alpha="1" colorSpace="calibratedRGB"/>
+                                </state>
+                                <connections>
+                                    <action selector="cameraButtonDidTap:" destination="BYZ-38-t0r" eventType="touchUpInside" id="pc0-Ch-bI7"/>
+                                </connections>
+                            </button>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="38O-QE-yw0">
+                                <rect key="frame" x="381" y="520" width="51" height="30"/>
+                                <state key="normal" title="My Info"/>
+                                <state key="highlighted">
+                                    <color key="titleColor" red="0.25098040699958801" green="0.0" blue="0.50196081399917603" alpha="1" colorSpace="calibratedRGB"/>
+                                </state>
+                                <connections>
+                                    <segue destination="icq-7B-1aW" kind="show" id="i9h-l1-snm"/>
+                                </connections>
+                            </button>
+                        </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
+                        <constraints>
+                            <constraint firstItem="38O-QE-yw0" firstAttribute="bottom" secondItem="u3H-n2-e6j" secondAttribute="bottom" id="Asq-1B-0vI"/>
+                            <constraint firstItem="38O-QE-yw0" firstAttribute="leading" secondItem="u3H-n2-e6j" secondAttribute="trailing" constant="40" id="BOZ-EK-3QG"/>
+                            <constraint firstItem="u3H-n2-e6j" firstAttribute="leading" secondItem="Nt9-sb-Yqm" secondAttribute="trailing" constant="40" id="CpT-cq-Oeh"/>
+                            <constraint firstItem="Nt9-sb-Yqm" firstAttribute="bottom" secondItem="u3H-n2-e6j" secondAttribute="bottom" id="G4v-uP-8bv"/>
+                            <constraint firstItem="u3H-n2-e6j" firstAttribute="centerX" secondItem="8bC-Xf-vdC" secondAttribute="centerX" id="Olj-60-3AT"/>
+                            <constraint firstItem="wfy-db-euE" firstAttribute="top" secondItem="u3H-n2-e6j" secondAttribute="bottom" constant="50" id="t3Y-hT-X1J"/>
+                        </constraints>
                     </view>
+                    <connections>
+                        <outlet property="cameraButton" destination="Nt9-sb-Yqm" id="EGj-gN-nkz"/>
+                        <outlet property="myInfoButton" destination="38O-QE-yw0" id="gBI-CW-BI7"/>
+                        <outlet property="pickPhotosButton" destination="u3H-n2-e6j" id="mce-LU-nGR"/>
+                    </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="dkx-z0-nzr" sceneMemberID="firstResponder"/>
             </objects>
+        </scene>
+        <!--PhotoPicker-->
+        <scene sceneID="Pdj-53-Kz4">
+            <objects>
+                <viewControllerPlaceholder storyboardName="PhotoPicker" id="xlX-1R-86C" sceneMemberID="viewController"/>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="2ht-gQ-2F7" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="1445.5" y="178"/>
+        </scene>
+        <!--My Info-->
+        <scene sceneID="3yD-Ew-3KM">
+            <objects>
+                <viewControllerPlaceholder storyboardName="My Info" id="icq-7B-1aW" sceneMemberID="viewController"/>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="GnG-iz-cQv" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="1460" y="750"/>
         </scene>
     </scenes>
 </document>

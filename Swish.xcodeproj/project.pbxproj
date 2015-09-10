@@ -18,6 +18,9 @@
 		5796738F1B9FFE7200382247 /* ChatMessageSendState.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5796738D1B9FFE7200382247 /* ChatMessageSendState.swift */; settings = {ASSET_TAGS = (); }; };
 		57F6283A1BA11D050008B23B /* DefaultObjectBuilder.swift in Sources */ = {isa = PBXBuildFile; fileRef = 57F628391BA11D050008B23B /* DefaultObjectBuilder.swift */; settings = {ASSET_TAGS = (); }; };
 		85DC322EC01B0FA668E09AEF /* Pods.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 1329CF0406A3CA7D132A3E08 /* Pods.framework */; settings = {ATTRIBUTES = (Weak, ); }; };
+		F23A7B181BA1D4070063233F /* PhotoPicker.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = F23A7B161BA1D4070063233F /* PhotoPicker.storyboard */; settings = {ASSET_TAGS = (); }; };
+		F23A7B1B1BA1D4140063233F /* My Info.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = F23A7B191BA1D4140063233F /* My Info.storyboard */; settings = {ASSET_TAGS = (); }; };
+		F23A7B1D1BA1D4520063233F /* DressingViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = F23A7B1C1BA1D4520063233F /* DressingViewController.swift */; settings = {ASSET_TAGS = (); }; };
 		F245DCB11B9E7B2D0072308B /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = F245DCB01B9E7B2D0072308B /* AppDelegate.swift */; };
 		F245DCB31B9E7B2D0072308B /* MainViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = F245DCB21B9E7B2D0072308B /* MainViewController.swift */; };
 		F245DCB61B9E7B2D0072308B /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = F245DCB41B9E7B2D0072308B /* Main.storyboard */; };
@@ -52,6 +55,9 @@
 		5796738D1B9FFE7200382247 /* ChatMessageSendState.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = ChatMessageSendState.swift; path = Chat/ChatMessageSendState.swift; sourceTree = "<group>"; };
 		57F628391BA11D050008B23B /* DefaultObjectBuilder.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DefaultObjectBuilder.swift; sourceTree = "<group>"; };
 		C0256DF10FDFE7249524B3FB /* Pods.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = Pods.debug.xcconfig; path = "Pods/Target Support Files/Pods/Pods.debug.xcconfig"; sourceTree = "<group>"; };
+		F23A7B171BA1D4070063233F /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/PhotoPicker.storyboard; sourceTree = "<group>"; };
+		F23A7B1A1BA1D4140063233F /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = "Base.lproj/My Info.storyboard"; sourceTree = "<group>"; };
+		F23A7B1C1BA1D4520063233F /* DressingViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DressingViewController.swift; sourceTree = "<group>"; };
 		F245DCAD1B9E7B2D0072308B /* Swish.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Swish.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		F245DCB01B9E7B2D0072308B /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		F245DCB21B9E7B2D0072308B /* MainViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainViewController.swift; sourceTree = "<group>"; };
@@ -171,6 +177,8 @@
 				F245DCE11B9E7CBA0072308B /* Controllers */,
 				F245DCB01B9E7B2D0072308B /* AppDelegate.swift */,
 				F245DCB41B9E7B2D0072308B /* Main.storyboard */,
+				F23A7B191BA1D4140063233F /* My Info.storyboard */,
+				F23A7B161BA1D4070063233F /* PhotoPicker.storyboard */,
 				F245DCBA1B9E7B2D0072308B /* Assets.xcassets */,
 				F245DCBC1B9E7B2D0072308B /* LaunchScreen.storyboard */,
 				F245DCBF1B9E7B2D0072308B /* Info.plist */,
@@ -194,6 +202,7 @@
 				F245DCB21B9E7B2D0072308B /* MainViewController.swift */,
 				F266D9011B9F159D00BDEB75 /* MyInfoViewController.swift */,
 				F266D9031B9F15D500BDEB75 /* PhotoPickerViewController.swift */,
+				F23A7B1C1BA1D4520063233F /* DressingViewController.swift */,
 			);
 			path = Controllers;
 			sourceTree = "<group>";
@@ -308,7 +317,9 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				F23A7B1B1BA1D4140063233F /* My Info.storyboard in Resources */,
 				F245DCBE1B9E7B2D0072308B /* LaunchScreen.storyboard in Resources */,
+				F23A7B181BA1D4070063233F /* PhotoPicker.storyboard in Resources */,
 				F245DCBB1B9E7B2D0072308B /* Assets.xcassets in Resources */,
 				F245DCB61B9E7B2D0072308B /* Main.storyboard in Resources */,
 			);
@@ -381,6 +392,7 @@
 				579673761B9FFE2000382247 /* SwishDatabase.swift in Sources */,
 				F245DCB11B9E7B2D0072308B /* AppDelegate.swift in Sources */,
 				F266D9021B9F159D00BDEB75 /* MyInfoViewController.swift in Sources */,
+				F23A7B1D1BA1D4520063233F /* DressingViewController.swift in Sources */,
 				F245DCB91B9E7B2D0072308B /* Swish.xcdatamodeld in Sources */,
 				579673831B9FFE6500382247 /* PhotoState.swift in Sources */,
 				57F6283A1BA11D050008B23B /* DefaultObjectBuilder.swift in Sources */,
@@ -413,6 +425,22 @@
 /* End PBXTargetDependency section */
 
 /* Begin PBXVariantGroup section */
+		F23A7B161BA1D4070063233F /* PhotoPicker.storyboard */ = {
+			isa = PBXVariantGroup;
+			children = (
+				F23A7B171BA1D4070063233F /* Base */,
+			);
+			name = PhotoPicker.storyboard;
+			sourceTree = "<group>";
+		};
+		F23A7B191BA1D4140063233F /* My Info.storyboard */ = {
+			isa = PBXVariantGroup;
+			children = (
+				F23A7B1A1BA1D4140063233F /* Base */,
+			);
+			name = "My Info.storyboard";
+			sourceTree = "<group>";
+		};
 		F245DCB41B9E7B2D0072308B /* Main.storyboard */ = {
 			isa = PBXVariantGroup;
 			children = (
@@ -467,6 +495,7 @@
 				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
 				GCC_WARN_ABOUT_MISSING_NEWLINE = YES;
 				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
+				GCC_WARN_INHIBIT_ALL_WARNINGS = NO;
 				GCC_WARN_SHADOW = YES;
 				GCC_WARN_UNDECLARED_SELECTOR = YES;
 				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
@@ -487,6 +516,7 @@
 					"-Wempty-body",
 					"-Wobjc-literal-compare",
 					"-Warc-repeated-use-of-weak",
+					"-Wnewline-eof",
 				);
 			};
 			name = Debug;
@@ -520,6 +550,7 @@
 				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
 				GCC_WARN_ABOUT_MISSING_NEWLINE = YES;
 				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
+				GCC_WARN_INHIBIT_ALL_WARNINGS = NO;
 				GCC_WARN_SHADOW = YES;
 				GCC_WARN_UNDECLARED_SELECTOR = YES;
 				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
@@ -539,6 +570,7 @@
 					"-Wempty-body",
 					"-Wobjc-literal-compare",
 					"-Warc-repeated-use-of-weak",
+					"-Wnewline-eof",
 				);
 			};
 			name = Release;

@@ -11,66 +11,28 @@ import SnapKit
 
 class MainViewController: UIViewController {
     
-    var cameraButton: UIButton!
-    var pickPhotosButton: UIButton!
-    var myInfoButton: UIButton!
+    @IBOutlet weak var cameraButton: UIButton!
+    @IBOutlet weak var pickPhotosButton: UIButton!
+    @IBOutlet weak var myInfoButton: UIButton!
 
     override func viewDidLoad() {
         super.viewDidLoad()
-        
-        initButtons()
-    }
-    
-    func initButtons() {
-        pickPhotosButton = UIButton()
-        pickPhotosButton.setTitle("Pick photos", forState: .Normal)
-        pickPhotosButton.setTitleColor(UIColor.blackColor(), forState: .Normal)
-        pickPhotosButton.setTitleColor(UIColor.blueColor(), forState: .Highlighted)
-        pickPhotosButton.addTarget(self, action: "pickPhotosButtonDidTap:", forControlEvents: UIControlEvents.TouchUpInside)
-        self.view.addSubview(pickPhotosButton)
-        pickPhotosButton.snp_makeConstraints { (make) -> Void in
-            make.bottom.equalTo(self.view).offset(-50)
-            make.centerX.equalTo(self.view)
-        }
-        
-        cameraButton = UIButton()
-        cameraButton.setTitle("Camera", forState: .Normal)
-        cameraButton.setTitleColor(UIColor.blackColor(), forState: .Normal)
-        cameraButton.setTitleColor(UIColor.blueColor(), forState: .Highlighted)
-        cameraButton.addTarget(self, action: "cameraButtonDidTap:", forControlEvents: UIControlEvents.TouchUpInside)
-        self.view.addSubview(cameraButton)
-        cameraButton.snp_makeConstraints { (make) -> Void in
-            make.right.equalTo(pickPhotosButton.snp_left).offset(-30)
-            make.bottom.equalTo(pickPhotosButton.snp_bottom)
-        }
-        
-        myInfoButton = UIButton()
-        myInfoButton.setTitle("My Info", forState: .Normal)
-        myInfoButton.setTitleColor(UIColor.blackColor(), forState: .Normal)
-        myInfoButton.setTitleColor(UIColor.blueColor(), forState: .Highlighted)
-        myInfoButton.addTarget(self, action: "myInfoButtonDidTap:", forControlEvents: UIControlEvents.TouchUpInside)
-        self.view.addSubview(myInfoButton)
-        myInfoButton.snp_makeConstraints { (make) -> Void in
-            make.left.equalTo(pickPhotosButton.snp_right).offset(30)
-            make.bottom.equalTo(pickPhotosButton.snp_bottom)
-        }
     }
 
-    func cameraButtonDidTap(sender: UIButton!) {
-        NSLog("cameraButtonDidTap")
+    @IBAction func cameraButtonDidTap(sender: UIButton!) {
     }
     
-    func pickPhotosButtonDidTap(sender: UIButton!) {
-        NSLog("pickPhotosButtonDidTap")
+    /*
+    @IBAction func pickPhotosButtonDidTap(sender: UIButton!) {
         let photoPickerViewController = PhotoPickerViewController()
         showViewController(photoPickerViewController, sender: self)
     }
     
-    func myInfoButtonDidTap(sender: UIButton!) {
-        NSLog("myInfoButtonDidTap")
+    @IBAction func myInfoButtonDidTap(sender: UIButton!) {
         let myInfoViewController = MyInfoViewController()
         showViewController(myInfoViewController, sender: self)
     }
+    */
     
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()

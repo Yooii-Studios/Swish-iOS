@@ -1,0 +1,52 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="8187.4" systemVersion="14F27" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" initialViewController="9KD-YC-iaJ">
+    <dependencies>
+        <deployment identifier="iOS"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="8151.3"/>
+    </dependencies>
+    <scenes>
+        <!--My Info-->
+        <scene sceneID="ULh-cH-S0h">
+            <objects>
+                <viewController id="0bL-bm-v49" customClass="MyInfoViewController" customModule="Swish" customModuleProvider="target" sceneMemberID="viewController">
+                    <layoutGuides>
+                        <viewControllerLayoutGuide type="top" id="ipd-BH-HKj"/>
+                        <viewControllerLayoutGuide type="bottom" id="BIV-nF-Mff"/>
+                    </layoutGuides>
+                    <view key="view" contentMode="scaleToFill" id="A2d-50-Ary">
+                        <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                    </view>
+                    <navigationItem key="navigationItem" title="My Info" id="sCA-ji-ljM">
+                        <barButtonItem key="rightBarButtonItem" systemItem="cancel" id="q4w-oi-CRy">
+                            <connections>
+                                <action selector="cancelBarButtonDidTap" destination="0bL-bm-v49" id="Wro-5i-YZW"/>
+                            </connections>
+                        </barButtonItem>
+                    </navigationItem>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="T7g-XC-ubD" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="2332" y="879"/>
+        </scene>
+        <!--Navigation Controller-->
+        <scene sceneID="vAd-yW-CVS">
+            <objects>
+                <navigationController automaticallyAdjustsScrollViewInsets="NO" id="9KD-YC-iaJ" sceneMemberID="viewController">
+                    <toolbarItems/>
+                    <navigationBar key="navigationBar" contentMode="scaleToFill" id="LKP-Cm-pj8">
+                        <rect key="frame" x="0.0" y="0.0" width="320" height="44"/>
+                        <autoresizingMask key="autoresizingMask"/>
+                    </navigationBar>
+                    <nil name="viewControllers"/>
+                    <connections>
+                        <segue destination="0bL-bm-v49" kind="relationship" relationship="rootViewController" id="jck-Pb-KkD"/>
+                    </connections>
+                </navigationController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="Cac-Yf-j4i" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="1520" y="879"/>
+        </scene>
+    </scenes>
+</document>
