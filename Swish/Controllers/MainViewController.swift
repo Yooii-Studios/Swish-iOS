@@ -21,19 +21,7 @@ class MainViewController: UIViewController {
 
     @IBAction func cameraButtonDidTap(sender: UIButton!) {
     }
-    
-    /*
-    @IBAction func pickPhotosButtonDidTap(sender: UIButton!) {
-        let photoPickerViewController = PhotoPickerViewController()
-        showViewController(photoPickerViewController, sender: self)
-    }
-    
-    @IBAction func myInfoButtonDidTap(sender: UIButton!) {
-        let myInfoViewController = MyInfoViewController()
-        showViewController(myInfoViewController, sender: self)
-    }
-    */
-    
+        
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()
         // Dispose of any resources that can be recreated.
