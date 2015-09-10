@@ -9,7 +9,7 @@
 import UIKit
 import SnapKit
 
-class MainViewController: UIViewController {
+class MainViewController: UIViewController, UIImagePickerControllerDelegate, UINavigationControllerDelegate {
     
     var cameraButton: UIButton!
     var pickPhotosButton: UIButton!
@@ -58,6 +58,15 @@ class MainViewController: UIViewController {
 
     func cameraButtonDidTap(sender: UIButton!) {
         NSLog("cameraButtonDidTap")
+        if UIImagePickerController.isSourceTypeAvailable(UIImagePickerControllerSourceType.Camera) {
+            let imagePickerController = UIImagePickerController()
+            imagePickerController.delegate = self
+            imagePickerController.sourceType = UIImagePickerControllerSourceType.Camera
+            imagePickerController.allowsEditing = false
+            showViewController(imagePickerController, sender: self)
+        } else {
+            NSLog("cameraNotAvailable")
+        }
     }
     
     func pickPhotosButtonDidTap(sender: UIButton!) {
@@ -75,5 +84,11 @@ class MainViewController: UIViewController {
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()
         // Dispose of any resources that can be recreated.
+    }
+    
+    // MARK: - Delegate Function
+    
+    func imagePickerController(picker: UIImagePickerController, didFinishPickingImage image: UIImage, editingInfo: [String : AnyObject]?) {
+        
     }
 }
