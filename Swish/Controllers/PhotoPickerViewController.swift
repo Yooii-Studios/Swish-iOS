@@ -10,19 +10,26 @@ import UIKit
 
 class PhotoPickerViewController: UICollectionViewController {
     
+    let itemCountInARow = 3
+    
     override func viewDidLoad() {
         super.viewDidLoad()
+        
+        initUI()
+    }
+    
+    func initUI() {
+        initCollectionView()
+    }
+    
+    func initCollectionView() {
+        let collectionViewFlowlayout = collectionView?.collectionViewLayout as! UICollectionViewFlowLayout
+        collectionViewFlowlayout.sectionInset = UIEdgeInsets(top: 5, left: 5, bottom: 5, right: 5)
+        collectionViewFlowlayout.minimumInteritemSpacing = 5
+        collectionViewFlowlayout.minimumLineSpacing = 5
 
-        // Do any additional setup after loading the view.
-        let layout: UICollectionViewFlowLayout = UICollectionViewFlowLayout()
-        layout.sectionInset = UIEdgeInsets(top: 20, left: 10, bottom: 10, right: 10)
-        layout.itemSize = CGSize(width: 90, height: 90)
-        collectionView = UICollectionView(frame: self.view.frame, collectionViewLayout: layout)
-        collectionView!.dataSource = self
-        collectionView!.delegate = self
         collectionView!.registerClass(UICollectionViewCell.self, forCellWithReuseIdentifier: "CollectionViewCell")
         collectionView!.backgroundColor = UIColor.whiteColor()
-        self.view.addSubview(collectionView!)
     }
     
     override func didReceiveMemoryWarning() {
@@ -57,13 +64,15 @@ class PhotoPickerViewController: UICollectionViewController {
     override func collectionView(collectionView: UICollectionView, cellForItemAtIndexPath indexPath: NSIndexPath) -> UICollectionViewCell {
         let cell = collectionView.dequeueReusableCellWithReuseIdentifier("CollectionViewCell", forIndexPath: indexPath)
         cell.backgroundColor = UIColor.blackColor()
-//        cell.textLabel?.text = "\(indexPath.section):\(indexPath.row)"
-//        cell.imageView?.image = UIImage(named: "circle")
         return cell
     }
     
-    func collectionView(collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAtIndexPath indexPath: NSIndexPath) -> CGSize
-    {
-        return CGSizeMake((UIScreen.mainScreen().bounds.width-50)/3,90); //use height whatever you wants.
+    func collectionView(collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAtIndexPath indexPath: NSIndexPath) -> CGSize {
+        let collectionViewFlowLayout = collectionViewLayout as! UICollectionViewFlowLayout
+        let collectionViewHorizontalInset = collectionViewFlowLayout.sectionInset.left
+            + collectionViewFlowLayout.sectionInset.right
+        let totalInterItemSpacing = CGFloat(itemCountInARow - 1) * collectionViewFlowLayout.minimumInteritemSpacing
+        let cellSize = (collectionView.bounds.width - totalInterItemSpacing - collectionViewHorizontalInset)/CGFloat(itemCountInARow)
+        return CGSizeMake(cellSize, cellSize);
     }
 }
