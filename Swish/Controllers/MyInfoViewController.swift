@@ -8,7 +8,7 @@
 
 import UIKit
 
-class MyInfoViewController: UIViewController {
+class MyInfoViewController: UITabBarController {
    
     var dismissButton: UIButton!
     
@@ -16,30 +16,15 @@ class MyInfoViewController: UIViewController {
         super.viewDidLoad()
 
         // Do any additional setup after loading the view.
-        self.view.backgroundColor = UIColor.whiteColor()
-        initDismissButton()
     }
     
-    func initDismissButton() {
-        dismissButton = UIButton()
-        dismissButton.setTitle("Dismiss", forState: .Normal)
-        dismissButton.setTitleColor(UIColor.blackColor(), forState: .Normal)
-        dismissButton.setTitleColor(UIColor.blueColor(), forState: .Highlighted)
-        dismissButton.addTarget(self, action: "dismissButtonDidTap:", forControlEvents: UIControlEvents.TouchUpInside)
-        self.view.addSubview(dismissButton)
-        dismissButton.snp_makeConstraints { (make) -> Void in
-            make.bottom.equalTo(self.view).offset(-50)
-            make.centerX.equalTo(self.view)
-        }
-    }
-    
-    func dismissButtonDidTap(sender: UIButton!) {
-        dismissViewControllerAnimated(true, completion: nil)
-    }
-
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()
         // Dispose of any resources that can be recreated.
+    }
+    
+    @IBAction func cancelBarButtonDidTap() {
+        dismissViewControllerAnimated(true, completion: nil)
     }
     
     /*
