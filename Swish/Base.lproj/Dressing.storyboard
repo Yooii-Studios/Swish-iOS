@@ -8,7 +8,7 @@
         <!--Dressing-->
         <scene sceneID="jOh-ic-i4d">
             <objects>
-                <viewController id="y0I-4w-0ho" customClass="DressingViewController" customModule="Swish" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController storyboardIdentifier="dressingViewController" id="y0I-4w-0ho" customClass="DressingViewController" customModule="Swish" customModuleProvider="target" sceneMemberID="viewController">
                     <layoutGuides>
                         <viewControllerLayoutGuide type="top" id="4Bw-ZO-HdM"/>
                         <viewControllerLayoutGuide type="bottom" id="3CM-ur-5IE"/>
@@ -16,7 +16,20 @@
                     <view key="view" contentMode="scaleToFill" id="NRu-VV-fhb">
                         <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="1uo-BK-C6M">
+                                <rect key="frame" x="150" y="150" width="300" height="300"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="300" id="JkV-9a-77O"/>
+                                    <constraint firstAttribute="width" constant="300" id="bJE-qQ-xXH"/>
+                                </constraints>
+                            </imageView>
+                        </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                        <constraints>
+                            <constraint firstItem="1uo-BK-C6M" firstAttribute="centerY" secondItem="NRu-VV-fhb" secondAttribute="centerY" id="RcB-G9-NXC"/>
+                            <constraint firstItem="1uo-BK-C6M" firstAttribute="centerX" secondItem="NRu-VV-fhb" secondAttribute="centerX" id="WDX-7a-kLt"/>
+                        </constraints>
                     </view>
                     <navigationItem key="navigationItem" title="Dressing" id="Frt-e0-sxg">
                         <barButtonItem key="rightBarButtonItem" systemItem="cancel" id="RDb-oh-NhV">
@@ -25,6 +38,9 @@
                             </connections>
                         </barButtonItem>
                     </navigationItem>
+                    <connections>
+                        <outlet property="testImageView" destination="1uo-BK-C6M" id="UUD-Nu-xwB"/>
+                    </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="fY1-s0-Dnp" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
@@ -33,7 +49,7 @@
         <!--Navigation Controller-->
         <scene sceneID="yj7-HJ-AOu">
             <objects>
-                <navigationController automaticallyAdjustsScrollViewInsets="NO" id="Bml-Kc-Hq3" sceneMemberID="viewController">
+                <navigationController storyboardIdentifier="dressingNaviViewController" automaticallyAdjustsScrollViewInsets="NO" id="Bml-Kc-Hq3" sceneMemberID="viewController">
                     <toolbarItems/>
                     <navigationBar key="navigationBar" contentMode="scaleToFill" id="i2e-0F-zOF">
                         <rect key="frame" x="0.0" y="0.0" width="320" height="44"/>
