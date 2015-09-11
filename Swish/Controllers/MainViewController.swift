@@ -15,7 +15,7 @@ class MainViewController: UIViewController, UIImagePickerControllerDelegate, UIN
         super.viewDidLoad()
     }
     
-    func cameraButtonDidTap(sender: UIButton!) {
+    @IBAction func cameraButtonDidTap(sender: UIButton!) {
         NSLog("cameraButtonDidTap")
         if UIImagePickerController.isSourceTypeAvailable(UIImagePickerControllerSourceType.Camera) {
             let imagePickerController = UIImagePickerController()
@@ -26,12 +26,6 @@ class MainViewController: UIViewController, UIImagePickerControllerDelegate, UIN
         } else {
             NSLog("cameraNotAvailable")
         }
-    }
-    
-    func pickPhotosButtonDidTap(sender: UIButton!) {
-        NSLog("pickPhotosButtonDidTap")
-        let photoPickerViewController = PhotoPickerViewController()
-        showViewController(photoPickerViewController, sender: self)
     }
 
     override func didReceiveMemoryWarning() {
@@ -44,10 +38,15 @@ class MainViewController: UIViewController, UIImagePickerControllerDelegate, UIN
     func imagePickerController(picker: UIImagePickerController, didFinishPickingImage image: UIImage, editingInfo: [String : AnyObject]?) {
         NSLog("cameraDidFinishPickingImage")
         let storyboard = UIStoryboard(name: "Dressing", bundle: nil)
-        let dressingViewController = storyboard.instantiateViewControllerWithIdentifier("dressingViewController") as! DressingViewController
+        
+        let navigationViewController = storyboard.instantiateViewControllerWithIdentifier("dressingNaviViewController") as! UINavigationController
+        
+        let dressingViewController = navigationViewController.topViewController as! DressingViewController
+        
+//        let dressingViewController = storyboard.instantiateViewControllerWithIdentifier("dressingViewController") as! DressingViewController
         
         dressingViewController.testImage = image
         
-        picker.showViewController(dressingViewController, sender: self)
+        picker.showViewController(navigationViewController, sender: self)
     }
 }
