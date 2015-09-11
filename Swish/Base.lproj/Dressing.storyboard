@@ -8,7 +8,7 @@
         <!--Dressing-->
         <scene sceneID="jOh-ic-i4d">
             <objects>
-                <viewController id="y0I-4w-0ho" customClass="DressingViewController" customModule="Swish" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController storyboardIdentifier="dressingViewController" id="y0I-4w-0ho" customClass="DressingViewController" customModule="Swish" customModuleProvider="target" sceneMemberID="viewController">
                     <layoutGuides>
                         <viewControllerLayoutGuide type="top" id="4Bw-ZO-HdM"/>
                         <viewControllerLayoutGuide type="bottom" id="3CM-ur-5IE"/>
@@ -38,6 +38,9 @@
                             </connections>
                         </barButtonItem>
                     </navigationItem>
+                    <connections>
+                        <outlet property="testImageView" destination="1uo-BK-C6M" id="UUD-Nu-xwB"/>
+                    </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="fY1-s0-Dnp" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>

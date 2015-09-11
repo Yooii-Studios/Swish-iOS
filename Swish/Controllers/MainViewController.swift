@@ -42,6 +42,12 @@ class MainViewController: UIViewController, UIImagePickerControllerDelegate, UIN
     // MARK: - Delegate Function
     
     func imagePickerController(picker: UIImagePickerController, didFinishPickingImage image: UIImage, editingInfo: [String : AnyObject]?) {
+        NSLog("cameraDidFinishPickingImage")
+        let storyboard = UIStoryboard(name: "Dressing", bundle: nil)
+        let dressingViewController = storyboard.instantiateViewControllerWithIdentifier("dressingViewController") as! DressingViewController
         
+        dressingViewController.testImage = image
+        
+        picker.showViewController(dressingViewController, sender: self)
     }
 }

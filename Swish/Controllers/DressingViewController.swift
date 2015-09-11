@@ -9,11 +9,18 @@
 import UIKit
 
 class DressingViewController: UIViewController {
+    
+    var testImage : UIImage?
+    
+    @IBOutlet var testImageView : UIImageView!
 
     override func viewDidLoad() {
         super.viewDidLoad()
 
         // Do any additional setup after loading the view.
+        if testImage != nil {
+            testImageView?.image = testImage
+        }
     }
 
     override func didReceiveMemoryWarning() {
