@@ -38,15 +38,12 @@ class MainViewController: UIViewController, UIImagePickerControllerDelegate, UIN
     func imagePickerController(picker: UIImagePickerController, didFinishPickingImage image: UIImage, editingInfo: [String : AnyObject]?) {
         NSLog("cameraDidFinishPickingImage")
         let storyboard = UIStoryboard(name: "Dressing", bundle: nil)
-        
-        let navigationViewController = storyboard.instantiateViewControllerWithIdentifier("dressingNaviViewController") as! UINavigationController
-        
+        let navigationViewController =
+        storyboard.instantiateViewControllerWithIdentifier("dressingNaviViewController") as! UINavigationController
         let dressingViewController = navigationViewController.topViewController as! DressingViewController
-        
-//        let dressingViewController = storyboard.instantiateViewControllerWithIdentifier("dressingViewController") as! DressingViewController
-        
         dressingViewController.testImage = image
         
-        picker.showViewController(navigationViewController, sender: self)
+        picker.dismissViewControllerAnimated(false, completion: nil)
+        presentViewController(navigationViewController, animated: true, completion: nil)
     }
 }
