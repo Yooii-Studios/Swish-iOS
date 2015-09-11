@@ -7,15 +7,22 @@
 //
 
 import UIKit
+import Photos
 
 class PhotoPickerViewController: UICollectionViewController {
     
     let itemCountInARow = 3
+    var photoMediaFetchResult : PHFetchResult?
     
     override func viewDidLoad() {
         super.viewDidLoad()
         
+        initData()
         initUI()
+    }
+    
+    func initData() {
+        photoMediaFetchResult = MediaLoader.fetchDevicePhotoMedia()
     }
     
     func initUI() {
@@ -28,7 +35,7 @@ class PhotoPickerViewController: UICollectionViewController {
         collectionViewFlowlayout.minimumInteritemSpacing = 5
         collectionViewFlowlayout.minimumLineSpacing = 5
 
-        collectionView!.registerClass(UICollectionViewCell.self, forCellWithReuseIdentifier: "CollectionViewCell")
+        collectionView!.registerClass(PhotoCollectionViewCell.self, forCellWithReuseIdentifier: "CollectionViewCell")
         collectionView!.backgroundColor = UIColor.whiteColor()
     }
     
@@ -58,12 +65,24 @@ class PhotoPickerViewController: UICollectionViewController {
     }
     
     override func collectionView(collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
-        return 20
+        return (photoMediaFetchResult?.count)!
     }
     
     override func collectionView(collectionView: UICollectionView, cellForItemAtIndexPath indexPath: NSIndexPath) -> UICollectionViewCell {
-        let cell = collectionView.dequeueReusableCellWithReuseIdentifier("CollectionViewCell", forIndexPath: indexPath)
-        cell.backgroundColor = UIColor.blackColor()
+        let cell = collectionView.dequeueReusableCellWithReuseIdentifier("CollectionViewCell", forIndexPath: indexPath) as! PhotoCollectionViewCell
+        
+        let options = PHImageRequestOptions()
+        options.version = PHImageRequestOptionsVersion.Current
+        
+        PHImageManager.defaultManager()
+            .requestImageForAsset(photoMediaFetchResult?.objectAtIndex(indexPath.row) as! PHAsset,
+                targetSize: cell.bounds.size, contentMode: PHImageContentMode.AspectFill,
+                options: options, resultHandler: {(result, info) -> Void in
+                    dispatch_async(dispatch_get_main_queue(), {
+                        cell.imageView.image = result
+                    })
+            })
+        
         return cell
     }
     
