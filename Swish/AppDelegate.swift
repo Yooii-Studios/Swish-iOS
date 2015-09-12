@@ -8,6 +8,7 @@
 
 import UIKit
 import CoreData
+import Alamofire
 
 @UIApplicationMain
 class AppDelegate: UIResponder, UIApplicationDelegate {
@@ -17,6 +18,45 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
     func application(application: UIApplication, didFinishLaunchingWithOptions launchOptions: [NSObject: AnyObject]?) -> Bool {
         // Override point for customization after application launch.
         SwishDatabase.migrate()
+        
+        let wrapper = KeychainItemWrapper(identifier: "UUID", accessGroup: nil)
+        var uuid = wrapper[kSecAttrAccount as String] as! String?
+//        let uuid = wrapper.objectForKey(kSecAttrAccount)
+        if uuid == nil || uuid!.isEmpty {
+            uuid = NSUUID().UUIDString
+            wrapper[kSecAttrAccount as String] = uuid
+        }
+        print(uuid)
+        
+        
+        let host = "http://yooiia.iptime.org:3000"
+        let registerClientUrl = host + "/clients"
+//        let uuid = NSUUID().UUIDString
+//        let uuid = ASIdentifierManager.sharedManager.advertisingIdentifier.UUIDString
+        let params = [
+            "auth": "swish",
+            "uuid": uuid!,
+            "gcm_id": "",
+            "name": "iOS_dev",
+            "about": "dev user on iOS"
+        ]
+        Alamofire.request(.POST, registerClientUrl, parameters: params)
+            .responseJSON { _, response, result in
+                print(response)
+                print(result)
+                print(result.value)
+//                print(request)
+//                print(response)
+//                print(data)
+//                print(error)
+        }
+//        Alamofire.request(.GET, "registerClientUrl", parameters: ["foo": "bar"])
+//            .response { request, response, data, error in
+//                print(request)
+//                print(response)
+//                print(error)
+//        }
+        
         return true
     }
 
