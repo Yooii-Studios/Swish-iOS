@@ -12,13 +12,18 @@ import Photos
 class PhotoPickerViewController: UICollectionViewController {
     
     let itemCountInARow = 3
+    let selectedAssets : [PHAsset] = []
     var photoMediaFetchResult : PHFetchResult?
     
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        initData()
         initUI()
+        initData()
+    }
+    
+    func initUI() {
+        initCollectionView()
     }
     
     func initData() {
@@ -28,32 +33,10 @@ class PhotoPickerViewController: UICollectionViewController {
             case PHAuthorizationStatus.NotDetermined:
                 requestAuthorizaitionStatus()
             case PHAuthorizationStatus.Restricted, PHAuthorizationStatus.Denied :
-                self.dismissViewControllerAnimated(true, completion: nil)
+                showAccessDenied()
             default:
-                self.photoMediaFetchResult = MediaLoader.fetchDevicePhotoMedia()
-                self.collectionView?.reloadData()
+                fetchAssets()
         }
-    }
-    
-    func requestAuthorizaitionStatus() {
-        PHPhotoLibrary.requestAuthorization { (authStatus) -> Void in
-            switch (authStatus) {
-            case PHAuthorizationStatus.Authorized:
-                dispatch_async(dispatch_get_main_queue(), { () -> Void in
-                    self.photoMediaFetchResult = MediaLoader.fetchDevicePhotoMedia()
-                    self.collectionView?.reloadData()
-                })
-            default:
-                dispatch_async(dispatch_get_main_queue(), { () -> Void in
-                    self.dismissViewControllerAnimated(true, completion: nil)
-                })
-            }
-        }
-    }
-    
-    
-    func initUI() {
-        initCollectionView()
     }
     
     func initCollectionView() {
@@ -61,9 +44,34 @@ class PhotoPickerViewController: UICollectionViewController {
         collectionViewFlowlayout.sectionInset = UIEdgeInsets(top: 5, left: 5, bottom: 5, right: 5)
         collectionViewFlowlayout.minimumInteritemSpacing = 5
         collectionViewFlowlayout.minimumLineSpacing = 5
-
+        
         collectionView!.registerClass(PhotoCollectionViewCell.self, forCellWithReuseIdentifier: "CollectionViewCell")
         collectionView!.backgroundColor = UIColor.whiteColor()
+    }
+    
+    func requestAuthorizaitionStatus() {
+        PHPhotoLibrary.requestAuthorization { (authStatus) -> Void in
+            switch (authStatus) {
+            case PHAuthorizationStatus.Authorized:
+                dispatch_async(dispatch_get_main_queue(), { () -> Void in
+                    self.fetchAssets()
+                })
+            default:
+                dispatch_async(dispatch_get_main_queue(), { () -> Void in
+                    self.showAccessDenied()
+                })
+            }
+        }
+    }
+    
+    func showAccessDenied() {
+        // TODO : 일단은 Picker 내리는 것으로 처리, 후에 Denied에 대한 안내 문구 띄워줘야 할 듯
+        self.dismissViewControllerAnimated(true, completion: nil)
+    }
+    
+    func fetchAssets() {
+        self.photoMediaFetchResult = MediaLoader.fetchPhotoAssets()
+        self.collectionView?.reloadData()
     }
     
     override func didReceiveMemoryWarning() {
@@ -96,29 +104,27 @@ class PhotoPickerViewController: UICollectionViewController {
     }
     
     override func collectionView(collectionView: UICollectionView, cellForItemAtIndexPath indexPath: NSIndexPath) -> UICollectionViewCell {
-        let cell = collectionView.dequeueReusableCellWithReuseIdentifier("CollectionViewCell", forIndexPath: indexPath) as! PhotoCollectionViewCell
-        
-        let options = PHImageRequestOptions()
-        options.version = PHImageRequestOptionsVersion.Current
-        
-        PHImageManager.defaultManager()
-            .requestImageForAsset(photoMediaFetchResult?.objectAtIndex(indexPath.row) as! PHAsset,
-                targetSize: cell.bounds.size, contentMode: PHImageContentMode.AspectFill,
-                options: options, resultHandler: {(result, info) -> Void in
-                    dispatch_async(dispatch_get_main_queue(), {
-                        cell.imageView.image = result
-                    })
-            })
-        
+        let cell = collectionView.dequeueReusableCellWithReuseIdentifier("CollectionViewCell", forIndexPath: indexPath)
+            as! PhotoCollectionViewCell
+        let asset = photoMediaFetchResult?.objectAtIndex(indexPath.row) as! PHAsset
+        MediaLoader.setAssetImageToImageView(asset, targetSize: cell.bounds.size, imageView: cell.imageView)
         return cell
     }
     
-    func collectionView(collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAtIndexPath indexPath: NSIndexPath) -> CGSize {
+    func collectionView(collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout,
+        sizeForItemAtIndexPath indexPath: NSIndexPath) -> CGSize {
+        let cellSize = calculateCollectionViewCellSize()
+        return CGSizeMake(cellSize, cellSize);
+    }
+    
+    func calculateCollectionViewCellSize() -> CGFloat {
         let collectionViewFlowLayout = collectionViewLayout as! UICollectionViewFlowLayout
         let collectionViewHorizontalInset = collectionViewFlowLayout.sectionInset.left
             + collectionViewFlowLayout.sectionInset.right
         let totalInterItemSpacing = CGFloat(itemCountInARow - 1) * collectionViewFlowLayout.minimumInteritemSpacing
-        let cellSize = (collectionView.bounds.width - totalInterItemSpacing - collectionViewHorizontalInset)/CGFloat(itemCountInARow)
-        return CGSizeMake(cellSize, cellSize);
+        let cellSize = (collectionView!.bounds.width - totalInterItemSpacing - collectionViewHorizontalInset)
+            / CGFloat(itemCountInARow)
+        
+        return cellSize
     }
 }
