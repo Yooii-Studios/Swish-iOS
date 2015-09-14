@@ -22,8 +22,35 @@ class PhotoPickerViewController: UICollectionViewController {
     }
     
     func initData() {
-        photoMediaFetchResult = MediaLoader.fetchDevicePhotoMedia()
+        let authStatus = PHPhotoLibrary.authorizationStatus()
+        
+        switch (authStatus) {
+            case PHAuthorizationStatus.NotDetermined:
+                requestAuthorizaitionStatus()
+            case PHAuthorizationStatus.Restricted, PHAuthorizationStatus.Denied :
+                self.dismissViewControllerAnimated(true, completion: nil)
+            default:
+                self.photoMediaFetchResult = MediaLoader.fetchDevicePhotoMedia()
+                self.collectionView?.reloadData()
+        }
     }
+    
+    func requestAuthorizaitionStatus() {
+        PHPhotoLibrary.requestAuthorization { (authStatus) -> Void in
+            switch (authStatus) {
+            case PHAuthorizationStatus.Authorized:
+                dispatch_async(dispatch_get_main_queue(), { () -> Void in
+                    self.photoMediaFetchResult = MediaLoader.fetchDevicePhotoMedia()
+                    self.collectionView?.reloadData()
+                })
+            default:
+                dispatch_async(dispatch_get_main_queue(), { () -> Void in
+                    self.dismissViewControllerAnimated(true, completion: nil)
+                })
+            }
+        }
+    }
+    
     
     func initUI() {
         initCollectionView()
@@ -65,7 +92,7 @@ class PhotoPickerViewController: UICollectionViewController {
     }
     
     override func collectionView(collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
-        return (photoMediaFetchResult?.count)!
+        return photoMediaFetchResult != nil ? (photoMediaFetchResult?.count)! : 0
     }
     
     override func collectionView(collectionView: UICollectionView, cellForItemAtIndexPath indexPath: NSIndexPath) -> UICollectionViewCell {
