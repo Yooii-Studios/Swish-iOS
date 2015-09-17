@@ -23,15 +23,34 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         if SwishDatabase.hasMe() {
             print("already registered.")
         } else {
-            UserServer.registerUser({ (me: Me) -> () in
-                print(me)
-                SwishDatabase.saveMe(me)
-                UserServer.updateUser("chris", about: "some about", onFail: {
-                    (error: SwishError) -> () in
-                    print(error)
-                })},
-                onFail: { (error: SwishError) -> () in
-                    print(error)
+            UserServer.registerMe(
+                { (me) -> () in
+                    SwishDatabase.saveMe(me)
+                    print("registerMe: \(me)\n")
+                    
+                    UserServer.getOpponentUser("14",
+                        onSuccess: { (opponentUser) -> () in
+                            SwishDatabase.saveOpponentUser(opponentUser)
+                            print("getOpponentUser: \(opponentUser)\n")
+                        }, onFail: { (error) -> () in
+                            print("Failed on getting opponent user:\n\(error)\n")
+                    })
+                    UserServer.updateMe("chris", about: "some about",
+                        onSuccess: { (result) -> () in
+                            print("updateMe: Success\n")
+                        }, onFail: { (error) -> () in
+                            print("Failed on updating me:\n\(error)\n")
+                    })
+                    UserServer.getActivityRecord("14",
+                        onSuccess: { (record) -> () in
+                            print("getActivityRecord: \(record)\n")
+                        },
+                        onFail: { (error) -> () in
+                            print("Failed on getActivityRecord:\n\(error)\n")
+                    })
+                },
+                onFail: { (error) -> () in
+                    print("Failed on registering me:\n\(error)\n")
             })
         }
         
