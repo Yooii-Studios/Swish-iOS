@@ -23,14 +23,16 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         if SwishDatabase.hasMe() {
             print("already registered.")
         } else {
-            SwishServer.registerUser {
-                print($0)
-                SwishDatabase.saveMe($0)
-                SwishServer.updateUser("chris", about: "some about", callback: { (me: Me) -> () in
-                    print(me)
-                    SwishServer.getUser()
-                })
-            }
+            UserServer.registerUser({ (me: Me) -> () in
+                print(me)
+                SwishDatabase.saveMe(me)
+                UserServer.updateUser("chris", about: "some about", onFail: {
+                    (error: SwishError) -> () in
+                    print(error)
+                })},
+                onFail: { (error: SwishError) -> () in
+                    print(error)
+            })
         }
         
         return true
