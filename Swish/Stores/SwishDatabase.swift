@@ -93,6 +93,10 @@ final class SwishDatabase {
         return rawObjects(Me)[0]
     }
     
+    class func hasMe() -> Bool {
+        return rawObjects(Me).count > 0
+    }
+    
     class func saveMe(me: Me) {
         write {
             realm.add(me)
