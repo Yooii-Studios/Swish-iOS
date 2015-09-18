@@ -17,20 +17,20 @@ final class UserServer {
         let httpRequest = HttpRequest<Me>(method: .POST, url: baseClientUrl, parameters: params, parser: parser, onSuccess: onSuccess, onFail: onFail)
         httpRequest.useAuthHeader = false
         
-        SwishServer.request(httpRequest)
+        SwishServer.requestWith(httpRequest)
     }
     
     class func updateMe(name: String? = nil, about: String? = nil,
         onSuccess: DefaultSuccessCallback, onFail: FailCallback) {
-        let url = "\(baseClientUrl)/\(SwishDatabase.me().id)/update_profile_info"
-        let params = updateMeParamsWith(name, about: about)
-        
-        let httpRequest = HttpRequest<JSON>(method: .PUT, url: url, parameters: params, parser: SwishServer.defaultParser, onSuccess: onSuccess, onFail: onFail)
-        
-        SwishServer.request(httpRequest)
+            let url = "\(baseClientUrl)/\(SwishDatabase.me().id)/update_profile_info"
+            let params = updateMeParamsWith(name, about: about)
+            
+            let httpRequest = HttpRequest<JSON>(method: .PUT, url: url, parameters: params, parser: SwishServer.defaultParser, onSuccess: onSuccess, onFail: onFail)
+            
+            SwishServer.requestWith(httpRequest)
     }
     
-    class func getOpponentUser(userId: String, onSuccess: (opponentUser: OpponentUser) -> (), onFail: FailCallback) {
+    class func opponentUserWith(userId: String, onSuccess: (opponentUser: OpponentUser) -> (), onFail: FailCallback) {
         let url = "\(baseClientUrl)/\(userId)"
         
         let parser = { (resultJson: JSON) -> OpponentUser in
@@ -40,10 +40,10 @@ final class UserServer {
         let httpRequest = HttpRequest<OpponentUser>(
             method: .GET, url: url, parser: parser, onSuccess: onSuccess, onFail: onFail)
         
-        SwishServer.request(httpRequest)
+        SwishServer.requestWith(httpRequest)
     }
     
-    class func getActivityRecord(id: String, onSuccess: (record: UserActivityRecord) -> (),
+    class func activityRecordWith(id: String, onSuccess: (record: UserActivityRecord) -> (),
         onFail: FailCallback) {
             let url = "\(baseClientUrl)/\(id)/get_activity_record"
             
@@ -55,7 +55,7 @@ final class UserServer {
             let httpRequest = HttpRequest<UserActivityRecord>(
                 method: .GET, url: url, parser: parser, onSuccess: onSuccess, onFail: onFail)
             
-            SwishServer.request(httpRequest)
+            SwishServer.requestWith(httpRequest)
     }
     
     // MARK: - Params
