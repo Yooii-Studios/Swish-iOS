@@ -18,41 +18,6 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
     func application(application: UIApplication, didFinishLaunchingWithOptions launchOptions: [NSObject: AnyObject]?) -> Bool {
         // Override point for customization after application launch.
         SwishDatabase.migrate()
-        SwishDatabase.deleteAll()
-        
-        if SwishDatabase.hasMe() {
-            print("already registered.")
-        } else {
-            UserServer.registerMe(
-                { (me) -> () in
-                    SwishDatabase.saveMe(me)
-                    print("registerMe: \(me)\n")
-                    
-                    UserServer.opponentUserWith("14",
-                        onSuccess: { (opponentUser) -> () in
-                            SwishDatabase.saveOpponentUser(opponentUser)
-                            print("getOpponentUser: \(opponentUser)\n")
-                        }, onFail: { (error) -> () in
-                            print("Failed on getting opponent user:\n\(error)\n")
-                    })
-                    UserServer.updateMe("chris", about: "some about",
-                        onSuccess: { (result) -> () in
-                            print("updateMe: Success\n")
-                        }, onFail: { (error) -> () in
-                            print("Failed on updating me:\n\(error)\n")
-                    })
-                    UserServer.activityRecordWith("14",
-                        onSuccess: { (record) -> () in
-                            print("getActivityRecord: \(record)\n")
-                        },
-                        onFail: { (error) -> () in
-                            print("Failed on getActivityRecord:\n\(error)\n")
-                    })
-                },
-                onFail: { (error) -> () in
-                    print("Failed on registering me:\n\(error)\n")
-            })
-        }
         
         return true
     }
