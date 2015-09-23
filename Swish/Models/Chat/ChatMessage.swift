@@ -14,6 +14,7 @@ final class ChatMessage: Object {
     private static let invalidReceivedTime = NSTimeInterval.NaN
     
     // Mark: Attributes
+    
     dynamic var message = ""
     dynamic var receivedTimeIntervalSince1970 = invalidReceivedTime
     var receivedDate:NSDate { return _receivedDate }
@@ -33,6 +34,7 @@ final class ChatMessage: Object {
     }
     
     // MARK: Initializer
+    
     private convenience init(message: String, eventTime: NSDate = NSDate()) {
         self.init()
         self.message = message
@@ -40,6 +42,7 @@ final class ChatMessage: Object {
     }
     
     // Mark: Realm support
+    
     private var _receivedDate: NSDate {
         get {
             // FIXME: Creates an instance everytime when receivedDate is retrieved.

@@ -12,7 +12,7 @@ import RealmSwift
 import CoreLocation
 
 class SwishTests: XCTestCase {
-    var opponentUserIndex = 0
+    var otherUserIndex = 0
     var photoIndex = 0
     var chatMessageIndex = 0
     
@@ -20,7 +20,7 @@ class SwishTests: XCTestCase {
         super.setUp()
 //        Realm.Configuration.defaultConfiguration.inMemoryIdentifier = self.name
         SwishDatabase.deleteAll()
-        opponentUserIndex = 0
+        otherUserIndex = 0
         photoIndex = 0
     }
     
@@ -44,12 +44,12 @@ class SwishTests: XCTestCase {
         XCTAssert(me == SwishDatabase.me())
     }
     
-    func testCreateOpponentUser() {
+    func testCreateOtherUser() {
         // Setup Me
-        let user = createOpponentUser()
+        let user = createOtherUser()
         let userId = user.id
-        SwishDatabase.saveOpponentUser(user)
-        XCTAssert(user == SwishDatabase.opponentUser(userId)!)
+        SwishDatabase.saveOtherUser(user)
+        XCTAssert(user == SwishDatabase.otherUser(userId)!)
     }
     
     func testCreateSentPhoto() {
@@ -67,10 +67,10 @@ class SwishTests: XCTestCase {
     func testCreateReceivedPhoto() {
         SwishDatabase.saveMe(createMe())
         
-        let userOne = createOpponentUser()
-        let userTwo = createOpponentUser()
-        SwishDatabase.saveOpponentUser(userOne)
-        SwishDatabase.saveOpponentUser(userTwo)
+        let userOne = createOtherUser()
+        let userTwo = createOtherUser()
+        SwishDatabase.saveOtherUser(userOne)
+        SwishDatabase.saveOtherUser(userTwo)
         
         let photoOne = createPhoto()
         let photoTwo = createPhoto()
@@ -105,8 +105,8 @@ class SwishTests: XCTestCase {
     func testCreateReceivedPhotoChatMessages() {
         SwishDatabase.saveMe(createMe())
         
-        let user = createOpponentUser()
-        SwishDatabase.saveOpponentUser(user)
+        let user = createOtherUser()
+        SwishDatabase.saveOtherUser(user)
         
         let photo = createPhoto()
         SwishDatabase.saveReceivedPhoto(user.id, photo: photo)
@@ -127,8 +127,8 @@ class SwishTests: XCTestCase {
     func testDeleteChatMessage() {
         SwishDatabase.saveMe(createMe())
         
-        let user = createOpponentUser()
-        SwishDatabase.saveOpponentUser(user)
+        let user = createOtherUser()
+        SwishDatabase.saveOtherUser(user)
         
         let photo = createPhoto()
         SwishDatabase.saveReceivedPhoto(user.id, photo: photo)
@@ -149,21 +149,21 @@ class SwishTests: XCTestCase {
     }
     
     // MARK: - Updates
-    func testUpdateOpponentUser() {
+    func testUpdateOtherUser() {
         SwishDatabase.saveMe(createMe())
         
-        let user = createOpponentUser()
-        SwishDatabase.saveOpponentUser(user)
+        let user = createOtherUser()
+        SwishDatabase.saveOtherUser(user)
         
         let id = user.id
         
-        let newUser = createOpponentUser()
+        let newUser = createOtherUser()
         newUser.id = id
         newUser.name = "new name!!"
         
-        SwishDatabase.saveOpponentUser(newUser)
+        SwishDatabase.saveOtherUser(newUser)
         
-        let users = SwishDatabase.objects(OpponentUser)
+        let users = SwishDatabase.objects(OtherUser)
         XCTAssertEqual(users.count, 1)
         XCTAssertEqual(users[0].id, id)
     }
@@ -207,9 +207,9 @@ class SwishTests: XCTestCase {
         })
     }
     
-    func createOpponentUser() -> OpponentUser {
-        let postfix = "\(opponentUserIndex++)"
-        return OpponentUser.create("opId\(postfix)", builder: { (user: OpponentUser) -> () in
+    func createOtherUser() -> OtherUser {
+        let postfix = "\(otherUserIndex++)"
+        return OtherUser.create("opId\(postfix)", builder: { (user: OtherUser) -> () in
             user.name = "opName\(postfix)"
             user.about = "opAbout\(postfix)"
             user.profileUrl = "opProfileUrl\(postfix)"

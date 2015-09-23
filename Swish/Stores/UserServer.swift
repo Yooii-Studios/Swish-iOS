@@ -8,6 +8,7 @@
 
 import Foundation
 import UIKit
+import SwiftyJSON
 
 final class UserServer {
     private static let baseClientUrl = SwishServer.host + "/clients"
@@ -44,14 +45,14 @@ final class UserServer {
             SwishServer.requestWith(httpRequest)
     }
     
-    class func opponentUserWith(userId: String, onSuccess: (opponentUser: OpponentUser) -> (), onFail: FailCallback) {
+    class func otherUserWith(userId: String, onSuccess: (otherUser: OtherUser) -> (), onFail: FailCallback) {
         let url = "\(baseClientUrl)/\(userId)"
         
-        let parser = { (resultJson: JSON) -> OpponentUser in
-            return opponentUserFrom(resultJson, userId: userId)
+        let parser = { (resultJson: JSON) -> OtherUser in
+            return otherUserFrom(resultJson, userId: userId)
         }
         
-        let httpRequest = HttpRequest<OpponentUser>(
+        let httpRequest = HttpRequest<OtherUser>(
             method: .GET, url: url, parser: parser, onSuccess: onSuccess, onFail: onFail)
         
         SwishServer.requestWith(httpRequest)
@@ -73,6 +74,7 @@ final class UserServer {
     }
     
     // MARK: - Params
+    
     private class func registerMeParams() -> Param {
         return [
             "uuid": UUIDHelper.uuid(),
@@ -102,6 +104,7 @@ final class UserServer {
     }
     
     // MARK: - Parsers
+    
     private class func meFrom(resultJson: JSON) -> Me {
         let id = resultJson["user_id"].stringValue
         let token = resultJson["token"].stringValue
@@ -122,18 +125,18 @@ final class UserServer {
         return resultJson["profile_image_url"].stringValue
     }
     
-    private class func opponentUserFrom(resultJson: JSON, userId: String) -> OpponentUser {
-        let opponentUser = OpponentUser.create(userId, builder: { (opponentUser: OpponentUser) -> () in
+    private class func otherUserFrom(resultJson: JSON, userId: String) -> OtherUser {
+        let otherUser = OtherUser.create(userId, builder: { (otherUser: OtherUser) -> () in
             let userInfoJson = resultJson["user_info"]
             
-            opponentUser.name = userInfoJson["name"].stringValue
-            opponentUser.about = userInfoJson["about"].stringValue
-            opponentUser.profileUrl = userInfoJson["profile_image_url"].stringValue
-            opponentUser.level = userInfoJson["level"].intValue
-            opponentUser.userActivityRecord = userActivityRecordFrom(userInfoJson)
-            opponentUser.recentlySentPhotoUrls.appendContentsOf(photoMetadataListFrom(userInfoJson))
+            otherUser.name = userInfoJson["name"].stringValue
+            otherUser.about = userInfoJson["about"].stringValue
+            otherUser.profileUrl = userInfoJson["profile_image_url"].stringValue
+            otherUser.level = userInfoJson["level"].intValue
+            otherUser.userActivityRecord = userActivityRecordFrom(userInfoJson)
+            otherUser.recentlySentPhotoUrls.appendContentsOf(photoMetadataListFrom(userInfoJson))
         })
-        return opponentUser
+        return otherUser
     }
     
     private class func userActivityRecordFrom(userInfoJson: JSON) -> UserActivityRecord {

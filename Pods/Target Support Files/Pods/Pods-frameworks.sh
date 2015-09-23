@@ -57,6 +57,7 @@ if [[ "$CONFIGURATION" == "Debug" ]]; then
   install_framework 'Pods/Realm.framework'
   install_framework 'Pods/RealmSwift.framework'
   install_framework 'Pods/SnapKit.framework'
+  install_framework 'Pods/SwiftyJSON.framework'
 fi
 if [[ "$CONFIGURATION" == "Release" ]]; then
   install_framework 'Pods/Alamofire.framework'
@@ -64,4 +65,5 @@ if [[ "$CONFIGURATION" == "Release" ]]; then
   install_framework 'Pods/Realm.framework'
   install_framework 'Pods/RealmSwift.framework'
   install_framework 'Pods/SnapKit.framework'
+  install_framework 'Pods/SwiftyJSON.framework'
 fi

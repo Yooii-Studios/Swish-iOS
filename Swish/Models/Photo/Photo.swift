@@ -9,6 +9,7 @@
 import Foundation
 import RealmSwift
 import CoreLocation
+import SwiftyJSON
 
 class Photo: Object {
     typealias ID = Int64
@@ -16,6 +17,7 @@ class Photo: Object {
     private static let defaultPhotoState = PhotoState.Waiting
     
     // Mark: Attributes
+    
     // required
     dynamic var id:ID = invalidId
     dynamic var fileName = ""
@@ -58,6 +60,7 @@ class Photo: Object {
     var sender: User { return _sender }
     
     // Mark: init
+    
     // TODO: convert to protected when becames possible
     private convenience init(id: ID) {
         self.init()
@@ -69,6 +72,7 @@ class Photo: Object {
     }
     
     // Mark: Realm support
+    
     // backlink to user
     private var _sender: User {
         let userCandidate: User
@@ -76,8 +80,8 @@ class Photo: Object {
         if meCandidates.count > 0 {
             userCandidate = meCandidates[0]
         } else {
-            let opponentCandidates = linkingObjects(OpponentUser.self, forProperty: "photos")
-            userCandidate = opponentCandidates[0]
+            let otherCandidates = linkingObjects(OtherUser.self, forProperty: "photos")
+            userCandidate = otherCandidates[0]
         }
         
         return userCandidate

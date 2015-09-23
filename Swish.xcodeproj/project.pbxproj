@@ -8,7 +8,6 @@
 
 /* Begin PBXBuildFile section */
 		570B87081BA8056B0093CEED /* SwishServer.swift in Sources */ = {isa = PBXBuildFile; fileRef = 570B87071BA8056B0093CEED /* SwishServer.swift */; settings = {ASSET_TAGS = (); }; };
-		570B870E1BA832000093CEED /* SwiftyJSON.swift in Sources */ = {isa = PBXBuildFile; fileRef = 570B870D1BA832000093CEED /* SwiftyJSON.swift */; settings = {ASSET_TAGS = (); }; };
 		570FD2F71BAAB54E008CB163 /* UserServer.swift in Sources */ = {isa = PBXBuildFile; fileRef = 570FD2F61BAAB54E008CB163 /* UserServer.swift */; settings = {ASSET_TAGS = (); }; };
 		571935331BA3C4C800856400 /* UUIDHelper.swift in Sources */ = {isa = PBXBuildFile; fileRef = 571935321BA3C4C800856400 /* UUIDHelper.swift */; settings = {ASSET_TAGS = (); }; };
 		5765CEF81BA2EC9C00DE6A05 /* KeychainItemWrapper.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5765CEF71BA2EC9C00DE6A05 /* KeychainItemWrapper.swift */; settings = {ASSET_TAGS = (); }; };
@@ -16,7 +15,7 @@
 		579673821B9FFE6500382247 /* Photo.swift in Sources */ = {isa = PBXBuildFile; fileRef = 579673801B9FFE6500382247 /* Photo.swift */; settings = {ASSET_TAGS = (); }; };
 		579673831B9FFE6500382247 /* PhotoState.swift in Sources */ = {isa = PBXBuildFile; fileRef = 579673811B9FFE6500382247 /* PhotoState.swift */; settings = {ASSET_TAGS = (); }; };
 		579673881B9FFE6C00382247 /* Me.swift in Sources */ = {isa = PBXBuildFile; fileRef = 579673841B9FFE6C00382247 /* Me.swift */; settings = {ASSET_TAGS = (); }; };
-		579673891B9FFE6C00382247 /* OpponentUser.swift in Sources */ = {isa = PBXBuildFile; fileRef = 579673851B9FFE6C00382247 /* OpponentUser.swift */; settings = {ASSET_TAGS = (); }; };
+		579673891B9FFE6C00382247 /* OtherUser.swift in Sources */ = {isa = PBXBuildFile; fileRef = 579673851B9FFE6C00382247 /* OtherUser.swift */; settings = {ASSET_TAGS = (); }; };
 		5796738A1B9FFE6C00382247 /* User.swift in Sources */ = {isa = PBXBuildFile; fileRef = 579673861B9FFE6C00382247 /* User.swift */; settings = {ASSET_TAGS = (); }; };
 		5796738B1B9FFE6C00382247 /* UserActivityRecord.swift in Sources */ = {isa = PBXBuildFile; fileRef = 579673871B9FFE6C00382247 /* UserActivityRecord.swift */; settings = {ASSET_TAGS = (); }; };
 		5796738E1B9FFE7200382247 /* ChatMessage.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5796738C1B9FFE7200382247 /* ChatMessage.swift */; settings = {ASSET_TAGS = (); }; };
@@ -54,7 +53,6 @@
 /* Begin PBXFileReference section */
 		1329CF0406A3CA7D132A3E08 /* Pods.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		570B87071BA8056B0093CEED /* SwishServer.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SwishServer.swift; sourceTree = "<group>"; };
-		570B870D1BA832000093CEED /* SwiftyJSON.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SwiftyJSON.swift; sourceTree = "<group>"; };
 		570FD2F61BAAB54E008CB163 /* UserServer.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UserServer.swift; sourceTree = "<group>"; };
 		571935321BA3C4C800856400 /* UUIDHelper.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UUIDHelper.swift; sourceTree = "<group>"; };
 		5765CEF71BA2EC9C00DE6A05 /* KeychainItemWrapper.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = KeychainItemWrapper.swift; sourceTree = "<group>"; };
@@ -62,7 +60,7 @@
 		579673801B9FFE6500382247 /* Photo.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = Photo.swift; path = Photo/Photo.swift; sourceTree = "<group>"; };
 		579673811B9FFE6500382247 /* PhotoState.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = PhotoState.swift; path = Photo/PhotoState.swift; sourceTree = "<group>"; };
 		579673841B9FFE6C00382247 /* Me.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = Me.swift; path = User/Me.swift; sourceTree = "<group>"; };
-		579673851B9FFE6C00382247 /* OpponentUser.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = OpponentUser.swift; path = User/OpponentUser.swift; sourceTree = "<group>"; };
+		579673851B9FFE6C00382247 /* OtherUser.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = OtherUser.swift; path = User/OtherUser.swift; sourceTree = "<group>"; };
 		579673861B9FFE6C00382247 /* User.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = User.swift; path = User/User.swift; sourceTree = "<group>"; };
 		579673871B9FFE6C00382247 /* UserActivityRecord.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = UserActivityRecord.swift; path = User/UserActivityRecord.swift; sourceTree = "<group>"; };
 		5796738C1B9FFE7200382247 /* ChatMessage.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = ChatMessage.swift; path = Chat/ChatMessage.swift; sourceTree = "<group>"; };
@@ -146,7 +144,7 @@
 			isa = PBXGroup;
 			children = (
 				579673841B9FFE6C00382247 /* Me.swift */,
-				579673851B9FFE6C00382247 /* OpponentUser.swift */,
+				579673851B9FFE6C00382247 /* OtherUser.swift */,
 				579673861B9FFE6C00382247 /* User.swift */,
 				579673871B9FFE6C00382247 /* UserActivityRecord.swift */,
 			);
@@ -254,7 +252,6 @@
 		F245DCE41B9E7CD40072308B /* Helpers */ = {
 			isa = PBXGroup;
 			children = (
-				570B870D1BA832000093CEED /* SwiftyJSON.swift */,
 				5765CEF71BA2EC9C00DE6A05 /* KeychainItemWrapper.swift */,
 				571935321BA3C4C800856400 /* UUIDHelper.swift */,
 				AEF32DDA1BA2FDA400EA00A9 /* MediaLoader.swift */,
@@ -422,7 +419,6 @@
 				570FD2F71BAAB54E008CB163 /* UserServer.swift in Sources */,
 				F245DCB31B9E7B2D0072308B /* MainViewController.swift in Sources */,
 				571935331BA3C4C800856400 /* UUIDHelper.swift in Sources */,
-				570B870E1BA832000093CEED /* SwiftyJSON.swift in Sources */,
 				579673761B9FFE2000382247 /* SwishDatabase.swift in Sources */,
 				F245DCB11B9E7B2D0072308B /* AppDelegate.swift in Sources */,
 				F266D9021B9F159D00BDEB75 /* MyInfoViewController.swift in Sources */,
@@ -440,7 +436,7 @@
 				570B87081BA8056B0093CEED /* SwishServer.swift in Sources */,
 				5796738B1B9FFE6C00382247 /* UserActivityRecord.swift in Sources */,
 				AEF32DDB1BA2FDA400EA00A9 /* MediaLoader.swift in Sources */,
-				579673891B9FFE6C00382247 /* OpponentUser.swift in Sources */,
+				579673891B9FFE6C00382247 /* OtherUser.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

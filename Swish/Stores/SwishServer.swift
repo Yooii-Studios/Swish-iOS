@@ -8,6 +8,7 @@
 
 import Foundation
 import Alamofire
+import SwiftyJSON
 
 typealias RawResult = Result<AnyObject>
 typealias DefaultSuccessCallback = (result: JSON) -> ()
@@ -22,6 +23,7 @@ final class SwishServer {
     private var requests = Dictionary<String, HttpRequestProtocol>()
     
     // MARK: - Singleton
+    
     private struct Instance {
         static var dispatchToken: dispatch_once_t = 0
         static var instance: SwishServer?
@@ -37,9 +39,11 @@ final class SwishServer {
     }
     
     // MARK: - Initializers
+    
     private init() { }
     
     // MARK: - Services
+    
     class func requestWith<T>(httpRequest: HttpRequest<T>) {
         instance.requestWith(httpRequest)
     }
@@ -68,6 +72,7 @@ final class SwishServer {
     }
     
     // MARK: - Helpers
+    
     private class func createHeader<T>(httpRequest: HttpRequest<T>) -> Header? {
         var headers: Header?
         if httpRequest.useAuthHeader {
