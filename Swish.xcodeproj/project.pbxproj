@@ -3,7 +3,7 @@
 	archiveVersion = 1;
 	classes = {
 	};
-	objectVersion = 46;
+	objectVersion = 47;
 	objects = {
 
 /* Begin PBXBuildFile section */
@@ -308,7 +308,7 @@
 			attributes = {
 				LastSwiftUpdateCheck = 0700;
 				LastUpgradeCheck = 0700;
-				ORGANIZATIONNAME = "Wooseong Kim";
+				ORGANIZATIONNAME = "Yooii Studios Co., LTD.";
 				TargetAttributes = {
 					F245DCAC1B9E7B2D0072308B = {
 						CreatedOnToolsVersion = 7.0;
@@ -321,7 +321,7 @@
 				};
 			};
 			buildConfigurationList = F245DCA81B9E7B2D0072308B /* Build configuration list for PBXProject "Swish" */;
-			compatibilityVersion = "Xcode 3.2";
+			compatibilityVersion = "Xcode 6.3";
 			developmentRegion = English;
 			hasScannedForEncodings = 0;
 			knownRegions = (
