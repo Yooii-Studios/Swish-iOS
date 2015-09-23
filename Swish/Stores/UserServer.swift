@@ -7,6 +7,7 @@
 //
 
 import Foundation
+import UIKit
 
 final class UserServer {
     private static let baseClientUrl = SwishServer.host + "/clients"
@@ -26,6 +27,19 @@ final class UserServer {
             let params = updateMeParamsWith(name, about: about)
             
             let httpRequest = HttpRequest<JSON>(method: .PUT, url: url, parameters: params, parser: SwishServer.defaultParser, onSuccess: onSuccess, onFail: onFail)
+            
+            SwishServer.requestWith(httpRequest)
+    }
+    
+    class func updateMyProfileImage(image: UIImage,
+        onSuccess: (profileImageUrl: String) -> (), onFail: FailCallback) {
+            let url = "\(baseClientUrl)/\(SwishDatabase.me().id)/update_profile_image"
+            let params = updateMyProfileImageParamsWith(image)
+            let parser = { (result: JSON) -> String in
+                return myProfileImageUrlFrom(result)
+            }
+            
+            let httpRequest = HttpRequest<String>(method: .PUT, url: url, parameters: params, parser: parser, onSuccess: onSuccess, onFail: onFail)
             
             SwishServer.requestWith(httpRequest)
     }
@@ -80,6 +94,13 @@ final class UserServer {
         return params
     }
     
+    private class func updateMyProfileImageParamsWith(image: UIImage) -> Param {
+        let encoded = UIImagePNGRepresentation(image)?.base64EncodedStringWithOptions(NSDataBase64EncodingOptions.Encoding64CharacterLineLength)
+        return [
+            "image_resource": encoded!
+        ]
+    }
+    
     // MARK: - Parsers
     private class func meFrom(resultJson: JSON) -> Me {
         let id = resultJson["user_id"].stringValue
@@ -95,6 +116,10 @@ final class UserServer {
             me.totalExpForNextLevel = levelInfoJson["total_exp_for_next"].intValue
             me.currentExp = levelInfoJson["current_exp"].intValue
         })
+    }
+    
+    private class func myProfileImageUrlFrom(resultJson: JSON) -> String {
+        return resultJson["profile_image_url"].stringValue
     }
     
     private class func opponentUserFrom(resultJson: JSON, userId: String) -> OpponentUser {
