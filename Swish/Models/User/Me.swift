@@ -10,6 +10,7 @@ import Foundation
 
 final class Me: User {
     // Mark: Attributes
+    
     // required
     dynamic var token = ""
     dynamic var totalExpForNextLevel = 1

@@ -7,6 +7,7 @@ PODS:
   - RealmSwift (0.95.0):
     - Realm (= 0.95.0)
   - SnapKit (0.13.0)
+  - SwiftyJSON (2.3.0)
 
 DEPENDENCIES:
   - Alamofire (from `https://github.com/Alamofire/Alamofire.git`, branch `swift-2.0`)
@@ -14,6 +15,7 @@ DEPENDENCIES:
   - Realm (from `https://github.com/realm/realm-cocoa.git`, branch `swift-2.0`)
   - RealmSwift (from `https://github.com/realm/realm-cocoa.git`, branch `swift-2.0`)
   - SnapKit (from `https://github.com/SnapKit/SnapKit.git`, branch `swift-2.0`)
+  - SwiftyJSON (from `https://github.com/SwiftyJSON/SwiftyJSON.git`)
 
 EXTERNAL SOURCES:
   Alamofire:
@@ -28,6 +30,8 @@ EXTERNAL SOURCES:
   SnapKit:
     :branch: swift-2.0
     :git: https://github.com/SnapKit/SnapKit.git
+  SwiftyJSON:
+    :git: https://github.com/SwiftyJSON/SwiftyJSON.git
 
 CHECKOUT OPTIONS:
   Alamofire:
@@ -42,6 +46,9 @@ CHECKOUT OPTIONS:
   SnapKit:
     :commit: 4f19419528baa3dfaca20e26fea2be410ddc79e2
     :git: https://github.com/SnapKit/SnapKit.git
+  SwiftyJSON:
+    :commit: 3b5d0d4e0c19173b1bf0dc823bde25ad870f70c0
+    :git: https://github.com/SwiftyJSON/SwiftyJSON.git
 
 SPEC CHECKSUMS:
   Alamofire: 20df1a4740a69d7cf6caf7fd06b8a8fc782f1ebd
@@ -49,5 +56,6 @@ SPEC CHECKSUMS:
   Realm: 1c28007bd496af94dba8c76d50719164e706a521
   RealmSwift: 9864524dd99c2cb7b4643c29513ef8447fe63724
   SnapKit: 69fe274c71511df89a5591c11437a8b826bfa9eb
+  SwiftyJSON: 8d6b61a70277ef2a5d710d372e06e7e2d87fb9e4
 
 COCOAPODS: 0.38.2

@@ -27,6 +27,7 @@ final class SwishDatabase {
     }
     
     // MARK: - General
+    
 //    class func save(object: Object, update: Bool = false) {
 //        do {
 //            try realm.write {
@@ -88,9 +89,14 @@ final class SwishDatabase {
     }
     
     // MARK: - Me
+    
     class func me() -> Me {
         // Assume always have Me
         return rawObjects(Me)[0]
+    }
+    
+    class func hasMe() -> Bool {
+        return rawObjects(Me).count > 0
     }
     
     class func saveMe(me: Me) {
@@ -99,19 +105,21 @@ final class SwishDatabase {
         }
     }
     
-    // MARK: - OpponentUser
-    class func opponentUser(id: User.ID) -> OpponentUser? {
-        let users = rawObjects(OpponentUser).filter("id = '\(id)'")
+    // MARK: - OtherUser
+    
+    class func otherUser(id: User.ID) -> OtherUser? {
+        let users = rawObjects(OtherUser).filter("id = '\(id)'")
         return users.count > 0 ? users[0] : nil;
     }
     
-    class func saveOpponentUser(opponentUser: OpponentUser) {
+    class func saveOtherUser(otherUser: OtherUser) {
         write {
-            realm.add(opponentUser, update: true)
+            realm.add(otherUser, update: true)
         }
     }
     
     // MARK: - Photos
+    
     class func saveSentPhoto(photo: Photo) {
         write {
             me().photos.append(photo)
@@ -119,8 +127,8 @@ final class SwishDatabase {
     }
     
     class func saveReceivedPhoto(userId: User.ID, photo: Photo) {
-        let user = OpponentUser.create(userId, fetchedTimeIntervalSince1970: NSDate().timeIntervalSince1970, builder: { (OpponentUser) -> () in })
-        saveOpponentUser(user)
+        let user = OtherUser.create(userId, fetchedTimeIntervalSince1970: NSDate().timeIntervalSince1970, builder: { (OtherUser) -> () in })
+        saveOtherUser(user)
         write {
             user.photos.append(photo)
         }
@@ -207,6 +215,7 @@ final class SwishDatabase {
     }
     
     // MARK: - Chat Message
+    
     class func saveChatMessage(photo: Photo, chatMessage: ChatMessage) {
         write {
             photo.chatMessages.append(chatMessage)
@@ -257,6 +266,7 @@ final class SwishDatabase {
     }
     
     // MARK: - Class functions
+    
     private class func objects<T: Object>(filter: (object: T) -> Bool) -> Array<T> {
         var resultObjects = Array<T>()
         for object in objects(T) where filter(object: object) {
