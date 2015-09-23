@@ -13,13 +13,14 @@ import SwiftyJSON
 final class UserServer {
     private static let baseClientUrl = SwishServer.host + "/clients"
     
-    class func registerMe(onSuccess: (me: Me) -> (), onFail: FailCallback) {
-        let params = registerMeParams()
-        let parser = { (resultJson: JSON) -> Me in return meFrom(resultJson) }
-        let httpRequest = HttpRequest<Me>(method: .POST, url: baseClientUrl, parameters: params, parser: parser, onSuccess: onSuccess, onFail: onFail)
-        httpRequest.useAuthHeader = false
-        
-        SwishServer.requestWith(httpRequest)
+    class func registerMe(name: String? = nil, about: String? = nil,
+        image: UIImage? = nil, onSuccess: (me: Me) -> (), onFail: FailCallback) {
+            let params = registerMeParams(name, about: about, image: image)
+            let parser = { (resultJson: JSON) -> Me in return meFrom(resultJson) }
+            let httpRequest = HttpRequest<Me>(method: .POST, url: baseClientUrl, parameters: params, parser: parser, onSuccess: onSuccess, onFail: onFail)
+            httpRequest.useAuthHeader = false
+            
+            SwishServer.requestWith(httpRequest)
     }
     
     class func updateMe(name: String? = nil, about: String? = nil,
@@ -40,9 +41,13 @@ final class UserServer {
                 return myProfileImageUrlFrom(result)
             }
             
-            let httpRequest = HttpRequest<String>(method: .PUT, url: url, parameters: params, parser: parser, onSuccess: onSuccess, onFail: onFail)
-            
-            SwishServer.requestWith(httpRequest)
+            if let params = params {
+                let httpRequest = HttpRequest<String>(method: .PUT, url: url, parameters: params, parser: parser, onSuccess: onSuccess, onFail: onFail)
+                
+                SwishServer.requestWith(httpRequest)
+            } else {
+                onFail(error: SwishError.unknownError())
+            }
     }
     
     class func otherUserWith(userId: String, onSuccess: (otherUser: OtherUser) -> (), onFail: FailCallback) {
@@ -75,13 +80,25 @@ final class UserServer {
     
     // MARK: - Params
     
-    private class func registerMeParams() -> Param {
-        return [
-            "uuid": UUIDHelper.uuid(),
-            "gcm_id": "",
-            "name": "iOS_dev",
-            "about": "dev user on iOS"
-        ]
+    private class func registerMeParams(name: String? = nil, about: String? = nil,
+        image: UIImage? = nil) -> Param {
+        var params = Param()
+        params.updateValue(UUIDHelper.uuid(), forKey: "uuid")
+        // TODO: add gcm id
+        params.updateValue("", forKey: "gcm_id")
+        if let name = name {
+            params.updateValue(name, forKey: "name")
+        }
+        if let about = about {
+            params.updateValue(about, forKey: "about")
+        }
+        if let image = image {
+            if let encodedImage = ImageHelper.base64EncodedStringWith(image) {
+                params.updateValue(encodedImage, forKey: "image_resource")
+            }
+        }
+        
+        return params
     }
     
     private class func updateMeParamsWith(name: String? = nil, about: String? = nil) -> Param {
@@ -96,11 +113,9 @@ final class UserServer {
         return params
     }
     
-    private class func updateMyProfileImageParamsWith(image: UIImage) -> Param {
-        let encoded = UIImagePNGRepresentation(image)?.base64EncodedStringWithOptions(NSDataBase64EncodingOptions.Encoding64CharacterLineLength)
-        return [
-            "image_resource": encoded!
-        ]
+    private class func updateMyProfileImageParamsWith(image: UIImage) -> Param? {
+        let encoded = ImageHelper.base64EncodedStringWith(image)
+        return encoded != nil ? [ "image_resource": encoded! ] : nil
     }
     
     // MARK: - Parsers
