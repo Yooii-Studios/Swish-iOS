@@ -16,7 +16,7 @@ test:
         tee $CIRCLE_ARTIFACTS/xcode_raw.log |
         xcpretty --color --report junit --output $CIRCLE_TEST_REPORTS/xcode/results.xml
 
-    # Configuration for xctool
+    # Configuration for xctool. 향후 지원을 위해 주석으로 남김
     #
     # - xctool
     #   -reporter pretty
