@@ -12,6 +12,4 @@ test:
         -destination 'platform=iOS Simulator,name=iPhone 6,OS=latest'
         -workspace Swish.xcworkspace
         -scheme "Swish"
-        clean build test |
-      tee $CIRCLE_ARTIFACTS/xcode_raw.log |
-      xcpretty --color --report junit --output $CIRCLE_TEST_REPORTS/xcode/results.xml
+        clean build test | tee $CIRCLE_ARTIFACTS/xcode_raw.log | xcpretty --color --report junit --output $CIRCLE_TEST_REPORTS/xcode/results.xml
