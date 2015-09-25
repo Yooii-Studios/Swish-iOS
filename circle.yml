@@ -13,5 +13,5 @@ test:
       -destination 'platform=iOS Simulator,name=iPhone 6,OS=latest'
       -sdk iphonesimulator
       -workspace Swish.xcworkspace
-      -scheme "SwishTests"
+      -scheme "Swish"
       build build-tests run-tests
