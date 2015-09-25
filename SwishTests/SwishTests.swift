@@ -195,10 +195,6 @@ class SwishTests: XCTestCase {
         }
     }
     
-    func testFail() {
-        XCTAssert(false)
-    }
-    
     // MARK: - Object creation methods
     func createMe() -> Me {
         return Me.create("myId", token: "token", builder: {(me: Me) -> () in
