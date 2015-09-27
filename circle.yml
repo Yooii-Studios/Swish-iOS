@@ -3,30 +3,16 @@ machine:
     version: "7.0"
 test:
   override:
-      - set -o pipefail &&
-        xcodebuild
-          CODE_SIGNING_REQUIRED=NO
-          CODE_SIGN_IDENTITY=
-          PROVISIONING_PROFILE=
-          -sdk iphonesimulator
-          -destination 'platform=iOS Simulator,name=iPhone 6,OS=latest'
-          -workspace Swish.xcworkspace
-          -scheme "Swish"
-          clean build test |
-        tee $CIRCLE_ARTIFACTS/xcode_raw.log |
-        xcpretty --color --report junit --output $CIRCLE_TEST_REPORTS/xcode/results.xml
-
-    # Configuration for xctool. 향후 지원을 위해 주석으로 남김
-    #
-    # - xctool
-    #   -reporter pretty
-    #   -reporter junit:$CIRCLE_TEST_REPORTS/xcode/results.xml
-    #   -reporter plain:$CIRCLE_ARTIFACTS/xctool.log
-    #   CODE_SIGNING_REQUIRED=NO
-    #   CODE_SIGN_IDENTITY=
-    #   PROVISIONING_PROFILE=
-    #   -destination 'platform=iOS Simulator,name=iPhone 6,OS=latest'
-    #   -sdk iphonesimulator
-    #   -workspace Swish.xcworkspace
-    #   -scheme "Swish"
-    #   build build-tests run-tests
+    # 향후 CircleCI에서 XCTool v0.2.6 지원하게 되면 수정할 필요 있음
+    - ./xctool/bin/xctool
+      -reporter pretty
+      -reporter junit:$CIRCLE_TEST_REPORTS/xcode/results.xml
+      -reporter plain:$CIRCLE_ARTIFACTS/xctool.log
+      CODE_SIGNING_REQUIRED=NO
+      CODE_SIGN_IDENTITY=
+      PROVISIONING_PROFILE=
+      -destination 'platform=iOS Simulator,name=iPhone 6,OS=latest'
+      -sdk iphonesimulator
+      -workspace Swish.xcworkspace
+      -scheme "Swish"
+      build build-tests run-tests
