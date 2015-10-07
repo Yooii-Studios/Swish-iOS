@@ -129,12 +129,6 @@ class Photo: Object {
     final class func create() -> Photo {
         return Photo()
     }
-    
-//    final class func create(id: ID, builder: (Photo) -> () = RealmObjectBuilder.builder) -> Photo {
-//        let photo = Photo(id: id)
-//        builder(photo)
-//        return photo
-//    }
 }
 
 func == (left: Photo, right: Photo) -> Bool {
