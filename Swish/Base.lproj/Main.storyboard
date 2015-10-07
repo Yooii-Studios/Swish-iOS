@@ -1,8 +1,8 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="8191" systemVersion="15A284" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" initialViewController="BYZ-38-t0r">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="8187.4" systemVersion="14F27" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" initialViewController="BYZ-38-t0r">
     <dependencies>
         <deployment identifier="iOS"/>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="8154"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="8151.3"/>
         <capability name="Constraints to layout margins" minToolsVersion="6.0"/>
     </dependencies>
     <scenes>
@@ -20,7 +20,6 @@
                         <subviews>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="u3H-n2-e6j">
                                 <rect key="frame" x="260" y="520" width="81" height="30"/>
-                                <animations/>
                                 <state key="normal" title="Pick Photos"/>
                                 <state key="highlighted">
                                     <color key="titleColor" red="0.25098040699958801" green="0.0" blue="0.50196081399917603" alpha="1" colorSpace="calibratedRGB"/>
@@ -31,7 +30,6 @@
                             </button>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Nt9-sb-Yqm">
                                 <rect key="frame" x="166" y="520" width="54" height="30"/>
-                                <animations/>
                                 <state key="normal" title="Camera"/>
                                 <state key="highlighted">
                                     <color key="titleColor" red="0.25098040699958801" green="0.0" blue="0.50196081399917603" alpha="1" colorSpace="calibratedRGB"/>
@@ -42,7 +40,6 @@
                             </button>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="38O-QE-yw0">
                                 <rect key="frame" x="381" y="520" width="51" height="30"/>
-                                <animations/>
                                 <state key="normal" title="My Info"/>
                                 <state key="highlighted">
                                     <color key="titleColor" red="0.25098040699958801" green="0.0" blue="0.50196081399917603" alpha="1" colorSpace="calibratedRGB"/>
@@ -53,42 +50,12 @@
                             </button>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="eDq-p4-cL7">
                                 <rect key="frame" x="50" y="50" width="113" height="30"/>
-                                <animations/>
                                 <state key="normal" title="Dressing Screen"/>
                                 <connections>
                                     <segue destination="Loa-El-XZR" kind="show" id="vks-kS-Dea"/>
                                 </connections>
                             </button>
-                            <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="WSf-51-187">
-                                <rect key="frame" x="50" y="88" width="77" height="30"/>
-                                <animations/>
-                                <state key="normal" title="Test Album"/>
-                                <connections>
-                                    <action selector="testButtonDidTap:" destination="BYZ-38-t0r" eventType="touchUpInside" id="Dxo-3v-PAe"/>
-                                </connections>
-                            </button>
-                            <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="jet-pY-qME">
-                                <rect key="frame" x="67" y="222" width="240" height="128"/>
-                                <animations/>
-                            </imageView>
-                            <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="gjq-U2-naZ">
-                                <rect key="frame" x="50" y="126" width="67" height="30"/>
-                                <animations/>
-                                <state key="normal" title="Test Load"/>
-                                <connections>
-                                    <action selector="testLoadButtonDidTap:" destination="BYZ-38-t0r" eventType="touchUpInside" id="ZeF-ar-ERn"/>
-                                </connections>
-                            </button>
-                            <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="VEK-fa-hMH">
-                                <rect key="frame" x="50" y="164" width="77" height="30"/>
-                                <animations/>
-                                <state key="normal" title="Test Action"/>
-                                <connections>
-                                    <action selector="testActionButtonDidTap:" destination="BYZ-38-t0r" eventType="touchUpInside" id="gzh-Ly-Hq9"/>
-                                </connections>
-                            </button>
                         </subviews>
-                        <animations/>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
                         <constraints>
                             <constraint firstItem="38O-QE-yw0" firstAttribute="bottom" secondItem="u3H-n2-e6j" secondAttribute="bottom" id="Asq-1B-0vI"/>
@@ -101,9 +68,6 @@
                             <constraint firstItem="wfy-db-euE" firstAttribute="top" secondItem="u3H-n2-e6j" secondAttribute="bottom" constant="50" id="t3Y-hT-X1J"/>
                         </constraints>
                     </view>
-                    <connections>
-                        <outlet property="testImageView" destination="jet-pY-qME" id="pND-XA-D4A"/>
-                    </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="dkx-z0-nzr" sceneMemberID="firstResponder"/>
             </objects>
