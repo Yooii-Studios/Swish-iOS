@@ -10,7 +10,7 @@ import Foundation
 import UIKit
 
 final class ImageHelper {
-    final class func base64EncodedStringWith(image: UIImage) -> String? {
+    final class func base64EncodedStringWith(image: UIImage) -> String! {
         return UIImagePNGRepresentation(image)?.base64EncodedStringWithOptions(NSDataBase64EncodingOptions.Encoding64CharacterLineLength)
     }
 }

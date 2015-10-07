@@ -13,4 +13,40 @@ enum PhotoState: String {
     case Delivered = "Delivered"
     case Liked = "Liked"
     case Disliked = "Disliked"
+    
+    var key: Int {
+        var key: Int
+        switch(self) {
+        case .Waiting:
+            key = 0
+        case .Delivered:
+            key = 1
+        case .Liked:
+            key = 2
+        case .Disliked:
+            key = 3
+        default:
+            key = 0
+        }
+        
+        return key
+    }
+    
+    static func findWithKey(key: Int) -> PhotoState {
+        var state: PhotoState
+        switch(key) {
+        case 0:
+            state = .Waiting
+        case 1:
+            state = .Delivered
+        case 2:
+            state = .Liked
+        case 3:
+            state = .Disliked
+        default:
+            state = .Waiting
+        }
+        
+        return state
+    }
 }

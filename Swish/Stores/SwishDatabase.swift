@@ -17,7 +17,7 @@ final class SwishDatabase {
     
     class func migrate() {
         let config = Realm.Configuration(
-            schemaVersion: 19,
+            schemaVersion: 22,
             
             migrationBlock: { migration, oldSchemaVersion in
                 if (oldSchemaVersion < 1) {
@@ -126,9 +126,7 @@ final class SwishDatabase {
         }
     }
     
-    class func saveReceivedPhoto(userId: User.ID, photo: Photo) {
-        let user = OtherUser.create(userId, fetchedTimeIntervalSince1970: NSDate().timeIntervalSince1970, builder: { (OtherUser) -> () in })
-        saveOtherUser(user)
+    class func saveReceivedPhoto(user: OtherUser, photo: Photo) {
         write {
             user.photos.append(photo)
         }
@@ -299,5 +297,6 @@ final class SwishDatabase {
 }
 
 enum RealmHelperError: ErrorType {
-    case PhotoNotFound
+//    case PhotoNotFound
+    case ObjectNotFound
 }
