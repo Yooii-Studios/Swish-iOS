@@ -17,6 +17,7 @@ final class SwishDatabase {
     
     class func migrate() {
         let config = Realm.Configuration(
+            // TODO: 출시 전에 버전 0으로 변경하자
             schemaVersion: 22,
             
             migrationBlock: { migration, oldSchemaVersion in
@@ -27,17 +28,6 @@ final class SwishDatabase {
     }
     
     // MARK: - General
-    
-//    class func save(object: Object, update: Bool = false) {
-//        do {
-//            try realm.write {
-//                self.realm.add(object, update: update)
-//            }
-//        } catch {
-//            // ignored
-//        }
-//    }
-    
     
     class func object<T: Object>(comparator: (target: T) -> Bool) -> T? {
         for object in objects(T) where comparator(target: object) {
@@ -294,9 +284,4 @@ final class SwishDatabase {
         
         return results
     }
-}
-
-enum RealmHelperError: ErrorType {
-//    case PhotoNotFound
-    case ObjectNotFound
 }
