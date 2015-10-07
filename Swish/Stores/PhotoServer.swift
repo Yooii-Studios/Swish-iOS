@@ -138,10 +138,6 @@ final class PhotoServer {
             photo.id = photoJson["id"].int64Value
             photo.message = photoJson["message"].stringValue
             photo.departLocation = location
-//            let photo = Photo.create(photoJson["id"].int64Value, builder: { (photo: Photo) -> () in
-//                photo.message = photoJson["message"].stringValue
-//                photo.departLocation = location
-//            })
             let imageUrl = photoJson["url"].stringValue
             let item = PhotoResponse(userId: userId, photo: photo, imageUrl: imageUrl)
             
@@ -197,14 +193,4 @@ struct ServerPhotoState {
     let receivedUserId: User.ID
     let receivedUserName: String
     let receivedUserProfileImageUrl: String
-    
-//    init(photoId: Photo.ID, state: PhotoState, deliveredLocation: CLLocation,
-//        receivedUserId: User.ID, receivedUserName: String, receivedUserProfileImageUrl: String) {
-//            self.photoId = photoId
-//            self.state = state
-//            self.deliveredLocation = deliveredLocation.copy() as! CLLocation
-//            self.receivedUserId = receivedUserId
-//            self.receivedUserName = receivedUserName
-//            self.receivedUserProfileImageUrl = receivedUserProfileImageUrl
-//    }
 }
