@@ -15,7 +15,7 @@ final class UserServer {
     
     class func registerMe(name: String? = nil, about: String? = nil,
         image: UIImage? = nil, onSuccess: (me: Me) -> (), onFail: FailCallback) {
-            let params = registerMeParams(name, about: about, image: image)
+            let params = registerMeParamsWith(name, about: about, image: image)
             let parser = { (resultJson: JSON) -> Me in return meFrom(resultJson) }
             let httpRequest = HttpRequest<Me>(method: .POST, url: baseClientUrl, parameters: params, parser: parser, onSuccess: onSuccess, onFail: onFail)
             httpRequest.useAuthHeader = false
@@ -23,9 +23,9 @@ final class UserServer {
             SwishServer.requestWith(httpRequest)
     }
     
-    class func updateMe(name: String? = nil, about: String? = nil,
+    class func updateMe(id: User.ID, name: String? = nil, about: String? = nil,
         onSuccess: DefaultSuccessCallback, onFail: FailCallback) {
-            let url = "\(baseClientUrl)/\(SwishDatabase.me().id)/update_profile_info"
+            let url = "\(baseClientUrl)/\(id)/update_profile_info"
             let params = updateMeParamsWith(name, about: about)
             
             let httpRequest = HttpRequest<JSON>(method: .PUT, url: url, parameters: params, parser: SwishServer.defaultParser, onSuccess: onSuccess, onFail: onFail)
@@ -33,9 +33,9 @@ final class UserServer {
             SwishServer.requestWith(httpRequest)
     }
     
-    class func updateMyProfileImage(image: UIImage,
+    class func updateMyProfileImage(id: User.ID, image: UIImage,
         onSuccess: (profileImageUrl: String) -> (), onFail: FailCallback) {
-            let url = "\(baseClientUrl)/\(SwishDatabase.me().id)/update_profile_image"
+            let url = "\(baseClientUrl)/\(id)/update_profile_image"
             let params = updateMyProfileImageParamsWith(image)
             let parser = { (result: JSON) -> String in
                 return myProfileImageUrlFrom(result)
@@ -50,7 +50,7 @@ final class UserServer {
             }
     }
     
-    class func otherUserWith(userId: String, onSuccess: (otherUser: OtherUser) -> (), onFail: FailCallback) {
+    class func otherUserWith(userId: User.ID, onSuccess: (otherUser: OtherUser) -> (), onFail: FailCallback) {
         let url = "\(baseClientUrl)/\(userId)"
         
         let parser = { (resultJson: JSON) -> OtherUser in
@@ -63,7 +63,7 @@ final class UserServer {
         SwishServer.requestWith(httpRequest)
     }
     
-    class func activityRecordWith(id: String, onSuccess: (record: UserActivityRecord) -> (),
+    class func activityRecordWith(id: User.ID, onSuccess: (record: UserActivityRecord) -> (),
         onFail: FailCallback) {
             let url = "\(baseClientUrl)/\(id)/get_activity_record"
             
@@ -80,7 +80,7 @@ final class UserServer {
     
     // MARK: - Params
     
-    private class func registerMeParams(name: String? = nil, about: String? = nil,
+    private class func registerMeParamsWith(name: String? = nil, about: String? = nil,
         image: UIImage? = nil) -> Param {
         var params = Param()
         params.updateValue(UUIDHelper.uuid(), forKey: "uuid")

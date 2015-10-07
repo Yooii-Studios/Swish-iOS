@@ -18,6 +18,7 @@ class SwishTests: XCTestCase {
     
     override func setUp() {
         super.setUp()
+        // 사용 할지도 모르는 코드라 남겨둠
 //        Realm.Configuration.defaultConfiguration.inMemoryIdentifier = self.name
         SwishDatabase.deleteAll()
         otherUserIndex = 0
@@ -25,16 +26,8 @@ class SwishTests: XCTestCase {
     }
     
     override func tearDown() {
-        // Put teardown code here.
         super.tearDown()
     }
-    
-//    func testPerformanceExample() {
-//        // This is an example of a performance test case.
-//        self.measureBlock() {
-//            // Put the code you want to measure the time of here.
-//        }
-//    }
     
     // MARK: - Creations
     func testCreateMe() {
@@ -74,11 +67,11 @@ class SwishTests: XCTestCase {
         
         let photoOne = createPhoto()
         let photoTwo = createPhoto()
-        SwishDatabase.saveReceivedPhoto(userOne.id, photo: photoOne)
-        SwishDatabase.saveReceivedPhoto(userOne.id, photo: photoTwo)
+        SwishDatabase.saveReceivedPhoto(userOne, photo: photoOne)
+        SwishDatabase.saveReceivedPhoto(userOne, photo: photoTwo)
         
         let photoThree = createPhoto()
-        SwishDatabase.saveReceivedPhoto(userTwo.id, photo: photoThree)
+        SwishDatabase.saveReceivedPhoto(userTwo, photo: photoThree)
         
         XCTAssert(photoOne == SwishDatabase.photoWithId(photoOne.id)!)
         XCTAssert(photoTwo == SwishDatabase.photoWithId(photoTwo.id)!)
@@ -93,7 +86,7 @@ class SwishTests: XCTestCase {
         chatMessageIndex = 0
         var originalMessages = Array<ChatMessage>()
         for _ in 0...19 {
-            let msg = createChatMessage()
+            let msg = createChatMessage(SwishDatabase.me().id)
             originalMessages.append(msg)
             SwishDatabase.saveChatMessage(photo, chatMessage: msg)
         }
@@ -109,12 +102,12 @@ class SwishTests: XCTestCase {
         SwishDatabase.saveOtherUser(user)
         
         let photo = createPhoto()
-        SwishDatabase.saveReceivedPhoto(user.id, photo: photo)
+        SwishDatabase.saveReceivedPhoto(user, photo: photo)
         
         chatMessageIndex = 0
         var originalMessages = Array<ChatMessage>()
         for _ in 0...19 {
-            let msg = createChatMessage()
+            let msg = createChatMessage(user.id)
             originalMessages.append(msg)
             SwishDatabase.saveChatMessage(photo, chatMessage: msg)
         }
@@ -131,9 +124,9 @@ class SwishTests: XCTestCase {
         SwishDatabase.saveOtherUser(user)
         
         let photo = createPhoto()
-        SwishDatabase.saveReceivedPhoto(user.id, photo: photo)
+        SwishDatabase.saveReceivedPhoto(user, photo: photo)
         
-        let msg = createChatMessage()
+        let msg = createChatMessage(user.id)
         SwishDatabase.saveChatMessage(photo, chatMessage: msg)
         
 //        let id = photo.id
@@ -180,7 +173,7 @@ class SwishTests: XCTestCase {
 //        self.measureBlock {
             var msgs = Array<ChatMessage>()
             for _ in 0...count {
-                msgs.append(self.createChatMessage())
+                msgs.append(self.createChatMessage(SwishDatabase.me().id))
             }
             SwishDatabase.saveChatMessages(photo, chatMessages: msgs)
 //        }
@@ -221,22 +214,25 @@ class SwishTests: XCTestCase {
     func createPhoto() -> Photo {
         let postfixInt = photoIndex++
         let postfix = "\(postfixInt)"
-        return Photo.create(Photo.ID(postfix)!, builder: { (photo: Photo) -> () in
-            photo.fileName = "fn\(postfix)"
-            photo.message = "msg\(postfix)"
-            
-            photo.unreadMessageCount = postfixInt
-            photo.hasBlockedChat = postfixInt % 2 == 0
-            photo.hasOpenedChatRoom = postfixInt % 2 == 0
-            let postfixDouble = Double(postfixInt)
-            photo.departLocation = CLLocation(latitude: 35.889972 + postfixDouble, longitude: 128.611332 + postfixDouble)
-            photo.arrivedLocation = CLLocation(latitude: 35.893105 + postfixDouble, longitude: 128.616192 + postfixDouble)
-        })
+        
+        let photo = Photo.create()
+        photo.id = Photo.ID(postfix)!
+        photo.localPath = "fn\(postfix)"
+        photo.message = "msg\(postfix)"
+        
+        photo.unreadMessageCount = postfixInt
+        photo.hasBlockedChat = postfixInt % 2 == 0
+        photo.hasOpenedChatRoom = postfixInt % 2 == 0
+        let postfixDouble = Double(postfixInt)
+        photo.departLocation = CLLocation(latitude: 35.889972 + postfixDouble, longitude: 128.611332 + postfixDouble)
+        photo.arrivedLocation = CLLocation(latitude: 35.893105 + postfixDouble, longitude: 128.616192 + postfixDouble)
+        
+        return photo
     }
     
-    func createChatMessage() -> ChatMessage {
+    func createChatMessage(senderId: User.ID) -> ChatMessage {
         let index = chatMessageIndex++
-        return ChatMessage.create("Blahblah \(index)") {
+        return ChatMessage.create("Blahblah \(index)", senderId: senderId) {
             (chatMessage: ChatMessage) -> () in
             chatMessage.state = ChatMessageSendState.Sending
         }
