@@ -21,6 +21,7 @@
 		5796738B1B9FFE6C00382247 /* UserActivityRecord.swift in Sources */ = {isa = PBXBuildFile; fileRef = 579673871B9FFE6C00382247 /* UserActivityRecord.swift */; settings = {ASSET_TAGS = (); }; };
 		5796738E1B9FFE7200382247 /* ChatMessage.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5796738C1B9FFE7200382247 /* ChatMessage.swift */; settings = {ASSET_TAGS = (); }; };
 		5796738F1B9FFE7200382247 /* ChatMessageSendState.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5796738D1B9FFE7200382247 /* ChatMessageSendState.swift */; settings = {ASSET_TAGS = (); }; };
+		57E09ADB1BCB9351006A05DC /* MeManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 57E09ADA1BCB9351006A05DC /* MeManager.swift */; settings = {ASSET_TAGS = (); }; };
 		57E2D9761BB282C6008957C2 /* ImageHelper.swift in Sources */ = {isa = PBXBuildFile; fileRef = 57E2D9751BB282C6008957C2 /* ImageHelper.swift */; settings = {ASSET_TAGS = (); }; };
 		57E2D9781BB28D8B008957C2 /* PhotoServer.swift in Sources */ = {isa = PBXBuildFile; fileRef = 57E2D9771BB28D8B008957C2 /* PhotoServer.swift */; settings = {ASSET_TAGS = (); }; };
 		57F6283A1BA11D050008B23B /* DefaultObjectBuilder.swift in Sources */ = {isa = PBXBuildFile; fileRef = 57F628391BA11D050008B23B /* DefaultObjectBuilder.swift */; settings = {ASSET_TAGS = (); }; };
@@ -69,6 +70,7 @@
 		579673871B9FFE6C00382247 /* UserActivityRecord.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = UserActivityRecord.swift; path = User/UserActivityRecord.swift; sourceTree = "<group>"; };
 		5796738C1B9FFE7200382247 /* ChatMessage.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = ChatMessage.swift; path = Chat/ChatMessage.swift; sourceTree = "<group>"; };
 		5796738D1B9FFE7200382247 /* ChatMessageSendState.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = ChatMessageSendState.swift; path = Chat/ChatMessageSendState.swift; sourceTree = "<group>"; };
+		57E09ADA1BCB9351006A05DC /* MeManager.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = MeManager.swift; path = User/MeManager.swift; sourceTree = "<group>"; };
 		57E2D9751BB282C6008957C2 /* ImageHelper.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ImageHelper.swift; sourceTree = "<group>"; };
 		57E2D9771BB28D8B008957C2 /* PhotoServer.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PhotoServer.swift; sourceTree = "<group>"; };
 		57F628391BA11D050008B23B /* DefaultObjectBuilder.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DefaultObjectBuilder.swift; sourceTree = "<group>"; };
@@ -155,6 +157,7 @@
 				579673851B9FFE6C00382247 /* OtherUser.swift */,
 				579673861B9FFE6C00382247 /* User.swift */,
 				579673871B9FFE6C00382247 /* UserActivityRecord.swift */,
+				57E09ADA1BCB9351006A05DC /* MeManager.swift */,
 			);
 			name = User;
 			sourceTree = "<group>";
@@ -437,6 +440,7 @@
 				F245DCB91B9E7B2D0072308B /* Swish.xcdatamodeld in Sources */,
 				579673831B9FFE6500382247 /* PhotoState.swift in Sources */,
 				57F6283A1BA11D050008B23B /* DefaultObjectBuilder.swift in Sources */,
+				57E09ADB1BCB9351006A05DC /* MeManager.swift in Sources */,
 				5765CEF81BA2EC9C00DE6A05 /* KeychainItemWrapper.swift in Sources */,
 				57E2D9781BB28D8B008957C2 /* PhotoServer.swift in Sources */,
 				5796738E1B9FFE7200382247 /* ChatMessage.swift in Sources */,
