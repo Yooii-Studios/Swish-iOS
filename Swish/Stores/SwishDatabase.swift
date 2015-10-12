@@ -110,6 +110,13 @@ final class SwishDatabase {
         }
     }
     
+    class func updateMyActivityRecord(record: UserActivityRecord) {
+        write {
+            let me = self.me()
+            me.userActivityRecord = record
+        }
+    }
+    
     // MARK: - OtherUser
     
     class func otherUser(id: User.ID) -> OtherUser? {

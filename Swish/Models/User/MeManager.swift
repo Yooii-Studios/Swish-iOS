@@ -50,4 +50,16 @@ final class MeManager {
                     onFail?()
             })
     }
+    
+    class func updateMyActivityStatus(onSuccess: ((record: UserActivityRecord) -> ())? = nil,
+        onFail: DefaultCallback? = nil) {
+            let userId = SwishDatabase.me().id
+            UserServer.activityRecordWith(userId,
+                onSuccess: { (record) -> () in
+                    SwishDatabase.updateMyActivityRecord(record)
+                    onSuccess?(record: record)
+                }, onFail: { (error) -> () in
+                    onFail?()
+            })
+    }
 }
