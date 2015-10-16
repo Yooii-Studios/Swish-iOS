@@ -35,19 +35,17 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
             
             let filePath = FileHelper.filePathWithName("qwerasdf")
             let images = [ UIImage(contentsOfFile: filePath)!, UIImage(contentsOfFile: filePath)! ]
-            ImageHelper.clearAndSaveTempImages(images)
             
             var index = 0
-            for tempImagePath in ImageHelper.tempImagePaths {
+            for _ in images {
                 let photo = Photo.create()
-                photo.fileName = tempImagePath
                 photo.message = "testMsg\(index)"
                 photo.departLocation = CLLocation(latitude: 127.001 + Double(index), longitude: 35.001 + Double(index))
                 photos.append(photo)
                 
                 index++
             }
-            let request = PhotoSendRequest(photos: photos,
+            let request = PhotoSendRequest(photos: photos, images: images,
                 onSendPhotoCallback: { (photoSendState) -> () in
                     print("\(photoSendState.succeedCount) of \(photoSendState.totalCount) sent. \(photoSendState.failedCount) failed")
                 }, onSendAllPhotosCallback: { (sentPhotoCount) -> () in

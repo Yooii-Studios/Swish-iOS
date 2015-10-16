@@ -7,6 +7,7 @@
 //
 
 import Foundation
+import UIKit
 import SwiftyJSON
 
 final class PhotoSender {
@@ -26,13 +27,20 @@ final class PhotoSender {
         self.state = PhotoSendState(totalCount: request.photos.count)
     }
     
+    // let images = [ UIImage(contentsOfFile: filePathOne)!, UIImage(contentsOfFile: filePathTwo)! ]
+    // ImageHelper.clearAndSaveTempImages(images)
+    //
     class func execute(request: PhotoSendRequest) {
         PhotoSender(request: request).execute()
     }
     
     private func execute() {
+        let tempFileNames = ImageHelper.clearAndSaveTempImages(request.images)
+        
         let senderId = MeManager.me().id
+        var index = 0
         for photo in request.photos {
+            photo.fileName = tempFileNames[index]
             PhotoServer.save(photo, userId: senderId, onSuccess: { (id) -> () in
                 let newFileName = ImageHelper.moveTempImageToPhotosDirectory(photo.fileName)
                 SwishDatabase.saveSentPhoto(photo, serverId: id, newFileName: newFileName)
@@ -44,6 +52,7 @@ final class PhotoSender {
                 }, onFail: { (error) -> () in
                     self.notifyFailure()
             })
+            index++
         }
     }
     
@@ -77,13 +86,17 @@ final class PhotoSendRequest {
     typealias OnSendAllPhotosCallback = (sentPhotoCount: Int) -> ()
     
     let photos: [Photo]
+    let images: [UIImage]
     let onSendPhotoCallback: OnSendPhotoCallback
     let onSendAllPhotosCallback: OnSendAllPhotosCallback
     
-    init(photos: [Photo], onSendPhotoCallback: OnSendPhotoCallback, onSendAllPhotosCallback: OnSendAllPhotosCallback) {
-        self.photos = photos
-        self.onSendPhotoCallback = onSendPhotoCallback
-        self.onSendAllPhotosCallback = onSendAllPhotosCallback
+    init(photos: [Photo], images: [UIImage], onSendPhotoCallback: OnSendPhotoCallback,
+        onSendAllPhotosCallback: OnSendAllPhotosCallback) {
+            // TODO: check photos.count == images.count
+            self.photos = photos
+            self.images = images
+            self.onSendPhotoCallback = onSendPhotoCallback
+            self.onSendAllPhotosCallback = onSendAllPhotosCallback
     }
 }
 

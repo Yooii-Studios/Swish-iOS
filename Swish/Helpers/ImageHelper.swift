@@ -63,14 +63,19 @@ final class ImageHelper {
         clearAndSaveTempImages([image])
     }
     
-    final class func clearAndSaveTempImages(images: [UIImage]) {
+    final class func clearAndSaveTempImages(images: [UIImage]) -> [String] {
         FileHelper.createTempPhotosFileDirectory()
         FileHelper.clearTempPhotosFileDirectory()
         var index = 0
+        var fileNames = [String]()
         for image in images {
-            let tmpFilePath = FileHelper.filePathWithName("\(tempImageFileNamePrefix)\(index++)", inDirectory: SubDirectory.TempPhotos)
+            let tmpFileName = "\(tempImageFileNamePrefix)\(index++)"
+            let tmpFilePath = FileHelper.filePathWithName(tmpFileName, inDirectory: SubDirectory.TempPhotos)
             saveImage(image, intoPath: tmpFilePath)
+            fileNames.append(tmpFileName)
         }
+        
+        return fileNames
     }
     
     private class func saveImage(image: UIImage, intoPath path: String, inFormat format: Format = .PNG) {
