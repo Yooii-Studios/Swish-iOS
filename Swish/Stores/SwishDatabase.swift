@@ -95,6 +95,28 @@ final class SwishDatabase {
         }
     }
     
+    class func updateMe(name: String? = nil, about: String? = nil) {
+        write {
+            let me = self.me()
+            me.name = name ?? me.name
+            me.about = about ?? me.about
+        }
+    }
+    
+    class func updateMyProfileImage(profileImageUrl: String) {
+        write {
+            let me = self.me()
+            me.profileUrl = profileImageUrl
+        }
+    }
+    
+    class func updateMyActivityRecord(record: UserActivityRecord) {
+        write {
+            let me = self.me()
+            me.userActivityRecord = record
+        }
+    }
+    
     // MARK: - OtherUser
     
     class func otherUser(id: User.ID) -> OtherUser? {
