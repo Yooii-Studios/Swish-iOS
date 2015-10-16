@@ -18,7 +18,7 @@ final class SwishDatabase {
     class func migrate() {
         let config = Realm.Configuration(
             // TODO: 출시 전에 버전 0으로 변경하자
-            schemaVersion: 22,
+            schemaVersion: 23,
             
             migrationBlock: { migration, oldSchemaVersion in
                 if (oldSchemaVersion < 1) {
@@ -132,8 +132,10 @@ final class SwishDatabase {
     
     // MARK: - Photos
     
-    class func saveSentPhoto(photo: Photo) {
+    class func saveSentPhoto(photo: Photo, serverId: Photo.ID, newFileName: String) {
         write {
+            photo.id = serverId
+            photo.fileName = newFileName
             me().photos.append(photo)
         }
     }

@@ -13,6 +13,7 @@
 		5765CEF81BA2EC9C00DE6A05 /* KeychainItemWrapper.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5765CEF71BA2EC9C00DE6A05 /* KeychainItemWrapper.swift */; settings = {ASSET_TAGS = (); }; };
 		576A81991BC7545A0064A70F /* StickerServer.swift in Sources */ = {isa = PBXBuildFile; fileRef = 576A81981BC7545A0064A70F /* StickerServer.swift */; settings = {ASSET_TAGS = (); }; };
 		5776B92C1BD08EAB009005B5 /* FileHelper.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5776B92B1BD08EAB009005B5 /* FileHelper.swift */; settings = {ASSET_TAGS = (); }; };
+		5776B92E1BD08F08009005B5 /* PhotoSender.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5776B92D1BD08F08009005B5 /* PhotoSender.swift */; settings = {ASSET_TAGS = (); }; };
 		579673761B9FFE2000382247 /* SwishDatabase.swift in Sources */ = {isa = PBXBuildFile; fileRef = 579673751B9FFE2000382247 /* SwishDatabase.swift */; settings = {ASSET_TAGS = (); }; };
 		579673821B9FFE6500382247 /* Photo.swift in Sources */ = {isa = PBXBuildFile; fileRef = 579673801B9FFE6500382247 /* Photo.swift */; settings = {ASSET_TAGS = (); }; };
 		579673831B9FFE6500382247 /* PhotoState.swift in Sources */ = {isa = PBXBuildFile; fileRef = 579673811B9FFE6500382247 /* PhotoState.swift */; settings = {ASSET_TAGS = (); }; };
@@ -64,6 +65,7 @@
 		5765CEF71BA2EC9C00DE6A05 /* KeychainItemWrapper.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = KeychainItemWrapper.swift; sourceTree = "<group>"; };
 		576A81981BC7545A0064A70F /* StickerServer.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = StickerServer.swift; sourceTree = "<group>"; };
 		5776B92B1BD08EAB009005B5 /* FileHelper.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FileHelper.swift; sourceTree = "<group>"; };
+		5776B92D1BD08F08009005B5 /* PhotoSender.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = PhotoSender.swift; path = Photo/PhotoSender.swift; sourceTree = "<group>"; };
 		579673751B9FFE2000382247 /* SwishDatabase.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SwishDatabase.swift; sourceTree = "<group>"; };
 		579673801B9FFE6500382247 /* Photo.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = Photo.swift; path = Photo/Photo.swift; sourceTree = "<group>"; };
 		579673811B9FFE6500382247 /* PhotoState.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = PhotoState.swift; path = Photo/PhotoState.swift; sourceTree = "<group>"; };
@@ -172,6 +174,7 @@
 			children = (
 				579673801B9FFE6500382247 /* Photo.swift */,
 				579673811B9FFE6500382247 /* PhotoState.swift */,
+				5776B92D1BD08F08009005B5 /* PhotoSender.swift */,
 			);
 			name = Photo;
 			sourceTree = "<group>";
@@ -441,6 +444,7 @@
 				F245DCB11B9E7B2D0072308B /* AppDelegate.swift in Sources */,
 				576A81991BC7545A0064A70F /* StickerServer.swift in Sources */,
 				F266D9021B9F159D00BDEB75 /* MyInfoViewController.swift in Sources */,
+				5776B92E1BD08F08009005B5 /* PhotoSender.swift in Sources */,
 				AEF32DDF1BA301A200EA00A9 /* PhotoCollectionViewCell.swift in Sources */,
 				F23A7B1D1BA1D4520063233F /* DressingViewController.swift in Sources */,
 				F245DCB91B9E7B2D0072308B /* Swish.xcdatamodeld in Sources */,

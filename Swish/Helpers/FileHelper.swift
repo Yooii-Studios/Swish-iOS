@@ -9,32 +9,77 @@
 import Foundation
 import UIKit
 
+protocol Directory {
+    var name: String? { get }
+}
+
+final class Documents: Directory {
+    var name: String? {
+        return nil
+    }
+}
+
+enum SubDirectory: Directory {
+    case Photos, TempPhotos
+    
+    var name: String? {
+        switch self {
+        case TempPhotos:
+            return "photos_tmp"
+        case Photos:
+            return "photos"
+        }
+    }
+}
+
 final class FileHelper {
-    private static let tempFileDirectoryName = "tmp"
+    private static let documents = Documents()
     
     static var fileManager: NSFileManager {
         return NSFileManager.defaultManager()
     }
-    static var tempFileDirectory:NSURL {
-        createTempFileDirectory()
-        return fileNSURLByName(tempFileDirectoryName)
+    static var tempPhotosFileDirectory: NSURL {
+        return fileNSURLByName(SubDirectory.TempPhotos)
     }
-    static var tempFileDirectoryPath:String {
-        return tempFileDirectory.path!
+    static var tempPhotosFileDirectoryPath: String {
+        return tempPhotosFileDirectory.path!
+    }
+    static var photosDirectory: NSURL {
+        return fileNSURLByName(SubDirectory.Photos)
     }
     static var documentsURL: NSURL {
         return fileManager.URLsForDirectory(.DocumentDirectory, inDomains: .UserDomainMask)[0]
     }
-    
-    final class func createTempFileDirectory() {
-        createDirectoryByName(tempFileDirectoryName)
+    static var documentsPath: String {
+        return documentsURL.path!
     }
     
-    final class func clearTempFileDirectory() {
-        clearDirectory(tempFileDirectoryName)
+    final class func filePathWithName(fileName: String, inDirectory directory: Directory? = documents) -> String {
+        if let _ = directory?.name {
+            return filePathByName(fileName, inDirectory: directory!)
+        } else {
+            return filePathByName(fileName)
+        }
     }
     
-    private final class func createDirectoryByName(dirName: String) {
+    final class func createPhotosDirectory() {
+        createDirectoryByName(subDirectory: .Photos)
+    }
+    
+    final class func createTempPhotosFileDirectory() {
+        createDirectoryByName(subDirectory: .TempPhotos)
+    }
+    
+    final class func clearTempPhotosFileDirectory() {
+        clearDirectory(subDirectory: .TempPhotos)
+    }
+    
+    final class func fileExists(fileName: String, inDirectory directory: Directory) -> Bool {
+        return NSFileManager.defaultManager().fileExistsAtPath(filePathByName(fileName, inDirectory: directory))
+    }
+    
+    private final class func createDirectoryByName(subDirectory directory: SubDirectory) {
+        let dirName = directory.name!
         if !fileExistsAtPath(dirName) {
             // TODO: pragma clang diagnostic ignored에 대응되는 Swift의 기능이 생기면 변경 필요.
             let _ = try? NSFileManager.defaultManager().createDirectoryAtPath(filePathByName(dirName),
@@ -42,11 +87,13 @@ final class FileHelper {
         }
     }
     
-    private final class func clearDirectory(dirName: String) {
+    // TODO: 재귀적으로 돌면서 하위 디렉토리도 지울 수 있게 수정하기
+    private final class func clearDirectory(subDirectory directory: SubDirectory) {
+        let dirName = directory.name!
         if fileExistsAtPath(dirName) {
             let enumerator = fileManager.enumeratorAtPath(filePathByName(dirName))
             while let fileName = enumerator?.nextObject() as? String {
-                let filePath = filePathByName(fileName, inDirectory: dirName)
+                let filePath = filePathByName(fileName, inDirectory: directory)
                 // TODO: pragma clang diagnostic ignored에 대응되는 Swift의 기능이 생기면 변경 필요.
                 let _ = try? fileManager.removeItemAtPath(filePath)
             }
@@ -59,12 +106,16 @@ final class FileHelper {
         return NSFileManager.defaultManager().fileExistsAtPath(filePathByName(fileName))
     }
     
-    private final class func filePathByName(fileName: String, inDirectory dirName: String? = nil) -> String {
-        return fileNSURLByName(dirName).URLByAppendingPathComponent(fileName).path!
+    private final class func filePathByName(fileName: String, inDirectory directory: Directory) -> String {
+        return fileNSURLByName(directory.name).URLByAppendingPathComponent(fileName).path!
     }
     
     private final class func filePathByName(fileName: String) -> String {
         return fileNSURLByName(fileName).path!
+    }
+    
+    private final class func fileNSURLByName(directory: Directory) -> NSURL {
+        return fileNSURLByName(directory.name)
     }
     
     private final class func fileNSURLByName(fileName: String?) -> NSURL {

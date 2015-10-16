@@ -8,15 +8,53 @@
 
 import UIKit
 import CoreData
+import CoreLocation
 
 @UIApplicationMain
 class AppDelegate: UIResponder, UIApplicationDelegate {
     
     var window: UIWindow?
     
+    class CountHolder {
+        var cnt: Int = 0
+        var total: Int = 0
+        let targetTotal: Int
+        
+        init(targetTotal: Int) {
+            self.targetTotal = targetTotal
+        }
+    }
+    
     func application(application: UIApplication, didFinishLaunchingWithOptions launchOptions: [NSObject: AnyObject]?) -> Bool {
         // Override point for customization after application launch.
         SwishDatabase.migrate()
+        SwishDatabase.deleteAll()
+        
+        MeManager.registerMe(onSuccess: { (me: Me) -> () in
+            var photos = [Photo]()
+            
+            let filePath = FileHelper.filePathWithName("qwerasdf")
+            let images = [ UIImage(contentsOfFile: filePath)!, UIImage(contentsOfFile: filePath)! ]
+            ImageHelper.clearAndSaveTempImages(images)
+            
+            var index = 0
+            for tempImagePath in ImageHelper.tempImagePaths {
+                let photo = Photo.create()
+                photo.fileName = tempImagePath
+                photo.message = "testMsg\(index)"
+                photo.departLocation = CLLocation(latitude: 127.001 + Double(index), longitude: 35.001 + Double(index))
+                photos.append(photo)
+                
+                index++
+            }
+            let request = PhotoSendRequest(photos: photos,
+                onSendPhotoCallback: { (photoSendState) -> () in
+                    print("\(photoSendState.succeedCount) of \(photoSendState.totalCount) sent. \(photoSendState.failedCount) failed")
+                }, onSendAllPhotosCallback: { (sentPhotoCount) -> () in
+                    print("All photos sent. total: \(sentPhotoCount)")
+            })
+            PhotoSender.execute(request)
+        })
         
         return true
     }
