@@ -9,16 +9,19 @@
 import Foundation
 import RealmSwift
 import CoreLocation
+import SwiftyJSON
 
 class Photo: Object {
     typealias ID = Int64
     static let invalidId: ID = -1
+    static let invalidPath = ""
     private static let defaultPhotoState = PhotoState.Waiting
     
     // Mark: Attributes
+    
     // required
-    dynamic var id:ID = invalidId
-    dynamic var fileName = ""
+    dynamic var id: ID = invalidId
+    dynamic var localPath = invalidPath
     dynamic var message = ""
     dynamic var unreadMessageCount = 0
     dynamic var hasBlockedChat = false
@@ -54,10 +57,45 @@ class Photo: Object {
             photoStateRaw = newPhotoState.rawValue
         }
     }
+    var base64Image: String? {
+        return image != nil ? ImageHelper.base64EncodedStringWith(image!) : nil
+    }
+    var image: UIImage? {
+        return UIImage(contentsOfFile: localPath)
+    }
+    var receiver: User? {
+        get {
+            let me = SwishDatabase.me()
+            var optionalReceiver: User?
+            if sender == SwishDatabase.me() {
+                optionalReceiver = receivedUserId != User.invalidId
+                ? SwishDatabase.otherUser(receivedUserId) : nil
+            } else {
+                optionalReceiver = me
+            }
+            return optionalReceiver
+        }
+        set {
+            receivedUserId = newValue!.id
+        }
+    }
+    
     // backlink
-    var sender: User { return _sender }
+    var sender: User {
+        let userCandidate: User
+        let meCandidates = linkingObjects(Me.self, forProperty: "photos")
+        if meCandidates.count > 0 {
+            userCandidate = meCandidates[0]
+        } else {
+            let otherCandidates = linkingObjects(OtherUser.self, forProperty: "photos")
+            userCandidate = otherCandidates[0]
+        }
+        
+        return userCandidate
+    }
     
     // Mark: init
+    
     // TODO: convert to protected when becames possible
     private convenience init(id: ID) {
         self.init()
@@ -69,19 +107,6 @@ class Photo: Object {
     }
     
     // Mark: Realm support
-    // backlink to user
-    private var _sender: User {
-        let userCandidate: User
-        let meCandidates = linkingObjects(Me.self, forProperty: "photos")
-        if meCandidates.count > 0 {
-            userCandidate = meCandidates[0]
-        } else {
-            let opponentCandidates = linkingObjects(OpponentUser.self, forProperty: "photos")
-            userCandidate = opponentCandidates[0]
-        }
-        
-        return userCandidate
-    }
     
     // required
     private dynamic var departLatitude = CLLocationDegrees.NaN
@@ -91,24 +116,19 @@ class Photo: Object {
     private dynamic var arrivedLongitude = CLLocationDegrees.NaN
     
     private dynamic var photoStateRaw = defaultPhotoState.rawValue
+    private dynamic var receivedUserId = User.invalidId
     
     override static func primaryKey() -> String? {
         return "id"
     }
     
     override static func ignoredProperties() -> [String] {
-        return ["departLocation", "arrivedLocation", "photoState"]
+        return ["departLocation", "arrivedLocation", "photoState", "receiver"]
     }
     
-    final class func create(id: ID, builder: (Photo) -> () = RealmObjectBuilder.builder) -> Photo {
-        let photo = Photo(id: id)
-        builder(photo)
-        return photo
+    final class func create() -> Photo {
+        return Photo()
     }
-    
-//    final class func create(intId: Int, builder: (Photo) -> ()) -> Photo {
-//        return create(ID(intId), builder: builder)
-//    }
 }
 
 func == (left: Photo, right: Photo) -> Bool {

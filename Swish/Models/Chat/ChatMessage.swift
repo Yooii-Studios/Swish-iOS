@@ -14,6 +14,7 @@ final class ChatMessage: Object {
     private static let invalidReceivedTime = NSTimeInterval.NaN
     
     // Mark: Attributes
+    
     dynamic var message = ""
     dynamic var receivedTimeIntervalSince1970 = invalidReceivedTime
     var receivedDate:NSDate { return _receivedDate }
@@ -25,21 +26,29 @@ final class ChatMessage: Object {
             stateRaw = newState.rawValue
         }
     }
-    var owner: User {
-        return photo.sender
+    var sender: User {
+        let me = SwishDatabase.me()
+        return senderId == me.id ? me : SwishDatabase.otherUser(senderId)!
+    }
+    var receiver: User {
+        let me = SwishDatabase.me()
+        return sender == me ? SwishDatabase.otherUser(senderId)! : me
     }
     var photo: Photo {
         return linkingObjects(Photo.self, forProperty: "chatMessages")[0]
     }
     
     // MARK: Initializer
-    private convenience init(message: String, eventTime: NSDate = NSDate()) {
+    
+    private convenience init(message: String, senderId: User.ID, eventTime: NSDate = NSDate()) {
         self.init()
         self.message = message
+        self.senderId = senderId
         self._receivedDate = eventTime
     }
     
     // Mark: Realm support
+    
     private var _receivedDate: NSDate {
         get {
             // FIXME: Creates an instance everytime when receivedDate is retrieved.
@@ -52,14 +61,15 @@ final class ChatMessage: Object {
     }
     
     private dynamic var stateRaw = defaultState.rawValue
+    private dynamic var senderId = User.invalidId
     
     override static func ignoredProperties() -> [String] {
-        return ["state"]
+        return ["state", "sender", "receiver", "sender", "receiver"]
     }
     
-    final class func create(message: String,
+    final class func create(message: String, senderId: User.ID,
         builder: (ChatMessage) -> () = RealmObjectBuilder.builder) -> ChatMessage {
-        let chatMessage = ChatMessage(message: message)
+        let chatMessage = ChatMessage(message: message, senderId: senderId)
         builder(chatMessage)
         return chatMessage
     }

@@ -1,5 +1,5 @@
 //
-//  OpponentUser.swift
+//  OtherUser.swift
 //  RealmTest
 //
 //  Created by 정동현 on 2015. 9. 4..
@@ -9,10 +9,11 @@
 import Foundation
 import RealmSwift
 
-final class OpponentUser: User {
+final class OtherUser: User {
     private static let invalidFetchedTime = NSTimeInterval.NaN
     
     // Mark: Attributes
+    
     let recentlySentPhotoUrls = List<PhotoMetadata>()
     // required
     dynamic var fetchedTimeIntervalSince1970 = invalidFetchedTime
@@ -24,8 +25,8 @@ final class OpponentUser: User {
     }
     
     final class func create(id: User.ID, fetchedTimeIntervalSince1970: NSTimeInterval = NSDate().timeIntervalSince1970,
-        builder: (OpponentUser) -> () = RealmObjectBuilder.builder) -> OpponentUser {
-            let me = OpponentUser(id: id, fetchedTimeIntervalSince1970: fetchedTimeIntervalSince1970)
+        builder: (OtherUser) -> () = RealmObjectBuilder.builder) -> OtherUser {
+            let me = OtherUser(id: id, fetchedTimeIntervalSince1970: fetchedTimeIntervalSince1970)
             builder(me)
             return me
     }

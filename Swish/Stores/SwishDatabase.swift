@@ -17,7 +17,8 @@ final class SwishDatabase {
     
     class func migrate() {
         let config = Realm.Configuration(
-            schemaVersion: 19,
+            // TODO: 출시 전에 버전 0으로 변경하자
+            schemaVersion: 22,
             
             migrationBlock: { migration, oldSchemaVersion in
                 if (oldSchemaVersion < 1) {
@@ -27,16 +28,6 @@ final class SwishDatabase {
     }
     
     // MARK: - General
-//    class func save(object: Object, update: Bool = false) {
-//        do {
-//            try realm.write {
-//                self.realm.add(object, update: update)
-//            }
-//        } catch {
-//            // ignored
-//        }
-//    }
-    
     
     class func object<T: Object>(comparator: (target: T) -> Bool) -> T? {
         for object in objects(T) where comparator(target: object) {
@@ -88,9 +79,14 @@ final class SwishDatabase {
     }
     
     // MARK: - Me
+    
     class func me() -> Me {
         // Assume always have Me
         return rawObjects(Me)[0]
+    }
+    
+    class func hasMe() -> Bool {
+        return rawObjects(Me).count > 0
     }
     
     class func saveMe(me: Me) {
@@ -99,28 +95,50 @@ final class SwishDatabase {
         }
     }
     
-    // MARK: - OpponentUser
-    class func opponentUser(id: User.ID) -> OpponentUser? {
-        let users = rawObjects(OpponentUser).filter("id = '\(id)'")
+    class func updateMe(name: String? = nil, about: String? = nil) {
+        write {
+            let me = self.me()
+            me.name = name ?? me.name
+            me.about = about ?? me.about
+        }
+    }
+    
+    class func updateMyProfileImage(profileImageUrl: String) {
+        write {
+            let me = self.me()
+            me.profileUrl = profileImageUrl
+        }
+    }
+    
+    class func updateMyActivityRecord(record: UserActivityRecord) {
+        write {
+            let me = self.me()
+            me.userActivityRecord = record
+        }
+    }
+    
+    // MARK: - OtherUser
+    
+    class func otherUser(id: User.ID) -> OtherUser? {
+        let users = rawObjects(OtherUser).filter("id = '\(id)'")
         return users.count > 0 ? users[0] : nil;
     }
     
-    class func saveOpponentUser(opponentUser: OpponentUser) {
+    class func saveOtherUser(otherUser: OtherUser) {
         write {
-            realm.add(opponentUser, update: true)
+            realm.add(otherUser, update: true)
         }
     }
     
     // MARK: - Photos
+    
     class func saveSentPhoto(photo: Photo) {
         write {
             me().photos.append(photo)
         }
     }
     
-    class func saveReceivedPhoto(userId: User.ID, photo: Photo) {
-        let user = OpponentUser.create(userId, fetchedTimeIntervalSince1970: NSDate().timeIntervalSince1970, builder: { (OpponentUser) -> () in })
-        saveOpponentUser(user)
+    class func saveReceivedPhoto(user: OtherUser, photo: Photo) {
         write {
             user.photos.append(photo)
         }
@@ -207,6 +225,7 @@ final class SwishDatabase {
     }
     
     // MARK: - Chat Message
+    
     class func saveChatMessage(photo: Photo, chatMessage: ChatMessage) {
         write {
             photo.chatMessages.append(chatMessage)
@@ -257,6 +276,7 @@ final class SwishDatabase {
     }
     
     // MARK: - Class functions
+    
     private class func objects<T: Object>(filter: (object: T) -> Bool) -> Array<T> {
         var resultObjects = Array<T>()
         for object in objects(T) where filter(object: object) {
@@ -286,8 +306,4 @@ final class SwishDatabase {
         
         return results
     }
-}
-
-enum RealmHelperError: ErrorType {
-    case PhotoNotFound
 }
