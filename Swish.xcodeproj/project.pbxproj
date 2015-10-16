@@ -12,6 +12,7 @@
 		571935331BA3C4C800856400 /* UUIDHelper.swift in Sources */ = {isa = PBXBuildFile; fileRef = 571935321BA3C4C800856400 /* UUIDHelper.swift */; settings = {ASSET_TAGS = (); }; };
 		5765CEF81BA2EC9C00DE6A05 /* KeychainItemWrapper.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5765CEF71BA2EC9C00DE6A05 /* KeychainItemWrapper.swift */; settings = {ASSET_TAGS = (); }; };
 		576A81991BC7545A0064A70F /* StickerServer.swift in Sources */ = {isa = PBXBuildFile; fileRef = 576A81981BC7545A0064A70F /* StickerServer.swift */; settings = {ASSET_TAGS = (); }; };
+		5776B92C1BD08EAB009005B5 /* FileHelper.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5776B92B1BD08EAB009005B5 /* FileHelper.swift */; settings = {ASSET_TAGS = (); }; };
 		579673761B9FFE2000382247 /* SwishDatabase.swift in Sources */ = {isa = PBXBuildFile; fileRef = 579673751B9FFE2000382247 /* SwishDatabase.swift */; settings = {ASSET_TAGS = (); }; };
 		579673821B9FFE6500382247 /* Photo.swift in Sources */ = {isa = PBXBuildFile; fileRef = 579673801B9FFE6500382247 /* Photo.swift */; settings = {ASSET_TAGS = (); }; };
 		579673831B9FFE6500382247 /* PhotoState.swift in Sources */ = {isa = PBXBuildFile; fileRef = 579673811B9FFE6500382247 /* PhotoState.swift */; settings = {ASSET_TAGS = (); }; };
@@ -60,6 +61,7 @@
 		571935321BA3C4C800856400 /* UUIDHelper.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UUIDHelper.swift; sourceTree = "<group>"; };
 		5765CEF71BA2EC9C00DE6A05 /* KeychainItemWrapper.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = KeychainItemWrapper.swift; sourceTree = "<group>"; };
 		576A81981BC7545A0064A70F /* StickerServer.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = StickerServer.swift; sourceTree = "<group>"; };
+		5776B92B1BD08EAB009005B5 /* FileHelper.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FileHelper.swift; sourceTree = "<group>"; };
 		579673751B9FFE2000382247 /* SwishDatabase.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SwishDatabase.swift; sourceTree = "<group>"; };
 		579673801B9FFE6500382247 /* Photo.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = Photo.swift; path = Photo/Photo.swift; sourceTree = "<group>"; };
 		579673811B9FFE6500382247 /* PhotoState.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = PhotoState.swift; path = Photo/PhotoState.swift; sourceTree = "<group>"; };
@@ -260,6 +262,7 @@
 		F245DCE41B9E7CD40072308B /* Helpers */ = {
 			isa = PBXGroup;
 			children = (
+				5776B92B1BD08EAB009005B5 /* FileHelper.swift */,
 				5765CEF71BA2EC9C00DE6A05 /* KeychainItemWrapper.swift */,
 				571935321BA3C4C800856400 /* UUIDHelper.swift */,
 				AEF32DDA1BA2FDA400EA00A9 /* MediaLoader.swift */,
@@ -441,6 +444,7 @@
 				57E2D9781BB28D8B008957C2 /* PhotoServer.swift in Sources */,
 				5796738E1B9FFE7200382247 /* ChatMessage.swift in Sources */,
 				57E2D9761BB282C6008957C2 /* ImageHelper.swift in Sources */,
+				5776B92C1BD08EAB009005B5 /* FileHelper.swift in Sources */,
 				5796738A1B9FFE6C00382247 /* User.swift in Sources */,
 				579673881B9FFE6C00382247 /* Me.swift in Sources */,
 				579673821B9FFE6500382247 /* Photo.swift in Sources */,

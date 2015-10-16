@@ -13,4 +13,13 @@ final class ImageHelper {
     final class func base64EncodedStringWith(image: UIImage) -> String! {
         return UIImagePNGRepresentation(image)?.base64EncodedStringWithOptions(NSDataBase64EncodingOptions.Encoding64CharacterLineLength)
     }
+    
+    final class func saveTempImages(images: [UIImage]) {
+        let tempFileDirURL = FileHelper.tempFileDirectory
+        var index = 0
+        for image in images {
+            let tmpFilePath = tempFileDirURL.URLByAppendingPathComponent("tmp\(index++)").path!
+            UIImagePNGRepresentation(image)!.writeToFile(tmpFilePath, atomically: true)
+        }
+    }
 }
