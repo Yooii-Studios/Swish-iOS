@@ -57,21 +57,9 @@ class Photo: Object {
             photoStateRaw = newPhotoState.rawValue
         }
     }
-    var base64Image: String? {
-        return image != nil ? ImageHelper.base64EncodedStringWith(image!) : nil
-    }
     var image: UIImage? {
-        var path: String? = nil
-        var image: UIImage? = nil
-        if FileHelper.fileExists(fileName, inDirectory: SubDirectory.Photos) {
-            path = FileHelper.filePathWithName(fileName, inDirectory: SubDirectory.Photos)
-        } else if FileHelper.fileExists(fileName, inDirectory: SubDirectory.TempPhotos) {
-            path = FileHelper.filePathWithName(fileName, inDirectory: SubDirectory.TempPhotos)
-        }
-        if let path = path {
-            image = UIImage(contentsOfFile: path)
-        }
-        return image
+        let path = FileHelper.filePathWithName(fileName, inDirectory: SubDirectory.Photos)
+        return UIImage(contentsOfFile: path)
     }
     var receiver: User? {
         get {

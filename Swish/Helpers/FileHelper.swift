@@ -20,11 +20,11 @@ final class Documents: Directory {
 }
 
 enum SubDirectory: Directory {
-    case Photos, TempPhotos
+    case Photos, Temp
     
     var name: String? {
         switch self {
-        case TempPhotos:
+        case Temp:
             return "photos_tmp"
         case Photos:
             return "photos"
@@ -38,11 +38,11 @@ final class FileHelper {
     static var fileManager: NSFileManager {
         return NSFileManager.defaultManager()
     }
-    static var tempPhotosFileDirectory: NSURL {
-        return fileNSURLByName(SubDirectory.TempPhotos)
+    static var tempFileDirectory: NSURL {
+        return fileNSURLByName(SubDirectory.Temp)
     }
-    static var tempPhotosFileDirectoryPath: String {
-        return tempPhotosFileDirectory.path!
+    static var tempFileDirectoryPath: String {
+        return tempFileDirectory.path!
     }
     static var photosDirectory: NSURL {
         return fileNSURLByName(SubDirectory.Photos)
@@ -66,12 +66,12 @@ final class FileHelper {
         createDirectoryByName(subDirectory: .Photos)
     }
     
-    final class func createTempPhotosFileDirectory() {
-        createDirectoryByName(subDirectory: .TempPhotos)
+    final class func createTempFileDirectory() {
+        createDirectoryByName(subDirectory: .Temp)
     }
     
-    final class func clearTempPhotosFileDirectory() {
-        clearDirectory(subDirectory: .TempPhotos)
+    final class func clearTempFileDirectory() {
+        clearDirectory(subDirectory: .Temp)
     }
     
     final class func fileExists(fileName: String, inDirectory directory: Directory) -> Bool {

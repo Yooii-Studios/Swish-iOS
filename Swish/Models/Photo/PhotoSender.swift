@@ -35,25 +35,31 @@ final class PhotoSender {
     }
     
     private func execute() {
-        let tempFileNames = ImageHelper.clearAndSaveTempImages(request.images)
+        FileHelper.createPhotosDirectory()
         
         let senderId = MeManager.me().id
         var index = 0
         for photo in request.photos {
-            photo.fileName = tempFileNames[index]
-            PhotoServer.save(photo, userId: senderId, onSuccess: { (id) -> () in
-                let newFileName = ImageHelper.moveTempImageToPhotosDirectory(photo.fileName)
-                SwishDatabase.saveSentPhoto(photo, serverId: id, newFileName: newFileName)
+            let image = request.images[index]
+            PhotoServer.save(photo, userId: senderId, image: image, onSuccess: { (id) -> () in
+                let fileName = self.saveImage(image)
+                
+                SwishDatabase.saveSentPhoto(photo, serverId: id, newFileName: fileName)
                 
                 self.notifySuccess()
-                if self.state.done {
-                    FileHelper.clearTempPhotosFileDirectory()
-                }
                 }, onFail: { (error) -> () in
                     self.notifyFailure()
             })
             index++
         }
+    }
+    
+    private func saveImage(image: UIImage) -> String {
+        let fileName = "\(NSDate().timeIntervalSince1970)"
+        let imagePath = FileHelper.filePathWithName(fileName, inDirectory: SubDirectory.Photos)
+        ImageHelper.saveImage(image, intoPath: imagePath)
+        
+        return fileName
     }
     
     private func notifySuccess() {

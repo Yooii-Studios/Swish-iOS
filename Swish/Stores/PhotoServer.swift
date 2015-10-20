@@ -32,8 +32,8 @@ final class PhotoServer {
             SwishServer.requestWith(httpRequest)
     }
     
-    class func save(photo: Photo, userId: User.ID, onSuccess: (id: Photo.ID) -> (), onFail: FailCallback) {
-        let params = saveParamWith(photo, userId: userId)
+    class func save(photo: Photo, userId: User.ID, image: UIImage, onSuccess: (id: Photo.ID) -> (), onFail: FailCallback) {
+        let params = saveParamWith(photo, userId: userId, image: image)
         let parser = { (resultJson: JSON) -> Photo.ID in return serverPhotoIdFrom(resultJson) }
         let httpRequest = HttpRequest<Photo.ID>(method: .POST, url: basePhotoUrl, parameters: params, parser: parser, onSuccess: onSuccess, onFail: onFail)
         
@@ -92,13 +92,13 @@ final class PhotoServer {
         return [ "user_id": userId ]
     }
     
-    private class func saveParamWith(photo: Photo, userId: User.ID) -> Param {
+    private class func saveParamWith(photo: Photo, userId: User.ID, image: UIImage) -> Param {
         return [
             "user_id": userId,
             "message": photo.message,
             "latitude": photo.departLocation.coordinate.latitude.description,
             "longitude": photo.departLocation.coordinate.longitude.description,
-            "image_resource": photo.base64Image!
+            "image_resource": ImageHelper.base64EncodedStringWith(image)
         ]
     }
     
