@@ -216,13 +216,9 @@
 				F245DCE21B9E7CC20072308B /* Models */,
 				F245DCE31B9E7CC60072308B /* Views */,
 				F245DCE11B9E7CBA0072308B /* Controllers */,
+				F2F5451D1BD5E76B00AEE02A /* Storyboards */,
 				F245DCB01B9E7B2D0072308B /* AppDelegate.swift */,
-				F245DCB41B9E7B2D0072308B /* Main.storyboard */,
-				F23A7B1E1BA1DF250063233F /* Dressing.storyboard */,
-				F23A7B191BA1D4140063233F /* MyInfo.storyboard */,
-				F23A7B161BA1D4070063233F /* PhotoPicker.storyboard */,
 				F245DCBA1B9E7B2D0072308B /* Assets.xcassets */,
-				F245DCBC1B9E7B2D0072308B /* LaunchScreen.storyboard */,
 				F245DCBF1B9E7B2D0072308B /* Info.plist */,
 				F245DCB71B9E7B2D0072308B /* Swish.xcdatamodeld */,
 			);
@@ -278,6 +274,18 @@
 				57E2D9751BB282C6008957C2 /* ImageHelper.swift */,
 			);
 			path = Helpers;
+			sourceTree = "<group>";
+		};
+		F2F5451D1BD5E76B00AEE02A /* Storyboards */ = {
+			isa = PBXGroup;
+			children = (
+				F245DCB41B9E7B2D0072308B /* Main.storyboard */,
+				F23A7B1E1BA1DF250063233F /* Dressing.storyboard */,
+				F23A7B191BA1D4140063233F /* MyInfo.storyboard */,
+				F23A7B161BA1D4070063233F /* PhotoPicker.storyboard */,
+				F245DCBC1B9E7B2D0072308B /* LaunchScreen.storyboard */,
+			);
+			name = Storyboards;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
