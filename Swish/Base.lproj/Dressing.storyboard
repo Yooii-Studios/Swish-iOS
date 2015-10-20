@@ -1,8 +1,8 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="8187.4" systemVersion="14F27" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" initialViewController="Bml-Kc-Hq3">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="8191" systemVersion="15A284" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" initialViewController="Bml-Kc-Hq3">
     <dependencies>
         <deployment identifier="iOS"/>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="8151.3"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="8154"/>
     </dependencies>
     <scenes>
         <!--Dressing-->
@@ -19,15 +19,27 @@
                         <subviews>
                             <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="1uo-BK-C6M">
                                 <rect key="frame" x="150" y="150" width="300" height="300"/>
+                                <animations/>
                                 <constraints>
                                     <constraint firstAttribute="height" constant="300" id="JkV-9a-77O"/>
                                     <constraint firstAttribute="width" constant="300" id="bJE-qQ-xXH"/>
                                 </constraints>
                             </imageView>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="17Z-z9-IfQ">
+                                <rect key="frame" x="280" y="485" width="40" height="30"/>
+                                <animations/>
+                                <state key="normal" title="Share"/>
+                                <connections>
+                                    <action selector="shareButtonDidTap:" destination="y0I-4w-0ho" eventType="touchUpInside" id="WX2-Pn-mBS"/>
+                                </connections>
+                            </button>
                         </subviews>
+                        <animations/>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                         <constraints>
+                            <constraint firstItem="17Z-z9-IfQ" firstAttribute="top" secondItem="1uo-BK-C6M" secondAttribute="bottom" constant="35" id="O4p-BB-gKj"/>
                             <constraint firstItem="1uo-BK-C6M" firstAttribute="centerY" secondItem="NRu-VV-fhb" secondAttribute="centerY" id="RcB-G9-NXC"/>
+                            <constraint firstItem="17Z-z9-IfQ" firstAttribute="centerX" secondItem="NRu-VV-fhb" secondAttribute="centerX" id="Vic-sx-nyN"/>
                             <constraint firstItem="1uo-BK-C6M" firstAttribute="centerX" secondItem="NRu-VV-fhb" secondAttribute="centerX" id="WDX-7a-kLt"/>
                         </constraints>
                     </view>
@@ -40,11 +52,20 @@
                     </navigationItem>
                     <connections>
                         <outlet property="testImageView" destination="1uo-BK-C6M" id="UUD-Nu-xwB"/>
+                        <segue destination="Xuv-eR-eTe" kind="presentation" identifier="showShareResult" id="mWD-ml-Zkp"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="fY1-s0-Dnp" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="1573" y="1151"/>
+        </scene>
+        <!--ShareResult-->
+        <scene sceneID="4Vw-cW-748">
+            <objects>
+                <viewControllerPlaceholder storyboardName="ShareResult" id="Xuv-eR-eTe" sceneMemberID="viewController"/>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="Hh1-AA-4kM" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="2185.5" y="1151"/>
         </scene>
         <!--Navigation Controller-->
         <scene sceneID="yj7-HJ-AOu">
@@ -54,6 +75,7 @@
                     <navigationBar key="navigationBar" contentMode="scaleToFill" id="i2e-0F-zOF">
                         <rect key="frame" x="0.0" y="0.0" width="320" height="44"/>
                         <autoresizingMask key="autoresizingMask"/>
+                        <animations/>
                     </navigationBar>
                     <nil name="viewControllers"/>
                     <connections>
