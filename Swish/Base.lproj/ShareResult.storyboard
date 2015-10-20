@@ -1,0 +1,71 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="8191" systemVersion="15A284" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" initialViewController="5YB-mo-rDK">
+    <dependencies>
+        <deployment identifier="iOS"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="8154"/>
+    </dependencies>
+    <scenes>
+        <!--Share Result-->
+        <scene sceneID="nUh-Mt-143">
+            <objects>
+                <viewController storyboardIdentifier="shareResultViewController" id="iWo-Ig-4hz" customClass="ShareResultViewController" customModule="Swish" customModuleProvider="target" sceneMemberID="viewController">
+                    <layoutGuides>
+                        <viewControllerLayoutGuide type="top" id="mfk-oE-Pzh"/>
+                        <viewControllerLayoutGuide type="bottom" id="rcY-FB-Ih1"/>
+                    </layoutGuides>
+                    <view key="view" contentMode="scaleToFill" id="88R-ib-fjf">
+                        <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="Wn4-UQ-k4a">
+                                <rect key="frame" x="175" y="102" width="250" height="250"/>
+                                <animations/>
+                                <constraints>
+                                    <constraint firstAttribute="width" constant="250" id="0uh-bg-utw"/>
+                                    <constraint firstAttribute="height" constant="250" id="kGh-f1-Elk"/>
+                                </constraints>
+                            </imageView>
+                        </subviews>
+                        <animations/>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                        <constraints>
+                            <constraint firstItem="Wn4-UQ-k4a" firstAttribute="centerX" secondItem="88R-ib-fjf" secondAttribute="centerX" id="ZF0-vl-r2w"/>
+                            <constraint firstItem="Wn4-UQ-k4a" firstAttribute="top" secondItem="mfk-oE-Pzh" secondAttribute="bottom" constant="38" id="dfF-dc-O8r"/>
+                        </constraints>
+                    </view>
+                    <navigationItem key="navigationItem" title="Share Result" id="CT3-yU-fJr">
+                        <barButtonItem key="rightBarButtonItem" systemItem="cancel" id="Emc-AH-E9m">
+                            <connections>
+                                <action selector="cancelButtonDidTap:" destination="iWo-Ig-4hz" id="Waq-Eh-9MN"/>
+                            </connections>
+                        </barButtonItem>
+                    </navigationItem>
+                    <connections>
+                        <outlet property="testImageView" destination="Wn4-UQ-k4a" id="8h2-J5-NdW"/>
+                    </connections>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="WdI-SF-HJ1" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="1383" y="501"/>
+        </scene>
+        <!--Navigation Controller-->
+        <scene sceneID="YFe-VL-MKQ">
+            <objects>
+                <navigationController storyboardIdentifier="shareResultNaviViewController" automaticallyAdjustsScrollViewInsets="NO" id="5YB-mo-rDK" sceneMemberID="viewController">
+                    <toolbarItems/>
+                    <navigationBar key="navigationBar" contentMode="scaleToFill" id="8IC-tS-opT">
+                        <rect key="frame" x="0.0" y="0.0" width="320" height="44"/>
+                        <autoresizingMask key="autoresizingMask"/>
+                        <animations/>
+                    </navigationBar>
+                    <nil name="viewControllers"/>
+                    <connections>
+                        <segue destination="iWo-Ig-4hz" kind="relationship" relationship="rootViewController" id="iBp-sX-KXT"/>
+                    </connections>
+                </navigationController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="EUx-bz-bPL" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="571" y="501"/>
+        </scene>
+    </scenes>
+</document>
