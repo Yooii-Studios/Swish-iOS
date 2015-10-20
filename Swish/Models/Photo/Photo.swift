@@ -57,10 +57,6 @@ class Photo: Object {
             photoStateRaw = newPhotoState.rawValue
         }
     }
-    var image: UIImage? {
-        let path = FileHelper.filePathWithName(fileName, inDirectory: SubDirectory.Photos)
-        return UIImage(contentsOfFile: path)
-    }
     var receiver: User? {
         get {
             let me = SwishDatabase.me()

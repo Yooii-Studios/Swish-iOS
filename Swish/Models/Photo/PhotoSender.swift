@@ -19,7 +19,7 @@ final class PhotoSender {
         }
     }
     
-    private let state: PhotoSendState
+    private var state: PhotoSendState
     private let request: PhotoSendRequest
     
     private init(request: PhotoSendRequest) {
@@ -27,9 +27,6 @@ final class PhotoSender {
         self.state = PhotoSendState(totalCount: request.photos.count)
     }
     
-    // let images = [ UIImage(contentsOfFile: filePathOne)!, UIImage(contentsOfFile: filePathTwo)! ]
-    // ImageHelper.clearAndSaveTempImages(images)
-    //
     class func execute(request: PhotoSendRequest) {
         PhotoSender(request: request).execute()
     }
@@ -42,24 +39,21 @@ final class PhotoSender {
         for photo in request.photos {
             let image = request.images[index]
             PhotoServer.save(photo, userId: senderId, image: image, onSuccess: { (id) -> () in
-                let fileName = self.saveImage(image)
-                
-                SwishDatabase.saveSentPhoto(photo, serverId: id, newFileName: fileName)
-                
-                self.notifySuccess()
+                self.saveImage(image) { fileName in
+                    SwishDatabase.saveSentPhoto(photo, serverId: id, newFileName: fileName)
+                    
+                    self.notifySuccess()
+                }
                 }, onFail: { (error) -> () in
+                    print(error)
                     self.notifyFailure()
             })
             index++
         }
     }
     
-    private func saveImage(image: UIImage) -> String {
-        let fileName = "\(NSDate().timeIntervalSince1970)"
-        let imagePath = FileHelper.filePathWithName(fileName, inDirectory: SubDirectory.Photos)
-        ImageHelper.saveImage(image, intoPath: imagePath)
-        
-        return fileName
+    private func saveImage(image: UIImage, callback: PhotoImageHelper.OnSaveImageCallback) {
+        PhotoImageHelper.saveImage(image, onSuccess: callback)
     }
     
     private func notifySuccess() {
@@ -87,7 +81,7 @@ final class PhotoSender {
     }
 }
 
-final class PhotoSendRequest {
+struct PhotoSendRequest {
     typealias OnSendPhotoCallback = (photoSendState: PhotoSendState) -> ()
     typealias OnSendAllPhotosCallback = (sentPhotoCount: Int) -> ()
     
@@ -106,7 +100,7 @@ final class PhotoSendRequest {
     }
 }
 
-final class PhotoSendState {
+struct PhotoSendState {
     var succeedCount: Int = 0
     var failedCount: Int = 0
     let totalCount: Int

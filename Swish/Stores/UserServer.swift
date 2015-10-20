@@ -141,16 +141,16 @@ final class UserServer {
     }
     
     private class func otherUserFrom(resultJson: JSON, userId: String) -> OtherUser {
-        let otherUser = OtherUser.create(userId, builder: { (otherUser: OtherUser) -> () in
+        let otherUser = OtherUser.create(userId) {
             let userInfoJson = resultJson["user_info"]
             
-            otherUser.name = userInfoJson["name"].stringValue
-            otherUser.about = userInfoJson["about"].stringValue
-            otherUser.profileUrl = userInfoJson["profile_image_url"].stringValue
-            otherUser.level = userInfoJson["level"].intValue
-            otherUser.userActivityRecord = userActivityRecordFrom(userInfoJson)
-            otherUser.recentlySentPhotoUrls.appendContentsOf(photoMetadataListFrom(userInfoJson))
-        })
+            $0.name = userInfoJson["name"].stringValue
+            $0.about = userInfoJson["about"].stringValue
+            $0.profileUrl = userInfoJson["profile_image_url"].stringValue
+            $0.level = userInfoJson["level"].intValue
+            $0.userActivityRecord = userActivityRecordFrom(userInfoJson)
+            $0.recentlySentPhotoUrls.appendContentsOf(photoMetadataListFrom(userInfoJson))
+        }
         return otherUser
     }
     

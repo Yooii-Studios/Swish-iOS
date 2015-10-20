@@ -28,6 +28,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
     func application(application: UIApplication, didFinishLaunchingWithOptions launchOptions: [NSObject: AnyObject]?) -> Bool {
         // Override point for customization after application launch.
         SwishDatabase.migrate()
+        
         SwishDatabase.deleteAll()
         
         MeManager.registerMe(onSuccess: { (me: Me) -> () in
@@ -50,6 +51,19 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
                     print("\(photoSendState.succeedCount) of \(photoSendState.totalCount) sent. \(photoSendState.failedCount) failed")
                 }, onSendAllPhotosCallback: { (sentPhotoCount) -> () in
                     print("All photos sent. total: \(sentPhotoCount)")
+                    let request = PhotoReceiveRequest(requestCount: sentPhotoCount, currentLocation: LocationManager.dummyLocation,
+                        onReceiveAllPhotosCallback: { (photos) -> Void in
+                            print("got all photos")
+                            PhotoImageHelper.imageWithPhoto(photos[0], onSuccess: { image in
+                                print(image?.description)
+                            })
+                            
+                        }, onReceivePhotoCallback: { (state) -> Void in
+                            print("\(state.succeedCount) of \(state.totalCount) sent. \(state.failedCount) failed")
+                        }, onFailCallback: { () -> Void in
+                            print("failed to receive")
+                    })
+                    PhotoReceiver.execute(request)
             })
             PhotoSender.execute(request)
         })

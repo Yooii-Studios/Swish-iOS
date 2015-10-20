@@ -125,6 +125,12 @@ final class SwishDatabase {
     }
     
     class func saveOtherUser(otherUser: OtherUser) {
+        let prevUser = self.otherUser(otherUser.id)
+        if prevUser != nil && prevUser!.recentlySentPhotoUrls.count > 0 {
+            for photoMetadata in prevUser!.recentlySentPhotoUrls {
+                otherUser.recentlySentPhotoUrls.append(photoMetadata)
+            }
+        }
         write {
             realm.add(otherUser, update: true)
         }

@@ -24,9 +24,9 @@ final class OtherUser: User {
         self.fetchedTimeIntervalSince1970 = fetchedTimeIntervalSince1970
     }
     
-    final class func create(id: User.ID, fetchedTimeIntervalSince1970: NSTimeInterval = NSDate().timeIntervalSince1970,
+    final class func create(id: User.ID,
         builder: (OtherUser) -> () = RealmObjectBuilder.builder) -> OtherUser {
-            let me = OtherUser(id: id, fetchedTimeIntervalSince1970: fetchedTimeIntervalSince1970)
+            let me = OtherUser(id: id, fetchedTimeIntervalSince1970: NSDate().timeIntervalSince1970)
             builder(me)
             return me
     }
