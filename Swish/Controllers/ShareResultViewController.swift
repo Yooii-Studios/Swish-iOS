@@ -8,7 +8,7 @@
 
 import UIKit
 
-class ShareResultController: UIViewController {
+class ShareResultViewController: UIViewController {
 
     @IBOutlet weak var testImageView: UIImageView!
     

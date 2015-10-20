@@ -8,7 +8,7 @@
         <!--Share Result-->
         <scene sceneID="nUh-Mt-143">
             <objects>
-                <viewController storyboardIdentifier="shareResultViewController" id="iWo-Ig-4hz" customClass="ShareResultController" customModule="Swish" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController storyboardIdentifier="shareResultViewController" id="iWo-Ig-4hz" customClass="ShareResultViewController" customModule="Swish" customModuleProvider="target" sceneMemberID="viewController">
                     <layoutGuides>
                         <viewControllerLayoutGuide type="top" id="mfk-oE-Pzh"/>
                         <viewControllerLayoutGuide type="bottom" id="rcY-FB-Ih1"/>

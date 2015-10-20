@@ -44,7 +44,7 @@
 		F266D9021B9F159D00BDEB75 /* MyInfoViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = F266D9011B9F159D00BDEB75 /* MyInfoViewController.swift */; settings = {ASSET_TAGS = (); }; };
 		F266D9041B9F15D500BDEB75 /* PhotoPickerViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = F266D9031B9F15D500BDEB75 /* PhotoPickerViewController.swift */; settings = {ASSET_TAGS = (); }; };
 		F2F545201BD5E84500AEE02A /* ShareResult.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = F2F5451E1BD5E84500AEE02A /* ShareResult.storyboard */; settings = {ASSET_TAGS = (); }; };
-		F2F545221BD5ED5500AEE02A /* ShareResultController.swift in Sources */ = {isa = PBXBuildFile; fileRef = F2F545211BD5ED5400AEE02A /* ShareResultController.swift */; settings = {ASSET_TAGS = (); }; };
+		F2F545221BD5ED5500AEE02A /* ShareResultViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = F2F545211BD5ED5400AEE02A /* ShareResultViewController.swift */; settings = {ASSET_TAGS = (); }; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -102,7 +102,7 @@
 		F266D9031B9F15D500BDEB75 /* PhotoPickerViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PhotoPickerViewController.swift; sourceTree = "<group>"; };
 		F2EDD338D07BE381CAD26509 /* Pods.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = Pods.release.xcconfig; path = "Pods/Target Support Files/Pods/Pods.release.xcconfig"; sourceTree = "<group>"; };
 		F2F5451F1BD5E84500AEE02A /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/ShareResult.storyboard; sourceTree = "<group>"; };
-		F2F545211BD5ED5400AEE02A /* ShareResultController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ShareResultController.swift; sourceTree = "<group>"; };
+		F2F545211BD5ED5400AEE02A /* ShareResultViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ShareResultViewController.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -240,7 +240,7 @@
 				F266D9011B9F159D00BDEB75 /* MyInfoViewController.swift */,
 				F266D9031B9F15D500BDEB75 /* PhotoPickerViewController.swift */,
 				F23A7B1C1BA1D4520063233F /* DressingViewController.swift */,
-				F2F545211BD5ED5400AEE02A /* ShareResultController.swift */,
+				F2F545211BD5ED5400AEE02A /* ShareResultViewController.swift */,
 			);
 			path = Controllers;
 			sourceTree = "<group>";
@@ -449,7 +449,7 @@
 				570FD2F71BAAB54E008CB163 /* UserServer.swift in Sources */,
 				F245DCB31B9E7B2D0072308B /* MainViewController.swift in Sources */,
 				571935331BA3C4C800856400 /* UUIDHelper.swift in Sources */,
-				F2F545221BD5ED5500AEE02A /* ShareResultController.swift in Sources */,
+				F2F545221BD5ED5500AEE02A /* ShareResultViewController.swift in Sources */,
 				579673761B9FFE2000382247 /* SwishDatabase.swift in Sources */,
 				F245DCB11B9E7B2D0072308B /* AppDelegate.swift in Sources */,
 				576A81991BC7545A0064A70F /* StickerServer.swift in Sources */,

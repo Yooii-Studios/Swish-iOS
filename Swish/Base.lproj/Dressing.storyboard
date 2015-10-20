@@ -17,7 +17,7 @@
                         <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="1uo-BK-C6M">
+                            <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="TestImage" translatesAutoresizingMaskIntoConstraints="NO" id="1uo-BK-C6M">
                                 <rect key="frame" x="150" y="150" width="300" height="300"/>
                                 <animations/>
                                 <constraints>
@@ -87,4 +87,7 @@
             <point key="canvasLocation" x="761" y="1151"/>
         </scene>
     </scenes>
+    <resources>
+        <image name="TestImage" width="640" height="480"/>
+    </resources>
 </document>
