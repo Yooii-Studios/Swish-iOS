@@ -53,6 +53,14 @@ final class PhotoReceiver {
         state = PhotoReceiveState(totalCount: count)
         resultPhotos = Array<Photo!>(count: count, repeatedValue: nil)
         
+        if count > 0 {
+            downloadImagesAndNotify(count, withPhotoResponses: photoResponses)
+        } else {
+            self.request.onFailCallback()
+        }
+    }
+    
+    private func downloadImagesAndNotify(count: Int, withPhotoResponses photoResponses: [PhotoResponse]) {
         for index in 0...count-1 {
             let photoResponse = photoResponses[index]
             let imageUrl = photoResponse.imageUrl

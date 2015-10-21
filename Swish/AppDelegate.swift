@@ -15,16 +15,6 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
     
     var window: UIWindow?
     
-    class CountHolder {
-        var cnt: Int = 0
-        var total: Int = 0
-        let targetTotal: Int
-        
-        init(targetTotal: Int) {
-            self.targetTotal = targetTotal
-        }
-    }
-    
     func application(application: UIApplication, didFinishLaunchingWithOptions launchOptions: [NSObject: AnyObject]?) -> Bool {
         // Override point for customization after application launch.
         SwishDatabase.migrate()
@@ -54,10 +44,14 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
                     let request = PhotoReceiveRequest(requestCount: sentPhotoCount, currentLocation: LocationManager.dummyLocation,
                         onReceiveAllPhotosCallback: { (photos) -> Void in
                             print("got all photos")
-                            PhotoImageHelper.imageWithPhoto(photos[0], onSuccess: { image in
-                                print(image?.description)
-                            })
-                            
+                            let userId = photos[0].sender.id
+                            if let user = SwishDatabase.otherUser(userId) {
+                                if let recentlySentPhotoUrls = user.recentlySentPhotoUrls {
+                                    print(recentlySentPhotoUrls.count)
+                                } else {
+                                    print("doesn't have")
+                                }
+                            }
                         }, onReceivePhotoCallback: { (state) -> Void in
                             print("\(state.succeedCount) of \(state.totalCount) sent. \(state.failedCount) failed")
                         }, onFailCallback: { () -> Void in

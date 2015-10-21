@@ -16,7 +16,9 @@ final class PhotoImageHelper {
     private static let cache = NSCache()
     
     final class func imageWithPhoto(photo: Photo, onSuccess: (image: UIImage?) -> ()) {
+        let tag = Timestamp.startAndGetTag()
         if let image = cache.objectForKey(photo.fileName) as? UIImage {
+            Timestamp.endWithTag(tag, additionalMessage: "with cache")
             onSuccess(image: image)
             return
         }
@@ -24,10 +26,12 @@ final class PhotoImageHelper {
         dispatch_async(dispatch_get_global_queue(QOS_CLASS_USER_INITIATED, 0), {
             let image = UIImage(contentsOfFile: path)
             
-            if let image = image {
-                cache.setObject(image, forKey: photo.fileName)
-            }
             dispatch_async(dispatch_get_main_queue(), {
+                if let image = image {
+                    cache.setObject(image, forKey: photo.fileName)
+                }
+                Timestamp.endWithTag(tag, additionalMessage: "without cache")
+                
                 onSuccess(image: image)
             })
         })

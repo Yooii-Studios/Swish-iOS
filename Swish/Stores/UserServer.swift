@@ -9,6 +9,7 @@
 import Foundation
 import UIKit
 import SwiftyJSON
+import RealmSwift
 
 final class UserServer {
     private static let baseClientUrl = SwishServer.host + "/clients"
@@ -149,7 +150,7 @@ final class UserServer {
             $0.profileUrl = userInfoJson["profile_image_url"].stringValue
             $0.level = userInfoJson["level"].intValue
             $0.userActivityRecord = userActivityRecordFrom(userInfoJson)
-            $0.recentlySentPhotoUrls.appendContentsOf(photoMetadataListFrom(userInfoJson))
+            $0.recentlySentPhotoUrls = List<PhotoMetadata>(initialArray: photoMetadataListFrom(userInfoJson))
         }
         return otherUser
     }
@@ -162,13 +163,13 @@ final class UserServer {
             dislikedPhotoCount: activityRecordJson["dislike_get_count"].intValue)
     }
     
-    private class func photoMetadataListFrom(userInfoJson: JSON) -> Array<PhotoMetadata> {
+    private class func photoMetadataListFrom(userInfoJson: JSON) -> Array<PhotoMetadata>? {
         let photoMetadataListJson = userInfoJson["recently_send_photo_urls"].arrayValue
         var photoMetadataList = Array<PhotoMetadata>()
         for photoMetadataJson in photoMetadataListJson {
             let url = photoMetadataJson["send_photo_url"].stringValue
             photoMetadataList.append(PhotoMetadata(url: url))
         }
-        return photoMetadataList
+        return photoMetadataList.count > 0 ? photoMetadataList : nil
     }
 }
