@@ -19,49 +19,6 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         // Override point for customization after application launch.
         SwishDatabase.migrate()
         
-        SwishDatabase.deleteAll()
-        
-        MeManager.registerMe(onSuccess: { (me: Me) -> () in
-            var photos = [Photo]()
-            
-            let filePath = FileHelper.filePathWithName("qwerasdf")
-            let images = [ UIImage(contentsOfFile: filePath)!, UIImage(contentsOfFile: filePath)! ]
-            
-            var index = 0
-            for _ in images {
-                let photo = Photo.create()
-                photo.message = "testMsg\(index)"
-                photo.departLocation = CLLocation(latitude: 127.001 + Double(index), longitude: 35.001 + Double(index))
-                photos.append(photo)
-                
-                index++
-            }
-            let request = PhotoSendRequest(photos: photos, images: images,
-                onSendPhotoCallback: { (photoSendState) -> () in
-                    print("\(photoSendState.succeedCount) of \(photoSendState.totalCount) sent. \(photoSendState.failedCount) failed")
-                }, onSendAllPhotosCallback: { (sentPhotoCount) -> () in
-                    print("All photos sent. total: \(sentPhotoCount)")
-                    let request = PhotoReceiveRequest(requestCount: sentPhotoCount, currentLocation: LocationManager.dummyLocation,
-                        onReceiveAllPhotosCallback: { (photos) -> Void in
-                            print("got all photos")
-                            let userId = photos[0].sender.id
-                            if let user = SwishDatabase.otherUser(userId) {
-                                if let recentlySentPhotoUrls = user.recentlySentPhotoUrls {
-                                    print(recentlySentPhotoUrls.count)
-                                } else {
-                                    print("doesn't have")
-                                }
-                            }
-                        }, onReceivePhotoCallback: { (state) -> Void in
-                            print("\(state.succeedCount) of \(state.totalCount) sent. \(state.failedCount) failed")
-                        }, onFailCallback: { () -> Void in
-                            print("failed to receive")
-                    })
-                    PhotoReceiver.execute(request)
-            })
-            PhotoSender.execute(request)
-        })
-        
         return true
     }
     
