@@ -208,7 +208,7 @@ class SwishTests: XCTestCase {
             $0.about = "opAbout\(postfix)"
             $0.profileUrl = "opProfileUrl\(postfix)"
             $0.level = 1
-            $0.recentlySentPhotoUrls.append(PhotoMetadata(url: "http://vignette4.wikia.nocookie.net/pokemon/images/6/64/004새박스아이콘.png/revision/latest?cb=20140106004106&path-prefix=ko"))
+            $0.recentlySentPhotoUrls = List<PhotoMetadata>(initialArray: [PhotoMetadata(url: "http://vignette4.wikia.nocookie.net/pokemon/images/6/64/004새박스아이콘.png/revision/latest?cb=20140106004106&path-prefix=ko")])
         }
     }
     
