@@ -156,6 +156,7 @@ final class PhotoStateUpdater {
 }
 
 protocol PhotoStateUpdateDelegate: class {
+    
     func onSuccess(photoId: Photo.ID, state: PhotoState)
     func onFailure(photoId: Photo.ID)
 }
