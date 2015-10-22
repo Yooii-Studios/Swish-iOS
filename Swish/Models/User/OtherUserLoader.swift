@@ -151,10 +151,6 @@ final class Callbacks {
         callbacksWithUser[request.userId]![request.tag] = request.callback
     }
     
-    final func createCallbacksWithTagEntryForUserId(userId: User.ID) {
-        
-    }
-    
     final func containsUserId(userId: User.ID) -> Bool {
         return callbacksWithUser[userId] != nil
     }
