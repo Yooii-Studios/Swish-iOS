@@ -101,8 +101,12 @@ final class SwishServer {
     private func handleResponse<T>(httpRequest:HttpRequest<T>, response: Response<AnyObject, NSError>) {
         if let statusCode = response.response?.statusCode {
             if statusCode == 200 || statusCode == 201 {
-                httpRequest.onSuccess(result:
-                    httpRequest.parser(result: JSON(response.result.value!)))
+                if response.result.isSuccess {
+                    httpRequest.onSuccess(result:
+                        httpRequest.parser(result: JSON(response.result.value!)))
+                } else {
+                    httpRequest.onFail(error: SwishError(statusCode, error: response.result.error!, urlRequest: response.request))
+                }
             } else if statusCode >= 400 && statusCode <= 500 {
                 let json = response.result.value != nil ? JSON(response.result.value!) : nil
                 httpRequest.onFail(error: SwishError(statusCode, json: json, urlRequest: response.request))
@@ -153,8 +157,9 @@ final class HttpRequest<T>: HttpRequestProtocol {
     }
     
     func cancel() {
-        if let request = request {
-            request.cancel()
+        request?.cancel()
+        if request != nil {
+            print("cancelled")
         }
     }
 }
@@ -165,6 +170,14 @@ final class SwishError: CustomStringConvertible {
     let name: String?
     let extras: String?
     let urlRequest: NSURLRequest?
+    
+    init(_ statusCode: Int, error: NSError, urlRequest: NSURLRequest? = nil) {
+        self.statusCode = statusCode
+        code = -1
+        name = "UnknownError"
+        extras = String(error)
+        self.urlRequest = urlRequest
+    }
     
     init(_ statusCode: Int, json: JSON?, urlRequest: NSURLRequest? = nil) {
         self.statusCode = statusCode

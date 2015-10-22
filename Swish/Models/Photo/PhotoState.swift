@@ -25,8 +25,6 @@ enum PhotoState: String {
             key = 2
         case .Disliked:
             key = 3
-        default:
-            key = 0
         }
         
         return key
