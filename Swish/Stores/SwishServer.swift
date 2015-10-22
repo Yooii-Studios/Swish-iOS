@@ -65,9 +65,7 @@ final class SwishServer {
     }
     
     func cancelWith(tag: String) {
-        if let httpRequest = requests[tag] {
-            httpRequest.cancel()
-        }
+        requests[tag]?.cancel()
     }
     
     // MARK: - Helpers
