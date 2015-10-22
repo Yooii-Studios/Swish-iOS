@@ -12,7 +12,7 @@ import UIKit
 import Alamofire
 import AlamofireImage
 
-// Possible refactor(see PhotoSender)
+// TODO: Possible refactor(see PhotoSender)
 final class PhotoReceiver {
     
     private enum Result {

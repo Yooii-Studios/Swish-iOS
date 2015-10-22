@@ -130,12 +130,6 @@ class SwishTests: XCTestCase {
         let msg = createChatMessage(user.id)
         SwishDatabase.saveChatMessage(photo, chatMessage: msg)
         
-//        let id = photo.id
-//        
-//        SwishDatabase.delete { (target: Photo) -> Bool in
-//            return target.id == photo.id
-//        }
-        
         SwishDatabase.delete { (target: ChatMessage) -> Bool in
             return target == msg
         }
@@ -171,13 +165,11 @@ class SwishTests: XCTestCase {
         
         let count = 10000
         
-//        self.measureBlock {
-            var msgs = Array<ChatMessage>()
-            for _ in 0...count {
-                msgs.append(self.createChatMessage(SwishDatabase.me().id))
-            }
-            SwishDatabase.saveChatMessages(photo, chatMessages: msgs)
-//        }
+        var msgs = Array<ChatMessage>()
+        for _ in 0...count {
+            msgs.append(self.createChatMessage(SwishDatabase.me().id))
+        }
+        SwishDatabase.saveChatMessages(photo, chatMessages: msgs)
         self.measureBlock {
             var cnt = 0
             let msg = SwishDatabase.loadChatMessages(photo.id, startIndex: count, amount: 1)[0]
@@ -236,9 +228,6 @@ class SwishTests: XCTestCase {
     }
     
     func sendPhoto(photo: Photo) -> Photo.ID {
-//        let postfixInt = photoIndex++
-//        let postfix = "\(postfixInt)"
-        
         return createPhotoId()
     }
     
