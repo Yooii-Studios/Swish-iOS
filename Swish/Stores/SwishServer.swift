@@ -158,9 +158,6 @@ final class HttpRequest<T>: HttpRequestProtocol {
     
     func cancel() {
         request?.cancel()
-        if request != nil {
-            print("cancelled")
-        }
     }
 }
 
