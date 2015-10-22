@@ -14,7 +14,7 @@ final class PhotoServer {
     private static let basePhotoUrl = SwishServer.host + "/photos"
     
     class func photoResponsesWith(userId: String, departLocation: CLLocation, photoCount: Int?,
-        onSuccess: (photos: Array<PhotoResponse>) -> (), onFail: FailCallback) {
+        onSuccess: (photoResponses: Array<PhotoResponse>) -> (), onFail: FailCallback) {
             let params = photosParamWith(userId, departLocation: departLocation, photoCount: photoCount)
             let parser = { (resultJson: JSON) -> Array<PhotoResponse> in return photoResponsesFrom(resultJson) }
             let httpRequest = HttpRequest<Array<PhotoResponse>>(method: .GET, url: basePhotoUrl, parameters: params, parser: parser, onSuccess: onSuccess, onFail: onFail)
@@ -32,8 +32,8 @@ final class PhotoServer {
             SwishServer.requestWith(httpRequest)
     }
     
-    class func save(photo: Photo, userId: User.ID, onSuccess: (id: Photo.ID) -> (), onFail: FailCallback) {
-        let params = saveParamWith(photo, userId: userId)
+    class func save(photo: Photo, userId: User.ID, image: UIImage, onSuccess: (id: Photo.ID) -> (), onFail: FailCallback) {
+        let params = saveParamWith(photo, userId: userId, image: image)
         let parser = { (resultJson: JSON) -> Photo.ID in return serverPhotoIdFrom(resultJson) }
         let httpRequest = HttpRequest<Photo.ID>(method: .POST, url: basePhotoUrl, parameters: params, parser: parser, onSuccess: onSuccess, onFail: onFail)
         
@@ -92,13 +92,13 @@ final class PhotoServer {
         return [ "user_id": userId ]
     }
     
-    private class func saveParamWith(photo: Photo, userId: User.ID) -> Param {
+    private class func saveParamWith(photo: Photo, userId: User.ID, image: UIImage) -> Param {
         return [
             "user_id": userId,
             "message": photo.message,
             "latitude": photo.departLocation.coordinate.latitude.description,
             "longitude": photo.departLocation.coordinate.longitude.description,
-            "image_resource": photo.base64Image!
+            "image_resource": ImageHelper.base64EncodedStringWith(image)
         ]
     }
     
@@ -128,7 +128,21 @@ final class PhotoServer {
         
         var items = Array<PhotoResponse>()
         for photoJson in photosJsonArray {
-            let userId = photoJson["sender"]["id"].stringValue
+            let senderJson = photoJson["sender"]
+            let senderId = senderJson["id"].stringValue
+            let sender = OtherUser.create(senderId) {
+                $0.name = senderJson["name"].stringValue
+                
+                $0.about = senderJson["about"].stringValue
+                $0.profileUrl = senderJson["profile_image_url"].stringValue
+                $0.level = senderJson["level"].intValue
+                
+                let activityRecordJson = senderJson["activity_record"]
+                $0.userActivityRecord = UserActivityRecord(
+                    sentPhotoCount: activityRecordJson["upload_photo_count"].intValue,
+                    likedPhotoCount: activityRecordJson["like_get_count"].intValue,
+                    dislikedPhotoCount: activityRecordJson["dislike_get_count"].intValue)
+            }
             
             let latitude = photoJson["latitude"].doubleValue
             let longitude = photoJson["longitude"].doubleValue
@@ -139,7 +153,7 @@ final class PhotoServer {
             photo.message = photoJson["message"].stringValue
             photo.departLocation = location
             let imageUrl = photoJson["url"].stringValue
-            let item = PhotoResponse(userId: userId, photo: photo, imageUrl: imageUrl)
+            let item = PhotoResponse(user: sender, photo: photo, imageUrl: imageUrl)
             
             items.append(item)
         }
@@ -181,7 +195,7 @@ final class PhotoServer {
 }
 
 struct PhotoResponse {
-    let userId: User.ID
+    let user: OtherUser
     let photo: Photo
     let imageUrl: String
 }

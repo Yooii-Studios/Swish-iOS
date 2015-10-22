@@ -14,14 +14,14 @@ import SwiftyJSON
 class Photo: Object {
     typealias ID = Int64
     static let invalidId: ID = -1
-    static let invalidPath = ""
+    static let invalidName = ""
     private static let defaultPhotoState = PhotoState.Waiting
     
     // Mark: Attributes
     
     // required
     dynamic var id: ID = invalidId
-    dynamic var localPath = invalidPath
+    dynamic var fileName = invalidName
     dynamic var message = ""
     dynamic var unreadMessageCount = 0
     dynamic var hasBlockedChat = false
@@ -56,12 +56,6 @@ class Photo: Object {
         set(newPhotoState) {
             photoStateRaw = newPhotoState.rawValue
         }
-    }
-    var base64Image: String? {
-        return image != nil ? ImageHelper.base64EncodedStringWith(image!) : nil
-    }
-    var image: UIImage? {
-        return UIImage(contentsOfFile: localPath)
     }
     var receiver: User? {
         get {

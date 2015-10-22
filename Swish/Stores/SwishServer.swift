@@ -10,7 +10,6 @@ import Foundation
 import Alamofire
 import SwiftyJSON
 
-typealias RawResult = Result<AnyObject>
 typealias DefaultSuccessCallback = (result: JSON) -> ()
 typealias FailCallback = (error: SwishError) -> ()
 typealias Param = Dictionary<String, String>
@@ -60,8 +59,8 @@ final class SwishServer {
             httpRequest.url,
             parameters: httpRequest.parameters,
             headers: headers)
-            .responseJSON { request, response, result in
-                self.handleResponse(httpRequest, request: request, response: response, result: result)
+            .responseJSON { response in
+                self.handleResponse(httpRequest, response: response)
         }
     }
     
@@ -101,19 +100,19 @@ final class SwishServer {
         requests.updateValue(httpRequest, forKey: tag)
     }
     
-    private func handleResponse<T>(httpRequest:HttpRequest<T>, request: NSURLRequest?, response: NSHTTPURLResponse?, result: Result<AnyObject>) {
-        if let statusCode = response?.statusCode {
+    private func handleResponse<T>(httpRequest:HttpRequest<T>, response: Response<AnyObject, NSError>) {
+        if let statusCode = response.response?.statusCode {
             if statusCode == 200 || statusCode == 201 {
                 httpRequest.onSuccess(result:
-                    httpRequest.parser(result: JSON(result.value!)))
+                    httpRequest.parser(result: JSON(response.result.value!)))
             } else if statusCode >= 400 && statusCode <= 500 {
-                let json = result.value != nil ? JSON(result.value!) : nil
-                httpRequest.onFail(error: SwishError(statusCode, json: json, urlRequest: request))
+                let json = response.result.value != nil ? JSON(response.result.value!) : nil
+                httpRequest.onFail(error: SwishError(statusCode, json: json, urlRequest: response.request))
             } else {
-                httpRequest.onFail(error: SwishError.unknownError(statusCode, urlRequest: request))
+                httpRequest.onFail(error: SwishError.unknownError(statusCode, urlRequest: response.request))
             }
         } else {
-            httpRequest.onFail(error: SwishError.unknownError(urlRequest: request))
+            httpRequest.onFail(error: SwishError.unknownError(urlRequest: response.request))
         }
         requests.removeValueForKey(httpRequest.tag)
     }
