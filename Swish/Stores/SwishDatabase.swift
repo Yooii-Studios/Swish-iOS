@@ -143,7 +143,7 @@ final class SwishDatabase {
         }
     }
     
-    class func updatePhoto(photoId: Photo.ID, update: (photo: Photo) -> ()) {
+    class func updatePhoto(photoId: Photo.ID, _ update: (photo: Photo) -> ()) {
         let photo = photoWithId(photoId)
         if let photo = photo {
             write {

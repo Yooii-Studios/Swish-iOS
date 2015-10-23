@@ -12,6 +12,7 @@ import SwiftyJSON
 
 final class PhotoServer {
     private static let basePhotoUrl = SwishServer.host + "/photos"
+    private static let updatePhotoStateTagPrefix = "update_photo_state"
     
     class func photoResponsesWith(userId: String, departLocation: CLLocation, photoCount: Int?,
         onSuccess: (photoResponses: Array<PhotoResponse>) -> (), onFail: FailCallback) {
@@ -23,7 +24,7 @@ final class PhotoServer {
     }
     
     class func photoStatesWith(userId: String,
-        onSuccess: (photoStates: Array<ServerPhotoState>) -> (), onFail: FailCallback) {
+        onSuccess: (serverPhotoState: Array<ServerPhotoState>) -> (), onFail: FailCallback) {
             let url = "\(basePhotoUrl)/get_photos_state"
             let params = serverPhotoStatesParamWith(userId)
             let parser = { (resultJson: JSON) -> Array<ServerPhotoState> in return serverPhotoStatesFrom(resultJson) }
@@ -54,6 +55,7 @@ final class PhotoServer {
             let url = "\(basePhotoUrl)/\(photoId)/update_photo_state"
             let params = updatePhotoStateParamWith(state)
             let httpRequest = HttpRequest<JSON>(method: .PUT, url: url, parameters: params, parser: SwishServer.defaultParser, onSuccess: onSuccess, onFail: onFail)
+            httpRequest.tag = SwishServer.createTagWithPrefix(updatePhotoStateTagPrefix, postfix: "\(photoId)")
             
             SwishServer.requestWith(httpRequest)
     }
@@ -170,19 +172,21 @@ final class PhotoServer {
             let stateKey = photoStateJson["state"].intValue
             let state = PhotoState.findWithKey(stateKey)
             
-            let locationJson = photoStateJson["delivered_location"]
-            let latitude = locationJson["latitude"].doubleValue
-            let longitude = locationJson["longitude"].doubleValue
-            let location = CLLocation(latitude: latitude, longitude: longitude)
+            var location: CLLocation?
+            if state == .Delivered || state == .Liked || state == .Disliked {
+                let locationJson = photoStateJson["delivered_location"]
+                let latitude = locationJson["latitude"].doubleValue
+                let longitude = locationJson["longitude"].doubleValue
+                location = CLLocation(latitude: latitude, longitude: longitude)
+            }
             
-            let receivedUserJson = photoStateJson["user_info"]
-            let userId = receivedUserJson["id"].stringValue
-            let userName = receivedUserJson["name"].stringValue
-            let userProfileImageUrl = receivedUserJson["profile_image_url"].stringValue
+            // 응답으로 들어오지만 사용되지 않는 정보. 향후 대비 가능성을 고려해 남겨둠.
+//            let receivedUserJson = photoStateJson["user_info"]
+//            let userId = receivedUserJson["id"].stringValue
+//            let userName = receivedUserJson["name"].stringValue
+//            let userProfileImageUrl = receivedUserJson["profile_image_url"].stringValue
             
-            let item = ServerPhotoState(
-                photoId: id, state: state, deliveredLocation: location,
-                receivedUserId: userId, receivedUserName: userName, receivedUserProfileImageUrl: userProfileImageUrl)
+            let item = ServerPhotoState(photoId: id, state: state, deliveredLocation: location)
             items.append(item)
         }
         
@@ -191,6 +195,16 @@ final class PhotoServer {
     
     private class func serverPhotoIdFrom(resultJson: JSON) -> Photo.ID {
         return resultJson["photo"]["id"].int64Value
+    }
+    
+    // MARK: - Helpers
+    
+    class func cancelUpdatePhotoStateWithPhotoId(photoId: Photo.ID) {
+        SwishServer.instance.cancelWith(createUpdatePhotoStateTagWithPhotoId(photoId))
+    }
+    
+    private class func createUpdatePhotoStateTagWithPhotoId(photoId: Photo.ID) -> String {
+        return SwishServer.createTagWithPrefix(updatePhotoStateTagPrefix, postfix: "\(photoId)")
     }
 }
 
@@ -203,8 +217,10 @@ struct PhotoResponse {
 struct ServerPhotoState {
     let photoId: Photo.ID
     let state: PhotoState
-    let deliveredLocation: CLLocation
-    let receivedUserId: User.ID
-    let receivedUserName: String
-    let receivedUserProfileImageUrl: String
+    let deliveredLocation: CLLocation?
+    
+    // 응답으로 들어오지만 사용되지 않는 정보. 향후 대비 가능성을 고려해 남겨둠.
+//    let receivedUserId: User.ID?
+//    let receivedUserName: String?
+//    let receivedUserProfileImageUrl: String?
 }

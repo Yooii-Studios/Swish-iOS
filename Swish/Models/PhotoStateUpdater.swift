@@ -11,8 +11,6 @@ import Foundation
 typealias SuccessCallback = (photoId: Photo.ID, state: PhotoState) -> ()
 typealias FailureCallback = (photoId: Photo.ID) -> ()
 private typealias Updates = Dictionary<Photo.ID, PhotoStateUpdateInfo>
-
-private let tagPrefix = "PhotoStateUpdater"
     
 final class PhotoStateUpdater {
     
@@ -121,7 +119,8 @@ final class PhotoStateUpdater {
     
     private final func cancelExecutingUpdate(updateInfo: PhotoStateUpdateInfo) {
         if let prevUpdateInfo = executingUpdates.removeValueForKey(updateInfo.photoId) {
-            SwishServer.instance.cancelWith(prevUpdateInfo.tag)
+            PhotoServer.cancelUpdatePhotoStateWithPhotoId(prevUpdateInfo.photoId)
+            print("cancelExecutingUpdate: \(prevUpdateInfo.photoId)")
         }
     }
     
@@ -173,9 +172,6 @@ private struct PhotoStateUpdateInfo {
     let photoId: Photo.ID
     var state: PhotoState
     var delegates = [PhotoStateUpdateDelegate]()
-    var tag: String {
-        return "\(tagPrefix)\(photoId)"
-    }
     
     init(request: PhotoStateUpdateRequest) {
         photoId = request.photoId
