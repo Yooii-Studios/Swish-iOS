@@ -61,14 +61,9 @@ final class SentPhotoStateLoader {
         var updatedPhotoIds = Set<Photo.ID>()
         for serverPhotoState in serverPhotoState {
             SwishDatabase.updatePhoto(serverPhotoState.photoId) {
-                let stateChanged = $0.photoState != serverPhotoState.state
-                let locationUpdated = serverPhotoState.deliveredLocation != nil
-                
-                if stateChanged || locationUpdated {
-                    updatedPhotoIds.insert(serverPhotoState.photoId)
-                }
-                if stateChanged {
+                if $0.photoState != serverPhotoState.state {
                     $0.photoState = serverPhotoState.state
+                    updatedPhotoIds.insert(serverPhotoState.photoId)
                 }
                 if let deliveredLocation = serverPhotoState.deliveredLocation {
                     $0.arrivedLocation = deliveredLocation
