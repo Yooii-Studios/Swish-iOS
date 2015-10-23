@@ -13,6 +13,7 @@ import SwiftyJSON
 final class PhotoServer {
     private static let basePhotoUrl = SwishServer.host + "/photos"
     private static let updatePhotoStateTagPrefix = "update_photo_state"
+    private static let fetchPhotoStateTagPrefix = "get_photos_state"
     
     class func photoResponsesWith(userId: String, departLocation: CLLocation, photoCount: Int?,
         onSuccess: (photoResponses: Array<PhotoResponse>) -> (), onFail: FailCallback) {
@@ -29,6 +30,7 @@ final class PhotoServer {
             let params = serverPhotoStatesParamWith(userId)
             let parser = { (resultJson: JSON) -> Array<ServerPhotoState> in return serverPhotoStatesFrom(resultJson) }
             let httpRequest = HttpRequest<Array<ServerPhotoState>>(method: .GET, url: url, parameters: params, parser: parser, onSuccess: onSuccess, onFail: onFail)
+            httpRequest.tag = createFetchPhotoStateTag()
             
             SwishServer.requestWith(httpRequest)
     }
@@ -203,8 +205,16 @@ final class PhotoServer {
         SwishServer.instance.cancelWith(createUpdatePhotoStateTagWithPhotoId(photoId))
     }
     
+    class func cancelFetchPhotoState() {
+        SwishServer.instance.cancelWith(createFetchPhotoStateTag())
+    }
+    
     private class func createUpdatePhotoStateTagWithPhotoId(photoId: Photo.ID) -> String {
         return SwishServer.createTagWithPrefix(updatePhotoStateTagPrefix, postfix: "\(photoId)")
+    }
+    
+    private class func createFetchPhotoStateTag() -> String {
+        return SwishServer.createTagWithPrefix(fetchPhotoStateTagPrefix)
     }
 }
 
