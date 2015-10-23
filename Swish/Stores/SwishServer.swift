@@ -18,6 +18,7 @@ typealias Header = Dictionary<String, String>
 final class SwishServer {
     static let defaultParser = { (result: JSON) -> JSON in return result }
     static let host = "http://yooiia.iptime.org:3000"
+    private static let tagSeparator = "_"
     
     private var requests = Dictionary<String, HttpRequestProtocol>()
     
@@ -65,10 +66,18 @@ final class SwishServer {
     }
     
     func cancelWith(tag: String) {
+        print("SwishServer.cancelWith for tag: \(tag)")
         requests[tag]?.cancel()
+        if requests[tag] != nil {
+            print("SwishServer.cancelWith for tag: \(tag) success")
+        }
     }
     
     // MARK: - Helpers
+    
+    class func createTagWithPrefix(prefix: String, postfix: String) -> String {
+        return "\(prefix)_\(postfix)"
+    }
     
     private class func createHeader<T>(httpRequest: HttpRequest<T>) -> Header? {
         var headers: Header?
@@ -114,7 +123,12 @@ final class SwishServer {
                 httpRequest.onFail(error: SwishError.unknownError(statusCode, urlRequest: response.request))
             }
         } else {
-            httpRequest.onFail(error: SwishError.unknownError(urlRequest: response.request))
+            if let errorCode = response.result.error?.code where errorCode == NSURLErrorCancelled {
+                // 요청이 취소된 경우는 따로 콜백을 부르지 않고 consume하도록 함
+                print("User cancelled alamofire request: \(response.request)")
+            } else {
+                httpRequest.onFail(error: SwishError.unknownError(urlRequest: response.request))
+            }
         }
         requests.removeValueForKey(httpRequest.tag)
     }

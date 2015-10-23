@@ -56,6 +56,12 @@ final class OtherUserLoader {
         }
     }
     
+    final func cancelWithTag(tag: Tag) {
+        callbacks.cancelWithTag(tag)
+    }
+    
+    // MARK: - Helper functions
+    
     private final func notifyIfCacheSuitableToRequest(request: OtherUserFetchRequest) -> Bool {
         var notified = false
         if let user = OtherUserLoader.cachedOtherUserWithId(request.userId)
