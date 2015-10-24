@@ -75,8 +75,12 @@ final class SwishServer {
     
     // MARK: - Helpers
     
-    class func createTagWithPrefix(prefix: String, postfix: String) -> String {
-        return "\(prefix)_\(postfix)"
+    class func createTagWithPrefix(prefix: String, postfix: String? = nil) -> String {
+        var tag = "\(prefix)"
+        if let postfix = postfix {
+            tag += "_\(postfix)"
+        }
+        return tag
     }
     
     private class func createHeader<T>(httpRequest: HttpRequest<T>) -> Header? {
