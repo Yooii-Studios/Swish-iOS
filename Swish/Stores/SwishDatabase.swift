@@ -240,6 +240,12 @@ final class SwishDatabase {
     
     // MARK: - Chat Message
     
+    class func saveChatMessage(photoId: Photo.ID, chatMessage: ChatMessage) {
+        if let photo = photoWithId(photoId) {
+            saveChatMessage(photo, chatMessage: chatMessage)
+        }
+    }
+    
     class func saveChatMessage(photo: Photo, chatMessage: ChatMessage) {
         write {
             photo.chatMessages.append(chatMessage)
