@@ -15,6 +15,9 @@ typealias FailCallback = (error: SwishError) -> ()
 typealias Param = Dictionary<String, String>
 typealias Header = Dictionary<String, String>
 
+private let invalidStatusCode = -1
+private let invalidErrorCode = -1
+
 final class SwishServer {
     static let defaultParser = { (result: JSON) -> JSON in return result }
     static let host = "http://yooiia.iptime.org:3000"
@@ -131,7 +134,11 @@ final class SwishServer {
                 // 요청이 취소된 경우는 따로 콜백을 부르지 않고 consume하도록 함
                 print("User cancelled alamofire request: \(response.request)")
             } else {
-                httpRequest.onFail(error: SwishError.unknownError(urlRequest: response.request))
+                if let error = response.result.error {
+                    httpRequest.onFail(error: SwishError(error: error, urlRequest: response.request))
+                } else {
+                    httpRequest.onFail(error: SwishError.unknownError(urlRequest: response.request))
+                }
             }
         }
         requests.removeValueForKey(httpRequest.tag)
@@ -180,6 +187,7 @@ final class HttpRequest<T>: HttpRequestProtocol {
 }
 
 final class SwishError: CustomStringConvertible {
+    
     let statusCode: Int
     let code: Int?
     let name: String?
@@ -188,7 +196,7 @@ final class SwishError: CustomStringConvertible {
     
     init(_ statusCode: Int, error: NSError, urlRequest: NSURLRequest? = nil) {
         self.statusCode = statusCode
-        code = -1
+        code = invalidErrorCode
         name = "UnknownError"
         extras = String(error)
         self.urlRequest = urlRequest
@@ -202,9 +210,13 @@ final class SwishError: CustomStringConvertible {
         self.urlRequest = urlRequest
     }
     
+    convenience init(error: NSError, urlRequest: NSURLRequest? = nil) {
+        self.init(invalidStatusCode, error: error, urlRequest: urlRequest)
+    }
+    
     private init(_ statusCode: Int, urlRequest: NSURLRequest? = nil) {
         self.statusCode = statusCode
-        code = -1
+        code = invalidErrorCode
         name = "UnknownError"
         extras = ""
         self.urlRequest = urlRequest
@@ -212,11 +224,12 @@ final class SwishError: CustomStringConvertible {
     
     var description: String {
         get {
-            return "StatusCode: \(statusCode), Code: \(code), Name: \(name), extras: \(extras), urlRequest: \(urlRequest)"
+            return "StatusCode: \(statusCode), Code: \(code), Name: \(name), extras: \(extras),"
+                + " urlRequest: \(urlRequest)"
         }
     }
     
-    class func unknownError(statusCode: Int = -1, urlRequest: NSURLRequest? = nil) -> SwishError {
+    class func unknownError(statusCode: Int = invalidStatusCode, urlRequest: NSURLRequest? = nil) -> SwishError {
         return SwishError(statusCode, urlRequest: urlRequest)
     }
 }
