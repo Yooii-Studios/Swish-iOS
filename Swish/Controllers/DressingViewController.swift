@@ -42,9 +42,7 @@ class DressingViewController: UIViewController, SegueHandlerType {
 
     // In a storyboard-based application, you will often want to do a little preparation before navigation
     override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?) {
-        let segueIdentifier = segueIdentifierForSegue(segue)
-        
-        switch segueIdentifier {
+        switch segueIdentifierForSegue(segue) {
             case .ShowShareResult:
             // TODO: 여기서부터 초기화는 동현이 추후에 해줄 것
             //            let destinationController = segue.destinationViewController as! ShareResultController
