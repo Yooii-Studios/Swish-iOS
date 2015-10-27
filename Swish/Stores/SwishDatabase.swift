@@ -18,7 +18,7 @@ final class SwishDatabase {
     class func migrate() {
         let config = Realm.Configuration(
             // TODO: 출시 전에 버전 0으로 변경하자
-            schemaVersion: 25,
+            schemaVersion: 26,
             
             migrationBlock: { migration, oldSchemaVersion in
                 if (oldSchemaVersion < 1) {
@@ -217,10 +217,10 @@ final class SwishDatabase {
         })
     }
     
-    class func updateChatBlocked(id: Photo.ID, blocked: Bool) {
-        writePhoto(id, block: {
+    class func updateChatBlocked(photoId: Photo.ID, state: ChatRoomBlockState) {
+        writePhoto(photoId, block: {
             (photo: Photo) in
-            photo.hasBlockedChat = blocked
+            photo.chatRoomBlockState = state
         })
     }
     
@@ -239,6 +239,12 @@ final class SwishDatabase {
     }
     
     // MARK: - Chat Message
+    
+    class func saveChatMessage(photoId: Photo.ID, chatMessage: ChatMessage) {
+        if let photo = photoWithId(photoId) {
+            saveChatMessage(photo, chatMessage: chatMessage)
+        }
+    }
     
     class func saveChatMessage(photo: Photo, chatMessage: ChatMessage) {
         write {

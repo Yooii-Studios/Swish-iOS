@@ -11,11 +11,16 @@ import RealmSwift
 import CoreLocation
 import SwiftyJSON
 
+enum ChatRoomBlockState: Int {
+    case Unblock, Block
+}
+
 class Photo: Object {
     typealias ID = Int64
     static let invalidId: ID = -1
     static let invalidName = ""
     private static let defaultPhotoState = PhotoState.Waiting
+    private static let defaultChatRoomBlockState = ChatRoomBlockState.Unblock
     
     // Mark: Attributes
     
@@ -24,9 +29,24 @@ class Photo: Object {
     dynamic var fileName = invalidName
     dynamic var message = ""
     dynamic var unreadMessageCount = 0
-    dynamic var hasBlockedChat = false
     dynamic var hasOpenedChatRoom = false
     let chatMessages = List<ChatMessage>()
+    var hasBlockedChat: Bool {
+        get {
+            return chatRoomBlockState == .Block
+        }
+        set(newHasBlockedChat) {
+            chatRoomBlockState = newHasBlockedChat ? .Block : .Unblock
+        }
+    }
+    var chatRoomBlockState: ChatRoomBlockState {
+        get {
+            return ChatRoomBlockState(rawValue: chatRoomBlockStateRaw) ?? Photo.defaultChatRoomBlockState
+        }
+        set(newChatRoomBlockState) {
+            chatRoomBlockStateRaw = newChatRoomBlockState.rawValue
+        }
+    }
     var departLocation: CLLocation {
         get {
             return CLLocation(latitude: departLatitude, longitude: departLongitude)
@@ -103,6 +123,8 @@ class Photo: Object {
     // Mark: Realm support
     
     // required
+    private dynamic var chatRoomBlockStateRaw = defaultChatRoomBlockState.rawValue
+    
     private dynamic var departLatitude = CLLocationDegrees.NaN
     private dynamic var departLongitude = CLLocationDegrees.NaN
     
@@ -117,7 +139,7 @@ class Photo: Object {
     }
     
     override static func ignoredProperties() -> [String] {
-        return ["departLocation", "arrivedLocation", "photoState", "receiver"]
+        return ["hasBlockedChat", "chatRoomBlockState", "departLocation", "arrivedLocation", "photoState", "receiver"]
     }
     
     final class func create() -> Photo {
