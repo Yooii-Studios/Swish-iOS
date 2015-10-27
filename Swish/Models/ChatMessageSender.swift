@@ -34,15 +34,15 @@ extension ChatMessageSender where Self: UIViewController {
     
     final func sendChatMessage(chatMessage: ChatMessage) {
         saveChatMessage(chatMessage)
-        sendChatMessageInternal(chatMessage)
+        sendChatMessageToServer(chatMessage)
     }
     
     final func resendChatmessage(chatMessage: ChatMessage) {
         updateMessageSendState(chatMessage, state: .Sending)
-        sendChatMessageInternal(chatMessage)
+        sendChatMessageToServer(chatMessage)
     }
     
-    private func sendChatMessageInternal(chatMessage: ChatMessage) {
+    private func sendChatMessageToServer(chatMessage: ChatMessage) {
         PhotoServer.sendChatMessage(chatMessage, onSuccess: { (result) -> () in
             self.handleResult(chatMessage, state: .Success)
             }, onFail: { (error) -> Void in
@@ -62,6 +62,7 @@ extension ChatMessageSender where Self: UIViewController {
     // MARK: - Realm operations
     
     private func saveChatMessage(chatMessage: ChatMessage) {
+        chatMessage.state = .Sending
         SwishDatabase.saveChatMessage(photoId, chatMessage: chatMessage)
     }
     
