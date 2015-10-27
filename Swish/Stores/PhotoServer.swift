@@ -167,6 +167,8 @@ final class PhotoServer {
             photo.id = photoJson["id"].int64Value
             photo.message = photoJson["message"].stringValue
             photo.departLocation = location
+            photo.photoState = .Delivered
+            
             let imageUrl = photoJson["url"].stringValue
             let item = PhotoResponse(user: sender, photo: photo, imageUrl: imageUrl)
             
