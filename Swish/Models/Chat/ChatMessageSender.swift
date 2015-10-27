@@ -24,7 +24,7 @@ import Foundation
 import UIKit
 
 protocol ChatMessageSender {
-    
+    // TODO: 우성이 나중에 실제로 사용 해 보고 게터가 있어야 하는지 확인하기
     var photoId: Photo.ID { get }
     
     func handleSendChatMessageResult(chatMessage: ChatMessage, chatMessageSendState: ChatMessageSendState)
@@ -54,6 +54,7 @@ extension ChatMessageSender where Self: UIViewController {
     
     private func handleResult(chatMessage: ChatMessage, state: ChatMessageSendState) {
         updateMessageSendState(chatMessage, state: state)
+        // TODO: 동현이 안전을 위해서 해당 로직을 넣어놓은 것이고, 추후 사용하면서 필요 없어지면 논의 후 삭제될 수 있음
         if chatMessage.photo.id == photoId {
             handleSendChatMessageResult(chatMessage, chatMessageSendState: state)
         }
