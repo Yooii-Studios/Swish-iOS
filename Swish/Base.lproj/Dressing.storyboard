@@ -46,7 +46,7 @@
                     <navigationItem key="navigationItem" title="Dressing" id="Frt-e0-sxg">
                         <barButtonItem key="rightBarButtonItem" systemItem="cancel" id="RDb-oh-NhV">
                             <connections>
-                                <action selector="cancelButtonDidTap:" destination="y0I-4w-0ho" id="O4u-PE-PGG"/>
+                                <segue destination="cjd-Kr-zzI" kind="unwind" identifier="UnwindToMain" unwindAction="unwindFromDressingViewController:" id="2OB-dc-4s4"/>
                             </connections>
                         </barButtonItem>
                     </navigationItem>
@@ -56,6 +56,7 @@
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="fY1-s0-Dnp" userLabel="First Responder" sceneMemberID="firstResponder"/>
+                <exit id="cjd-Kr-zzI" userLabel="Exit" sceneMemberID="exit"/>
             </objects>
             <point key="canvasLocation" x="1573" y="1151"/>
         </scene>

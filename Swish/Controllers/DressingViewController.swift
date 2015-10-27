@@ -13,10 +13,11 @@ class DressingViewController: UIViewController, SegueHandlerType {
     // MARK: SegueHandlerType
     
     enum SegueIdentifier: String {
+        case UnwindToMain
         case ShowShareResult
     }
     
-    var testImage : UIImage?
+    var image : UIImage?
     
     @IBOutlet var testImageView : UIImageView!
 
@@ -24,8 +25,8 @@ class DressingViewController: UIViewController, SegueHandlerType {
         super.viewDidLoad()
 
         // Do any additional setup after loading the view.
-        if testImage != nil {
-            testImageView?.image = testImage
+        if image != nil {
+            testImageView?.image = image
         }
     }
 
@@ -34,20 +35,25 @@ class DressingViewController: UIViewController, SegueHandlerType {
         // Dispose of any resources that can be recreated.
     }
 
-    @IBAction func cancelButtonDidTap(sender: UIBarButtonItem) {
-        dismissViewControllerAnimated(true, completion: nil)
-    }
+//    @IBAction func cancelButtonDidTap(sender: UIBarButtonItem) {
+//        dismissViewControllerAnimated(true, completion: nil)
+//    }
     
     // MARK: - Navigation
 
     // In a storyboard-based application, you will often want to do a little preparation before navigation
     override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?) {
         switch segueIdentifierForSegue(segue) {
-            case .ShowShareResult:
+        case .ShowShareResult:
             // TODO: 여기서부터 초기화는 동현이 추후에 해줄 것
             //            let destinationController = segue.destinationViewController as! ShareResultController
             //            destinationController.image = image
             print("showShareResult")
+            
+        case .UnwindToMain:
+            // TODO: 돌아가기 전 필요한 처리가 있다면 해줄 것
+            print("UnwindToMain")
+            
         }
     }
 
