@@ -11,3 +11,4 @@ pod 'SnapKit', :git => 'https://github.com/SnapKit/SnapKit.git', :branch => 'swi
 pod 'Realm', :git => 'https://github.com/realm/realm-cocoa.git', :branch => 'swift-2.0'
 pod 'RealmSwift', :git => 'https://github.com/realm/realm-cocoa.git', :branch => 'swift-2.0'
 pod 'SwiftyJSON', :git => 'https://github.com/SwiftyJSON/SwiftyJSON.git'
+pod 'CTAssetsPickerController',  '~> 3.1.0'
