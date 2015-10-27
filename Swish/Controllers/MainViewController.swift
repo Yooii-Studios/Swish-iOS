@@ -95,6 +95,10 @@ class MainViewController: UIViewController, UINavigationControllerDelegate, CTAs
 //        presentViewController(navigationViewController, animated: true, completion: nil)
     }
     
+    func assetsPickerController(picker: CTAssetsPickerController!, shouldSelectAsset asset: PHAsset!) -> Bool {
+        return picker.selectedAssets.count < 1
+    }
+    
     @IBAction func unwindFromDressingViewController(segue: UIStoryboardSegue) {
         print("unwindFromDressingViewController")
     }
