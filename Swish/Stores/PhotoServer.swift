@@ -10,10 +10,28 @@ import Foundation
 import CoreLocation
 import SwiftyJSON
 
+struct PhotoResponse {
+    let user: OtherUser
+    let photo: Photo
+    let imageUrl: String
+}
+
+struct ServerPhotoState {
+    let photoId: Photo.ID
+    let state: PhotoState
+    let deliveredLocation: CLLocation?
+    
+    // 응답으로 들어오지만 사용되지 않는 정보. 향후 대비 가능성을 고려해 남겨둠.
+    //    let receivedUserId: User.ID?
+    //    let receivedUserName: String?
+    //    let receivedUserProfileImageUrl: String?
+}
+
 final class PhotoServer {
     private static let basePhotoUrl = SwishServer.host + "/photos"
     private static let updatePhotoStateTagPrefix = "update_photo_state"
     private static let fetchPhotoStateTagPrefix = "get_photos_state"
+    private static let updateBlockChatStateTagPrefix = "block_chat"
     
     class func photoResponsesWith(userId: String, departLocation: CLLocation, photoCount: Int?,
         onSuccess: (photoResponses: Array<PhotoResponse>) -> (), onFail: FailCallback) {
@@ -57,23 +75,16 @@ final class PhotoServer {
             let url = "\(basePhotoUrl)/\(photoId)/update_photo_state"
             let params = updatePhotoStateParamWith(state)
             let httpRequest = HttpRequest<JSON>(method: .PUT, url: url, parameters: params, parser: SwishServer.defaultParser, onSuccess: onSuccess, onFail: onFail)
-            httpRequest.tag = SwishServer.createTagWithPrefix(updatePhotoStateTagPrefix, postfix: "\(photoId)")
+            httpRequest.tag = createUpdatePhotoStateTagWithPhotoId(photoId)
             
             SwishServer.requestWith(httpRequest)
     }
     
-    class func blockChat(photoId: Photo.ID, onSuccess: DefaultSuccessCallback, onFail: FailCallback) {
-        updateBlockChatState(photoId, block: true, onSuccess: onSuccess, onFail: onFail)
-    }
-    
-    class func unblockChat(photoId: Photo.ID, onSuccess: DefaultSuccessCallback, onFail: FailCallback) {
-        updateBlockChatState(photoId, block: false, onSuccess: onSuccess, onFail: onFail)
-    }
-    
-    private class func updateBlockChatState(photoId: Photo.ID, block: Bool, onSuccess: DefaultSuccessCallback, onFail: FailCallback) {
+    class func updateBlockChatState(photoId: Photo.ID, state: ChatRoomBlockState, onSuccess: DefaultSuccessCallback, onFail: FailCallback) {
         let url = "\(basePhotoUrl)/\(photoId)/block_chat"
-        let params = updateBlockChatStateParamWith(block)
+        let params = updateBlockChatStateParamWith(state)
         let httpRequest = HttpRequest<JSON>(method: .PUT, url: url, parameters: params, parser: SwishServer.defaultParser, onSuccess: onSuccess, onFail: onFail)
+        httpRequest.tag = createUpdateBlockChatStateTag()
         
         SwishServer.requestWith(httpRequest)
     }
@@ -119,9 +130,9 @@ final class PhotoServer {
         ]
     }
     
-    private class func updateBlockChatStateParamWith(blocked: Bool) -> Param {
+    private class func updateBlockChatStateParamWith(state: ChatRoomBlockState) -> Param {
         return [
-            "block_enabled": blocked.description
+            "block_enabled": state == ChatRoomBlockState.Block ? "true" : "false"
         ]
     }
     
@@ -209,6 +220,10 @@ final class PhotoServer {
         SwishServer.instance.cancelWith(createFetchPhotoStateTag())
     }
     
+    class func cancelUpdateBlockChatState() {
+        SwishServer.instance.cancelWith(createUpdateBlockChatStateTag())
+    }
+    
     private class func createUpdatePhotoStateTagWithPhotoId(photoId: Photo.ID) -> String {
         return SwishServer.createTagWithPrefix(updatePhotoStateTagPrefix, postfix: "\(photoId)")
     }
@@ -216,21 +231,8 @@ final class PhotoServer {
     private class func createFetchPhotoStateTag() -> String {
         return SwishServer.createTagWithPrefix(fetchPhotoStateTagPrefix)
     }
-}
-
-struct PhotoResponse {
-    let user: OtherUser
-    let photo: Photo
-    let imageUrl: String
-}
-
-struct ServerPhotoState {
-    let photoId: Photo.ID
-    let state: PhotoState
-    let deliveredLocation: CLLocation?
     
-    // 응답으로 들어오지만 사용되지 않는 정보. 향후 대비 가능성을 고려해 남겨둠.
-//    let receivedUserId: User.ID?
-//    let receivedUserName: String?
-//    let receivedUserProfileImageUrl: String?
+    private class func createUpdateBlockChatStateTag() -> String {
+        return SwishServer.createTagWithPrefix(updateBlockChatStateTagPrefix)
+    }
 }
