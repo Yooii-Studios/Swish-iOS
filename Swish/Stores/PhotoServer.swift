@@ -210,6 +210,7 @@ final class PhotoServer {
             trendingPhotoResults.append(trendingPhoto)
         }
         let countryName = resultJson["country"].stringValue
+        
         return PhotoTrendsResult(countryName: countryName, trendingPhotoResults: trendingPhotoResults,
             fetchedTimeMilli: NSDate().timeIntervalSince1970)
     }

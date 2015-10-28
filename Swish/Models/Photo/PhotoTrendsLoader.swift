@@ -25,6 +25,7 @@ final class PhotoTrends: Object {
     }
     
     // MARK: - Initializer
+    
     private convenience init(countryName: String, trendingPhotos: [TrendingPhoto]) {
         self.init()
         self.countryName = countryName
@@ -47,7 +48,7 @@ final class PhotoTrends: Object {
     }
 }
 
-// TODO: Realm에서 지원하게 되고 Photo클래스와 함께 다뤄야 할 경우가 생긴다면 PhotoProtocol에 id, message, departLocation 넣어서 추출하자.
+// TODO: 추후 Rleam에서 지원 + Photo 클래스와 함께 다뤄야 할 경우 PhotoProtocol에 id, message, departLocation 넣어서 추출 필요
 final class TrendingPhoto: Object {
     
     dynamic var id: Photo.ID = invalidPhotoId
@@ -72,6 +73,7 @@ final class TrendingPhoto: Object {
     private dynamic var departLongitude = CLLocationDegrees.NaN
     
     // MARK: - Initializer
+    
     private convenience init(id: Photo.ID) {
         self.init()
         self.id = id
@@ -121,8 +123,7 @@ final class PhotoTrendsLoader {
     }
     
     final class func cachedPhotoTrends() -> PhotoTrends? {
-        let photoTrends = SwishDatabase.photoTrends()
-        if let photoTrends = photoTrends where
+        if let photoTrends = SwishDatabase.photoTrends() where
             NSCalendar.currentCalendar().isDateInToday(NSDate(timeIntervalSince1970: photoTrends.fetchedTimeMilli)) {
                 return photoTrends
         } else {

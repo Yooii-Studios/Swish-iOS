@@ -17,7 +17,7 @@ final class PhotoHelper {
         return photos.indexOf { $0.id == photoId } ?? invalidPhotoIndex
     }
     
-    // TODO: Realm에서 지원하게 된다면 senderWithRealmObject를 사용하는 메서드들을 하나로 묶자
+    // TODO: Realm에서 지원하게 된다면 senderWithRealmObject를 사용하는 메서드들을 하나로 묶을 수 있는 가능성 있음
     final class func senderWithPhoto(photo: Photo) -> User {
         return senderWithRealmObject(photo, forProperty: "photos")
     }
