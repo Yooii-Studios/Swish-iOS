@@ -35,6 +35,7 @@
 		57C729DC1BDF2C0D00DDFFDA /* ChatBlocker.swift in Sources */ = {isa = PBXBuildFile; fileRef = 57C729DB1BDF2C0D00DDFFDA /* ChatBlocker.swift */; };
 		57C729E11BDF501700DDFFDA /* PhotoTrendsLoader.swift in Sources */ = {isa = PBXBuildFile; fileRef = 57C729E01BDF501700DDFFDA /* PhotoTrendsLoader.swift */; };
 		57D5450D1BDA5D4900C9CF6A /* PhotoHelper.swift in Sources */ = {isa = PBXBuildFile; fileRef = 57D5450C1BDA5D4900C9CF6A /* PhotoHelper.swift */; };
+		57DFE24C1BE0DA7A002BB5DB /* PhotoExchanger.swift in Sources */ = {isa = PBXBuildFile; fileRef = 57DFE24B1BE0DA7A002BB5DB /* PhotoExchanger.swift */; };
 		57E09ADB1BCB9351006A05DC /* MeManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 57E09ADA1BCB9351006A05DC /* MeManager.swift */; };
 		57E09ADD1BCBAA34006A05DC /* OtherUserLoader.swift in Sources */ = {isa = PBXBuildFile; fileRef = 57E09ADC1BCBAA34006A05DC /* OtherUserLoader.swift */; };
 		57E2D9761BB282C6008957C2 /* ImageHelper.swift in Sources */ = {isa = PBXBuildFile; fileRef = 57E2D9751BB282C6008957C2 /* ImageHelper.swift */; };
@@ -103,6 +104,7 @@
 		57C729DB1BDF2C0D00DDFFDA /* ChatBlocker.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ChatBlocker.swift; sourceTree = "<group>"; };
 		57C729E01BDF501700DDFFDA /* PhotoTrendsLoader.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = PhotoTrendsLoader.swift; path = Swish/Models/Photo/PhotoTrendsLoader.swift; sourceTree = SOURCE_ROOT; };
 		57D5450C1BDA5D4900C9CF6A /* PhotoHelper.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PhotoHelper.swift; sourceTree = "<group>"; };
+		57DFE24B1BE0DA7A002BB5DB /* PhotoExchanger.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PhotoExchanger.swift; sourceTree = "<group>"; };
 		57E09ADA1BCB9351006A05DC /* MeManager.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MeManager.swift; sourceTree = "<group>"; };
 		57E09ADC1BCBAA34006A05DC /* OtherUserLoader.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = OtherUserLoader.swift; sourceTree = "<group>"; };
 		57E2D9751BB282C6008957C2 /* ImageHelper.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ImageHelper.swift; sourceTree = "<group>"; };
@@ -216,6 +218,7 @@
 				57F3D5201BD86F9E00FE577C /* PhotoStateUpdater.swift */,
 				5721F3F91BD9C3CB00F0E733 /* SentPhotoStateLoader.swift */,
 				57D5450C1BDA5D4900C9CF6A /* PhotoHelper.swift */,
+				57DFE24B1BE0DA7A002BB5DB /* PhotoExchanger.swift */,
 			);
 			path = Photo;
 			sourceTree = "<group>";
@@ -538,6 +541,7 @@
 				573713291BD7165A006B272A /* Timestamp.swift in Sources */,
 				5796738B1B9FFE6C00382247 /* UserActivityRecord.swift in Sources */,
 				AEF32DDB1BA2FDA400EA00A9 /* MediaLoader.swift in Sources */,
+				57DFE24C1BE0DA7A002BB5DB /* PhotoExchanger.swift in Sources */,
 				579673891B9FFE6C00382247 /* OtherUser.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

@@ -50,6 +50,14 @@ class DressingViewController: UIViewController, SegueHandlerType {
 
     @IBAction func shareButtonDidTap(sender: AnyObject) {
         // TODO: 나중에 사진 보내기 애니메이션 구현할 것
+
+        // TODO: 동현이 넣은 샘플 코드. 나중에 확인 후 참고해서 로직 구현
+//        let photo = Photo.create(message: "", departLocation: LocationManager.dummyLocation)
+//        let image = UIImage(contentsOfFile: FileHelper.filePathWithName("qwerasdf.png"))!
+//        PhotoExchanger.exchange(photo, image: image, departLocation: LocationManager.dummyLocation,
+//            completion: { (photos) -> Void in
+//                print("PhotoExchanger complete: \(photos)")
+//        })
         
         // 애니메이션 없이 동현이 사진 보내기 로직을 구현하고, 
         // 콜백에서 여기에 미리 만들어둔 ShareResultViewController
