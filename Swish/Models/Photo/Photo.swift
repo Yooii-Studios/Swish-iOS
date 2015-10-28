@@ -11,8 +11,8 @@ import RealmSwift
 import CoreLocation
 import SwiftyJSON
 
-let invalidId: Photo.ID = -1
-let invalidMessage = ""
+let invalidPhotoId: Photo.ID = -1
+let invalidPhotoMessage = ""
 
 enum ChatRoomBlockState: Int {
     case Unblock, Block
@@ -27,8 +27,8 @@ class Photo: Object {
     // Mark: Attributes
     
     // required
-    dynamic var id: Photo.ID = invalidId
-    dynamic var message = invalidMessage
+    dynamic var id: Photo.ID = invalidPhotoId
+    dynamic var message = invalidPhotoMessage
     dynamic var fileName = invalidName
     dynamic var unreadMessageCount = 0
     dynamic var hasOpenedChatRoom = false

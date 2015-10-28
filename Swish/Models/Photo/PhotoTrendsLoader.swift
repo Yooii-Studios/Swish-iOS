@@ -50,8 +50,8 @@ final class PhotoTrends: Object {
 // TODO: Realm에서 지원하게 되고 Photo클래스와 함께 다뤄야 할 경우가 생긴다면 PhotoProtocol에 id, message, departLocation 넣어서 추출하자.
 final class TrendingPhoto: Object {
     
-    dynamic var id: Photo.ID = invalidId
-    dynamic var message = invalidMessage
+    dynamic var id: Photo.ID = invalidPhotoId
+    dynamic var message = invalidPhotoMessage
     dynamic var imageUrl = ""
     var departLocation: CLLocation {
         get {
