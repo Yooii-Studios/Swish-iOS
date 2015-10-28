@@ -47,6 +47,7 @@
 		AEF32DDB1BA2FDA400EA00A9 /* MediaLoader.swift in Sources */ = {isa = PBXBuildFile; fileRef = AEF32DDA1BA2FDA400EA00A9 /* MediaLoader.swift */; };
 		AEF32DDF1BA301A200EA00A9 /* PhotoCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = AEF32DDE1BA301A200EA00A9 /* PhotoCollectionViewCell.swift */; };
 		F20CC6761BDB878F00075088 /* SegueHandlerType.swift in Sources */ = {isa = PBXBuildFile; fileRef = F20CC6751BDB878F00075088 /* SegueHandlerType.swift */; };
+		F23527FF1BE09E7C00CA614A /* PhotoPickable.swift in Sources */ = {isa = PBXBuildFile; fileRef = F23527FE1BE09E7C00CA614A /* PhotoPickable.swift */; };
 		F23A7B181BA1D4070063233F /* PhotoPicker.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = F23A7B161BA1D4070063233F /* PhotoPicker.storyboard */; };
 		F23A7B1B1BA1D4140063233F /* MyInfo.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = F23A7B191BA1D4140063233F /* MyInfo.storyboard */; };
 		F23A7B1D1BA1D4520063233F /* DressingViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = F23A7B1C1BA1D4520063233F /* DressingViewController.swift */; };
@@ -117,6 +118,7 @@
 		AEF32DDE1BA301A200EA00A9 /* PhotoCollectionViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PhotoCollectionViewCell.swift; sourceTree = "<group>"; };
 		C0256DF10FDFE7249524B3FB /* Pods.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = Pods.debug.xcconfig; path = "Pods/Target Support Files/Pods/Pods.debug.xcconfig"; sourceTree = "<group>"; };
 		F20CC6751BDB878F00075088 /* SegueHandlerType.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SegueHandlerType.swift; sourceTree = "<group>"; };
+		F23527FE1BE09E7C00CA614A /* PhotoPickable.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PhotoPickable.swift; sourceTree = "<group>"; };
 		F23A7B171BA1D4070063233F /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/PhotoPicker.storyboard; sourceTree = "<group>"; };
 		F23A7B1A1BA1D4140063233F /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/MyInfo.storyboard; sourceTree = "<group>"; };
 		F23A7B1C1BA1D4520063233F /* DressingViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DressingViewController.swift; sourceTree = "<group>"; };
@@ -282,6 +284,7 @@
 		F245DCE11B9E7CBA0072308B /* Controllers */ = {
 			isa = PBXGroup;
 			children = (
+				F23527FE1BE09E7C00CA614A /* PhotoPickable.swift */,
 				F245DCB21B9E7B2D0072308B /* MainViewController.swift */,
 				F266D9011B9F159D00BDEB75 /* MyInfoViewController.swift */,
 				F266D9031B9F15D500BDEB75 /* PhotoPickerViewController.swift */,
@@ -530,6 +533,7 @@
 				57C5A0361BD5DD7600F06CAD /* PhotoImageHelper.swift in Sources */,
 				57E09ADD1BCBAA34006A05DC /* OtherUserLoader.swift in Sources */,
 				5796738A1B9FFE6C00382247 /* User.swift in Sources */,
+				F23527FF1BE09E7C00CA614A /* PhotoPickable.swift in Sources */,
 				57C729DC1BDF2C0D00DDFFDA /* ChatBlocker.swift in Sources */,
 				579673881B9FFE6C00382247 /* Me.swift in Sources */,
 				57C173ED1BDE3EFC0084DF8D /* ChatMessageSender.swift in Sources */,
