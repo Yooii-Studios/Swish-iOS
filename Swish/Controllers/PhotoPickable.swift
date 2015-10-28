@@ -65,6 +65,7 @@ extension PhotoPickable where Self: UIViewController {
         PHPhotoLibrary.requestAuthorization { (status: PHAuthorizationStatus) -> Void in
             if status == PHAuthorizationStatus.Authorized {
                 dispatch_async(dispatch_get_main_queue()) {
+                    // TODO: 불필요한 주석일 순 있으나 샘플 프로젝트를 계속 활용해 가야 하기에 마지막 마무리 후 일괄적으로 삭제 예정
                     // init
                     let picker = CTAssetsPickerController()
                     picker.delegate = self.photoPickerDelegate
