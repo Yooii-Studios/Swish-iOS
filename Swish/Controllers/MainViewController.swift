@@ -33,6 +33,7 @@ class MainViewController: UIViewController, UINavigationControllerDelegate, CTAs
     }
     
     @IBAction func pickPhotoButtonDidTap(sender: UIButton!) {
+        // TODO: 추후 protocol extension으로 이 뷰 컨트롤러의 코드를 간결화할 예정
         PHPhotoLibrary.requestAuthorization { (status: PHAuthorizationStatus) -> Void in
             if status == PHAuthorizationStatus.Authorized {
                 dispatch_async(dispatch_get_main_queue()) {
@@ -59,13 +60,12 @@ class MainViewController: UIViewController, UINavigationControllerDelegate, CTAs
             }
         }
     }
-
-    override func didReceiveMemoryWarning() {
-        super.didReceiveMemoryWarning()
-        // Dispose of any resources that can be recreated.
-    }
     
     // MARK: - Delegate Function
+    
+    func assetsPickerController(picker: CTAssetsPickerController!, shouldSelectAsset asset: PHAsset!) -> Bool {
+        return picker.selectedAssets.count < 1
+    }
     
     func assetsPickerController(picker: CTAssetsPickerController!, didFinishPickingAssets assets: [AnyObject]!) {
         guard assets.count > 0, let asset: PHAsset! = (assets as! [PHAsset])[0] else  {
@@ -78,11 +78,13 @@ class MainViewController: UIViewController, UINavigationControllerDelegate, CTAs
         // TODO: 사진을 안드로이드에서 처럼 정해진 사이즈로, 1:1로 자르고 넘겨 주어야 할 듯
         PHImageManager.defaultManager().requestImageForAsset(asset, targetSize: CGSize.init(width: 640, height: 640), contentMode: .AspectFill, options: options) { image, info in
             picker.dismissViewControllerAnimated(false, completion: nil)
-            self.showDressingViewContoller(image)
+            if let image = image {
+                self.showDressingViewContoller(image)
+            }
         }
     }
     
-    func showDressingViewContoller(image: UIImage?) {
+    func showDressingViewContoller(image: UIImage) {
         let storyboard = UIStoryboard(name: "Dressing", bundle: nil)
         let navigationViewController =
         storyboard.instantiateViewControllerWithIdentifier("dressingNaviViewController") as! UINavigationController
@@ -93,10 +95,6 @@ class MainViewController: UIViewController, UINavigationControllerDelegate, CTAs
         // 둘 중 한 가지 방식으로 해결해야 할 듯
         showViewController(navigationViewController, sender: self)
 //        presentViewController(navigationViewController, animated: true, completion: nil)
-    }
-    
-    func assetsPickerController(picker: CTAssetsPickerController!, shouldSelectAsset asset: PHAsset!) -> Bool {
-        return picker.selectedAssets.count < 1
     }
     
     @IBAction func unwindFromDressingViewController(segue: UIStoryboardSegue) {
