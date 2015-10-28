@@ -17,8 +17,8 @@ class MainViewController: UIViewController, UINavigationControllerDelegate, Phot
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        photoPickerDelegate = PhotoPickerDelegateHandler() {
-            self.showDressingViewContoller($0)
+        photoPickerDelegate = PhotoPickerDelegateHandler() { image in
+            self.showDressingViewContoller(image)
         }
     }
     
@@ -53,9 +53,9 @@ class MainViewController: UIViewController, UINavigationControllerDelegate, Phot
         let dressingViewController = navigationViewController.topViewController as! DressingViewController
         dressingViewController.image = image
         
-        // TODO: whose view is not in the window hierarchy! 문제 해결 필요
-        // 둘 중 한 가지 방식으로 해결해야 할 듯
+        // TODO: present 방식은 whose view is not in the window hierarchy! 문제 해결 필요
+        // 둘 중 한 가지 방식으로 해결해야 하는데, show는 completion 핸들러가 없어서 곤란. Picker 화면에서 바로 드레싱을 띄우고 싶음
+//        presentViewController(navigationViewController, animated: true, completion: nil)
         showViewController(navigationViewController, sender: self)
-        //        presentViewController(navigationViewController, animated: true, completion: nil)
     }
 }

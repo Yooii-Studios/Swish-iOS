@@ -1,5 +1,15 @@
 //
 //  PhotoPickable.swift
+//   UIViewController에서 구현해 사진을 고를 수 있는 기능을 제공하는 protocol
+//
+//  UIViewController에서 implement를 하고, 
+//  var photoPickerDelegate: PhotoPickerDelegateHandler? 
+//  선언을 해 준 뒤 viewDidLoad에서 다음과 같은 로직을 작성
+// 
+//  photoPickerDelegate = PhotoPickerDelegateHandler() { image in
+//      self.showDressingViewContoller(image)
+//  }
+//
 //  Swish
 //
 //  Created by Wooseong Kim on 2015. 10. 28..
@@ -9,11 +19,11 @@
 import Foundation
 import CTAssetsPickerController
 
-class PhotoPickerDelegateHandler: NSObject, CTAssetsPickerControllerDelegate {
+final class PhotoPickerDelegateHandler: NSObject, CTAssetsPickerControllerDelegate {
     
     typealias Completion = (image: UIImage) -> Void
     
-    var completion: Completion
+    final var completion: Completion
     
     init(completion: Completion) {
         self.completion = completion
@@ -21,11 +31,11 @@ class PhotoPickerDelegateHandler: NSObject, CTAssetsPickerControllerDelegate {
     
     // MARK: - Delegate Function
     
-    @objc final func assetsPickerController(picker: CTAssetsPickerController!, shouldSelectAsset asset: PHAsset!) -> Bool {
+    final func assetsPickerController(picker: CTAssetsPickerController!, shouldSelectAsset asset: PHAsset!) -> Bool {
         return picker.selectedAssets.count < 1
     }
     
-    @objc final func assetsPickerController(picker: CTAssetsPickerController!, didFinishPickingAssets assets: [AnyObject]!) {
+    final func assetsPickerController(picker: CTAssetsPickerController!, didFinishPickingAssets assets: [AnyObject]!) {
         guard assets.count > 0, let asset: PHAsset! = (assets as! [PHAsset])[0] else  {
             picker.dismissViewControllerAnimated(true, completion: nil)
             return
@@ -34,7 +44,8 @@ class PhotoPickerDelegateHandler: NSObject, CTAssetsPickerControllerDelegate {
         let options = PHImageRequestOptions()
         
         // TODO: 사진을 안드로이드에서 처럼 정해진 사이즈로, 1:1로 자르고 넘겨 주어야 할 듯
-        PHImageManager.defaultManager().requestImageForAsset(asset, targetSize: CGSize.init(width: 640, height: 640), contentMode: .AspectFill, options: options) { image, info in
+        PHImageManager.defaultManager().requestImageForAsset(asset, targetSize: CGSize.init(width: 640, height: 640),
+            contentMode: .AspectFill, options: options) { image, info in
             picker.dismissViewControllerAnimated(false, completion: nil)
             if let image = image {
                 self.completion(image: image)
@@ -43,14 +54,13 @@ class PhotoPickerDelegateHandler: NSObject, CTAssetsPickerControllerDelegate {
     }
 }
 
-@objc protocol PhotoPickable {
+protocol PhotoPickable {
+    
     var photoPickerDelegate: PhotoPickerDelegateHandler? { get }
-
-//    func photoPickerDidPickImage(image: UIImage)
 }
 
 extension PhotoPickable where Self: UIViewController {
-    
+
     final func showPhotoPickerContoller() {
         PHPhotoLibrary.requestAuthorization { (status: PHAuthorizationStatus) -> Void in
             if status == PHAuthorizationStatus.Authorized {
