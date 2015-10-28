@@ -18,7 +18,7 @@ final class SwishDatabase {
     class func migrate() {
         let config = Realm.Configuration(
             // TODO: 출시 전에 버전 0으로 변경하자
-            schemaVersion: 26,
+            schemaVersion: 31,
             
             migrationBlock: { migration, oldSchemaVersion in
                 if (oldSchemaVersion < 1) {
@@ -130,6 +130,25 @@ final class SwishDatabase {
                 UserHelper.renewOtherUser(prevUser, newUser: otherUser)
             }
             realm.add(otherUser, update: true)
+        }
+    }
+    
+    class func deleteOtherUserWhenPossible(user: OtherUser) {
+        if user.photos.count == 0 && user.trendingPhotos.count == 0 {
+            deleteRecentlySentPhotoUrlsInOtherUser(user)
+            write {
+                realm.delete(user)
+            }
+        }
+    }
+    
+    class func deleteRecentlySentPhotoUrlsInOtherUser(user: OtherUser) {
+        if let recentlySentPhotoUrls = user.recentlySentPhotoUrls {
+            write {
+                for photoMetadata in recentlySentPhotoUrls {
+                    realm.delete(photoMetadata)
+                }
+            }
         }
     }
     
@@ -292,6 +311,44 @@ final class SwishDatabase {
             write {
                 chatMessage.state = state
             }
+        }
+    }
+    
+    // MARK: - PhotoTrends
+    
+    class func savePhotoTrends(photoTrends: PhotoTrends) {
+        deleteAllPhotoTrends()
+        write {
+            realm.add(photoTrends)
+        }
+    }
+    
+    class func photoTrends() -> PhotoTrends? {
+        let candidates = rawObjects(PhotoTrends)
+        return candidates.count > 0 ? candidates[0] : nil
+    }
+    
+    class func deleteAllPhotoTrends() {
+        var unnecessaryUserIds = Set<User.ID>()
+        write {
+            for photoTrends in rawObjects(PhotoTrends) {
+                for trendingPhoto in photoTrends.trendingPhotos {
+                    unnecessaryUserIds.insert(trendingPhoto.owner.id)
+                }
+                realm.delete(photoTrends.trendingPhotos)
+                realm.delete(photoTrends)
+            }
+        }
+        for unnecessaryUserId in unnecessaryUserIds {
+            if let otherUser = otherUser(unnecessaryUserId) {
+                deleteOtherUserWhenPossible(otherUser)
+            }
+        }
+    }
+    
+    class func saveTrendingPhoto(otherUser: OtherUser, trendingPhoto: TrendingPhoto) {
+        write {
+            otherUser.trendingPhotos.append(trendingPhoto)
         }
     }
     

@@ -6,11 +6,11 @@ PODS:
     - PureLayout (~> 3.0.0)
   - DateTools (1.7.0)
   - PureLayout (3.0.1)
-  - Realm (0.95.0):
-    - Realm/Headers (= 0.95.0)
-  - Realm/Headers (0.95.0)
-  - RealmSwift (0.95.0):
-    - Realm (= 0.95.0)
+  - Realm (0.96.2):
+    - Realm/Headers (= 0.96.2)
+  - Realm/Headers (0.96.2)
+  - RealmSwift (0.96.2):
+    - Realm (= 0.96.2)
   - SnapKit (0.13.0)
   - SwiftyJSON (2.3.0)
 
@@ -19,18 +19,12 @@ DEPENDENCIES:
   - AlamofireImage (~> 2.0)
   - CTAssetsPickerController (~> 3.1.0)
   - DateTools
-  - Realm (from `https://github.com/realm/realm-cocoa.git`, branch `swift-2.0`)
-  - RealmSwift (from `https://github.com/realm/realm-cocoa.git`, branch `swift-2.0`)
+  - Realm
+  - RealmSwift
   - SnapKit (from `https://github.com/SnapKit/SnapKit.git`, branch `swift-2.0`)
   - SwiftyJSON (from `https://github.com/SwiftyJSON/SwiftyJSON.git`)
 
 EXTERNAL SOURCES:
-  Realm:
-    :branch: swift-2.0
-    :git: https://github.com/realm/realm-cocoa.git
-  RealmSwift:
-    :branch: swift-2.0
-    :git: https://github.com/realm/realm-cocoa.git
   SnapKit:
     :branch: swift-2.0
     :git: https://github.com/SnapKit/SnapKit.git
@@ -38,12 +32,6 @@ EXTERNAL SOURCES:
     :git: https://github.com/SwiftyJSON/SwiftyJSON.git
 
 CHECKOUT OPTIONS:
-  Realm:
-    :commit: e51348f34142e821bef704a71b21b6002464871f
-    :git: https://github.com/realm/realm-cocoa.git
-  RealmSwift:
-    :commit: e51348f34142e821bef704a71b21b6002464871f
-    :git: https://github.com/realm/realm-cocoa.git
   SnapKit:
     :commit: 4f19419528baa3dfaca20e26fea2be410ddc79e2
     :git: https://github.com/SnapKit/SnapKit.git
@@ -57,8 +45,8 @@ SPEC CHECKSUMS:
   CTAssetsPickerController: 6fba9134a230656ffe34ac0effb0060a1ead65cb
   DateTools: 53288ee8b905fdc75897a1e6b5cc0144b14cba60
   PureLayout: f35f5384c9c4e4479df041dbe33ad7577b71ddfb
-  Realm: 1c28007bd496af94dba8c76d50719164e706a521
-  RealmSwift: 9864524dd99c2cb7b4643c29513ef8447fe63724
+  Realm: 3ce8448151c571e90b85002d984d7f93f54fc8a3
+  RealmSwift: 485599fe54e35461c4a0daa7d01d8fbf11424873
   SnapKit: 69fe274c71511df89a5591c11437a8b826bfa9eb
   SwiftyJSON: 8d6b61a70277ef2a5d710d372e06e7e2d87fb9e4
 

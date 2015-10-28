@@ -27,11 +27,24 @@ struct ServerPhotoState {
     //    let receivedUserProfileImageUrl: String?
 }
 
+struct PhotoTrendsResult {
+    let countryName: String
+    let trendingPhotoResults: [TrendingPhotoResult]
+    let fetchedTimeMilli: NSTimeInterval
+}
+
+struct TrendingPhotoResult {
+    let owner: OtherUser
+    let photo: Photo
+    let imageUrl: String
+}
+
 final class PhotoServer {
     private static let basePhotoUrl = SwishServer.host + "/photos"
     private static let updatePhotoStateTagPrefix = "update_photo_state"
     private static let fetchPhotoStateTagPrefix = "get_photos_state"
     private static let updateBlockChatStateTagPrefix = "block_chat"
+    private static let fetchPhotoTrendsTagPrefix = "weekly_photos"
     
     class func photoResponsesWith(userId: String, departLocation: CLLocation, photoCount: Int?,
         onSuccess: (photoResponses: Array<PhotoResponse>) -> (), onFail: FailCallback) {
@@ -89,6 +102,15 @@ final class PhotoServer {
         SwishServer.requestWith(httpRequest)
     }
     
+    class func photoTrendsResult(onSuccess: (photoTrendsResult: PhotoTrendsResult) -> Void, onFail: FailCallback) {
+        let url = "\(SwishServer.host)/weekly_photos"
+        let parser = { (resultJson: JSON) -> PhotoTrendsResult in return photoTrendsFromResult(resultJson) }
+        let httpRequest = HttpRequest<PhotoTrendsResult>(method: .GET, url: url, parser: parser, onSuccess: onSuccess, onFail: onFail)
+        httpRequest.tag = createFetchPhotoTrendsTag()
+        
+        SwishServer.requestWith(httpRequest)
+    }
+    
     // MARK: - Params
     
     private class func photosParamWith(userId: String, departLocation: CLLocation, photoCount: Int?) -> Param {
@@ -139,42 +161,11 @@ final class PhotoServer {
     // MARK: - Parsers
     
     private class func photoResponsesFrom(resultJson: JSON) -> Array<PhotoResponse> {
-        let photosJsonArray = resultJson["photos"].arrayValue
-        
         var items = Array<PhotoResponse>()
-        for photoJson in photosJsonArray {
-            let senderJson = photoJson["sender"]
-            let senderId = senderJson["id"].stringValue
-            let sender = OtherUser.create(senderId) {
-                $0.name = senderJson["name"].stringValue
-                
-                $0.about = senderJson["about"].stringValue
-                $0.profileUrl = senderJson["profile_image_url"].stringValue
-                $0.level = senderJson["level"].intValue
-                
-                let activityRecordJson = senderJson["activity_record"]
-                $0.userActivityRecord = UserActivityRecord(
-                    sentPhotoCount: activityRecordJson["upload_photo_count"].intValue,
-                    likedPhotoCount: activityRecordJson["like_get_count"].intValue,
-                    dislikedPhotoCount: activityRecordJson["dislike_get_count"].intValue)
-            }
-            
-            let latitude = photoJson["latitude"].doubleValue
-            let longitude = photoJson["longitude"].doubleValue
-            let location = CLLocation(latitude: latitude, longitude: longitude)
-
-            let photo = Photo()
-            photo.id = photoJson["id"].int64Value
-            photo.message = photoJson["message"].stringValue
-            photo.departLocation = location
-            photo.photoState = .Delivered
-            
-            let imageUrl = photoJson["url"].stringValue
+        photoInfoFromResultJson(resultJson) { (photo, sender, imageUrl) -> Void in
             let item = PhotoResponse(user: sender, photo: photo, imageUrl: imageUrl)
-            
             items.append(item)
         }
-        
         return items
     }
     
@@ -212,6 +203,54 @@ final class PhotoServer {
         return resultJson["photo"]["id"].int64Value
     }
     
+    private class func photoTrendsFromResult(resultJson: JSON) -> PhotoTrendsResult {
+        var trendingPhotoResults = Array<TrendingPhotoResult>()
+        photoInfoFromResultJson(resultJson) { (photo, sender, imageUrl) -> Void in
+            let trendingPhoto = TrendingPhotoResult(owner: sender, photo: photo, imageUrl: imageUrl)
+            trendingPhotoResults.append(trendingPhoto)
+        }
+        let countryName = resultJson["country"].stringValue
+        
+        return PhotoTrendsResult(countryName: countryName, trendingPhotoResults: trendingPhotoResults,
+            fetchedTimeMilli: NSDate().timeIntervalSince1970)
+    }
+    
+    private class func photoInfoFromResultJson(resultJson: JSON, handler: (photo: Photo, sender: OtherUser,
+        imageUrl: String) -> Void) {
+            let photosJsonArray = resultJson["photos"].arrayValue
+            
+            for photoJson in photosJsonArray {
+                let senderJson = photoJson["sender"]
+                let senderId = senderJson["id"].stringValue
+                let sender = OtherUser.create(senderId) {
+                    $0.name = senderJson["name"].stringValue
+                    
+                    $0.about = senderJson["about"].stringValue
+                    $0.profileUrl = senderJson["profile_image_url"].stringValue
+                    $0.level = senderJson["level"].intValue
+                    
+                    let activityRecordJson = senderJson["activity_record"]
+                    $0.userActivityRecord = UserActivityRecord(
+                        sentPhotoCount: activityRecordJson["upload_photo_count"].intValue,
+                        likedPhotoCount: activityRecordJson["like_get_count"].intValue,
+                        dislikedPhotoCount: activityRecordJson["dislike_get_count"].intValue)
+                }
+                
+                let latitude = photoJson["latitude"].doubleValue
+                let longitude = photoJson["longitude"].doubleValue
+                let photoDepartLocation = CLLocation(latitude: latitude, longitude: longitude)
+                
+                let photoId = photoJson["id"].int64Value
+                let photoMessage = photoJson["message"].stringValue
+                let photo = Photo.create(photoId, message: photoMessage, departLocation: photoDepartLocation)
+                photo.photoState = .Delivered
+                
+                let imageUrl = photoJson["url"].stringValue
+                
+                handler(photo: photo, sender: sender, imageUrl: imageUrl)
+            }
+    }
+    
     // MARK: - Helpers
     
     class func cancelUpdatePhotoStateWithPhotoId(photoId: Photo.ID) {
@@ -226,6 +265,10 @@ final class PhotoServer {
         SwishServer.instance.cancelWith(createUpdateBlockChatStateTag())
     }
     
+    class func cancelFetchPhotoTrends() {
+        SwishServer.instance.cancelWith(createFetchPhotoTrendsTag())
+    }
+    
     private class func createUpdatePhotoStateTagWithPhotoId(photoId: Photo.ID) -> String {
         return SwishServer.createTagWithPrefix(updatePhotoStateTagPrefix, postfix: "\(photoId)")
     }
@@ -236,5 +279,9 @@ final class PhotoServer {
     
     private class func createUpdateBlockChatStateTag() -> String {
         return SwishServer.createTagWithPrefix(updateBlockChatStateTagPrefix)
+    }
+    
+    private class func createFetchPhotoTrendsTag() -> String {
+        return SwishServer.createTagWithPrefix(fetchPhotoTrendsTagPrefix)
     }
 }
