@@ -50,8 +50,9 @@ class SwishTests: XCTestCase {
         
         let photoOne = createPhoto()
         let photoTwo = createPhoto()
-        SwishDatabase.saveSentPhoto(photoOne)
-        SwishDatabase.saveSentPhoto(photoTwo)
+        
+        SwishDatabase.saveSentPhoto(photoOne, serverId: sendPhoto(photoOne), newFileName: saveImage(photoOne))
+        SwishDatabase.saveSentPhoto(photoTwo, serverId: sendPhoto(photoTwo), newFileName: saveImage(photoTwo))
         
         XCTAssert(photoOne == SwishDatabase.photoWithId(photoOne.id)!)
         XCTAssert(photoTwo == SwishDatabase.photoWithId(photoTwo.id)!)
@@ -65,12 +66,12 @@ class SwishTests: XCTestCase {
         SwishDatabase.saveOtherUser(userOne)
         SwishDatabase.saveOtherUser(userTwo)
         
-        let photoOne = createPhoto()
-        let photoTwo = createPhoto()
+        let photoOne = createReceivedPhoto()
+        let photoTwo = createReceivedPhoto()
         SwishDatabase.saveReceivedPhoto(userOne, photo: photoOne)
         SwishDatabase.saveReceivedPhoto(userOne, photo: photoTwo)
         
-        let photoThree = createPhoto()
+        let photoThree = createReceivedPhoto()
         SwishDatabase.saveReceivedPhoto(userTwo, photo: photoThree)
         
         XCTAssert(photoOne == SwishDatabase.photoWithId(photoOne.id)!)
@@ -81,7 +82,7 @@ class SwishTests: XCTestCase {
         SwishDatabase.saveMe(createMe())
         
         let photo = createPhoto()
-        SwishDatabase.saveSentPhoto(photo)
+        SwishDatabase.saveSentPhoto(photo, serverId: sendPhoto(photo), newFileName: saveImage(photo))
         
         chatMessageIndex = 0
         var originalMessages = Array<ChatMessage>()
@@ -101,7 +102,7 @@ class SwishTests: XCTestCase {
         let user = createOtherUser()
         SwishDatabase.saveOtherUser(user)
         
-        let photo = createPhoto()
+        let photo = createReceivedPhoto()
         SwishDatabase.saveReceivedPhoto(user, photo: photo)
         
         chatMessageIndex = 0
@@ -123,17 +124,11 @@ class SwishTests: XCTestCase {
         let user = createOtherUser()
         SwishDatabase.saveOtherUser(user)
         
-        let photo = createPhoto()
+        let photo = createReceivedPhoto()
         SwishDatabase.saveReceivedPhoto(user, photo: photo)
         
         let msg = createChatMessage(user.id)
         SwishDatabase.saveChatMessage(photo, chatMessage: msg)
-        
-//        let id = photo.id
-//        
-//        SwishDatabase.delete { (target: Photo) -> Bool in
-//            return target.id == photo.id
-//        }
         
         SwishDatabase.delete { (target: ChatMessage) -> Bool in
             return target == msg
@@ -166,17 +161,15 @@ class SwishTests: XCTestCase {
         SwishDatabase.saveMe(createMe())
         
         let photo = createPhoto()
-        SwishDatabase.saveSentPhoto(photo)
+        SwishDatabase.saveSentPhoto(photo, serverId: sendPhoto(photo), newFileName: saveImage(photo))
         
         let count = 10000
         
-//        self.measureBlock {
-            var msgs = Array<ChatMessage>()
-            for _ in 0...count {
-                msgs.append(self.createChatMessage(SwishDatabase.me().id))
-            }
-            SwishDatabase.saveChatMessages(photo, chatMessages: msgs)
-//        }
+        var msgs = Array<ChatMessage>()
+        for _ in 0...count {
+            msgs.append(self.createChatMessage(SwishDatabase.me().id))
+        }
+        SwishDatabase.saveChatMessages(photo, chatMessages: msgs)
         self.measureBlock {
             var cnt = 0
             let msg = SwishDatabase.loadChatMessages(photo.id, startIndex: count, amount: 1)[0]
@@ -202,32 +195,47 @@ class SwishTests: XCTestCase {
     
     func createOtherUser() -> OtherUser {
         let postfix = "\(otherUserIndex++)"
-        return OtherUser.create("opId\(postfix)", builder: { (user: OtherUser) -> () in
-            user.name = "opName\(postfix)"
-            user.about = "opAbout\(postfix)"
-            user.profileUrl = "opProfileUrl\(postfix)"
-            user.level = 1
-            user.recentlySentPhotoUrls.append(PhotoMetadata(url: "http://vignette4.wikia.nocookie.net/pokemon/images/6/64/004새박스아이콘.png/revision/latest?cb=20140106004106&path-prefix=ko"))
-        })
+        return OtherUser.create("opId\(postfix)") {
+            $0.name = "opName\(postfix)"
+            $0.about = "opAbout\(postfix)"
+            $0.profileUrl = "opProfileUrl\(postfix)"
+            $0.level = 1
+            $0.recentlySentPhotoUrls = List<PhotoMetadata>(initialArray: [PhotoMetadata(url: "http://vignette4.wikia.nocookie.net/pokemon/images/6/64/004새박스아이콘.png/revision/latest?cb=20140106004106&path-prefix=ko")])
+        }
+    }
+    
+    func createReceivedPhoto() -> Photo {
+        let photo = createPhoto()
+        photo.id = createPhotoId()
+        return photo
     }
     
     func createPhoto() -> Photo {
-        let postfixInt = photoIndex++
-        let postfix = "\(postfixInt)"
+        let postfix = Int(arc4random())
         
-        let photo = Photo.create()
-        photo.id = Photo.ID(postfix)!
-        photo.localPath = "fn\(postfix)"
-        photo.message = "msg\(postfix)"
+        let postfixDouble = Double(postfix)
+        let departLocation = CLLocation(latitude: 35.889972 + postfixDouble, longitude: 128.611332 + postfixDouble)
+        let photo = Photo.create(Photo.ID(-1), message: "msg\(postfix)", departLocation: departLocation)
+        photo.fileName = "fn\(postfix)"
         
-        photo.unreadMessageCount = postfixInt
-        photo.hasBlockedChat = postfixInt % 2 == 0
-        photo.hasOpenedChatRoom = postfixInt % 2 == 0
-        let postfixDouble = Double(postfixInt)
-        photo.departLocation = CLLocation(latitude: 35.889972 + postfixDouble, longitude: 128.611332 + postfixDouble)
+        photo.unreadMessageCount = postfix
+        photo.hasBlockedChat = postfix % 2 == 0
+        photo.hasOpenedChatRoom = postfix % 2 == 0
         photo.arrivedLocation = CLLocation(latitude: 35.893105 + postfixDouble, longitude: 128.616192 + postfixDouble)
         
         return photo
+    }
+    
+    func sendPhoto(photo: Photo) -> Photo.ID {
+        return createPhotoId()
+    }
+    
+    func createPhotoId() -> Photo.ID {
+        return Photo.ID(photoIndex++)
+    }
+    
+    func saveImage(photo: Photo) -> String {
+        return "\(arc4random())"
     }
     
     func createChatMessage(senderId: User.ID) -> ChatMessage {

@@ -14,9 +14,24 @@ final class OtherUser: User {
     
     // Mark: Attributes
     
-    let recentlySentPhotoUrls = List<PhotoMetadata>()
+    var recentlySentPhotoUrls: List<PhotoMetadata>? {
+        get {
+            return hasRecentlySentPhotoUrls ? _recentlySentPhotoUrls : nil
+        }
+        set {
+            if let newValue = newValue {
+                _recentlySentPhotoUrls.removeAll()
+                _recentlySentPhotoUrls.appendContentsOf(newValue)
+                hasRecentlySentPhotoUrls = true
+            } else {
+                hasRecentlySentPhotoUrls = false
+            }
+        }
+    }
     // required
     dynamic var fetchedTimeIntervalSince1970 = invalidFetchedTime
+    private let _recentlySentPhotoUrls = List<PhotoMetadata>()
+    private dynamic var hasRecentlySentPhotoUrls = false
     
     private convenience init(id: String, fetchedTimeIntervalSince1970: NSTimeInterval) {
         self.init()
@@ -24,9 +39,9 @@ final class OtherUser: User {
         self.fetchedTimeIntervalSince1970 = fetchedTimeIntervalSince1970
     }
     
-    final class func create(id: User.ID, fetchedTimeIntervalSince1970: NSTimeInterval = NSDate().timeIntervalSince1970,
+    final class func create(id: User.ID,
         builder: (OtherUser) -> () = RealmObjectBuilder.builder) -> OtherUser {
-            let me = OtherUser(id: id, fetchedTimeIntervalSince1970: fetchedTimeIntervalSince1970)
+            let me = OtherUser(id: id, fetchedTimeIntervalSince1970: NSDate().timeIntervalSince1970)
             builder(me)
             return me
     }

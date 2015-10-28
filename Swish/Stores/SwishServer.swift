@@ -10,15 +10,18 @@ import Foundation
 import Alamofire
 import SwiftyJSON
 
-typealias RawResult = Result<AnyObject>
 typealias DefaultSuccessCallback = (result: JSON) -> ()
 typealias FailCallback = (error: SwishError) -> ()
 typealias Param = Dictionary<String, String>
 typealias Header = Dictionary<String, String>
 
+private let invalidStatusCode = -1
+private let invalidErrorCode = -1
+
 final class SwishServer {
     static let defaultParser = { (result: JSON) -> JSON in return result }
     static let host = "http://yooiia.iptime.org:3000"
+    private static let tagSeparator = "_"
     
     private var requests = Dictionary<String, HttpRequestProtocol>()
     
@@ -60,18 +63,28 @@ final class SwishServer {
             httpRequest.url,
             parameters: httpRequest.parameters,
             headers: headers)
-            .responseJSON { request, response, result in
-                self.handleResponse(httpRequest, request: request, response: response, result: result)
+            .responseJSON { response in
+                self.handleResponse(httpRequest, response: response)
         }
     }
     
     func cancelWith(tag: String) {
-        if let httpRequest = requests[tag] {
-            httpRequest.cancel()
+        print("SwishServer.cancelWith for tag: \(tag)")
+        requests[tag]?.cancel()
+        if requests[tag] != nil {
+            print("SwishServer.cancelWith for tag: \(tag) success")
         }
     }
     
     // MARK: - Helpers
+    
+    class func createTagWithPrefix(prefix: String, postfix: String? = nil) -> String {
+        var tag = "\(prefix)"
+        if let postfix = postfix {
+            tag += "_\(postfix)"
+        }
+        return tag
+    }
     
     private class func createHeader<T>(httpRequest: HttpRequest<T>) -> Header? {
         var headers: Header?
@@ -101,19 +114,32 @@ final class SwishServer {
         requests.updateValue(httpRequest, forKey: tag)
     }
     
-    private func handleResponse<T>(httpRequest:HttpRequest<T>, request: NSURLRequest?, response: NSHTTPURLResponse?, result: Result<AnyObject>) {
-        if let statusCode = response?.statusCode {
+    private func handleResponse<T>(httpRequest:HttpRequest<T>, response: Response<AnyObject, NSError>) {
+        if let statusCode = response.response?.statusCode {
             if statusCode == 200 || statusCode == 201 {
-                httpRequest.onSuccess(result:
-                    httpRequest.parser(result: JSON(result.value!)))
+                if response.result.isSuccess {
+                    httpRequest.onSuccess(result:
+                        httpRequest.parser(result: JSON(response.result.value!)))
+                } else {
+                    httpRequest.onFail(error: SwishError(statusCode, error: response.result.error!, urlRequest: response.request))
+                }
             } else if statusCode >= 400 && statusCode <= 500 {
-                let json = result.value != nil ? JSON(result.value!) : nil
-                httpRequest.onFail(error: SwishError(statusCode, json: json, urlRequest: request))
+                let json = response.result.value != nil ? JSON(response.result.value!) : nil
+                httpRequest.onFail(error: SwishError(statusCode, json: json, urlRequest: response.request))
             } else {
-                httpRequest.onFail(error: SwishError.unknownError(statusCode, urlRequest: request))
+                httpRequest.onFail(error: SwishError.unknownError(statusCode, urlRequest: response.request))
             }
         } else {
-            httpRequest.onFail(error: SwishError.unknownError(urlRequest: request))
+            if let errorCode = response.result.error?.code where errorCode == NSURLErrorCancelled {
+                // 요청이 취소된 경우는 따로 콜백을 부르지 않고 consume하도록 함
+                print("User cancelled alamofire request: \(response.request)")
+            } else {
+                if let error = response.result.error {
+                    httpRequest.onFail(error: SwishError(error: error, urlRequest: response.request))
+                } else {
+                    httpRequest.onFail(error: SwishError.unknownError(urlRequest: response.request))
+                }
+            }
         }
         requests.removeValueForKey(httpRequest.tag)
     }
@@ -156,18 +182,25 @@ final class HttpRequest<T>: HttpRequestProtocol {
     }
     
     func cancel() {
-        if let request = request {
-            request.cancel()
-        }
+        request?.cancel()
     }
 }
 
 final class SwishError: CustomStringConvertible {
+    
     let statusCode: Int
     let code: Int?
     let name: String?
     let extras: String?
     let urlRequest: NSURLRequest?
+    
+    init(_ statusCode: Int, error: NSError, urlRequest: NSURLRequest? = nil) {
+        self.statusCode = statusCode
+        code = invalidErrorCode
+        name = "UnknownError"
+        extras = String(error)
+        self.urlRequest = urlRequest
+    }
     
     init(_ statusCode: Int, json: JSON?, urlRequest: NSURLRequest? = nil) {
         self.statusCode = statusCode
@@ -177,9 +210,13 @@ final class SwishError: CustomStringConvertible {
         self.urlRequest = urlRequest
     }
     
+    convenience init(error: NSError, urlRequest: NSURLRequest? = nil) {
+        self.init(invalidStatusCode, error: error, urlRequest: urlRequest)
+    }
+    
     private init(_ statusCode: Int, urlRequest: NSURLRequest? = nil) {
         self.statusCode = statusCode
-        code = -1
+        code = invalidErrorCode
         name = "UnknownError"
         extras = ""
         self.urlRequest = urlRequest
@@ -187,11 +224,12 @@ final class SwishError: CustomStringConvertible {
     
     var description: String {
         get {
-            return "StatusCode: \(statusCode), Code: \(code), Name: \(name), extras: \(extras), urlRequest: \(urlRequest)"
+            return "StatusCode: \(statusCode), Code: \(code), Name: \(name), extras: \(extras),"
+                + " urlRequest: \(urlRequest)"
         }
     }
     
-    class func unknownError(statusCode: Int = -1, urlRequest: NSURLRequest? = nil) -> SwishError {
+    class func unknownError(statusCode: Int = invalidStatusCode, urlRequest: NSURLRequest? = nil) -> SwishError {
         return SwishError(statusCode, urlRequest: urlRequest)
     }
 }

@@ -18,7 +18,7 @@ final class SwishDatabase {
     class func migrate() {
         let config = Realm.Configuration(
             // TODO: 출시 전에 버전 0으로 변경하자
-            schemaVersion: 22,
+            schemaVersion: 31,
             
             migrationBlock: { migration, oldSchemaVersion in
                 if (oldSchemaVersion < 1) {
@@ -126,15 +126,48 @@ final class SwishDatabase {
     
     class func saveOtherUser(otherUser: OtherUser) {
         write {
+            if let prevUser = self.otherUser(otherUser.id) {
+                UserHelper.renewOtherUser(prevUser, newUser: otherUser)
+            }
             realm.add(otherUser, update: true)
+        }
+    }
+    
+    class func deleteOtherUserWhenPossible(user: OtherUser) {
+        if user.photos.count == 0 && user.trendingPhotos.count == 0 {
+            deleteRecentlySentPhotoUrlsInOtherUser(user)
+            write {
+                realm.delete(user)
+            }
+        }
+    }
+    
+    class func deleteRecentlySentPhotoUrlsInOtherUser(user: OtherUser) {
+        if let recentlySentPhotoUrls = user.recentlySentPhotoUrls {
+            write {
+                for photoMetadata in recentlySentPhotoUrls {
+                    realm.delete(photoMetadata)
+                }
+            }
         }
     }
     
     // MARK: - Photos
     
-    class func saveSentPhoto(photo: Photo) {
+    class func saveSentPhoto(photo: Photo, serverId: Photo.ID, newFileName: String) {
         write {
+            photo.id = serverId
+            photo.fileName = newFileName
             me().photos.append(photo)
+        }
+    }
+    
+    class func updatePhoto(photoId: Photo.ID, _ update: (photo: Photo) -> ()) {
+        let photo = photoWithId(photoId)
+        if let photo = photo {
+            write {
+                update(photo: photo)
+            }
         }
     }
     
@@ -203,10 +236,10 @@ final class SwishDatabase {
         })
     }
     
-    class func updateChatBlocked(id: Photo.ID, blocked: Bool) {
-        writePhoto(id, block: {
+    class func updateChatBlocked(photoId: Photo.ID, state: ChatRoomBlockState) {
+        writePhoto(photoId, block: {
             (photo: Photo) in
-            photo.hasBlockedChat = blocked
+            photo.chatRoomBlockState = state
         })
     }
     
@@ -225,6 +258,12 @@ final class SwishDatabase {
     }
     
     // MARK: - Chat Message
+    
+    class func saveChatMessage(photoId: Photo.ID, chatMessage: ChatMessage) {
+        if let photo = photoWithId(photoId) {
+            saveChatMessage(photo, chatMessage: chatMessage)
+        }
+    }
     
     class func saveChatMessage(photo: Photo, chatMessage: ChatMessage) {
         write {
@@ -272,6 +311,44 @@ final class SwishDatabase {
             write {
                 chatMessage.state = state
             }
+        }
+    }
+    
+    // MARK: - PhotoTrends
+    
+    class func savePhotoTrends(photoTrends: PhotoTrends) {
+        deleteAllPhotoTrends()
+        write {
+            realm.add(photoTrends)
+        }
+    }
+    
+    class func photoTrends() -> PhotoTrends? {
+        let candidates = rawObjects(PhotoTrends)
+        return candidates.count > 0 ? candidates[0] : nil
+    }
+    
+    class func deleteAllPhotoTrends() {
+        var unnecessaryUserIds = Set<User.ID>()
+        write {
+            for photoTrends in rawObjects(PhotoTrends) {
+                for trendingPhoto in photoTrends.trendingPhotos {
+                    unnecessaryUserIds.insert(trendingPhoto.owner.id)
+                }
+                realm.delete(photoTrends.trendingPhotos)
+                realm.delete(photoTrends)
+            }
+        }
+        for unnecessaryUserId in unnecessaryUserIds {
+            if let otherUser = otherUser(unnecessaryUserId) {
+                deleteOtherUserWhenPossible(otherUser)
+            }
+        }
+    }
+    
+    class func saveTrendingPhoto(otherUser: OtherUser, trendingPhoto: TrendingPhoto) {
+        write {
+            otherUser.trendingPhotos.append(trendingPhoto)
         }
     }
     

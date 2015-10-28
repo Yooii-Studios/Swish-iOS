@@ -25,12 +25,13 @@ class User: Object {
     dynamic var about = ""
     dynamic var profileUrl = ""
     let photos = List<Photo>()
+    let trendingPhotos = List<TrendingPhoto>()
     
     dynamic var sentPhotoCount = 0
     dynamic var likedPhotoCount = 0
     dynamic var dislikedPhotoCount = 0
     
-    var userActivityRecord:UserActivityRecord {
+    var userActivityRecord: UserActivityRecord {
         get {
             return UserActivityRecord(sentPhotoCount: sentPhotoCount, likedPhotoCount: likedPhotoCount
                 , dislikedPhotoCount: dislikedPhotoCount)
