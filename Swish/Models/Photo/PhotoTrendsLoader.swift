@@ -11,6 +11,7 @@ import RealmSwift
 import CoreLocation
 
 final class PhotoTrends: Object {
+    
     let trendingPhotos = List<TrendingPhoto>()
     dynamic var fetchedTimeMilli = NSTimeInterval.NaN
     
@@ -48,6 +49,7 @@ final class PhotoTrends: Object {
 
 // TODO: Realm에서 지원하게 되고 Photo클래스와 함께 다뤄야 할 경우가 생긴다면 PhotoProtocol에 id, message, departLocation 넣어서 추출하자.
 final class TrendingPhoto: Object {
+    
     dynamic var id: Photo.ID = invalidId
     dynamic var message = invalidMessage
     dynamic var imageUrl = ""
@@ -110,6 +112,25 @@ final class PhotoTrendsLoader {
     typealias Callback = (photoTrends: PhotoTrends?) -> Void
     
     final class func load(callback: Callback) {
+        if let cachedPhotoTrends = cachedPhotoTrends() {
+            print("PhotoTrends cache hit.")
+            callback(photoTrends: cachedPhotoTrends)
+        } else {
+            fetchFromServer(callback)
+        }
+    }
+    
+    final class func cachedPhotoTrends() -> PhotoTrends? {
+        let photoTrends = SwishDatabase.photoTrends()
+        if let photoTrends = photoTrends where
+            NSCalendar.currentCalendar().isDateInToday(NSDate(timeIntervalSince1970: photoTrends.fetchedTimeMilli)) {
+                return photoTrends
+        } else {
+            return nil
+        }
+    }
+    
+    final class func fetchFromServer(callback: Callback) {
         PhotoServer.cancelFetchPhotoTrends()
         PhotoServer.photoTrendsResult({ (photoTrendsResult) -> Void in
             handleResult(photoTrendsResult, callback: callback)
@@ -133,6 +154,8 @@ final class PhotoTrendsLoader {
         SwishDatabase.savePhotoTrends(photoTrends)
         callback(photoTrends: photoTrends)
     }
+    
+    // MARK: - Helper functions
     
     final class func convertPhotoTrendsResultToPhotoTrends(photoTrendsResult: PhotoTrendsResult,
         _ handler: (trendingPhoto: TrendingPhoto, owner: OtherUser) -> Void) {

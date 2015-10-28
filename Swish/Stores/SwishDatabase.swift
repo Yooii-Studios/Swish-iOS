@@ -323,8 +323,9 @@ final class SwishDatabase {
         }
     }
     
-    class func photoTrends() -> PhotoTrends {
-        return rawObjects(PhotoTrends)[0]
+    class func photoTrends() -> PhotoTrends? {
+        let candidates = rawObjects(PhotoTrends)
+        return candidates.count > 0 ? candidates[0] : nil
     }
     
     class func deleteAllPhotoTrends() {

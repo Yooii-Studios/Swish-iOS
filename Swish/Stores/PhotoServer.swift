@@ -265,7 +265,7 @@ final class PhotoServer {
     }
     
     class func cancelFetchPhotoTrends() {
-        SwishServer.instance.cancelWith(createUpdateBlockChatStateTag())
+        SwishServer.instance.cancelWith(createFetchPhotoTrendsTag())
     }
     
     private class func createUpdatePhotoStateTagWithPhotoId(photoId: Photo.ID) -> String {
