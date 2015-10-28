@@ -18,6 +18,16 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         // Override point for customization after application launch.
         SwishDatabase.migrate()
         
+        // TODO: 유저 등록 화면 구현 완료되면 지울것
+        if !SwishDatabase.hasMe() {
+            print("Registering Me to server...")
+            MeManager.registerMe(onSuccess: { me in
+                print("Me registered. Now you can communicate with Swish server.")
+            })
+        } else {
+            print("Me already registered. You can communicate with Swish server.")
+        }
+        
         return true
     }
     
