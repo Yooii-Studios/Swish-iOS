@@ -74,9 +74,9 @@ class MainViewController: UIViewController, UINavigationControllerDelegate, CTAs
         }
     
         let options = PHImageRequestOptions()
-        
-        PHImageManager.defaultManager().requestImageForAsset(asset, targetSize: CGSize.init(width: 320, height: 320), contentMode: .AspectFill, options: options) { image, info in
-            // TODO: 사진을 안드로이드에서 처럼 정해진 사이즈로, 1:1로 자르고 넘겨 주어야 할 듯
+
+        // TODO: 사진을 안드로이드에서 처럼 정해진 사이즈로, 1:1로 자르고 넘겨 주어야 할 듯
+        PHImageManager.defaultManager().requestImageForAsset(asset, targetSize: CGSize.init(width: 640, height: 640), contentMode: .AspectFill, options: options) { image, info in
             picker.dismissViewControllerAnimated(false, completion: nil)
             self.showDressingViewContoller(image)
         }
