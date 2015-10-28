@@ -17,31 +17,22 @@ class DressingViewController: UIViewController, SegueHandlerType {
         case ShowShareResult
     }
     
-    var image : UIImage?
+    var image: UIImage!
     
-    @IBOutlet var testImageView : UIImageView!
+    @IBOutlet var testImageView: UIImageView!
 
     override func viewDidLoad() {
         super.viewDidLoad()
-
-        // Do any additional setup after loading the view.
-        if image != nil {
-            testImageView?.image = image
-        }
+        testImageView?.image = image
     }
 
-    override func didReceiveMemoryWarning() {
-        super.didReceiveMemoryWarning()
-        // Dispose of any resources that can be recreated.
-    }
-
+    // TODO: 추후 unwindSegue를 삭제하고 되돌릴 가능성이 있기에 놔둠
 //    @IBAction func cancelButtonDidTap(sender: UIBarButtonItem) {
 //        dismissViewControllerAnimated(true, completion: nil)
 //    }
     
     // MARK: - Navigation
 
-    // In a storyboard-based application, you will often want to do a little preparation before navigation
     override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?) {
         switch segueIdentifierForSegue(segue) {
         case .ShowShareResult:
@@ -65,6 +56,4 @@ class DressingViewController: UIViewController, SegueHandlerType {
         // 와의 연결 로직을 옮겨 준다.
         performSegueWithIdentifier(.ShowShareResult, sender: self)
     }
-    
-    
 }
