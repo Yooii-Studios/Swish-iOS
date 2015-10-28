@@ -213,15 +213,14 @@ class SwishTests: XCTestCase {
     func createPhoto() -> Photo {
         let postfix = Int(arc4random())
         
-        let photo = Photo.create()
+        let postfixDouble = Double(postfix)
+        let departLocation = CLLocation(latitude: 35.889972 + postfixDouble, longitude: 128.611332 + postfixDouble)
+        let photo = Photo.create(Photo.ID(-1), message: "msg\(postfix)", departLocation: departLocation)
         photo.fileName = "fn\(postfix)"
-        photo.message = "msg\(postfix)"
         
         photo.unreadMessageCount = postfix
         photo.hasBlockedChat = postfix % 2 == 0
         photo.hasOpenedChatRoom = postfix % 2 == 0
-        let postfixDouble = Double(postfix)
-        photo.departLocation = CLLocation(latitude: 35.889972 + postfixDouble, longitude: 128.611332 + postfixDouble)
         photo.arrivedLocation = CLLocation(latitude: 35.893105 + postfixDouble, longitude: 128.616192 + postfixDouble)
         
         return photo

@@ -11,13 +11,15 @@ import RealmSwift
 import CoreLocation
 import SwiftyJSON
 
+let invalidId: Photo.ID = -1
+let invalidMessage = ""
+
 enum ChatRoomBlockState: Int {
     case Unblock, Block
 }
 
 class Photo: Object {
     typealias ID = Int64
-    static let invalidId: ID = -1
     static let invalidName = ""
     private static let defaultPhotoState = PhotoState.Waiting
     private static let defaultChatRoomBlockState = ChatRoomBlockState.Unblock
@@ -25,9 +27,9 @@ class Photo: Object {
     // Mark: Attributes
     
     // required
-    dynamic var id: ID = invalidId
+    dynamic var id: Photo.ID = invalidId
+    dynamic var message = invalidMessage
     dynamic var fileName = invalidName
-    dynamic var message = ""
     dynamic var unreadMessageCount = 0
     dynamic var hasOpenedChatRoom = false
     let chatMessages = List<ChatMessage>()
@@ -47,15 +49,6 @@ class Photo: Object {
             chatRoomBlockStateRaw = newChatRoomBlockState.rawValue
         }
     }
-    var departLocation: CLLocation {
-        get {
-            return CLLocation(latitude: departLatitude, longitude: departLongitude)
-        }
-        set {
-            departLatitude = newValue.coordinate.latitude
-            departLongitude = newValue.coordinate.longitude
-        }
-    }
     var arrivedLocation: CLLocation? {
         get {
             let hasArrivedLocation =
@@ -67,6 +60,15 @@ class Photo: Object {
         set {
             arrivedLatitude = newValue?.coordinate.latitude ?? CLLocationDegrees.NaN
             arrivedLongitude = newValue?.coordinate.longitude ?? CLLocationDegrees.NaN
+        }
+    }
+    var departLocation: CLLocation {
+        get {
+            return CLLocation(latitude: departLatitude, longitude: departLongitude)
+        }
+        set {
+            departLatitude = newValue.coordinate.latitude
+            departLongitude = newValue.coordinate.longitude
         }
     }
     var photoState: PhotoState {
@@ -96,16 +98,7 @@ class Photo: Object {
     
     // backlink
     var sender: User {
-        let userCandidate: User
-        let meCandidates = linkingObjects(Me.self, forProperty: "photos")
-        if meCandidates.count > 0 {
-            userCandidate = meCandidates[0]
-        } else {
-            let otherCandidates = linkingObjects(OtherUser.self, forProperty: "photos")
-            userCandidate = otherCandidates[0]
-        }
-        
-        return userCandidate
+        return PhotoHelper.senderWithPhoto(self)
     }
     
     // Mark: init
@@ -125,11 +118,10 @@ class Photo: Object {
     // required
     private dynamic var chatRoomBlockStateRaw = defaultChatRoomBlockState.rawValue
     
-    private dynamic var departLatitude = CLLocationDegrees.NaN
-    private dynamic var departLongitude = CLLocationDegrees.NaN
-    
     private dynamic var arrivedLatitude = CLLocationDegrees.NaN
     private dynamic var arrivedLongitude = CLLocationDegrees.NaN
+    private dynamic var departLatitude = CLLocationDegrees.NaN
+    private dynamic var departLongitude = CLLocationDegrees.NaN
     
     private dynamic var photoStateRaw = defaultPhotoState.rawValue
     private dynamic var receivedUserId = User.invalidId
@@ -142,8 +134,11 @@ class Photo: Object {
         return ["hasBlockedChat", "chatRoomBlockState", "departLocation", "arrivedLocation", "photoState", "receiver"]
     }
     
-    final class func create() -> Photo {
-        return Photo()
+    final class func create(id: Photo.ID, message: String, departLocation: CLLocation) -> Photo {
+        let photo = Photo(id: id)
+        photo.message = message
+        photo.departLocation = departLocation
+        return photo
     }
 }
 

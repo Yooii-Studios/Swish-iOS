@@ -7,6 +7,7 @@
 //
 
 import Foundation
+import RealmSwift
 
 final class PhotoHelper {
     
@@ -14,5 +15,26 @@ final class PhotoHelper {
     
     final class func findIndexOfPhotoWithPhotoId(photoId: Photo.ID, inPhotos photos: [Photo]) -> Int {
         return photos.indexOf { $0.id == photoId } ?? invalidPhotoIndex
+    }
+    
+    // TODO: Realm에서 지원하게 된다면 senderWithRealmObject를 사용하는 메서드들을 하나로 묶자
+    final class func senderWithPhoto(photo: Photo) -> User {
+        return senderWithRealmObject(photo, forProperty: "photos")
+    }
+    
+    final class func senderWithTrendingPhoto(trendingPhoto: TrendingPhoto) -> User {
+        return senderWithRealmObject(trendingPhoto, forProperty: "trendingPhotos")
+    }
+    
+    private class func senderWithRealmObject(object: Object, forProperty: String) -> User {
+        let userCandidate: User
+        let meCandidates = object.linkingObjects(Me.self, forProperty: forProperty)
+        if meCandidates.count > 0 {
+            userCandidate = meCandidates[0]
+        } else {
+            let otherCandidates = object.linkingObjects(OtherUser.self, forProperty: forProperty)
+            userCandidate = otherCandidates[0]
+        }
+        return userCandidate
     }
 }
