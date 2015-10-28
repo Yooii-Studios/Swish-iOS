@@ -86,7 +86,9 @@ strip_invalid_archs() {
 if [[ "$CONFIGURATION" == "Debug" ]]; then
   install_framework "Pods/Alamofire.framework"
   install_framework "Pods/AlamofireImage.framework"
+  install_framework "Pods/CTAssetsPickerController.framework"
   install_framework "Pods/DateTools.framework"
+  install_framework "Pods/PureLayout.framework"
   install_framework "Pods/Realm.framework"
   install_framework "Pods/RealmSwift.framework"
   install_framework "Pods/SnapKit.framework"
@@ -95,7 +97,9 @@ fi
 if [[ "$CONFIGURATION" == "Release" ]]; then
   install_framework "Pods/Alamofire.framework"
   install_framework "Pods/AlamofireImage.framework"
+  install_framework "Pods/CTAssetsPickerController.framework"
   install_framework "Pods/DateTools.framework"
+  install_framework "Pods/PureLayout.framework"
   install_framework "Pods/Realm.framework"
   install_framework "Pods/RealmSwift.framework"
   install_framework "Pods/SnapKit.framework"
