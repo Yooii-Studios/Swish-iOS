@@ -8,7 +8,7 @@
 
 import UIKit
 
-class DressingViewController: UIViewController, SegueHandlerType {
+final class DressingViewController: UIViewController, SegueHandlerType {
     
     // MARK: SegueHandlerType
     
@@ -17,7 +17,7 @@ class DressingViewController: UIViewController, SegueHandlerType {
         case ShowShareResult
     }
     
-    var image: UIImage!
+    final var image: UIImage!
     
     @IBOutlet var testImageView: UIImageView!
 

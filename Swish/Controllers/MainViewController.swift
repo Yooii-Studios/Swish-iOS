@@ -10,9 +10,9 @@ import UIKit
 import SnapKit
 import CTAssetsPickerController
 
-class MainViewController: UIViewController, UINavigationControllerDelegate, PhotoPickable {
+final class MainViewController: UIViewController, UINavigationControllerDelegate, PhotoPickable {
 
-    var photoPickerDelegate: PhotoPickerDelegateHandler?
+    final var photoPickerDelegate: PhotoPickerDelegateHandler?
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -46,7 +46,7 @@ class MainViewController: UIViewController, UINavigationControllerDelegate, Phot
         print("unwindFromDressingViewController")
     }
     
-    func showDressingViewContoller(image: UIImage) {
+    final func showDressingViewContoller(image: UIImage) {
         let storyboard = UIStoryboard(name: "Dressing", bundle: nil)
         let navigationViewController =
         storyboard.instantiateViewControllerWithIdentifier("dressingNaviViewController") as! UINavigationController
