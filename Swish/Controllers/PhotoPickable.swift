@@ -19,7 +19,7 @@
 import Foundation
 import CTAssetsPickerController
 
-final class PhotoPickerDelegateHandler: NSObject, CTAssetsPickerControllerDelegate {
+final class PhotoPickerHandler: NSObject, CTAssetsPickerControllerDelegate {
     
     typealias Completion = (image: UIImage) -> Void
     
@@ -56,7 +56,7 @@ final class PhotoPickerDelegateHandler: NSObject, CTAssetsPickerControllerDelega
 
 protocol PhotoPickable {
     
-    var photoPickerDelegate: PhotoPickerDelegateHandler? { get }
+    var photoPickerHandler: PhotoPickerHandler? { get }
 }
 
 extension PhotoPickable where Self: UIViewController {
@@ -68,7 +68,7 @@ extension PhotoPickable where Self: UIViewController {
                     // TODO: 불필요한 주석일 순 있으나 샘플 프로젝트를 계속 활용해 가야 하기에 마지막 마무리 후 일괄적으로 삭제 예정
                     // init
                     let picker = CTAssetsPickerController()
-                    picker.delegate = self.photoPickerDelegate
+                    picker.delegate = self.photoPickerHandler
                     
                     // set default album (Camera Roll)
                     picker.defaultAssetCollection = PHAssetCollectionSubtype.SmartAlbumUserLibrary
