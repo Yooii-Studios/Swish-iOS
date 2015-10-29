@@ -12,12 +12,12 @@ import CTAssetsPickerController
 
 final class MainViewController: UIViewController, UINavigationControllerDelegate, PhotoPickable {
 
-    final var photoPickerDelegate: PhotoPickerDelegateHandler?
+    final var photoPickerHandler: PhotoPickerHandler?
     
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        photoPickerDelegate = PhotoPickerDelegateHandler() { image in
+        photoPickerHandler = PhotoPickerHandler() { image in
             self.showDressingViewContoller(image)
         }
     }
