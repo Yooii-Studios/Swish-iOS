@@ -53,22 +53,34 @@ final class DressingViewController: UIViewController, SegueHandlerType {
 
     @IBAction func shareButtonDidTap(sender: AnyObject) {
         // TODO: 우선 대충만 구현, 추후 보강 필요
-        upscaleViews { isSuccessful in
-            self.downScaleAndTranslate { isSuccessful in
-                self.moveNavigationBarAndShareButton { isSuccessful in
+        upscaleViews { _ in
+            self.downScaleAndTranslate { _ in
+                self.moveNavigationBarAndShareButton { _ in
                     self.addExchangeStatusView()
-                    self.exchangePhoto { photos in
-                        print("PhotoExchanger complete: \(photos)")
-                        self.performSegueWithIdentifier(.ShowShareResult, sender: self)
-                    }
+                    self.exchangePhoto(
+                        sendCompletion: {
+//                            let if = 5
+                        }, receiveCompletion: { photos in
+                            self.performSegueWithIdentifier(.ShowShareResult, sender: self)
+                        }
+                    )
                 }
             }
         }
     }
     
+    // MARK: - Photo Exchange
+    
+    func exchangePhoto(sendCompletion sendCompletion: PhotoExchanger.SendCompletion, receiveCompletion: PhotoExchanger.ReceiveCompletion) {
+        let photo = Photo.create(message: textField.text!, departLocation: LocationManager.dummyLocation)
+        let image = self.image
+        PhotoExchanger.exchange(photo, image: image, departLocation: LocationManager.dummyLocation,
+            sendCompletion: sendCompletion, receiveCompletion: receiveCompletion)
+    }
+    
     // MARK: - Animation
     
-    func upscaleViews(completion: ((Bool) -> Void)?) {
+    func upscaleViews(completion: (Bool) -> Void) {
         UIView.animateWithDuration(0.2, delay: 0.3, options: UIViewAnimationOptions(),
             animations: {
                 self.testImageView.transform = CGAffineTransformMakeScale(1.2, 1.2)
@@ -76,7 +88,7 @@ final class DressingViewController: UIViewController, SegueHandlerType {
             }, completion: completion)
     }
     
-    func downScaleAndTranslate(completion: ((Bool) -> Void)?) {
+    func downScaleAndTranslate(completion: (Bool) -> Void) {
         UIView.animateWithDuration(0.3,
             animations: {
                 self.testImageView.transform = CGAffineTransformMakeScale(0.001, 0.001)
@@ -86,7 +98,7 @@ final class DressingViewController: UIViewController, SegueHandlerType {
             }, completion: completion)
     }
     
-    func moveNavigationBarAndShareButton(completion: ((Bool) -> Void)?) {
+    func moveNavigationBarAndShareButton(completion: (Bool) -> Void) {
         UIView.animateWithDuration(0.5, delay: 0, options: .CurveLinear,
             animations: {
                 if let navigationBar = self.navigationController?.navigationBar {
@@ -112,14 +124,5 @@ final class DressingViewController: UIViewController, SegueHandlerType {
             make.centerX.equalTo(self.view)
             make.top.equalTo(self.shareButton.snp_bottom).offset(30)
         }
-    }
-    
-    // MARK: - Photo Exchange
-    
-    func exchangePhoto(completion: PhotoExchanger.Completion) {
-        let photo = Photo.create(message: textField.text!, departLocation: LocationManager.dummyLocation)
-        let image = self.image
-        PhotoExchanger.exchange(photo, image: image, departLocation: LocationManager.dummyLocation,
-            completion: completion)
     }
 }
