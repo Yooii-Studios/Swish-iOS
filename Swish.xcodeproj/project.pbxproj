@@ -14,6 +14,7 @@
 		573713291BD7165A006B272A /* Timestamp.swift in Sources */ = {isa = PBXBuildFile; fileRef = 573713281BD7165A006B272A /* Timestamp.swift */; };
 		5737132B1BD72BDA006B272A /* List+Bridge.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5737132A1BD72BDA006B272A /* List+Bridge.swift */; };
 		5737132D1BD73101006B272A /* UserHelper.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5737132C1BD73101006B272A /* UserHelper.swift */; };
+		575354C31BE1CB7C0034F24E /* DeviceHelper.swift in Sources */ = {isa = PBXBuildFile; fileRef = 575354C21BE1CB7C0034F24E /* DeviceHelper.swift */; };
 		5765CEF81BA2EC9C00DE6A05 /* KeychainItemWrapper.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5765CEF71BA2EC9C00DE6A05 /* KeychainItemWrapper.swift */; };
 		576A81991BC7545A0064A70F /* StickerServer.swift in Sources */ = {isa = PBXBuildFile; fileRef = 576A81981BC7545A0064A70F /* StickerServer.swift */; };
 		5772A7DC1BD5F23F00A7F880 /* PhotoReceiver.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5772A7DB1BD5F23F00A7F880 /* PhotoReceiver.swift */; };
@@ -84,6 +85,7 @@
 		573713281BD7165A006B272A /* Timestamp.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Timestamp.swift; sourceTree = "<group>"; };
 		5737132A1BD72BDA006B272A /* List+Bridge.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "List+Bridge.swift"; sourceTree = "<group>"; };
 		5737132C1BD73101006B272A /* UserHelper.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UserHelper.swift; sourceTree = "<group>"; };
+		575354C21BE1CB7C0034F24E /* DeviceHelper.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DeviceHelper.swift; sourceTree = "<group>"; };
 		5765CEF71BA2EC9C00DE6A05 /* KeychainItemWrapper.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = KeychainItemWrapper.swift; sourceTree = "<group>"; };
 		576A81981BC7545A0064A70F /* StickerServer.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = StickerServer.swift; sourceTree = "<group>"; };
 		5772A7DB1BD5F23F00A7F880 /* PhotoReceiver.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PhotoReceiver.swift; sourceTree = "<group>"; };
@@ -327,6 +329,8 @@
 				5772A7DD1BD5F71E00A7F880 /* LocationManager.swift */,
 				5772A7DF1BD626EA00A7F880 /* NSCache+LowMemory.swift */,
 				573713281BD7165A006B272A /* Timestamp.swift */,
+				F20CC6751BDB878F00075088 /* SegueHandlerType.swift */,
+				575354C21BE1CB7C0034F24E /* DeviceHelper.swift */,
 			);
 			path = Helpers;
 			sourceTree = "<group>";
@@ -512,6 +516,7 @@
 				579673761B9FFE2000382247 /* SwishDatabase.swift in Sources */,
 				5772A7DC1BD5F23F00A7F880 /* PhotoReceiver.swift in Sources */,
 				F245DCB11B9E7B2D0072308B /* AppDelegate.swift in Sources */,
+				575354C31BE1CB7C0034F24E /* DeviceHelper.swift in Sources */,
 				576A81991BC7545A0064A70F /* StickerServer.swift in Sources */,
 				F266D9021B9F159D00BDEB75 /* MyInfoViewController.swift in Sources */,
 				5776B92E1BD08F08009005B5 /* PhotoSender.swift in Sources */,
