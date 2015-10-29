@@ -35,7 +35,7 @@ class KeychainItemWrapper {
         self.genericPasswordQuery[kSecAttrGeneric as String] = identifier
         
         if (accessGroup != nil) {
-            if TARGET_IPHONE_SIMULATOR != 1 {
+            if DeviceHelper.isDevice {
                 self.genericPasswordQuery[kSecAttrAccessGroup as String] = accessGroup
             }
         }
@@ -53,7 +53,7 @@ class KeychainItemWrapper {
             
             self.keychainItemData[kSecAttrGeneric as String] = identifier
             if (accessGroup != nil) {
-                if TARGET_IPHONE_SIMULATOR != 1 {
+                if DeviceHelper.isDevice {
                     self.keychainItemData[kSecAttrAccessGroup as String] = accessGroup
                 }
             }
@@ -156,7 +156,7 @@ class KeychainItemWrapper {
             var tempCheck = self.dictToSecItemData(self.keychainItemData)
             tempCheck.removeValueForKey(kSecClass as String)
             
-            if TARGET_IPHONE_SIMULATOR == 1 {
+            if DeviceHelper.isSimulator {
                 tempCheck.removeValueForKey(kSecAttrAccessGroup as String)
             }
             
