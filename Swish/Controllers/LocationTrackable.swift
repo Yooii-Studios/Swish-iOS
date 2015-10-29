@@ -1,5 +1,32 @@
 //
 //  LocationTrackable.swift
+//   UIViewController에서 구현해 현재 위치를 구할 수 있는 기능을 제공하는 protocol extension
+//
+//   Usage:
+//    1. LocationTrackable protocol을 conform하도록 아래 요구사항 구현
+//      var locationTrackType: LocationTrackType { get }
+//      var locationTrackHandler: LocationTrackHandler! { get }
+//      func locationDidUpdate(location: CLLocation)
+//      func authorizationDidFailed(status: CLAuthorizationStatus)
+//        ** authorizationDidFailed의 status를 체크, 실패 원인에 따른 예외처리 호출부에서 구현 필요
+//
+//    2. LocationTrackHandler 인스턴스 생성
+//      override func viewDidLoad() {
+//          super.viewDidLoad()
+//
+//          locationTrackHandler = LocationTrackHandler(delegate: self)
+//      }
+//
+//    3. 필요한 곳에서 requestLocationUpdate(), stopUpdatingLocation() 호출
+//    ex)
+//      override func viewWillAppear(animated: Bool) {
+//          requestLocationUpdate()
+//      }
+//
+//      override func viewWillDisappear(animated: Bool) {
+//          stopUpdatingLocation()
+//      }
+//
 //  Swish
 //
 //  Created by 정동현 on 2015. 10. 29..
@@ -34,16 +61,26 @@ final class LocationTrackHandler: NSObject, CLLocationManagerDelegate {
         self.locationManager.delegate = self
     }
     
+    // MARK: - Delegate functions
+    
     func locationManager(manager: CLLocationManager, didChangeAuthorizationStatus status: CLAuthorizationStatus) {
+        print("NotDetermined: \(status == .NotDetermined)")
+        print("Denied: \(status == .Denied)")
+        print("AuthorizedWhenInUse: \(status == .AuthorizedWhenInUse)")
+        guard let locationTrackable = locationTrackable else {
+            return
+        }
+        guard status != .NotDetermined else {
+            // Ignored: 아직 유저가 위치 서비스 사용 결정하지 않은 상태
+            return
+        }
         guard status == .AuthorizedWhenInUse else {
             print("authorization failed")
+            locationTrackable.authorizationDidFailed(status)
             return
         }
         print("authorization success")
-        guard let locationTrackType = locationTrackable?.locationTrackType else {
-            return
-        }
-        requestLocation(manager, locationTrackType: locationTrackType)
+        requestLocation(manager, locationTrackType: locationTrackable.locationTrackType)
     }
     
     func locationManager(manager: CLLocationManager, didUpdateLocations locations: [CLLocation]) {
@@ -53,30 +90,6 @@ final class LocationTrackHandler: NSObject, CLLocationManagerDelegate {
             stopRequestLocation(manager)
         }
     }
-    
-    func locationManager(manager: CLLocationManager, didFailWithError error: NSError) {
-        print("locationManager didFailWithError")
-    }
-    
-    func locationManager(manager: CLLocationManager, didUpdateHeading newHeading: CLHeading) {
-        print("didUpdateHeading")
-    }
-    
-    func locationManagerDidPauseLocationUpdates(manager: CLLocationManager) {
-        print("locationManagerDidPauseLocationUpdates")
-    }
-    
-    func locationManagerDidResumeLocationUpdates(manager: CLLocationManager) {
-        print("locationManagerDidResumeLocationUpdates")
-    }
-    
-    func locationManager(manager: CLLocationManager, didFinishDeferredUpdatesWithError error: NSError?) {
-        print("didFinishDeferredUpdatesWithError")
-    }
-    
-    func locationManager(manager: CLLocationManager, didVisit visit: CLVisit) {
-        print("didVisit")
-    }
 }
 
 protocol LocationTrackable: class {
@@ -84,6 +97,7 @@ protocol LocationTrackable: class {
     var locationTrackType: LocationTrackType { get }
     var locationTrackHandler: LocationTrackHandler! { get }
     
+    func authorizationDidFailed(status: CLAuthorizationStatus)
     func locationDidUpdate(location: CLLocation)
 }
 

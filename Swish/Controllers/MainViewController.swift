@@ -10,11 +10,9 @@ import UIKit
 import SnapKit
 import CTAssetsPickerController
 
-final class MainViewController: UIViewController, UINavigationControllerDelegate, PhotoPickable, LocationTrackable {
+final class MainViewController: UIViewController, UINavigationControllerDelegate, PhotoPickable {
 
     final var photoPickerDelegate: PhotoPickerDelegateHandler?
-    final var locationTrackType = LocationTrackType.OneShot
-    final var locationTrackHandler: LocationTrackHandler!
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -22,20 +20,6 @@ final class MainViewController: UIViewController, UINavigationControllerDelegate
         photoPickerDelegate = PhotoPickerDelegateHandler() { image in
             self.showDressingViewContoller(image)
         }
-        
-        locationTrackHandler = LocationTrackHandler(delegate: self)
-    }
-    
-    override func viewWillAppear(animated: Bool) {
-        requestLocationUpdate()
-    }
-    
-    override func viewWillDisappear(animated: Bool) {
-        stopUpdatingLocation()
-    }
-    
-    func locationDidUpdate(location: CLLocation) {
-//        print("locationDidUpdate: \(location)")
     }
     
     // FIXME: 메서드 이름 변경하고 Photo Trends가 될 예정
