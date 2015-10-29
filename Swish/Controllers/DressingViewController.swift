@@ -22,7 +22,7 @@ final class DressingViewController: UIViewController, SegueHandlerType {
     @IBOutlet var testImageView: UIImageView!
     @IBOutlet weak var textField: UITextField!
     @IBOutlet weak var shareButton: UIButton!
-    @IBOutlet var exchangeStatusView: UIView!
+    @IBOutlet var exchangeStatusLabel: UILabel!
 
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -59,7 +59,8 @@ final class DressingViewController: UIViewController, SegueHandlerType {
                     self.addExchangeStatusView()
                     self.exchangePhoto(
                         sendCompletion: {
-//                            let if = 5
+                            // TODO: 로컬라이징 필요
+                            self.exchangeStatusLabel.text = "Receiving..."
                         }, receiveCompletion: { photos in
                             self.performSegueWithIdentifier(.ShowShareResult, sender: self)
                         }
@@ -91,8 +92,8 @@ final class DressingViewController: UIViewController, SegueHandlerType {
     func downScaleAndTranslate(completion: (Bool) -> Void) {
         UIView.animateWithDuration(0.3,
             animations: {
-                self.testImageView.transform = CGAffineTransformMakeScale(0.001, 0.001)
-                self.textField.transform = CGAffineTransformMakeScale(0.001, 0.001)
+                self.testImageView.transform = CGAffineTransformMakeScale(0.01, 0.01)
+                self.textField.transform = CGAffineTransformMakeScale(0.01, 0.01)
                 self.testImageView.alpha = 0
                 self.textField.alpha = 0
             }, completion: completion)
@@ -119,8 +120,10 @@ final class DressingViewController: UIViewController, SegueHandlerType {
     }
     
     func addExchangeStatusView() {
-        self.view.addSubview(self.exchangeStatusView)
-        self.exchangeStatusView.snp_makeConstraints { make in
+        self.view.addSubview(self.exchangeStatusLabel)
+        // 로컬라이징 필요
+        self.exchangeStatusLabel.text = "Sending..."
+        self.exchangeStatusLabel.snp_makeConstraints { make in
             make.centerX.equalTo(self.view)
             make.top.equalTo(self.shareButton.snp_bottom).offset(30)
         }
