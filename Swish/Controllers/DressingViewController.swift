@@ -39,9 +39,9 @@ final class DressingViewController: UIViewController, SegueHandlerType {
     override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?) {
         switch segueIdentifierForSegue(segue) {
         case .ShowShareResult:
-            // TODO: 여기서부터 초기화는 동현이 추후에 해줄 것
-            //            let destinationController = segue.destinationViewController as! ShareResultController
-            //            destinationController.image = image
+            // TODO: 공유 결과 화면에 필요 데이터 넣기 및 초기화 필요
+//            let destinationController = segue.destinationViewController as! ShareResultController
+//            destinationController.image = image
             print("showShareResult")
             
         case .UnwindToMain:
@@ -53,58 +53,73 @@ final class DressingViewController: UIViewController, SegueHandlerType {
 
     @IBAction func shareButtonDidTap(sender: AnyObject) {
         // TODO: 우선 대충만 구현, 추후 보강 필요
+        upscaleViews { isSuccessful in
+            self.downScaleAndTranslate { isSuccessful in
+                self.moveNavigationBarAndShareButton { isSuccessful in
+                    self.addExchangeStatusView()
+                    self.exchangePhoto { photos in
+                        print("PhotoExchanger complete: \(photos)")
+                        self.performSegueWithIdentifier(.ShowShareResult, sender: self)
+                    }
+                }
+            }
+        }
+    }
+    
+    // MARK: - Animation
+    
+    func upscaleViews(completion: ((Bool) -> Void)?) {
         UIView.animateWithDuration(0.2, delay: 0.3, options: UIViewAnimationOptions(),
             animations: {
                 self.testImageView.transform = CGAffineTransformMakeScale(1.2, 1.2)
                 self.textField.transform = CGAffineTransformMakeScale(1.2, 1.2)
-            }, completion: { isSuccessful in
-                UIView.animateWithDuration(0.3,
-                    animations: {
-                        self.testImageView.transform = CGAffineTransformMakeScale(0.001, 0.001)
-                        self.textField.transform = CGAffineTransformMakeScale(0.001, 0.001)
-                        self.testImageView.alpha = 0
-                        self.textField.alpha = 0
-                    }, completion: { isSuccessful in
-                        UIView.animateWithDuration(0.5, delay: 0, options: .CurveLinear,
-                            animations: {
-                                if let navigationBar = self.navigationController?.navigationBar {
-                                    let statusBarHeight = UIApplication.sharedApplication().statusBarFrame.size.height
-                                    navigationBar.frame.origin.y -= (navigationBar.frame.height + statusBarHeight)
-                                }
-                                
-                                // TODO: 애드몹 높이를 뺀 값에서 버튼이 적당히 중앙에 맞게 높이를 맞추어줄 것
+            }, completion: completion)
+    }
+    
+    func downScaleAndTranslate(completion: ((Bool) -> Void)?) {
+        UIView.animateWithDuration(0.3,
+            animations: {
+                self.testImageView.transform = CGAffineTransformMakeScale(0.001, 0.001)
+                self.textField.transform = CGAffineTransformMakeScale(0.001, 0.001)
+                self.testImageView.alpha = 0
+                self.textField.alpha = 0
+            }, completion: completion)
+    }
+    
+    func moveNavigationBarAndShareButton(completion: ((Bool) -> Void)?) {
+        UIView.animateWithDuration(0.5, delay: 0, options: .CurveLinear,
+            animations: {
+                if let navigationBar = self.navigationController?.navigationBar {
+                    let statusBarHeight = UIApplication.sharedApplication().statusBarFrame.size.height
+                    navigationBar.frame.origin.y -= (navigationBar.frame.height + statusBarHeight)
+                }
+                
+                // TODO: 애드몹 높이를 뺀 값에서 버튼이 적당히 중앙에 맞게 높이를 맞추어줄 것
 //                                var buttonFrame = self.shareButton.frame
 //                                buttonFrame.origin.y -= 400
 //                                self.shareButton.frame = buttonFrame
-                                
-                                self.shareButton.snp_makeConstraints { make in
-                                    make.top.equalTo((self.topLayoutGuide as! UIView).snp_bottom).offset(50)
-                                }
-                                self.shareButton.layoutIfNeeded()
-                            }, completion: { isSuccessful in
-                                self.view.addSubview(self.exchangeStatusView)
-                                self.exchangeStatusView.snp_makeConstraints { make in
-                                    make.centerX.equalTo(self.view)
-                                    make.top.equalTo(self.shareButton.snp_bottom).offset(30)
-                                }
-                                
-                                // TODO: 추후 전송 중 애니메이션 구현 필요
-//                                self.performSegueWithIdentifier(.ShowShareResult, sender: self)
-                        })
-                })
-        })
-        
-        // TODO: 동현이 넣은 샘플 코드. 나중에 확인 후 참고해서 로직 구현
-        //        let photo = Photo.create(message: "", departLocation: LocationManager.dummyLocation)
-        //        let image = UIImage(contentsOfFile: FileHelper.filePathWithName("qwerasdf.png"))!
-        //        PhotoExchanger.exchange(photo, image: image, departLocation: LocationManager.dummyLocation,
-        //            completion: { (photos) -> Void in
-        //                print("PhotoExchanger complete: \(photos)")
-        //        })
-        
-        // TODO:
-        // 애니메이션 없이 동현이 사진 보내기 로직을 구현하고,
-        // 콜백에서 여기에 미리 만들어둔 ShareResultViewController
-        // 와의 연결 로직을 옮겨 준다.
+                
+                self.shareButton.snp_makeConstraints { make in
+                    make.top.equalTo((self.topLayoutGuide as! UIView).snp_bottom).offset(50)
+                }
+                self.shareButton.layoutIfNeeded()
+        }, completion: completion)
+    }
+    
+    func addExchangeStatusView() {
+        self.view.addSubview(self.exchangeStatusView)
+        self.exchangeStatusView.snp_makeConstraints { make in
+            make.centerX.equalTo(self.view)
+            make.top.equalTo(self.shareButton.snp_bottom).offset(30)
+        }
+    }
+    
+    // MARK: - Photo Exchange
+    
+    func exchangePhoto(completion: PhotoExchanger.Completion) {
+        let photo = Photo.create(message: textField.text!, departLocation: LocationManager.dummyLocation)
+        let image = self.image
+        PhotoExchanger.exchange(photo, image: image, departLocation: LocationManager.dummyLocation,
+            completion: completion)
     }
 }
