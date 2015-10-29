@@ -10,73 +10,73 @@ import Foundation
 
 enum LocationTrackType { case OneShot, Track }
 
+private func requestLocation(locationManager: CLLocationManager, locationTrackType: LocationTrackType) {
+    if #available(iOS 9.0, *), locationTrackType == .OneShot {
+        locationManager.requestLocation()
+    } else {
+        locationManager.startUpdatingLocation()
+    }
+}
+
+private func stopRequestLocation(locationManager: CLLocationManager) {
+    locationManager.stopUpdatingLocation()
+}
+
 final class LocationTrackHandler: NSObject, CLLocationManagerDelegate {
     
     private var locationManager: CLLocationManager
-    weak private final var delegate: LocationTrackable?
+    weak private final var locationTrackable: LocationTrackable?
     
     init(delegate: LocationTrackable?) {
-        self.delegate = delegate
+        self.locationTrackable = delegate
         self.locationManager = CLLocationManager()
         super.init()
         self.locationManager.delegate = self
     }
     
+    func locationManager(manager: CLLocationManager, didChangeAuthorizationStatus status: CLAuthorizationStatus) {
+        guard status == .AuthorizedWhenInUse else {
+            print("authorization failed")
+            return
+        }
+        print("authorization success")
+        guard let locationTrackType = locationTrackable?.locationTrackType else {
+            return
+        }
+        requestLocation(manager, locationTrackType: locationTrackType)
+    }
+    
     func locationManager(manager: CLLocationManager, didUpdateLocations locations: [CLLocation]) {
         print("didUpdateLocations: \(locations)")
-        delegate?.locationDidUpdate(locations.last!)
+        locationTrackable?.locationDidUpdate(locations.last!)
+        if locationTrackable?.locationTrackType == .OneShot {
+            stopRequestLocation(manager)
+        }
     }
     
     func locationManager(manager: CLLocationManager, didFailWithError error: NSError) {
         print("locationManager didFailWithError")
     }
     
-    func locationManager(manager: CLLocationManager, didChangeAuthorizationStatus status: CLAuthorizationStatus) {
-        print(status)
-        if status == .AuthorizedWhenInUse {
-            print("authorization success")
-            manager.startUpdatingLocation()
-            //            if #available(iOS 9.0, *) {
-            //                locationManager.requestLocation()
-            //            } else {
-            //                locationManager.startMonitoringSignificantLocationChanges()
-            //            }
-        } else {
-            print("authorization failed")
-        }
+    func locationManager(manager: CLLocationManager, didUpdateHeading newHeading: CLHeading) {
+        print("didUpdateHeading")
     }
     
-    //    func locationManager(manager: CLLocationManager, didUpdateLocations locations: [CLLocation])
-    //
-    //    func locationManager(manager: CLLocationManager, didUpdateHeading newHeading: CLHeading)
-    //
-    //    func locationManagerShouldDisplayHeadingCalibration(manager: CLLocationManager) -> Bool
-    //
-    //    func locationManager(manager: CLLocationManager, didDetermineState state: CLRegionState, forRegion region: CLRegion)
-    //
-    //    func locationManager(manager: CLLocationManager, didRangeBeacons beacons: [CLBeacon], inRegion region: CLBeaconRegion)
-    //
-    //    func locationManager(manager: CLLocationManager, rangingBeaconsDidFailForRegion region: CLBeaconRegion, withError error: NSError)
-    //
-    //    func locationManager(manager: CLLocationManager, didEnterRegion region: CLRegion)
-    //
-    //    func locationManager(manager: CLLocationManager, didExitRegion region: CLRegion)
-    //
-    //    func locationManager(manager: CLLocationManager, didFailWithError error: NSError)
-    //
-    //    func locationManager(manager: CLLocationManager, monitoringDidFailForRegion region: CLRegion?, withError error: NSError)
-    //
-    //    func locationManager(manager: CLLocationManager, didChangeAuthorizationStatus status: CLAuthorizationStatus)
-    //
-    //    func locationManager(manager: CLLocationManager, didStartMonitoringForRegion region: CLRegion)
-    //
-    //    func locationManagerDidPauseLocationUpdates(manager: CLLocationManager)
-    //
-    //    func locationManagerDidResumeLocationUpdates(manager: CLLocationManager)
-    //
-    //    func locationManager(manager: CLLocationManager, didFinishDeferredUpdatesWithError error: NSError?)
-    //    
-    //    func locationManager(manager: CLLocationManager, didVisit visit: CLVisit)
+    func locationManagerDidPauseLocationUpdates(manager: CLLocationManager) {
+        print("locationManagerDidPauseLocationUpdates")
+    }
+    
+    func locationManagerDidResumeLocationUpdates(manager: CLLocationManager) {
+        print("locationManagerDidResumeLocationUpdates")
+    }
+    
+    func locationManager(manager: CLLocationManager, didFinishDeferredUpdatesWithError error: NSError?) {
+        print("didFinishDeferredUpdatesWithError")
+    }
+    
+    func locationManager(manager: CLLocationManager, didVisit visit: CLVisit) {
+        print("didVisit")
+    }
 }
 
 protocol LocationTrackable: class {
@@ -102,11 +102,16 @@ extension LocationTrackable where Self: UIViewController {
             locationTrackHandler.locationManager.requestWhenInUseAuthorization()
             return
         }
-        locationTrackHandler.locationManager.startUpdatingLocation()
-        print("recent location:\(locationTrackHandler.locationManager.location)")
+        // cache가 있고 one shot인 경우 위치를 요청할 필요가 없으므로 알린 후 끝냄
+        if let recentLocation = locationTrackHandler.locationManager.location where locationTrackType == .OneShot {
+            print("recent location:\(recentLocation)")
+            locationDidUpdate(recentLocation)
+        } else {
+            requestLocation(locationTrackHandler.locationManager, locationTrackType: locationTrackType)
+        }
     }
     
     func stopUpdatingLocation() {
-        locationTrackHandler.locationManager.stopUpdatingLocation()
+        stopRequestLocation(locationTrackHandler.locationManager)
     }
 }

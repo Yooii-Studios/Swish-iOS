@@ -24,12 +24,18 @@ final class MainViewController: UIViewController, UINavigationControllerDelegate
         }
         
         locationTrackHandler = LocationTrackHandler(delegate: self)
+    }
+    
+    override func viewWillAppear(animated: Bool) {
         requestLocationUpdate()
     }
     
-    func locationDidUpdate(location: CLLocation) {
-        print("locationManagerDidUpdateLocations: \(location)")
+    override func viewWillDisappear(animated: Bool) {
         stopUpdatingLocation()
+    }
+    
+    func locationDidUpdate(location: CLLocation) {
+//        print("locationDidUpdate: \(location)")
     }
     
     // FIXME: 메서드 이름 변경하고 Photo Trends가 될 예정
