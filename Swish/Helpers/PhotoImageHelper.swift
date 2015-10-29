@@ -13,7 +13,7 @@ final class PhotoImageHelper {
     
     typealias OnSaveImageCallback = (fileName: String) -> Void
     
-    private static let cache = NSCache()
+    private static let cache = NSCache.createWithMemoryWarningObserver()
     
     final class func imageWithPhoto(photo: Photo, onSuccess: (image: UIImage?) -> ()) {
         let tag = Timestamp.startAndGetTag()
