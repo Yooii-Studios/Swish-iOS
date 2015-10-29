@@ -10,24 +10,26 @@ import Foundation
 
 final class PhotoExchanger {
     
-    typealias Completion = (photos: [Photo]?) -> Void
-    private typealias SendPhotoCompletion = (sentPhotoCount: Int) -> Void
+    typealias SendCompletion = () -> Void
+    typealias ReceiveCompletion = (photos: [Photo]?) -> Void
     
-    final class func exchange(photo: Photo, image: UIImage, departLocation: CLLocation, completion: Completion) {
-        let photoSendRequest = createPhotoSendRequest(photo, image: image, completion: { sentPhotoCount in
-            guard sentPhotoCount > 0 else {
-                completion(photos: nil)
-                return
-            }
-            let photoReceiveRequest = createPhotoReceiveRequest(sentPhotoCount, departLocation: departLocation,
-                completion: completion)
-            PhotoReceiver.execute(photoReceiveRequest)
-        })
-        PhotoSender.execute(photoSendRequest)
+    final class func exchange(photo: Photo, image: UIImage, departLocation: CLLocation, sendCompletion: SendCompletion,
+        receiveCompletion: ReceiveCompletion) {
+            let photoSendRequest = createPhotoSendRequest(photo, image: image, completion: { sentPhotoCount in
+                sendCompletion()
+                guard sentPhotoCount > 0 else {
+                    receiveCompletion(photos: nil)
+                    return
+                }
+                let photoReceiveRequest = createPhotoReceiveRequest(sentPhotoCount, departLocation: departLocation,
+                    completion: receiveCompletion)
+                PhotoReceiver.execute(photoReceiveRequest)
+            })
+            PhotoSender.execute(photoSendRequest)
     }
     
     private final class func createPhotoSendRequest(photo: Photo, image: UIImage,
-        completion: SendPhotoCompletion) -> PhotoSendRequest {
+        completion: (sentPhotoCount: Int) -> Void) -> PhotoSendRequest {
         return PhotoSendRequest(photos: [photo], images: [image],
             onSendPhotoCallback: { photoSendState in
                 // Ignored: iOS 초기 버전의 최대 전송 사진 갯수가 1개 이므로 따로 UI업데이트가 필요하지 않다고 판단
@@ -37,7 +39,7 @@ final class PhotoExchanger {
     }
     
     private final class func createPhotoReceiveRequest(sentPhotoCount: Int, departLocation: CLLocation,
-        completion: Completion) -> PhotoReceiveRequest {
+        completion: ReceiveCompletion) -> PhotoReceiveRequest {
             return PhotoReceiveRequest(requestCount: sentPhotoCount, currentLocation: departLocation,
                 onReceiveAllPhotosCallback: { (photos) -> Void in
                     completion(photos: photos)
