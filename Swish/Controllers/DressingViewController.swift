@@ -20,6 +20,8 @@ final class DressingViewController: UIViewController, SegueHandlerType {
     final var image: UIImage!
     
     @IBOutlet var testImageView: UIImageView!
+    @IBOutlet weak var textField: UITextField!
+    @IBOutlet weak var shareButton: UIButton!
 
     override func viewDidLoad() {
         super.viewDidLoad()
