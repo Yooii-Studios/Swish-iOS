@@ -6,9 +6,10 @@
 //    1. LocationTrackable protocol을 conform하도록 아래 요구사항 구현
 //      var locationTrackType: LocationTrackType { get }
 //      var locationTrackHandler: LocationTrackHandler! { get }
+//
 //      func locationDidUpdate(location: CLLocation)
 //      func authorizationDidFailed(status: CLAuthorizationStatus)
-//        ** authorizationDidFailed의 status를 체크, 실패 원인에 따른 예외처리 호출부에서 구현 필요
+//        -> status를 체크, 실패 원인에 따른 예외처리 호출부에서 구현 필요
 //
 //    2. LocationTrackHandler 인스턴스 생성
 //      override func viewDidLoad() {
