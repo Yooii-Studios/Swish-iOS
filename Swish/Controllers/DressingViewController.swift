@@ -73,14 +73,18 @@ final class DressingViewController: UIViewController, SegueHandlerType {
                                 }
                                 
                                 // TODO: 애드몹 높이를 뺀 값에서 버튼이 적당히 중앙에 맞게 높이를 맞추어줄 것
-                                var buttonFrame = self.shareButton.frame
-                                buttonFrame.origin.y -= 400
-                                self.shareButton.frame = buttonFrame
+//                                var buttonFrame = self.shareButton.frame
+//                                buttonFrame.origin.y -= 400
+//                                self.shareButton.frame = buttonFrame
+                                
+                                self.shareButton.snp_makeConstraints { make in
+                                    make.top.equalTo((self.topLayoutGuide as! UIView).snp_bottom).offset(50)
+                                }
+                                self.shareButton.layoutIfNeeded()
                             }, completion: { isSuccessful in
                                 self.view.addSubview(self.exchangeStatusView)
                                 self.exchangeStatusView.snp_makeConstraints { make in
-                                    make.leading.equalTo(self.view)
-                                    make.trailing.equalTo(self.view)
+                                    make.centerX.equalTo(self.view)
                                     make.top.equalTo(self.shareButton.snp_bottom).offset(30)
                                 }
                                 
