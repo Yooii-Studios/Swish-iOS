@@ -73,9 +73,9 @@ final class DressingViewController: UIViewController, SegueHandlerType {
     // MARK: - Photo Exchange
     
     func exchangePhoto(sendCompletion sendCompletion: PhotoExchanger.SendCompletion, receiveCompletion: PhotoExchanger.ReceiveCompletion) {
+        // 동현과 얘기해서 GCD로 구현할 필요 있음. Me.id에서 Realm관련 죽는 문제 해결 필요
         let photo = Photo.create(message: textField.text!, departLocation: LocationManager.dummyLocation)
-        let image = self.image
-        PhotoExchanger.exchange(photo, image: image, departLocation: LocationManager.dummyLocation,
+        PhotoExchanger.exchange(photo, image: self.image, departLocation: LocationManager.dummyLocation,
             sendCompletion: sendCompletion, receiveCompletion: receiveCompletion)
     }
     
@@ -102,21 +102,33 @@ final class DressingViewController: UIViewController, SegueHandlerType {
     func moveNavigationBarAndShareButton(completion: (Bool) -> Void) {
         UIView.animateWithDuration(0.5, delay: 0, options: .CurveLinear,
             animations: {
-                if let navigationBar = self.navigationController?.navigationBar {
-                    let statusBarHeight = UIApplication.sharedApplication().statusBarFrame.size.height
-                    navigationBar.frame.origin.y -= (navigationBar.frame.height + statusBarHeight)
-                }
-                
-                // TODO: 애드몹 높이를 뺀 값에서 버튼이 적당히 중앙에 맞게 높이를 맞추어줄 것
-//                                var buttonFrame = self.shareButton.frame
-//                                buttonFrame.origin.y -= 400
-//                                self.shareButton.frame = buttonFrame
-                
-                self.shareButton.snp_makeConstraints { make in
-                    make.top.equalTo((self.topLayoutGuide as! UIView).snp_bottom).offset(50)
-                }
-                self.shareButton.layoutIfNeeded()
+                self.moveNavigationBar()
+                self.moveShareButton()
         }, completion: completion)
+    }
+    
+    func moveNavigationBar() {
+        if let navigationBar = self.navigationController?.navigationBar {
+            let statusBarHeight = UIApplication.sharedApplication().statusBarFrame.size.height
+            navigationBar.frame.origin.y -= (navigationBar.frame.height + statusBarHeight)
+        }
+    }
+    
+    func moveShareButton() {
+        // TODO: 애드몹 높이를 뺀 값에서 버튼이 적당히 중앙에 맞게 높이를 맞추어줄 것
+        // constraints가 결국 안될 때를 대비해서 frame 조절하는 부분 주석 남김
+        
+//        var buttonFrame = self.shareButton.frame
+//        buttonFrame.origin.y -= 400
+//        self.shareButton.frame = buttonFrame
+        
+        self.testImageView.removeAllConstraints()
+        self.textField.removeAllConstraints()
+        
+        self.shareButton.snp_updateConstraints { make in
+            make.top.equalTo((self.topLayoutGuide as! UIView).snp_bottom).offset(50)
+        }
+        self.shareButton.layoutIfNeeded()
     }
     
     func addExchangeStatusView() {
