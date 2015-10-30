@@ -67,11 +67,12 @@ final class PhotoServer {
     }
     
     class func save(photo: Photo, userId: User.ID, image: UIImage, onSuccess: (id: Photo.ID) -> (), onFail: FailCallback) {
-        let params = saveParamWith(photo, userId: userId, image: image)
-        let parser = { (resultJson: JSON) -> Photo.ID in return serverPhotoIdFrom(resultJson) }
-        let httpRequest = HttpRequest<Photo.ID>(method: .POST, url: basePhotoUrl, parameters: params, parser: parser, onSuccess: onSuccess, onFail: onFail)
-        
-        SwishServer.requestWith(httpRequest)
+        saveParamWith(photo, userId: userId, image: image) { params in
+            let parser = { (resultJson: JSON) -> Photo.ID in return serverPhotoIdFrom(resultJson) }
+            let httpRequest = HttpRequest<Photo.ID>(method: .POST, url: basePhotoUrl, parameters: params, parser: parser, onSuccess: onSuccess, onFail: onFail)
+            
+            SwishServer.requestWith(httpRequest)
+        }
     }
     
     class func sendChatMessage(chatMessage: ChatMessage, onSuccess: DefaultSuccessCallback,
@@ -129,14 +130,20 @@ final class PhotoServer {
         return [ "user_id": userId ]
     }
     
-    private class func saveParamWith(photo: Photo, userId: User.ID, image: UIImage) -> Param {
-        return [
-            "user_id": userId,
-            "message": photo.message,
-            "latitude": photo.departLocation.coordinate.latitude.description,
-            "longitude": photo.departLocation.coordinate.longitude.description,
-            "image_resource": ImageHelper.base64EncodedStringWith(image)
-        ]
+    // ImageHelper.base64EncodedStringWith(image)에서 약 500ms의 running time확인, 예외적으로 dispatch_async 적용
+    private class func saveParamWith(photo: Photo, userId: User.ID, image: UIImage, completion: (param: Param) -> Void) {
+        dispatch_async(dispatch_get_global_queue(QOS_CLASS_USER_INITIATED, 0)) {
+            let params: Param =  [
+                "user_id": userId,
+                "message": photo.message,
+                "latitude": photo.departLocation.coordinate.latitude.description,
+                "longitude": photo.departLocation.coordinate.longitude.description,
+                "image_resource": ImageHelper.base64EncodedStringWith(image)
+            ]
+            dispatch_async(dispatch_get_main_queue()) {
+                completion(param: params)
+            }
+        }
     }
     
     private class func sendChatMessageParamWith(chatMessage: ChatMessage) -> Param {
