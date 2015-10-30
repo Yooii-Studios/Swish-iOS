@@ -132,7 +132,7 @@ final class PhotoServer {
     
     // ImageHelper.base64EncodedStringWith(image)에서 약 500ms의 running time확인, 예외적으로 dispatch_async 적용
     private class func saveParamWith(photo: Photo, userId: User.ID, image: UIImage, completion: (param: Param) -> Void) {
-        dispatch_async(dispatch_get_global_queue(QOS_CLASS_USER_INITIATED, 0)) { () -> Void in
+        dispatch_async(dispatch_get_global_queue(QOS_CLASS_USER_INITIATED, 0)) {
             let params: Param =  [
                 "user_id": userId,
                 "message": photo.message,
@@ -140,7 +140,7 @@ final class PhotoServer {
                 "longitude": photo.departLocation.coordinate.longitude.description,
                 "image_resource": ImageHelper.base64EncodedStringWith(image)
             ]
-            dispatch_async(dispatch_get_main_queue()) { () -> Void in
+            dispatch_async(dispatch_get_main_queue()) {
                 completion(param: params)
             }
         }

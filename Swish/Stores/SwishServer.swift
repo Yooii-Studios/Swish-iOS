@@ -54,9 +54,9 @@ final class SwishServer {
     func requestWith<T>(httpRequest: HttpRequest<T>) {
         let headers = SwishServer.createHeader(httpRequest)
         let alamofireManager = SwishServer.createManager(httpRequest)
-        dispatch_async(dispatch_get_global_queue(QOS_CLASS_USER_INITIATED, 0)) { () -> Void in
+        dispatch_async(dispatch_get_global_queue(QOS_CLASS_USER_INITIATED, 0)) {
             let request = self.requestWith(httpRequest, alamofireManager: alamofireManager, headers: headers)
-            dispatch_async(dispatch_get_main_queue()) { () -> Void in
+            dispatch_async(dispatch_get_main_queue()) {
                 self.addToRequests(httpRequest, alamofireManager: alamofireManager, request: request)
             }
         }
