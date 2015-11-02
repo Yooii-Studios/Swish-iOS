@@ -18,8 +18,7 @@ class ShareResultViewController: UIViewController, SegueHandlerType {
     }
     
     // MARK: - View Cycle
-    final var receivedImage: UIImage!
-    
+
     override func viewDidLoad() {
         super.viewDidLoad()
 
