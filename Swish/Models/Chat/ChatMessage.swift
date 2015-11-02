@@ -17,8 +17,7 @@ final class ChatMessage: Object {
     // MARK: - Attributes
     
     dynamic var message = ""
-    dynamic var receivedTimeIntervalSince1970 = invalidReceivedTime
-    var receivedDate:NSDate { return _receivedDate }
+    private dynamic var receivedTimeIntervalSince1970 = invalidReceivedTime
     var state: ChatMessageSendState {
         get {
             return ChatMessageSendState(rawValue: stateRaw) ?? ChatMessage.defaultState
@@ -48,12 +47,12 @@ final class ChatMessage: Object {
         self.init()
         self.message = message
         self.senderId = senderId
-        self._receivedDate = eventTime
+        self.receivedDate = eventTime
     }
     
     // MARK: - Realm support
     
-    private var _receivedDate: NSDate {
+    var receivedDate: NSDate {
         get {
             // FIXME: Creates an instance everytime when receivedDate is retrieved.
             // May cause performance issue(memory/speed-wise).
@@ -68,7 +67,7 @@ final class ChatMessage: Object {
     private dynamic var senderId = User.invalidId
     
     override static func ignoredProperties() -> [String] {
-        return ["state", "sender", "receiver", "sender", "receiver"]
+        return ["state", "sender", "receiver", "receivedDate"]
     }
     
     final class func create(message: String, senderId: User.ID,
