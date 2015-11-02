@@ -21,7 +21,6 @@ class ShareResultViewController: UIViewController, SegueHandlerType {
 
     override func viewDidLoad() {
         super.viewDidLoad()
-
     }
 
     // MARK: - Navigation
