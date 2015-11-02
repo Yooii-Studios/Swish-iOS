@@ -17,7 +17,6 @@ final class ChatMessage: Object {
     // MARK: - Attributes
     
     dynamic var message = ""
-    private dynamic var receivedTimeIntervalSince1970 = invalidReceivedTime
     var state: ChatMessageSendState {
         get {
             return ChatMessageSendState(rawValue: stateRaw) ?? ChatMessage.defaultState
@@ -33,6 +32,16 @@ final class ChatMessage: Object {
     var receiver: User {
         let me = SwishDatabase.me()
         return sender == me ? SwishDatabase.otherUser(senderId)! : me
+    }
+    var receivedDate: NSDate {
+        get {
+            // FIXME: Creates an instance everytime when receivedDate is retrieved.
+            // May cause performance issue(memory/speed-wise).
+            return NSDate(timeIntervalSince1970: receivedTimeIntervalSince1970)
+        }
+        set (newReceivedDate) {
+            receivedTimeIntervalSince1970 = newReceivedDate.timeIntervalSince1970
+        }
     }
     
     // MARK: - Realm backlink
@@ -50,31 +59,21 @@ final class ChatMessage: Object {
         self.receivedDate = eventTime
     }
     
-    // MARK: - Realm support
-    
-    var receivedDate: NSDate {
-        get {
-            // FIXME: Creates an instance everytime when receivedDate is retrieved.
-            // May cause performance issue(memory/speed-wise).
-            return NSDate(timeIntervalSince1970: receivedTimeIntervalSince1970)
-        }
-        set (newReceivedDate) {
-            receivedTimeIntervalSince1970 = newReceivedDate.timeIntervalSince1970
-        }
+    final class func create(message: String, senderId: User.ID,
+        builder: (ChatMessage) -> () = RealmObjectBuilder.builder) -> ChatMessage {
+            let chatMessage = ChatMessage(message: message, senderId: senderId)
+            builder(chatMessage)
+            return chatMessage
     }
+    
+    // MARK: - Realm support
     
     private dynamic var stateRaw = defaultState.rawValue
     private dynamic var senderId = User.invalidId
+    private dynamic var receivedTimeIntervalSince1970 = invalidReceivedTime
     
     override static func ignoredProperties() -> [String] {
         return ["state", "sender", "receiver", "receivedDate"]
-    }
-    
-    final class func create(message: String, senderId: User.ID,
-        builder: (ChatMessage) -> () = RealmObjectBuilder.builder) -> ChatMessage {
-        let chatMessage = ChatMessage(message: message, senderId: senderId)
-        builder(chatMessage)
-        return chatMessage
     }
 }
 

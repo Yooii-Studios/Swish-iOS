@@ -30,11 +30,6 @@ final class OtherUser: User {
     }
     dynamic var fetchedTimeIntervalSince1970 = invalidFetchedTime
     
-    // MARK: - Realm support
-    
-    private let _recentlySentPhotoUrls = List<PhotoMetadata>()
-    private dynamic var hasRecentlySentPhotoUrls = false
-    
     // MARK: Init
     
     private convenience init(id: String, fetchedTimeIntervalSince1970: NSTimeInterval) {
@@ -49,6 +44,11 @@ final class OtherUser: User {
             builder(me)
             return me
     }
+    
+    // MARK: - Realm support
+    
+    private let _recentlySentPhotoUrls = List<PhotoMetadata>()
+    private dynamic var hasRecentlySentPhotoUrls = false
 }
 
 final class PhotoMetadata: Object {

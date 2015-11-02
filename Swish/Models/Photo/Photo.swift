@@ -117,6 +117,13 @@ class Photo: Object {
         self.init(id: ID(intId))
     }
     
+    final class func create(id: Photo.ID = invalidPhotoId, message: String, departLocation: CLLocation) -> Photo {
+        let photo = Photo(id: id)
+        photo.message = message
+        photo.departLocation = departLocation
+        return photo
+    }
+    
     // MARK: - Realm support
     
     private dynamic var chatRoomBlockStateRaw = defaultChatRoomBlockState.rawValue
@@ -135,13 +142,6 @@ class Photo: Object {
     
     override static func ignoredProperties() -> [String] {
         return ["hasBlockedChat", "chatRoomBlockState", "departLocation", "arrivedLocation", "photoState", "receiver"]
-    }
-    
-    final class func create(id: Photo.ID = invalidPhotoId, message: String, departLocation: CLLocation) -> Photo {
-        let photo = Photo(id: id)
-        photo.message = message
-        photo.departLocation = departLocation
-        return photo
     }
 }
 
