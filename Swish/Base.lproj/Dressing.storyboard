@@ -57,7 +57,7 @@
                     <navigationItem key="navigationItem" title="Dressing" id="Frt-e0-sxg">
                         <barButtonItem key="rightBarButtonItem" systemItem="cancel" id="RDb-oh-NhV">
                             <connections>
-                                <segue destination="cjd-Kr-zzI" kind="unwind" identifier="UnwindToMain" unwindAction="unwindFromDressingViewController:" id="2OB-dc-4s4"/>
+                                <segue destination="cjd-Kr-zzI" kind="unwind" identifier="UnwindToMain" unwindAction="unwindFromViewController:" id="Ob2-BC-SfT"/>
                             </connections>
                         </barButtonItem>
                     </navigationItem>
@@ -66,7 +66,7 @@
                         <outlet property="shareButton" destination="17Z-z9-IfQ" id="faa-y9-ki9"/>
                         <outlet property="testImageView" destination="1uo-BK-C6M" id="UUD-Nu-xwB"/>
                         <outlet property="textField" destination="6ia-vi-lW7" id="QRt-qv-zhk"/>
-                        <segue destination="Xuv-eR-eTe" kind="presentation" identifier="ShowShareResult" id="mWD-ml-Zkp"/>
+                        <segue destination="Xuv-eR-eTe" kind="show" identifier="ShowShareResult" id="mWD-ml-Zkp"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="fY1-s0-Dnp" userLabel="First Responder" sceneMemberID="firstResponder"/>
