@@ -14,3 +14,4 @@ pod 'SwiftyJSON', :git => 'https://github.com/SwiftyJSON/SwiftyJSON.git'
 pod 'CTAssetsPickerController',  '~> 3.1.0'
 pod "OAStackView"
 pod "DeviceUtil"
+pod 'Google-Mobile-Ads-SDK'

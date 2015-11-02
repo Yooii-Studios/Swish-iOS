@@ -3,3 +3,4 @@
 //
 
 #import <CTAssetsPickerController/CTAssetsPickerController.h>
+#import <GoogleMobileAds/GoogleMobileAds.h>

@@ -14,6 +14,7 @@
 		573713291BD7165A006B272A /* Timestamp.swift in Sources */ = {isa = PBXBuildFile; fileRef = 573713281BD7165A006B272A /* Timestamp.swift */; };
 		5737132B1BD72BDA006B272A /* List+Bridge.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5737132A1BD72BDA006B272A /* List+Bridge.swift */; };
 		5737132D1BD73101006B272A /* UserHelper.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5737132C1BD73101006B272A /* UserHelper.swift */; };
+		574E812F1BE7452B0037FA12 /* GADBannerView+Preload.swift in Sources */ = {isa = PBXBuildFile; fileRef = 574E812E1BE7452B0037FA12 /* GADBannerView+Preload.swift */; };
 		575354C31BE1CB7C0034F24E /* DeviceHelper.swift in Sources */ = {isa = PBXBuildFile; fileRef = 575354C21BE1CB7C0034F24E /* DeviceHelper.swift */; };
 		575354C51BE1F0000034F24E /* LocationTrackable.swift in Sources */ = {isa = PBXBuildFile; fileRef = 575354C41BE1F0000034F24E /* LocationTrackable.swift */; };
 		5765CEF81BA2EC9C00DE6A05 /* KeychainItemWrapper.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5765CEF71BA2EC9C00DE6A05 /* KeychainItemWrapper.swift */; };
@@ -87,6 +88,7 @@
 		573713281BD7165A006B272A /* Timestamp.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Timestamp.swift; sourceTree = "<group>"; };
 		5737132A1BD72BDA006B272A /* List+Bridge.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "List+Bridge.swift"; sourceTree = "<group>"; };
 		5737132C1BD73101006B272A /* UserHelper.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UserHelper.swift; sourceTree = "<group>"; };
+		574E812E1BE7452B0037FA12 /* GADBannerView+Preload.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "GADBannerView+Preload.swift"; sourceTree = "<group>"; };
 		575354C21BE1CB7C0034F24E /* DeviceHelper.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DeviceHelper.swift; sourceTree = "<group>"; };
 		575354C41BE1F0000034F24E /* LocationTrackable.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LocationTrackable.swift; sourceTree = "<group>"; };
 		5765CEF71BA2EC9C00DE6A05 /* KeychainItemWrapper.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = KeychainItemWrapper.swift; sourceTree = "<group>"; };
@@ -318,6 +320,7 @@
 			isa = PBXGroup;
 			children = (
 				AEF32DDE1BA301A200EA00A9 /* PhotoCollectionViewCell.swift */,
+				574E812E1BE7452B0037FA12 /* GADBannerView+Preload.swift */,
 			);
 			path = Views;
 			sourceTree = "<group>";
@@ -545,6 +548,7 @@
 				57E09ADD1BCBAA34006A05DC /* OtherUserLoader.swift in Sources */,
 				5796738A1B9FFE6C00382247 /* User.swift in Sources */,
 				F23527FF1BE09E7C00CA614A /* PhotoPickable.swift in Sources */,
+				574E812F1BE7452B0037FA12 /* GADBannerView+Preload.swift in Sources */,
 				57C729DC1BDF2C0D00DDFFDA /* ChatBlocker.swift in Sources */,
 				579673881B9FFE6C00382247 /* Me.swift in Sources */,
 				57C173ED1BDE3EFC0084DF8D /* ChatMessageSender.swift in Sources */,
@@ -754,6 +758,7 @@
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CLANG_ENABLE_MODULES = YES;
 				CODE_SIGN_IDENTITY = "iPhone Developer";
+				ENABLE_BITCODE = NO;
 				INFOPLIST_FILE = Swish/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 8.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
@@ -771,6 +776,7 @@
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CLANG_ENABLE_MODULES = YES;
 				CODE_SIGN_IDENTITY = "iPhone Developer";
+				ENABLE_BITCODE = NO;
 				INFOPLIST_FILE = Swish/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 8.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
