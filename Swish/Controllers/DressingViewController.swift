@@ -31,7 +31,7 @@ final class DressingViewController: UIViewController, SegueHandlerType {
     override func viewDidLoad() {
         super.viewDidLoad()
         testImageView?.image = image
-        shareAdView = GADBannerView.preloadWithUnitId(AdUnitId, rootViewController: self)
+        shareAdView = GADBannerView.preloadedAdViewWithUnitId(AdUnitId, rootViewController: self)
     }
 
     // TODO: 추후 unwindSegue를 삭제하고 되돌릴 가능성이 있기에 놔둠

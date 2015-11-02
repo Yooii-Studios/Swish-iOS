@@ -10,7 +10,7 @@ import Foundation
 
 extension GADBannerView {
     
-    class func preloadWithUnitId(unitId: String, rootViewController: UIViewController,
+    class func preloadedAdViewWithUnitId(unitId: String, rootViewController: UIViewController,
         adSize: GADAdSize = kGADAdSizeMediumRectangle) -> GADBannerView {
             let adRequest = GADRequest()
             adRequest.testDevices = [kGADSimulatorID]
