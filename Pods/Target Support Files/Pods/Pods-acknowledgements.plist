@@ -152,6 +152,14 @@ CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
 		</dict>
 		<dict>
 			<key>FooterText</key>
+			<string>Copyright 2011 Google Inc. All Rights Reserved.</string>
+			<key>Title</key>
+			<string>Google-Mobile-Ads-SDK</string>
+			<key>Type</key>
+			<string>PSGroupSpecifier</string>
+		</dict>
+		<dict>
+			<key>FooterText</key>
 			<string>Copyright (c) 2015 Omar Abdelhafith &lt;o.arrabi@me.com&gt;
 
 Permission is hereby granted, free of charge, to any person obtaining a copy
