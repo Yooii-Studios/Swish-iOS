@@ -11,7 +11,9 @@ import UIKit
 import SwiftyJSON
 
 final class PhotoSender {
+    
     private enum Result {
+        
         case Success, Failure
         
         func isSuccess() -> Bool {
@@ -82,6 +84,7 @@ final class PhotoSender {
 }
 
 struct PhotoSendRequest {
+    
     typealias OnSendPhotoCallback = (photoSendState: PhotoSendState) -> ()
     typealias OnSendAllPhotosCallback = (sentPhotoCount: Int) -> ()
     
@@ -101,6 +104,7 @@ struct PhotoSendRequest {
 }
 
 struct PhotoSendState {
+    
     var succeedCount: Int = 0
     var failedCount: Int = 0
     let totalCount: Int

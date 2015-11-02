@@ -16,9 +16,8 @@ class User: Object {
     private static let defaultLevel = 1
     private static let defaultUserActivityRecord = UserActivityRecord.createDefault()
     
-    // Mark: Attributes
+    // MARK: - Attributes
     
-    // required
     dynamic var id: ID = invalidId
     dynamic var level = defaultLevel
     dynamic var name = ""
@@ -43,7 +42,7 @@ class User: Object {
         }
     }
     
-    // Mark: init
+    // MARK: - Init
     
     // TODO: convert to protected when becames possible
     convenience init(id: User.ID) {

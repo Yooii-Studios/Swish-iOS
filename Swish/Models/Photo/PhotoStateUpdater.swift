@@ -8,8 +8,8 @@
 
 import Foundation
 
-typealias SuccessCallback = (photoId: Photo.ID, state: PhotoState) -> ()
-typealias FailureCallback = (photoId: Photo.ID) -> ()
+typealias SuccessCallback = (photoId: Photo.ID, state: PhotoState) -> Void
+typealias FailureCallback = (photoId: Photo.ID) -> Void
 private typealias Updates = Dictionary<Photo.ID, PhotoStateUpdateInfo>
     
 final class PhotoStateUpdater {
@@ -22,6 +22,7 @@ final class PhotoStateUpdater {
     // MARK: - Singleton
     
     private struct Instance {
+        
         static var dispatchToken: dispatch_once_t = 0
         static var instance: PhotoStateUpdater?
     }

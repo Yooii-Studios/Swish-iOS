@@ -16,6 +16,7 @@ import AlamofireImage
 final class PhotoReceiver {
     
     private enum Result {
+        
         case Success, Failure
         
         func isSuccess() -> Bool {
