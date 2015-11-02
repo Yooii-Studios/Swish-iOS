@@ -10,6 +10,8 @@ import UIKit
 
 final class DressingViewController: UIViewController, SegueHandlerType {
     
+    private let adUnitId = "ca-app-pub-2310680050309555/3617770227"
+    
     // MARK: SegueHandlerType
     
     enum SegueIdentifier: String {
@@ -23,10 +25,13 @@ final class DressingViewController: UIViewController, SegueHandlerType {
     @IBOutlet weak var textField: UITextField!
     @IBOutlet weak var shareButton: UIButton!
     @IBOutlet var exchangeStatusLabel: UILabel!
+    
+    private var shareAdView: GADBannerView!
 
     override func viewDidLoad() {
         super.viewDidLoad()
         testImageView?.image = image
+        shareAdView = GADBannerView.preloadWithUnitId(adUnitId, rootViewController: self)
     }
 
     // TODO: 추후 unwindSegue를 삭제하고 되돌릴 가능성이 있기에 놔둠
@@ -57,6 +62,8 @@ final class DressingViewController: UIViewController, SegueHandlerType {
             self.downScaleAndTranslate { _ in
                 self.moveNavigationBarAndShareButton { _ in
                     self.addExchangeStatusView()
+                    // TODO: shareAdView 보여줘야 함
+                    // self.view.addSubview(self.shareAdView)
                     self.exchangePhoto(
                         sendCompletion: {
                             // TODO: 로컬라이징 필요
