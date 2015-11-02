@@ -11,11 +11,13 @@ import UIKit
 class ShareResultViewController: UIViewController {
 
     @IBOutlet weak var testImageView: UIImageView!
+    final var receivedPhoto: Photo!
     
     override func viewDidLoad() {
         super.viewDidLoad()
-
-        // Do any additional setup after loading the view.
+        PhotoImageHelper.imageWithPhoto(receivedPhoto) { image in
+            self.testImageView?.image = image
+        }
     }
 
     override func didReceiveMemoryWarning() {
