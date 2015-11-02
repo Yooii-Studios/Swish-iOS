@@ -8,6 +8,7 @@
 
 import UIKit
 import CoreData
+import DeviceUtil
 
 @UIApplicationMain
 class AppDelegate: UIResponder, UIApplicationDelegate {
