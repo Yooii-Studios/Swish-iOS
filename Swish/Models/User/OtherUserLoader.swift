@@ -29,15 +29,15 @@ final class OtherUserLoader {
         }
     }
     
-    // MARK: - Initializers
+    // MARK: - Init
     
     private init() { }
     
-    // MARK: - constants
+    // MARK: - Constants
     
     private static let cacheInvalidateInterval: NSTimeInterval = 2 * 60 * 60 * 1000
     
-    // MARK: - attributes
+    // MARK: - Attributes
     
     private let callbacks = Callbacks()
     

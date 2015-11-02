@@ -9,6 +9,7 @@
 import Foundation
 
 enum PhotoState: String {
+    
     case Waiting = "Waiting"
     case Delivered = "Delivered"
     case Liked = "Liked"

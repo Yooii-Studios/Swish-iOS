@@ -9,12 +9,14 @@
 import Foundation
 
 final class SentPhotoStateLoader {
+    
     typealias SuccessCallback = (updatedPhotoIds: Set<Photo.ID>) -> Void
     typealias FailureCallback = () -> Void
     
     // MARK: - Singleton
     
     private struct Instance {
+        
         static var dispatchToken: dispatch_once_t = 0
         static var instance: SentPhotoStateLoader?
     }

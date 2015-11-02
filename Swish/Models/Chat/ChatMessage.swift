@@ -10,10 +10,11 @@ import Foundation
 import RealmSwift
 
 final class ChatMessage: Object {
+    
     private static let defaultState = ChatMessageSendState.None
     private static let invalidReceivedTime = NSTimeInterval.NaN
     
-    // Mark: Attributes
+    // MARK: - Attributes
     
     dynamic var message = ""
     dynamic var receivedTimeIntervalSince1970 = invalidReceivedTime
@@ -34,11 +35,14 @@ final class ChatMessage: Object {
         let me = SwishDatabase.me()
         return sender == me ? SwishDatabase.otherUser(senderId)! : me
     }
+    
+    // MARK: - Realm backlink
+    
     var photo: Photo {
         return linkingObjects(Photo.self, forProperty: "chatMessages")[0]
     }
     
-    // MARK: Initializer
+    // MARK: - Init
     
     private convenience init(message: String, senderId: User.ID, eventTime: NSDate = NSDate()) {
         self.init()
@@ -47,7 +51,7 @@ final class ChatMessage: Object {
         self._receivedDate = eventTime
     }
     
-    // Mark: Realm support
+    // MARK: - Realm support
     
     private var _receivedDate: NSDate {
         get {

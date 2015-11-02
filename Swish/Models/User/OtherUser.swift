@@ -12,7 +12,7 @@ import RealmSwift
 final class OtherUser: User {
     private static let invalidFetchedTime = NSTimeInterval.NaN
     
-    // Mark: Attributes
+    // MARK: - Attributes
     
     var recentlySentPhotoUrls: List<PhotoMetadata>? {
         get {
@@ -28,10 +28,14 @@ final class OtherUser: User {
             }
         }
     }
-    // required
     dynamic var fetchedTimeIntervalSince1970 = invalidFetchedTime
+    
+    // MARK: - Realm support
+    
     private let _recentlySentPhotoUrls = List<PhotoMetadata>()
     private dynamic var hasRecentlySentPhotoUrls = false
+    
+    // MARK: Init
     
     private convenience init(id: String, fetchedTimeIntervalSince1970: NSTimeInterval) {
         self.init()

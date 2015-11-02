@@ -15,18 +15,21 @@ let invalidPhotoId: Photo.ID = -1
 let invalidPhotoMessage = ""
 
 enum ChatRoomBlockState: Int {
+    
     case Unblock, Block
 }
 
 class Photo: Object {
+    
     typealias ID = Int64
+    
     static let invalidName = ""
+    
     private static let defaultPhotoState = PhotoState.Waiting
     private static let defaultChatRoomBlockState = ChatRoomBlockState.Unblock
     
-    // Mark: Attributes
+    // MARK: - Attributes
     
-    // required
     dynamic var id: Photo.ID = invalidPhotoId
     dynamic var message = invalidPhotoMessage
     dynamic var fileName = invalidName
@@ -96,12 +99,13 @@ class Photo: Object {
         }
     }
     
-    // backlink
+    // MARK: - Realm backlink
+    
     var sender: User {
         return PhotoHelper.senderWithPhoto(self)
     }
     
-    // Mark: init
+    // MARK: - Init
     
     // TODO: convert to protected when becames possible
     private convenience init(id: ID) {
@@ -113,9 +117,8 @@ class Photo: Object {
         self.init(id: ID(intId))
     }
     
-    // Mark: Realm support
+    // MARK: - Realm support
     
-    // required
     private dynamic var chatRoomBlockStateRaw = defaultChatRoomBlockState.rawValue
     
     private dynamic var arrivedLatitude = CLLocationDegrees.NaN
