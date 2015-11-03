@@ -23,7 +23,7 @@ final class DressingViewController: UIViewController, SegueHandlerType {
     @IBOutlet weak var shareButton: UIButton!
     @IBOutlet var exchangeStatusLabel: UILabel!
     
-    private var image: UIImage!
+    final var image: UIImage!
     private var receivedPhoto: Photo?
     private var mediumAdView: GADBannerView!
 
