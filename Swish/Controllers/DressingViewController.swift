@@ -47,7 +47,6 @@ final class DressingViewController: UIViewController, SegueHandlerType {
         case .UnwindToMain:
             // TODO: 돌아가기 전 필요한 처리가 있다면 해줄 것
             print("UnwindToMain")
-            
         }
     }
 
