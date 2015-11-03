@@ -13,7 +13,9 @@ extension GADBannerView {
     class func preloadedMediumAdViewWithUnitId(unitId: String, rootViewController: UIViewController,
         adSize: GADAdSize = kGADAdSizeMediumRectangle) -> GADBannerView {
             let adRequest = GADRequest()
-            adRequest.testDevices = [kGADSimulatorID]
+            
+            // 테스트가 필요할 경우에만 켜 주기
+            // adRequest.testDevices = [kGADSimulatorID]
             
             let bannerView = GADBannerView(adSize: adSize)
             bannerView.adUnitID = unitId
