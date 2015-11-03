@@ -24,6 +24,7 @@ import Foundation
 import UIKit
 
 protocol ChatMessageSender {
+    
     // TODO: 우성이 나중에 실제로 사용 해 보고 게터가 있어야 하는지 확인하기
     var photoId: Photo.ID { get }
     

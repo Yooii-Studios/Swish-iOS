@@ -10,5 +10,5 @@ import Foundation
 import RealmSwift
 
 final class RealmObjectBuilder {
-    static let builder = { (object: Object) -> () in }
+    static let builder = { (object: Object) -> Void in }
 }

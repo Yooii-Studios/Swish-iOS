@@ -40,24 +40,25 @@ struct TrendingPhotoResult {
 }
 
 final class PhotoServer {
-    private static let basePhotoUrl = SwishServer.host + "/photos"
-    private static let updatePhotoStateTagPrefix = "update_photo_state"
-    private static let fetchPhotoStateTagPrefix = "get_photos_state"
-    private static let updateBlockChatStateTagPrefix = "block_chat"
-    private static let fetchPhotoTrendsTagPrefix = "weekly_photos"
+    
+    private static let BasePhotoUrl = SwishServer.Host + "/photos"
+    private static let UpdatePhotoStateTagPrefix = "update_photo_state"
+    private static let FetchPhotoStateTagPrefix = "get_photos_state"
+    private static let UpdateBlockChatStateTagPrefix = "block_chat"
+    private static let FetchPhotoTrendsTagPrefix = "weekly_photos"
     
     class func photoResponsesWith(userId: String, departLocation: CLLocation, photoCount: Int?,
         onSuccess: (photoResponses: Array<PhotoResponse>) -> (), onFail: FailCallback) {
             let params = photosParamWith(userId, departLocation: departLocation, photoCount: photoCount)
             let parser = { (resultJson: JSON) -> Array<PhotoResponse> in return photoResponsesFrom(resultJson) }
-            let httpRequest = HttpRequest<Array<PhotoResponse>>(method: .GET, url: basePhotoUrl, parameters: params, parser: parser, onSuccess: onSuccess, onFail: onFail)
+            let httpRequest = HttpRequest<Array<PhotoResponse>>(method: .GET, url: BasePhotoUrl, parameters: params, parser: parser, onSuccess: onSuccess, onFail: onFail)
             
             SwishServer.requestWith(httpRequest)
     }
     
     class func photoStatesWith(userId: String,
         onSuccess: (serverPhotoState: Array<ServerPhotoState>) -> (), onFail: FailCallback) {
-            let url = "\(basePhotoUrl)/get_photos_state"
+            let url = "\(BasePhotoUrl)/get_photos_state"
             let params = serverPhotoStatesParamWith(userId)
             let parser = { (resultJson: JSON) -> Array<ServerPhotoState> in return serverPhotoStatesFrom(resultJson) }
             let httpRequest = HttpRequest<Array<ServerPhotoState>>(method: .GET, url: url, parameters: params, parser: parser, onSuccess: onSuccess, onFail: onFail)
@@ -69,7 +70,7 @@ final class PhotoServer {
     class func save(photo: Photo, userId: User.ID, image: UIImage, onSuccess: (id: Photo.ID) -> (), onFail: FailCallback) {
         saveParamWith(photo, userId: userId, image: image) { params in
             let parser = { (resultJson: JSON) -> Photo.ID in return serverPhotoIdFrom(resultJson) }
-            let httpRequest = HttpRequest<Photo.ID>(method: .POST, url: basePhotoUrl, parameters: params, parser: parser, onSuccess: onSuccess, onFail: onFail)
+            let httpRequest = HttpRequest<Photo.ID>(method: .POST, url: BasePhotoUrl, parameters: params, parser: parser, onSuccess: onSuccess, onFail: onFail)
             
             SwishServer.requestWith(httpRequest)
         }
@@ -77,34 +78,34 @@ final class PhotoServer {
     
     class func sendChatMessage(chatMessage: ChatMessage, onSuccess: DefaultSuccessCallback,
         onFail: FailCallback) {
-            let url = "\(basePhotoUrl)/\(chatMessage.photo.id)/send_message"
+            let url = "\(BasePhotoUrl)/\(chatMessage.photo.id)/send_message"
             let params = sendChatMessageParamWith(chatMessage)
-            let httpRequest = HttpRequest<JSON>(method: .POST, url: url, parameters: params, parser: SwishServer.defaultParser, onSuccess: onSuccess, onFail: onFail)
+            let httpRequest = HttpRequest<JSON>(method: .POST, url: url, parameters: params, parser: SwishServer.DefaultParser, onSuccess: onSuccess, onFail: onFail)
             
             SwishServer.requestWith(httpRequest)
     }
     
     class func updatePhotoState(photoId: Photo.ID, state: PhotoState,
         onSuccess: DefaultSuccessCallback, onFail: FailCallback) {
-            let url = "\(basePhotoUrl)/\(photoId)/update_photo_state"
+            let url = "\(BasePhotoUrl)/\(photoId)/update_photo_state"
             let params = updatePhotoStateParamWith(state)
-            let httpRequest = HttpRequest<JSON>(method: .PUT, url: url, parameters: params, parser: SwishServer.defaultParser, onSuccess: onSuccess, onFail: onFail)
+            let httpRequest = HttpRequest<JSON>(method: .PUT, url: url, parameters: params, parser: SwishServer.DefaultParser, onSuccess: onSuccess, onFail: onFail)
             httpRequest.tag = createUpdatePhotoStateTagWithPhotoId(photoId)
             
             SwishServer.requestWith(httpRequest)
     }
     
     class func updateBlockChatState(photoId: Photo.ID, state: ChatRoomBlockState, onSuccess: DefaultSuccessCallback, onFail: FailCallback) {
-        let url = "\(basePhotoUrl)/\(photoId)/block_chat"
+        let url = "\(BasePhotoUrl)/\(photoId)/block_chat"
         let params = updateBlockChatStateParamWith(state)
-        let httpRequest = HttpRequest<JSON>(method: .PUT, url: url, parameters: params, parser: SwishServer.defaultParser, onSuccess: onSuccess, onFail: onFail)
+        let httpRequest = HttpRequest<JSON>(method: .PUT, url: url, parameters: params, parser: SwishServer.DefaultParser, onSuccess: onSuccess, onFail: onFail)
         httpRequest.tag = createUpdateBlockChatStateTag()
         
         SwishServer.requestWith(httpRequest)
     }
     
     class func photoTrendsResult(onSuccess: (photoTrendsResult: PhotoTrendsResult) -> Void, onFail: FailCallback) {
-        let url = "\(SwishServer.host)/weekly_photos"
+        let url = "\(SwishServer.Host)/weekly_photos"
         let parser = { (resultJson: JSON) -> PhotoTrendsResult in return photoTrendsFromResult(resultJson) }
         let httpRequest = HttpRequest<PhotoTrendsResult>(method: .GET, url: url, parser: parser, onSuccess: onSuccess, onFail: onFail)
         httpRequest.tag = createFetchPhotoTrendsTag()
@@ -277,18 +278,18 @@ final class PhotoServer {
     }
     
     private class func createUpdatePhotoStateTagWithPhotoId(photoId: Photo.ID) -> String {
-        return SwishServer.createTagWithPrefix(updatePhotoStateTagPrefix, postfix: "\(photoId)")
+        return SwishServer.createTagWithPrefix(UpdatePhotoStateTagPrefix, postfix: "\(photoId)")
     }
     
     private class func createFetchPhotoStateTag() -> String {
-        return SwishServer.createTagWithPrefix(fetchPhotoStateTagPrefix)
+        return SwishServer.createTagWithPrefix(FetchPhotoStateTagPrefix)
     }
     
     private class func createUpdateBlockChatStateTag() -> String {
-        return SwishServer.createTagWithPrefix(updateBlockChatStateTagPrefix)
+        return SwishServer.createTagWithPrefix(UpdateBlockChatStateTagPrefix)
     }
     
     private class func createFetchPhotoTrendsTag() -> String {
-        return SwishServer.createTagWithPrefix(fetchPhotoTrendsTagPrefix)
+        return SwishServer.createTagWithPrefix(FetchPhotoTrendsTagPrefix)
     }
 }

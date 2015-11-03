@@ -11,10 +11,10 @@ import RealmSwift
 
 final class PhotoHelper {
     
-    static let invalidPhotoIndex = -1
+    static let InvalidPhotoIndex = -1
     
     final class func findIndexOfPhotoWithPhotoId(photoId: Photo.ID, inPhotos photos: [Photo]) -> Int {
-        return photos.indexOf { $0.id == photoId } ?? invalidPhotoIndex
+        return photos.indexOf { $0.id == photoId } ?? InvalidPhotoIndex
     }
     
     // TODO: Realm에서 지원하게 된다면 senderWithRealmObject를 사용하는 메서드들을 하나로 묶을 수 있는 가능성 있음

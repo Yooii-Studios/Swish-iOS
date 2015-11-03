@@ -11,6 +11,7 @@ import RealmSwift
 import CoreLocation
 
 final class SwishDatabase {
+    
     typealias PhotoFilter = (photo: Photo) -> Bool
     
     static let realm: Realm = try! Realm()

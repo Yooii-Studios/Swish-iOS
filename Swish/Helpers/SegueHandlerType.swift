@@ -32,7 +32,6 @@
 import UIKit
 
 protocol SegueHandlerType {
-    
     typealias SegueIdentifier: RawRepresentable
 }
 
