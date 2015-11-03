@@ -10,6 +10,7 @@ import Foundation
 import RealmSwift
 
 final class OtherUser: User {
+    
     private static let InvalidFetchedTime = NSTimeInterval.NaN
     
     // MARK: - Attributes
@@ -52,6 +53,7 @@ final class OtherUser: User {
 }
 
 final class PhotoMetadata: Object {
+    
     dynamic var url = ""
     
     convenience init(url: String) {

@@ -14,12 +14,14 @@ protocol Directory {
 }
 
 final class Documents: Directory {
+    
     var name: String? {
         return nil
     }
 }
 
 enum SubDirectory: Directory {
+    
     case Photos, Temp
     
     var name: String? {
@@ -33,6 +35,7 @@ enum SubDirectory: Directory {
 }
 
 final class FileHelper {
+    
     private static let documents = Documents()
     
     static var fileManager: NSFileManager {

@@ -12,8 +12,8 @@ import CoreLocation
 import SwiftyJSON
 
 enum ChatRoomBlockState: Int {
-    
-    case Unblock, Block
+    case Unblock
+    case Block
 }
 
 class Photo: Object {

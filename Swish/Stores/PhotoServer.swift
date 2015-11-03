@@ -40,6 +40,7 @@ struct TrendingPhotoResult {
 }
 
 final class PhotoServer {
+    
     private static let BasePhotoUrl = SwishServer.Host + "/photos"
     private static let UpdatePhotoStateTagPrefix = "update_photo_state"
     private static let FetchPhotoStateTagPrefix = "get_photos_state"

@@ -36,7 +36,10 @@
 
 import Foundation
 
-enum LocationTrackType { case OneShot, Track }
+enum LocationTrackType {
+    case OneShot
+    case Track
+}
 
 private func requestLocation(locationManager: CLLocationManager, locationTrackType: LocationTrackType) {
     if #available(iOS 9.0, *), locationTrackType == .OneShot {

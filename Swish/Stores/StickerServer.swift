@@ -10,6 +10,7 @@ import Foundation
 import SwiftyJSON
 
 final class StickerServer {
+    
     private static let BaseStickerUrl = SwishServer.Host + "/stickers"
     
     class func stickerWith(key: String, onSuccess: (stickerUrl: String) -> (), onFail: FailCallback) {

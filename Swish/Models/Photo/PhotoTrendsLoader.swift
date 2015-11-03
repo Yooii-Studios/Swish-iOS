@@ -105,7 +105,6 @@ final class TrendingPhoto: Object {
 }
 
 struct PhotoTrendsCountry {
-    
     let name: String
 }
 

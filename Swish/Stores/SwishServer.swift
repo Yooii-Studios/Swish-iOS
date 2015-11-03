@@ -19,6 +19,7 @@ private let InvalidStatusCode = -1
 private let InvalidErrorCode = -1
 
 final class SwishServer {
+    
     static let DefaultParser = { (result: JSON) -> JSON in return result }
     static let Host = "http://yooiia.iptime.org:3000"
     private static let TagSeparator = "_"
@@ -154,6 +155,7 @@ protocol HttpRequestProtocol {
 }
 
 final class HttpRequest<T>: HttpRequestProtocol {
+    
     typealias Parser = (result: JSON) -> T
     typealias SuccessCallback = (result: T) -> ()
     typealias FailCallback = (error: SwishError) -> ()

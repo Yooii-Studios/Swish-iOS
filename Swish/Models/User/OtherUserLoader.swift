@@ -125,6 +125,7 @@ final class OtherUserLoader {
 }
 
 struct OtherUserFetchRequest {
+    
     typealias Builder = (request: OtherUserFetchRequest) -> Void
     
     struct Options {

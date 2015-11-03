@@ -10,6 +10,7 @@ import Foundation
 import RealmSwift
 
 class User: Object {
+    
     typealias ID = String
     
     static let InvalidId = ""

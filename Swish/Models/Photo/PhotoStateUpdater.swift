@@ -156,13 +156,11 @@ final class PhotoStateUpdater {
 }
 
 protocol PhotoStateUpdateDelegate: class {
-    
     func onSuccess(photoId: Photo.ID, state: PhotoState)
     func onFailure(photoId: Photo.ID)
 }
 
 struct PhotoStateUpdateRequest {
-    
     let photoId: Photo.ID
     let state: PhotoState
     let delegate: PhotoStateUpdateDelegate?

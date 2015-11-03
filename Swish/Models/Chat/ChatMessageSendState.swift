@@ -9,7 +9,6 @@
 import Foundation
 
 enum ChatMessageSendState: String {
-    
     case None = "None"
     case Sending = "Sending"
     case Success = "Success"

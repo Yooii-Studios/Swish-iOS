@@ -12,6 +12,7 @@ import SwiftyJSON
 import RealmSwift
 
 final class UserServer {
+    
     private static let BaseClientUrl = SwishServer.Host + "/clients"
     
     class func registerMe(name: String? = nil, about: String? = nil,
