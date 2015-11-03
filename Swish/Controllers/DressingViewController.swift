@@ -25,14 +25,14 @@ final class DressingViewController: UIViewController, SegueHandlerType {
     
     private var image: UIImage!
     private var receivedPhoto: Photo?
-    private var shareAdView: GADBannerView!
+    private var mediumAdView: GADBannerView!
 
     // MARK: - View Cycle
     
     override func viewDidLoad() {
         super.viewDidLoad()
         testImageView?.image = image
-        shareAdView = GADBannerView.preloadedAdViewWithUnitId(AdUnitId, rootViewController: self)
+        mediumAdView = GADBannerView.preloadedMediumAdViewWithUnitId(AdUnitId, rootViewController: self)
     }
 
     // MARK: - Navigation
