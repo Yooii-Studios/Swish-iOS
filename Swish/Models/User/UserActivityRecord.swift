@@ -9,6 +9,7 @@
 import Foundation
 
 struct UserActivityRecord {
+    
     let sentPhotoCount: Int
     let likedPhotoCount: Int
     let dislikedPhotoCount: Int

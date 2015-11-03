@@ -10,17 +10,17 @@ import Foundation
 import RealmSwift
 
 class User: Object {
+    
     typealias ID = String
     
-    static let invalidId = ""
-    private static let defaultLevel = 1
-    private static let defaultUserActivityRecord = UserActivityRecord.createDefault()
+    static let InvalidId = ""
+    private static let DefaultLevel = 1
+    private static let DefaultUserActivityRecord = UserActivityRecord.createDefault()
     
-    // Mark: Attributes
+    // MARK: - Attributes
     
-    // required
-    dynamic var id: ID = invalidId
-    dynamic var level = defaultLevel
+    dynamic var id: ID = InvalidId
+    dynamic var level = DefaultLevel
     dynamic var name = ""
     dynamic var about = ""
     dynamic var profileUrl = ""
@@ -43,7 +43,7 @@ class User: Object {
         }
     }
     
-    // Mark: init
+    // MARK: - Init
     
     // TODO: convert to protected when becames possible
     convenience init(id: User.ID) {

@@ -15,13 +15,14 @@ typealias FailCallback = (error: SwishError) -> ()
 typealias Param = Dictionary<String, String>
 typealias Header = Dictionary<String, String>
 
-private let invalidStatusCode = -1
-private let invalidErrorCode = -1
+private let InvalidStatusCode = -1
+private let InvalidErrorCode = -1
 
 final class SwishServer {
-    static let defaultParser = { (result: JSON) -> JSON in return result }
-    static let host = "http://yooiia.iptime.org:3000"
-    private static let tagSeparator = "_"
+    
+    static let DefaultParser = { (result: JSON) -> JSON in return result }
+    static let Host = "http://yooiia.iptime.org:3000"
+    private static let TagSeparator = "_"
     
     private var requests = Dictionary<String, HttpRequestProtocol>()
     
@@ -54,8 +55,12 @@ final class SwishServer {
     func requestWith<T>(httpRequest: HttpRequest<T>) {
         let headers = SwishServer.createHeader(httpRequest)
         let alamofireManager = SwishServer.createManager(httpRequest)
-        let request = requestWith(httpRequest, alamofireManager: alamofireManager, headers: headers)
-        addToRequests(httpRequest, alamofireManager: alamofireManager, request: request)
+        dispatch_async(dispatch_get_global_queue(QOS_CLASS_USER_INITIATED, 0)) {
+            let request = self.requestWith(httpRequest, alamofireManager: alamofireManager, headers: headers)
+            dispatch_async(dispatch_get_main_queue()) {
+                self.addToRequests(httpRequest, alamofireManager: alamofireManager, request: request)
+            }
+        }
     }
     
     func requestWith<T>(httpRequest: HttpRequest<T>, alamofireManager: Manager, headers: Header?) -> Request {
@@ -81,7 +86,7 @@ final class SwishServer {
     class func createTagWithPrefix(prefix: String, postfix: String? = nil) -> String {
         var tag = "\(prefix)"
         if let postfix = postfix {
-            tag += "_\(postfix)"
+            tag += "\(TagSeparator)\(postfix)"
         }
         return tag
     }
@@ -150,6 +155,7 @@ protocol HttpRequestProtocol {
 }
 
 final class HttpRequest<T>: HttpRequestProtocol {
+    
     typealias Parser = (result: JSON) -> T
     typealias SuccessCallback = (result: T) -> ()
     typealias FailCallback = (error: SwishError) -> ()
@@ -163,7 +169,9 @@ final class HttpRequest<T>: HttpRequestProtocol {
     
     var tag: String!
     var useAuthHeader = true
-    var timeout:NSTimeInterval = 7
+    // TODO: 안드로이드와 같이 7초의 timeout이 bad network에서 timeout에 자주 걸려 임의로 2배로 설정함
+    // 테스트를 통해 조절 필요(Retry policy등)
+    var timeout:NSTimeInterval = 14
     
     private var alamofireManager: Alamofire.Manager?
     private var request: Request?
@@ -196,7 +204,7 @@ final class SwishError: CustomStringConvertible {
     
     init(_ statusCode: Int, error: NSError, urlRequest: NSURLRequest? = nil) {
         self.statusCode = statusCode
-        code = invalidErrorCode
+        code = InvalidErrorCode
         name = "UnknownError"
         extras = String(error)
         self.urlRequest = urlRequest
@@ -211,12 +219,12 @@ final class SwishError: CustomStringConvertible {
     }
     
     convenience init(error: NSError, urlRequest: NSURLRequest? = nil) {
-        self.init(invalidStatusCode, error: error, urlRequest: urlRequest)
+        self.init(InvalidStatusCode, error: error, urlRequest: urlRequest)
     }
     
     private init(_ statusCode: Int, urlRequest: NSURLRequest? = nil) {
         self.statusCode = statusCode
-        code = invalidErrorCode
+        code = InvalidErrorCode
         name = "UnknownError"
         extras = ""
         self.urlRequest = urlRequest
@@ -229,7 +237,7 @@ final class SwishError: CustomStringConvertible {
         }
     }
     
-    class func unknownError(statusCode: Int = invalidStatusCode, urlRequest: NSURLRequest? = nil) -> SwishError {
+    class func unknownError(statusCode: Int = InvalidStatusCode, urlRequest: NSURLRequest? = nil) -> SwishError {
         return SwishError(statusCode, urlRequest: urlRequest)
     }
 }

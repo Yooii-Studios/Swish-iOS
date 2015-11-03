@@ -1,5 +1,5 @@
 //
-//  OtherUserFetcher.swift
+//  OtherUserLoader.swift
 //  Swish
 //
 //  Created by 정동현 on 2015. 10. 12..
@@ -9,7 +9,7 @@
 import Foundation
 import Alamofire
 
-typealias Tag = String
+typealias UserRequestTag = String
 
 final class OtherUserLoader {
     
@@ -29,15 +29,15 @@ final class OtherUserLoader {
         }
     }
     
-    // MARK: - Initializers
+    // MARK: - Init
     
     private init() { }
     
-    // MARK: - constants
+    // MARK: - Constants
     
     private static let cacheInvalidateInterval: NSTimeInterval = 2 * 60 * 60 * 1000
     
-    // MARK: - attributes
+    // MARK: - Attributes
     
     private let callbacks = Callbacks()
     
@@ -56,7 +56,7 @@ final class OtherUserLoader {
         }
     }
     
-    final func cancelWithTag(tag: Tag) {
+    final func cancelWithTag(tag: UserRequestTag) {
         callbacks.cancelWithTag(tag)
     }
     
@@ -125,6 +125,7 @@ final class OtherUserLoader {
 }
 
 struct OtherUserFetchRequest {
+    
     typealias Builder = (request: OtherUserFetchRequest) -> Void
     
     struct Options {
@@ -132,7 +133,7 @@ struct OtherUserFetchRequest {
     }
     
     let userId: User.ID
-    var tag: Tag = String(CFAbsoluteTimeGetCurrent())
+    var tag: UserRequestTag = String(CFAbsoluteTimeGetCurrent())
     var options = Options()
     let callback: OtherUserFetchCallback
     
@@ -144,7 +145,7 @@ struct OtherUserFetchRequest {
 
 final class Callbacks {
     
-    typealias CallbacksWithTag = Dictionary<Tag, OtherUserFetchCallback>
+    typealias CallbacksWithTag = Dictionary<UserRequestTag, OtherUserFetchCallback>
     typealias CallbacksWithUser = Dictionary<User.ID, CallbacksWithTag>
     
     private let emptyCallbacksWithTag = CallbacksWithTag()
@@ -161,7 +162,7 @@ final class Callbacks {
         return callbacksWithUser[userId] != nil
     }
     
-    final func cancelWithTag(tag: Tag) {
+    final func cancelWithTag(tag: UserRequestTag) {
         for (_, var callbackWithTag) in callbacksWithUser {
             callbackWithTag.removeValueForKey(tag)
         }

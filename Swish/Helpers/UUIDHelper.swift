@@ -9,6 +9,7 @@
 import Foundation
 
 final class UUIDHelper {
+    
     final class func uuid() -> String {
         let wrapper = KeychainItemWrapper(identifier: "UUID", accessGroup: nil)
         var uuid = wrapper[kSecAttrAccount as String] as! String?

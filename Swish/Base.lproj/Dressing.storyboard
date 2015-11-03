@@ -18,15 +18,21 @@
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="TestImage" translatesAutoresizingMaskIntoConstraints="NO" id="1uo-BK-C6M">
-                                <rect key="frame" x="150" y="150" width="300" height="300"/>
+                                <rect key="frame" x="150" y="95" width="300" height="300"/>
                                 <animations/>
                                 <constraints>
                                     <constraint firstAttribute="height" constant="300" id="JkV-9a-77O"/>
                                     <constraint firstAttribute="width" constant="300" id="bJE-qQ-xXH"/>
                                 </constraints>
                             </imageView>
+                            <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" text="Hello! It's good day to walk around the city :)" borderStyle="roundedRect" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="6ia-vi-lW7">
+                                <rect key="frame" x="150" y="415" width="300" height="30"/>
+                                <animations/>
+                                <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                                <textInputTraits key="textInputTraits"/>
+                            </textField>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="17Z-z9-IfQ">
-                                <rect key="frame" x="280" y="485" width="40" height="30"/>
+                                <rect key="frame" x="280" y="499" width="40" height="30"/>
                                 <animations/>
                                 <state key="normal" title="Share"/>
                                 <connections>
@@ -37,26 +43,42 @@
                         <animations/>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                         <constraints>
-                            <constraint firstItem="17Z-z9-IfQ" firstAttribute="top" secondItem="1uo-BK-C6M" secondAttribute="bottom" constant="35" id="O4p-BB-gKj"/>
-                            <constraint firstItem="1uo-BK-C6M" firstAttribute="centerY" secondItem="NRu-VV-fhb" secondAttribute="centerY" id="RcB-G9-NXC"/>
+                            <constraint firstItem="1uo-BK-C6M" firstAttribute="centerX" secondItem="NRu-VV-fhb" secondAttribute="centerX" id="61G-xC-9nm"/>
+                            <constraint firstItem="6ia-vi-lW7" firstAttribute="trailing" secondItem="1uo-BK-C6M" secondAttribute="trailing" id="8tS-v5-Zu8"/>
+                            <constraint firstItem="6ia-vi-lW7" firstAttribute="centerX" secondItem="NRu-VV-fhb" secondAttribute="centerX" id="B9w-ca-4AG"/>
+                            <constraint firstItem="6ia-vi-lW7" firstAttribute="leading" secondItem="1uo-BK-C6M" secondAttribute="leading" id="SVj-1O-2M0"/>
+                            <constraint firstItem="6ia-vi-lW7" firstAttribute="width" secondItem="1uo-BK-C6M" secondAttribute="width" id="U7v-R7-C76"/>
                             <constraint firstItem="17Z-z9-IfQ" firstAttribute="centerX" secondItem="NRu-VV-fhb" secondAttribute="centerX" id="Vic-sx-nyN"/>
-                            <constraint firstItem="1uo-BK-C6M" firstAttribute="centerX" secondItem="NRu-VV-fhb" secondAttribute="centerX" id="WDX-7a-kLt"/>
+                            <constraint firstItem="6ia-vi-lW7" firstAttribute="top" secondItem="1uo-BK-C6M" secondAttribute="bottom" constant="20" id="X5E-yK-JDB"/>
+                            <constraint firstItem="1uo-BK-C6M" firstAttribute="top" secondItem="4Bw-ZO-HdM" secondAttribute="bottom" constant="31" id="XsA-dM-COk"/>
+                            <constraint firstItem="17Z-z9-IfQ" firstAttribute="top" secondItem="6ia-vi-lW7" secondAttribute="bottom" constant="54" id="zj3-X1-HDE"/>
                         </constraints>
                     </view>
                     <navigationItem key="navigationItem" title="Dressing" id="Frt-e0-sxg">
                         <barButtonItem key="rightBarButtonItem" systemItem="cancel" id="RDb-oh-NhV">
                             <connections>
-                                <segue destination="cjd-Kr-zzI" kind="unwind" identifier="UnwindToMain" unwindAction="unwindFromDressingViewController:" id="2OB-dc-4s4"/>
+                                <segue destination="cjd-Kr-zzI" kind="unwind" identifier="UnwindToMain" unwindAction="unwindFromViewController:" id="Ob2-BC-SfT"/>
                             </connections>
                         </barButtonItem>
                     </navigationItem>
                     <connections>
+                        <outlet property="exchangeStatusLabel" destination="StM-9R-lPH" id="WdX-dU-AZd"/>
+                        <outlet property="shareButton" destination="17Z-z9-IfQ" id="faa-y9-ki9"/>
                         <outlet property="testImageView" destination="1uo-BK-C6M" id="UUD-Nu-xwB"/>
-                        <segue destination="Xuv-eR-eTe" kind="presentation" identifier="ShowShareResult" id="mWD-ml-Zkp"/>
+                        <outlet property="textField" destination="6ia-vi-lW7" id="QRt-qv-zhk"/>
+                        <segue destination="Xuv-eR-eTe" kind="show" identifier="ShowShareResult" id="mWD-ml-Zkp"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="fY1-s0-Dnp" userLabel="First Responder" sceneMemberID="firstResponder"/>
                 <exit id="cjd-Kr-zzI" userLabel="Exit" sceneMemberID="exit"/>
+                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Sending..." textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="StM-9R-lPH">
+                    <rect key="frame" x="0.0" y="0.0" width="77" height="21"/>
+                    <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                    <animations/>
+                    <fontDescription key="fontDescription" style="UICTFontTextStyleBody"/>
+                    <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
+                    <nil key="highlightedColor"/>
+                </label>
             </objects>
             <point key="canvasLocation" x="1573" y="1151"/>
         </scene>

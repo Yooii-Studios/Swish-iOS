@@ -12,13 +12,16 @@
 		571935331BA3C4C800856400 /* UUIDHelper.swift in Sources */ = {isa = PBXBuildFile; fileRef = 571935321BA3C4C800856400 /* UUIDHelper.swift */; };
 		5721F3FA1BD9C3CB00F0E733 /* SentPhotoStateLoader.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5721F3F91BD9C3CB00F0E733 /* SentPhotoStateLoader.swift */; };
 		573713291BD7165A006B272A /* Timestamp.swift in Sources */ = {isa = PBXBuildFile; fileRef = 573713281BD7165A006B272A /* Timestamp.swift */; };
-		5737132B1BD72BDA006B272A /* RealmListExtension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5737132A1BD72BDA006B272A /* RealmListExtension.swift */; };
+		5737132B1BD72BDA006B272A /* List+Bridge.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5737132A1BD72BDA006B272A /* List+Bridge.swift */; };
 		5737132D1BD73101006B272A /* UserHelper.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5737132C1BD73101006B272A /* UserHelper.swift */; };
+		574E812F1BE7452B0037FA12 /* GADBannerView+Preload.swift in Sources */ = {isa = PBXBuildFile; fileRef = 574E812E1BE7452B0037FA12 /* GADBannerView+Preload.swift */; };
+		575354C31BE1CB7C0034F24E /* DeviceHelper.swift in Sources */ = {isa = PBXBuildFile; fileRef = 575354C21BE1CB7C0034F24E /* DeviceHelper.swift */; };
+		575354C51BE1F0000034F24E /* LocationTrackable.swift in Sources */ = {isa = PBXBuildFile; fileRef = 575354C41BE1F0000034F24E /* LocationTrackable.swift */; };
 		5765CEF81BA2EC9C00DE6A05 /* KeychainItemWrapper.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5765CEF71BA2EC9C00DE6A05 /* KeychainItemWrapper.swift */; };
 		576A81991BC7545A0064A70F /* StickerServer.swift in Sources */ = {isa = PBXBuildFile; fileRef = 576A81981BC7545A0064A70F /* StickerServer.swift */; };
 		5772A7DC1BD5F23F00A7F880 /* PhotoReceiver.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5772A7DB1BD5F23F00A7F880 /* PhotoReceiver.swift */; };
 		5772A7DE1BD5F71E00A7F880 /* LocationManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5772A7DD1BD5F71E00A7F880 /* LocationManager.swift */; };
-		5772A7E01BD626EA00A7F880 /* NSCacheExtension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5772A7DF1BD626EA00A7F880 /* NSCacheExtension.swift */; };
+		5772A7E01BD626EA00A7F880 /* NSCache+LowMemory.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5772A7DF1BD626EA00A7F880 /* NSCache+LowMemory.swift */; };
 		5776B92C1BD08EAB009005B5 /* FileHelper.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5776B92B1BD08EAB009005B5 /* FileHelper.swift */; };
 		5776B92E1BD08F08009005B5 /* PhotoSender.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5776B92D1BD08F08009005B5 /* PhotoSender.swift */; };
 		579673761B9FFE2000382247 /* SwishDatabase.swift in Sources */ = {isa = PBXBuildFile; fileRef = 579673751B9FFE2000382247 /* SwishDatabase.swift */; };
@@ -47,10 +50,10 @@
 		AEF32DDB1BA2FDA400EA00A9 /* MediaLoader.swift in Sources */ = {isa = PBXBuildFile; fileRef = AEF32DDA1BA2FDA400EA00A9 /* MediaLoader.swift */; };
 		AEF32DDF1BA301A200EA00A9 /* PhotoCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = AEF32DDE1BA301A200EA00A9 /* PhotoCollectionViewCell.swift */; };
 		F20CC6761BDB878F00075088 /* SegueHandlerType.swift in Sources */ = {isa = PBXBuildFile; fileRef = F20CC6751BDB878F00075088 /* SegueHandlerType.swift */; };
+		F2305B981BE23EC20056E087 /* UIView+Constraints.swift in Sources */ = {isa = PBXBuildFile; fileRef = F2305B971BE23EC20056E087 /* UIView+Constraints.swift */; };
 		F23527FF1BE09E7C00CA614A /* PhotoPickable.swift in Sources */ = {isa = PBXBuildFile; fileRef = F23527FE1BE09E7C00CA614A /* PhotoPickable.swift */; };
 		F23A7B181BA1D4070063233F /* PhotoPicker.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = F23A7B161BA1D4070063233F /* PhotoPicker.storyboard */; };
 		F23A7B1B1BA1D4140063233F /* MyInfo.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = F23A7B191BA1D4140063233F /* MyInfo.storyboard */; };
-		F23A7B1D1BA1D4520063233F /* DressingViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = F23A7B1C1BA1D4520063233F /* DressingViewController.swift */; };
 		F23A7B201BA1DF250063233F /* Dressing.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = F23A7B1E1BA1DF250063233F /* Dressing.storyboard */; };
 		F245DCB11B9E7B2D0072308B /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = F245DCB01B9E7B2D0072308B /* AppDelegate.swift */; };
 		F245DCB31B9E7B2D0072308B /* MainViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = F245DCB21B9E7B2D0072308B /* MainViewController.swift */; };
@@ -58,9 +61,10 @@
 		F245DCB91B9E7B2D0072308B /* Swish.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = F245DCB71B9E7B2D0072308B /* Swish.xcdatamodeld */; };
 		F245DCBB1B9E7B2D0072308B /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = F245DCBA1B9E7B2D0072308B /* Assets.xcassets */; };
 		F245DCBE1B9E7B2D0072308B /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = F245DCBC1B9E7B2D0072308B /* LaunchScreen.storyboard */; };
-		F245DCC91B9E7B2D0072308B /* SwishTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = F245DCC81B9E7B2D0072308B /* SwishTests.swift */; };
+		F245DCC91B9E7B2D0072308B /* DatabaseTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = F245DCC81B9E7B2D0072308B /* DatabaseTests.swift */; };
 		F266D9021B9F159D00BDEB75 /* MyInfoViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = F266D9011B9F159D00BDEB75 /* MyInfoViewController.swift */; };
 		F266D9041B9F15D500BDEB75 /* PhotoPickerViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = F266D9031B9F15D500BDEB75 /* PhotoPickerViewController.swift */; };
+		F2C7CBD31BE1C53800ED429A /* DressingViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = F2C7CBD21BE1C53800ED429A /* DressingViewController.swift */; };
 		F2F545201BD5E84500AEE02A /* ShareResult.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = F2F5451E1BD5E84500AEE02A /* ShareResult.storyboard */; };
 		F2F545221BD5ED5500AEE02A /* ShareResultViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = F2F545211BD5ED5400AEE02A /* ShareResultViewController.swift */; };
 /* End PBXBuildFile section */
@@ -82,13 +86,16 @@
 		571935321BA3C4C800856400 /* UUIDHelper.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UUIDHelper.swift; sourceTree = "<group>"; };
 		5721F3F91BD9C3CB00F0E733 /* SentPhotoStateLoader.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SentPhotoStateLoader.swift; sourceTree = "<group>"; };
 		573713281BD7165A006B272A /* Timestamp.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Timestamp.swift; sourceTree = "<group>"; };
-		5737132A1BD72BDA006B272A /* RealmListExtension.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RealmListExtension.swift; sourceTree = "<group>"; };
+		5737132A1BD72BDA006B272A /* List+Bridge.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "List+Bridge.swift"; sourceTree = "<group>"; };
 		5737132C1BD73101006B272A /* UserHelper.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UserHelper.swift; sourceTree = "<group>"; };
+		574E812E1BE7452B0037FA12 /* GADBannerView+Preload.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "GADBannerView+Preload.swift"; sourceTree = "<group>"; };
+		575354C21BE1CB7C0034F24E /* DeviceHelper.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DeviceHelper.swift; sourceTree = "<group>"; };
+		575354C41BE1F0000034F24E /* LocationTrackable.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LocationTrackable.swift; sourceTree = "<group>"; };
 		5765CEF71BA2EC9C00DE6A05 /* KeychainItemWrapper.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = KeychainItemWrapper.swift; sourceTree = "<group>"; };
 		576A81981BC7545A0064A70F /* StickerServer.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = StickerServer.swift; sourceTree = "<group>"; };
 		5772A7DB1BD5F23F00A7F880 /* PhotoReceiver.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PhotoReceiver.swift; sourceTree = "<group>"; };
 		5772A7DD1BD5F71E00A7F880 /* LocationManager.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LocationManager.swift; sourceTree = "<group>"; };
-		5772A7DF1BD626EA00A7F880 /* NSCacheExtension.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = NSCacheExtension.swift; sourceTree = "<group>"; };
+		5772A7DF1BD626EA00A7F880 /* NSCache+LowMemory.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "NSCache+LowMemory.swift"; sourceTree = "<group>"; };
 		5776B92B1BD08EAB009005B5 /* FileHelper.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FileHelper.swift; sourceTree = "<group>"; };
 		5776B92D1BD08F08009005B5 /* PhotoSender.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PhotoSender.swift; sourceTree = "<group>"; };
 		579673751B9FFE2000382247 /* SwishDatabase.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SwishDatabase.swift; sourceTree = "<group>"; };
@@ -117,11 +124,11 @@
 		AEF32DDA1BA2FDA400EA00A9 /* MediaLoader.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MediaLoader.swift; sourceTree = "<group>"; };
 		AEF32DDE1BA301A200EA00A9 /* PhotoCollectionViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PhotoCollectionViewCell.swift; sourceTree = "<group>"; };
 		C0256DF10FDFE7249524B3FB /* Pods.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = Pods.debug.xcconfig; path = "Pods/Target Support Files/Pods/Pods.debug.xcconfig"; sourceTree = "<group>"; };
-		F20CC6751BDB878F00075088 /* SegueHandlerType.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SegueHandlerType.swift; sourceTree = "<group>"; };
+		F20CC6751BDB878F00075088 /* SegueHandlerType.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = SegueHandlerType.swift; path = ../Helpers/SegueHandlerType.swift; sourceTree = "<group>"; };
+		F2305B971BE23EC20056E087 /* UIView+Constraints.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "UIView+Constraints.swift"; sourceTree = "<group>"; };
 		F23527FE1BE09E7C00CA614A /* PhotoPickable.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PhotoPickable.swift; sourceTree = "<group>"; };
 		F23A7B171BA1D4070063233F /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/PhotoPicker.storyboard; sourceTree = "<group>"; };
 		F23A7B1A1BA1D4140063233F /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/MyInfo.storyboard; sourceTree = "<group>"; };
-		F23A7B1C1BA1D4520063233F /* DressingViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DressingViewController.swift; sourceTree = "<group>"; };
 		F23A7B1F1BA1DF250063233F /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Dressing.storyboard; sourceTree = "<group>"; };
 		F245DCAD1B9E7B2D0072308B /* Swish.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Swish.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		F245DCB01B9E7B2D0072308B /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
@@ -132,11 +139,13 @@
 		F245DCBD1B9E7B2D0072308B /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		F245DCBF1B9E7B2D0072308B /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		F245DCC41B9E7B2D0072308B /* SwishTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = SwishTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
-		F245DCC81B9E7B2D0072308B /* SwishTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SwishTests.swift; sourceTree = "<group>"; };
+		F245DCC81B9E7B2D0072308B /* DatabaseTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DatabaseTests.swift; sourceTree = "<group>"; };
 		F245DCCA1B9E7B2D0072308B /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		F264C66E1BDFFFE6001BE65C /* Swish-Bridging-Header.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "Swish-Bridging-Header.h"; sourceTree = "<group>"; };
 		F266D9011B9F159D00BDEB75 /* MyInfoViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MyInfoViewController.swift; sourceTree = "<group>"; };
 		F266D9031B9F15D500BDEB75 /* PhotoPickerViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PhotoPickerViewController.swift; sourceTree = "<group>"; };
+		F28EF57C1BE8BDBD00204C37 /* Swift Code Conventions.playground */ = {isa = PBXFileReference; lastKnownFileType = file.playground; path = "Swift Code Conventions.playground"; sourceTree = "<group>"; };
+		F2C7CBD21BE1C53800ED429A /* DressingViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DressingViewController.swift; sourceTree = "<group>"; };
 		F2EDD338D07BE381CAD26509 /* Pods.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = Pods.release.xcconfig; path = "Pods/Target Support Files/Pods/Pods.release.xcconfig"; sourceTree = "<group>"; };
 		F2F5451F1BD5E84500AEE02A /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/ShareResult.storyboard; sourceTree = "<group>"; };
 		F2F545211BD5ED5400AEE02A /* ShareResultViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ShareResultViewController.swift; sourceTree = "<group>"; };
@@ -212,7 +221,6 @@
 		5796737F1B9FFE3E00382247 /* Photo */ = {
 			isa = PBXGroup;
 			children = (
-				57C729E01BDF501700DDFFDA /* PhotoTrendsLoader.swift */,
 				579673801B9FFE6500382247 /* Photo.swift */,
 				579673811B9FFE6500382247 /* PhotoState.swift */,
 				5776B92D1BD08F08009005B5 /* PhotoSender.swift */,
@@ -220,7 +228,9 @@
 				57F3D5201BD86F9E00FE577C /* PhotoStateUpdater.swift */,
 				5721F3F91BD9C3CB00F0E733 /* SentPhotoStateLoader.swift */,
 				57D5450C1BDA5D4900C9CF6A /* PhotoHelper.swift */,
+				57C729E01BDF501700DDFFDA /* PhotoTrendsLoader.swift */,
 				57DFE24B1BE0DA7A002BB5DB /* PhotoExchanger.swift */,
+				57C5A0351BD5DD7600F06CAD /* PhotoImageHelper.swift */,
 			);
 			path = Photo;
 			sourceTree = "<group>";
@@ -265,6 +275,7 @@
 				F2F5451D1BD5E76B00AEE02A /* Storyboards */,
 				F245DCB01B9E7B2D0072308B /* AppDelegate.swift */,
 				F264C66E1BDFFFE6001BE65C /* Swish-Bridging-Header.h */,
+				F28EF57C1BE8BDBD00204C37 /* Swift Code Conventions.playground */,
 				F245DCBA1B9E7B2D0072308B /* Assets.xcassets */,
 				F245DCBF1B9E7B2D0072308B /* Info.plist */,
 				F245DCB71B9E7B2D0072308B /* Swish.xcdatamodeld */,
@@ -275,7 +286,7 @@
 		F245DCC71B9E7B2D0072308B /* SwishTests */ = {
 			isa = PBXGroup;
 			children = (
-				F245DCC81B9E7B2D0072308B /* SwishTests.swift */,
+				F245DCC81B9E7B2D0072308B /* DatabaseTests.swift */,
 				F245DCCA1B9E7B2D0072308B /* Info.plist */,
 			);
 			path = SwishTests;
@@ -284,12 +295,14 @@
 		F245DCE11B9E7CBA0072308B /* Controllers */ = {
 			isa = PBXGroup;
 			children = (
+				575354C41BE1F0000034F24E /* LocationTrackable.swift */,
 				F23527FE1BE09E7C00CA614A /* PhotoPickable.swift */,
+				F20CC6751BDB878F00075088 /* SegueHandlerType.swift */,
 				F245DCB21B9E7B2D0072308B /* MainViewController.swift */,
+				F2C7CBD21BE1C53800ED429A /* DressingViewController.swift */,
+				F2F545211BD5ED5400AEE02A /* ShareResultViewController.swift */,
 				F266D9011B9F159D00BDEB75 /* MyInfoViewController.swift */,
 				F266D9031B9F15D500BDEB75 /* PhotoPickerViewController.swift */,
-				F23A7B1C1BA1D4520063233F /* DressingViewController.swift */,
-				F2F545211BD5ED5400AEE02A /* ShareResultViewController.swift */,
 			);
 			path = Controllers;
 			sourceTree = "<group>";
@@ -301,7 +314,7 @@
 				5796737E1B9FFE3A00382247 /* User */,
 				5796737D1B9FFE3800382247 /* Chat */,
 				57F628391BA11D050008B23B /* DefaultObjectBuilder.swift */,
-				5737132A1BD72BDA006B272A /* RealmListExtension.swift */,
+				5737132A1BD72BDA006B272A /* List+Bridge.swift */,
 			);
 			path = Models;
 			sourceTree = "<group>";
@@ -310,6 +323,7 @@
 			isa = PBXGroup;
 			children = (
 				AEF32DDE1BA301A200EA00A9 /* PhotoCollectionViewCell.swift */,
+				574E812E1BE7452B0037FA12 /* GADBannerView+Preload.swift */,
 			);
 			path = Views;
 			sourceTree = "<group>";
@@ -322,11 +336,11 @@
 				571935321BA3C4C800856400 /* UUIDHelper.swift */,
 				AEF32DDA1BA2FDA400EA00A9 /* MediaLoader.swift */,
 				57E2D9751BB282C6008957C2 /* ImageHelper.swift */,
-				57C5A0351BD5DD7600F06CAD /* PhotoImageHelper.swift */,
 				5772A7DD1BD5F71E00A7F880 /* LocationManager.swift */,
-				5772A7DF1BD626EA00A7F880 /* NSCacheExtension.swift */,
 				573713281BD7165A006B272A /* Timestamp.swift */,
-				F20CC6751BDB878F00075088 /* SegueHandlerType.swift */,
+				575354C21BE1CB7C0034F24E /* DeviceHelper.swift */,
+				5772A7DF1BD626EA00A7F880 /* NSCache+LowMemory.swift */,
+				F2305B971BE23EC20056E087 /* UIView+Constraints.swift */,
 			);
 			path = Helpers;
 			sourceTree = "<group>";
@@ -505,18 +519,19 @@
 				570FD2F71BAAB54E008CB163 /* UserServer.swift in Sources */,
 				F245DCB31B9E7B2D0072308B /* MainViewController.swift in Sources */,
 				571935331BA3C4C800856400 /* UUIDHelper.swift in Sources */,
+				575354C51BE1F0000034F24E /* LocationTrackable.swift in Sources */,
 				5721F3FA1BD9C3CB00F0E733 /* SentPhotoStateLoader.swift in Sources */,
 				5772A7DE1BD5F71E00A7F880 /* LocationManager.swift in Sources */,
-				5772A7E01BD626EA00A7F880 /* NSCacheExtension.swift in Sources */,
+				5772A7E01BD626EA00A7F880 /* NSCache+LowMemory.swift in Sources */,
 				F2F545221BD5ED5500AEE02A /* ShareResultViewController.swift in Sources */,
 				579673761B9FFE2000382247 /* SwishDatabase.swift in Sources */,
 				5772A7DC1BD5F23F00A7F880 /* PhotoReceiver.swift in Sources */,
 				F245DCB11B9E7B2D0072308B /* AppDelegate.swift in Sources */,
+				575354C31BE1CB7C0034F24E /* DeviceHelper.swift in Sources */,
 				576A81991BC7545A0064A70F /* StickerServer.swift in Sources */,
 				F266D9021B9F159D00BDEB75 /* MyInfoViewController.swift in Sources */,
 				5776B92E1BD08F08009005B5 /* PhotoSender.swift in Sources */,
 				AEF32DDF1BA301A200EA00A9 /* PhotoCollectionViewCell.swift in Sources */,
-				F23A7B1D1BA1D4520063233F /* DressingViewController.swift in Sources */,
 				5737132D1BD73101006B272A /* UserHelper.swift in Sources */,
 				F245DCB91B9E7B2D0072308B /* Swish.xcdatamodeld in Sources */,
 				579673831B9FFE6500382247 /* PhotoState.swift in Sources */,
@@ -531,13 +546,15 @@
 				57E2D9761BB282C6008957C2 /* ImageHelper.swift in Sources */,
 				5776B92C1BD08EAB009005B5 /* FileHelper.swift in Sources */,
 				57C5A0361BD5DD7600F06CAD /* PhotoImageHelper.swift in Sources */,
+				F2305B981BE23EC20056E087 /* UIView+Constraints.swift in Sources */,
 				57E09ADD1BCBAA34006A05DC /* OtherUserLoader.swift in Sources */,
 				5796738A1B9FFE6C00382247 /* User.swift in Sources */,
 				F23527FF1BE09E7C00CA614A /* PhotoPickable.swift in Sources */,
+				574E812F1BE7452B0037FA12 /* GADBannerView+Preload.swift in Sources */,
 				57C729DC1BDF2C0D00DDFFDA /* ChatBlocker.swift in Sources */,
 				579673881B9FFE6C00382247 /* Me.swift in Sources */,
 				57C173ED1BDE3EFC0084DF8D /* ChatMessageSender.swift in Sources */,
-				5737132B1BD72BDA006B272A /* RealmListExtension.swift in Sources */,
+				5737132B1BD72BDA006B272A /* List+Bridge.swift in Sources */,
 				F20CC6761BDB878F00075088 /* SegueHandlerType.swift in Sources */,
 				579673821B9FFE6500382247 /* Photo.swift in Sources */,
 				5796738F1B9FFE7200382247 /* ChatMessageSendState.swift in Sources */,
@@ -545,6 +562,7 @@
 				573713291BD7165A006B272A /* Timestamp.swift in Sources */,
 				5796738B1B9FFE6C00382247 /* UserActivityRecord.swift in Sources */,
 				AEF32DDB1BA2FDA400EA00A9 /* MediaLoader.swift in Sources */,
+				F2C7CBD31BE1C53800ED429A /* DressingViewController.swift in Sources */,
 				57DFE24C1BE0DA7A002BB5DB /* PhotoExchanger.swift in Sources */,
 				579673891B9FFE6C00382247 /* OtherUser.swift in Sources */,
 			);
@@ -554,7 +572,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				F245DCC91B9E7B2D0072308B /* SwishTests.swift in Sources */,
+				F245DCC91B9E7B2D0072308B /* DatabaseTests.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -742,6 +760,7 @@
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CLANG_ENABLE_MODULES = YES;
 				CODE_SIGN_IDENTITY = "iPhone Developer";
+				ENABLE_BITCODE = NO;
 				INFOPLIST_FILE = Swish/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 8.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
@@ -759,6 +778,7 @@
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CLANG_ENABLE_MODULES = YES;
 				CODE_SIGN_IDENTITY = "iPhone Developer";
+				ENABLE_BITCODE = NO;
 				INFOPLIST_FILE = Swish/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 8.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";

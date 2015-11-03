@@ -10,6 +10,7 @@ import Foundation
 import UIKit
 
 final class MeManager {
+    
     typealias DefaultCallback = () -> ()
     
     class func me() -> Me {

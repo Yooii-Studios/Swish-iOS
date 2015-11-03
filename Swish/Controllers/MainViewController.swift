@@ -12,12 +12,12 @@ import CTAssetsPickerController
 
 final class MainViewController: UIViewController, UINavigationControllerDelegate, PhotoPickable {
 
-    final var photoPickerDelegate: PhotoPickerDelegateHandler?
+    final var photoPickerHandler: PhotoPickerHandler?
     
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        photoPickerDelegate = PhotoPickerDelegateHandler() { image in
+        photoPickerHandler = PhotoPickerHandler() { image in
             self.showDressingViewContoller(image)
         }
     }
@@ -42,8 +42,9 @@ final class MainViewController: UIViewController, UINavigationControllerDelegate
         showPhotoPickerContoller()
     }
     
-    @IBAction func unwindFromDressingViewController(segue: UIStoryboardSegue) {
-        print("unwindFromDressingViewController")
+    // TODO: 드레싱, 공유 결과에서 한번에 돌아오는 로직. 구분 될 필요가 없어서 공통으로 사용하게 했는데 추후 필요하면 나누어서 쓸 것
+    @IBAction func unwindFromViewController(segue: UIStoryboardSegue) {
+        print("unwindFromViewController")
     }
     
     final func showDressingViewContoller(image: UIImage) {

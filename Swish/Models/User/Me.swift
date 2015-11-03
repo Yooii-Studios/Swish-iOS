@@ -9,9 +9,9 @@
 import Foundation
 
 final class Me: User {
-    // Mark: Attributes
     
-    // required
+    // MARK: - Attributes
+    
     dynamic var token = ""
     dynamic var totalExpForNextLevel = 1
     dynamic var currentExp = 0

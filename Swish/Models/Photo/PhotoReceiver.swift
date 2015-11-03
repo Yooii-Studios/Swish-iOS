@@ -16,6 +16,7 @@ import AlamofireImage
 final class PhotoReceiver {
     
     private enum Result {
+        
         case Success, Failure
         
         func isSuccess() -> Bool {
@@ -122,6 +123,7 @@ final class PhotoReceiver {
 }
 
 struct PhotoReceiveRequest {
+    
     typealias OnReceiveAllPhotosCallback = (photos: [Photo]) -> Void
     typealias OnReceivePhotoCallback = (state: PhotoReceiveState) -> Void
     typealias OnFailCallback = () -> Void
@@ -143,6 +145,7 @@ struct PhotoReceiveRequest {
 }
 
 struct PhotoReceiveState {
+    
     var succeedCount: Int = 0
     var failedCount: Int = 0
     let totalCount: Int

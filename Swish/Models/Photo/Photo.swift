@@ -11,25 +11,27 @@ import RealmSwift
 import CoreLocation
 import SwiftyJSON
 
-let invalidPhotoId: Photo.ID = -1
-let invalidPhotoMessage = ""
-
 enum ChatRoomBlockState: Int {
-    case Unblock, Block
+    case Unblock
+    case Block
 }
 
 class Photo: Object {
+    
     typealias ID = Int64
-    static let invalidName = ""
-    private static let defaultPhotoState = PhotoState.Waiting
-    private static let defaultChatRoomBlockState = ChatRoomBlockState.Unblock
     
-    // Mark: Attributes
+    static let InvalidId: Photo.ID = -1
+    static let InvalidMessage = ""
     
-    // required
-    dynamic var id: Photo.ID = invalidPhotoId
-    dynamic var message = invalidPhotoMessage
-    dynamic var fileName = invalidName
+    private static let InvalidName = ""
+    private static let DefaultPhotoState = PhotoState.Waiting
+    private static let DefaultChatRoomBlockState = ChatRoomBlockState.Unblock
+    
+    // MARK: - Attributes
+    
+    dynamic var id: Photo.ID = InvalidId
+    dynamic var message = InvalidMessage
+    dynamic var fileName = InvalidName
     dynamic var unreadMessageCount = 0
     dynamic var hasOpenedChatRoom = false
     let chatMessages = List<ChatMessage>()
@@ -43,7 +45,7 @@ class Photo: Object {
     }
     var chatRoomBlockState: ChatRoomBlockState {
         get {
-            return ChatRoomBlockState(rawValue: chatRoomBlockStateRaw) ?? Photo.defaultChatRoomBlockState
+            return ChatRoomBlockState(rawValue: chatRoomBlockStateRaw) ?? Photo.DefaultChatRoomBlockState
         }
         set(newChatRoomBlockState) {
             chatRoomBlockStateRaw = newChatRoomBlockState.rawValue
@@ -73,7 +75,7 @@ class Photo: Object {
     }
     var photoState: PhotoState {
         get {
-            return PhotoState(rawValue: photoStateRaw) ?? Photo.defaultPhotoState
+            return PhotoState(rawValue: photoStateRaw) ?? Photo.DefaultPhotoState
         }
         set(newPhotoState) {
             photoStateRaw = newPhotoState.rawValue
@@ -84,7 +86,7 @@ class Photo: Object {
             let me = SwishDatabase.me()
             var optionalReceiver: User?
             if sender == SwishDatabase.me() {
-                optionalReceiver = receivedUserId != User.invalidId
+                optionalReceiver = receivedUserId != User.InvalidId
                 ? SwishDatabase.otherUser(receivedUserId) : nil
             } else {
                 optionalReceiver = me
@@ -96,12 +98,13 @@ class Photo: Object {
         }
     }
     
-    // backlink
+    // MARK: - Realm backlink
+    
     var sender: User {
         return PhotoHelper.senderWithPhoto(self)
     }
     
-    // Mark: init
+    // MARK: - Init
     
     // TODO: convert to protected when becames possible
     private convenience init(id: ID) {
@@ -113,18 +116,24 @@ class Photo: Object {
         self.init(id: ID(intId))
     }
     
-    // Mark: Realm support
+    final class func create(id: Photo.ID = InvalidId, message: String, departLocation: CLLocation) -> Photo {
+        let photo = Photo(id: id)
+        photo.message = message
+        photo.departLocation = departLocation
+        return photo
+    }
     
-    // required
-    private dynamic var chatRoomBlockStateRaw = defaultChatRoomBlockState.rawValue
+    // MARK: - Realm support
+    
+    private dynamic var chatRoomBlockStateRaw = DefaultChatRoomBlockState.rawValue
     
     private dynamic var arrivedLatitude = CLLocationDegrees.NaN
     private dynamic var arrivedLongitude = CLLocationDegrees.NaN
     private dynamic var departLatitude = CLLocationDegrees.NaN
     private dynamic var departLongitude = CLLocationDegrees.NaN
     
-    private dynamic var photoStateRaw = defaultPhotoState.rawValue
-    private dynamic var receivedUserId = User.invalidId
+    private dynamic var photoStateRaw = DefaultPhotoState.rawValue
+    private dynamic var receivedUserId = User.InvalidId
     
     override static func primaryKey() -> String? {
         return "id"
@@ -132,13 +141,6 @@ class Photo: Object {
     
     override static func ignoredProperties() -> [String] {
         return ["hasBlockedChat", "chatRoomBlockState", "departLocation", "arrivedLocation", "photoState", "receiver"]
-    }
-    
-    final class func create(id: Photo.ID = invalidPhotoId, message: String, departLocation: CLLocation) -> Photo {
-        let photo = Photo(id: id)
-        photo.message = message
-        photo.departLocation = departLocation
-        return photo
     }
 }
 

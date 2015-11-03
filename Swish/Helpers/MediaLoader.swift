@@ -10,6 +10,7 @@ import Foundation
 import Photos
 
 class MediaLoader {
+    
     class func fetchPhotoAssets() -> PHFetchResult {
         let fetchOptions = PHFetchOptions()
         fetchOptions.sortDescriptors = [NSSortDescriptor(key: "creationDate", ascending: false)]

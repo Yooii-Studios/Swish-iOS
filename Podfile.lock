@@ -5,6 +5,9 @@ PODS:
   - CTAssetsPickerController (3.1.1):
     - PureLayout (~> 3.0.0)
   - DateTools (1.7.0)
+  - DeviceUtil (1.2.2)
+  - Google-Mobile-Ads-SDK (7.5.2)
+  - OAStackView (0.2.0)
   - PureLayout (3.0.1)
   - Realm (0.96.2):
     - Realm/Headers (= 0.96.2)
@@ -19,6 +22,9 @@ DEPENDENCIES:
   - AlamofireImage (~> 2.0)
   - CTAssetsPickerController (~> 3.1.0)
   - DateTools
+  - DeviceUtil
+  - Google-Mobile-Ads-SDK
+  - OAStackView
   - Realm
   - RealmSwift
   - SnapKit (from `https://github.com/SnapKit/SnapKit.git`, branch `swift-2.0`)
@@ -44,6 +50,9 @@ SPEC CHECKSUMS:
   AlamofireImage: 5cecda9b1031f86067c89ddba1d91ead0a8c3f0e
   CTAssetsPickerController: 6fba9134a230656ffe34ac0effb0060a1ead65cb
   DateTools: 53288ee8b905fdc75897a1e6b5cc0144b14cba60
+  DeviceUtil: 6781344f19a7684796d3b2684a9cab5b285ebb3a
+  Google-Mobile-Ads-SDK: 24a8ddfc0bcfec281960c5d88f75327df0d86b00
+  OAStackView: a05adfec3669a5187b968a8c0a2690ae517271b6
   PureLayout: f35f5384c9c4e4479df041dbe33ad7577b71ddfb
   Realm: 3ce8448151c571e90b85002d984d7f93f54fc8a3
   RealmSwift: 485599fe54e35461c4a0daa7d01d8fbf11424873
