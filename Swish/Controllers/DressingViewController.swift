@@ -19,6 +19,7 @@ final class DressingViewController: UIViewController, SegueHandlerType {
     }
     
     final var image: UIImage!
+    final var receivedPhoto: Photo?
     
     @IBOutlet weak var testImageView: UIImageView!
     @IBOutlet weak var textField: UITextField!
@@ -40,10 +41,9 @@ final class DressingViewController: UIViewController, SegueHandlerType {
     override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?) {
         switch segueIdentifierForSegue(segue) {
         case .ShowShareResult:
-            // TODO: 공유 결과 화면에 필요 데이터 넣기 및 초기화 필요
-//            let destinationController = segue.destinationViewController as! ShareResultController
-//            destinationController.image = image
-            print("showShareResult")
+            let navigationViewController = segue.destinationViewController as! UINavigationController
+            let shareResultViewController = navigationViewController.topViewController as! ShareResultViewController
+            shareResultViewController.receivedPhoto = self.receivedPhoto
             
         case .UnwindToMain:
             // TODO: 돌아가기 전 필요한 처리가 있다면 해줄 것
@@ -67,7 +67,12 @@ final class DressingViewController: UIViewController, SegueHandlerType {
                             // TODO: 로컬라이징 필요
                             self.exchangeStatusLabel.text = "Receiving..."
                         }, receiveCompletion: { photos in
-                            self.performSegueWithIdentifier(.ShowShareResult, sender: self)
+                            if photos?.count > 0 {
+                                self.receivedPhoto = photos?[0]
+                                self.performSegueWithIdentifier(.ShowShareResult, sender: self)
+                            } else {
+                                self.dismissViewControllerAnimated(true, completion: nil)
+                            }
                         }
                     )
                 }

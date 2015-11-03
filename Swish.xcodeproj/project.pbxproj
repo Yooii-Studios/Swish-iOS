@@ -220,7 +220,6 @@
 		5796737F1B9FFE3E00382247 /* Photo */ = {
 			isa = PBXGroup;
 			children = (
-				57C729E01BDF501700DDFFDA /* PhotoTrendsLoader.swift */,
 				579673801B9FFE6500382247 /* Photo.swift */,
 				579673811B9FFE6500382247 /* PhotoState.swift */,
 				5776B92D1BD08F08009005B5 /* PhotoSender.swift */,
@@ -228,7 +227,9 @@
 				57F3D5201BD86F9E00FE577C /* PhotoStateUpdater.swift */,
 				5721F3F91BD9C3CB00F0E733 /* SentPhotoStateLoader.swift */,
 				57D5450C1BDA5D4900C9CF6A /* PhotoHelper.swift */,
+				57C729E01BDF501700DDFFDA /* PhotoTrendsLoader.swift */,
 				57DFE24B1BE0DA7A002BB5DB /* PhotoExchanger.swift */,
+				57C5A0351BD5DD7600F06CAD /* PhotoImageHelper.swift */,
 			);
 			path = Photo;
 			sourceTree = "<group>";
@@ -333,7 +334,6 @@
 				571935321BA3C4C800856400 /* UUIDHelper.swift */,
 				AEF32DDA1BA2FDA400EA00A9 /* MediaLoader.swift */,
 				57E2D9751BB282C6008957C2 /* ImageHelper.swift */,
-				57C5A0351BD5DD7600F06CAD /* PhotoImageHelper.swift */,
 				5772A7DD1BD5F71E00A7F880 /* LocationManager.swift */,
 				573713281BD7165A006B272A /* Timestamp.swift */,
 				575354C21BE1CB7C0034F24E /* DeviceHelper.swift */,

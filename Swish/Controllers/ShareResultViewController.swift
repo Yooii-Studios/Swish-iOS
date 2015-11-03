@@ -10,17 +10,21 @@ import UIKit
 
 class ShareResultViewController: UIViewController, SegueHandlerType {
 
-    @IBOutlet weak var testImageView: UIImageView!
-    
     // SegueHandlerType
     enum SegueIdentifier: String {
         case UnwindFromShareResultToMain
     }
     
+    @IBOutlet weak var testImageView: UIImageView!
+    final var receivedPhoto: Photo!
+    
     // MARK: - View Cycle
-
+    
     override func viewDidLoad() {
         super.viewDidLoad()
+        PhotoImageHelper.imageWithPhoto(receivedPhoto) { image in
+            self.testImageView?.image = image
+        }
     }
 
     // MARK: - Navigation

@@ -15,7 +15,7 @@ final class PhotoImageHelper {
     
     private static let cache = NSCache.createWithMemoryWarningObserver()
     
-    final class func imageWithPhoto(photo: Photo, onSuccess: (image: UIImage?) -> ()) {
+    final class func imageWithPhoto(photo: Photo, onSuccess: (image: UIImage?) -> Void) {
         let tag = Timestamp.startAndGetTag()
         if let image = cache.objectForKey(photo.fileName) as? UIImage {
             Timestamp.endWithTag(tag, additionalMessage: "with cache")
