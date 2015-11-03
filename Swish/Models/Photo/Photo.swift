@@ -11,8 +11,8 @@ import RealmSwift
 import CoreLocation
 import SwiftyJSON
 
-let invalidPhotoId: Photo.ID = -1
-let invalidPhotoMessage = ""
+let InvalidPhotoId: Photo.ID = -1
+let InvalidPhotoMessage = ""
 
 enum ChatRoomBlockState: Int {
     
@@ -23,16 +23,16 @@ class Photo: Object {
     
     typealias ID = Int64
     
-    static let invalidName = ""
+    static let InvalidName = ""
     
-    private static let defaultPhotoState = PhotoState.Waiting
-    private static let defaultChatRoomBlockState = ChatRoomBlockState.Unblock
+    private static let DefaultPhotoState = PhotoState.Waiting
+    private static let DefaultChatRoomBlockState = ChatRoomBlockState.Unblock
     
     // MARK: - Attributes
     
-    dynamic var id: Photo.ID = invalidPhotoId
-    dynamic var message = invalidPhotoMessage
-    dynamic var fileName = invalidName
+    dynamic var id: Photo.ID = InvalidPhotoId
+    dynamic var message = InvalidPhotoMessage
+    dynamic var fileName = InvalidName
     dynamic var unreadMessageCount = 0
     dynamic var hasOpenedChatRoom = false
     let chatMessages = List<ChatMessage>()
@@ -46,7 +46,7 @@ class Photo: Object {
     }
     var chatRoomBlockState: ChatRoomBlockState {
         get {
-            return ChatRoomBlockState(rawValue: chatRoomBlockStateRaw) ?? Photo.defaultChatRoomBlockState
+            return ChatRoomBlockState(rawValue: chatRoomBlockStateRaw) ?? Photo.DefaultChatRoomBlockState
         }
         set(newChatRoomBlockState) {
             chatRoomBlockStateRaw = newChatRoomBlockState.rawValue
@@ -76,7 +76,7 @@ class Photo: Object {
     }
     var photoState: PhotoState {
         get {
-            return PhotoState(rawValue: photoStateRaw) ?? Photo.defaultPhotoState
+            return PhotoState(rawValue: photoStateRaw) ?? Photo.DefaultPhotoState
         }
         set(newPhotoState) {
             photoStateRaw = newPhotoState.rawValue
@@ -87,7 +87,7 @@ class Photo: Object {
             let me = SwishDatabase.me()
             var optionalReceiver: User?
             if sender == SwishDatabase.me() {
-                optionalReceiver = receivedUserId != User.invalidId
+                optionalReceiver = receivedUserId != User.InvalidId
                 ? SwishDatabase.otherUser(receivedUserId) : nil
             } else {
                 optionalReceiver = me
@@ -117,7 +117,7 @@ class Photo: Object {
         self.init(id: ID(intId))
     }
     
-    final class func create(id: Photo.ID = invalidPhotoId, message: String, departLocation: CLLocation) -> Photo {
+    final class func create(id: Photo.ID = InvalidPhotoId, message: String, departLocation: CLLocation) -> Photo {
         let photo = Photo(id: id)
         photo.message = message
         photo.departLocation = departLocation
@@ -126,15 +126,15 @@ class Photo: Object {
     
     // MARK: - Realm support
     
-    private dynamic var chatRoomBlockStateRaw = defaultChatRoomBlockState.rawValue
+    private dynamic var chatRoomBlockStateRaw = DefaultChatRoomBlockState.rawValue
     
     private dynamic var arrivedLatitude = CLLocationDegrees.NaN
     private dynamic var arrivedLongitude = CLLocationDegrees.NaN
     private dynamic var departLatitude = CLLocationDegrees.NaN
     private dynamic var departLongitude = CLLocationDegrees.NaN
     
-    private dynamic var photoStateRaw = defaultPhotoState.rawValue
-    private dynamic var receivedUserId = User.invalidId
+    private dynamic var photoStateRaw = DefaultPhotoState.rawValue
+    private dynamic var receivedUserId = User.InvalidId
     
     override static func primaryKey() -> String? {
         return "id"

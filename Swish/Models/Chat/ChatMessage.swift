@@ -69,7 +69,7 @@ final class ChatMessage: Object {
     // MARK: - Realm support
     
     private dynamic var stateRaw = defaultState.rawValue
-    private dynamic var senderId = User.invalidId
+    private dynamic var senderId = User.InvalidId
     private dynamic var receivedTimeIntervalSince1970 = invalidReceivedTime
     
     override static func ignoredProperties() -> [String] {

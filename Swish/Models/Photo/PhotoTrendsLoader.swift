@@ -51,8 +51,8 @@ final class PhotoTrends: Object {
 // TODO: 추후 Rleam에서 지원 + Photo 클래스와 함께 다뤄야 할 경우 PhotoProtocol에 id, message, departLocation 넣어서 추출 필요
 final class TrendingPhoto: Object {
     
-    dynamic var id: Photo.ID = invalidPhotoId
-    dynamic var message = invalidPhotoMessage
+    dynamic var id: Photo.ID = InvalidPhotoId
+    dynamic var message = InvalidPhotoMessage
     dynamic var imageUrl = ""
     var departLocation: CLLocation {
         get {

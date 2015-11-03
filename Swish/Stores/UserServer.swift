@@ -12,13 +12,13 @@ import SwiftyJSON
 import RealmSwift
 
 final class UserServer {
-    private static let baseClientUrl = SwishServer.host + "/clients"
+    private static let BaseClientUrl = SwishServer.Host + "/clients"
     
     class func registerMe(name: String? = nil, about: String? = nil,
         image: UIImage? = nil, onSuccess: (me: Me) -> (), onFail: FailCallback) {
             let params = registerMeParamsWith(name, about: about, image: image)
             let parser = { (resultJson: JSON) -> Me in return meFrom(resultJson) }
-            let httpRequest = HttpRequest<Me>(method: .POST, url: baseClientUrl, parameters: params, parser: parser, onSuccess: onSuccess, onFail: onFail)
+            let httpRequest = HttpRequest<Me>(method: .POST, url: BaseClientUrl, parameters: params, parser: parser, onSuccess: onSuccess, onFail: onFail)
             httpRequest.useAuthHeader = false
             
             SwishServer.requestWith(httpRequest)
@@ -26,17 +26,17 @@ final class UserServer {
     
     class func updateMe(id: User.ID, name: String? = nil, about: String? = nil,
         onSuccess: DefaultSuccessCallback, onFail: FailCallback) {
-            let url = "\(baseClientUrl)/\(id)/update_profile_info"
+            let url = "\(BaseClientUrl)/\(id)/update_profile_info"
             let params = updateMeParamsWith(name, about: about)
             
-            let httpRequest = HttpRequest<JSON>(method: .PUT, url: url, parameters: params, parser: SwishServer.defaultParser, onSuccess: onSuccess, onFail: onFail)
+            let httpRequest = HttpRequest<JSON>(method: .PUT, url: url, parameters: params, parser: SwishServer.DefaultParser, onSuccess: onSuccess, onFail: onFail)
             
             SwishServer.requestWith(httpRequest)
     }
     
     class func updateMyProfileImage(id: User.ID, image: UIImage,
         onSuccess: (profileImageUrl: String) -> (), onFail: FailCallback) {
-            let url = "\(baseClientUrl)/\(id)/update_profile_image"
+            let url = "\(BaseClientUrl)/\(id)/update_profile_image"
             let params = updateMyProfileImageParamsWith(image)
             let parser = { (result: JSON) -> String in
                 return myProfileImageUrlFrom(result)
@@ -52,7 +52,7 @@ final class UserServer {
     }
     
     class func otherUserWith(userId: User.ID, onSuccess: (otherUser: OtherUser) -> (), onFail: FailCallback) {
-        let url = "\(baseClientUrl)/\(userId)"
+        let url = "\(BaseClientUrl)/\(userId)"
         
         let parser = { (resultJson: JSON) -> OtherUser in
             return otherUserFrom(resultJson, userId: userId)
@@ -66,7 +66,7 @@ final class UserServer {
     
     class func activityRecordWith(id: User.ID, onSuccess: (record: UserActivityRecord) -> (),
         onFail: FailCallback) {
-            let url = "\(baseClientUrl)/\(id)/get_activity_record"
+            let url = "\(BaseClientUrl)/\(id)/get_activity_record"
             
             let parser = { (resultJson: JSON) -> UserActivityRecord in
                 let userInfoJson = resultJson["user_info"]

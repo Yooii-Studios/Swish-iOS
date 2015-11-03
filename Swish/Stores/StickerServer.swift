@@ -10,12 +10,12 @@ import Foundation
 import SwiftyJSON
 
 final class StickerServer {
-    private static let baseStickerUrl = SwishServer.host + "/stickers"
+    private static let BaseStickerUrl = SwishServer.Host + "/stickers"
     
     class func stickerWith(key: String, onSuccess: (stickerUrl: String) -> (), onFail: FailCallback) {
             let params = stickerParamWith(key)
             let parser = { (resultJson: JSON) -> String in return stickerFileUrlFrom(resultJson) }
-            let httpRequest = HttpRequest<String>(method: .GET, url: baseStickerUrl, parameters: params, parser: parser, onSuccess: onSuccess, onFail: onFail)
+            let httpRequest = HttpRequest<String>(method: .GET, url: BaseStickerUrl, parameters: params, parser: parser, onSuccess: onSuccess, onFail: onFail)
             
             SwishServer.requestWith(httpRequest)
     }
