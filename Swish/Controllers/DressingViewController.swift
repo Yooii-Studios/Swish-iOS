@@ -18,14 +18,13 @@ final class DressingViewController: UIViewController, SegueHandlerType {
         case ShowShareResult
     }
     
-    final var image: UIImage!
-    final var receivedPhoto: Photo?
-    
     @IBOutlet weak var testImageView: UIImageView!
     @IBOutlet weak var textField: UITextField!
     @IBOutlet weak var shareButton: UIButton!
     @IBOutlet var exchangeStatusLabel: UILabel!
     
+    private var image: UIImage!
+    private var receivedPhoto: Photo?
     private var shareAdView: GADBannerView!
 
     // MARK: - View Cycle
