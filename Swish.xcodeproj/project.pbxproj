@@ -144,6 +144,7 @@
 		F264C66E1BDFFFE6001BE65C /* Swish-Bridging-Header.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "Swish-Bridging-Header.h"; sourceTree = "<group>"; };
 		F266D9011B9F159D00BDEB75 /* MyInfoViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MyInfoViewController.swift; sourceTree = "<group>"; };
 		F266D9031B9F15D500BDEB75 /* PhotoPickerViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PhotoPickerViewController.swift; sourceTree = "<group>"; };
+		F28EF57C1BE8BDBD00204C37 /* Swift Code Conventions.playground */ = {isa = PBXFileReference; lastKnownFileType = file.playground; path = "Swift Code Conventions.playground"; sourceTree = "<group>"; };
 		F2C7CBD21BE1C53800ED429A /* DressingViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DressingViewController.swift; sourceTree = "<group>"; };
 		F2EDD338D07BE381CAD26509 /* Pods.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = Pods.release.xcconfig; path = "Pods/Target Support Files/Pods/Pods.release.xcconfig"; sourceTree = "<group>"; };
 		F2F5451F1BD5E84500AEE02A /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/ShareResult.storyboard; sourceTree = "<group>"; };
@@ -274,6 +275,7 @@
 				F2F5451D1BD5E76B00AEE02A /* Storyboards */,
 				F245DCB01B9E7B2D0072308B /* AppDelegate.swift */,
 				F264C66E1BDFFFE6001BE65C /* Swish-Bridging-Header.h */,
+				F28EF57C1BE8BDBD00204C37 /* Swift Code Conventions.playground */,
 				F245DCBA1B9E7B2D0072308B /* Assets.xcassets */,
 				F245DCBF1B9E7B2D0072308B /* Info.plist */,
 				F245DCB71B9E7B2D0072308B /* Swish.xcdatamodeld */,
