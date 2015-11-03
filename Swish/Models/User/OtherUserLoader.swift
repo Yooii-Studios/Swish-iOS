@@ -1,5 +1,5 @@
 //
-//  OtherUserFetcher.swift
+//  OtherUserLoader.swift
 //  Swish
 //
 //  Created by 정동현 on 2015. 10. 12..
