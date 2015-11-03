@@ -1,8 +1,8 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="8191" systemVersion="15A284" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" initialViewController="5YB-mo-rDK">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="9059" systemVersion="15B42" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" initialViewController="5YB-mo-rDK">
     <dependencies>
         <deployment identifier="iOS"/>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="8154"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="9049"/>
     </dependencies>
     <scenes>
         <!--Share Result-->
@@ -37,20 +37,24 @@
                         <barButtonItem key="rightBarButtonItem" systemItem="cancel" id="Emc-AH-E9m">
                             <connections>
                                 <action selector="cancelButtonDidTap:" destination="iWo-Ig-4hz" id="Waq-Eh-9MN"/>
+                                <segue destination="f2j-Ot-0gd" kind="unwind" identifier="UnwindFromShareResultToMain" unwindAction="unwindFromViewController:" id="OSc-td-JbY"/>
                             </connections>
                         </barButtonItem>
                     </navigationItem>
+                    <simulatedNavigationBarMetrics key="simulatedTopBarMetrics" prompted="NO"/>
                     <connections>
                         <outlet property="testImageView" destination="Wn4-UQ-k4a" id="8h2-J5-NdW"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="WdI-SF-HJ1" userLabel="First Responder" sceneMemberID="firstResponder"/>
+                <exit id="f2j-Ot-0gd" userLabel="Exit" sceneMemberID="exit"/>
             </objects>
             <point key="canvasLocation" x="1383" y="501"/>
         </scene>
         <!--Navigation Controller-->
         <scene sceneID="YFe-VL-MKQ">
             <objects>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="EUx-bz-bPL" userLabel="First Responder" sceneMemberID="firstResponder"/>
                 <navigationController storyboardIdentifier="shareResultNaviViewController" automaticallyAdjustsScrollViewInsets="NO" id="5YB-mo-rDK" sceneMemberID="viewController">
                     <toolbarItems/>
                     <navigationBar key="navigationBar" contentMode="scaleToFill" id="8IC-tS-opT">
@@ -63,7 +67,6 @@
                         <segue destination="iWo-Ig-4hz" kind="relationship" relationship="rootViewController" id="iBp-sX-KXT"/>
                     </connections>
                 </navigationController>
-                <placeholder placeholderIdentifier="IBFirstResponder" id="EUx-bz-bPL" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="571" y="501"/>
         </scene>

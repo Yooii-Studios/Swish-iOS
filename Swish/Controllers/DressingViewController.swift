@@ -12,8 +12,7 @@ final class DressingViewController: UIViewController, SegueHandlerType {
     
     private let AdUnitId = "ca-app-pub-2310680050309555/3617770227"
     
-    // MARK: SegueHandlerType
-    
+    // SegueHandlerType
     enum SegueIdentifier: String {
         case UnwindToMain
         case ShowShareResult
@@ -29,17 +28,14 @@ final class DressingViewController: UIViewController, SegueHandlerType {
     
     private var shareAdView: GADBannerView!
 
+    // MARK: - View Cycle
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         testImageView?.image = image
         shareAdView = GADBannerView.preloadedAdViewWithUnitId(AdUnitId, rootViewController: self)
     }
 
-    // TODO: 추후 unwindSegue를 삭제하고 되돌릴 가능성이 있기에 놔둠
-//    @IBAction func cancelButtonDidTap(sender: UIBarButtonItem) {
-//        dismissViewControllerAnimated(true, completion: nil)
-//    }
-    
     // MARK: - Navigation
 
     override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?) {
@@ -56,6 +52,8 @@ final class DressingViewController: UIViewController, SegueHandlerType {
         }
     }
 
+    // MARK: - IBAction 
+    
     @IBAction func shareButtonDidTap(sender: AnyObject) {
         // TODO: 우선 대충만 구현, 추후 보강 필요
         upscaleViews { _ in
