@@ -83,7 +83,6 @@ final class DressingViewController: UIViewController, SegueHandlerType {
     // MARK: - Photo Exchange
     
     func exchangePhoto(sendCompletion sendCompletion: PhotoExchanger.SendCompletion, receiveCompletion: PhotoExchanger.ReceiveCompletion) {
-        // 동현과 얘기해서 GCD로 구현할 필요 있음
         let photo = Photo.create(message: textField.text!, departLocation: LocationManager.dummyLocation)
         PhotoExchanger.exchange(photo, image: self.image, departLocation: LocationManager.dummyLocation,
             sendCompletion: sendCompletion, receiveCompletion: receiveCompletion)
