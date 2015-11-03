@@ -11,9 +11,6 @@ import RealmSwift
 import CoreLocation
 import SwiftyJSON
 
-let InvalidPhotoId: Photo.ID = -1
-let InvalidPhotoMessage = ""
-
 enum ChatRoomBlockState: Int {
     
     case Unblock, Block
@@ -23,15 +20,17 @@ class Photo: Object {
     
     typealias ID = Int64
     
-    static let InvalidName = ""
+    static let InvalidId: Photo.ID = -1
+    static let InvalidMessage = ""
     
+    private static let InvalidName = ""
     private static let DefaultPhotoState = PhotoState.Waiting
     private static let DefaultChatRoomBlockState = ChatRoomBlockState.Unblock
     
     // MARK: - Attributes
     
-    dynamic var id: Photo.ID = InvalidPhotoId
-    dynamic var message = InvalidPhotoMessage
+    dynamic var id: Photo.ID = InvalidId
+    dynamic var message = InvalidMessage
     dynamic var fileName = InvalidName
     dynamic var unreadMessageCount = 0
     dynamic var hasOpenedChatRoom = false
@@ -117,7 +116,7 @@ class Photo: Object {
         self.init(id: ID(intId))
     }
     
-    final class func create(id: Photo.ID = InvalidPhotoId, message: String, departLocation: CLLocation) -> Photo {
+    final class func create(id: Photo.ID = InvalidId, message: String, departLocation: CLLocation) -> Photo {
         let photo = Photo(id: id)
         photo.message = message
         photo.departLocation = departLocation
