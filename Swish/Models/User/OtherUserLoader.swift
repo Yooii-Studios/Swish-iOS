@@ -9,7 +9,7 @@
 import Foundation
 import Alamofire
 
-typealias Tag = String
+typealias LoadUserTag = String
 
 final class OtherUserLoader {
     
@@ -56,7 +56,7 @@ final class OtherUserLoader {
         }
     }
     
-    final func cancelWithTag(tag: Tag) {
+    final func cancelWithTag(tag: LoadUserTag) {
         callbacks.cancelWithTag(tag)
     }
     
@@ -132,7 +132,7 @@ struct OtherUserFetchRequest {
     }
     
     let userId: User.ID
-    var tag: Tag = String(CFAbsoluteTimeGetCurrent())
+    var tag: LoadUserTag = String(CFAbsoluteTimeGetCurrent())
     var options = Options()
     let callback: OtherUserFetchCallback
     
@@ -144,7 +144,7 @@ struct OtherUserFetchRequest {
 
 final class Callbacks {
     
-    typealias CallbacksWithTag = Dictionary<Tag, OtherUserFetchCallback>
+    typealias CallbacksWithTag = Dictionary<LoadUserTag, OtherUserFetchCallback>
     typealias CallbacksWithUser = Dictionary<User.ID, CallbacksWithTag>
     
     private let emptyCallbacksWithTag = CallbacksWithTag()
@@ -161,7 +161,7 @@ final class Callbacks {
         return callbacksWithUser[userId] != nil
     }
     
-    final func cancelWithTag(tag: Tag) {
+    final func cancelWithTag(tag: LoadUserTag) {
         for (_, var callbackWithTag) in callbacksWithUser {
             callbackWithTag.removeValueForKey(tag)
         }
