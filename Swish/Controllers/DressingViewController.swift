@@ -32,16 +32,16 @@ final class DressingViewController: UIViewController, SegueHandlerType {
     override func viewDidLoad() {
         super.viewDidLoad()
         testImageView?.image = image
-        self.initMediumAdView()
+        initMediumAdView()
     }
     
     // MARK: - Init
     
     private func initMediumAdView() {
-        self.mediumAdView = GADBannerView.preloadedMediumAdViewWithUnitId(self.AdUnitId, rootViewController: self)
-        self.mediumAdView.hidden = true
+        mediumAdView = GADBannerView.preloadedMediumAdViewWithUnitId(AdUnitId, rootViewController: self)
+        mediumAdView.hidden = true
         
-        self.view.addSubview(self.mediumAdView)
+        self.view.addSubview(mediumAdView)
         mediumAdView.snp_makeConstraints { make in
             make.bottom.equalTo(self.view)
             make.centerX.equalTo(self.view)
