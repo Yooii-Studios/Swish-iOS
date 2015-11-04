@@ -50,6 +50,7 @@
 		AEF32DDB1BA2FDA400EA00A9 /* MediaLoader.swift in Sources */ = {isa = PBXBuildFile; fileRef = AEF32DDA1BA2FDA400EA00A9 /* MediaLoader.swift */; };
 		AEF32DDF1BA301A200EA00A9 /* PhotoCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = AEF32DDE1BA301A200EA00A9 /* PhotoCollectionViewCell.swift */; };
 		F20CC6761BDB878F00075088 /* SegueHandlerType.swift in Sources */ = {isa = PBXBuildFile; fileRef = F20CC6751BDB878F00075088 /* SegueHandlerType.swift */; };
+		F2185E511BEA3B5D0062E4B1 /* ReceivedPhotoViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = F2185E501BEA3B5D0062E4B1 /* ReceivedPhotoViewCell.swift */; };
 		F2305B981BE23EC20056E087 /* UIView+Constraints.swift in Sources */ = {isa = PBXBuildFile; fileRef = F2305B971BE23EC20056E087 /* UIView+Constraints.swift */; };
 		F23527FF1BE09E7C00CA614A /* PhotoPickable.swift in Sources */ = {isa = PBXBuildFile; fileRef = F23527FE1BE09E7C00CA614A /* PhotoPickable.swift */; };
 		F23A7B181BA1D4070063233F /* PhotoPicker.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = F23A7B161BA1D4070063233F /* PhotoPicker.storyboard */; };
@@ -126,6 +127,7 @@
 		AEF32DDE1BA301A200EA00A9 /* PhotoCollectionViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PhotoCollectionViewCell.swift; sourceTree = "<group>"; };
 		C0256DF10FDFE7249524B3FB /* Pods.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = Pods.debug.xcconfig; path = "Pods/Target Support Files/Pods/Pods.debug.xcconfig"; sourceTree = "<group>"; };
 		F20CC6751BDB878F00075088 /* SegueHandlerType.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = SegueHandlerType.swift; path = ../Helpers/SegueHandlerType.swift; sourceTree = "<group>"; };
+		F2185E501BEA3B5D0062E4B1 /* ReceivedPhotoViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ReceivedPhotoViewCell.swift; sourceTree = "<group>"; };
 		F2305B971BE23EC20056E087 /* UIView+Constraints.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "UIView+Constraints.swift"; sourceTree = "<group>"; };
 		F23527FE1BE09E7C00CA614A /* PhotoPickable.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PhotoPickable.swift; sourceTree = "<group>"; };
 		F23A7B171BA1D4070063233F /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/PhotoPicker.storyboard; sourceTree = "<group>"; };
@@ -327,6 +329,7 @@
 			children = (
 				AEF32DDE1BA301A200EA00A9 /* PhotoCollectionViewCell.swift */,
 				574E812E1BE7452B0037FA12 /* GADBannerView+Preload.swift */,
+				F2185E501BEA3B5D0062E4B1 /* ReceivedPhotoViewCell.swift */,
 			);
 			path = Views;
 			sourceTree = "<group>";
@@ -556,6 +559,7 @@
 				F23527FF1BE09E7C00CA614A /* PhotoPickable.swift in Sources */,
 				574E812F1BE7452B0037FA12 /* GADBannerView+Preload.swift in Sources */,
 				57C729DC1BDF2C0D00DDFFDA /* ChatBlocker.swift in Sources */,
+				F2185E511BEA3B5D0062E4B1 /* ReceivedPhotoViewCell.swift in Sources */,
 				579673881B9FFE6C00382247 /* Me.swift in Sources */,
 				57C173ED1BDE3EFC0084DF8D /* ChatMessageSender.swift in Sources */,
 				5737132B1BD72BDA006B272A /* List+Bridge.swift in Sources */,
