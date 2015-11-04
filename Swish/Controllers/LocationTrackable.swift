@@ -103,6 +103,10 @@ final class LocationTrackHandler: NSObject, CLLocationManagerDelegate {
             stopRequestLocation(manager)
         }
     }
+    
+    func locationManager(manager: CLLocationManager, didFailWithError error: NSError) {
+        print("locationManager didFailWithError: \(error)")
+    }
 }
 
 protocol LocationTrackable: class {
