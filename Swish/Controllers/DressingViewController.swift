@@ -59,7 +59,7 @@ final class DressingViewController: UIViewController, SegueHandlerType {
             self.downScaleAndTranslate { _ in
                 self.moveNavigationBarAndShareButton { _ in
                     self.addExchangeStatusView()
-                    self.showRectAdView()
+                    self.showMediumAdView()
                     self.exchangePhoto(
                         sendCompletion: {
                             // TODO: 로컬라이징 필요
@@ -148,8 +148,8 @@ final class DressingViewController: UIViewController, SegueHandlerType {
         }
     }
     
-    func showRectAdView() {
         self.view.addSubview(mediumAdView)
+    func showMediumAdView() {
         mediumAdView.snp_makeConstraints { make in
             make.bottom.equalTo(self.view)
             make.centerX.equalTo(self.view)
