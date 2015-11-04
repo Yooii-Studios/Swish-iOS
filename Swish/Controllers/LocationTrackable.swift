@@ -110,7 +110,6 @@ protocol LocationTrackable: class {
     var locationTrackType: LocationTrackType { get }
     var locationTrackHandler: LocationTrackHandler! { get }
     
-    func authorizationDidFailed(status: CLAuthorizationStatus)
     func locationDidUpdate(location: CLLocation)
 }
 
