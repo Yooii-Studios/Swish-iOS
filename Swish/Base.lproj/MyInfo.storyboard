@@ -23,42 +23,42 @@
                                 <rect key="frame" x="0.0" y="64" width="600" height="487"/>
                                 <animations/>
                                 <collectionViewFlowLayout key="collectionViewLayout" minimumLineSpacing="0.0" minimumInteritemSpacing="0.0" id="ejf-8j-XHA">
-                                    <size key="itemSize" width="270" height="270"/>
+                                    <size key="itemSize" width="250" height="332"/>
                                     <size key="headerReferenceSize" width="0.0" height="0.0"/>
                                     <size key="footerReferenceSize" width="0.0" height="0.0"/>
                                     <inset key="sectionInset" minX="15" minY="15" maxX="15" maxY="15"/>
                                 </collectionViewFlowLayout>
                                 <cells>
                                     <collectionViewCell opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" reuseIdentifier="receivedPhotoCell" id="mw6-Oy-OBh">
-                                        <rect key="frame" x="15" y="79" width="270" height="340"/>
+                                        <rect key="frame" x="15" y="79" width="250" height="332"/>
                                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                         <view key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center">
-                                            <rect key="frame" x="0.0" y="0.0" width="270" height="340"/>
+                                            <rect key="frame" x="0.0" y="0.0" width="250" height="332"/>
                                             <autoresizingMask key="autoresizingMask"/>
                                             <subviews>
                                                 <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="UIu-Xw-6O6">
-                                                    <rect key="frame" x="0.0" y="0.0" width="270" height="270"/>
+                                                    <rect key="frame" x="0.0" y="0.0" width="250" height="250"/>
                                                     <animations/>
                                                     <constraints>
                                                         <constraint firstAttribute="width" secondItem="UIu-Xw-6O6" secondAttribute="height" multiplier="1:1" id="nE7-sz-O2E"/>
                                                     </constraints>
                                                 </imageView>
-                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="User Name" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Ojl-H0-ZRS">
-                                                    <rect key="frame" x="8" y="279" width="199" height="20"/>
+                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="User Name User Name User Name User Name" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Ojl-H0-ZRS">
+                                                    <rect key="frame" x="8" y="259" width="179" height="20"/>
                                                     <animations/>
                                                     <fontDescription key="fontDescription" type="system" weight="medium" pointSize="16"/>
                                                     <color key="textColor" red="0.27010362089470397" green="0.28762567109822396" blue="0.7760817307692307" alpha="1" colorSpace="calibratedRGB"/>
                                                     <nil key="highlightedColor"/>
                                                 </label>
-                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Hello! It's good day to talk!" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="zXm-Cx-IHM">
-                                                    <rect key="frame" x="8" y="312" width="254" height="20"/>
+                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="1000" verticalCompressionResistancePriority="1000" text="Hello! It's good day to talk!" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="zXm-Cx-IHM">
+                                                    <rect key="frame" x="8" y="292" width="234" height="20"/>
                                                     <animations/>
                                                     <fontDescription key="fontDescription" style="UICTFontTextStyleBody"/>
                                                     <color key="textColor" red="0.36348356314720925" green="0.3519961826147881" blue="0.36392227564102564" alpha="1" colorSpace="calibratedRGB"/>
                                                     <nil key="highlightedColor"/>
                                                 </label>
                                                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="252" verticalHuggingPriority="252" horizontalCompressionResistancePriority="751" verticalCompressionResistancePriority="751" text="6028 km" textAlignment="right" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="gf8-Qq-8Sc">
-                                                    <rect key="frame" x="215" y="285" width="47" height="14"/>
+                                                    <rect key="frame" x="195" y="265" width="47" height="14"/>
                                                     <animations/>
                                                     <fontDescription key="fontDescription" style="UICTFontTextStyleCaption1"/>
                                                     <color key="textColor" red="0.74883576363244353" green="0.72516987541826794" blue="0.74973958333333335" alpha="1" colorSpace="calibratedRGB"/>
@@ -70,13 +70,13 @@
                                         </view>
                                         <animations/>
                                         <constraints>
-                                            <constraint firstAttribute="bottomMargin" secondItem="zXm-Cx-IHM" secondAttribute="bottom" id="2nX-kb-uCt"/>
                                             <constraint firstAttribute="leadingMargin" secondItem="zXm-Cx-IHM" secondAttribute="leading" id="5Hz-L9-Jzu"/>
                                             <constraint firstItem="Ojl-H0-ZRS" firstAttribute="top" secondItem="UIu-Xw-6O6" secondAttribute="bottom" constant="9" id="6FI-E9-mSE"/>
                                             <constraint firstItem="gf8-Qq-8Sc" firstAttribute="top" secondItem="UIu-Xw-6O6" secondAttribute="bottom" constant="9" id="EjW-rK-fwq"/>
                                             <constraint firstAttribute="trailingMargin" secondItem="gf8-Qq-8Sc" secondAttribute="trailing" id="K54-HR-ps4"/>
                                             <constraint firstItem="UIu-Xw-6O6" firstAttribute="leading" secondItem="mw6-Oy-OBh" secondAttribute="leadingMargin" constant="-8" id="KiK-1j-Yz0"/>
                                             <constraint firstItem="UIu-Xw-6O6" firstAttribute="top" secondItem="mw6-Oy-OBh" secondAttribute="topMargin" constant="-8" id="KrE-pl-pNv"/>
+                                            <constraint firstAttribute="bottomMargin" secondItem="zXm-Cx-IHM" secondAttribute="bottom" id="Svw-PK-oUH"/>
                                             <constraint firstItem="gf8-Qq-8Sc" firstAttribute="leading" secondItem="Ojl-H0-ZRS" secondAttribute="trailing" constant="8" id="aIx-KN-Ady"/>
                                             <constraint firstItem="gf8-Qq-8Sc" firstAttribute="leading" secondItem="Ojl-H0-ZRS" secondAttribute="trailing" constant="8" id="eCe-2g-PUe"/>
                                             <constraint firstAttribute="leadingMargin" secondItem="Ojl-H0-ZRS" secondAttribute="leading" id="ecb-16-Eqp"/>
@@ -85,13 +85,15 @@
                                             <constraint firstItem="zXm-Cx-IHM" firstAttribute="leading" secondItem="Ojl-H0-ZRS" secondAttribute="trailing" constant="-173" id="lO8-Cl-qxm"/>
                                             <constraint firstItem="gf8-Qq-8Sc" firstAttribute="top" secondItem="UIu-Xw-6O6" secondAttribute="bottom" constant="9" id="mX6-cV-lmP"/>
                                             <constraint firstItem="gf8-Qq-8Sc" firstAttribute="baseline" secondItem="Ojl-H0-ZRS" secondAttribute="baseline" constant="1" id="nyh-Jg-4he"/>
+                                            <constraint firstItem="zXm-Cx-IHM" firstAttribute="top" secondItem="Ojl-H0-ZRS" secondAttribute="bottom" constant="13" id="pxW-e6-xhK"/>
                                             <constraint firstAttribute="trailingMargin" secondItem="gf8-Qq-8Sc" secondAttribute="trailing" id="rWR-Ta-BZb"/>
                                             <constraint firstAttribute="trailingMargin" secondItem="UIu-Xw-6O6" secondAttribute="trailing" constant="-8" id="zee-LL-vCK"/>
                                         </constraints>
-                                        <size key="customSize" width="270" height="340"/>
+                                        <size key="customSize" width="250" height="332"/>
                                         <variation key="default">
                                             <mask key="constraints">
                                                 <exclude reference="6FI-E9-mSE"/>
+                                                <exclude reference="Svw-PK-oUH"/>
                                                 <exclude reference="lO8-Cl-qxm"/>
                                                 <exclude reference="EjW-rK-fwq"/>
                                                 <exclude reference="K54-HR-ps4"/>
