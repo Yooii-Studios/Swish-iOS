@@ -14,7 +14,7 @@ extension GADBannerView {
         adSize: GADAdSize = kGADAdSizeMediumRectangle) -> GADBannerView {
             let adRequest = GADRequest()
             
-            // 테스트가 필요할 경우에만 켜 주기
+            // 시뮬레이터에서만 테스트 광고, 실제 디바이스에서는 광고 정상 출력
              adRequest.testDevices = [kGADSimulatorID]
             
             let bannerView = GADBannerView(adSize: adSize)
