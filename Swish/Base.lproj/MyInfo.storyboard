@@ -10,7 +10,7 @@
         <!--Received-->
         <scene sceneID="ULh-cH-S0h">
             <objects>
-                <viewController id="0bL-bm-v49" customClass="ReceivedPhotosViewController" customModule="Swish" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController id="0bL-bm-v49" customClass="ReceivedPhotoCollectionViewController" customModule="Swish" customModuleProvider="target" sceneMemberID="viewController">
                     <layoutGuides>
                         <viewControllerLayoutGuide type="top" id="ipd-BH-HKj"/>
                         <viewControllerLayoutGuide type="bottom" id="BIV-nF-Mff"/>
