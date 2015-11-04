@@ -23,6 +23,7 @@ class ReceivedPhotoCollectionViewController: UIViewController, UICollectionViewD
     }
     
     override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?) {
+        // TODO: ReceivedPhotoViewController 구현 후 SeugeHandlerType과 함께 추가 구현 필요
         /*
         if segue.identifier == "" {
             let indexPaths = collectionView.indexPathsForSelectedItems()
@@ -74,7 +75,7 @@ class ReceivedPhotoCollectionViewController: UIViewController, UICollectionViewD
     // MARK: - UICollectionView Delegate
     
     func collectionView(collectionView: UICollectionView, didSelectItemAtIndexPath indexPath: NSIndexPath) {
-        // TODO: SeugeHandlerType 구현하고 수정 필요
+        // TODO: ReceivedPhotoViewController 구현 후 SeugeHandlerType과 함께 추가 구현 필요
 //        self.performSegueWithIdentifier("", sender: self)
     }
 }
