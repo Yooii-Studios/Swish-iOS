@@ -32,7 +32,20 @@ final class DressingViewController: UIViewController, SegueHandlerType {
     override func viewDidLoad() {
         super.viewDidLoad()
         testImageView?.image = image
-        mediumAdView = GADBannerView.preloadedMediumAdViewWithUnitId(AdUnitId, rootViewController: self)
+        self.initMediumAdView()
+    }
+    
+    // MARK: - Init
+    
+    private func initMediumAdView() {
+        self.mediumAdView = GADBannerView.preloadedMediumAdViewWithUnitId(self.AdUnitId, rootViewController: self)
+        self.mediumAdView.hidden = true
+        
+        self.view.addSubview(self.mediumAdView)
+        mediumAdView.snp_makeConstraints { make in
+            make.bottom.equalTo(self.view)
+            make.centerX.equalTo(self.view)
+        }
     }
 
     // MARK: - Navigation
@@ -148,11 +161,7 @@ final class DressingViewController: UIViewController, SegueHandlerType {
         }
     }
     
-        self.view.addSubview(mediumAdView)
     func showMediumAdView() {
-        mediumAdView.snp_makeConstraints { make in
-            make.bottom.equalTo(self.view)
-            make.centerX.equalTo(self.view)
-        }
+        mediumAdView.hidden = false
     }
 }
