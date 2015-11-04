@@ -10,10 +10,12 @@ import Foundation
 
 extension GADBannerView {
     
-    class func preloadedAdViewWithUnitId(unitId: String, rootViewController: UIViewController,
+    class func preloadedMediumAdViewWithUnitId(unitId: String, rootViewController: UIViewController,
         adSize: GADAdSize = kGADAdSizeMediumRectangle) -> GADBannerView {
             let adRequest = GADRequest()
-            adRequest.testDevices = [kGADSimulatorID]
+            
+            // 시뮬레이터에서만 테스트 광고, 실제 디바이스에서는 광고 정상 출력
+             adRequest.testDevices = [kGADSimulatorID]
             
             let bannerView = GADBannerView(adSize: adSize)
             bannerView.adUnitID = unitId

@@ -25,14 +25,27 @@ final class DressingViewController: UIViewController, SegueHandlerType {
     
     final var image: UIImage!
     private var receivedPhoto: Photo?
-    private var shareAdView: GADBannerView!
+    private var mediumAdView: GADBannerView!
 
     // MARK: - View Cycle
     
     override func viewDidLoad() {
         super.viewDidLoad()
         testImageView?.image = image
-        shareAdView = GADBannerView.preloadedAdViewWithUnitId(AdUnitId, rootViewController: self)
+        initMediumAdView()
+    }
+    
+    // MARK: - Init
+    
+    private func initMediumAdView() {
+        mediumAdView = GADBannerView.preloadedMediumAdViewWithUnitId(AdUnitId, rootViewController: self)
+        mediumAdView.hidden = true
+        
+        self.view.addSubview(mediumAdView)
+        mediumAdView.snp_makeConstraints { make in
+            make.bottom.equalTo(self.view)
+            make.centerX.equalTo(self.view)
+        }
     }
 
     // MARK: - Navigation
@@ -58,8 +71,7 @@ final class DressingViewController: UIViewController, SegueHandlerType {
             self.downScaleAndTranslate { _ in
                 self.moveNavigationBarAndShareButton { _ in
                     self.addExchangeStatusView()
-                    // TODO: shareAdView 보여줘야 함
-                    // self.view.addSubview(self.shareAdView)
+                    self.showMediumAdView()
                     self.exchangePhoto(
                         sendCompletion: {
                             // TODO: 로컬라이징 필요
@@ -146,5 +158,9 @@ final class DressingViewController: UIViewController, SegueHandlerType {
             make.centerX.equalTo(self.view)
             make.top.equalTo(self.shareButton.snp_bottom).offset(30)
         }
+    }
+    
+    func showMediumAdView() {
+        mediumAdView.hidden = false
     }
 }
