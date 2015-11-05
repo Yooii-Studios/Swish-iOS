@@ -35,6 +35,7 @@
 		5796738F1B9FFE7200382247 /* ChatMessageSendState.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5796738D1B9FFE7200382247 /* ChatMessageSendState.swift */; };
 		57A095411BEB293400333E6D /* Wings.swift in Sources */ = {isa = PBXBuildFile; fileRef = 57A095401BEB293400333E6D /* Wings.swift */; };
 		57A095431BEB2E9800333E6D /* WingsTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 57A095421BEB2E9800333E6D /* WingsTests.swift */; };
+		57A095461BEB316F00333E6D /* WingsHelper.swift in Sources */ = {isa = PBXBuildFile; fileRef = 57A095451BEB316F00333E6D /* WingsHelper.swift */; };
 		57C173ED1BDE3EFC0084DF8D /* ChatMessageSender.swift in Sources */ = {isa = PBXBuildFile; fileRef = 57C173EC1BDE3EFC0084DF8D /* ChatMessageSender.swift */; };
 		57C5A0361BD5DD7600F06CAD /* PhotoImageHelper.swift in Sources */ = {isa = PBXBuildFile; fileRef = 57C5A0351BD5DD7600F06CAD /* PhotoImageHelper.swift */; };
 		57C729DC1BDF2C0D00DDFFDA /* ChatBlocker.swift in Sources */ = {isa = PBXBuildFile; fileRef = 57C729DB1BDF2C0D00DDFFDA /* ChatBlocker.swift */; };
@@ -113,6 +114,7 @@
 		5796738D1B9FFE7200382247 /* ChatMessageSendState.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ChatMessageSendState.swift; sourceTree = "<group>"; };
 		57A095401BEB293400333E6D /* Wings.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Wings.swift; sourceTree = "<group>"; };
 		57A095421BEB2E9800333E6D /* WingsTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = WingsTests.swift; sourceTree = "<group>"; };
+		57A095451BEB316F00333E6D /* WingsHelper.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = WingsHelper.swift; sourceTree = "<group>"; };
 		57C173EC1BDE3EFC0084DF8D /* ChatMessageSender.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ChatMessageSender.swift; sourceTree = "<group>"; };
 		57C5A0351BD5DD7600F06CAD /* PhotoImageHelper.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PhotoImageHelper.swift; sourceTree = "<group>"; };
 		57C729DB1BDF2C0D00DDFFDA /* ChatBlocker.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ChatBlocker.swift; sourceTree = "<group>"; };
@@ -243,6 +245,15 @@
 			path = Photo;
 			sourceTree = "<group>";
 		};
+		57A095441BEB311D00333E6D /* Wings */ = {
+			isa = PBXGroup;
+			children = (
+				57A095401BEB293400333E6D /* Wings.swift */,
+				57A095451BEB316F00333E6D /* WingsHelper.swift */,
+			);
+			path = Wings;
+			sourceTree = "<group>";
+		};
 		DE54F92649363466E8A8F365 /* Pods */ = {
 			isa = PBXGroup;
 			children = (
@@ -323,9 +334,9 @@
 				5796737F1B9FFE3E00382247 /* Photo */,
 				5796737E1B9FFE3A00382247 /* User */,
 				5796737D1B9FFE3800382247 /* Chat */,
+				57A095441BEB311D00333E6D /* Wings */,
 				57F628391BA11D050008B23B /* DefaultObjectBuilder.swift */,
 				5737132A1BD72BDA006B272A /* List+Bridge.swift */,
-				57A095401BEB293400333E6D /* Wings.swift */,
 			);
 			path = Models;
 			sourceTree = "<group>";
@@ -573,6 +584,7 @@
 				F20CC6761BDB878F00075088 /* SegueHandlerType.swift in Sources */,
 				579673821B9FFE6500382247 /* Photo.swift in Sources */,
 				5796738F1B9FFE7200382247 /* ChatMessageSendState.swift in Sources */,
+				57A095461BEB316F00333E6D /* WingsHelper.swift in Sources */,
 				570B87081BA8056B0093CEED /* SwishServer.swift in Sources */,
 				573713291BD7165A006B272A /* Timestamp.swift in Sources */,
 				5796738B1B9FFE6C00382247 /* UserActivityRecord.swift in Sources */,
