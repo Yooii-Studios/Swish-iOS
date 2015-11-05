@@ -8,9 +8,9 @@
 
 import UIKit
 
+// TODO: 디바이스 / 2 - 마진 = 한 셀의 너비가 되게 계산하고, wrap_content 처럼 높이가 자동적으로 정해질 수 있게 구현 필요
 class ReceivedPhotoCollectionViewController: UIViewController, UICollectionViewDataSource, UICollectionViewDelegate {
-    // TODO: 디바이스 / 2 - 마진 = 한 셀의 너비가 되게 계산하고, wrap_content 처럼 높이가 자동적으로 정해질 수 있게 구현 필요
-    
+
     @IBOutlet weak var photoCollectionView: UICollectionView!
     
     private var receivedPhotos: Array<Photo>!
