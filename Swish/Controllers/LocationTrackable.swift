@@ -53,6 +53,47 @@ private func stopRequestLocation(locationManager: CLLocationManager) {
     locationManager.stopUpdatingLocation()
 }
 
+private func alertLocationServiceWithViewController(viewController: UIViewController, status: CLAuthorizationStatus) {
+    // TODO: 로컬라이징
+    // TODO: 메시지 통일될 경우 메서드 내에서 사용하도록 변경
+    if status == .Denied {
+        alertLocationServiceWithViewController(viewController, title: "Denied", message: "Settings -> blah -> blah")
+    } else if status == .Restricted {
+        alertLocationServiceWithViewController(viewController, title: "Restricted", message: "Settings -> blah -> blah")
+    }
+}
+
+private func alertLocationServiceWithViewController(viewController: UIViewController, title: String, message: String) {
+    // TODO: 로컬라이징(Open, Cancel 부분)
+    let alertController = UIAlertController(title: title,
+        message: message, preferredStyle: UIAlertControllerStyle.Alert)
+    alertController.addAction(UIAlertAction(title: "Cancel", style: UIAlertActionStyle.Default, handler: nil))
+    alertController.addAction(UIAlertAction(title: "Open", style: UIAlertActionStyle.Default,
+        handler: { action in
+            openSwishSystemSettings()
+    }))
+    viewController.showViewController(alertController, sender: nil)
+}
+
+private func alertUnknownErrorWithViewController(viewController: UIViewController) {
+    // TODO: 로컬라이징(title, message, Open, Cancel 부분). 일반적으로 비행기모드와 같이 인터넷(+cell)이 안되는 경우이므로
+    // "알 수 없는 이유로 현재위치 가져올 수 없음. 인터넷 연결 확인 필요"라는 의미의 번역이 적합할듯
+    let alertController = UIAlertController(title: "Cannot find current location",
+        message: "Unknown error occurred. Check internet connection ", preferredStyle: UIAlertControllerStyle.Alert)
+    alertController.addAction(UIAlertAction(title: "Cancel", style: UIAlertActionStyle.Default, handler: nil))
+    alertController.addAction(UIAlertAction(title: "Open", style: UIAlertActionStyle.Default,
+        handler: { action in
+            openSwishSystemSettings()
+    }))
+    viewController.showViewController(alertController, sender: nil)
+}
+
+private func openSwishSystemSettings() {
+    if let url = NSURL(string: UIApplicationOpenSettingsURLString) {
+        UIApplication.sharedApplication().openURL(url)
+    }
+}
+
 final class LocationTrackHandler: NSObject, CLLocationManagerDelegate {
     
     private var locationManager: CLLocationManager
@@ -67,31 +108,18 @@ final class LocationTrackHandler: NSObject, CLLocationManagerDelegate {
     
     // MARK: - Delegate functions
     
-    func locationManager(manager: CLLocationManager, didChangeAuthorizationStatus status: CLAuthorizationStatus) {
-        print("NotDetermined: \(status == .NotDetermined)")
-        print("Denied: \(status == .Denied)")
-        print("AuthorizedWhenInUse: \(status == .AuthorizedWhenInUse)")
-        guard let locationTrackable = locationTrackable else {
-            return
-        }
-        guard status != .NotDetermined else {
-            // Ignored: 아직 유저가 위치 서비스 사용 결정하지 않은 상태
-            return
-        }
-        guard status == .AuthorizedWhenInUse else {
-            print("authorization failed")
-            locationTrackable.authorizationDidFailed(status)
-            return
-        }
-        print("authorization success")
-        requestLocation(manager, locationTrackType: locationTrackable.locationTrackType)
-    }
-    
     func locationManager(manager: CLLocationManager, didUpdateLocations locations: [CLLocation]) {
         print("didUpdateLocations: \(locations)")
         locationTrackable?.locationDidUpdate(locations.last!)
         if locationTrackable?.locationTrackType == .OneShot {
             stopRequestLocation(manager)
+        }
+    }
+    
+    func locationManager(manager: CLLocationManager, didFailWithError error: NSError) {
+        print("locationManager didFailWithError: \(error)")
+        if let viewController = UIApplication.sharedApplication().keyWindow?.rootViewController {
+            alertUnknownErrorWithViewController(viewController)
         }
     }
 }
@@ -101,7 +129,6 @@ protocol LocationTrackable: class {
     var locationTrackType: LocationTrackType { get }
     var locationTrackHandler: LocationTrackHandler! { get }
     
-    func authorizationDidFailed(status: CLAuthorizationStatus)
     func locationDidUpdate(location: CLLocation)
 }
 
@@ -113,11 +140,16 @@ extension LocationTrackable where Self: UIViewController {
             print("locationService disabled")
             return
         }
-        guard CLLocationManager.authorizationStatus() != .NotDetermined else {
-            // TODO: 유저에게 현재위치 사용 요청하는 다이얼로그를 띄워주는 부분. info.plist의 NSLocationWhenInUseUsageDescription 키에
-            // 해당하는 값을 다국어 번역해야함
-            print("locationService not authorized. Requesting...")
+        let status = CLLocationManager.authorizationStatus()
+        guard status != .NotDetermined else {
+            // TODO: 로컬라이징.유저에게 현재위치 사용 요청하는 다이얼로그를 띄워주는 부분.
+            // info.plist의 NSLocationWhenInUseUsageDescription 키에 해당하는 값을 다국어 번역해야함
+            print("Requesting location service...")
             locationTrackHandler.locationManager.requestWhenInUseAuthorization()
+            return
+        }
+        guard status == .AuthorizedWhenInUse else {
+            alertLocationServiceWithViewController(self, status: status)
             return
         }
         // cache가 있고 one shot인 경우 위치를 요청할 필요가 없으므로 알린 후 끝냄
