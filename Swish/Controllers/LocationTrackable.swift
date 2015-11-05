@@ -67,8 +67,7 @@ private func alertLocationServiceWithViewController(viewController: UIViewContro
     // TODO: 로컬라이징(Open, Cancel 부분)
     let alertController = UIAlertController(title: title,
         message: message, preferredStyle: UIAlertControllerStyle.Alert)
-    alertController.addAction(UIAlertAction(title: "Cancel", style: UIAlertActionStyle.Default,
-        handler: nil))
+    alertController.addAction(UIAlertAction(title: "Cancel", style: UIAlertActionStyle.Default, handler: nil))
     alertController.addAction(UIAlertAction(title: "Open", style: UIAlertActionStyle.Default,
         handler: { action in
             openSwishSettingsInSystemSettings()
@@ -81,8 +80,7 @@ private func alertUnknownErrorWithViewController(viewController: UIViewControlle
     // "알 수 없는 이유로 현재위치 가져올 수 없음. 인터넷 연결 확인 필요"라는 의미의 번역이 적합할듯
     let alertController = UIAlertController(title: "Cannot find current location",
         message: "Unknown error occurred. Check internet connection ", preferredStyle: UIAlertControllerStyle.Alert)
-    alertController.addAction(UIAlertAction(title: "Cancel", style: UIAlertActionStyle.Default,
-        handler: nil))
+    alertController.addAction(UIAlertAction(title: "Cancel", style: UIAlertActionStyle.Default, handler: nil))
     alertController.addAction(UIAlertAction(title: "Open", style: UIAlertActionStyle.Default,
         handler: { action in
             openSwishSettingsInSystemSettings()
