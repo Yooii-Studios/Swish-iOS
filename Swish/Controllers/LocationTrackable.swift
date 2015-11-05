@@ -70,7 +70,7 @@ private func alertLocationServiceWithViewController(viewController: UIViewContro
     alertController.addAction(UIAlertAction(title: "Cancel", style: UIAlertActionStyle.Default, handler: nil))
     alertController.addAction(UIAlertAction(title: "Open", style: UIAlertActionStyle.Default,
         handler: { action in
-            openSwishSettingsInSystemSettings()
+            openSwishSystemSettings()
     }))
     viewController.showViewController(alertController, sender: nil)
 }
@@ -83,12 +83,12 @@ private func alertUnknownErrorWithViewController(viewController: UIViewControlle
     alertController.addAction(UIAlertAction(title: "Cancel", style: UIAlertActionStyle.Default, handler: nil))
     alertController.addAction(UIAlertAction(title: "Open", style: UIAlertActionStyle.Default,
         handler: { action in
-            openSwishSettingsInSystemSettings()
+            openSwishSystemSettings()
     }))
     viewController.showViewController(alertController, sender: nil)
 }
 
-private func openSwishSettingsInSystemSettings() {
+private func openSwishSystemSettings() {
     if let url = NSURL(string: UIApplicationOpenSettingsURLString) {
         UIApplication.sharedApplication().openURL(url)
     }
