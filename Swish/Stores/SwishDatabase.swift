@@ -353,6 +353,49 @@ final class SwishDatabase {
         }
     }
     
+    // MARK: - Wings
+    
+    class func updateWingsCapacityAdditive(additive: Int) {
+        write {
+            wings().capacityAdditive = additive
+        }
+    }
+    
+    class func updateWingsPenalty(penaltyCount: Int) {
+        write {
+            wings().lastPenaltyCount = penaltyCount
+        }
+    }
+    
+    class func updateLastWingsCount(count: Int) {
+        write {
+            wings().lastWingCount = count
+        }
+    }
+    
+    class func updateLastWingCountChangedTimestamp(timestamp: NSTimeInterval?) {
+        write {
+            wings().lastTimestamp = timestamp
+        }
+    }
+    
+    class func resetLastWingCountChangedTimestamp() {
+        updateLastWingCountChangedTimestamp(nil)
+    }
+    
+    class func wings() -> Wings {
+        var wingsCandidates = objects(Wings)
+        if wingsCandidates.count > 0 {
+            return wingsCandidates[0]
+        } else {
+            let wings = Wings()
+            write({ () -> Void in
+                realm.add(wings)
+            })
+            return wings
+        }
+    }
+    
     // MARK: - Class functions
     
     private class func objects<T: Object>(filter: (object: T) -> Bool) -> Array<T> {

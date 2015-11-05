@@ -9,13 +9,13 @@
 import Foundation
 import RealmSwift
 
+private let DefaultWingsCapacity = 10
+
 final class Wings: Object {
-    
-    private static let Capacity = 10
     
     dynamic var capacityAdditive = 0
     dynamic var lastPenaltyCount = 0
-    dynamic var lastWingCount = Capacity
+    dynamic var lastWingCount = DefaultWingsCapacity
     var lastTimestamp: NSTimeInterval? {
         get {
             return _lastTimestamp.value ?? nil
@@ -23,6 +23,9 @@ final class Wings: Object {
         set {
             _lastTimestamp.value = newValue
         }
+    }
+    var capacity: Int {
+        return DefaultWingsCapacity + capacityAdditive
     }
     
     private let _lastTimestamp = RealmOptional<NSTimeInterval>()
