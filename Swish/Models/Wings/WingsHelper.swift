@@ -13,8 +13,104 @@ final class WingsHelper {
     private static let TimeRequiredForCharge: NSTimeInterval = 30
     private static let AdditiveTimeForCharge: NSTimeInterval = TimeRequiredForCharge
     
-    final class func getChargeTimeIncludingPenalty() -> NSTimeInterval {
+    // MARK: - Attributes
+    
+    final class var wingCount: Int {
+        refreshCount()
+        return SwishDatabase.wings().lastWingCount
+    }
+    
+    final class var penaltyCount: Int {
+        refreshCount()
+        return SwishDatabase.wings().lastPenaltyCount
+    }
+    
+    final class var chargedTime: Int? {
+        refreshCount()
+        if let lastWingCountTimestamp = SwishDatabase.wings().lastTimestamp {
+            return Int(CFAbsoluteTimeGetCurrent() - lastWingCountTimestamp)
+        } else {
+            return nil
+        }
+    }
+    
+    final class var timeLeftToCharge: NSTimeInterval {
         return TimeRequiredForCharge + AdditiveTimeForCharge * Double(SwishDatabase.wings().lastPenaltyCount)
+    }
+    
+    // MARK: - Serivces
+    
+    final class func refresh() {
+        let wings = SwishDatabase.wings()
+        let previousWingCount = wings.lastWingCount
+        let previousPenaltyCount = wings.lastPenaltyCount
+        refreshCount()
+        if previousWingCount != wings.lastWingCount {
+            // TODO: notifyWingCountChange()
+        }
+        if previousPenaltyCount != wings.lastPenaltyCount {
+            // TODO: notifyChargeTimeChange()
+        }
+    }
+    
+    final class func addOneWing() {
+        increaseWings(1)
+    }
+    
+    final class func increaseWings(count: Int) {
+        refreshCount()
+        addWingAndNotify(count)
+    }
+    
+    final class func useIgnoringException() {
+        let _ = try? use()
+    }
+    
+    final class func use() throws {
+        try use(1)
+    }
+    
+    final class func use(var count: Int) throws {
+        refreshCount()
+        count = -abs(count)
+        try checkApplyAdditiveWingsCountSuitable(count)
+        addWingAndNotify(count)
+    }
+    
+    final class func chargeToMax() {
+        refreshCount()
+        // 풀 충전할 경우 패널티도 없에도록 구현
+        resetPenalty()
+        let wings = SwishDatabase.wings()
+        addWingAndNotify(wings.capacity - wings.lastWingCount)
+    }
+    
+    final class func increaseCapacity(additive: Int) {
+        refreshCount()
+        addAndSaveCapacityAndNotify(additive)
+        // 용량 늘릴 경우 풀 충전 해주도록 함
+        chargeToMax()
+    }
+    
+    final class func penalty() {
+        addPenalty(1)
+    }
+    
+    final class func resetPenalty() {
+        addPenalty(-SwishDatabase.wings().lastPenaltyCount)
+    }
+    
+    final class func isFullyCharged() -> Bool {
+        refreshCount()
+        SwishDatabase.wings()
+        return SwishDatabase.wings().lastWingCount >= SwishDatabase.wings().capacity
+    }
+    
+    // TODO: Debug 모드에서만 작동하도록 수정
+    final class func resetDebug() {
+        SwishDatabase.write { () -> Void in
+            SwishDatabase.realm.delete(SwishDatabase.objects(Wings))
+        }
     }
     
     // MARK: - Add Wings
@@ -97,7 +193,7 @@ final class WingsHelper {
         // consume penalty
         var remainingPenalty = wings.lastPenaltyCount
         
-        let chargeTimeIncludingPenalty = getChargeTimeIncludingPenalty()
+        let chargeTimeIncludingPenalty = timeLeftToCharge
         if (remainingPenalty > 0 && timeToConsume > chargeTimeIncludingPenalty) {
             chargedWingCount++
             newTimestamp += chargeTimeIncludingPenalty
@@ -139,4 +235,20 @@ final class WingsHelper {
                 }
             }
     }
+    
+    // MARK: - Check internal state
+    
+    private class func checkApplyAdditiveWingsCountSuitable(additive: Int) throws {
+        let currentWingsCount = SwishDatabase.wings().lastWingCount
+        let targetWingsCount = currentWingsCount + additive
+        if targetWingsCount < 0 {
+            let queriedWingsCount = abs(additive)
+            throw WingsError.InsufficientWings(currentWingsCount: currentWingsCount,
+                queriedWingsCount: queriedWingsCount, insufficientWingsCount: queriedWingsCount - currentWingsCount)
+        }
+    }
+}
+
+enum WingsError: ErrorType {
+    case InsufficientWings(currentWingsCount: Int, queriedWingsCount: Int, insufficientWingsCount: Int)
 }
