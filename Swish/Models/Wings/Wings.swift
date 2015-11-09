@@ -1,5 +1,7 @@
 //
 //  Wings.swift
+//   날개 정보를 나타냄. 새로고침(최신화)되기 전의 raw data만 저장하므로 최신으로 갱신된 정보는 WingsHelper 클래스에서 가져다 사용해야 한다.
+//
 //  Swish
 //
 //  Created by 정동현 on 2015. 11. 5..
@@ -9,8 +11,9 @@
 import Foundation
 import RealmSwift
 
-private let DefaultWingsCapacity = 10
+let DefaultWingsCapacity = 10
 
+// TODO: 변수 명명 정리
 final class Wings: Object {
     
     dynamic var capacityAdditive = 0

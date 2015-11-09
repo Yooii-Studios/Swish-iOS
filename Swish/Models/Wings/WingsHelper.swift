@@ -10,8 +10,9 @@ import Foundation
 
 final class WingsHelper {
     
-    private static let TimeRequiredForCharge: NSTimeInterval = 30
-    private static let AdditiveTimeForCharge: NSTimeInterval = TimeRequiredForCharge
+    static let DebugWings = false
+    static let TimeRequiredForCharge: NSTimeInterval = DebugWings ? 5 : 30 * 60
+    static let AdditiveTimeForCharge: NSTimeInterval = TimeRequiredForCharge
     
     // MARK: - Attributes
     
@@ -25,10 +26,10 @@ final class WingsHelper {
         return wings().lastPenaltyCount
     }
     
-    final class var chargedTime: Int? {
+    final class var chargedTime: Double? {
         refreshCount()
         if let lastWingCountTimestamp = wings().lastTimestamp {
-            return Int(CFAbsoluteTimeGetCurrent() - lastWingCountTimestamp)
+            return CFAbsoluteTimeGetCurrent() - lastWingCountTimestamp
         } else {
             return nil
         }
@@ -141,7 +142,6 @@ final class WingsHelper {
     
     // MARK: - Penalty
     
-    // TODO: 인터널 메서드 명명을 언더스코어로 시작하려고 했는데 우성이형과 논의해본 결과 명확한 이름으로 정하자고 결정됨
     private class func addPenalty(count: Int) {
         refreshCount()
         applyPenalty(count)
@@ -156,10 +156,10 @@ final class WingsHelper {
             let penaltyAdditive = count - lastWingCount
             
             if penaltyAdditive > 0 {
-                addPenalty(penaltyAdditive)
+                addAndSavePenaltyAndNotify(penaltyAdditive)
             }
         } else {
-            addPenalty(count)
+            addAndSavePenaltyAndNotify(count)
         }
     }
     
@@ -254,6 +254,14 @@ final class WingsHelper {
     }
 }
 
-enum WingsError: ErrorType {
+enum WingsError: ErrorType, CustomStringConvertible {
+    
     case InsufficientWings(currentWingsCount: Int, queriedWingsCount: Int, insufficientWingsCount: Int)
+    
+    var description: String {
+        switch(self) {
+        case .InsufficientWings(let currentWingsCount, let queriedWingsCount, _):
+            return "Queried \(queriedWingsCount) wings but has \(currentWingsCount) wings"
+        }
+    }
 }
