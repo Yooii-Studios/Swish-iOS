@@ -211,7 +211,7 @@ class SwishTests: XCTestCase {
     }
     
     func createPhoto() -> Photo {
-        let postfix = Int(arc4random())
+        let postfix = Int(arc4random_uniform(UInt32(100)))
         
         let postfixDouble = Double(postfix)
         let departLocation = CLLocation(latitude: 35.889972 + postfixDouble, longitude: 128.611332 + postfixDouble)
