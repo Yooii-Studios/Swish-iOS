@@ -7,9 +7,9 @@
 //
 
 import XCTest
-@testable import Swish
 import RealmSwift
 import CoreLocation
+@testable import Swish
 
 class SwishTests: XCTestCase {
     var otherUserIndex = 0

@@ -19,7 +19,7 @@ final class SwishDatabase {
     class func migrate() {
         let config = Realm.Configuration(
             // TODO: 출시 전에 버전 0으로 변경하자
-            schemaVersion: 31,
+            schemaVersion: 32,
             
             migrationBlock: { migration, oldSchemaVersion in
                 if (oldSchemaVersion < 1) {
@@ -350,6 +350,49 @@ final class SwishDatabase {
     class func saveTrendingPhoto(otherUser: OtherUser, trendingPhoto: TrendingPhoto) {
         write {
             otherUser.trendingPhotos.append(trendingPhoto)
+        }
+    }
+    
+    // MARK: - Wings
+    
+    class func updateWingsCapacityAdditive(additive: Int) {
+        write {
+            wings().capacityAdditive = additive
+        }
+    }
+    
+    class func updateWingsPenalty(penaltyCount: Int) {
+        write {
+            wings().lastPenaltyCount = penaltyCount
+        }
+    }
+    
+    class func updateLastWingsCount(count: Int) {
+        write {
+            wings().lastWingCount = count
+        }
+    }
+    
+    class func updateLastWingCountChangedTimestamp(timestamp: NSTimeInterval?) {
+        write {
+            wings().lastTimestamp = timestamp
+        }
+    }
+    
+    class func resetLastWingCountChangedTimestamp() {
+        updateLastWingCountChangedTimestamp(nil)
+    }
+    
+    class func wings() -> Wings {
+        var wingsCandidates = objects(Wings)
+        if wingsCandidates.count > 0 {
+            return wingsCandidates[0]
+        } else {
+            let wings = Wings()
+            write({ () -> Void in
+                realm.add(wings)
+            })
+            return wings
         }
     }
     
