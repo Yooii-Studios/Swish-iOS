@@ -18,17 +18,17 @@ final class WingsHelper {
     // MARK: - Attributes
     
     final class var wingCount: Int {
-        refreshCount()
+        refreshInternalState()
         return wings().lastWingCount
     }
     
     final class var penaltyCount: Int {
-        refreshCount()
+        refreshInternalState()
         return wings().lastPenaltyCount
     }
     
     final class var chargedTime: Double? {
-        refreshCount()
+        refreshInternalState()
         if let lastWingCountTimestamp = wings().lastTimestamp {
             return CFAbsoluteTimeGetCurrent() - lastWingCountTimestamp
         } else {
@@ -46,7 +46,7 @@ final class WingsHelper {
         let wings = self.wings()
         let previousWingCount = wings.lastWingCount
         let previousPenaltyCount = wings.lastPenaltyCount
-        refreshCount()
+        refreshInternalState()
         if previousWingCount != wings.lastWingCount {
             // TODO: notifyWingCountChange()
         }
@@ -60,7 +60,7 @@ final class WingsHelper {
     }
     
     final class func increaseWings(count: Int) {
-        refreshCount()
+        refreshInternalState()
         applyWingsAdditiveAndNotify(count)
     }
     
@@ -73,14 +73,14 @@ final class WingsHelper {
     }
     
     final class func use(var count: Int) throws {
-        refreshCount()
+        refreshInternalState()
         count = -abs(count)
         try checkApplyAdditiveWingsCountSuitable(count)
         applyWingsAdditiveAndNotify(count)
     }
     
     final class func chargeToMax() {
-        refreshCount()
+        refreshInternalState()
         // 풀 충전할 경우 패널티도 없에도록 구현
         resetPenalty()
         let wings = self.wings()
@@ -88,24 +88,24 @@ final class WingsHelper {
     }
     
     final class func increaseCapacity(additive: Int) {
-        refreshCount()
+        refreshInternalState()
         applyCapacityAdditiveAndNotify(additive)
         // 용량 늘릴 경우 풀 충전 해주도록 함
         chargeToMax()
     }
     
     final class func penalty() {
-        refreshCount()
+        refreshInternalState()
         applyPenaltyAdditive(1)
     }
     
     final class func resetPenalty() {
-        refreshCount()
+        refreshInternalState()
         applyPenaltyAdditive(-wings().lastPenaltyCount)
     }
     
     final class func isFullyCharged() -> Bool {
-        refreshCount()
+        refreshInternalState()
         let wings = self.wings()
         return wings.lastWingCount >= wings.capacity
     }
@@ -177,7 +177,7 @@ final class WingsHelper {
     // MARK: - Refresh internal state
     
     // 변수들이 여러 계산에 사용되어 메서드로 추출하기가 어려워 불가피하게 아래와 같이 주석으로 의미 구분
-    private class func refreshCount() {
+    private class func refreshInternalState() {
         let wings = self.wings()
         guard let lastTimestamp = wings.lastTimestamp else {
             return
