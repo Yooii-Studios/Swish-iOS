@@ -10,9 +10,10 @@ import Foundation
 
 final class WingsHelper {
     
+    // !!!: 출시 전 꼭 false로 바꿔줄 것. global debug setting이 제공되면 해당 값도 함께 체크할 것
     static let DebugWings = false
-    static let TimeRequiredForCharge: NSTimeInterval = DebugWings ? 5 : 30 * 60
-    static let AdditiveTimeForCharge: NSTimeInterval = TimeRequiredForCharge
+    static let DefaultChargingTime: NSTimeInterval = DebugWings ? 5 : 30 * 60
+    static let AdditiveChargingTime: NSTimeInterval = DefaultChargingTime
     
     // MARK: - Attributes
     
@@ -35,8 +36,8 @@ final class WingsHelper {
         }
     }
     
-    final class var timeLeftToCharge: NSTimeInterval {
-        return TimeRequiredForCharge + AdditiveTimeForCharge * Double(wings().lastPenaltyCount)
+    final class var chargingTime: NSTimeInterval {
+        return DefaultChargingTime + AdditiveChargingTime * Double(wings().lastPenaltyCount)
     }
     
     // MARK: - Serivces
@@ -117,7 +118,6 @@ final class WingsHelper {
     // MARK: - Add Wings
     
     private class func addWingAndNotify(additive: Int) {
-//        let wings = self.wings()
         let prevWingCount = wings().lastWingCount
         addWingAllowingOverCharge(additive)
         
@@ -192,7 +192,7 @@ final class WingsHelper {
         // consume penalty
         var remainingPenalty = wings.lastPenaltyCount
         
-        let chargeTimeIncludingPenalty = timeLeftToCharge
+        let chargeTimeIncludingPenalty = chargingTime
         if (remainingPenalty > 0 && timeToConsume > chargeTimeIncludingPenalty) {
             chargedWingCount++
             newTimestamp += chargeTimeIncludingPenalty
@@ -204,9 +204,9 @@ final class WingsHelper {
         }
         
         // consume normally
-        if (remainingPenalty == 0 && timeToConsume > TimeRequiredForCharge) {
-            chargedWingCount += Int(timeToConsume / TimeRequiredForCharge)
-            newTimestamp += Double(chargedWingCount) * TimeRequiredForCharge
+        if (remainingPenalty == 0 && timeToConsume > DefaultChargingTime) {
+            chargedWingCount += Int(timeToConsume / DefaultChargingTime)
+            newTimestamp += Double(chargedWingCount) * DefaultChargingTime
         }
         let previousWingCount = wings.lastWingCount
         addWing(chargedWingCount)

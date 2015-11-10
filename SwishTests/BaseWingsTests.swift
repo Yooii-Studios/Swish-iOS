@@ -14,8 +14,8 @@ class BaseWingsTests: XCTestCase {
     
     typealias AsyncExecutionCompletion = () -> Void
     
-    let TimeShorterThenChargeTime = WingsHelper.TimeRequiredForCharge - 1
-    let TimeLongerThenChargeTime = WingsHelper.TimeRequiredForCharge + 1
+    let TimeShorterThenChargeTime = WingsHelper.DefaultChargingTime - 1
+    let TimeLongerThenChargeTime = WingsHelper.DefaultChargingTime + 1
     
     enum WingsChargeType {
         case Full
@@ -52,7 +52,7 @@ class BaseWingsTests: XCTestCase {
     }
     
     func checkTimeLeftToChargeSameAsExpectedTimeLeftToCharge(expectedTimeForCharge: NSTimeInterval) {
-        let actualTimeForChargeWithPenalty = WingsHelper.timeLeftToCharge
+        let actualTimeForChargeWithPenalty = WingsHelper.chargingTime
         XCTAssertEqual(Int(actualTimeForChargeWithPenalty), Int(expectedTimeForCharge))
     }
     

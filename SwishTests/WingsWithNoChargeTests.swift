@@ -81,7 +81,7 @@ class WingsWithNoChargeTests: BaseWingsTests {
             let expectedWings = self.createEmptyWings(wingsAdditive: 1)
             XCTAssertEqual(self.wings, expectedWings)
             
-            let chargedTime = self.TimeLongerThenChargeTime - WingsHelper.TimeRequiredForCharge
+            let chargedTime = self.TimeLongerThenChargeTime - WingsHelper.DefaultChargingTime
             self.checkChargedTimeSameAsExpectedChargedTime(chargedTime)
         }
     }
@@ -107,6 +107,6 @@ class WingsWithNoChargeTests: BaseWingsTests {
     }
     
     private func timeRequiredForChargeWithPenaltyCount(penaltyCount: Int) -> NSTimeInterval {
-        return WingsHelper.TimeRequiredForCharge + WingsHelper.AdditiveTimeForCharge * Double(penaltyCount)
+        return WingsHelper.DefaultChargingTime + WingsHelper.AdditiveChargingTime * Double(penaltyCount)
     }
 }
