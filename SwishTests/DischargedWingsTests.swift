@@ -30,9 +30,9 @@ class DischargedWingsTests: BaseWingsTests {
     }
     
     func testThrowWingsErrorOnUseWings() {
-        assertThrows({
+        assertThrows(WingsError.self) {
             try WingsHelper.use(1)
-            }, type: WingsError.self)
+        }
     }
     
     func testChargeToMax() {

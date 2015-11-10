@@ -10,9 +10,9 @@ import XCTest
 
 extension XCTestCase {
     
-    func assertThrows<T: ErrorType>(block: () throws -> Void, type: T.Type) {
+    func assertThrows<T: ErrorType>(type: T.Type, execution: () throws -> Void) {
         do {
-            try block()
+            try execution()
         } catch let error as T {
             if let error = error as? CustomStringConvertible {
                 print("Catched expected exception: \(error.description)")
