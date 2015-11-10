@@ -12,10 +12,9 @@ import RealmSwift
 
 class BaseWingsTests: XCTestCase {
     
-    typealias AsyncExecutionCompletion = () -> Void
-    
     let TimeShorterThenChargeTime = WingsHelper.DefaultChargingTime - 1
     let TimeLongerThenChargeTime = WingsHelper.DefaultChargingTime + 1
+    let TimeoutForExecuteAfter = WingsHelper.DefaultChargingTime + 5
     
     enum WingsChargeType {
         case Full
@@ -65,13 +64,13 @@ class BaseWingsTests: XCTestCase {
     }
     
     func executeAfterLessThenChargeTime(completion: AsyncExecutionCompletion) {
-        executeAfter(TimeShorterThenChargeTime, expectationDescription: "Wait less then charge time",
-            completion: completion)
+        executeAfterDelay(TimeShorterThenChargeTime, timeout: TimeoutForExecuteAfter,
+            expectationDescription: "Wait less then charge time", completion: completion)
     }
     
     func executeAfterMoreThenChargeTime(completion: AsyncExecutionCompletion) {
-        executeAfter(TimeLongerThenChargeTime, expectationDescription: "Wait more then charge time",
-            completion: completion)
+        executeAfterDelay(TimeLongerThenChargeTime, timeout: TimeoutForExecuteAfter,
+            expectationDescription: "Wait more then charge time", completion: completion)
     }
     
     func createFullChargedWings(wingsAdditive wingsAdditive: Int = 0, capacityAdditive: Int = 0,
@@ -84,20 +83,6 @@ class BaseWingsTests: XCTestCase {
         penaltyCount: Int = 0) -> Wings {
             return createWingsWithChargeType(.Empty, wingsAdditive: wingsAdditive, capacityAdditive: capacityAdditive,
                 penaltyCount: penaltyCount)
-    }
-    
-    private func executeAfter(timeInSec: Double, expectationDescription: String, completion: AsyncExecutionCompletion) {
-        let expectation = expectationWithDescription(expectationDescription)
-        dispatch_after(dispatch_time(DISPATCH_TIME_NOW, Int64(UInt64(timeInSec) * NSEC_PER_SEC)),
-            dispatch_get_main_queue()) { () -> Void in
-                completion()
-                expectation.fulfill()
-        }
-        waitForExpectationsWithTimeout(TimeLongerThenChargeTime + 3) { error in
-            if let error = error {
-                XCTFail(error.description)
-            }
-        }
     }
 }
 
