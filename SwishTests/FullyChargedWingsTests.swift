@@ -29,7 +29,7 @@ class FullyChargedWingsTests: BaseWingsTests {
     }
     
     func testThrowWingsErrorOnUseWings() {
-        assertThrows({ () throws -> Void in
+        assertThrows({
             try WingsHelper.use(DefaultWingsCapacity + 3)
             }, type: WingsError.self)
     }

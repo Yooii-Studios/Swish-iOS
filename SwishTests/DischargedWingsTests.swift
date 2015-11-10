@@ -30,7 +30,7 @@ class DischargedWingsTests: BaseWingsTests {
     }
     
     func testThrowWingsErrorOnUseWings() {
-        assertThrows({ () throws -> Void in
+        assertThrows({
             try WingsHelper.use(1)
             }, type: WingsError.self)
     }
