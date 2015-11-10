@@ -1,5 +1,5 @@
 //
-//  WingsWithFullChargeTests.swift
+//  FullyChargedWingsTests.swift
 //  Swish
 //
 //  Created by 정동현 on 2015. 11. 6..
@@ -10,7 +10,7 @@ import XCTest
 import RealmSwift
 @testable import Swish
 
-class WingsWithFullChargeTests: BaseWingsTests {
+class FullyChargedWingsTests: BaseWingsTests {
     
     func testAddWings() {
         let wingsToCharge = 3

@@ -1,5 +1,5 @@
 //
-//  WingsWithNoChargeTests.swift
+//  DischargedWingsTests.swift
 //  Swish
 //
 //  Created by 정동현 on 2015. 11. 9..
@@ -10,7 +10,7 @@ import XCTest
 import RealmSwift
 @testable import Swish
 
-class WingsWithNoChargeTests: BaseWingsTests {
+class DischargedWingsTests: BaseWingsTests {
     
     override func setUp() {
         super.setUp()
