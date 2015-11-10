@@ -7,8 +7,8 @@
 //
 
 import XCTest
-@testable import Swish
 import RealmSwift
+@testable import Swish
 
 class WingsWithFullChargeTests: BaseWingsTests {
     
