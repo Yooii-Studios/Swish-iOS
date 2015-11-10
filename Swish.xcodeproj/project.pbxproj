@@ -321,8 +321,8 @@
 				57D2DBBD1BF04F2600176388 /* DischargedWingsTests.swift */,
 				57DFD8A71BF03F3600A21CD1 /* XCTestCase+AssertThrows.swift */,
 				57D2DBBF1BF0760B00176388 /* XCTestCase+RangeComparison.swift */,
-				F245DCCA1B9E7B2D0072308B /* Info.plist */,
 				57FB36401BF1AD070085EAAB /* XCTestCase_DelayedExecution.swift */,
+				F245DCCA1B9E7B2D0072308B /* Info.plist */,
 			);
 			path = SwishTests;
 			sourceTree = "<group>";
