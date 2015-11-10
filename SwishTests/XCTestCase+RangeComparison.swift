@@ -1,5 +1,5 @@
 //
-//  XCTTestCase+RangeComparison.swift
+//  XCTestCase+RangeComparison.swift
 //  Swish
 //
 //  Created by 정동현 on 2015. 11. 9..
