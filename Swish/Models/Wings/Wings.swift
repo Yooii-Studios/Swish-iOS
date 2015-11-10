@@ -13,7 +13,6 @@ import RealmSwift
 
 let DefaultWingsCapacity = 10
 
-// TODO: 변수 명명 정리
 final class Wings: Object {
     
     dynamic var capacityAdditive = 0
