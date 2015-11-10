@@ -10,9 +10,7 @@ import Foundation
 
 final class WingsHelper {
     
-    // !!!: 출시 전 꼭 false로 바꿔줄 것. global debug setting이 제공되면 해당 값도 함께 체크할 것
-    static let DebugWings = false
-    static let DefaultChargingTime: NSTimeInterval = DebugWings ? 5 : 30 * 60
+    static let DefaultChargingTime: NSTimeInterval = EnvironmentVariables.IsTesting ? 5 : 30 * 60
     static let AdditiveChargingTime: NSTimeInterval = DefaultChargingTime
     
     // MARK: - Attributes
