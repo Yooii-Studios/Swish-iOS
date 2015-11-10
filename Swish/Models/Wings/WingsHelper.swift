@@ -61,7 +61,7 @@ final class WingsHelper {
     
     final class func increaseWings(count: Int) {
         refreshCount()
-        addWingAndNotify(count)
+        applyWingsAdditiveAndNotify(count)
     }
     
     final class func useIgnoringException() {
@@ -76,7 +76,7 @@ final class WingsHelper {
         refreshCount()
         count = -abs(count)
         try checkApplyAdditiveWingsCountSuitable(count)
-        addWingAndNotify(count)
+        applyWingsAdditiveAndNotify(count)
     }
     
     final class func chargeToMax() {
@@ -84,22 +84,24 @@ final class WingsHelper {
         // 풀 충전할 경우 패널티도 없에도록 구현
         resetPenalty()
         let wings = self.wings()
-        addWingAndNotify(wings.capacity - wings.lastWingCount)
+        applyWingsAdditiveAndNotify(wings.capacity - wings.lastWingCount)
     }
     
     final class func increaseCapacity(additive: Int) {
         refreshCount()
-        addAndSaveCapacityAndNotify(additive)
+        applyCapacityAdditiveAndNotify(additive)
         // 용량 늘릴 경우 풀 충전 해주도록 함
         chargeToMax()
     }
     
     final class func penalty() {
-        addPenalty(1)
+        refreshCount()
+        applyPenaltyAdditive(1)
     }
     
     final class func resetPenalty() {
-        addPenalty(-wings().lastPenaltyCount)
+        refreshCount()
+        applyPenaltyAdditive(-wings().lastPenaltyCount)
     }
     
     final class func isFullyCharged() -> Bool {
@@ -117,23 +119,23 @@ final class WingsHelper {
     
     // MARK: - Add Wings
     
-    private class func addWingAndNotify(additive: Int) {
+    private class func applyWingsAdditiveAndNotify(additive: Int) {
         let prevWingCount = wings().lastWingCount
-        addWingAllowingOverCharge(additive)
+        applyWingsAdditiveAllowingOverCharge(additive)
         
         saveTimestampWithPreviousWingCount(prevWingCount, currentWingCount: wings().lastWingCount)
         // TODO: notifyWingCountChange()
     }
     
-    private class func addWingAllowingOverCharge(additive: Int) {
-        addWing(additive, allowingOverCharge: true)
+    private class func applyWingsAdditiveAllowingOverCharge(additive: Int) {
+        applyWingsAdditive(additive, allowingOverCharge: true)
     }
     
-    private class func addWing(additive: Int) {
-        addWing(additive, allowingOverCharge: false)
+    private class func applyWingAdditive(additive: Int) {
+        applyWingsAdditive(additive, allowingOverCharge: false)
     }
     
-    private class func addWing(additive: Int, allowingOverCharge allowOverCharge: Bool) {
+    private class func applyWingsAdditive(additive: Int, allowingOverCharge allowOverCharge: Bool) {
         let wings = self.wings()
         let targetWingCount = wings.lastWingCount + additive
         let actualWingCount = max(allowOverCharge ? targetWingCount : min(wings.capacity, targetWingCount), 0)
@@ -142,28 +144,23 @@ final class WingsHelper {
     
     // MARK: - Penalty
     
-    private class func addPenalty(count: Int) {
-        refreshCount()
-        applyPenalty(count)
-    }
-    
-    private class func applyPenalty(count: Int) {
-        if count > 0 {
+    private class func applyPenaltyAdditive(additive: Int) {
+        if additive > 0 {
             let lastWingCount = wings().lastWingCount
-            let wingsToConsume = min(lastWingCount, count)
-            addWingAndNotify(-wingsToConsume)
+            let wingsToConsume = min(lastWingCount, additive)
+            applyWingsAdditiveAndNotify(-wingsToConsume)
             
-            let penaltyAdditive = count - lastWingCount
+            let penaltyAdditive = additive - lastWingCount
             
             if penaltyAdditive > 0 {
-                addAndSavePenaltyAndNotify(penaltyAdditive)
+                applyPenaltyAdditiveAndNotify(penaltyAdditive)
             }
         } else {
-            addAndSavePenaltyAndNotify(count)
+            applyPenaltyAdditiveAndNotify(additive)
         }
     }
     
-    private class func addAndSavePenaltyAndNotify(additive: Int) {
+    private class func applyPenaltyAdditiveAndNotify(additive: Int) {
         let totalAdditive = wings().lastPenaltyCount + additive
         SwishDatabase.updateWingsPenalty(totalAdditive)
         // TODO: notifyChargeTimeChange()
@@ -171,7 +168,7 @@ final class WingsHelper {
     
     // MARK: - Capacity
     
-    private class func addAndSaveCapacityAndNotify(additive: Int) {
+    private class func applyCapacityAdditiveAndNotify(additive: Int) {
         let totalAdditive = wings().capacityAdditive + additive
         SwishDatabase.updateWingsCapacityAdditive(totalAdditive)
         // TODO: notifyCapacityChange()
@@ -209,7 +206,7 @@ final class WingsHelper {
             newTimestamp += Double(chargedWingCount) * DefaultChargingTime
         }
         let previousWingCount = wings.lastWingCount
-        addWing(chargedWingCount)
+        applyWingAdditive(chargedWingCount)
         saveTimestampWithPreviousWingCount(previousWingCount, currentWingCount: wings.lastWingCount, timestamp: newTimestamp)
     }
     
