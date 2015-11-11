@@ -91,9 +91,11 @@ if [[ "$CONFIGURATION" == "Debug" ]]; then
   install_framework "Pods/DeviceUtil.framework"
   install_framework "Pods/OAStackView.framework"
   install_framework "Pods/PureLayout.framework"
+  install_framework "Pods/ReactKit.framework"
   install_framework "Pods/Realm.framework"
   install_framework "Pods/RealmSwift.framework"
   install_framework "Pods/SnapKit.framework"
+  install_framework "Pods/SwiftTask.framework"
   install_framework "Pods/SwiftyJSON.framework"
 fi
 if [[ "$CONFIGURATION" == "Release" ]]; then
@@ -104,8 +106,10 @@ if [[ "$CONFIGURATION" == "Release" ]]; then
   install_framework "Pods/DeviceUtil.framework"
   install_framework "Pods/OAStackView.framework"
   install_framework "Pods/PureLayout.framework"
+  install_framework "Pods/ReactKit.framework"
   install_framework "Pods/Realm.framework"
   install_framework "Pods/RealmSwift.framework"
   install_framework "Pods/SnapKit.framework"
+  install_framework "Pods/SwiftTask.framework"
   install_framework "Pods/SwiftyJSON.framework"
 fi
