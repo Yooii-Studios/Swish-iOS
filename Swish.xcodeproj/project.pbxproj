@@ -10,6 +10,7 @@
 		570B87081BA8056B0093CEED /* SwishServer.swift in Sources */ = {isa = PBXBuildFile; fileRef = 570B87071BA8056B0093CEED /* SwishServer.swift */; };
 		570FD2F71BAAB54E008CB163 /* UserServer.swift in Sources */ = {isa = PBXBuildFile; fileRef = 570FD2F61BAAB54E008CB163 /* UserServer.swift */; };
 		571935331BA3C4C800856400 /* UUIDHelper.swift in Sources */ = {isa = PBXBuildFile; fileRef = 571935321BA3C4C800856400 /* UUIDHelper.swift */; };
+		572112A51BF35021001D87F7 /* ReactKitTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 572112A41BF35021001D87F7 /* ReactKitTests.swift */; };
 		5721F3FA1BD9C3CB00F0E733 /* SentPhotoStateLoader.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5721F3F91BD9C3CB00F0E733 /* SentPhotoStateLoader.swift */; };
 		573713291BD7165A006B272A /* Timestamp.swift in Sources */ = {isa = PBXBuildFile; fileRef = 573713281BD7165A006B272A /* Timestamp.swift */; };
 		5737132B1BD72BDA006B272A /* List+Bridge.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5737132A1BD72BDA006B272A /* List+Bridge.swift */; };
@@ -97,6 +98,7 @@
 		570B87071BA8056B0093CEED /* SwishServer.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SwishServer.swift; sourceTree = "<group>"; };
 		570FD2F61BAAB54E008CB163 /* UserServer.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UserServer.swift; sourceTree = "<group>"; };
 		571935321BA3C4C800856400 /* UUIDHelper.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UUIDHelper.swift; sourceTree = "<group>"; };
+		572112A41BF35021001D87F7 /* ReactKitTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ReactKitTests.swift; sourceTree = "<group>"; };
 		5721F3F91BD9C3CB00F0E733 /* SentPhotoStateLoader.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SentPhotoStateLoader.swift; sourceTree = "<group>"; };
 		573713281BD7165A006B272A /* Timestamp.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Timestamp.swift; sourceTree = "<group>"; };
 		5737132A1BD72BDA006B272A /* List+Bridge.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "List+Bridge.swift"; sourceTree = "<group>"; };
@@ -326,6 +328,7 @@
 				57A095421BEB2E9800333E6D /* BaseWingsTests.swift */,
 				575023231BEC7ED50056E1C5 /* FullyChargedWingsTests.swift */,
 				57D2DBBD1BF04F2600176388 /* DischargedWingsTests.swift */,
+				572112A41BF35021001D87F7 /* ReactKitTests.swift */,
 				57DFD8A71BF03F3600A21CD1 /* XCTestCase+AssertThrows.swift */,
 				57D2DBBF1BF0760B00176388 /* XCTestCase+RangeComparison.swift */,
 				57FB36401BF1AD070085EAAB /* XCTestCase+DelayedExecution.swift */,
@@ -626,6 +629,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				572112A51BF35021001D87F7 /* ReactKitTests.swift in Sources */,
 				57FB36411BF1AD070085EAAB /* XCTestCase+DelayedExecution.swift in Sources */,
 				57D2DBC01BF0760B00176388 /* XCTestCase+RangeComparison.swift in Sources */,
 				57A095431BEB2E9800333E6D /* BaseWingsTests.swift in Sources */,
