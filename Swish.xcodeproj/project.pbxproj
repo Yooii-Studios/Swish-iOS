@@ -23,6 +23,7 @@
 		5772A7DC1BD5F23F00A7F880 /* PhotoReceiver.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5772A7DB1BD5F23F00A7F880 /* PhotoReceiver.swift */; };
 		5772A7DE1BD5F71E00A7F880 /* LocationManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5772A7DD1BD5F71E00A7F880 /* LocationManager.swift */; };
 		5772A7E01BD626EA00A7F880 /* NSCache+LowMemory.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5772A7DF1BD626EA00A7F880 /* NSCache+LowMemory.swift */; };
+		577465C81BF2CFDA0093D97A /* WingsTimer.swift in Sources */ = {isa = PBXBuildFile; fileRef = 577465C71BF2CFDA0093D97A /* WingsTimer.swift */; };
 		5776B92C1BD08EAB009005B5 /* FileHelper.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5776B92B1BD08EAB009005B5 /* FileHelper.swift */; };
 		5776B92E1BD08F08009005B5 /* PhotoSender.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5776B92D1BD08F08009005B5 /* PhotoSender.swift */; };
 		579673761B9FFE2000382247 /* SwishDatabase.swift in Sources */ = {isa = PBXBuildFile; fileRef = 579673751B9FFE2000382247 /* SwishDatabase.swift */; };
@@ -50,6 +51,7 @@
 		57E09ADD1BCBAA34006A05DC /* OtherUserLoader.swift in Sources */ = {isa = PBXBuildFile; fileRef = 57E09ADC1BCBAA34006A05DC /* OtherUserLoader.swift */; };
 		57E2D9761BB282C6008957C2 /* ImageHelper.swift in Sources */ = {isa = PBXBuildFile; fileRef = 57E2D9751BB282C6008957C2 /* ImageHelper.swift */; };
 		57E2D9781BB28D8B008957C2 /* PhotoServer.swift in Sources */ = {isa = PBXBuildFile; fileRef = 57E2D9771BB28D8B008957C2 /* PhotoServer.swift */; };
+		57EED2501BF2F1A700E464F1 /* Int+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 57EED24F1BF2F1A700E464F1 /* Int+Extension.swift */; };
 		57F3D5211BD86F9E00FE577C /* PhotoStateUpdater.swift in Sources */ = {isa = PBXBuildFile; fileRef = 57F3D5201BD86F9E00FE577C /* PhotoStateUpdater.swift */; };
 		57F6283A1BA11D050008B23B /* DefaultObjectBuilder.swift in Sources */ = {isa = PBXBuildFile; fileRef = 57F628391BA11D050008B23B /* DefaultObjectBuilder.swift */; };
 		57FB36411BF1AD070085EAAB /* XCTestCase+DelayedExecution.swift in Sources */ = {isa = PBXBuildFile; fileRef = 57FB36401BF1AD070085EAAB /* XCTestCase+DelayedExecution.swift */; };
@@ -108,6 +110,7 @@
 		5772A7DB1BD5F23F00A7F880 /* PhotoReceiver.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PhotoReceiver.swift; sourceTree = "<group>"; };
 		5772A7DD1BD5F71E00A7F880 /* LocationManager.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LocationManager.swift; sourceTree = "<group>"; };
 		5772A7DF1BD626EA00A7F880 /* NSCache+LowMemory.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "NSCache+LowMemory.swift"; sourceTree = "<group>"; };
+		577465C71BF2CFDA0093D97A /* WingsTimer.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = WingsTimer.swift; sourceTree = "<group>"; };
 		5776B92B1BD08EAB009005B5 /* FileHelper.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FileHelper.swift; sourceTree = "<group>"; };
 		5776B92D1BD08F08009005B5 /* PhotoSender.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PhotoSender.swift; sourceTree = "<group>"; };
 		579673751B9FFE2000382247 /* SwishDatabase.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SwishDatabase.swift; sourceTree = "<group>"; };
@@ -135,6 +138,7 @@
 		57E09ADC1BCBAA34006A05DC /* OtherUserLoader.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = OtherUserLoader.swift; sourceTree = "<group>"; };
 		57E2D9751BB282C6008957C2 /* ImageHelper.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ImageHelper.swift; sourceTree = "<group>"; };
 		57E2D9771BB28D8B008957C2 /* PhotoServer.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PhotoServer.swift; sourceTree = "<group>"; };
+		57EED24F1BF2F1A700E464F1 /* Int+Extension.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "Int+Extension.swift"; sourceTree = "<group>"; };
 		57F3D5201BD86F9E00FE577C /* PhotoStateUpdater.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PhotoStateUpdater.swift; sourceTree = "<group>"; };
 		57F628391BA11D050008B23B /* DefaultObjectBuilder.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DefaultObjectBuilder.swift; sourceTree = "<group>"; };
 		57FB36401BF1AD070085EAAB /* XCTestCase+DelayedExecution.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "XCTestCase+DelayedExecution.swift"; sourceTree = "<group>"; };
@@ -262,6 +266,7 @@
 			children = (
 				57A095401BEB293400333E6D /* Wings.swift */,
 				57A095451BEB316F00333E6D /* WingsHelper.swift */,
+				577465C71BF2CFDA0093D97A /* WingsTimer.swift */,
 			);
 			path = Wings;
 			sourceTree = "<group>";
@@ -382,6 +387,7 @@
 				575354C21BE1CB7C0034F24E /* DeviceHelper.swift */,
 				5772A7DF1BD626EA00A7F880 /* NSCache+LowMemory.swift */,
 				F2305B971BE23EC20056E087 /* UIView+Constraints.swift */,
+				57EED24F1BF2F1A700E464F1 /* Int+Extension.swift */,
 			);
 			path = Helpers;
 			sourceTree = "<group>";
@@ -556,6 +562,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				577465C81BF2CFDA0093D97A /* WingsTimer.swift in Sources */,
 				F266D9041B9F15D500BDEB75 /* PhotoPickerViewController.swift in Sources */,
 				570FD2F71BAAB54E008CB163 /* UserServer.swift in Sources */,
 				F28EF57E1BE8E9F200204C37 /* ReceivedPhotoCollectionViewController.swift in Sources */,
@@ -603,6 +610,7 @@
 				F20CC6761BDB878F00075088 /* SegueHandlerType.swift in Sources */,
 				579673821B9FFE6500382247 /* Photo.swift in Sources */,
 				5796738F1B9FFE7200382247 /* ChatMessageSendState.swift in Sources */,
+				57EED2501BF2F1A700E464F1 /* Int+Extension.swift in Sources */,
 				57A095461BEB316F00333E6D /* WingsHelper.swift in Sources */,
 				570B87081BA8056B0093CEED /* SwishServer.swift in Sources */,
 				573713291BD7165A006B272A /* Timestamp.swift in Sources */,
