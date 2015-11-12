@@ -8,8 +8,12 @@
 
 import Foundation
 import ReactKit
+import SwiftTask
 
 final class WingsObserver {
+    
+    private let WingCountTagPrefix = "ObserveWingCount_"
+    private let TimestampTagPrefix = "ObserveTimestamp_"
     
     // MARK: - Attributes
     
@@ -32,6 +36,8 @@ final class WingsObserver {
     private var _wingsMessageStream: Stream<AnyObject?>!
     private var _lastTimestampMessageStream: Stream<AnyObject?>!
     
+    private var cancellers = Dictionary<String, Canceller>()
+    
     // MARK: - Singleton
     
     private struct Instance {
@@ -52,21 +58,68 @@ final class WingsObserver {
     
     private init() { }
     
-    final func observeWingCount(handler: (wingCount: Int) -> Void) {
-        wingsMessageStream ~> {
-            handler(wingCount: $0 as! Int)
-        }
+    // MARK: - Observe
+    
+    final func observeWingCountWithTag(tag rawTag: String, handler: (wingCount: Int, fullyCharged: Bool) -> Void) {
+        let wingTag = wingCountTagWithRawTag(rawTag)
+        
+        let canceller = (wingsMessageStream ~> {
+            let wingCount = $0 as! Int
+            handler(wingCount: wingCount, fullyCharged: wingCount >= self.wings.capacity)
+        })
+        registerCanceller(canceller, ofTag: wingTag)
         startTimer()
     }
     
-    final func observeTimeLeftToCharge(handler: (timeLeftToCharge: Int) -> Void) {
-        lastTimestampMessageStream ~> { lastWingCountTimestamp in
-            let timePastSinceLastTimestamp = Int(CFAbsoluteTimeGetCurrent()) - (lastWingCountTimestamp as! Int)
-            let timeLeftToCharge = Int(WingsHelper.chargingTime) - timePastSinceLastTimestamp
-            handler(timeLeftToCharge: timeLeftToCharge)
-        }
+    final func observeTimeLeftToChargeWithTag(tag rawTag: String, handler: (timeLeftToCharge: Int?) -> Void) {
+        let timestampTag = timestampTagWithRawTag(rawTag)
+        
+        let canceller = (lastTimestampMessageStream ~> { lastWingCountTimestamp in
+            let isFullyCharged = (lastWingCountTimestamp as! Double).isNaN
+            if !isFullyCharged {
+                let timePastSinceLastTimestamp = Int(CFAbsoluteTimeGetCurrent()) - (lastWingCountTimestamp as! Int)
+                let timeLeftToCharge = Int(WingsHelper.chargingTime) - timePastSinceLastTimestamp
+                handler(timeLeftToCharge: timeLeftToCharge)
+            } else {
+                handler(timeLeftToCharge: nil)
+            }
+        })
+        registerCanceller(canceller, ofTag: timestampTag)
         startTimer()
     }
+    
+    private func registerCanceller(canceller: Canceller?, ofTag tag: String) {
+        cancelWithTag(tag)
+        cancellers[tag] = canceller
+    }
+    
+    // MARK: - Cancel
+    
+    final func cancelObserveWingCountWithTag(tag rawTag: String) {
+        cancelWithTag(wingCountTagWithRawTag(rawTag))
+    }
+    
+    final func cancelObserveTimeLeftToChargeWithTag(tag rawTag: String) {
+        cancelWithTag(timestampTagWithRawTag(rawTag))
+    }
+    
+    private func cancelWithTag(tag: String) {
+        if let previousCanceller = cancellers.removeValueForKey(tag) {
+            previousCanceller.cancel()
+        }
+    }
+    
+    // MARK: - Tags
+    
+    private func wingCountTagWithRawTag(rawTag: String) -> String {
+        return WingCountTagPrefix + rawTag
+    }
+    
+    private func timestampTagWithRawTag(rawTag: String) -> String {
+        return TimestampTagPrefix + rawTag
+    }
+    
+    // MARK: Timer
     
     private func startTimer() {
         if timer == nil {

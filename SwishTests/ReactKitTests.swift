@@ -26,11 +26,12 @@ class ReactKitTests: XCTestCase {
     }
     
     func testRealmObjectUpdatePropagation() {
-        WingsObserver.instance.observeWingCount {
-            print("wingsMessageStream: \($0)")
+        let tag = "testRealmObjectUpdatePropagation"
+        WingsObserver.instance.observeWingCountWithTag(tag: tag) { (wingCount, fullyCharged) -> Void in
+            print("wingCount: \(wingCount), fullyCharged: \(fullyCharged)")
         }
-        WingsObserver.instance.observeTimeLeftToCharge {
-            print("timeLeftToChargeStream: \($0)")
+        WingsObserver.instance.observeTimeLeftToChargeWithTag(tag: tag) { (timeLeftToCharge) -> Void in
+            print("timeLeftToCharge: \(timeLeftToCharge)")
         }
         
         try! WingsHelper.use(10)
