@@ -10,7 +10,7 @@ import Foundation
 
 final class WingsTimer {
     
-    typealias OnTick = (chargedWingCount: Int, chargedTime: Int) -> Void
+    typealias OnTick = (chargedWingCount: Int, timeLeftToCharge: Int) -> Void
     
     // MARK: - Attributes
     
@@ -63,18 +63,31 @@ final class WingsTimer {
     
     // NSTimer가 찾을 수 selector로 만들기 위해 @objc로 선언
     @objc private func tick() {
-        guard var chargedTime = ++chargedTime where !WingsHelper.isFullyCharged() else {
+        guard let timeLeftToCharge = evaluateTimeLeftToCharge() else {
             return
+        }
+        for (tag, execution) in onTicks {
+            print("tag: \(tag)")
+            execution(chargedWingCount: WingsHelper.wingCount, timeLeftToCharge: timeLeftToCharge)
+        }
+    }
+    
+    private func evaluateTimeLeftToCharge() -> Int? {
+        guard progress() else {
+            return nil
+        }
+        return chargingTime - chargedTime!
+    }
+    
+    private func progress() -> Bool {
+        guard var chargedTime = ++chargedTime where !WingsHelper.isFullyCharged() else {
+            return false
         }
         
         if chargedTime > chargingTime {
             chargedTime %= chargingTime
             self.chargedTime = chargedTime
         }
-        let value = chargingTime - chargedTime
-        for (tag, execution) in onTicks {
-            print("tag: \(tag)")
-            execution(chargedWingCount: WingsHelper.wingCount, chargedTime: value)
-        }
+        return true
     }
 }
