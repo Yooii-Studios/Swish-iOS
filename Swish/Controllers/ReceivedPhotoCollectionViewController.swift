@@ -26,8 +26,8 @@ class ReceivedPhotoCollectionViewController: UIViewController, UICollectionViewD
     private func adjustCollectionViewCellSize() {
         let deviceWidth = DeviceHelper.deviceWidth
         
-        // TODO: 나중에 좀 더 디테일하게 width를 잡아줄 것
-        let itemWidth = (deviceWidth) / 2
+        // TODO: 나중에 좀 더 디테일하게 width를 잡아줄 것. 좌, 중간, 우 간격 15씩 설정, 추후 이 숫자는 상수로 따로 뺄 것
+        let itemWidth = (deviceWidth - 15 * 3) / 2
 
         (photoCollectionView.collectionViewLayout as! UICollectionViewFlowLayout).itemSize =
             CGSize(width: itemWidth, height: itemWidth * 1.4)
