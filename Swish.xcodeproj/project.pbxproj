@@ -12,6 +12,7 @@
 		571935331BA3C4C800856400 /* UUIDHelper.swift in Sources */ = {isa = PBXBuildFile; fileRef = 571935321BA3C4C800856400 /* UUIDHelper.swift */; };
 		572112A51BF35021001D87F7 /* ReactKitTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 572112A41BF35021001D87F7 /* ReactKitTests.swift */; };
 		5721F3FA1BD9C3CB00F0E733 /* SentPhotoStateLoader.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5721F3F91BD9C3CB00F0E733 /* SentPhotoStateLoader.swift */; };
+		573205B51BF47B9B00ED6BB6 /* WingsObservable.swift in Sources */ = {isa = PBXBuildFile; fileRef = 573205B41BF47B9B00ED6BB6 /* WingsObservable.swift */; };
 		573713291BD7165A006B272A /* Timestamp.swift in Sources */ = {isa = PBXBuildFile; fileRef = 573713281BD7165A006B272A /* Timestamp.swift */; };
 		5737132B1BD72BDA006B272A /* List+Bridge.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5737132A1BD72BDA006B272A /* List+Bridge.swift */; };
 		5737132D1BD73101006B272A /* UserHelper.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5737132C1BD73101006B272A /* UserHelper.swift */; };
@@ -100,6 +101,7 @@
 		571935321BA3C4C800856400 /* UUIDHelper.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UUIDHelper.swift; sourceTree = "<group>"; };
 		572112A41BF35021001D87F7 /* ReactKitTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ReactKitTests.swift; sourceTree = "<group>"; };
 		5721F3F91BD9C3CB00F0E733 /* SentPhotoStateLoader.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SentPhotoStateLoader.swift; sourceTree = "<group>"; };
+		573205B41BF47B9B00ED6BB6 /* WingsObservable.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = WingsObservable.swift; sourceTree = "<group>"; };
 		573713281BD7165A006B272A /* Timestamp.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Timestamp.swift; sourceTree = "<group>"; };
 		5737132A1BD72BDA006B272A /* List+Bridge.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "List+Bridge.swift"; sourceTree = "<group>"; };
 		5737132C1BD73101006B272A /* UserHelper.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UserHelper.swift; sourceTree = "<group>"; };
@@ -342,6 +344,7 @@
 			children = (
 				575354C41BE1F0000034F24E /* LocationTrackable.swift */,
 				F23527FE1BE09E7C00CA614A /* PhotoPickable.swift */,
+				573205B41BF47B9B00ED6BB6 /* WingsObservable.swift */,
 				F20CC6751BDB878F00075088 /* SegueHandlerType.swift */,
 				F245DCB21B9E7B2D0072308B /* MainViewController.swift */,
 				F2C7CBD21BE1C53800ED429A /* DressingViewController.swift */,
@@ -578,6 +581,7 @@
 				F2F545221BD5ED5500AEE02A /* ShareResultViewController.swift in Sources */,
 				579673761B9FFE2000382247 /* SwishDatabase.swift in Sources */,
 				5772A7DC1BD5F23F00A7F880 /* PhotoReceiver.swift in Sources */,
+				573205B51BF47B9B00ED6BB6 /* WingsObservable.swift in Sources */,
 				F245DCB11B9E7B2D0072308B /* AppDelegate.swift in Sources */,
 				575354C31BE1CB7C0034F24E /* DeviceHelper.swift in Sources */,
 				576A81991BC7545A0064A70F /* StickerServer.swift in Sources */,
