@@ -7,17 +7,30 @@
 //
 
 import Foundation
+import ReactKit
 
 final class WingsTimer {
     
-    typealias OnTick = (chargedWingCount: Int, timeLeftToCharge: Int) -> Void
-    
     // MARK: - Attributes
     
-    private var chargingTime: Int!
-    private var chargedTime: Int?
     private var timer: NSTimer?
-    private var onTicks = Dictionary<String, OnTick>()
+    private let wings = SwishDatabase.wings()
+    
+    // KVO Streams
+    private var wingsMessageStream: Stream<AnyObject?> {
+        if _wingsMessageStream == nil {
+            _wingsMessageStream = KVO.stream(wings, "lastWingCount").ownedBy(wings)
+        }
+        return _wingsMessageStream
+    }
+    private var lastTimestampMessageStream: Stream<AnyObject?> {
+        if _lastTimestampMessageStream == nil {
+            _lastTimestampMessageStream = KVO.stream(wings, "_lastTimestamp").ownedBy(wings)
+        }
+        return _lastTimestampMessageStream
+    }
+    private var _wingsMessageStream: Stream<AnyObject?>!
+    private var _lastTimestampMessageStream: Stream<AnyObject?>!
     
     // MARK: - Singleton
     
@@ -39,55 +52,31 @@ final class WingsTimer {
     
     private init() { }
     
-    final func startWithTag(tag: String, execution: OnTick) {
-        chargedTime = WingsHelper.chargedTime != nil ? Int(WingsHelper.chargedTime!) : nil
-        guard chargedTime != nil && !WingsHelper.isFullyCharged() else {
-            return
+    final func observeWingCount(handler: (wingCount: Int) -> Void) {
+        wingsMessageStream ~> {
+            handler(wingCount: $0 as! Int)
         }
-        
-        chargingTime = Int(WingsHelper.chargingTime)
+        startTimer()
+    }
+    
+    final func observeTimeLeftToCharge(handler: (timeLeftToCharge: Int) -> Void) {
+        lastTimestampMessageStream ~> { lastWingCountTimestamp in
+            let timePastSinceLastTimestamp = Int(CFAbsoluteTimeGetCurrent()) - (lastWingCountTimestamp as! Int)
+            let timeLeftToCharge = Int(WingsHelper.chargingTime) - timePastSinceLastTimestamp
+            handler(timeLeftToCharge: timeLeftToCharge)
+        }
+        startTimer()
+    }
+    
+    private func startTimer() {
         if timer == nil {
             timer = NSTimer.scheduledTimerWithTimeInterval(1.0, target: self, selector: "tick", userInfo: nil,
                 repeats: true)
-        }
-        onTicks[tag] = execution
-    }
-    
-    final func stopWithTag(tag: String) {
-        onTicks.removeValueForKey(tag)
-        if onTicks.count == 0 {
-            timer?.invalidate()
-            timer = nil
         }
     }
     
     // NSTimer가 찾을 수 selector로 만들기 위해 @objc로 선언
     @objc private func tick() {
-        guard let timeLeftToCharge = evaluateTimeLeftToCharge() else {
-            return
-        }
-        for (tag, execution) in onTicks {
-            print("tag: \(tag)")
-            execution(chargedWingCount: WingsHelper.wingCount, timeLeftToCharge: timeLeftToCharge)
-        }
-    }
-    
-    private func evaluateTimeLeftToCharge() -> Int? {
-        guard progress() else {
-            return nil
-        }
-        return chargingTime - chargedTime!
-    }
-    
-    private func progress() -> Bool {
-        guard var chargedTime = ++chargedTime where !WingsHelper.isFullyCharged() else {
-            return false
-        }
-        
-        if chargedTime > chargingTime {
-            chargedTime %= chargingTime
-            self.chargedTime = chargedTime
-        }
-        return true
+        WingsHelper.refresh()
     }
 }

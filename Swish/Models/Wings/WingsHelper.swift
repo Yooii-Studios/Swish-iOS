@@ -15,18 +15,7 @@ final class WingsHelper {
     
     // MARK: - Attributes
     
-    final class var wingCount: Int {
-        refreshInternalState()
-        return wings().lastWingCount
-    }
-    
-    final class var penaltyCount: Int {
-        refreshInternalState()
-        return wings().lastPenaltyCount
-    }
-    
     final class var chargedTime: Double? {
-        refreshInternalState()
         if let lastWingCountTimestamp = wings().lastTimestamp {
             return CFAbsoluteTimeGetCurrent() - lastWingCountTimestamp
         } else {
@@ -41,16 +30,7 @@ final class WingsHelper {
     // MARK: - Serivces
     
     final class func refresh() {
-        let wings = self.wings()
-        let previousWingCount = wings.lastWingCount
-        let previousPenaltyCount = wings.lastPenaltyCount
         refreshInternalState()
-        if previousWingCount != wings.lastWingCount {
-            // TODO: notifyWingCountChange()
-        }
-        if previousPenaltyCount != wings.lastPenaltyCount {
-            // TODO: notifyChargeTimeChange()
-        }
     }
     
     final class func addOneWing() {
@@ -122,7 +102,6 @@ final class WingsHelper {
         applyWingsAdditiveAllowingOverCharge(additive)
         
         saveTimestampWithPreviousWingCount(prevWingCount, currentWingCount: wings().lastWingCount)
-        // TODO: notifyWingCountChange()
     }
     
     private class func applyWingsAdditiveAllowingOverCharge(additive: Int) {
@@ -161,7 +140,6 @@ final class WingsHelper {
     private class func applyPenaltyAdditiveAndNotify(additive: Int) {
         let totalAdditive = wings().lastPenaltyCount + additive
         SwishDatabase.updateWingsPenalty(totalAdditive)
-        // TODO: notifyChargeTimeChange()
     }
     
     // MARK: - Capacity
@@ -169,7 +147,6 @@ final class WingsHelper {
     private class func applyCapacityAdditiveAndNotify(additive: Int) {
         let totalAdditive = wings().capacityAdditive + additive
         SwishDatabase.updateWingsCapacityAdditive(totalAdditive)
-        // TODO: notifyCapacityChange()
     }
     
     // MARK: - Refresh internal state

@@ -13,25 +13,11 @@ import ReactKit
 @testable import Swish
 
 class ReactKitTests: XCTestCase {
-    
-    dynamic var message = ""
 
     override func setUp() {
         super.setUp()
         
         SwishDatabase.deleteAll()
-        
-        let me = Me.create("myId", token: "token", builder: {(me: Me) -> () in
-            me.name = "myName"
-            me.about = "myAbout"
-            me.profileUrl = "http://pds5.egloos.com/logo/200702/06/28/e0005928.jpg"
-            me.level = 1
-            me.totalExpForNextLevel = 10
-            me.currentExp = 0
-        })
-        SwishDatabase.saveMe(me)
-        
-        message = "First"
     }
     
     override func tearDown() {
@@ -40,19 +26,20 @@ class ReactKitTests: XCTestCase {
     }
     
     func testRealmObjectUpdatePropagation() {
-        let photo = Photo.create(message: "testMessage", departLocation: CLLocation(latitude: 127.01, longitude: 36.01))
-        SwishDatabase.saveSentPhoto(photo, serverId: 0, newFileName: "qwerasdf")
-        
-        let photoMessageStream = KVO.stream(photo, "message").ownedBy(self)
-        (self, "message") <~ photoMessageStream
-        photoMessageStream ~> {
-            print("photoMessageStream: \($0)")
+        WingsTimer.instance.observeWingCount {
+            print("wingsMessageStream: \($0)")
+        }
+        WingsTimer.instance.observeTimeLeftToCharge {
+            print("timeLeftToChargeStream: \($0)")
         }
         
-        try! SwishDatabase.realm.write {
-            photo.message = "Second"
-        }
+        try! WingsHelper.use(10)
         
-        XCTAssertEqual(message, photo.message)
+        executeAfterDelay(3.0, timeout: 15.0, expectationDescription: "testRealmObjectUpdatePropagation_3") {
+            WingsHelper.penalty()
+        }
+        executeAfterDelay(10.0, timeout: 15.0, expectationDescription: "testRealmObjectUpdatePropagation_10") {
+            print("Wings: \(SwishDatabase.wings())")
+        }
     }
 }

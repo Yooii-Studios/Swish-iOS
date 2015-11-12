@@ -56,6 +56,7 @@ class BaseWingsTests: XCTestCase {
     }
     
     func checkChargedTimeSameAsExpectedChargedTime(expectedChargedTimeInSec: Double) {
+        WingsHelper.refresh()
         if let chargedTime = WingsHelper.chargedTime {
             XCTAssertEqualWithAccuracy(chargedTime, expectedChargedTimeInSec, accuracy: 1)
         } else {
