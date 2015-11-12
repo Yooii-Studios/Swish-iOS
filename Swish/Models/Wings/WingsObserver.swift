@@ -1,5 +1,5 @@
 //
-//  WingsTimer.swift
+//  WingsObserver.swift
 //  Swish
 //
 //  Created by 정동현 on 2015. 11. 11..
@@ -9,7 +9,7 @@
 import Foundation
 import ReactKit
 
-final class WingsTimer {
+final class WingsObserver {
     
     // MARK: - Attributes
     
@@ -36,13 +36,13 @@ final class WingsTimer {
     
     private struct Instance {
         static var dispatchToken: dispatch_once_t = 0
-        static var instance: WingsTimer?
+        static var instance: WingsObserver?
     }
     
-    static var instance: WingsTimer {
+    static var instance: WingsObserver {
         get {
             dispatch_once(&Instance.dispatchToken) {
-                Instance.instance = WingsTimer()
+                Instance.instance = WingsObserver()
             }
             return Instance.instance!
         }

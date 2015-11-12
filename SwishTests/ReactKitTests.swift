@@ -26,10 +26,10 @@ class ReactKitTests: XCTestCase {
     }
     
     func testRealmObjectUpdatePropagation() {
-        WingsTimer.instance.observeWingCount {
+        WingsObserver.instance.observeWingCount {
             print("wingsMessageStream: \($0)")
         }
-        WingsTimer.instance.observeTimeLeftToCharge {
+        WingsObserver.instance.observeTimeLeftToCharge {
             print("timeLeftToChargeStream: \($0)")
         }
         
