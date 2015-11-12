@@ -120,9 +120,9 @@
                         <animations/>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                         <constraints>
-                            <constraint firstItem="qmh-DW-6UZ" firstAttribute="leading" secondItem="A2d-50-Ary" secondAttribute="leadingMargin" constant="-20" id="Iwy-Gv-9k4"/>
+                            <constraint firstItem="qmh-DW-6UZ" firstAttribute="leading" secondItem="A2d-50-Ary" secondAttribute="leading" id="Iwy-Gv-9k4"/>
                             <constraint firstItem="qmh-DW-6UZ" firstAttribute="top" secondItem="ipd-BH-HKj" secondAttribute="bottom" id="nRy-SN-e8r"/>
-                            <constraint firstAttribute="trailingMargin" secondItem="qmh-DW-6UZ" secondAttribute="trailing" constant="-20" id="tZF-ss-3nF"/>
+                            <constraint firstAttribute="trailing" secondItem="qmh-DW-6UZ" secondAttribute="trailing" id="tZF-ss-3nF"/>
                             <constraint firstItem="BIV-nF-Mff" firstAttribute="top" secondItem="qmh-DW-6UZ" secondAttribute="bottom" id="z7m-jM-qAw"/>
                         </constraints>
                     </view>
