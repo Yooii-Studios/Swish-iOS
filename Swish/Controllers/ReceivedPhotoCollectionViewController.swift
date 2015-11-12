@@ -20,6 +20,17 @@ class ReceivedPhotoCollectionViewController: UIViewController, UICollectionViewD
     override func viewDidLoad() {
         super.viewDidLoad()
         receivedPhotos = SwishDatabase.receivedPhotos()
+        adjustCollectionViewCellSize()
+    }
+    
+    private func adjustCollectionViewCellSize() {
+        let deviceWidth = DeviceHelper.deviceWidth
+        
+        // TODO: 나중에 좀 더 디테일하게 width를 잡아줄 것
+        let itemWidth = (deviceWidth) / 2
+
+        (photoCollectionView.collectionViewLayout as! UICollectionViewFlowLayout).itemSize =
+            CGSize(width: itemWidth, height: itemWidth * 1.4)
     }
     
     override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?) {
