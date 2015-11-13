@@ -1,8 +1,8 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="9059" systemVersion="15B42" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" initialViewController="9KD-YC-iaJ">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="9060" systemVersion="15B42" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" initialViewController="9KD-YC-iaJ">
     <dependencies>
         <deployment identifier="iOS"/>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="9049"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="9051"/>
         <capability name="Aspect ratio constraints" minToolsVersion="5.1"/>
         <capability name="Constraints to layout margins" minToolsVersion="6.0"/>
     </dependencies>
@@ -16,11 +16,11 @@
                         <viewControllerLayoutGuide type="bottom" id="BIV-nF-Mff"/>
                     </layoutGuides>
                     <view key="view" contentMode="scaleToFill" id="A2d-50-Ary">
-                        <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
+                        <rect key="frame" x="0.0" y="64" width="600" height="487"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <collectionView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" indicatorStyle="black" dataMode="prototypes" translatesAutoresizingMaskIntoConstraints="NO" id="qmh-DW-6UZ">
-                                <rect key="frame" x="0.0" y="64" width="600" height="487"/>
+                                <rect key="frame" x="0.0" y="0.0" width="600" height="487"/>
                                 <animations/>
                                 <color key="backgroundColor" red="0.90610439674078858" green="0.8985812374189992" blue="0.91021891711229941" alpha="1" colorSpace="calibratedRGB"/>
                                 <collectionViewFlowLayout key="collectionViewLayout" minimumLineSpacing="15" minimumInteritemSpacing="15" id="ejf-8j-XHA">
@@ -31,7 +31,7 @@
                                 </collectionViewFlowLayout>
                                 <cells>
                                     <collectionViewCell opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" reuseIdentifier="receivedPhotoCell" id="mw6-Oy-OBh" customClass="ReceivedPhotoViewCell" customModule="Swish" customModuleProvider="target">
-                                        <rect key="frame" x="15" y="79" width="180" height="245"/>
+                                        <rect key="frame" x="15" y="15" width="180" height="245"/>
                                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                         <view key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center">
                                             <rect key="frame" x="0.0" y="0.0" width="180" height="245"/>
@@ -120,12 +120,13 @@
                         <animations/>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                         <constraints>
-                            <constraint firstItem="qmh-DW-6UZ" firstAttribute="leading" secondItem="A2d-50-Ary" secondAttribute="leadingMargin" constant="-20" id="Iwy-Gv-9k4"/>
-                            <constraint firstItem="qmh-DW-6UZ" firstAttribute="top" secondItem="ipd-BH-HKj" secondAttribute="bottom" id="nRy-SN-e8r"/>
-                            <constraint firstAttribute="trailingMargin" secondItem="qmh-DW-6UZ" secondAttribute="trailing" constant="-20" id="tZF-ss-3nF"/>
+                            <constraint firstItem="qmh-DW-6UZ" firstAttribute="top" secondItem="ipd-BH-HKj" secondAttribute="bottom" id="FXi-EE-aTW"/>
+                            <constraint firstItem="qmh-DW-6UZ" firstAttribute="leading" secondItem="A2d-50-Ary" secondAttribute="leading" id="Iwy-Gv-9k4"/>
+                            <constraint firstAttribute="trailing" secondItem="qmh-DW-6UZ" secondAttribute="trailing" id="tZF-ss-3nF"/>
                             <constraint firstItem="BIV-nF-Mff" firstAttribute="top" secondItem="qmh-DW-6UZ" secondAttribute="bottom" id="z7m-jM-qAw"/>
                         </constraints>
                     </view>
+                    <extendedEdge key="edgesForExtendedLayout"/>
                     <tabBarItem key="tabBarItem" title="Received" id="t7G-Xk-ilv"/>
                     <connections>
                         <outlet property="photoCollectionView" destination="qmh-DW-6UZ" id="XrS-2M-rcc"/>
