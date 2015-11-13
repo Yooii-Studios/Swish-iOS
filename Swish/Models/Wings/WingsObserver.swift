@@ -23,13 +23,13 @@ final class WingsObserver {
     // KVO Streams
     private var wingsMessageStream: Stream<AnyObject?> {
         if _wingsMessageStream == nil {
-            _wingsMessageStream = KVO.stream(wings, "lastWingCount").ownedBy(wings)
+            _wingsMessageStream = KVO.startingStream(wings, "lastWingCount").ownedBy(wings)
         }
         return _wingsMessageStream
     }
     private var lastTimestampMessageStream: Stream<AnyObject?> {
         if _lastTimestampMessageStream == nil {
-            _lastTimestampMessageStream = KVO.stream(wings, "_lastTimestamp").ownedBy(wings)
+            _lastTimestampMessageStream = KVO.startingStream(wings, "_lastTimestamp").ownedBy(wings)
         }
         return _lastTimestampMessageStream
     }
@@ -60,32 +60,34 @@ final class WingsObserver {
     
     // MARK: - Observe
     
-    final func observeWingCountWithTag(tag rawTag: String, handler: (wingCount: Int, fullyCharged: Bool) -> Void) {
+    final func observeWingCountWithTag(tag rawTag: String, handler: (wingCount: Int) -> Void) {
         let wingTag = wingCountTagWithRawTag(rawTag)
         
-        let canceller = (wingsMessageStream ~> {
-            let wingCount = $0 as! Int
-            handler(wingCount: wingCount, fullyCharged: wingCount >= self.wings.capacity)
+        let canceller = (wingsMessageStream ~> { wingCount in
+            let wingCount = wingCount as! Int
+            handler(wingCount: wingCount)
+            
+            self.toggleTimerRunState()
         })
         registerCanceller(canceller, ofTag: wingTag)
-        startTimer()
     }
     
     final func observeTimeLeftToChargeWithTag(tag rawTag: String, handler: (timeLeftToCharge: Int?) -> Void) {
         let timestampTag = timestampTagWithRawTag(rawTag)
         
         let canceller = (lastTimestampMessageStream ~> { lastWingCountTimestamp in
-            let isFullyCharged = (lastWingCountTimestamp as! Double).isNaN
-            if !isFullyCharged {
-                let timePastSinceLastTimestamp = Int(CFAbsoluteTimeGetCurrent()) - (lastWingCountTimestamp as! Int)
-                let timeLeftToCharge = Int(WingsHelper.chargingTime) - timePastSinceLastTimestamp
-                handler(timeLeftToCharge: timeLeftToCharge)
-            } else {
-                handler(timeLeftToCharge: nil)
+            guard let lastWingCountTimestamp = (lastWingCountTimestamp as? Double)
+                where !lastWingCountTimestamp.isNaN else {
+                    handler(timeLeftToCharge: nil)
+                    return
             }
+            let timePastSinceLastTimestamp = Int(CFAbsoluteTimeGetCurrent()) - Int(lastWingCountTimestamp)
+            let timeLeftToCharge = Int(WingsHelper.chargingTime) - timePastSinceLastTimestamp
+            handler(timeLeftToCharge: timeLeftToCharge)
+            
+            self.toggleTimerRunState()
         })
         registerCanceller(canceller, ofTag: timestampTag)
-        startTimer()
     }
     
     private func registerCanceller(canceller: Canceller?, ofTag tag: String) {
@@ -121,15 +123,24 @@ final class WingsObserver {
     
     // MARK: Timer
     
+    private func toggleTimerRunState() {
+        wings.isFullyCharged ? stopTimer() : startTimer()
+    }
+    
     private func startTimer() {
         if timer == nil {
-            timer = NSTimer.scheduledTimerWithTimeInterval(1.0, target: self, selector: "tick", userInfo: nil,
+            timer = NSTimer.scheduledTimerWithTimeInterval(1.0, target: self, selector: "refreshWings", userInfo: nil,
                 repeats: true)
         }
     }
     
+    private func stopTimer() {
+        timer?.invalidate()
+        timer = nil
+    }
+    
     // NSTimer가 찾을 수 selector로 만들기 위해 @objc로 선언
-    @objc private func tick() {
+    @objc private func refreshWings() {
         WingsHelper.refresh()
     }
 }

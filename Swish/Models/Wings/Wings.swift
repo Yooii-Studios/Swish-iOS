@@ -22,7 +22,7 @@ final class Wings: Object {
     dynamic var lastWingCount = DefaultWingsCapacity
     var lastTimestamp: NSTimeInterval? {
         get {
-            return _lastTimestamp != NSTimeInterval.NaN && lastWingCount < capacity ? _lastTimestamp : nil
+            return !_lastTimestamp.isNaN ? _lastTimestamp : nil
         }
         set {
             _lastTimestamp = newValue != nil ? newValue! : invalidTimestamp
@@ -30,6 +30,9 @@ final class Wings: Object {
     }
     var capacity: Int {
         return DefaultWingsCapacity + capacityAdditive
+    }
+    var isFullyCharged: Bool {
+        return _lastTimestamp.isNaN
     }
     
     private dynamic var _lastTimestamp = invalidTimestamp

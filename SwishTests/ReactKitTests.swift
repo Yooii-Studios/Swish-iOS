@@ -12,28 +12,22 @@ import XCTest
 import ReactKit
 @testable import Swish
 
-class ReactKitTests: XCTestCase {
+class ReactKitTests: XCTestCase, WingsObservable {
+    var wingsObserverTag = "ReactKitTests"
 
     override func setUp() {
         super.setUp()
-        
-        SwishDatabase.deleteAll()
+        WingsHelper.resetDebug()
+        observeWingsChange()
     }
     
     override func tearDown() {
-        SwishDatabase.deleteAll()
+        stopObservingWingsChange()
+        WingsHelper.resetDebug()
         super.tearDown()
     }
     
     func testRealmObjectUpdatePropagation() {
-        let tag = "testRealmObjectUpdatePropagation"
-        WingsObserver.instance.observeWingCountWithTag(tag: tag) { (wingCount, fullyCharged) -> Void in
-            print("wingCount: \(wingCount), fullyCharged: \(fullyCharged)")
-        }
-        WingsObserver.instance.observeTimeLeftToChargeWithTag(tag: tag) { (timeLeftToCharge) -> Void in
-            print("timeLeftToCharge: \(timeLeftToCharge)")
-        }
-        
         try! WingsHelper.use(10)
         
         executeAfterDelay(3.0, timeout: 15.0, expectationDescription: "testRealmObjectUpdatePropagation_3") {
@@ -42,5 +36,13 @@ class ReactKitTests: XCTestCase {
         executeAfterDelay(10.0, timeout: 15.0, expectationDescription: "testRealmObjectUpdatePropagation_10") {
             print("Wings: \(SwishDatabase.wings())")
         }
+    }
+    
+    func wingsCountDidChange(wingCount: Int) {
+        print("ReactKitTests.wingCount: \(wingCount)")
+    }
+    
+    func wingsTimeLeftToChargeChange(timeLeftToCharge: Int?) {
+        print("ReactKitTests.timeLeftToCharge: \(timeLeftToCharge)")
     }
 }

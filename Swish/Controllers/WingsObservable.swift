@@ -6,16 +6,16 @@
 //    1. WingsObservable protocol을 conform하도록 아래 요구사항 구현
 //      var wingsObserverTag: String { get }
 //
-//      func wingsCountDidChange(wingCount: Int, fullyCharged: Bool)
+//      func wingsCountDidChange(wingCount: Int)
 //      func wingsTimeLeftToChargeChange(timeLeftToCharge: Int?)
 //
 //    2. 필요한 곳에서 observeWingsChange(), stopObservingWingsChange() 호출
 //    ex)
-//      override func viewDidAppear(animated: Bool) {
+//      override func viewWillAppear(animated: Bool) {
 //          observeWingsChange()
 //      }
 //
-//      override func viewDidDisappear(animated: Bool) {
+//      override func viewWillDisappear(animated: Bool) {
 //          stopObservingWingsChange()
 //      }
 //
@@ -28,17 +28,18 @@
 import Foundation
 
 protocol WingsObservable {
+    
     var wingsObserverTag: String { get }
     
-    func wingsCountDidChange(wingCount: Int, fullyCharged: Bool)
+    func wingsCountDidChange(wingCount: Int)
     func wingsTimeLeftToChargeChange(timeLeftToCharge: Int?)
 }
 
 extension WingsObservable {
     
     func observeWingsChange() {
-        WingsObserver.instance.observeWingCountWithTag(tag: wingsObserverTag) { (wingCount, fullyCharged) -> Void in
-            self.wingsCountDidChange(wingCount, fullyCharged: fullyCharged)
+        WingsObserver.instance.observeWingCountWithTag(tag: wingsObserverTag) { (wingCount) -> Void in
+            self.wingsCountDidChange(wingCount)
         }
         WingsObserver.instance.observeTimeLeftToChargeWithTag(tag: wingsObserverTag) { (timeLeftToCharge) -> Void in
             self.wingsTimeLeftToChargeChange(timeLeftToCharge)

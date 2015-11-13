@@ -84,14 +84,19 @@ final class WingsHelper {
     
     final class func isFullyCharged() -> Bool {
         refreshInternalState()
-        let wings = self.wings()
-        return wings.lastWingCount >= wings.capacity
+        return wings().isFullyCharged
     }
     
     // TODO: Debug 모드에서만 작동하도록 수정
     final class func resetDebug() {
+        let previousWings = wings()
+        let newWings = Wings()
+        
         SwishDatabase.write { () -> Void in
-            SwishDatabase.realm.delete(SwishDatabase.objects(Wings))
+            previousWings.lastWingCount = newWings.lastWingCount
+            previousWings.lastPenaltyCount = newWings.lastPenaltyCount
+            previousWings.capacityAdditive = newWings.capacityAdditive
+            previousWings.lastTimestamp = newWings.lastTimestamp
         }
     }
     
