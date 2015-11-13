@@ -4,7 +4,7 @@
 //
 //   Usage:
 //    1. WingsObservable protocol을 conform하도록 아래 요구사항 구현
-//      var wingsObserverTag: String { get }
+//      var wingsObserverTag: String { get } // WingsObservable를 사용하는 곳마다 unique한 값 필요
 //
 //      func wingsCountDidChange(wingCount: Int)
 //      func wingsTimeLeftToChargeChange(timeLeftToCharge: Int?)
