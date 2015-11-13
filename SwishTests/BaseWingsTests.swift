@@ -56,6 +56,7 @@ class BaseWingsTests: XCTestCase {
     }
     
     func checkChargedTimeSameAsExpectedChargedTime(expectedChargedTimeInSec: Double) {
+        WingsHelper.refreshWings()
         if let chargedTime = WingsHelper.chargedTime {
             XCTAssertEqualWithAccuracy(chargedTime, expectedChargedTimeInSec, accuracy: 1)
         } else {
@@ -92,7 +93,7 @@ extension Wings: Equatable { }
 func ==(lhs: Wings, rhs: Wings) -> Bool {
     // 최신 날개 정보(날개 갯수, 패널티 갯수)는 WingsHelper클래스에서 제공하므로 wings.lastWingCount를 호출하는 것만으로는
     // 최신 정보를 알 수 없기에 수동으로 refresh()를 호출
-    WingsHelper.refresh()
+    WingsHelper.refreshWings()
     return lhs.capacityAdditive == rhs.capacityAdditive && lhs.lastPenaltyCount == rhs.lastPenaltyCount
         && lhs.lastWingCount == rhs.lastWingCount
 }
