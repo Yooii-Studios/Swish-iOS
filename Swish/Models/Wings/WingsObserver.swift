@@ -21,11 +21,11 @@ final class WingsObserver {
     private let wings = SwishDatabase.wings()
     
     // KVO Streams
-    private var wingsMessageStream: Stream<AnyObject?> {
-        if _wingsMessageStream == nil {
-            _wingsMessageStream = KVO.startingStream(wings, "lastWingCount").ownedBy(wings)
+    private var wingCountMessageStream: Stream<AnyObject?> {
+        if _wingCountMessageStream == nil {
+            _wingCountMessageStream = KVO.startingStream(wings, "lastWingCount").ownedBy(wings)
         }
-        return _wingsMessageStream
+        return _wingCountMessageStream
     }
     private var lastTimestampMessageStream: Stream<AnyObject?> {
         if _lastTimestampMessageStream == nil {
@@ -33,7 +33,7 @@ final class WingsObserver {
         }
         return _lastTimestampMessageStream
     }
-    private var _wingsMessageStream: Stream<AnyObject?>!
+    private var _wingCountMessageStream: Stream<AnyObject?>!
     private var _lastTimestampMessageStream: Stream<AnyObject?>!
     
     private var cancellers = Dictionary<String, Canceller>()
@@ -63,7 +63,7 @@ final class WingsObserver {
     final func observeWingCountWithTag(tag rawTag: String, handler: (wingCount: Int) -> Void) {
         let wingTag = wingCountTagWithRawTag(rawTag)
         
-        let canceller = (wingsMessageStream ~> { wingCount in
+        let canceller = (wingCountMessageStream ~> { wingCount in
             let wingCount = wingCount as! Int
             handler(wingCount: wingCount)
             
