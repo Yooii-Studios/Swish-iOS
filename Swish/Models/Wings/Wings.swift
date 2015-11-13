@@ -25,7 +25,7 @@ final class Wings: Object {
             return !_lastTimestamp.isNaN ? _lastTimestamp : nil
         }
         set {
-            _lastTimestamp = newValue != nil ? newValue! : InvalidTimestamp
+            _lastTimestamp = newValue ?? InvalidTimestamp
         }
     }
     var capacity: Int {
