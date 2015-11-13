@@ -13,7 +13,7 @@ import RealmSwift
 
 let DefaultWingsCapacity = 10
 
-private let invalidTimestamp = NSTimeInterval.NaN
+private let InvalidTimestamp = NSTimeInterval.NaN
 
 final class Wings: Object {
     
@@ -25,7 +25,7 @@ final class Wings: Object {
             return !_lastTimestamp.isNaN ? _lastTimestamp : nil
         }
         set {
-            _lastTimestamp = newValue != nil ? newValue! : invalidTimestamp
+            _lastTimestamp = newValue != nil ? newValue! : InvalidTimestamp
         }
     }
     var capacity: Int {
@@ -35,7 +35,7 @@ final class Wings: Object {
         return _lastTimestamp.isNaN
     }
     
-    private dynamic var _lastTimestamp = invalidTimestamp
+    private dynamic var _lastTimestamp = InvalidTimestamp
     
     override static func ignoredProperties() -> [String] {
         return ["lastTimestamp"]
