@@ -141,6 +141,6 @@ final class WingsObserver {
     
     // NSTimer가 찾을 수 selector로 만들기 위해 @objc로 선언
     @objc private func refreshWings() {
-        WingsHelper.refresh()
+        WingsHelper.refreshWings()
     }
 }

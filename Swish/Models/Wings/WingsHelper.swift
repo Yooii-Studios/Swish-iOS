@@ -29,7 +29,7 @@ final class WingsHelper {
     
     // MARK: - Serivces
     
-    final class func refresh() {
+    final class func refreshWings() {
         refreshInternalState()
     }
     
