@@ -9,14 +9,18 @@
 import Foundation
 
 final class DeviceHelper {
+    
     static let isSimulator = TARGET_OS_SIMULATOR == 1
     static let isDevice = !isSimulator
     
+    // Device Size
     static var deviceWidth: CGFloat {
-        return UIScreen.mainScreen().bounds.size.width
+        return mainScreenSize.width
     }
-    
     static var deviceHeight: CGFloat {
-        return UIScreen.mainScreen().bounds.size.height
+        return mainScreenSize.height
+    }
+    private static var mainScreenSize: CGSize {
+        return UIScreen.mainScreen().bounds.size
     }
 }
