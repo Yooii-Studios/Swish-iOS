@@ -121,7 +121,7 @@ final class WingsObserver {
         return TimestampTagPrefix + rawTag
     }
     
-    // MARK: Timer
+    // MARK: - Timer
     
     private func toggleTimerRunState() {
         wings.isFullyCharged ? stopTimer() : startTimer()
