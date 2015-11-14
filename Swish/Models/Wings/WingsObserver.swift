@@ -35,8 +35,8 @@ final class WingsObserver {
     }
     private var _wingCountMessageStream: Stream<AnyObject?>!
     private var _lastTimestampMessageStream: Stream<AnyObject?>!
-    
     private var cancellers = Dictionary<String, Canceller>()
+    private var recentWingCounts = Dictionary<String, Int>()
     
     // MARK: - Singleton
     
@@ -64,10 +64,21 @@ final class WingsObserver {
         let wingTag = wingCountTagWithRawTag(rawTag)
         
         let canceller = (wingCountMessageStream ~> { wingCount in
-            let wingCount = wingCount as! Int
-            handler(wingCount: wingCount)
+            defer { self.toggleTimerRunState() }
             
-            self.toggleTimerRunState()
+            let wingCount = wingCount as! Int
+            guard !self.wings.isFullyCharged else {
+                handler(wingCount: wingCount)
+                return
+            }
+            
+            let recentWingCount = self.recentWingCounts[wingTag]
+            let shouldNotify = recentWingCount == nil || wingCount != recentWingCount!
+            
+            if shouldNotify {
+                handler(wingCount: wingCount)
+                self.recentWingCounts[wingTag] = wingCount
+            }
         })
         registerCanceller(canceller, ofTag: wingTag)
     }
@@ -98,7 +109,9 @@ final class WingsObserver {
     // MARK: - Cancel
     
     final func cancelObserveWingCountWithTag(tag rawTag: String) {
-        cancelWithTag(wingCountTagWithRawTag(rawTag))
+        let wingTag = wingCountTagWithRawTag(rawTag)
+        cancelWithTag(wingTag)
+        recentWingCounts[wingTag] = nil
     }
     
     final func cancelObserveTimeLeftToChargeWithTag(tag rawTag: String) {
