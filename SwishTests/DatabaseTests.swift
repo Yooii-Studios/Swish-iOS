@@ -1,5 +1,5 @@
 //
-//  SwishTests.swift
+//  DatabaseTests.swift
 //  SwishTests
 //
 //  Created by Wooseong Kim on 2015. 9. 8..
@@ -11,7 +11,8 @@ import RealmSwift
 import CoreLocation
 @testable import Swish
 
-class SwishTests: XCTestCase {
+class DatabaseTests: XCTestCase {
+    
     var otherUserIndex = 0
     var photoIndex = 0
     var chatMessageIndex = 0
@@ -27,18 +28,18 @@ class SwishTests: XCTestCase {
     
     override func tearDown() {
         super.tearDown()
+        SwishDatabase.deleteAll()
     }
     
     // MARK: - Creations
+    
     func testCreateMe() {
-        // Setup Me
         let me = createMe()
         SwishDatabase.saveMe(me)
         XCTAssert(me == SwishDatabase.me())
     }
     
     func testCreateOtherUser() {
-        // Setup Me
         let user = createOtherUser()
         let userId = user.id
         SwishDatabase.saveOtherUser(user)
@@ -118,6 +119,7 @@ class SwishTests: XCTestCase {
     }
     
     // MARK: - Deletions
+    
     func testDeleteChatMessage() {
         SwishDatabase.saveMe(createMe())
         
@@ -137,6 +139,7 @@ class SwishTests: XCTestCase {
     }
     
     // MARK: - Updates
+    
     func testUpdateOtherUser() {
         SwishDatabase.saveMe(createMe())
         
@@ -157,6 +160,7 @@ class SwishTests: XCTestCase {
     }
     
     // MARK: - Performances
+    
     func testQueryObjectPerformance() {
         SwishDatabase.saveMe(createMe())
         
@@ -182,6 +186,7 @@ class SwishTests: XCTestCase {
     }
     
     // MARK: - Object creation methods
+    
     func createMe() -> Me {
         return Me.create("myId", token: "token", builder: {(me: Me) -> () in
             me.name = "myName"
