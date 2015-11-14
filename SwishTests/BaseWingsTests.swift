@@ -29,6 +29,11 @@ class BaseWingsTests: XCTestCase {
         wings = SwishDatabase.wings()
     }
     
+    override func tearDown() {
+        WingsHelper.resetDebug()
+        wings = nil
+    }
+    
     func createWingsWithChargeType(chargeType: WingsChargeType, wingsAdditive: Int = 0,
         capacityAdditive: Int = 0, penaltyCount: Int = 0) -> Wings {
             let wings = Wings()
