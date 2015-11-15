@@ -9,7 +9,6 @@
 //
 
 import XCTest
-import ReactKit
 @testable import Swish
 
 class ReactKitTests: XCTestCase, WingsObservable {
