@@ -35,8 +35,8 @@ final class WingsObserver {
     }
     private var _wingCountMessageStream: Stream<AnyObject?>!
     private var _lastTimestampMessageStream: Stream<AnyObject?>!
-    
     private var cancellers = Dictionary<String, Canceller>()
+    private var recentWingCounts = Dictionary<String, Int>()
     
     // MARK: - Singleton
     
@@ -65,8 +65,13 @@ final class WingsObserver {
         
         let canceller = (wingCountMessageStream ~> { wingCount in
             let wingCount = wingCount as! Int
-            handler(wingCount: wingCount)
             
+            let recentWingCount = self.recentWingCounts[wingTag]
+            let shouldNotify = recentWingCount == nil || wingCount != recentWingCount!
+            if shouldNotify {
+                handler(wingCount: wingCount)
+                self.recentWingCounts[wingTag] = wingCount
+            }
             self.toggleTimerRunState()
         })
         registerCanceller(canceller, ofTag: wingTag)
@@ -76,6 +81,8 @@ final class WingsObserver {
         let timestampTag = timestampTagWithRawTag(rawTag)
         
         let canceller = (lastTimestampMessageStream ~> { lastWingCountTimestamp in
+            defer { self.toggleTimerRunState() }
+            
             guard let lastWingCountTimestamp = (lastWingCountTimestamp as? Double)
                 where !lastWingCountTimestamp.isNaN else {
                     handler(timeLeftToCharge: nil)
@@ -84,8 +91,6 @@ final class WingsObserver {
             let timePastSinceLastTimestamp = Int(CFAbsoluteTimeGetCurrent()) - Int(lastWingCountTimestamp)
             let timeLeftToCharge = Int(WingsHelper.chargingTime) - timePastSinceLastTimestamp
             handler(timeLeftToCharge: timeLeftToCharge)
-            
-            self.toggleTimerRunState()
         })
         registerCanceller(canceller, ofTag: timestampTag)
     }
@@ -98,7 +103,9 @@ final class WingsObserver {
     // MARK: - Cancel
     
     final func cancelObserveWingCountWithTag(tag rawTag: String) {
-        cancelWithTag(wingCountTagWithRawTag(rawTag))
+        let wingTag = wingCountTagWithRawTag(rawTag)
+        cancelWithTag(wingTag)
+        recentWingCounts[wingTag] = nil
     }
     
     final func cancelObserveTimeLeftToChargeWithTag(tag rawTag: String) {

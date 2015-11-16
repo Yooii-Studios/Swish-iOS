@@ -9,27 +9,26 @@
 //
 
 import XCTest
-import ReactKit
 @testable import Swish
 
 class ReactKitTests: XCTestCase, WingsObservable {
+    
     var wingsObserverTag = "ReactKitTests"
+    var lastNotifiedWingCount: Int?
 
     override func setUp() {
         super.setUp()
-        WingsHelper.resetDebug()
+        cleanUp()
         observeWingsChange()
     }
     
     override func tearDown() {
         stopObservingWingsChange()
-        WingsHelper.resetDebug()
+        cleanUp()
         super.tearDown()
     }
     
     func testRealmObjectUpdatePropagation() {
-        try! WingsHelper.use(10)
-        
         executeAfterDelay(3.0, timeout: 15.0, expectationDescription: "testRealmObjectUpdatePropagation_3") {
             WingsHelper.penalty()
         }
@@ -39,10 +38,19 @@ class ReactKitTests: XCTestCase, WingsObservable {
     }
     
     func wingsCountDidChange(wingCount: Int) {
+        if let lastNotifiedWingCount = lastNotifiedWingCount where lastNotifiedWingCount == wingCount {
+            XCTFail("wing count \(wingCount) notified more then twice!")
+        }
         print("ReactKitTests.wingCount: \(wingCount)")
+        lastNotifiedWingCount = wingCount
     }
     
     func wingsTimeLeftToChargeChange(timeLeftToCharge: Int?) {
         print("ReactKitTests.timeLeftToCharge: \(timeLeftToCharge)")
+    }
+    
+    private func cleanUp() {
+        WingsHelper.resetDebug()
+        lastNotifiedWingCount = nil
     }
 }
