@@ -21,12 +21,18 @@ class MyInfoViewController: UITabBarController {
     override func viewDidLoad() {
         super.viewDidLoad()
 
-        // Do any additional setup after loading the view.
+        selectTab(0)
     }
     
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()
         // Dispose of any resources that can be recreated.
+    }
+    
+    private func selectTab(index: Int) {
+        selectedIndex = 0
+        let tabItem = tabBar.items![selectedIndex]
+        tabBar(tabBar, didSelectItem: tabItem)
     }
     
     @IBAction func cancelBarButtonDidTap() {
