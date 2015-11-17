@@ -55,7 +55,7 @@ class ReceivedPhotoCollectionViewController: UIViewController, UICollectionViewD
         UICollectionViewCell {
             let cell = dequeueReusableCell(collectionView, atIndexPath: indexPath)
             cell.clear()
-            initCell(cell, atIndexPath: indexPath)
+            cell.initWithPhoto(receivedPhotos[indexPath.row])
             return cell
     }
     
@@ -63,17 +63,6 @@ class ReceivedPhotoCollectionViewController: UIViewController, UICollectionViewD
         ReceivedPhotoViewCell {
             return collectionView.dequeueReusableCellWithReuseIdentifier("receivedPhotoCell", forIndexPath: indexPath)
                 as! ReceivedPhotoViewCell
-    }
-    
-    private func initCell(cell: ReceivedPhotoViewCell, atIndexPath indexPath: NSIndexPath) {
-        let photo = receivedPhotos[indexPath.row]
-        PhotoImageHelper.imageWithPhoto(photo) { image in
-            cell.imageView.image = image
-            cell.userNameLabel.text = photo.sender.name
-            cell.messageLabel.text = photo.message
-            // TODO: 거리 관련 유틸리티 추후 구현해서 적용할 것
-            cell.distanceLabel.text = "6230 km"
-        }
     }
     
     // MARK: - UICollectionView Delegate

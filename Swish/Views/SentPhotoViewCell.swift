@@ -13,6 +13,19 @@ class SentPhotoViewCell: UICollectionViewCell {
     @IBOutlet weak var messageLabel: UILabel!
     @IBOutlet weak var statusImageView: UIImageView!
     
+    func initWithPhoto(photo: Photo) {
+        PhotoImageHelper.imageWithPhoto(photo) { image in
+            self.imageView.image = image
+            self.messageLabel.text = photo.message
+            self.initStatusImageViewWithPhotoState(photo.photoState)
+        }
+    }
+    
+    func initStatusImageViewWithPhotoState(photoState: PhotoState) {
+        let imgResourceName = photoState.sentStateImgResourceName
+        statusImageView.image = UIImage(named: imgResourceName)
+    }
+    
     func clear() {
         imageView.image = nil
         messageLabel.text = nil

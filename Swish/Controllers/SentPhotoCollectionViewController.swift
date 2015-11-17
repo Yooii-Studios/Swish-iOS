@@ -47,8 +47,8 @@ class SentPhotoCollectionViewController: UIViewController {
         UICollectionViewCell {
             let cell = dequeueReusableCell(collectionView, atIndexPath: indexPath)
             cell.clear()
+            cell.initWithPhoto(sentPhotos[indexPath.row])
             // TODO: 추후 아트 픽스된 이후 스토리보드에서 반투명 UIView opacity 조절 필요
-            initCell(cell, atIndexPath: indexPath)
             return cell
     }
     
@@ -57,21 +57,7 @@ class SentPhotoCollectionViewController: UIViewController {
             return collectionView.dequeueReusableCellWithReuseIdentifier("SentPhotoViewCell", forIndexPath: indexPath)
                 as! SentPhotoViewCell
     }
-    
-    private func initCell(cell: SentPhotoViewCell, atIndexPath indexPath: NSIndexPath) {
-        let photo = sentPhotos[indexPath.row]
-        PhotoImageHelper.imageWithPhoto(photo) { image in
-            cell.imageView.image = image
-            cell.messageLabel.text = photo.message
-            self.initStatusImageView(cell.statusImageView, withPhotoState: photo.photoState)
-        }
-    }
-    
-    private func initStatusImageView(imageView: UIImageView, withPhotoState photoState: PhotoState) {
-        let imgResourceName = photoState.sentStateImgResourceName
-        imageView.image = UIImage(named: imgResourceName)
-    }
-    
+        
     // MARK: - UICollectionView Delegate
     
     func collectionView(collectionView: UICollectionView, didSelectItemAtIndexPath indexPath: NSIndexPath) {
