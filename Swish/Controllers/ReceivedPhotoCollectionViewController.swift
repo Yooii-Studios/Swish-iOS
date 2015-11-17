@@ -61,7 +61,7 @@ class ReceivedPhotoCollectionViewController: UIViewController, UICollectionViewD
     
     private func dequeueReusableCell(collectionView: UICollectionView, atIndexPath indexPath: NSIndexPath) ->
         ReceivedPhotoViewCell {
-            return collectionView.dequeueReusableCellWithReuseIdentifier("receivedPhotoCell", forIndexPath: indexPath)
+            return collectionView.dequeueReusableCellWithReuseIdentifier("ReceivedPhotoViewCell", forIndexPath: indexPath)
                 as! ReceivedPhotoViewCell
     }
     
