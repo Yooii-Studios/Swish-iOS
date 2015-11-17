@@ -50,16 +50,17 @@ class MyInfoViewController: UITabBarController {
     */
     
     override func tabBar(tabBar: UITabBar, didSelectItem item: UITabBarItem) {
-        // TODO: 로컬라이징 필요
-        if let currentTabType = TabType(rawValue: selectedIndex) {
-            switch currentTabType {
-            case .Received:
-                title = "RECEIVED"
-            case .Sent:
-                title = "SENT"
-            case .Profile:
-                title = "PROFILE"
-            }
+        guard let newIndex = tabBar.items?.indexOf(item), let currentTabType = TabType(rawValue: newIndex) else {
+            return
+        }
+        
+        switch currentTabType {
+        case .Received:
+            title = "RECEIVED"
+        case .Sent:
+            title = "SENT"
+        case .Profile:
+            title = "PROFILE"
         }
     }
 }
