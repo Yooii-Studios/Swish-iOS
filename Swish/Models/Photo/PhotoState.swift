@@ -50,7 +50,7 @@ enum PhotoState: String {
     }
 }
 
-// Sent Photo Collection
+// Resources
 extension PhotoState {
     
     var sentStateImgResourceName: String {
