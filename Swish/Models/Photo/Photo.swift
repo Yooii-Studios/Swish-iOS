@@ -53,10 +53,8 @@ class Photo: Object {
     }
     var arrivedLocation: CLLocation? {
         get {
-            let hasArrivedLocation =
-            arrivedLatitude != CLLocationDegrees.NaN || arrivedLongitude != CLLocationDegrees.NaN
-            return hasArrivedLocation
-                ? CLLocation(latitude: arrivedLatitude, longitude: arrivedLongitude) : nil
+            let hasArrivedLocation = !arrivedLatitude.isNaN || !arrivedLongitude.isNaN
+            return hasArrivedLocation ? CLLocation(latitude: arrivedLatitude, longitude: arrivedLongitude) : nil
         }
         
         set {

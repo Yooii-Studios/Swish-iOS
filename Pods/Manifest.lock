@@ -9,12 +9,15 @@ PODS:
   - Google-Mobile-Ads-SDK (7.5.2)
   - OAStackView (0.2.0)
   - PureLayout (3.0.1)
+  - ReactKit (0.12.0):
+    - SwiftTask (~> 4.0.0)
   - Realm (0.96.2):
     - Realm/Headers (= 0.96.2)
   - Realm/Headers (0.96.2)
   - RealmSwift (0.96.2):
     - Realm (= 0.96.2)
   - SnapKit (0.13.0)
+  - SwiftTask (4.0.0)
   - SwiftyJSON (2.3.0)
 
 DEPENDENCIES:
@@ -25,6 +28,7 @@ DEPENDENCIES:
   - DeviceUtil
   - Google-Mobile-Ads-SDK
   - OAStackView
+  - ReactKit
   - Realm
   - RealmSwift
   - SnapKit (from `https://github.com/SnapKit/SnapKit.git`, branch `swift-2.0`)
@@ -54,9 +58,11 @@ SPEC CHECKSUMS:
   Google-Mobile-Ads-SDK: 24a8ddfc0bcfec281960c5d88f75327df0d86b00
   OAStackView: a05adfec3669a5187b968a8c0a2690ae517271b6
   PureLayout: f35f5384c9c4e4479df041dbe33ad7577b71ddfb
+  ReactKit: a2b705e8a8674b9cb38b8112c07891df87e8e62b
   Realm: 3ce8448151c571e90b85002d984d7f93f54fc8a3
   RealmSwift: 485599fe54e35461c4a0daa7d01d8fbf11424873
   SnapKit: 69fe274c71511df89a5591c11437a8b826bfa9eb
+  SwiftTask: 724ff63fc8bd9b366d242696d4aff098f6de3c3a
   SwiftyJSON: 8d6b61a70277ef2a5d710d372e06e7e2d87fb9e4
 
 COCOAPODS: 0.39.0
