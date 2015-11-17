@@ -80,6 +80,8 @@
 		F266D9041B9F15D500BDEB75 /* PhotoPickerViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = F266D9031B9F15D500BDEB75 /* PhotoPickerViewController.swift */; };
 		F28EF57E1BE8E9F200204C37 /* ReceivedPhotoCollectionViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = F28EF57D1BE8E9F200204C37 /* ReceivedPhotoCollectionViewController.swift */; };
 		F2C7CBD31BE1C53800ED429A /* DressingViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = F2C7CBD21BE1C53800ED429A /* DressingViewController.swift */; };
+		F2ECA5C81BFAE6E300E3AD93 /* SentPhotoCollectionViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = F2ECA5C71BFAE6E300E3AD93 /* SentPhotoCollectionViewController.swift */; };
+		F2ECA5CC1BFAE7FC00E3AD93 /* SentPhotoViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = F2ECA5CB1BFAE7FC00E3AD93 /* SentPhotoViewCell.swift */; };
 		F2F545201BD5E84500AEE02A /* ShareResult.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = F2F5451E1BD5E84500AEE02A /* ShareResult.storyboard */; };
 		F2F545221BD5ED5500AEE02A /* ShareResultViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = F2F545211BD5ED5400AEE02A /* ShareResultViewController.swift */; };
 /* End PBXBuildFile section */
@@ -176,6 +178,8 @@
 		F28EF57C1BE8BDBD00204C37 /* Swift Code Conventions.playground */ = {isa = PBXFileReference; lastKnownFileType = file.playground; path = "Swift Code Conventions.playground"; sourceTree = "<group>"; };
 		F28EF57D1BE8E9F200204C37 /* ReceivedPhotoCollectionViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ReceivedPhotoCollectionViewController.swift; sourceTree = "<group>"; };
 		F2C7CBD21BE1C53800ED429A /* DressingViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DressingViewController.swift; sourceTree = "<group>"; };
+		F2ECA5C71BFAE6E300E3AD93 /* SentPhotoCollectionViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SentPhotoCollectionViewController.swift; sourceTree = "<group>"; };
+		F2ECA5CB1BFAE7FC00E3AD93 /* SentPhotoViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SentPhotoViewCell.swift; sourceTree = "<group>"; };
 		F2EDD338D07BE381CAD26509 /* Pods.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = Pods.release.xcconfig; path = "Pods/Target Support Files/Pods/Pods.release.xcconfig"; sourceTree = "<group>"; };
 		F2F5451F1BD5E84500AEE02A /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/ShareResult.storyboard; sourceTree = "<group>"; };
 		F2F545211BD5ED5400AEE02A /* ShareResultViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ShareResultViewController.swift; sourceTree = "<group>"; };
@@ -351,6 +355,7 @@
 				F2F545211BD5ED5400AEE02A /* ShareResultViewController.swift */,
 				F266D9011B9F159D00BDEB75 /* MyInfoViewController.swift */,
 				F28EF57D1BE8E9F200204C37 /* ReceivedPhotoCollectionViewController.swift */,
+				F2ECA5C71BFAE6E300E3AD93 /* SentPhotoCollectionViewController.swift */,
 				F266D9031B9F15D500BDEB75 /* PhotoPickerViewController.swift */,
 			);
 			path = Controllers;
@@ -376,6 +381,7 @@
 				AEF32DDE1BA301A200EA00A9 /* PhotoCollectionViewCell.swift */,
 				574E812E1BE7452B0037FA12 /* GADBannerView+Preload.swift */,
 				F2185E501BEA3B5D0062E4B1 /* ReceivedPhotoViewCell.swift */,
+				F2ECA5CB1BFAE7FC00E3AD93 /* SentPhotoViewCell.swift */,
 			);
 			path = Views;
 			sourceTree = "<group>";
@@ -574,6 +580,7 @@
 				F28EF57E1BE8E9F200204C37 /* ReceivedPhotoCollectionViewController.swift in Sources */,
 				F245DCB31B9E7B2D0072308B /* MainViewController.swift in Sources */,
 				571935331BA3C4C800856400 /* UUIDHelper.swift in Sources */,
+				F2ECA5CC1BFAE7FC00E3AD93 /* SentPhotoViewCell.swift in Sources */,
 				575354C51BE1F0000034F24E /* LocationTrackable.swift in Sources */,
 				5721F3FA1BD9C3CB00F0E733 /* SentPhotoStateLoader.swift in Sources */,
 				5772A7DE1BD5F71E00A7F880 /* LocationManager.swift in Sources */,
@@ -625,6 +632,7 @@
 				AEF32DDB1BA2FDA400EA00A9 /* MediaLoader.swift in Sources */,
 				F2C7CBD31BE1C53800ED429A /* DressingViewController.swift in Sources */,
 				57DFE24C1BE0DA7A002BB5DB /* PhotoExchanger.swift in Sources */,
+				F2ECA5C81BFAE6E300E3AD93 /* SentPhotoCollectionViewController.swift in Sources */,
 				579673891B9FFE6C00382247 /* OtherUser.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

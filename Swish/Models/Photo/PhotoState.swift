@@ -49,3 +49,20 @@ enum PhotoState: String {
         return state
     }
 }
+
+// Resources
+extension PhotoState {
+    
+    var sentStateImgResourceName: String {
+        switch self {
+        case .Waiting:
+            return "ic_sent_photo_waiting"
+        case .Delivered:
+            return "ic_sent_photo_delivered"
+        case .Liked:
+            return "ic_sent_photo_like"
+        case .Disliked:
+            return "ic_sent_photo_dislike"
+        }
+    }
+}
