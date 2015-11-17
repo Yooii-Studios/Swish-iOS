@@ -14,4 +14,11 @@ class ReceivedPhotoViewCell: UICollectionViewCell {
     @IBOutlet weak var userNameLabel: UILabel!
     @IBOutlet weak var distanceLabel: UILabel!
     @IBOutlet weak var messageLabel: UILabel!
+    
+    func clear() {
+        imageView.image = nil
+        userNameLabel.text = nil
+        distanceLabel.text = nil
+        messageLabel.text = nil
+    }
 }

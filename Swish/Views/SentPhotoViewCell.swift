@@ -12,4 +12,10 @@ class SentPhotoViewCell: UICollectionViewCell {
     @IBOutlet weak var imageView: UIImageView!
     @IBOutlet weak var messageLabel: UILabel!
     @IBOutlet weak var statusImageView: UIImageView!
+    
+    func clear() {
+        imageView.image = nil
+        messageLabel.text = nil
+        statusImageView.image = nil
+    }
 }

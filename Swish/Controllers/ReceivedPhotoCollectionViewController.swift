@@ -51,25 +51,18 @@ class ReceivedPhotoCollectionViewController: UIViewController, UICollectionViewD
         return receivedPhotos.count
     }
     
-    func collectionView(collectionView: UICollectionView, cellForItemAtIndexPath indexPath: NSIndexPath) -> UICollectionViewCell {
-        let cell = dequeueReusableCell(collectionView, atIndexPath: indexPath)
-        makeCleanCell(cell)
-        initCell(cell, atIndexPath: indexPath)
-        return cell
+    func collectionView(collectionView: UICollectionView, cellForItemAtIndexPath indexPath: NSIndexPath) ->
+        UICollectionViewCell {
+            let cell: ReceivedPhotoViewCell = dequeueReusableCell(collectionView, atIndexPath: indexPath)
+            cell.clear()
+            initCell(cell, atIndexPath: indexPath)
+            return cell
     }
     
     private func dequeueReusableCell(collectionView: UICollectionView, atIndexPath indexPath: NSIndexPath) ->
         ReceivedPhotoViewCell {
-            
-        return collectionView.dequeueReusableCellWithReuseIdentifier("receivedPhotoCell", forIndexPath: indexPath)
-            as! ReceivedPhotoViewCell
-    }
-    
-    private func makeCleanCell(cell: ReceivedPhotoViewCell) {
-        cell.imageView.image = nil
-        cell.userNameLabel.text = nil
-        cell.distanceLabel.text = nil
-        cell.messageLabel.text = nil
+            return collectionView.dequeueReusableCellWithReuseIdentifier("receivedPhotoCell", forIndexPath: indexPath)
+                as! ReceivedPhotoViewCell
     }
     
     private func initCell(cell: ReceivedPhotoViewCell, atIndexPath indexPath: NSIndexPath) {
