@@ -53,7 +53,7 @@ class ReceivedPhotoCollectionViewController: UIViewController, UICollectionViewD
     
     func collectionView(collectionView: UICollectionView, cellForItemAtIndexPath indexPath: NSIndexPath) ->
         UICollectionViewCell {
-            let cell: ReceivedPhotoViewCell = dequeueReusableCell(collectionView, atIndexPath: indexPath)
+            let cell = dequeueReusableCell(collectionView, atIndexPath: indexPath)
             cell.clear()
             initCell(cell, atIndexPath: indexPath)
             return cell

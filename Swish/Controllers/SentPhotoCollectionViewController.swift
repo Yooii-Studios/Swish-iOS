@@ -45,7 +45,7 @@ class SentPhotoCollectionViewController: UIViewController {
     
     func collectionView(collectionView: UICollectionView, cellForItemAtIndexPath indexPath: NSIndexPath) ->
         UICollectionViewCell {
-            let cell: SentPhotoViewCell = dequeueReusableCell(collectionView, atIndexPath: indexPath)
+            let cell = dequeueReusableCell(collectionView, atIndexPath: indexPath)
             cell.clear()
             // TODO: 추후 아트 픽스된 이후 스토리보드에서 반투명 UIView opacity 조절 필요
             initCell(cell, atIndexPath: indexPath)
