@@ -9,7 +9,6 @@
 import UIKit
 
 class ReceivedPhotoViewCell: UICollectionViewCell {
-
     @IBOutlet weak var imageView: UIImageView!
     @IBOutlet weak var userNameLabel: UILabel!
     @IBOutlet weak var distanceLabel: UILabel!
