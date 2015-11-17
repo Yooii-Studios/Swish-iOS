@@ -52,6 +52,7 @@ enum PhotoState: String {
 
 // Sent Photo Collection
 extension PhotoState {
+    
     var sentStateImgResourceName: String {
         switch self {
         case .Waiting:
