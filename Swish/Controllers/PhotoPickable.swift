@@ -48,10 +48,11 @@ final class PhotoPickerHandler: NSObject, CTAssetsPickerControllerDelegate {
         PHImageManager.defaultManager().requestImageForAsset(asset, targetSize: CGSize.init(width: 640, height: 640),
             contentMode: .AspectFill, options: options) { image, info in
                 picker.dismissViewControllerAnimated(false, completion: {
-                    if var image = image {
-                        image = ImageHelper.convertToNormalizedImage(image)
-                        
-                        self.completion(image: image)
+                    if let image = image {
+                        let normalizedImage = ImageHelper.convertToNormalizedImage(image)
+                        self.completion(image: normalizedImage)
+                    } else {
+                        // TODO: image == nil일 경우 예외처리
                     }
                 })
         }
