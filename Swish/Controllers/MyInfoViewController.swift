@@ -21,12 +21,26 @@ class MyInfoViewController: UITabBarController {
     override func viewDidLoad() {
         super.viewDidLoad()
 
+        initViewControllers()
         selectTab(0)
     }
     
-    override func didReceiveMemoryWarning() {
-        super.didReceiveMemoryWarning()
-        // Dispose of any resources that can be recreated.
+    private func initViewControllers() {
+        let receivedPhotoStoryboard = UIStoryboard(name: "ReceivedPhoto", bundle: nil)
+        let sentPhotoStoryboard = UIStoryboard(name: "SentPhoto", bundle: nil)
+        let myProfileStoryboard = UIStoryboard(name: "MyProfile", bundle: nil)
+        
+        guard let receivedPhotoCollectionVC = receivedPhotoStoryboard.instantiateInitialViewController() else {
+            return
+        }
+        guard let sentPhotoCollectionVC = sentPhotoStoryboard.instantiateInitialViewController() else {
+            return
+        }
+        guard let myProfileVC = myProfileStoryboard.instantiateInitialViewController() else {
+            return
+        }
+        
+        viewControllers = [receivedPhotoCollectionVC, sentPhotoCollectionVC, myProfileVC]
     }
     
     private func selectTab(index: Int) {
