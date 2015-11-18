@@ -42,6 +42,7 @@ final class PhotoPickerHandler: NSObject, CTAssetsPickerControllerDelegate {
         }
         
         let options = PHImageRequestOptions()
+        options.resizeMode = .Exact
         
         // TODO: 사진을 안드로이드에서 처럼 정해진 사이즈로, 1:1로 자르고 넘겨 주어야 할 듯
         PHImageManager.defaultManager().requestImageForAsset(asset, targetSize: CGSize.init(width: 640, height: 640),
