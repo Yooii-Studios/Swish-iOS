@@ -25,4 +25,42 @@ final class ImageHelper {
             UIImagePNGRepresentation(image)!.writeToFile(path, atomically: true)
         }
     }
+    
+    final class func convertToNormalizedImage(image: UIImage) -> UIImage {
+        printImageOrientationDebug(image)
+        guard image.imageOrientation != .Up else {
+            return image
+        }
+        
+        UIGraphicsBeginImageContextWithOptions(image.size, false, image.scale)
+        image.drawInRect(CGRectMake(0, 0, image.size.width, image.size.height))
+        let normalizedImage = UIGraphicsGetImageFromCurrentImageContext()
+        UIGraphicsEndImageContext()
+        printImageOrientationDebug(normalizedImage)
+        return normalizedImage
+    }
+    
+    // !!!: 디버그용 함수. 릴리즈시 비활성화 시킬것
+    private class func printImageOrientationDebug(image: UIImage) {
+        var message: String!
+        switch image.imageOrientation {
+        case .Up:
+            message = "Up"
+        case .Down:
+            message = "Down"
+        case .Left:
+            message = "Left"
+        case .Right:
+            message = "Right"
+        case .UpMirrored:
+            message = "UpMirrored"
+        case .DownMirrored:
+            message = "DownMirrored"
+        case .LeftMirrored:
+            message = "LeftMirrored"
+        case .RightMirrored:
+            message = "RightMirrored"
+        }
+        print(message)
+    }
 }
