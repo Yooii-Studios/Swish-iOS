@@ -78,6 +78,9 @@
 		F245DCC91B9E7B2D0072308B /* DatabaseTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = F245DCC81B9E7B2D0072308B /* DatabaseTests.swift */; };
 		F266D9021B9F159D00BDEB75 /* MyInfoViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = F266D9011B9F159D00BDEB75 /* MyInfoViewController.swift */; };
 		F266D9041B9F15D500BDEB75 /* PhotoPickerViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = F266D9031B9F15D500BDEB75 /* PhotoPickerViewController.swift */; };
+		F273C3A51BFCB4A2007D047B /* ReceivedPhoto.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = F273C3A31BFCB4A2007D047B /* ReceivedPhoto.storyboard */; };
+		F273C3A71BFCB4AF007D047B /* SentPhoto.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = F273C3A61BFCB4AF007D047B /* SentPhoto.storyboard */; };
+		F273C3AA1BFCB4BB007D047B /* MyProfile.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = F273C3A81BFCB4BB007D047B /* MyProfile.storyboard */; };
 		F28EF57E1BE8E9F200204C37 /* ReceivedPhotoCollectionViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = F28EF57D1BE8E9F200204C37 /* ReceivedPhotoCollectionViewController.swift */; };
 		F2C7CBD31BE1C53800ED429A /* DressingViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = F2C7CBD21BE1C53800ED429A /* DressingViewController.swift */; };
 		F2ECA5C81BFAE6E300E3AD93 /* SentPhotoCollectionViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = F2ECA5C71BFAE6E300E3AD93 /* SentPhotoCollectionViewController.swift */; };
@@ -175,6 +178,9 @@
 		F264C66E1BDFFFE6001BE65C /* Swish-Bridging-Header.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "Swish-Bridging-Header.h"; sourceTree = "<group>"; };
 		F266D9011B9F159D00BDEB75 /* MyInfoViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MyInfoViewController.swift; sourceTree = "<group>"; };
 		F266D9031B9F15D500BDEB75 /* PhotoPickerViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PhotoPickerViewController.swift; sourceTree = "<group>"; };
+		F273C3A41BFCB4A2007D047B /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/ReceivedPhoto.storyboard; sourceTree = "<group>"; };
+		F273C3A61BFCB4AF007D047B /* SentPhoto.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = SentPhoto.storyboard; sourceTree = "<group>"; };
+		F273C3A91BFCB4BB007D047B /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/MyProfile.storyboard; sourceTree = "<group>"; };
 		F28EF57C1BE8BDBD00204C37 /* Swift Code Conventions.playground */ = {isa = PBXFileReference; lastKnownFileType = file.playground; path = "Swift Code Conventions.playground"; sourceTree = "<group>"; };
 		F28EF57D1BE8E9F200204C37 /* ReceivedPhotoCollectionViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ReceivedPhotoCollectionViewController.swift; sourceTree = "<group>"; };
 		F2C7CBD21BE1C53800ED429A /* DressingViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DressingViewController.swift; sourceTree = "<group>"; };
@@ -410,6 +416,9 @@
 				F245DCB41B9E7B2D0072308B /* Main.storyboard */,
 				F23A7B1E1BA1DF250063233F /* Dressing.storyboard */,
 				F23A7B191BA1D4140063233F /* MyInfo.storyboard */,
+				F273C3A31BFCB4A2007D047B /* ReceivedPhoto.storyboard */,
+				F273C3A61BFCB4AF007D047B /* SentPhoto.storyboard */,
+				F273C3A81BFCB4BB007D047B /* MyProfile.storyboard */,
 				F23A7B161BA1D4070063233F /* PhotoPicker.storyboard */,
 				F245DCBC1B9E7B2D0072308B /* LaunchScreen.storyboard */,
 				F2F5451E1BD5E84500AEE02A /* ShareResult.storyboard */,
@@ -502,11 +511,14 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				F273C3A51BFCB4A2007D047B /* ReceivedPhoto.storyboard in Resources */,
 				F23A7B1B1BA1D4140063233F /* MyInfo.storyboard in Resources */,
+				F273C3AA1BFCB4BB007D047B /* MyProfile.storyboard in Resources */,
 				F245DCBE1B9E7B2D0072308B /* LaunchScreen.storyboard in Resources */,
 				F23A7B181BA1D4070063233F /* PhotoPicker.storyboard in Resources */,
 				F245DCBB1B9E7B2D0072308B /* Assets.xcassets in Resources */,
 				F245DCB61B9E7B2D0072308B /* Main.storyboard in Resources */,
+				F273C3A71BFCB4AF007D047B /* SentPhoto.storyboard in Resources */,
 				F2F545201BD5E84500AEE02A /* ShareResult.storyboard in Resources */,
 				F23A7B201BA1DF250063233F /* Dressing.storyboard in Resources */,
 			);
@@ -701,6 +713,22 @@
 				F245DCBD1B9E7B2D0072308B /* Base */,
 			);
 			name = LaunchScreen.storyboard;
+			sourceTree = "<group>";
+		};
+		F273C3A31BFCB4A2007D047B /* ReceivedPhoto.storyboard */ = {
+			isa = PBXVariantGroup;
+			children = (
+				F273C3A41BFCB4A2007D047B /* Base */,
+			);
+			name = ReceivedPhoto.storyboard;
+			sourceTree = "<group>";
+		};
+		F273C3A81BFCB4BB007D047B /* MyProfile.storyboard */ = {
+			isa = PBXVariantGroup;
+			children = (
+				F273C3A91BFCB4BB007D047B /* Base */,
+			);
+			name = MyProfile.storyboard;
 			sourceTree = "<group>";
 		};
 		F2F5451E1BD5E84500AEE02A /* ShareResult.storyboard */ = {
