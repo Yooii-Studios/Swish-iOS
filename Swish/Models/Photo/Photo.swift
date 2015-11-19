@@ -164,6 +164,19 @@ extension Photo {
         return canUseThumbnail ? "th_\(fileName)" : nil
     }
     
+    final func saveImage(image: UIImage, handler: () -> Void) {
+        dispatch_async(dispatch_get_global_queue(QOS_CLASS_USER_INITIATED, 0)) {
+            self.fileName = "\(NSDate().timeIntervalSince1970)"
+            
+            self.saveOriginalImage(image)
+            self.saveThumbnailImage(image)
+            
+            dispatch_async(dispatch_get_main_queue(), {
+                handler()
+            })
+        }
+    }
+    
     final func loadImage(imageType imageType: ImageType = .Original, handler: (image: UIImage?) -> Void) {
         if imageType == .Thumbnail, let thumbnailFileName = thumbnailFileName {
             Photo.loadImageWithFileName(thumbnailFileName, handler: handler)
@@ -172,27 +185,14 @@ extension Photo {
         }
     }
     
-    final func saveImage(image: UIImage, handler: () -> Void) {
-        dispatch_async(dispatch_get_global_queue(QOS_CLASS_USER_INITIATED, 0)) {
-            self.fileName = "\(NSDate().timeIntervalSince1970)"
-            
-            self.saveOriginalImage(image)
-            if canUseThumbnail {
-                self.saveThumbnailImage(image)
-            }
-            
-            dispatch_async(dispatch_get_main_queue(), {
-                handler()
-            })
-        }
-    }
-    
     private func saveOriginalImage(image: UIImage) {
         Photo.saveImage(image, withFileName: fileName)
     }
     
     private func saveThumbnailImage(image: UIImage) {
-        Photo.saveImage(image.createResizedImage(image.size / 2), withFileName: thumbnailFileName!)
+        if canUseThumbnail {
+            Photo.saveImage(image.createResizedImage(image.size / 2), withFileName: thumbnailFileName!)
+        }
     }
     
     private class func saveImage(image: UIImage, withFileName fileName: String) {
