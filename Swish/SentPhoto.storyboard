@@ -108,14 +108,34 @@
                                     <outlet property="delegate" destination="kpT-gb-fLe" id="PVF-C4-vJe"/>
                                 </connections>
                             </collectionView>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="9jR-LU-18i">
+                                <rect key="frame" x="505" y="399" width="75" height="30"/>
+                                <animations/>
+                                <state key="normal" title="Photo Map"/>
+                                <connections>
+                                    <action selector="photoMapButtonDidTap:" destination="kpT-gb-fLe" eventType="touchUpInside" id="UDS-AD-ppM"/>
+                                </connections>
+                            </button>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="kwe-Uw-roJ">
+                                <rect key="frame" x="433" y="437" width="147" height="30"/>
+                                <animations/>
+                                <state key="normal" title="Photo Collection Map"/>
+                                <connections>
+                                    <action selector="photoCollectionMapButtonDidTap:" destination="kpT-gb-fLe" eventType="touchUpInside" id="LoO-Wn-SeY"/>
+                                </connections>
+                            </button>
                         </subviews>
                         <animations/>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                         <constraints>
+                            <constraint firstAttribute="trailingMargin" secondItem="9jR-LU-18i" secondAttribute="trailing" id="32y-xy-DDx"/>
+                            <constraint firstAttribute="trailingMargin" secondItem="kwe-Uw-roJ" secondAttribute="trailing" id="3OB-M3-cXj"/>
                             <constraint firstItem="KjY-5h-chR" firstAttribute="top" secondItem="1UD-CU-qaX" secondAttribute="bottom" id="75I-aZ-zWj"/>
                             <constraint firstAttribute="trailing" secondItem="1UD-CU-qaX" secondAttribute="trailing" id="NZq-bh-Fi2"/>
                             <constraint firstItem="1UD-CU-qaX" firstAttribute="top" secondItem="hh9-wz-63c" secondAttribute="bottom" id="Rmn-kC-Qoi"/>
+                            <constraint firstItem="kwe-Uw-roJ" firstAttribute="top" secondItem="9jR-LU-18i" secondAttribute="bottom" constant="8" id="TLE-nQ-1ET"/>
                             <constraint firstItem="1UD-CU-qaX" firstAttribute="leading" secondItem="tig-xB-y1x" secondAttribute="leading" id="iol-oU-7mW"/>
+                            <constraint firstItem="KjY-5h-chR" firstAttribute="top" secondItem="kwe-Uw-roJ" secondAttribute="bottom" constant="20" id="zuJ-fH-C8L"/>
                         </constraints>
                     </view>
                     <extendedEdge key="edgesForExtendedLayout"/>

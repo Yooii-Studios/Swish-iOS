@@ -45,6 +45,33 @@ class ReceivedPhotoCollectionViewController: UIViewController, UICollectionViewD
         */
     }
     
+    // MARK: - IBAction
+    
+    // Debug용: 코드 중복이 있어도 아래 메서드는 추후 삭제될 것이기에 문제되지 않을 듯
+    @IBAction func photoMapButtonDidTap(sender: AnyObject) {
+        let storyboard = UIStoryboard(name: "PhotoMap", bundle: nil)
+        let navigationViewController =
+        storyboard.instantiateViewControllerWithIdentifier("PhotoMapNavController") as! UINavigationController
+        
+        // TODO: 필요한 초기화 진행할 것
+        //        let photoCollectionMapViewController = navigationViewController.topViewController
+        //            as! PhotoCollectionMapViewController
+        
+        showViewController(navigationViewController, sender: self)
+    }
+    
+    @IBAction func photoCollectionMapButtonDidTap(sender: AnyObject) {
+        let storyboard = UIStoryboard(name: "PhotoMap", bundle: nil)
+        let navigationViewController =
+        storyboard.instantiateViewControllerWithIdentifier("PhotoCollectionMapNavController") as! UINavigationController
+        
+        // TODO: 필요한 초기화 진행할 것
+//        let photoCollectionMapViewController = navigationViewController.topViewController
+//            as! PhotoCollectionMapViewController
+
+        showViewController(navigationViewController, sender: self)
+    }
+    
     // MARK: - UICollectionView DataSource
     
     func collectionView(collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
