@@ -43,6 +43,8 @@
 		57C173ED1BDE3EFC0084DF8D /* ChatMessageSender.swift in Sources */ = {isa = PBXBuildFile; fileRef = 57C173EC1BDE3EFC0084DF8D /* ChatMessageSender.swift */; };
 		57C729DC1BDF2C0D00DDFFDA /* ChatBlocker.swift in Sources */ = {isa = PBXBuildFile; fileRef = 57C729DB1BDF2C0D00DDFFDA /* ChatBlocker.swift */; };
 		57C729E11BDF501700DDFFDA /* PhotoTrendsLoader.swift in Sources */ = {isa = PBXBuildFile; fileRef = 57C729E01BDF501700DDFFDA /* PhotoTrendsLoader.swift */; };
+		57C7AA8C1BFDB152008E10F6 /* CGSize+Operator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 57C7AA8B1BFDB152008E10F6 /* CGSize+Operator.swift */; };
+		57C7AA8E1BFDB97D008E10F6 /* UIImage+Scale.swift in Sources */ = {isa = PBXBuildFile; fileRef = 57C7AA8D1BFDB97D008E10F6 /* UIImage+Scale.swift */; };
 		57D2DBBE1BF04F2600176388 /* DischargedWingsTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 57D2DBBD1BF04F2600176388 /* DischargedWingsTests.swift */; };
 		57D2DBC01BF0760B00176388 /* XCTestCase+RangeComparison.swift in Sources */ = {isa = PBXBuildFile; fileRef = 57D2DBBF1BF0760B00176388 /* XCTestCase+RangeComparison.swift */; };
 		57D5450D1BDA5D4900C9CF6A /* PhotoHelper.swift in Sources */ = {isa = PBXBuildFile; fileRef = 57D5450C1BDA5D4900C9CF6A /* PhotoHelper.swift */; };
@@ -138,6 +140,8 @@
 		57C173EC1BDE3EFC0084DF8D /* ChatMessageSender.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ChatMessageSender.swift; sourceTree = "<group>"; };
 		57C729DB1BDF2C0D00DDFFDA /* ChatBlocker.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ChatBlocker.swift; sourceTree = "<group>"; };
 		57C729E01BDF501700DDFFDA /* PhotoTrendsLoader.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = PhotoTrendsLoader.swift; path = Swish/Models/Photo/PhotoTrendsLoader.swift; sourceTree = SOURCE_ROOT; };
+		57C7AA8B1BFDB152008E10F6 /* CGSize+Operator.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "CGSize+Operator.swift"; sourceTree = "<group>"; };
+		57C7AA8D1BFDB97D008E10F6 /* UIImage+Scale.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "UIImage+Scale.swift"; sourceTree = "<group>"; };
 		57D2DBBD1BF04F2600176388 /* DischargedWingsTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DischargedWingsTests.swift; sourceTree = "<group>"; };
 		57D2DBBF1BF0760B00176388 /* XCTestCase+RangeComparison.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "XCTestCase+RangeComparison.swift"; sourceTree = "<group>"; };
 		57D5450C1BDA5D4900C9CF6A /* PhotoHelper.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PhotoHelper.swift; sourceTree = "<group>"; };
@@ -379,8 +383,10 @@
 				57F628391BA11D050008B23B /* DefaultObjectBuilder.swift */,
 				5737132A1BD72BDA006B272A /* List+Bridge.swift */,
 				57E3EFF31BFD77D1000D1564 /* UIImage+Orientation.swift */,
+				57C7AA8D1BFDB97D008E10F6 /* UIImage+Scale.swift */,
 				57E3EFF51BFD8CE8000D1564 /* UIImage+Save.swift */,
 				57E3EFF71BFD8E1E000D1564 /* UIImage+Base64.swift */,
+				57C7AA8B1BFDB152008E10F6 /* CGSize+Operator.swift */,
 			);
 			path = Models;
 			sourceTree = "<group>";
@@ -593,10 +599,12 @@
 				F266D9041B9F15D500BDEB75 /* PhotoPickerViewController.swift in Sources */,
 				570FD2F71BAAB54E008CB163 /* UserServer.swift in Sources */,
 				F28EF57E1BE8E9F200204C37 /* ReceivedPhotoCollectionViewController.swift in Sources */,
+				57C7AA8E1BFDB97D008E10F6 /* UIImage+Scale.swift in Sources */,
 				F245DCB31B9E7B2D0072308B /* MainViewController.swift in Sources */,
 				571935331BA3C4C800856400 /* UUIDHelper.swift in Sources */,
 				F2ECA5CC1BFAE7FC00E3AD93 /* SentPhotoViewCell.swift in Sources */,
 				575354C51BE1F0000034F24E /* LocationTrackable.swift in Sources */,
+				57C7AA8C1BFDB152008E10F6 /* CGSize+Operator.swift in Sources */,
 				5721F3FA1BD9C3CB00F0E733 /* SentPhotoStateLoader.swift in Sources */,
 				5772A7DE1BD5F71E00A7F880 /* LocationManager.swift in Sources */,
 				5772A7E01BD626EA00A7F880 /* NSCache+LowMemory.swift in Sources */,

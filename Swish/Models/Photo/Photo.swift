@@ -18,6 +18,10 @@ enum ChatRoomBlockState: Int {
 
 private let imageCache = NSCache.createWithMemoryWarningObserver()
 
+private var canUseThumbnail: Bool {
+    return DeviceHelper.devicePixelWidth <= DeviceHelper.IPhone6UIScreenPixelWidth
+}
+
 class Photo: Object {
     
     typealias ID = Int64
@@ -176,13 +180,29 @@ extension Photo {
     final func saveImage(image: UIImage, handler: () -> Void) {
         dispatch_async(dispatch_get_global_queue(QOS_CLASS_USER_INITIATED, 0)) {
             self.fileName = "\(NSDate().timeIntervalSince1970)"
-            let imagePath = FileHelper.filePathWithName(self.fileName, inDirectory: SubDirectory.Photos)
-            image.saveIntoPath(imagePath)
-            imageCache.setObject(image, forKey: self.fileName)
+            
+            self.saveOriginalImage(image)
+            if canUseThumbnail {
+                self.saveThumbnailImage(image)
+            }
             
             dispatch_async(dispatch_get_main_queue(), {
                 handler()
             })
         }
+    }
+    
+    private func saveOriginalImage(image: UIImage) {
+        Photo.saveImage(image, withFileName: fileName)
+    }
+    
+    private func saveThumbnailImage(image: UIImage) {
+        Photo.saveImage(image.createResizedImage(image.size / 2), withFileName: "th_\(fileName)")
+    }
+    
+    private class func saveImage(image: UIImage, withFileName fileName: String) {
+        let imagePath = FileHelper.filePathWithName(fileName, inDirectory: SubDirectory.Photos)
+        image.saveIntoPath(imagePath)
+        imageCache.setObject(image, forKey: fileName)
     }
 }
