@@ -42,14 +42,19 @@ final class PhotoPickerHandler: NSObject, CTAssetsPickerControllerDelegate {
         }
         
         let options = PHImageRequestOptions()
+        options.resizeMode = .Exact
+        options.deliveryMode = .HighQualityFormat
         
-        // TODO: 사진을 안드로이드에서 처럼 정해진 사이즈로, 1:1로 자르고 넘겨 주어야 할 듯
         PHImageManager.defaultManager().requestImageForAsset(asset, targetSize: CGSize.init(width: 640, height: 640),
             contentMode: .AspectFill, options: options) { image, info in
-            picker.dismissViewControllerAnimated(false, completion: nil)
-            if let image = image {
-                self.completion(image: image)
-            }
+                picker.dismissViewControllerAnimated(false, completion: {
+                    if let image = image {
+                        let normalizedImage = ImageHelper.convertToUpwardedImage(image)
+                        self.completion(image: normalizedImage)
+                    } else {
+                        // TODO: image == nil일 경우 예외처리
+                    }
+                })
         }
     }
 }
