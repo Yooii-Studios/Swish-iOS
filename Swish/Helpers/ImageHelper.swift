@@ -26,7 +26,7 @@ final class ImageHelper {
         }
     }
     
-    final class func convertToNormalizedImage(image: UIImage) -> UIImage {
+    final class func convertToUpwardedImage(image: UIImage) -> UIImage {
         printImageOrientationDebug(image)
         guard image.imageOrientation != .Up else {
             return image
@@ -34,10 +34,12 @@ final class ImageHelper {
         
         UIGraphicsBeginImageContextWithOptions(image.size, false, image.scale)
         image.drawInRect(CGRectMake(0, 0, image.size.width, image.size.height))
-        let normalizedImage = UIGraphicsGetImageFromCurrentImageContext()
+        let upwardedImage = UIGraphicsGetImageFromCurrentImageContext()
         UIGraphicsEndImageContext()
-        printImageOrientationDebug(normalizedImage)
-        return normalizedImage
+        
+        printImageOrientationDebug(upwardedImage)
+        
+        return upwardedImage
     }
     
     // !!!: 디버그용 함수. 릴리즈시 비활성화 시킬것
