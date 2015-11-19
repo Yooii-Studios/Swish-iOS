@@ -41,7 +41,6 @@
 		57A095431BEB2E9800333E6D /* BaseWingsTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 57A095421BEB2E9800333E6D /* BaseWingsTests.swift */; };
 		57A095461BEB316F00333E6D /* WingsHelper.swift in Sources */ = {isa = PBXBuildFile; fileRef = 57A095451BEB316F00333E6D /* WingsHelper.swift */; };
 		57C173ED1BDE3EFC0084DF8D /* ChatMessageSender.swift in Sources */ = {isa = PBXBuildFile; fileRef = 57C173EC1BDE3EFC0084DF8D /* ChatMessageSender.swift */; };
-		57C5A0361BD5DD7600F06CAD /* PhotoImageHelper.swift in Sources */ = {isa = PBXBuildFile; fileRef = 57C5A0351BD5DD7600F06CAD /* PhotoImageHelper.swift */; };
 		57C729DC1BDF2C0D00DDFFDA /* ChatBlocker.swift in Sources */ = {isa = PBXBuildFile; fileRef = 57C729DB1BDF2C0D00DDFFDA /* ChatBlocker.swift */; };
 		57C729E11BDF501700DDFFDA /* PhotoTrendsLoader.swift in Sources */ = {isa = PBXBuildFile; fileRef = 57C729E01BDF501700DDFFDA /* PhotoTrendsLoader.swift */; };
 		57D2DBBE1BF04F2600176388 /* DischargedWingsTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 57D2DBBD1BF04F2600176388 /* DischargedWingsTests.swift */; };
@@ -137,7 +136,6 @@
 		57A095421BEB2E9800333E6D /* BaseWingsTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = BaseWingsTests.swift; sourceTree = "<group>"; };
 		57A095451BEB316F00333E6D /* WingsHelper.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = WingsHelper.swift; sourceTree = "<group>"; };
 		57C173EC1BDE3EFC0084DF8D /* ChatMessageSender.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ChatMessageSender.swift; sourceTree = "<group>"; };
-		57C5A0351BD5DD7600F06CAD /* PhotoImageHelper.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PhotoImageHelper.swift; sourceTree = "<group>"; };
 		57C729DB1BDF2C0D00DDFFDA /* ChatBlocker.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ChatBlocker.swift; sourceTree = "<group>"; };
 		57C729E01BDF501700DDFFDA /* PhotoTrendsLoader.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = PhotoTrendsLoader.swift; path = Swish/Models/Photo/PhotoTrendsLoader.swift; sourceTree = SOURCE_ROOT; };
 		57D2DBBD1BF04F2600176388 /* DischargedWingsTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DischargedWingsTests.swift; sourceTree = "<group>"; };
@@ -274,7 +272,6 @@
 				57D5450C1BDA5D4900C9CF6A /* PhotoHelper.swift */,
 				57C729E01BDF501700DDFFDA /* PhotoTrendsLoader.swift */,
 				57DFE24B1BE0DA7A002BB5DB /* PhotoExchanger.swift */,
-				57C5A0351BD5DD7600F06CAD /* PhotoImageHelper.swift */,
 			);
 			path = Photo;
 			sourceTree = "<group>";
@@ -626,7 +623,6 @@
 				57E2D9781BB28D8B008957C2 /* PhotoServer.swift in Sources */,
 				5796738E1B9FFE7200382247 /* ChatMessage.swift in Sources */,
 				5776B92C1BD08EAB009005B5 /* FileHelper.swift in Sources */,
-				57C5A0361BD5DD7600F06CAD /* PhotoImageHelper.swift in Sources */,
 				F2305B981BE23EC20056E087 /* UIView+Constraints.swift in Sources */,
 				57E09ADD1BCBAA34006A05DC /* OtherUserLoader.swift in Sources */,
 				5796738A1B9FFE6C00382247 /* User.swift in Sources */,
