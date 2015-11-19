@@ -49,7 +49,7 @@ final class PhotoPickerHandler: NSObject, CTAssetsPickerControllerDelegate {
             contentMode: .AspectFill, options: options) { image, info in
                 picker.dismissViewControllerAnimated(false, completion: {
                     if let image = image {
-                        let normalizedImage = ImageHelper.convertToUpwardedImage(image)
+                        let normalizedImage = image.upwardedImage
                         self.completion(image: normalizedImage)
                     } else {
                         // TODO: image == nil일 경우 예외처리

@@ -41,7 +41,7 @@ final class PhotoImageHelper {
         dispatch_async(dispatch_get_global_queue(QOS_CLASS_USER_INITIATED, 0)) {
             let fileName = "\(NSDate().timeIntervalSince1970)"
             let imagePath = FileHelper.filePathWithName(fileName, inDirectory: SubDirectory.Photos)
-            ImageHelper.saveImage(image, intoPath: imagePath)
+            image.saveIntoPath(imagePath)
             cache.setObject(image, forKey: fileName)
             
             dispatch_async(dispatch_get_main_queue(), {

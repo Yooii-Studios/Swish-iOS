@@ -95,7 +95,7 @@ final class UserServer {
             params.updateValue(about, forKey: "about")
         }
         if let image = image {
-            if let encodedImage = ImageHelper.base64EncodedStringWith(image) {
+            if let encodedImage = image.base64EncodedString {
                 params.updateValue(encodedImage, forKey: "image_resource")
             }
         }
@@ -116,7 +116,7 @@ final class UserServer {
     }
     
     private class func updateMyProfileImageParamsWith(image: UIImage) -> Param? {
-        let encoded = ImageHelper.base64EncodedStringWith(image)
+        let encoded = image.base64EncodedString
         return encoded != nil ? [ "image_resource": encoded! ] : nil
     }
     

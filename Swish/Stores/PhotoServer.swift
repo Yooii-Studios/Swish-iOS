@@ -139,7 +139,7 @@ final class PhotoServer {
                 "message": photo.message,
                 "latitude": photo.departLocation.coordinate.latitude.description,
                 "longitude": photo.departLocation.coordinate.longitude.description,
-                "image_resource": ImageHelper.base64EncodedStringWith(image)
+                "image_resource": image.base64EncodedString
             ]
             dispatch_async(dispatch_get_main_queue()) {
                 completion(param: params)
