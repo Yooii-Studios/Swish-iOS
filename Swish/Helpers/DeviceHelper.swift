@@ -14,7 +14,7 @@ final class DeviceHelper {
     static let isDevice = !isSimulator
     
     // Device Size
-    static var IPhone6UIScreenPixelWidth: CGFloat = 750.0
+    static var iPhone6UIScreenPixelWidth: CGFloat = 750.0
     static var deviceWidth: CGFloat {
         return mainScreenSize.width
     }

@@ -19,7 +19,7 @@ enum ChatRoomBlockState: Int {
 private let imageCache = NSCache.createWithMemoryWarningObserver()
 
 private var canUseThumbnail: Bool {
-    return DeviceHelper.devicePixelWidth <= DeviceHelper.IPhone6UIScreenPixelWidth
+    return DeviceHelper.devicePixelWidth <= DeviceHelper.iPhone6UIScreenPixelWidth
 }
 
 class Photo: Object {
