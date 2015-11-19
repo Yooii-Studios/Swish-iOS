@@ -52,8 +52,8 @@ class DatabaseTests: XCTestCase {
         let photoOne = createPhoto()
         let photoTwo = createPhoto()
         
-        SwishDatabase.saveSentPhoto(photoOne, serverId: sendPhoto(photoOne), newFileName: saveImage(photoOne))
-        SwishDatabase.saveSentPhoto(photoTwo, serverId: sendPhoto(photoTwo), newFileName: saveImage(photoTwo))
+        SwishDatabase.saveSentPhoto(photoOne, serverId: sendPhoto(photoOne))
+        SwishDatabase.saveSentPhoto(photoTwo, serverId: sendPhoto(photoTwo))
         
         XCTAssert(photoOne == SwishDatabase.photoWithId(photoOne.id)!)
         XCTAssert(photoTwo == SwishDatabase.photoWithId(photoTwo.id)!)
@@ -83,7 +83,7 @@ class DatabaseTests: XCTestCase {
         SwishDatabase.saveMe(createMe())
         
         let photo = createPhoto()
-        SwishDatabase.saveSentPhoto(photo, serverId: sendPhoto(photo), newFileName: saveImage(photo))
+        SwishDatabase.saveSentPhoto(photo, serverId: sendPhoto(photo))
         
         chatMessageIndex = 0
         var originalMessages = Array<ChatMessage>()
@@ -165,7 +165,7 @@ class DatabaseTests: XCTestCase {
         SwishDatabase.saveMe(createMe())
         
         let photo = createPhoto()
-        SwishDatabase.saveSentPhoto(photo, serverId: sendPhoto(photo), newFileName: saveImage(photo))
+        SwishDatabase.saveSentPhoto(photo, serverId: sendPhoto(photo))
         
         let count = 10000
         
@@ -237,10 +237,6 @@ class DatabaseTests: XCTestCase {
     
     func createPhotoId() -> Photo.ID {
         return Photo.ID(photoIndex++)
-    }
-    
-    func saveImage(photo: Photo) -> String {
-        return "\(arc4random())"
     }
     
     func createChatMessage(senderId: User.ID) -> ChatMessage {

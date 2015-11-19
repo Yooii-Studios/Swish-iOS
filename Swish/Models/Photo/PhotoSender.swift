@@ -41,8 +41,8 @@ final class PhotoSender {
         for photo in request.photos {
             let image = request.images[index]
             PhotoServer.save(photo, userId: senderId, image: image, onSuccess: { (id) -> () in
-                self.saveImage(image) { fileName in
-                    SwishDatabase.saveSentPhoto(photo, serverId: id, newFileName: fileName)
+                photo.saveImage(image) {
+                    SwishDatabase.saveSentPhoto(photo, serverId: id)
                     
                     self.notifySuccess()
                 }
@@ -52,10 +52,6 @@ final class PhotoSender {
             })
             index++
         }
-    }
-    
-    private func saveImage(image: UIImage, callback: PhotoImageHelper.OnSaveImageCallback) {
-        PhotoImageHelper.saveImage(image, onSuccess: callback)
     }
     
     private func notifySuccess() {

@@ -16,6 +16,8 @@ enum ChatRoomBlockState: Int {
     case Block
 }
 
+private let imageCache = NSCache.createWithMemoryWarningObserver()
+
 class Photo: Object {
     
     typealias ID = Int64
@@ -144,4 +146,43 @@ class Photo: Object {
 
 func == (left: Photo, right: Photo) -> Bool {
     return left.id == right.id
+}
+
+// Image
+extension Photo {
+    
+    final func loadImage(handler: (image: UIImage?) -> Void) {
+        let tag = Timestamp.startAndGetTag()
+        if let image = imageCache.objectForKey(fileName) as? UIImage {
+            Timestamp.endWithTag(tag, additionalMessage: "with cache")
+            handler(image: image)
+            return
+        }
+        let path = FileHelper.filePathWithName(fileName, inDirectory: SubDirectory.Photos)
+        dispatch_async(dispatch_get_global_queue(QOS_CLASS_USER_INITIATED, 0), {
+            let image = UIImage(contentsOfFile: path)
+            
+            dispatch_async(dispatch_get_main_queue(), {
+                if let image = image {
+                    imageCache.setObject(image, forKey: self.fileName)
+                }
+                Timestamp.endWithTag(tag, additionalMessage: "without cache")
+                
+                handler(image: image)
+            })
+        })
+    }
+    
+    final func saveImage(image: UIImage, handler: () -> Void) {
+        dispatch_async(dispatch_get_global_queue(QOS_CLASS_USER_INITIATED, 0)) {
+            self.fileName = "\(NSDate().timeIntervalSince1970)"
+            let imagePath = FileHelper.filePathWithName(self.fileName, inDirectory: SubDirectory.Photos)
+            image.saveIntoPath(imagePath)
+            imageCache.setObject(image, forKey: self.fileName)
+            
+            dispatch_async(dispatch_get_main_queue(), {
+                handler()
+            })
+        }
+    }
 }

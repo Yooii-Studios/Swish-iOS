@@ -155,10 +155,9 @@ final class SwishDatabase {
     
     // MARK: - Photos
     
-    class func saveSentPhoto(photo: Photo, serverId: Photo.ID, newFileName: String) {
+    class func saveSentPhoto(photo: Photo, serverId: Photo.ID) {
         write {
             photo.id = serverId
-            photo.fileName = newFileName
             me().photos.append(photo)
         }
     }

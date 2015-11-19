@@ -22,7 +22,7 @@ class ShareResultViewController: UIViewController, SegueHandlerType {
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        PhotoImageHelper.imageWithPhoto(receivedPhoto) { image in
+        receivedPhoto.loadImage { image in
             self.testImageView?.image = image
         }
     }

@@ -14,7 +14,7 @@ class SentPhotoViewCell: UICollectionViewCell {
     @IBOutlet weak var statusImageView: UIImageView!
     
     func initWithPhoto(photo: Photo) {
-        PhotoImageHelper.imageWithPhoto(photo) { image in
+        photo.loadImage { image in
             self.imageView.image = image
             self.messageLabel.text = photo.message
             self.initStatusImageViewWithPhotoState(photo.photoState)
