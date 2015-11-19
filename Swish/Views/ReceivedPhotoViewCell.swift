@@ -15,7 +15,7 @@ class ReceivedPhotoViewCell: UICollectionViewCell {
     @IBOutlet weak var messageLabel: UILabel!
     
     func initWithPhoto(photo: Photo) {
-        photo.loadImage { image in
+        photo.loadImage(imageType: .Thumbnail) { image in
             self.imageView.image = image
             self.userNameLabel.text = photo.sender.name
             self.messageLabel.text = photo.message

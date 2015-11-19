@@ -18,6 +18,10 @@ enum ChatRoomBlockState: Int {
 
 private let imageCache = NSCache.createWithMemoryWarningObserver()
 
+private var canUseThumbnail: Bool {
+    return DeviceHelper.devicePixelWidth <= DeviceHelper.iPhone6UIScreenPixelWidth
+}
+
 class Photo: Object {
     
     typealias ID = Int64
@@ -151,7 +155,53 @@ func == (left: Photo, right: Photo) -> Bool {
 // Image
 extension Photo {
     
-    final func loadImage(handler: (image: UIImage?) -> Void) {
+    enum ImageType {
+        case Original
+        case Thumbnail
+    }
+    
+    private final var thumbnailFileName: String? {
+        return canUseThumbnail ? "th_\(fileName)" : nil
+    }
+    
+    final func saveImage(image: UIImage, handler: () -> Void) {
+        dispatch_async(dispatch_get_global_queue(QOS_CLASS_USER_INITIATED, 0)) {
+            self.fileName = "\(NSDate().timeIntervalSince1970)"
+            
+            self.saveOriginalImage(image)
+            self.saveThumbnailImage(image)
+            
+            dispatch_async(dispatch_get_main_queue(), {
+                handler()
+            })
+        }
+    }
+    
+    final func loadImage(imageType imageType: ImageType = .Original, handler: (image: UIImage?) -> Void) {
+        if imageType == .Thumbnail, let thumbnailFileName = thumbnailFileName {
+            Photo.loadImageWithFileName(thumbnailFileName, handler: handler)
+        } else {
+            Photo.loadImageWithFileName(fileName, handler: handler)
+        }
+    }
+    
+    private func saveOriginalImage(image: UIImage) {
+        Photo.saveImage(image, withFileName: fileName)
+    }
+    
+    private func saveThumbnailImage(image: UIImage) {
+        if canUseThumbnail {
+            Photo.saveImage(image.createResizedImage(image.size / 2), withFileName: thumbnailFileName!)
+        }
+    }
+    
+    private class func saveImage(image: UIImage, withFileName fileName: String) {
+        let imagePath = FileHelper.filePathWithName(fileName, inDirectory: SubDirectory.Photos)
+        image.saveIntoPath(imagePath)
+        imageCache.setObject(image, forKey: fileName)
+    }
+    
+    private class func loadImageWithFileName(fileName: String, handler: (image: UIImage?) -> Void) {
         let tag = Timestamp.startAndGetTag()
         if let image = imageCache.objectForKey(fileName) as? UIImage {
             Timestamp.endWithTag(tag, additionalMessage: "with cache")
@@ -164,25 +214,12 @@ extension Photo {
             
             dispatch_async(dispatch_get_main_queue(), {
                 if let image = image {
-                    imageCache.setObject(image, forKey: self.fileName)
+                    imageCache.setObject(image, forKey: fileName)
                 }
                 Timestamp.endWithTag(tag, additionalMessage: "without cache")
                 
                 handler(image: image)
             })
         })
-    }
-    
-    final func saveImage(image: UIImage, handler: () -> Void) {
-        dispatch_async(dispatch_get_global_queue(QOS_CLASS_USER_INITIATED, 0)) {
-            self.fileName = "\(NSDate().timeIntervalSince1970)"
-            let imagePath = FileHelper.filePathWithName(self.fileName, inDirectory: SubDirectory.Photos)
-            image.saveIntoPath(imagePath)
-            imageCache.setObject(image, forKey: self.fileName)
-            
-            dispatch_async(dispatch_get_main_queue(), {
-                handler()
-            })
-        }
     }
 }
