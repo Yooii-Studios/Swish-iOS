@@ -155,26 +155,21 @@ func == (left: Photo, right: Photo) -> Bool {
 // Image
 extension Photo {
     
-    final func loadImage(handler: (image: UIImage?) -> Void) {
-        let tag = Timestamp.startAndGetTag()
-        if let image = imageCache.objectForKey(fileName) as? UIImage {
-            Timestamp.endWithTag(tag, additionalMessage: "with cache")
-            handler(image: image)
-            return
+    enum ImageType {
+        case Original
+        case Thumbnail
+    }
+    
+    private final var thumbnailFileName: String? {
+        return canUseThumbnail ? "th_\(fileName)" : nil
+    }
+    
+    final func loadImage(imageType imageType: ImageType = .Original, handler: (image: UIImage?) -> Void) {
+        if imageType == .Thumbnail, let thumbnailFileName = thumbnailFileName {
+            Photo.loadImageWithFileName(thumbnailFileName, handler: handler)
+        } else {
+            Photo.loadImageWithFileName(fileName, handler: handler)
         }
-        let path = FileHelper.filePathWithName(fileName, inDirectory: SubDirectory.Photos)
-        dispatch_async(dispatch_get_global_queue(QOS_CLASS_USER_INITIATED, 0), {
-            let image = UIImage(contentsOfFile: path)
-            
-            dispatch_async(dispatch_get_main_queue(), {
-                if let image = image {
-                    imageCache.setObject(image, forKey: self.fileName)
-                }
-                Timestamp.endWithTag(tag, additionalMessage: "without cache")
-                
-                handler(image: image)
-            })
-        })
     }
     
     final func saveImage(image: UIImage, handler: () -> Void) {
@@ -197,12 +192,34 @@ extension Photo {
     }
     
     private func saveThumbnailImage(image: UIImage) {
-        Photo.saveImage(image.createResizedImage(image.size / 2), withFileName: "th_\(fileName)")
+        Photo.saveImage(image.createResizedImage(image.size / 2), withFileName: thumbnailFileName!)
     }
     
     private class func saveImage(image: UIImage, withFileName fileName: String) {
         let imagePath = FileHelper.filePathWithName(fileName, inDirectory: SubDirectory.Photos)
         image.saveIntoPath(imagePath)
         imageCache.setObject(image, forKey: fileName)
+    }
+    
+    private class func loadImageWithFileName(fileName: String, handler: (image: UIImage?) -> Void) {
+        let tag = Timestamp.startAndGetTag()
+        if let image = imageCache.objectForKey(fileName) as? UIImage {
+            Timestamp.endWithTag(tag, additionalMessage: "with cache")
+            handler(image: image)
+            return
+        }
+        let path = FileHelper.filePathWithName(fileName, inDirectory: SubDirectory.Photos)
+        dispatch_async(dispatch_get_global_queue(QOS_CLASS_USER_INITIATED, 0), {
+            let image = UIImage(contentsOfFile: path)
+            
+            dispatch_async(dispatch_get_main_queue(), {
+                if let image = image {
+                    imageCache.setObject(image, forKey: fileName)
+                }
+                Timestamp.endWithTag(tag, additionalMessage: "without cache")
+                
+                handler(image: image)
+            })
+        })
     }
 }
