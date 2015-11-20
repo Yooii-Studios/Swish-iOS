@@ -116,12 +116,32 @@
                                     <outlet property="delegate" destination="0bL-bm-v49" id="LC0-P7-00K"/>
                                 </connections>
                             </collectionView>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="htn-YE-Kd8">
+                                <rect key="frame" x="433" y="437" width="147" height="30"/>
+                                <animations/>
+                                <state key="normal" title="Photo Collection Map"/>
+                                <connections>
+                                    <action selector="photoCollectionMapButtonDidTap:" destination="0bL-bm-v49" eventType="touchUpInside" id="vNF-bA-Bg1"/>
+                                </connections>
+                            </button>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="2cb-OL-eLn">
+                                <rect key="frame" x="505" y="399" width="75" height="30"/>
+                                <animations/>
+                                <state key="normal" title="Photo Map"/>
+                                <connections>
+                                    <action selector="photoMapButtonDidTap:" destination="0bL-bm-v49" eventType="touchUpInside" id="0iZ-gV-Rgo"/>
+                                </connections>
+                            </button>
                         </subviews>
                         <animations/>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                         <constraints>
                             <constraint firstItem="qmh-DW-6UZ" firstAttribute="top" secondItem="ipd-BH-HKj" secondAttribute="bottom" id="FXi-EE-aTW"/>
                             <constraint firstItem="qmh-DW-6UZ" firstAttribute="leading" secondItem="A2d-50-Ary" secondAttribute="leading" id="Iwy-Gv-9k4"/>
+                            <constraint firstAttribute="trailingMargin" secondItem="2cb-OL-eLn" secondAttribute="trailing" id="aWk-ab-Ffs"/>
+                            <constraint firstAttribute="trailingMargin" secondItem="htn-YE-Kd8" secondAttribute="trailing" id="bgS-tW-92H"/>
+                            <constraint firstItem="BIV-nF-Mff" firstAttribute="top" secondItem="htn-YE-Kd8" secondAttribute="bottom" constant="20" id="h5n-IH-ada"/>
+                            <constraint firstItem="htn-YE-Kd8" firstAttribute="top" secondItem="2cb-OL-eLn" secondAttribute="bottom" constant="8" id="iIN-nE-ECB"/>
                             <constraint firstAttribute="trailing" secondItem="qmh-DW-6UZ" secondAttribute="trailing" id="tZF-ss-3nF"/>
                             <constraint firstItem="BIV-nF-Mff" firstAttribute="top" secondItem="qmh-DW-6UZ" secondAttribute="bottom" id="z7m-jM-qAw"/>
                         </constraints>
