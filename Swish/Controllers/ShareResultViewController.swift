@@ -39,6 +39,7 @@ class ShareResultViewController: UIViewController, SegueHandlerType {
     }
     
     // MARK: - IBAction
+    
     @IBAction func cancelButtonDidTap(sender: AnyObject) {
         dismissViewControllerAnimated(true, completion: nil)
     }
