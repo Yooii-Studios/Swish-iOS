@@ -46,6 +46,7 @@
 		57C729E11BDF501700DDFFDA /* PhotoTrendsLoader.swift in Sources */ = {isa = PBXBuildFile; fileRef = 57C729E01BDF501700DDFFDA /* PhotoTrendsLoader.swift */; };
 		57C7AA8C1BFDB152008E10F6 /* CGSize+Operator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 57C7AA8B1BFDB152008E10F6 /* CGSize+Operator.swift */; };
 		57C7AA8E1BFDB97D008E10F6 /* UIImage+Scale.swift in Sources */ = {isa = PBXBuildFile; fileRef = 57C7AA8D1BFDB97D008E10F6 /* UIImage+Scale.swift */; };
+		57CC3F4F1C02EDD400A04568 /* PhotoPointAnnotation.swift in Sources */ = {isa = PBXBuildFile; fileRef = 57CC3F4E1C02EDD400A04568 /* PhotoPointAnnotation.swift */; };
 		57D2DBBE1BF04F2600176388 /* DischargedWingsTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 57D2DBBD1BF04F2600176388 /* DischargedWingsTests.swift */; };
 		57D2DBC01BF0760B00176388 /* XCTestCase+RangeComparison.swift in Sources */ = {isa = PBXBuildFile; fileRef = 57D2DBBF1BF0760B00176388 /* XCTestCase+RangeComparison.swift */; };
 		57D5450D1BDA5D4900C9CF6A /* PhotoHelper.swift in Sources */ = {isa = PBXBuildFile; fileRef = 57D5450C1BDA5D4900C9CF6A /* PhotoHelper.swift */; };
@@ -147,6 +148,7 @@
 		57C729E01BDF501700DDFFDA /* PhotoTrendsLoader.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = PhotoTrendsLoader.swift; path = Swish/Models/Photo/PhotoTrendsLoader.swift; sourceTree = SOURCE_ROOT; };
 		57C7AA8B1BFDB152008E10F6 /* CGSize+Operator.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "CGSize+Operator.swift"; sourceTree = "<group>"; };
 		57C7AA8D1BFDB97D008E10F6 /* UIImage+Scale.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "UIImage+Scale.swift"; sourceTree = "<group>"; };
+		57CC3F4E1C02EDD400A04568 /* PhotoPointAnnotation.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PhotoPointAnnotation.swift; sourceTree = "<group>"; };
 		57D2DBBD1BF04F2600176388 /* DischargedWingsTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DischargedWingsTests.swift; sourceTree = "<group>"; };
 		57D2DBBF1BF0760B00176388 /* XCTestCase+RangeComparison.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "XCTestCase+RangeComparison.swift"; sourceTree = "<group>"; };
 		57D5450C1BDA5D4900C9CF6A /* PhotoHelper.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PhotoHelper.swift; sourceTree = "<group>"; };
@@ -390,6 +392,7 @@
 				5796737E1B9FFE3A00382247 /* User */,
 				5796737D1B9FFE3800382247 /* Chat */,
 				57A095441BEB311D00333E6D /* Wings */,
+				57CC3F4E1C02EDD400A04568 /* PhotoPointAnnotation.swift */,
 				57FB36451BF1D72E0085EAAB /* EnvironmentVariables.swift */,
 				57F628391BA11D050008B23B /* DefaultObjectBuilder.swift */,
 				5737132A1BD72BDA006B272A /* List+Bridge.swift */,
@@ -637,6 +640,7 @@
 				F245DCB91B9E7B2D0072308B /* Swish.xcdatamodeld in Sources */,
 				579673831B9FFE6500382247 /* PhotoState.swift in Sources */,
 				57F3D5211BD86F9E00FE577C /* PhotoStateUpdater.swift in Sources */,
+				57CC3F4F1C02EDD400A04568 /* PhotoPointAnnotation.swift in Sources */,
 				57F6283A1BA11D050008B23B /* DefaultObjectBuilder.swift in Sources */,
 				57E09ADB1BCB9351006A05DC /* MeManager.swift in Sources */,
 				57D5450D1BDA5D4900C9CF6A /* PhotoHelper.swift in Sources */,

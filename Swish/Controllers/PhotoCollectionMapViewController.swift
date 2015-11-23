@@ -11,10 +11,17 @@ import MapKit
 
 class PhotoCollectionMapViewController: BasePhotoMapViewController {
     
+    enum PhotoType {
+        case Sent
+        case Received
+    }
+    
+    final var photoType: PhotoType!
+    
     override func viewDidLoad() {
+        initPhotos()
+        
         super.viewDidLoad()
-
-        // Do any additional setup after loading the view.
     }
 
     override func didReceiveMemoryWarning() {
@@ -22,6 +29,16 @@ class PhotoCollectionMapViewController: BasePhotoMapViewController {
         // Dispose of any resources that can be recreated.
     }
     
+    private func initPhotos() {
+        switch photoType! {
+        case .Sent:
+            photos = SwishDatabase.sentPhotos().filter({ photo -> Bool in
+                return photo.arrivedLocation != nil
+            })
+        case .Received:
+            photos = SwishDatabase.receivedPhotos()
+        }
+    }
 
     /*
     // MARK: - Navigation

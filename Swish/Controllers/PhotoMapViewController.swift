@@ -11,10 +11,12 @@ import MapKit
 
 class PhotoMapViewController: BasePhotoMapViewController {
     
+    var photoId: Photo.ID!
+    
     override func viewDidLoad() {
+        initPhoto()
+        
         super.viewDidLoad()
-
-        // Do any additional setup after loading the view.
     }
 
     override func didReceiveMemoryWarning() {
@@ -22,6 +24,10 @@ class PhotoMapViewController: BasePhotoMapViewController {
         // Dispose of any resources that can be recreated.
     }
     
+    private func initPhoto() {
+        photos = [Photo]()
+        photos.append(SwishDatabase.photoWithId(photoId!)!)
+    }
 
     /*
     // MARK: - Navigation

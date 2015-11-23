@@ -89,7 +89,7 @@ class Photo: Object {
         get {
             let me = SwishDatabase.me()
             var optionalReceiver: User?
-            if sender == SwishDatabase.me() {
+            if isSentPhoto {
                 optionalReceiver = receivedUserId != User.InvalidId
                 ? SwishDatabase.otherUser(receivedUserId) : nil
             } else {
@@ -100,6 +100,9 @@ class Photo: Object {
         set {
             receivedUserId = newValue!.id
         }
+    }
+    var isSentPhoto: Bool {
+        return sender == SwishDatabase.me()
     }
     
     // MARK: - Realm backlink

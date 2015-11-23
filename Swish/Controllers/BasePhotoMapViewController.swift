@@ -11,8 +11,9 @@ import MapKit
 
 class BasePhotoMapViewController: UIViewController, MKMapViewDelegate, CLLocationManagerDelegate {
     
-    @IBOutlet weak var photoMapView: MKMapView!
+    @IBOutlet weak var mapView: MKMapView!
     
+    var photos: [Photo]!
     private var locationManager: CLLocationManager!
     
     // MARK: - View Lifecycles
@@ -20,11 +21,14 @@ class BasePhotoMapViewController: UIViewController, MKMapViewDelegate, CLLocatio
     override func viewDidLoad() {
         super.viewDidLoad()
         
+        print(photos)
+        
+        initMapView()
+        addAnnotations()
+        
         // 나중에 사용될 코드
         /*
         initLocationManager()
-        initMapView()
-        addAnnotations()
         requestCurrentLocation()
         */
     }
@@ -33,28 +37,26 @@ class BasePhotoMapViewController: UIViewController, MKMapViewDelegate, CLLocatio
         super.didReceiveMemoryWarning()
         // Dispose of any resources that can be recreated.
     }
-
-    // 나중에 사용될 코드
-    /*
-    private func initLocationManager() {
-        locationManager = CLLocationManager()
-        locationManager.delegate = self
-    }
     
     private func initMapView() {
-        photoMapView.delegate = self
-        photoMapView.zoomEnabled = false
+        mapView.delegate = self
     }
     
     private func addAnnotations() {
-        for index in 0...4 {
-            let additive = 0.001 * Double(index)
-            let annotation = PhotoAnnotation(coordinate: CLLocationCoordinate2D(latitude: 36.0 + additive,
-                longitude: 127.01 + additive),
-                imageName: "ic_sent_photo_waiting")
+        for photo in photos {
+            let coordinate: CLLocation! = photo.isSentPhoto ? photo.arrivedLocation : photo.departLocation
+            // TODO: 이미지를 사진으로 교체
+            let annotation = PhotoAnnotation(coordinate: coordinate.coordinate, imageName: "ic_sent_photo_waiting")
             
-            photoMapView.addAnnotation(annotation)
+            mapView.addAnnotation(annotation)
         }
+    }
+    
+    // 나중에 사용될 코드
+    /*
+    private func initLocationManager() {
+    locationManager = CLLocationManager()
+    locationManager.delegate = self
     }
     
     private func requestCurrentLocation() {
@@ -81,6 +83,7 @@ class BasePhotoMapViewController: UIViewController, MKMapViewDelegate, CLLocatio
         let region = MKCoordinateRegionMake(userLocation.coordinate, mapView.region.span)
         mapView.setRegion(region, animated: true)
     }
+    */
     
     func mapView(mapView: MKMapView, viewForAnnotation annotation: MKAnnotation) -> MKAnnotationView? {
         let id = "pin"
@@ -98,7 +101,6 @@ class BasePhotoMapViewController: UIViewController, MKMapViewDelegate, CLLocatio
         
         return annotationView
     }
-    */
     
     // MARK: - IBAction
     
@@ -106,17 +108,3 @@ class BasePhotoMapViewController: UIViewController, MKMapViewDelegate, CLLocatio
         dismissViewControllerAnimated(true, completion: nil)
     }
 }
-
-// 나중에 사용될 코드
-/*
-final class PhotoAnnotation: MKPointAnnotation {
-    
-    var imageName: String
-    
-    init(coordinate: CLLocationCoordinate2D, imageName: String) {
-        self.imageName = imageName
-        super.init()
-        self.coordinate = coordinate
-    }
-}
-*/

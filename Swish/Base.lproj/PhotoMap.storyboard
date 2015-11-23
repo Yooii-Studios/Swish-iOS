@@ -8,7 +8,7 @@
         <!--Photo Collection Map-->
         <scene sceneID="fYN-iZ-8bd">
             <objects>
-                <viewController storyboardIdentifier="PhotoCollectionMapViewController" id="DXu-xs-EIy" customClass="BasePhotoMapViewController" customModule="Swish" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController storyboardIdentifier="PhotoCollectionMapViewController" id="DXu-xs-EIy" customClass="PhotoCollectionMapViewController" customModule="Swish" customModuleProvider="target" sceneMemberID="viewController">
                     <layoutGuides>
                         <viewControllerLayoutGuide type="top" id="xx6-DT-No0"/>
                         <viewControllerLayoutGuide type="bottom" id="bVR-ps-SgQ"/>
@@ -39,7 +39,7 @@
                         </barButtonItem>
                     </navigationItem>
                     <connections>
-                        <outlet property="photoMapView" destination="YDf-bg-btD" id="ISN-Mh-x2Z"/>
+                        <outlet property="mapView" destination="YDf-bg-btD" id="OFv-ft-96n"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="0lk-3V-ckC" userLabel="First Responder" sceneMemberID="firstResponder"/>
@@ -99,7 +99,7 @@
                         </barButtonItem>
                     </navigationItem>
                     <connections>
-                        <outlet property="photoMapView" destination="qkz-9J-4w5" id="Z3F-bY-sMb"/>
+                        <outlet property="mapView" destination="qkz-9J-4w5" id="1YX-Pv-c5T"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="MRr-78-3YI" userLabel="First Responder" sceneMemberID="firstResponder"/>
