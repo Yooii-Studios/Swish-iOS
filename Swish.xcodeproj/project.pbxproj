@@ -41,6 +41,7 @@
 		57A095431BEB2E9800333E6D /* BaseWingsTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 57A095421BEB2E9800333E6D /* BaseWingsTests.swift */; };
 		57A095461BEB316F00333E6D /* WingsHelper.swift in Sources */ = {isa = PBXBuildFile; fileRef = 57A095451BEB316F00333E6D /* WingsHelper.swift */; };
 		57C173ED1BDE3EFC0084DF8D /* ChatMessageSender.swift in Sources */ = {isa = PBXBuildFile; fileRef = 57C173EC1BDE3EFC0084DF8D /* ChatMessageSender.swift */; };
+		57C4ECBB1C02B60A00276421 /* BasePhotoMapViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 57C4ECBA1C02B60A00276421 /* BasePhotoMapViewController.swift */; };
 		57C729DC1BDF2C0D00DDFFDA /* ChatBlocker.swift in Sources */ = {isa = PBXBuildFile; fileRef = 57C729DB1BDF2C0D00DDFFDA /* ChatBlocker.swift */; };
 		57C729E11BDF501700DDFFDA /* PhotoTrendsLoader.swift in Sources */ = {isa = PBXBuildFile; fileRef = 57C729E01BDF501700DDFFDA /* PhotoTrendsLoader.swift */; };
 		57C7AA8C1BFDB152008E10F6 /* CGSize+Operator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 57C7AA8B1BFDB152008E10F6 /* CGSize+Operator.swift */; };
@@ -141,6 +142,7 @@
 		57A095421BEB2E9800333E6D /* BaseWingsTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = BaseWingsTests.swift; sourceTree = "<group>"; };
 		57A095451BEB316F00333E6D /* WingsHelper.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = WingsHelper.swift; sourceTree = "<group>"; };
 		57C173EC1BDE3EFC0084DF8D /* ChatMessageSender.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ChatMessageSender.swift; sourceTree = "<group>"; };
+		57C4ECBA1C02B60A00276421 /* BasePhotoMapViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = BasePhotoMapViewController.swift; sourceTree = "<group>"; };
 		57C729DB1BDF2C0D00DDFFDA /* ChatBlocker.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ChatBlocker.swift; sourceTree = "<group>"; };
 		57C729E01BDF501700DDFFDA /* PhotoTrendsLoader.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = PhotoTrendsLoader.swift; path = Swish/Models/Photo/PhotoTrendsLoader.swift; sourceTree = SOURCE_ROOT; };
 		57C7AA8B1BFDB152008E10F6 /* CGSize+Operator.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "CGSize+Operator.swift"; sourceTree = "<group>"; };
@@ -376,6 +378,7 @@
 				F266D9031B9F15D500BDEB75 /* PhotoPickerViewController.swift */,
 				F20E7CB91BFDD55F005149C1 /* PhotoMapViewController.swift */,
 				F257A8A21BFDD1C800BD56C8 /* PhotoCollectionMapViewController.swift */,
+				57C4ECBA1C02B60A00276421 /* BasePhotoMapViewController.swift */,
 			);
 			path = Controllers;
 			sourceTree = "<group>";
@@ -661,6 +664,7 @@
 				F257A8A31BFDD1C800BD56C8 /* PhotoCollectionMapViewController.swift in Sources */,
 				57A095461BEB316F00333E6D /* WingsHelper.swift in Sources */,
 				570B87081BA8056B0093CEED /* SwishServer.swift in Sources */,
+				57C4ECBB1C02B60A00276421 /* BasePhotoMapViewController.swift in Sources */,
 				573713291BD7165A006B272A /* Timestamp.swift in Sources */,
 				5796738B1B9FFE6C00382247 /* UserActivityRecord.swift in Sources */,
 				AEF32DDB1BA2FDA400EA00A9 /* MediaLoader.swift in Sources */,

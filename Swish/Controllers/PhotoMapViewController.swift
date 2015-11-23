@@ -9,9 +9,7 @@
 import UIKit
 import MapKit
 
-class PhotoMapViewController: UIViewController {
-    
-    @IBOutlet weak var photoMapView: MKMapView!
+class PhotoMapViewController: BasePhotoMapViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -34,10 +32,4 @@ class PhotoMapViewController: UIViewController {
         // Pass the selected object to the new view controller.
     }
     */
-
-    // MARK: - IBAction
-    
-    @IBAction func cancelButtonDidTap(sender: AnyObject) {
-        dismissViewControllerAnimated(true, completion: nil)
-    }
 }
