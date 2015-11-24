@@ -132,6 +132,9 @@ final class LocationTrackHandler: NSObject, CLLocationManagerDelegate {
     private var locationManager: CLLocationManager
     private var previousAuthStatus: CLAuthorizationStatus
     weak private final var locationTrackable: LocationTrackable?
+    private var currentRootViewController: UIViewController? {
+        return UIApplication.sharedApplication().keyWindow?.rootViewController
+    }
     
     init(delegate: LocationTrackable?) {
         self.locationTrackable = delegate
@@ -169,10 +172,6 @@ final class LocationTrackHandler: NSObject, CLLocationManagerDelegate {
             }
         }
         previousAuthStatus = status
-    }
-    
-    var currentRootViewController: UIViewController? {
-        return UIApplication.sharedApplication().keyWindow?.rootViewController
     }
 }
 
