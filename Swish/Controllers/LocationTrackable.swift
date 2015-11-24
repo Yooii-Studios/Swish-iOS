@@ -8,8 +8,6 @@
 //      var locationTrackHandler: LocationTrackHandler! { get }
 //
 //      func locationDidUpdate(location: CLLocation)
-//      func authorizationDidFailed(status: CLAuthorizationStatus)
-//        -> status를 체크, 실패 원인에 따른 예외처리 호출부에서 구현 필요
 //
 //    2. LocationTrackHandler 인스턴스 생성
 //      override func viewDidLoad() {
@@ -20,11 +18,11 @@
 //
 //    3. 필요한 곳에서 requestLocationUpdate(), stopUpdatingLocation() 호출
 //    ex)
-//      override func viewWillAppear(animated: Bool) {
+//      override func viewDidAppear(animated: Bool) {
 //          requestLocationUpdate()
 //      }
 //
-//      override func viewWillDisappear(animated: Bool) {
+//      override func viewDidDisappear(animated: Bool) {
 //          stopUpdatingLocation()
 //      }
 //
