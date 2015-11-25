@@ -19,6 +19,7 @@ class PhotoCollectionMapViewController: UIViewController, PhotoMapType {
     @IBOutlet weak var mapView: MKMapView!
     final var photoType: PhotoType!
     var photos: [Photo]!
+    var photoMapUserLocationTrackType: PhotoMapUserLocationTrackType! = .OneShot
     var photoMapTypeHandler: PhotoMapTypeHandler!
     
     // MARK: - ViewController Lifecycle
@@ -50,12 +51,6 @@ class PhotoCollectionMapViewController: UIViewController, PhotoMapType {
         }
         
         photoMapTypeHandler = PhotoMapTypeHandler(photoMapType: self)
-    }
-    
-    // MARK: - PhotoMapType delegates
-    
-    func locationServiceEnabled() {
-        mapView.showsUserLocation = true
     }
 
     /*

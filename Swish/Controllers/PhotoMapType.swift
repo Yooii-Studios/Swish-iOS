@@ -10,24 +10,41 @@ import Foundation
 import MapKit
 import CoreLocation
 
+enum PhotoMapUserLocationTrackType {
+    case None
+    case OneShot
+    case Follow
+}
+
 final class PhotoMapTypeHandler: NSObject, MKMapViewDelegate, LocationServiceAuthorizeDelegate {
     
     weak private final var photoMapType: PhotoMapType?
+    private var hasUpdatedInitialUserLocation = false
     private var locationServiceAuthorizer: LocationServiceAuthorizer
     
     init(photoMapType: PhotoMapType) {
         self.locationServiceAuthorizer = LocationServiceAuthorizer()
         super.init()
         photoMapType.mapView.delegate = self
-        locationServiceAuthorizer.delegate = self
+        self.photoMapType = photoMapType
+        self.locationServiceAuthorizer.delegate = self
     }
     
     // MARK: - MapView Delegates
     
     func mapView(mapView: MKMapView, didUpdateUserLocation userLocation: MKUserLocation) {
-        // TODO: span <-> zoom 변환로직 구현
-        let region = MKCoordinateRegionMake(userLocation.coordinate, mapView.region.span)
-        mapView.setRegion(region, animated: true)
+        guard let trackType = photoMapType?.photoMapUserLocationTrackType where trackType != .None else {
+            return
+        }
+        
+        let shouldUpdateUserLocationOnMap = (trackType == .OneShot && !hasUpdatedInitialUserLocation)
+            || trackType == .Follow
+        if shouldUpdateUserLocationOnMap {
+            // TODO: span <-> zoom 변환로직 구현
+            let region = MKCoordinateRegionMake(userLocation.coordinate, mapView.region.span)
+            mapView.setRegion(region, animated: true)
+        }
+        hasUpdatedInitialUserLocation = true
     }
     
     func mapView(mapView: MKMapView, viewForAnnotation annotation: MKAnnotation) -> MKAnnotationView? {
@@ -48,24 +65,26 @@ final class PhotoMapTypeHandler: NSObject, MKMapViewDelegate, LocationServiceAut
     }
     
     func locationServiceAuthorized() {
-        photoMapType?.locationServiceEnabled()
+        showsUserLocationOnMapView()
+    }
+    
+    private func showsUserLocationOnMapView() {
+        photoMapType?.mapView.showsUserLocation = true
     }
 }
 
 protocol PhotoMapType: class {
-    
     weak var mapView: MKMapView! { get }
     var photos: [Photo]! { get }
+    var photoMapUserLocationTrackType: PhotoMapUserLocationTrackType! { get }
     var photoMapTypeHandler: PhotoMapTypeHandler! { get }
-    
-    func locationServiceEnabled()
 }
 
 extension PhotoMapType where Self: UIViewController {
     
     func requestLocationAuthorization() {
         if photoMapTypeHandler.locationServiceAuthorizer.locationManager.checkLocationAuthorizationStatus(self) {
-            locationServiceEnabled()
+            photoMapTypeHandler.showsUserLocationOnMapView()
         }
     }
     

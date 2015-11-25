@@ -14,6 +14,7 @@ class PhotoMapViewController: UIViewController, PhotoMapType {
     @IBOutlet weak var mapView: MKMapView!
     var photos: [Photo]!
     var photoId: Photo.ID!
+    var photoMapUserLocationTrackType: PhotoMapUserLocationTrackType! = .None
     var photoMapTypeHandler: PhotoMapTypeHandler!
     
     // MARK: - ViewController Lifecycle
@@ -48,12 +49,6 @@ class PhotoMapViewController: UIViewController, PhotoMapType {
         let location = displayLocationOfPhoto(photos[0])
         // TODO: span <-> zoom 변환로직 구현
         mapView.setRegion(MKCoordinateRegion(center: location.coordinate, span: mapView.region.span), animated: true)
-    }
-    
-    // MARK: - PhotoMapType delegates
-    
-    func locationServiceEnabled() {
-        mapView.showsUserLocation = true
     }
 
     /*
