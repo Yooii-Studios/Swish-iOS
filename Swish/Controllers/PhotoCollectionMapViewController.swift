@@ -21,20 +21,22 @@ class PhotoCollectionMapViewController: UIViewController, PhotoMapType {
     var photos: [Photo]!
     var photoMapTypeHandler: PhotoMapTypeHandler!
     
+    // MARK: - ViewController Lifecycle
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         conformPhotoMapType()
         
         initPhotoMapView()
     }
+    
+    override func viewDidAppear(animated: Bool) {
+        requestLocationAuthorization()
+    }
 
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()
         // Dispose of any resources that can be recreated.
-    }
-    
-    override func viewDidAppear(animated: Bool) {
-        requestLocationAuthorization()
     }
     
     private func conformPhotoMapType() {
@@ -49,6 +51,8 @@ class PhotoCollectionMapViewController: UIViewController, PhotoMapType {
         
         photoMapTypeHandler = PhotoMapTypeHandler(photoMapType: self)
     }
+    
+    // MARK: - PhotoMapType delegates
     
     func locationServiceEnabled() {
         mapView.showsUserLocation = true
