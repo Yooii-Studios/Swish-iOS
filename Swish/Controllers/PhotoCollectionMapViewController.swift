@@ -77,7 +77,7 @@ class PhotoCollectionMapViewController: UIViewController, PhotoMapType {
     }
     
     @IBAction func photoMapMyLocationButtonDidTap(sender: AnyObject) {
-        moveToMyLocation()
+        movePhotoMapViewToMyLocation()
     }
     
     @IBAction func cancelButtonDidTap(sender: AnyObject) {

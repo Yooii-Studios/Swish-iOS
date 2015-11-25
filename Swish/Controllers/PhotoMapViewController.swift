@@ -73,7 +73,7 @@ class PhotoMapViewController: UIViewController, PhotoMapType {
     }
     
     @IBAction func photoMapMyLocationButtonDidTap(sender: AnyObject) {
-        moveToMyLocation()
+        movePhotoMapViewToMyLocation()
     }
     
     @IBAction func cancelButtonDidTap(sender: AnyObject) {

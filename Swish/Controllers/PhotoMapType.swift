@@ -1,5 +1,44 @@
 //
 //  PhotoMapType.swift
+//   Usage:
+//    1. PhotoMapType protocol을 conform하도록 아래 요구사항 구현
+//      weak var mapView: MKMapView! { get }
+//      weak var photoMapMyLocationButton: UIButton! { get }
+//      var photos: [Photo]! { get }
+//      var photoMapViewZoomLevel: MapViewZoomLevel { get set }
+//      var photoMapUserLocationTrackType: PhotoMapUserLocationTrackType? { get }
+//      var photoMapTypeHandler: PhotoMapTypeHandler! { get }
+//
+//    2. 초기화
+//      var photoMapViewZoomLevel: MapViewZoomLevel = PhotoMapMaxZoomLevel
+//      var photoMapUserLocationTrackType: PhotoMapUserLocationTrackType? = .OneShot
+//
+//      override func viewDidLoad() {
+//          super.viewDidLoad()
+//
+//          photos = SwishDatabase.receivedPhotos()
+//          photoMapTypeHandler = PhotoMapTypeHandler(photoMapType: self)
+//      }
+//
+//    3. viewDidAppear에서 requestLocationAuthorization() 호출
+//    ex)
+//      override func viewDidAppear(animated: Bool) {
+//          requestLocationAuthorization()
+//      }
+//    4. 필요한 곳에서 아래의 메서드 사용
+//      @IBAction func photoMapZoomInButtonDidTap(sender: AnyObject) {
+//          zoomInPhotoMapView()
+//      }
+//
+//      @IBAction func photoMapZoomOutButtonDidTap(sender: AnyObject) {
+//          zoomOutPhotoMapView()
+//      }
+//
+//      @IBAction func photoMapMyLocationButtonDidTap(sender: AnyObject) {
+//          movePhotoMapViewToMyLocation()
+//      }
+//
+//
 //  Swish
 //
 //  Created by 정동현 on 2015. 11. 23..
@@ -88,9 +127,6 @@ protocol PhotoMapType: class {
     var photoMapViewZoomLevel: MapViewZoomLevel { get set }
     var photoMapUserLocationTrackType: PhotoMapUserLocationTrackType? { get }
     var photoMapTypeHandler: PhotoMapTypeHandler! { get }
-    
-    func photoMapZoomInButtonDidTap(sender: AnyObject)
-    func photoMapZoomOutButtonDidTap(sender: AnyObject)
 }
 
 extension PhotoMapType where Self: UIViewController {
@@ -127,7 +163,7 @@ extension PhotoMapType where Self: UIViewController {
         mapView.setZoomLevel(zoomLevel: --?photoMapViewZoomLevel, animationType: .Fast)
     }
     
-    func moveToMyLocation() {
+    func movePhotoMapViewToMyLocation() {
         if let location = mapView.userLocation.location {
             mapView.setCenterCoordinate(location.coordinate, withZoomLevel: photoMapViewZoomLevel.normalizedValue, animationType: .Normal)
             mapView.setCenterCoordinate(location.coordinate, animated: true)
