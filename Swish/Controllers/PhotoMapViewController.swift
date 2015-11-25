@@ -41,7 +41,21 @@ class PhotoMapViewController: UIViewController, PhotoMapType {
     
     private func conformPhotoMapType() {
         photos = [Photo]()
-        photos.append(SwishDatabase.photoWithId(photoId!)!)
+        // TODO: 원래는 필요 없는 구현이지만 받은 / 보낸 사진 상세 정보 화면 구현이 덜 되어 그 전까지 임의의 사진을 보여주도록 구성.
+        // TODO: 받은 / 보낸 사진 상세 정보 화면이 구현된 후 아래의 if문 삭제 필요
+        if photoId == nil || photoId! == -1 {
+            let receivedPhotos = SwishDatabase.receivedPhotos()
+            let sentPhotos = SwishDatabase.sentPhotos()
+            if receivedPhotos.count > 0 {
+                photos.append(receivedPhotos[0])
+            } else if sentPhotos.count > 0 {
+                photos.append(sentPhotos[0])
+            } else {
+                assertionFailure("Must have at least 1 photo to test this functionality!!!")
+            }
+        } else {
+            photos.append(SwishDatabase.photoWithId(photoId!)!)
+        }
         
         photoMapTypeHandler = PhotoMapTypeHandler(photoMapType: self)
     }
