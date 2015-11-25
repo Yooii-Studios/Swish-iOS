@@ -43,12 +43,12 @@
 		57A29A671C044CE00016E265 /* CLLocationManager+Authorization.swift in Sources */ = {isa = PBXBuildFile; fileRef = 57A29A661C044CE00016E265 /* CLLocationManager+Authorization.swift */; };
 		57A29A691C044DBD0016E265 /* SystemSettingsHelper.swift in Sources */ = {isa = PBXBuildFile; fileRef = 57A29A681C044DBD0016E265 /* SystemSettingsHelper.swift */; };
 		57C173ED1BDE3EFC0084DF8D /* ChatMessageSender.swift in Sources */ = {isa = PBXBuildFile; fileRef = 57C173EC1BDE3EFC0084DF8D /* ChatMessageSender.swift */; };
-		57C4ECBB1C02B60A00276421 /* BasePhotoMapViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 57C4ECBA1C02B60A00276421 /* BasePhotoMapViewController.swift */; };
 		57C729DC1BDF2C0D00DDFFDA /* ChatBlocker.swift in Sources */ = {isa = PBXBuildFile; fileRef = 57C729DB1BDF2C0D00DDFFDA /* ChatBlocker.swift */; };
 		57C729E11BDF501700DDFFDA /* PhotoTrendsLoader.swift in Sources */ = {isa = PBXBuildFile; fileRef = 57C729E01BDF501700DDFFDA /* PhotoTrendsLoader.swift */; };
 		57C7AA8C1BFDB152008E10F6 /* CGSize+Operator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 57C7AA8B1BFDB152008E10F6 /* CGSize+Operator.swift */; };
 		57C7AA8E1BFDB97D008E10F6 /* UIImage+Scale.swift in Sources */ = {isa = PBXBuildFile; fileRef = 57C7AA8D1BFDB97D008E10F6 /* UIImage+Scale.swift */; };
 		57CC3F4F1C02EDD400A04568 /* PhotoPointAnnotation.swift in Sources */ = {isa = PBXBuildFile; fileRef = 57CC3F4E1C02EDD400A04568 /* PhotoPointAnnotation.swift */; };
+		57CC3F511C03019B00A04568 /* PhotoMapType.swift in Sources */ = {isa = PBXBuildFile; fileRef = 57CC3F501C03019B00A04568 /* PhotoMapType.swift */; };
 		57D2DBBE1BF04F2600176388 /* DischargedWingsTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 57D2DBBD1BF04F2600176388 /* DischargedWingsTests.swift */; };
 		57D2DBC01BF0760B00176388 /* XCTestCase+RangeComparison.swift in Sources */ = {isa = PBXBuildFile; fileRef = 57D2DBBF1BF0760B00176388 /* XCTestCase+RangeComparison.swift */; };
 		57D5450D1BDA5D4900C9CF6A /* PhotoHelper.swift in Sources */ = {isa = PBXBuildFile; fileRef = 57D5450C1BDA5D4900C9CF6A /* PhotoHelper.swift */; };
@@ -61,6 +61,7 @@
 		57E3EFF61BFD8CE8000D1564 /* UIImage+Save.swift in Sources */ = {isa = PBXBuildFile; fileRef = 57E3EFF51BFD8CE8000D1564 /* UIImage+Save.swift */; };
 		57E3EFF81BFD8E1E000D1564 /* UIImage+Base64.swift in Sources */ = {isa = PBXBuildFile; fileRef = 57E3EFF71BFD8E1E000D1564 /* UIImage+Base64.swift */; };
 		57EED2501BF2F1A700E464F1 /* Int+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 57EED24F1BF2F1A700E464F1 /* Int+Extension.swift */; };
+		57EFC1961C055E19006CF2EF /* LocationServiceAuthorizable.swift in Sources */ = {isa = PBXBuildFile; fileRef = 57EFC1951C055E19006CF2EF /* LocationServiceAuthorizable.swift */; };
 		57F3D5211BD86F9E00FE577C /* PhotoStateUpdater.swift in Sources */ = {isa = PBXBuildFile; fileRef = 57F3D5201BD86F9E00FE577C /* PhotoStateUpdater.swift */; };
 		57F6283A1BA11D050008B23B /* DefaultObjectBuilder.swift in Sources */ = {isa = PBXBuildFile; fileRef = 57F628391BA11D050008B23B /* DefaultObjectBuilder.swift */; };
 		57FB36411BF1AD070085EAAB /* XCTestCase+DelayedExecution.swift in Sources */ = {isa = PBXBuildFile; fileRef = 57FB36401BF1AD070085EAAB /* XCTestCase+DelayedExecution.swift */; };
@@ -147,12 +148,12 @@
 		57A29A661C044CE00016E265 /* CLLocationManager+Authorization.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "CLLocationManager+Authorization.swift"; sourceTree = "<group>"; };
 		57A29A681C044DBD0016E265 /* SystemSettingsHelper.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SystemSettingsHelper.swift; sourceTree = "<group>"; };
 		57C173EC1BDE3EFC0084DF8D /* ChatMessageSender.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ChatMessageSender.swift; sourceTree = "<group>"; };
-		57C4ECBA1C02B60A00276421 /* BasePhotoMapViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = BasePhotoMapViewController.swift; sourceTree = "<group>"; };
 		57C729DB1BDF2C0D00DDFFDA /* ChatBlocker.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ChatBlocker.swift; sourceTree = "<group>"; };
 		57C729E01BDF501700DDFFDA /* PhotoTrendsLoader.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = PhotoTrendsLoader.swift; path = Swish/Models/Photo/PhotoTrendsLoader.swift; sourceTree = SOURCE_ROOT; };
 		57C7AA8B1BFDB152008E10F6 /* CGSize+Operator.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "CGSize+Operator.swift"; sourceTree = "<group>"; };
 		57C7AA8D1BFDB97D008E10F6 /* UIImage+Scale.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "UIImage+Scale.swift"; sourceTree = "<group>"; };
 		57CC3F4E1C02EDD400A04568 /* PhotoPointAnnotation.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PhotoPointAnnotation.swift; sourceTree = "<group>"; };
+		57CC3F501C03019B00A04568 /* PhotoMapType.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PhotoMapType.swift; sourceTree = "<group>"; };
 		57D2DBBD1BF04F2600176388 /* DischargedWingsTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DischargedWingsTests.swift; sourceTree = "<group>"; };
 		57D2DBBF1BF0760B00176388 /* XCTestCase+RangeComparison.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "XCTestCase+RangeComparison.swift"; sourceTree = "<group>"; };
 		57D5450C1BDA5D4900C9CF6A /* PhotoHelper.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PhotoHelper.swift; sourceTree = "<group>"; };
@@ -165,6 +166,7 @@
 		57E3EFF51BFD8CE8000D1564 /* UIImage+Save.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "UIImage+Save.swift"; sourceTree = "<group>"; };
 		57E3EFF71BFD8E1E000D1564 /* UIImage+Base64.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "UIImage+Base64.swift"; sourceTree = "<group>"; };
 		57EED24F1BF2F1A700E464F1 /* Int+Extension.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "Int+Extension.swift"; sourceTree = "<group>"; };
+		57EFC1951C055E19006CF2EF /* LocationServiceAuthorizable.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LocationServiceAuthorizable.swift; sourceTree = "<group>"; };
 		57F3D5201BD86F9E00FE577C /* PhotoStateUpdater.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PhotoStateUpdater.swift; sourceTree = "<group>"; };
 		57F628391BA11D050008B23B /* DefaultObjectBuilder.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DefaultObjectBuilder.swift; sourceTree = "<group>"; };
 		57FB36401BF1AD070085EAAB /* XCTestCase+DelayedExecution.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "XCTestCase+DelayedExecution.swift"; sourceTree = "<group>"; };
@@ -375,6 +377,8 @@
 				F23527FE1BE09E7C00CA614A /* PhotoPickable.swift */,
 				573205B41BF47B9B00ED6BB6 /* WingsObservable.swift */,
 				F20CC6751BDB878F00075088 /* SegueHandlerType.swift */,
+				57CC3F501C03019B00A04568 /* PhotoMapType.swift */,
+				57EFC1951C055E19006CF2EF /* LocationServiceAuthorizable.swift */,
 				F245DCB21B9E7B2D0072308B /* MainViewController.swift */,
 				F2C7CBD21BE1C53800ED429A /* DressingViewController.swift */,
 				F2F545211BD5ED5400AEE02A /* ShareResultViewController.swift */,
@@ -384,7 +388,6 @@
 				F266D9031B9F15D500BDEB75 /* PhotoPickerViewController.swift */,
 				F20E7CB91BFDD55F005149C1 /* PhotoMapViewController.swift */,
 				F257A8A21BFDD1C800BD56C8 /* PhotoCollectionMapViewController.swift */,
-				57C4ECBA1C02B60A00276421 /* BasePhotoMapViewController.swift */,
 			);
 			path = Controllers;
 			sourceTree = "<group>";
@@ -618,6 +621,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				F20E7CBA1BFDD55F005149C1 /* PhotoMapViewController.swift in Sources */,
+				57EFC1961C055E19006CF2EF /* LocationServiceAuthorizable.swift in Sources */,
 				577465C81BF2CFDA0093D97A /* WingsObserver.swift in Sources */,
 				F266D9041B9F15D500BDEB75 /* PhotoPickerViewController.swift in Sources */,
 				570FD2F71BAAB54E008CB163 /* UserServer.swift in Sources */,
@@ -628,6 +632,7 @@
 				F2ECA5CC1BFAE7FC00E3AD93 /* SentPhotoViewCell.swift in Sources */,
 				575354C51BE1F0000034F24E /* LocationTrackable.swift in Sources */,
 				57C7AA8C1BFDB152008E10F6 /* CGSize+Operator.swift in Sources */,
+				57CC3F511C03019B00A04568 /* PhotoMapType.swift in Sources */,
 				5721F3FA1BD9C3CB00F0E733 /* SentPhotoStateLoader.swift in Sources */,
 				5772A7DE1BD5F71E00A7F880 /* LocationManager.swift in Sources */,
 				5772A7E01BD626EA00A7F880 /* NSCache+LowMemory.swift in Sources */,
@@ -675,7 +680,6 @@
 				F257A8A31BFDD1C800BD56C8 /* PhotoCollectionMapViewController.swift in Sources */,
 				57A095461BEB316F00333E6D /* WingsHelper.swift in Sources */,
 				570B87081BA8056B0093CEED /* SwishServer.swift in Sources */,
-				57C4ECBB1C02B60A00276421 /* BasePhotoMapViewController.swift in Sources */,
 				573713291BD7165A006B272A /* Timestamp.swift in Sources */,
 				5796738B1B9FFE6C00382247 /* UserActivityRecord.swift in Sources */,
 				AEF32DDB1BA2FDA400EA00A9 /* MediaLoader.swift in Sources */,

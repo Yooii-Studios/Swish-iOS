@@ -9,14 +9,25 @@
 import UIKit
 import MapKit
 
-class PhotoMapViewController: BasePhotoMapViewController {
+class PhotoMapViewController: UIViewController, PhotoMapType {
     
+    @IBOutlet weak var mapView: MKMapView!
+    var photos: [Photo]!
     var photoId: Photo.ID!
+    var photoMapTypeHandler: PhotoMapTypeHandler!
     
     override func viewDidLoad() {
-        initPhoto()
-        
         super.viewDidLoad()
+        
+        conformPhotoMapType()
+        
+        initPhotoMapView()
+        
+        moveMapToInitialLocation()
+    }
+    
+    override func viewDidAppear(animated: Bool) {
+        requestLocationAuthorization()
     }
 
     override func didReceiveMemoryWarning() {
@@ -24,9 +35,21 @@ class PhotoMapViewController: BasePhotoMapViewController {
         // Dispose of any resources that can be recreated.
     }
     
-    private func initPhoto() {
+    private func conformPhotoMapType() {
         photos = [Photo]()
         photos.append(SwishDatabase.photoWithId(photoId!)!)
+        
+        photoMapTypeHandler = PhotoMapTypeHandler(photoMapType: self)
+    }
+    
+    private func moveMapToInitialLocation() {
+        let location = displayLocationOfPhoto(photos[0])
+        // TODO: span <-> zoom 변환로직 구현
+        mapView.setRegion(MKCoordinateRegion(center: location.coordinate, span: mapView.region.span), animated: true)
+    }
+    
+    func locationServiceEnabled() {
+        mapView.showsUserLocation = true
     }
 
     /*
@@ -38,4 +61,10 @@ class PhotoMapViewController: BasePhotoMapViewController {
         // Pass the selected object to the new view controller.
     }
     */
+    
+    // MARK: - IBAction
+    
+    @IBAction func cancelButtonDidTap(sender: AnyObject) {
+        dismissViewControllerAnimated(true, completion: nil)
+    }
 }

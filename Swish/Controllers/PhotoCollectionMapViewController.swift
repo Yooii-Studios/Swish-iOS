@@ -9,19 +9,23 @@
 import UIKit
 import MapKit
 
-class PhotoCollectionMapViewController: BasePhotoMapViewController {
+class PhotoCollectionMapViewController: UIViewController, PhotoMapType {
     
     enum PhotoType {
         case Sent
         case Received
     }
     
+    @IBOutlet weak var mapView: MKMapView!
     final var photoType: PhotoType!
+    var photos: [Photo]!
+    var photoMapTypeHandler: PhotoMapTypeHandler!
     
     override func viewDidLoad() {
-        initPhotos()
-        
         super.viewDidLoad()
+        conformPhotoMapType()
+        
+        initPhotoMapView()
     }
 
     override func didReceiveMemoryWarning() {
@@ -29,7 +33,11 @@ class PhotoCollectionMapViewController: BasePhotoMapViewController {
         // Dispose of any resources that can be recreated.
     }
     
-    private func initPhotos() {
+    override func viewDidAppear(animated: Bool) {
+        requestLocationAuthorization()
+    }
+    
+    private func conformPhotoMapType() {
         switch photoType! {
         case .Sent:
             photos = SwishDatabase.sentPhotos().filter({ photo -> Bool in
@@ -38,6 +46,12 @@ class PhotoCollectionMapViewController: BasePhotoMapViewController {
         case .Received:
             photos = SwishDatabase.receivedPhotos()
         }
+        
+        photoMapTypeHandler = PhotoMapTypeHandler(photoMapType: self)
+    }
+    
+    func locationServiceEnabled() {
+        mapView.showsUserLocation = true
     }
 
     /*
@@ -49,4 +63,10 @@ class PhotoCollectionMapViewController: BasePhotoMapViewController {
         // Pass the selected object to the new view controller.
     }
     */
+    
+    // MARK: - IBAction
+    
+    @IBAction func cancelButtonDidTap(sender: AnyObject) {
+        dismissViewControllerAnimated(true, completion: nil)
+    }
 }
