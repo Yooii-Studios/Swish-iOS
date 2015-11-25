@@ -17,6 +17,7 @@ class PhotoCollectionMapViewController: UIViewController, PhotoMapType {
     }
     
     @IBOutlet weak var mapView: MKMapView!
+    @IBOutlet weak var photoMapMyLocationButton: UIButton!
     final var photoType: PhotoType!
     var photos: [Photo]!
     var photoMapViewZoomLevel: MapViewZoomLevel = PhotoMapMinZoomLevel
@@ -73,6 +74,10 @@ class PhotoCollectionMapViewController: UIViewController, PhotoMapType {
     
     @IBAction func photoMapZoomOutButtonDidTap(sender: AnyObject) {
         zoomOutPhotoMapView()
+    }
+    
+    @IBAction func photoMapMyLocationButtonDidTap(sender: AnyObject) {
+        moveToMyLocation()
     }
     
     @IBAction func cancelButtonDidTap(sender: AnyObject) {

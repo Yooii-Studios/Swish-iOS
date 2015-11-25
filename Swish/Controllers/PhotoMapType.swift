@@ -30,6 +30,7 @@ final class PhotoMapTypeHandler: NSObject, MKMapViewDelegate, LocationServiceAut
         super.init()
         photoMapType.mapView.zoomEnabled = false
         photoMapType.mapView.delegate = self
+        photoMapType.photoMapMyLocationButton.hidden = true
         self.photoMapType = photoMapType
         self.locationServiceAuthorizer.delegate = self
     }
@@ -75,12 +76,14 @@ final class PhotoMapTypeHandler: NSObject, MKMapViewDelegate, LocationServiceAut
     }
     
     private func showsUserLocationOnMapView() {
+        photoMapType?.photoMapMyLocationButton.hidden = false
         photoMapType?.mapView.showsUserLocation = true
     }
 }
 
 protocol PhotoMapType: class {
     weak var mapView: MKMapView! { get }
+    weak var photoMapMyLocationButton: UIButton! { get }
     var photos: [Photo]! { get }
     var photoMapViewZoomLevel: MapViewZoomLevel { get set }
     var photoMapUserLocationTrackType: PhotoMapUserLocationTrackType? { get }
@@ -122,6 +125,13 @@ extension PhotoMapType where Self: UIViewController {
     
     func zoomOutPhotoMapView() {
         mapView.setZoomLevel(zoomLevel: --?photoMapViewZoomLevel, animationType: .Fast)
+    }
+    
+    func moveToMyLocation() {
+        if let location = mapView.userLocation.location {
+            mapView.setCenterCoordinate(location.coordinate, withZoomLevel: photoMapViewZoomLevel.normalizedValue, animationType: .Normal)
+            mapView.setCenterCoordinate(location.coordinate, animated: true)
+        }
     }
 }
 
