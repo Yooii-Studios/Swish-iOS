@@ -19,7 +19,8 @@ class PhotoCollectionMapViewController: UIViewController, PhotoMapType {
     @IBOutlet weak var mapView: MKMapView!
     final var photoType: PhotoType!
     var photos: [Photo]!
-    var photoMapUserLocationTrackOption: PhotoMapUserLocationTrackOption?
+    var photoMapViewZoomLevel: MapViewZoomLevel = PhotoMapMinZoomLevel
+    var photoMapUserLocationTrackType: PhotoMapUserLocationTrackType? = .OneShot
     var photoMapTypeHandler: PhotoMapTypeHandler!
     
     // MARK: - ViewController Lifecycle
@@ -50,7 +51,6 @@ class PhotoCollectionMapViewController: UIViewController, PhotoMapType {
             photos = SwishDatabase.receivedPhotos()
         }
         
-        photoMapUserLocationTrackOption = PhotoMapUserLocationTrackOption(trackType: .OneShot, zoomLevel: 10)
         photoMapTypeHandler = PhotoMapTypeHandler(photoMapType: self)
     }
 
@@ -65,6 +65,15 @@ class PhotoCollectionMapViewController: UIViewController, PhotoMapType {
     */
     
     // MARK: - IBAction
+    
+    // TODO: 스토리보드에 임의로 넣어둔 버튼 수정 필요
+    @IBAction func photoMapZoomInButtonDidTap(sender: AnyObject) {
+        zoomInPhotoMapView()
+    }
+    
+    @IBAction func photoMapZoomOutButtonDidTap(sender: AnyObject) {
+        zoomOutPhotoMapView()
+    }
     
     @IBAction func cancelButtonDidTap(sender: AnyObject) {
         dismissViewControllerAnimated(true, completion: nil)

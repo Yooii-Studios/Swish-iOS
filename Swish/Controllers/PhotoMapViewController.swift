@@ -14,7 +14,8 @@ class PhotoMapViewController: UIViewController, PhotoMapType {
     @IBOutlet weak var mapView: MKMapView!
     var photos: [Photo]!
     var photoId: Photo.ID!
-    var photoMapUserLocationTrackOption: PhotoMapUserLocationTrackOption? = nil
+    var photoMapViewZoomLevel: MapViewZoomLevel = PhotoMapMaxZoomLevel
+    var photoMapUserLocationTrackType: PhotoMapUserLocationTrackType?
     var photoMapTypeHandler: PhotoMapTypeHandler!
     
     // MARK: - ViewController Lifecycle
@@ -46,7 +47,7 @@ class PhotoMapViewController: UIViewController, PhotoMapType {
     
     private func moveMapToInitialLocation() {
         let location = displayLocationOfPhoto(photos[0])
-        mapView.setCenterCoordinate(location.coordinate, withZoomLevel: 10, animationType: .Normal)
+        mapView.setCenterCoordinate(location.coordinate, withZoomLevel: photoMapViewZoomLevel, animationType: .Normal)
     }
 
     /*
@@ -60,6 +61,15 @@ class PhotoMapViewController: UIViewController, PhotoMapType {
     */
     
     // MARK: - IBAction
+    
+    // TODO: 스토리보드에 임의로 넣어둔 버튼 수정 필요
+    @IBAction func photoMapZoomInButtonDidTap(sender: AnyObject) {
+        zoomInPhotoMapView()
+    }
+    
+    @IBAction func photoMapZoomOutButtonDidTap(sender: AnyObject) {
+        zoomOutPhotoMapView()
+    }
     
     @IBAction func cancelButtonDidTap(sender: AnyObject) {
         dismissViewControllerAnimated(true, completion: nil)

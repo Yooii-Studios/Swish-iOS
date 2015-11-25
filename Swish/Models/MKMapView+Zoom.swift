@@ -21,20 +21,20 @@ enum MapViewAnimationType {
     case Fast
     
     var rawAnimated: Bool {
-        return self == .Normal
+        return self != .None
     }
 }
 
 extension MKMapView {
     
-    func setCenterCoordinate(coordinate: CLLocationCoordinate2D, withZoomLevel zoomLevel: Int,
+    func setCenterCoordinate(coordinate: CLLocationCoordinate2D, withZoomLevel zoomLevel: MapViewZoomLevel,
         animationType: MapViewAnimationType) {
             executeBlock({
                 self.setZoomLevel(coordinate, zoomLevel: zoomLevel, animationType: animationType)
                 }, animationType: animationType)
     }
     
-    func setZoomLevel(var coordinate: CLLocationCoordinate2D! = nil, zoomLevel: Int,
+    func setZoomLevel(var coordinate: CLLocationCoordinate2D! = nil, zoomLevel: MapViewZoomLevel,
         animationType: MapViewAnimationType) {
             coordinate = coordinate ?? self.centerCoordinate
             executeBlock({
@@ -54,7 +54,7 @@ extension MKMapView {
     }
     
     private func fastAnimate(animation: () -> Void) {
-        MKMapView.animateWithDuration(0.7, delay: 0.0, options: [.CurveLinear, .BeginFromCurrentState],
+        UIView.animateWithDuration(0.35, delay: 0.0, options: [.CurveLinear, .BeginFromCurrentState],
             animations: animation, completion: nil)
     }
     

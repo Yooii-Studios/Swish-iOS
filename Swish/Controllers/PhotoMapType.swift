@@ -10,16 +10,14 @@ import Foundation
 import MapKit
 import CoreLocation
 
-struct PhotoMapUserLocationTrackOption {
-    let trackType: PhotoMapUserLocationTrackType
-    let zoomLevel: MapViewZoomLevel
-}
-
 enum PhotoMapUserLocationTrackType {
     case None
     case OneShot
     case Follow
 }
+
+let PhotoMapMaxZoomLevel = 8
+let PhotoMapMinZoomLevel = 2
 
 final class PhotoMapTypeHandler: NSObject, MKMapViewDelegate, LocationServiceAuthorizeDelegate {
     
@@ -30,6 +28,7 @@ final class PhotoMapTypeHandler: NSObject, MKMapViewDelegate, LocationServiceAut
     init(photoMapType: PhotoMapType) {
         self.locationServiceAuthorizer = LocationServiceAuthorizer()
         super.init()
+        photoMapType.mapView.zoomEnabled = false
         photoMapType.mapView.delegate = self
         self.photoMapType = photoMapType
         self.locationServiceAuthorizer.delegate = self
@@ -38,11 +37,10 @@ final class PhotoMapTypeHandler: NSObject, MKMapViewDelegate, LocationServiceAut
     // MARK: - MapView Delegates
     
     func mapView(mapView: MKMapView, didUpdateUserLocation userLocation: MKUserLocation) {
-        guard let photoMapUserLocationTrackOption = photoMapType?.photoMapUserLocationTrackOption else {
-                return
+        guard let photoMapType = photoMapType else {
+            return
         }
-        let trackType = photoMapUserLocationTrackOption.trackType
-        guard trackType != .None else {
+        guard let trackType = photoMapType.photoMapUserLocationTrackType where trackType != .None else {
             return
         }
         
@@ -50,7 +48,7 @@ final class PhotoMapTypeHandler: NSObject, MKMapViewDelegate, LocationServiceAut
             || trackType == .Follow
         if shouldUpdateUserLocationOnMap {
             mapView.setCenterCoordinate(userLocation.coordinate,
-                withZoomLevel: photoMapUserLocationTrackOption.zoomLevel, animationType: .Normal)
+                withZoomLevel: photoMapType.photoMapViewZoomLevel.normalizedValue, animationType: .Normal)
         }
         hasUpdatedInitialUserLocation = true
     }
@@ -84,8 +82,12 @@ final class PhotoMapTypeHandler: NSObject, MKMapViewDelegate, LocationServiceAut
 protocol PhotoMapType: class {
     weak var mapView: MKMapView! { get }
     var photos: [Photo]! { get }
-    var photoMapUserLocationTrackOption: PhotoMapUserLocationTrackOption? { get }
+    var photoMapViewZoomLevel: MapViewZoomLevel { get set }
+    var photoMapUserLocationTrackType: PhotoMapUserLocationTrackType? { get }
     var photoMapTypeHandler: PhotoMapTypeHandler! { get }
+    
+    func photoMapZoomInButtonDidTap(sender: AnyObject)
+    func photoMapZoomOutButtonDidTap(sender: AnyObject)
 }
 
 extension PhotoMapType where Self: UIViewController {
@@ -112,5 +114,39 @@ extension PhotoMapType where Self: UIViewController {
     
     func displayLocationOfPhoto(photo: Photo) -> CLLocation {
         return photo.isSentPhoto ? photo.arrivedLocation! : photo.departLocation
+    }
+    
+    func zoomInPhotoMapView() {
+        mapView.setZoomLevel(zoomLevel: ++?photoMapViewZoomLevel, animationType: .Fast)
+    }
+    
+    func zoomOutPhotoMapView() {
+        mapView.setZoomLevel(zoomLevel: --?photoMapViewZoomLevel, animationType: .Fast)
+    }
+}
+
+// MARK: - Normalized Zoom Level Helper Functions
+
+prefix operator ++? {}
+prefix operator --? {}
+
+private prefix func ++?(inout zoomLevel: MapViewZoomLevel) -> MapViewZoomLevel {
+    zoomLevel = normalizeZoomLevel(++zoomLevel)
+    return zoomLevel
+}
+
+private prefix func --?(inout zoomLevel: MapViewZoomLevel) -> MapViewZoomLevel {
+    zoomLevel = normalizeZoomLevel(--zoomLevel)
+    return zoomLevel
+}
+
+private func normalizeZoomLevel(zoomLevel: MapViewZoomLevel) -> MapViewZoomLevel {
+    return max(min(zoomLevel, PhotoMapMaxZoomLevel), PhotoMapMinZoomLevel)
+}
+
+private extension MapViewZoomLevel {
+    
+    var normalizedValue: MapViewZoomLevel {
+        return normalizeZoomLevel(self)
     }
 }
