@@ -15,26 +15,36 @@ private let MercatorOffset = 268435456.0
 private let MercatorRadius = 85445659.44705395
 private let MaxZoomLevel = 20
 
+enum MapViewAnimationType {
+    case None
+    case Normal
+    case Fast
+    
+    var rawAnimated: Bool {
+        return self == .Normal
+    }
+}
+
 extension MKMapView {
     
-    func setCenterCoordinate(coordinate: CLLocationCoordinate2D, withZoomLevel zoomLevel: Int, animated: Bool) {
-        executeBlock({
-            self.setCenterCoordinate(coordinate, animated: animated)
-            self.setZoomLevel(coordinate, zoomLevel: zoomLevel, animated: animated)
-            }, animated: animated)
+    func setCenterCoordinate(coordinate: CLLocationCoordinate2D, withZoomLevel zoomLevel: Int,
+        animationType: MapViewAnimationType) {
+            executeBlock({
+                self.setZoomLevel(coordinate, zoomLevel: zoomLevel, animationType: animationType)
+                }, animationType: animationType)
     }
     
-    func setZoomLevel(var coordinate: CLLocationCoordinate2D! = nil, zoomLevel: Int, animated: Bool) {
-        coordinate = coordinate ?? self.centerCoordinate
-        executeBlock({
-            let span = self.coordinateSpanWithCenterCoordinate(coordinate, zoomLevel: zoomLevel,
-                animated: animated)
-            self.setRegion(MKCoordinateRegion(center: coordinate, span: span), animated: animated)
-            }, animated: animated)
+    func setZoomLevel(var coordinate: CLLocationCoordinate2D! = nil, zoomLevel: Int,
+        animationType: MapViewAnimationType) {
+            coordinate = coordinate ?? self.centerCoordinate
+            executeBlock({
+                let span = self.coordinateSpanWithCenterCoordinate(coordinate, zoomLevel: zoomLevel)
+                self.setRegion(MKCoordinateRegion(center: coordinate, span: span), animated: animationType.rawAnimated)
+                }, animationType: animationType)
     }
     
-    private func executeBlock(block: () -> Void, animated: Bool) {
-        if animated {
+    private func executeBlock(block: () -> Void, animationType: MapViewAnimationType) {
+        if animationType == .Fast {
             fastAnimate {
                 block()
             }
@@ -48,7 +58,7 @@ extension MKMapView {
             animations: animation, completion: nil)
     }
     
-    private func coordinateSpanWithCenterCoordinate(center: CLLocationCoordinate2D, zoomLevel: Int, animated: Bool)
+    private func coordinateSpanWithCenterCoordinate(center: CLLocationCoordinate2D, zoomLevel: Int)
         -> MKCoordinateSpan {
             let centerMapPoint = MKMapPointForCoordinate(center)
             

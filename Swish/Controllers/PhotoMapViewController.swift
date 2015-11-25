@@ -46,7 +46,7 @@ class PhotoMapViewController: UIViewController, PhotoMapType {
     
     private func moveMapToInitialLocation() {
         let location = displayLocationOfPhoto(photos[0])
-        mapView.setCenterCoordinate(location.coordinate, withZoomLevel: 10, animated: true)
+        mapView.setCenterCoordinate(location.coordinate, withZoomLevel: 10, animationType: .Normal)
     }
 
     /*

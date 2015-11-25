@@ -50,7 +50,7 @@ final class PhotoMapTypeHandler: NSObject, MKMapViewDelegate, LocationServiceAut
             || trackType == .Follow
         if shouldUpdateUserLocationOnMap {
             mapView.setCenterCoordinate(userLocation.coordinate,
-                withZoomLevel: photoMapUserLocationTrackOption.zoomLevel, animated: true)
+                withZoomLevel: photoMapUserLocationTrackOption.zoomLevel, animationType: .Normal)
         }
         hasUpdatedInitialUserLocation = true
     }
