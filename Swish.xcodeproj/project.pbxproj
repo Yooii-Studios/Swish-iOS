@@ -62,6 +62,7 @@
 		57E3EFF81BFD8E1E000D1564 /* UIImage+Base64.swift in Sources */ = {isa = PBXBuildFile; fileRef = 57E3EFF71BFD8E1E000D1564 /* UIImage+Base64.swift */; };
 		57EED2501BF2F1A700E464F1 /* Int+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 57EED24F1BF2F1A700E464F1 /* Int+Extension.swift */; };
 		57EFC1961C055E19006CF2EF /* LocationServiceAuthorizable.swift in Sources */ = {isa = PBXBuildFile; fileRef = 57EFC1951C055E19006CF2EF /* LocationServiceAuthorizable.swift */; };
+		57EFC1981C05A347006CF2EF /* MKMapView+Zoom.swift in Sources */ = {isa = PBXBuildFile; fileRef = 57EFC1971C05A347006CF2EF /* MKMapView+Zoom.swift */; };
 		57F3D5211BD86F9E00FE577C /* PhotoStateUpdater.swift in Sources */ = {isa = PBXBuildFile; fileRef = 57F3D5201BD86F9E00FE577C /* PhotoStateUpdater.swift */; };
 		57F6283A1BA11D050008B23B /* DefaultObjectBuilder.swift in Sources */ = {isa = PBXBuildFile; fileRef = 57F628391BA11D050008B23B /* DefaultObjectBuilder.swift */; };
 		57FB36411BF1AD070085EAAB /* XCTestCase+DelayedExecution.swift in Sources */ = {isa = PBXBuildFile; fileRef = 57FB36401BF1AD070085EAAB /* XCTestCase+DelayedExecution.swift */; };
@@ -167,6 +168,7 @@
 		57E3EFF71BFD8E1E000D1564 /* UIImage+Base64.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "UIImage+Base64.swift"; sourceTree = "<group>"; };
 		57EED24F1BF2F1A700E464F1 /* Int+Extension.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "Int+Extension.swift"; sourceTree = "<group>"; };
 		57EFC1951C055E19006CF2EF /* LocationServiceAuthorizable.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LocationServiceAuthorizable.swift; sourceTree = "<group>"; };
+		57EFC1971C05A347006CF2EF /* MKMapView+Zoom.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "MKMapView+Zoom.swift"; sourceTree = "<group>"; };
 		57F3D5201BD86F9E00FE577C /* PhotoStateUpdater.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PhotoStateUpdater.swift; sourceTree = "<group>"; };
 		57F628391BA11D050008B23B /* DefaultObjectBuilder.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DefaultObjectBuilder.swift; sourceTree = "<group>"; };
 		57FB36401BF1AD070085EAAB /* XCTestCase+DelayedExecution.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "XCTestCase+DelayedExecution.swift"; sourceTree = "<group>"; };
@@ -409,6 +411,7 @@
 				57E3EFF71BFD8E1E000D1564 /* UIImage+Base64.swift */,
 				57C7AA8B1BFDB152008E10F6 /* CGSize+Operator.swift */,
 				57A29A661C044CE00016E265 /* CLLocationManager+Authorization.swift */,
+				57EFC1971C05A347006CF2EF /* MKMapView+Zoom.swift */,
 			);
 			path = Models;
 			sourceTree = "<group>";
@@ -649,6 +652,7 @@
 				AEF32DDF1BA301A200EA00A9 /* PhotoCollectionViewCell.swift in Sources */,
 				5737132D1BD73101006B272A /* UserHelper.swift in Sources */,
 				57E3EFF41BFD77D1000D1564 /* UIImage+Orientation.swift in Sources */,
+				57EFC1981C05A347006CF2EF /* MKMapView+Zoom.swift in Sources */,
 				F245DCB91B9E7B2D0072308B /* Swish.xcdatamodeld in Sources */,
 				579673831B9FFE6500382247 /* PhotoState.swift in Sources */,
 				57F3D5211BD86F9E00FE577C /* PhotoStateUpdater.swift in Sources */,

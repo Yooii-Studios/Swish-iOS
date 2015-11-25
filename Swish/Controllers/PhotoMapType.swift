@@ -10,6 +10,11 @@ import Foundation
 import MapKit
 import CoreLocation
 
+struct PhotoMapUserLocationTrackOption {
+    let trackType: PhotoMapUserLocationTrackType
+    let zoomLevel: MapViewZoomLevel
+}
+
 enum PhotoMapUserLocationTrackType {
     case None
     case OneShot
@@ -33,16 +38,19 @@ final class PhotoMapTypeHandler: NSObject, MKMapViewDelegate, LocationServiceAut
     // MARK: - MapView Delegates
     
     func mapView(mapView: MKMapView, didUpdateUserLocation userLocation: MKUserLocation) {
-        guard let trackType = photoMapType?.photoMapUserLocationTrackType where trackType != .None else {
+        guard let photoMapUserLocationTrackOption = photoMapType?.photoMapUserLocationTrackOption else {
+                return
+        }
+        let trackType = photoMapUserLocationTrackOption.trackType
+        guard trackType != .None else {
             return
         }
         
         let shouldUpdateUserLocationOnMap = (trackType == .OneShot && !hasUpdatedInitialUserLocation)
             || trackType == .Follow
         if shouldUpdateUserLocationOnMap {
-            // TODO: span <-> zoom 변환로직 구현
-            let region = MKCoordinateRegionMake(userLocation.coordinate, mapView.region.span)
-            mapView.setRegion(region, animated: true)
+            mapView.setCenterCoordinate(userLocation.coordinate,
+                withZoomLevel: photoMapUserLocationTrackOption.zoomLevel, animated: true)
         }
         hasUpdatedInitialUserLocation = true
     }
@@ -76,7 +84,7 @@ final class PhotoMapTypeHandler: NSObject, MKMapViewDelegate, LocationServiceAut
 protocol PhotoMapType: class {
     weak var mapView: MKMapView! { get }
     var photos: [Photo]! { get }
-    var photoMapUserLocationTrackType: PhotoMapUserLocationTrackType! { get }
+    var photoMapUserLocationTrackOption: PhotoMapUserLocationTrackOption? { get }
     var photoMapTypeHandler: PhotoMapTypeHandler! { get }
 }
 

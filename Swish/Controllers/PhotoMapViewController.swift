@@ -14,7 +14,7 @@ class PhotoMapViewController: UIViewController, PhotoMapType {
     @IBOutlet weak var mapView: MKMapView!
     var photos: [Photo]!
     var photoId: Photo.ID!
-    var photoMapUserLocationTrackType: PhotoMapUserLocationTrackType! = .None
+    var photoMapUserLocationTrackOption: PhotoMapUserLocationTrackOption? = nil
     var photoMapTypeHandler: PhotoMapTypeHandler!
     
     // MARK: - ViewController Lifecycle
@@ -25,11 +25,10 @@ class PhotoMapViewController: UIViewController, PhotoMapType {
         conformPhotoMapType()
         
         initPhotoMapView()
-        
-        moveMapToInitialLocation()
     }
     
     override func viewDidAppear(animated: Bool) {
+        moveMapToInitialLocation()
         requestLocationAuthorization()
     }
 
@@ -47,8 +46,7 @@ class PhotoMapViewController: UIViewController, PhotoMapType {
     
     private func moveMapToInitialLocation() {
         let location = displayLocationOfPhoto(photos[0])
-        // TODO: span <-> zoom 변환로직 구현
-        mapView.setRegion(MKCoordinateRegion(center: location.coordinate, span: mapView.region.span), animated: true)
+        mapView.setCenterCoordinate(location.coordinate, withZoomLevel: 10, animated: true)
     }
 
     /*

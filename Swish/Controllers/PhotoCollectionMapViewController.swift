@@ -19,7 +19,7 @@ class PhotoCollectionMapViewController: UIViewController, PhotoMapType {
     @IBOutlet weak var mapView: MKMapView!
     final var photoType: PhotoType!
     var photos: [Photo]!
-    var photoMapUserLocationTrackType: PhotoMapUserLocationTrackType! = .OneShot
+    var photoMapUserLocationTrackOption: PhotoMapUserLocationTrackOption?
     var photoMapTypeHandler: PhotoMapTypeHandler!
     
     // MARK: - ViewController Lifecycle
@@ -50,6 +50,7 @@ class PhotoCollectionMapViewController: UIViewController, PhotoMapType {
             photos = SwishDatabase.receivedPhotos()
         }
         
+        photoMapUserLocationTrackOption = PhotoMapUserLocationTrackOption(trackType: .OneShot, zoomLevel: 10)
         photoMapTypeHandler = PhotoMapTypeHandler(photoMapType: self)
     }
 
