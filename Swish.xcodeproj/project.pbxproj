@@ -40,6 +40,8 @@
 		57A095411BEB293400333E6D /* Wings.swift in Sources */ = {isa = PBXBuildFile; fileRef = 57A095401BEB293400333E6D /* Wings.swift */; };
 		57A095431BEB2E9800333E6D /* BaseWingsTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 57A095421BEB2E9800333E6D /* BaseWingsTests.swift */; };
 		57A095461BEB316F00333E6D /* WingsHelper.swift in Sources */ = {isa = PBXBuildFile; fileRef = 57A095451BEB316F00333E6D /* WingsHelper.swift */; };
+		57A29A671C044CE00016E265 /* CLLocationManager+Authorization.swift in Sources */ = {isa = PBXBuildFile; fileRef = 57A29A661C044CE00016E265 /* CLLocationManager+Authorization.swift */; };
+		57A29A691C044DBD0016E265 /* SystemSettingsHelper.swift in Sources */ = {isa = PBXBuildFile; fileRef = 57A29A681C044DBD0016E265 /* SystemSettingsHelper.swift */; };
 		57C173ED1BDE3EFC0084DF8D /* ChatMessageSender.swift in Sources */ = {isa = PBXBuildFile; fileRef = 57C173EC1BDE3EFC0084DF8D /* ChatMessageSender.swift */; };
 		57C4ECBB1C02B60A00276421 /* BasePhotoMapViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 57C4ECBA1C02B60A00276421 /* BasePhotoMapViewController.swift */; };
 		57C729DC1BDF2C0D00DDFFDA /* ChatBlocker.swift in Sources */ = {isa = PBXBuildFile; fileRef = 57C729DB1BDF2C0D00DDFFDA /* ChatBlocker.swift */; };
@@ -142,6 +144,8 @@
 		57A095401BEB293400333E6D /* Wings.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Wings.swift; sourceTree = "<group>"; };
 		57A095421BEB2E9800333E6D /* BaseWingsTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = BaseWingsTests.swift; sourceTree = "<group>"; };
 		57A095451BEB316F00333E6D /* WingsHelper.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = WingsHelper.swift; sourceTree = "<group>"; };
+		57A29A661C044CE00016E265 /* CLLocationManager+Authorization.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "CLLocationManager+Authorization.swift"; sourceTree = "<group>"; };
+		57A29A681C044DBD0016E265 /* SystemSettingsHelper.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SystemSettingsHelper.swift; sourceTree = "<group>"; };
 		57C173EC1BDE3EFC0084DF8D /* ChatMessageSender.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ChatMessageSender.swift; sourceTree = "<group>"; };
 		57C4ECBA1C02B60A00276421 /* BasePhotoMapViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = BasePhotoMapViewController.swift; sourceTree = "<group>"; };
 		57C729DB1BDF2C0D00DDFFDA /* ChatBlocker.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ChatBlocker.swift; sourceTree = "<group>"; };
@@ -401,6 +405,7 @@
 				57E3EFF51BFD8CE8000D1564 /* UIImage+Save.swift */,
 				57E3EFF71BFD8E1E000D1564 /* UIImage+Base64.swift */,
 				57C7AA8B1BFDB152008E10F6 /* CGSize+Operator.swift */,
+				57A29A661C044CE00016E265 /* CLLocationManager+Authorization.swift */,
 			);
 			path = Models;
 			sourceTree = "<group>";
@@ -429,6 +434,7 @@
 				5772A7DF1BD626EA00A7F880 /* NSCache+LowMemory.swift */,
 				F2305B971BE23EC20056E087 /* UIView+Constraints.swift */,
 				57EED24F1BF2F1A700E464F1 /* Int+Extension.swift */,
+				57A29A681C044DBD0016E265 /* SystemSettingsHelper.swift */,
 			);
 			path = Helpers;
 			sourceTree = "<group>";
@@ -634,6 +640,7 @@
 				576A81991BC7545A0064A70F /* StickerServer.swift in Sources */,
 				F266D9021B9F159D00BDEB75 /* MyInfoViewController.swift in Sources */,
 				5776B92E1BD08F08009005B5 /* PhotoSender.swift in Sources */,
+				57A29A691C044DBD0016E265 /* SystemSettingsHelper.swift in Sources */,
 				AEF32DDF1BA301A200EA00A9 /* PhotoCollectionViewCell.swift in Sources */,
 				5737132D1BD73101006B272A /* UserHelper.swift in Sources */,
 				57E3EFF41BFD77D1000D1564 /* UIImage+Orientation.swift in Sources */,
@@ -678,6 +685,7 @@
 				F2ECA5C81BFAE6E300E3AD93 /* SentPhotoCollectionViewController.swift in Sources */,
 				579673891B9FFE6C00382247 /* OtherUser.swift in Sources */,
 				57E3EFF81BFD8E1E000D1564 /* UIImage+Base64.swift in Sources */,
+				57A29A671C044CE00016E265 /* CLLocationManager+Authorization.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
