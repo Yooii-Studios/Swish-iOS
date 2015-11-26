@@ -11,10 +11,10 @@ import MapKit
 
 final class PhotoPointAnnotation: MKPointAnnotation {
     
-    var imageName: String
+    var photo: Photo
     
-    init(coordinate: CLLocationCoordinate2D, imageName: String) {
-        self.imageName = imageName
+    init(coordinate: CLLocationCoordinate2D, photo: Photo) {
+        self.photo = photo
         super.init()
         self.coordinate = coordinate
     }
