@@ -28,8 +28,9 @@ class PhotoCollectionMapViewController: UIViewController, PhotoMapType {
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        conformPhotoMapType()
         
+        initPhoto()
+        initPhotoMapTypeHandler()
         initPhotoMapView()
     }
     
@@ -42,7 +43,7 @@ class PhotoCollectionMapViewController: UIViewController, PhotoMapType {
         // Dispose of any resources that can be recreated.
     }
     
-    private func conformPhotoMapType() {
+    private func initPhoto() {
         switch photoType! {
         case .Sent:
             photos = SwishDatabase.sentPhotos().filter({ photo -> Bool in
@@ -51,7 +52,9 @@ class PhotoCollectionMapViewController: UIViewController, PhotoMapType {
         case .Received:
             photos = SwishDatabase.receivedPhotos()
         }
-        
+    }
+    
+    private func initPhotoMapTypeHandler() {
         photoMapTypeHandler = PhotoMapTypeHandler(photoMapType: self)
     }
 

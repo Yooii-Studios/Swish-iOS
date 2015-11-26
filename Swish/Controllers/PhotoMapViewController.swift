@@ -24,8 +24,8 @@ class PhotoMapViewController: UIViewController, PhotoMapType {
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        conformPhotoMapType()
-        
+        initPhotos()
+        initPhotoMapTypeHandler()
         initPhotoMapView()
     }
     
@@ -39,7 +39,7 @@ class PhotoMapViewController: UIViewController, PhotoMapType {
         // Dispose of any resources that can be recreated.
     }
     
-    private func conformPhotoMapType() {
+    private func initPhotos() {
         photos = [Photo]()
         // TODO: 원래는 필요 없는 구현이지만 받은 / 보낸 사진 상세 정보 화면 구현이 덜 되어 그 전까지 임의의 사진을 보여주도록 구성.
         // TODO: 받은 / 보낸 사진 상세 정보 화면이 구현된 후 아래의 if문 삭제 필요
@@ -56,7 +56,9 @@ class PhotoMapViewController: UIViewController, PhotoMapType {
         } else {
             photos.append(SwishDatabase.photoWithId(photoId!)!)
         }
-        
+    }
+    
+    private func initPhotoMapTypeHandler() {
         photoMapTypeHandler = PhotoMapTypeHandler(photoMapType: self)
     }
     
