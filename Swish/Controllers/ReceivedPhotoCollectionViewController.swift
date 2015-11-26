@@ -55,9 +55,9 @@ class ReceivedPhotoCollectionViewController: UIViewController, UICollectionViewD
         
         // TODO: 나중에 "보낸 사진 디테일 / 받은 사진 디테일"로 옮겨진 후 해당하는 사진 ID 넣을 것
         // TODO: 보낸 사진의 경우 도착한 사진만 이 화면으로 들어갈 수 있게 구현해야 함
-        let photoCollectionMapViewController = navigationViewController.topViewController
+        let photoMapViewController = navigationViewController.topViewController
             as! PhotoMapViewController
-        photoCollectionMapViewController.photoId = -1
+        photoMapViewController.photoId = -1
         
         showViewController(navigationViewController, sender: self)
     }

@@ -11,8 +11,6 @@ import MapKit
 
 typealias MapViewZoomLevel = Int
 
-private let MercatorOffset = 268435456.0
-private let MercatorRadius = 85445659.44705395
 private let MaxZoomLevel = 20
 
 enum MapViewAnimationType {
