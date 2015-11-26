@@ -103,8 +103,8 @@ final class PhotoMapTypeHandler: NSObject, MKMapViewDelegate, LocationServiceAut
             } else {
                 annotationView.annotation = annotation
             }
-            annotationView.image = UIImage(named: annotation.imageName)
-            annotationView.canShowCallout = true
+            annotationView.image = annotation.photo.mapAnnotationImage
+            annotationView.canShowCallout = false
         }
         
         return annotationView
@@ -144,8 +144,7 @@ extension PhotoMapType where Self: UIViewController {
     private func addAnnotations() {
         for photo in photos {
             let location = displayLocationOfPhoto(photo)
-            // TODO: 이미지를 사진으로 교체
-            let annotation = PhotoPointAnnotation(coordinate: location.coordinate, imageName: "ic_sent_photo_waiting")
+            let annotation = PhotoPointAnnotation(coordinate: location.coordinate, photo: photo)
             
             mapView.addAnnotation(annotation)
         }

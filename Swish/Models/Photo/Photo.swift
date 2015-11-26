@@ -163,6 +163,39 @@ extension Photo {
         case Thumbnail
     }
     
+    var mapAnnotationImage: UIImage {
+        let image = UIImage(named: "ic_map_photo_marker")!
+        let imageSize = image.size
+        let imageRect = CGRectMake(0, 0, imageSize.width, imageSize.height)
+        
+        // start image context
+        UIGraphicsBeginImageContext(imageSize)
+        let context = UIGraphicsGetCurrentContext()
+        
+        // fill bg
+        CGContextSetRGBFillColor(context, 0.3, 0.8, 0.8, 0.5)
+        CGContextFillRect(context, imageRect)
+        
+        // draw speech bubble image
+        image.drawInRect(imageRect)
+        
+        let smallPadding: CGFloat = 4
+        let largePadding: CGFloat = 15
+        
+        let innerImageRect = CGRectMake(smallPadding, smallPadding,
+            imageSize.width - 2 * smallPadding, imageSize.height - (smallPadding + largePadding))
+        
+        if let photoImage = Photo.loadImageWithFileName(fileName) {
+            photoImage.drawInRect(innerImageRect)
+        }
+        
+        let output = UIGraphicsGetImageFromCurrentImageContext()
+        
+        UIGraphicsEndImageContext()
+        
+        return output
+    }
+    
     private final var thumbnailFileName: String? {
         return canUseThumbnail ? "th_\(fileName)" : nil
     }
@@ -211,9 +244,8 @@ extension Photo {
             handler(image: image)
             return
         }
-        let path = FileHelper.filePathWithName(fileName, inDirectory: SubDirectory.Photos)
         dispatch_async(dispatch_get_global_queue(QOS_CLASS_USER_INITIATED, 0), {
-            let image = UIImage(contentsOfFile: path)
+            let image = loadImageWithFileName(fileName)
             
             dispatch_async(dispatch_get_main_queue(), {
                 if let image = image {
@@ -224,5 +256,10 @@ extension Photo {
                 handler(image: image)
             })
         })
+    }
+    
+    private class func loadImageWithFileName(fileName: String) -> UIImage? {
+        let path = FileHelper.filePathWithName(fileName, inDirectory: SubDirectory.Photos)
+        return UIImage(contentsOfFile: path)
     }
 }
