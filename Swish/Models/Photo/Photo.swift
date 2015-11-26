@@ -163,37 +163,33 @@ extension Photo {
         case Thumbnail
     }
     
+    // Image Context를 사용해 그리는 로직이라 추상화를 낮추는 것이 가독성을 떨어뜨리는 일이라 판단, 주석으로 흐름을 구분
     var mapAnnotationImage: UIImage {
-        let image = UIImage(named: "ic_map_photo_marker")!
-        let imageSize = image.size
-        let imageRect = CGRectMake(0, 0, imageSize.width, imageSize.height)
+        let markerImage = UIImage(named: "ic_map_photo_marker")!
+        let markerImageSize = markerImage.size
+        let markerImageRect = CGRectMake(0, 0, markerImageSize.width, markerImageSize.height)
         
-        // start image context
-        UIGraphicsBeginImageContext(imageSize)
-        let context = UIGraphicsGetCurrentContext()
+        // Start image context & defer end image context
+        UIGraphicsBeginImageContext(markerImageSize)
+        defer { UIGraphicsEndImageContext() }
         
-        // fill bg
-        CGContextSetRGBFillColor(context, 0.3, 0.8, 0.8, 0.5)
-        CGContextFillRect(context, imageRect)
+        // Draw marker image
+        markerImage.drawInRect(markerImageRect)
         
-        // draw speech bubble image
-        image.drawInRect(imageRect)
-        
-        let smallPadding: CGFloat = 4
-        let largePadding: CGFloat = 15
-        
-        let innerImageRect = CGRectMake(smallPadding, smallPadding,
-            imageSize.width - 2 * smallPadding, imageSize.height - (smallPadding + largePadding))
-        
+        // Draw photo image
+        let fileName = thumbnailFileName != nil ? thumbnailFileName! : self.fileName
         if let photoImage = Photo.loadImageWithFileName(fileName) {
-            photoImage.drawInRect(innerImageRect)
+            let smallPadding: CGFloat = 4
+            let largePadding: CGFloat = 15
+            
+            let photoImageRect = CGRectMake(smallPadding, smallPadding,
+                markerImageSize.width - 2 * smallPadding, markerImageSize.height - (smallPadding + largePadding))
+            
+            photoImage.drawInRect(photoImageRect)
         }
         
-        let output = UIGraphicsGetImageFromCurrentImageContext()
-        
-        UIGraphicsEndImageContext()
-        
-        return output
+        // Retrieve result
+        return UIGraphicsGetImageFromCurrentImageContext()
     }
     
     private final var thumbnailFileName: String? {
