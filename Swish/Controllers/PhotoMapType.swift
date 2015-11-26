@@ -105,7 +105,7 @@ final class PhotoMapTypeHandler: NSObject, MKMapViewDelegate, LocationServiceAut
             }
             let annotationImage = annotation.photo.mapAnnotationImage
             annotationView.image = annotationImage
-            annotationView.centerOffset = CGPointMake(0, -annotationImage.size.height/2)
+            annotationView.centerOffset = CGPointMake(0, -annotationImage.size.height / 2)
             annotationView.canShowCallout = false
         }
         
