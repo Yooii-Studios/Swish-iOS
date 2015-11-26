@@ -9,7 +9,7 @@
 import Foundation
 import MapKit
 
-final class PhotoAnnotation: MKPointAnnotation {
+final class PhotoPointAnnotation: MKPointAnnotation {
     
     var imageName: String
     

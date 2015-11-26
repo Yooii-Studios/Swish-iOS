@@ -96,7 +96,7 @@ final class PhotoMapTypeHandler: NSObject, MKMapViewDelegate, LocationServiceAut
     func mapView(mapView: MKMapView, viewForAnnotation annotation: MKAnnotation) -> MKAnnotationView? {
         let id = "pin"
         var annotationView: MKAnnotationView!
-        if let annotation = annotation as? PhotoAnnotation {
+        if let annotation = annotation as? PhotoPointAnnotation {
             annotationView = mapView.dequeueReusableAnnotationViewWithIdentifier(id) as? MKPinAnnotationView
             if annotationView == nil {
                 annotationView = MKAnnotationView(annotation: annotation, reuseIdentifier: id)
@@ -145,7 +145,7 @@ extension PhotoMapType where Self: UIViewController {
         for photo in photos {
             let location = displayLocationOfPhoto(photo)
             // TODO: 이미지를 사진으로 교체
-            let annotation = PhotoAnnotation(coordinate: location.coordinate, imageName: "ic_sent_photo_waiting")
+            let annotation = PhotoPointAnnotation(coordinate: location.coordinate, imageName: "ic_sent_photo_waiting")
             
             mapView.addAnnotation(annotation)
         }
