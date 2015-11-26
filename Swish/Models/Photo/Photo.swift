@@ -196,6 +196,8 @@ extension Photo {
         return canUseThumbnail ? "th_\(fileName)" : nil
     }
     
+    // MARK: - Save image
+    
     final func saveImage(image: UIImage, handler: () -> Void) {
         dispatch_async(dispatch_get_global_queue(QOS_CLASS_USER_INITIATED, 0)) {
             self.fileName = "\(NSDate().timeIntervalSince1970)"
@@ -206,14 +208,6 @@ extension Photo {
             dispatch_async(dispatch_get_main_queue(), {
                 handler()
             })
-        }
-    }
-    
-    final func loadImage(imageType imageType: ImageType = .Original, handler: (image: UIImage?) -> Void) {
-        if imageType == .Thumbnail, let thumbnailFileName = thumbnailFileName {
-            Photo.loadImageWithFileName(thumbnailFileName, handler: handler)
-        } else {
-            Photo.loadImageWithFileName(fileName, handler: handler)
         }
     }
     
@@ -231,6 +225,16 @@ extension Photo {
         let imagePath = FileHelper.filePathWithName(fileName, inDirectory: SubDirectory.Photos)
         image.saveIntoPath(imagePath)
         imageCache.setObject(image, forKey: fileName)
+    }
+    
+    // MARK: - Load image
+    
+    final func loadImage(imageType imageType: ImageType = .Original, handler: (image: UIImage?) -> Void) {
+        if imageType == .Thumbnail, let thumbnailFileName = thumbnailFileName {
+            Photo.loadImageWithFileName(thumbnailFileName, handler: handler)
+        } else {
+            Photo.loadImageWithFileName(fileName, handler: handler)
+        }
     }
     
     private class func loadImageWithFileName(fileName: String, handler: (image: UIImage?) -> Void) {
