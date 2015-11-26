@@ -47,6 +47,8 @@
 		57C729E11BDF501700DDFFDA /* PhotoTrendsLoader.swift in Sources */ = {isa = PBXBuildFile; fileRef = 57C729E01BDF501700DDFFDA /* PhotoTrendsLoader.swift */; };
 		57C7AA8C1BFDB152008E10F6 /* CGSize+Operator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 57C7AA8B1BFDB152008E10F6 /* CGSize+Operator.swift */; };
 		57C7AA8E1BFDB97D008E10F6 /* UIImage+Scale.swift in Sources */ = {isa = PBXBuildFile; fileRef = 57C7AA8D1BFDB97D008E10F6 /* UIImage+Scale.swift */; };
+		57CC3F4F1C02EDD400A04568 /* PhotoPointAnnotation.swift in Sources */ = {isa = PBXBuildFile; fileRef = 57CC3F4E1C02EDD400A04568 /* PhotoPointAnnotation.swift */; };
+		57CC3F511C03019B00A04568 /* PhotoMapType.swift in Sources */ = {isa = PBXBuildFile; fileRef = 57CC3F501C03019B00A04568 /* PhotoMapType.swift */; };
 		57D2DBBE1BF04F2600176388 /* DischargedWingsTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 57D2DBBD1BF04F2600176388 /* DischargedWingsTests.swift */; };
 		57D2DBC01BF0760B00176388 /* XCTestCase+RangeComparison.swift in Sources */ = {isa = PBXBuildFile; fileRef = 57D2DBBF1BF0760B00176388 /* XCTestCase+RangeComparison.swift */; };
 		57D5450D1BDA5D4900C9CF6A /* PhotoHelper.swift in Sources */ = {isa = PBXBuildFile; fileRef = 57D5450C1BDA5D4900C9CF6A /* PhotoHelper.swift */; };
@@ -59,6 +61,8 @@
 		57E3EFF61BFD8CE8000D1564 /* UIImage+Save.swift in Sources */ = {isa = PBXBuildFile; fileRef = 57E3EFF51BFD8CE8000D1564 /* UIImage+Save.swift */; };
 		57E3EFF81BFD8E1E000D1564 /* UIImage+Base64.swift in Sources */ = {isa = PBXBuildFile; fileRef = 57E3EFF71BFD8E1E000D1564 /* UIImage+Base64.swift */; };
 		57EED2501BF2F1A700E464F1 /* Int+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 57EED24F1BF2F1A700E464F1 /* Int+Extension.swift */; };
+		57EFC1961C055E19006CF2EF /* LocationServiceAuthorizable.swift in Sources */ = {isa = PBXBuildFile; fileRef = 57EFC1951C055E19006CF2EF /* LocationServiceAuthorizable.swift */; };
+		57EFC1981C05A347006CF2EF /* MKMapView+Zoom.swift in Sources */ = {isa = PBXBuildFile; fileRef = 57EFC1971C05A347006CF2EF /* MKMapView+Zoom.swift */; };
 		57F3D5211BD86F9E00FE577C /* PhotoStateUpdater.swift in Sources */ = {isa = PBXBuildFile; fileRef = 57F3D5201BD86F9E00FE577C /* PhotoStateUpdater.swift */; };
 		57F6283A1BA11D050008B23B /* DefaultObjectBuilder.swift in Sources */ = {isa = PBXBuildFile; fileRef = 57F628391BA11D050008B23B /* DefaultObjectBuilder.swift */; };
 		57FB36411BF1AD070085EAAB /* XCTestCase+DelayedExecution.swift in Sources */ = {isa = PBXBuildFile; fileRef = 57FB36401BF1AD070085EAAB /* XCTestCase+DelayedExecution.swift */; };
@@ -149,6 +153,8 @@
 		57C729E01BDF501700DDFFDA /* PhotoTrendsLoader.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = PhotoTrendsLoader.swift; path = Swish/Models/Photo/PhotoTrendsLoader.swift; sourceTree = SOURCE_ROOT; };
 		57C7AA8B1BFDB152008E10F6 /* CGSize+Operator.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "CGSize+Operator.swift"; sourceTree = "<group>"; };
 		57C7AA8D1BFDB97D008E10F6 /* UIImage+Scale.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "UIImage+Scale.swift"; sourceTree = "<group>"; };
+		57CC3F4E1C02EDD400A04568 /* PhotoPointAnnotation.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PhotoPointAnnotation.swift; sourceTree = "<group>"; };
+		57CC3F501C03019B00A04568 /* PhotoMapType.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PhotoMapType.swift; sourceTree = "<group>"; };
 		57D2DBBD1BF04F2600176388 /* DischargedWingsTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DischargedWingsTests.swift; sourceTree = "<group>"; };
 		57D2DBBF1BF0760B00176388 /* XCTestCase+RangeComparison.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "XCTestCase+RangeComparison.swift"; sourceTree = "<group>"; };
 		57D5450C1BDA5D4900C9CF6A /* PhotoHelper.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PhotoHelper.swift; sourceTree = "<group>"; };
@@ -161,6 +167,8 @@
 		57E3EFF51BFD8CE8000D1564 /* UIImage+Save.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "UIImage+Save.swift"; sourceTree = "<group>"; };
 		57E3EFF71BFD8E1E000D1564 /* UIImage+Base64.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "UIImage+Base64.swift"; sourceTree = "<group>"; };
 		57EED24F1BF2F1A700E464F1 /* Int+Extension.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "Int+Extension.swift"; sourceTree = "<group>"; };
+		57EFC1951C055E19006CF2EF /* LocationServiceAuthorizable.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LocationServiceAuthorizable.swift; sourceTree = "<group>"; };
+		57EFC1971C05A347006CF2EF /* MKMapView+Zoom.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "MKMapView+Zoom.swift"; sourceTree = "<group>"; };
 		57F3D5201BD86F9E00FE577C /* PhotoStateUpdater.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PhotoStateUpdater.swift; sourceTree = "<group>"; };
 		57F628391BA11D050008B23B /* DefaultObjectBuilder.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DefaultObjectBuilder.swift; sourceTree = "<group>"; };
 		57FB36401BF1AD070085EAAB /* XCTestCase+DelayedExecution.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "XCTestCase+DelayedExecution.swift"; sourceTree = "<group>"; };
@@ -371,6 +379,8 @@
 				F23527FE1BE09E7C00CA614A /* PhotoPickable.swift */,
 				573205B41BF47B9B00ED6BB6 /* WingsObservable.swift */,
 				F20CC6751BDB878F00075088 /* SegueHandlerType.swift */,
+				57CC3F501C03019B00A04568 /* PhotoMapType.swift */,
+				57EFC1951C055E19006CF2EF /* LocationServiceAuthorizable.swift */,
 				F245DCB21B9E7B2D0072308B /* MainViewController.swift */,
 				F2C7CBD21BE1C53800ED429A /* DressingViewController.swift */,
 				F2F545211BD5ED5400AEE02A /* ShareResultViewController.swift */,
@@ -391,6 +401,7 @@
 				5796737E1B9FFE3A00382247 /* User */,
 				5796737D1B9FFE3800382247 /* Chat */,
 				57A095441BEB311D00333E6D /* Wings */,
+				57CC3F4E1C02EDD400A04568 /* PhotoPointAnnotation.swift */,
 				57FB36451BF1D72E0085EAAB /* EnvironmentVariables.swift */,
 				57F628391BA11D050008B23B /* DefaultObjectBuilder.swift */,
 				5737132A1BD72BDA006B272A /* List+Bridge.swift */,
@@ -400,6 +411,7 @@
 				57E3EFF71BFD8E1E000D1564 /* UIImage+Base64.swift */,
 				57C7AA8B1BFDB152008E10F6 /* CGSize+Operator.swift */,
 				57A29A661C044CE00016E265 /* CLLocationManager+Authorization.swift */,
+				57EFC1971C05A347006CF2EF /* MKMapView+Zoom.swift */,
 			);
 			path = Models;
 			sourceTree = "<group>";
@@ -612,6 +624,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				F20E7CBA1BFDD55F005149C1 /* PhotoMapViewController.swift in Sources */,
+				57EFC1961C055E19006CF2EF /* LocationServiceAuthorizable.swift in Sources */,
 				577465C81BF2CFDA0093D97A /* WingsObserver.swift in Sources */,
 				F266D9041B9F15D500BDEB75 /* PhotoPickerViewController.swift in Sources */,
 				570FD2F71BAAB54E008CB163 /* UserServer.swift in Sources */,
@@ -622,6 +635,7 @@
 				F2ECA5CC1BFAE7FC00E3AD93 /* SentPhotoViewCell.swift in Sources */,
 				575354C51BE1F0000034F24E /* LocationTrackable.swift in Sources */,
 				57C7AA8C1BFDB152008E10F6 /* CGSize+Operator.swift in Sources */,
+				57CC3F511C03019B00A04568 /* PhotoMapType.swift in Sources */,
 				5721F3FA1BD9C3CB00F0E733 /* SentPhotoStateLoader.swift in Sources */,
 				5772A7DE1BD5F71E00A7F880 /* LocationManager.swift in Sources */,
 				5772A7E01BD626EA00A7F880 /* NSCache+LowMemory.swift in Sources */,
@@ -638,9 +652,11 @@
 				AEF32DDF1BA301A200EA00A9 /* PhotoCollectionViewCell.swift in Sources */,
 				5737132D1BD73101006B272A /* UserHelper.swift in Sources */,
 				57E3EFF41BFD77D1000D1564 /* UIImage+Orientation.swift in Sources */,
+				57EFC1981C05A347006CF2EF /* MKMapView+Zoom.swift in Sources */,
 				F245DCB91B9E7B2D0072308B /* Swish.xcdatamodeld in Sources */,
 				579673831B9FFE6500382247 /* PhotoState.swift in Sources */,
 				57F3D5211BD86F9E00FE577C /* PhotoStateUpdater.swift in Sources */,
+				57CC3F4F1C02EDD400A04568 /* PhotoPointAnnotation.swift in Sources */,
 				57F6283A1BA11D050008B23B /* DefaultObjectBuilder.swift in Sources */,
 				57E09ADB1BCB9351006A05DC /* MeManager.swift in Sources */,
 				57D5450D1BDA5D4900C9CF6A /* PhotoHelper.swift in Sources */,

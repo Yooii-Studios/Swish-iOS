@@ -77,10 +77,11 @@ private func alertUnknownErrorWithViewController(viewController: UIViewControlle
     viewController.showViewController(alertController, sender: nil)
 }
 
-final class LocationTrackHandler: NSObject, CLLocationManagerDelegate {
+final class LocationTrackHandler: NSObject, CLLocationManagerDelegate, LocationServiceAuthorizeDelegate {
     
     private var locationManager: CLLocationManager
     private var previousAuthStatus: CLAuthorizationStatus
+    private var locationServiceAuthorizer: LocationServiceAuthorizer
     weak private final var locationTrackable: LocationTrackable?
     private var currentRootViewController: UIViewController? {
         return UIApplication.sharedApplication().keyWindow?.rootViewController
@@ -90,8 +91,10 @@ final class LocationTrackHandler: NSObject, CLLocationManagerDelegate {
         self.locationTrackable = delegate
         self.locationManager = CLLocationManager()
         self.previousAuthStatus = CLLocationManager.authorizationStatus()
+        self.locationServiceAuthorizer = LocationServiceAuthorizer()
         super.init()
         self.locationManager.delegate = self
+        self.locationServiceAuthorizer.delegate = self
     }
     
     // MARK: - Delegate functions
@@ -111,17 +114,10 @@ final class LocationTrackHandler: NSObject, CLLocationManagerDelegate {
         }
     }
     
-    func locationManager(manager: CLLocationManager, didChangeAuthorizationStatus status: CLAuthorizationStatus) {
-        if let locationTrackable = locationTrackable where status != previousAuthStatus {
-            if status == .NotDetermined || status == .Restricted {
-                if let viewController = currentRootViewController {
-                    manager.checkLocationAuthorizationStatus(viewController)
-                }
-            } else if status == .AuthorizedWhenInUse {
-                notifyOrRequestLocationUpdate(locationTrackable)
-            }
+    func locationServiceAuthorized() {
+        if let locationTrackable = self.locationTrackable {
+            notifyOrRequestLocationUpdate(locationTrackable)
         }
-        previousAuthStatus = status
     }
 }
 

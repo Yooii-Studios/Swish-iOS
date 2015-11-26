@@ -39,26 +39,15 @@ class SentPhotoCollectionViewController: UIViewController {
     
     // MARK: - IBAction
     
-    @IBAction func photoMapButtonDidTap(sender: AnyObject) {
-        let storyboard = UIStoryboard(name: "PhotoMap", bundle: nil)
-        let navigationViewController =
-        storyboard.instantiateViewControllerWithIdentifier("PhotoMapNavController") as! UINavigationController
-        
-        // TODO: 필요한 초기화 진행할 것
-        //        let photoCollectionMapViewController = navigationViewController.topViewController
-        //            as! PhotoCollectionMapViewController
-        
-        showViewController(navigationViewController, sender: self)
-    }
-    
     @IBAction func photoCollectionMapButtonDidTap(sender: AnyObject) {
         let storyboard = UIStoryboard(name: "PhotoMap", bundle: nil)
         let navigationViewController =
         storyboard.instantiateViewControllerWithIdentifier("PhotoCollectionMapNavController") as! UINavigationController
         
         // TODO: 필요한 초기화 진행할 것
-//        let photoCollectionMapViewController = navigationViewController.topViewController
-//            as! PhotoCollectionMapViewController
+        let photoCollectionMapViewController = navigationViewController.topViewController
+            as! PhotoCollectionMapViewController
+        photoCollectionMapViewController.photoType = .Sent
         
         showViewController(navigationViewController, sender: self)
     }
