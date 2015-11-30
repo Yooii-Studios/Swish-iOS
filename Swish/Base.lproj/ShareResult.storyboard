@@ -1,8 +1,8 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="9059" systemVersion="15B42" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" initialViewController="5YB-mo-rDK">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="9060" systemVersion="15B42" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" initialViewController="5YB-mo-rDK">
     <dependencies>
         <deployment identifier="iOS"/>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="9049"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="9051"/>
     </dependencies>
     <scenes>
         <!--Share Result-->
@@ -54,7 +54,6 @@
         <!--Navigation Controller-->
         <scene sceneID="YFe-VL-MKQ">
             <objects>
-                <placeholder placeholderIdentifier="IBFirstResponder" id="EUx-bz-bPL" userLabel="First Responder" sceneMemberID="firstResponder"/>
                 <navigationController storyboardIdentifier="shareResultNaviViewController" automaticallyAdjustsScrollViewInsets="NO" id="5YB-mo-rDK" sceneMemberID="viewController">
                     <toolbarItems/>
                     <navigationBar key="navigationBar" contentMode="scaleToFill" id="8IC-tS-opT">
@@ -67,6 +66,7 @@
                         <segue destination="iWo-Ig-4hz" kind="relationship" relationship="rootViewController" id="iBp-sX-KXT"/>
                     </connections>
                 </navigationController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="EUx-bz-bPL" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="571" y="501"/>
         </scene>

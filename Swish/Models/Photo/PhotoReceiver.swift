@@ -65,9 +65,8 @@ final class PhotoReceiver {
         for index in 0...count-1 {
             let photoResponse = photoResponses[index]
             let imageUrl = photoResponse.imageUrl
-            PhotoReceiver.downloadAndSaveImage(imageUrl, onSaveImageCallback: { (fileName) -> Void in
+            PhotoReceiver.downloadAndSaveImage(photoResponse.photo, imageUrl: imageUrl, onSaveImageCallback: {
                 SwishDatabase.saveOtherUser(photoResponse.user)
-                photoResponse.photo.fileName = fileName
                 photoResponse.photo.arrivedLocation = self.request.currentLocation
                 SwishDatabase.saveReceivedPhoto(photoResponse.user, photo: photoResponse.photo)
                 
@@ -80,11 +79,11 @@ final class PhotoReceiver {
         }
     }
     
-    private class func downloadAndSaveImage(imageUrl: String, onSaveImageCallback: PhotoImageHelper.OnSaveImageCallback,
-        onFail: () -> Void) {
+    private class func downloadAndSaveImage(photo: Photo, imageUrl: String,
+        onSaveImageCallback: () -> Void, onFail: () -> Void) {
             Alamofire.request(.GET, imageUrl).responseImage { response in
                 if let image = response.result.value {
-                    PhotoImageHelper.saveImage(image, onSuccess: onSaveImageCallback)
+                    photo.saveImage(image, handler: onSaveImageCallback)
                 } else {
                     onFail()
                 }

@@ -21,12 +21,26 @@ class MyInfoViewController: UITabBarController {
     override func viewDidLoad() {
         super.viewDidLoad()
 
+        initViewControllers()
         selectTab(0)
     }
     
-    override func didReceiveMemoryWarning() {
-        super.didReceiveMemoryWarning()
-        // Dispose of any resources that can be recreated.
+    private func initViewControllers() {
+        let receivedPhotoStoryboard = UIStoryboard(name: "ReceivedPhoto", bundle: nil)
+        let sentPhotoStoryboard = UIStoryboard(name: "SentPhoto", bundle: nil)
+        let myProfileStoryboard = UIStoryboard(name: "MyProfile", bundle: nil)
+        
+        guard let receivedPhotoCollectionVC = receivedPhotoStoryboard.instantiateInitialViewController() else {
+            return
+        }
+        guard let sentPhotoCollectionVC = sentPhotoStoryboard.instantiateInitialViewController() else {
+            return
+        }
+        guard let myProfileVC = myProfileStoryboard.instantiateInitialViewController() else {
+            return
+        }
+        
+        viewControllers = [receivedPhotoCollectionVC, sentPhotoCollectionVC, myProfileVC]
     }
     
     private func selectTab(index: Int) {
@@ -50,16 +64,17 @@ class MyInfoViewController: UITabBarController {
     */
     
     override func tabBar(tabBar: UITabBar, didSelectItem item: UITabBarItem) {
-        // TODO: 로컬라이징 필요
-        if let currentTabType = TabType(rawValue: selectedIndex) {
-            switch currentTabType {
-            case .Received:
-                title = "RECEIVED"
-            case .Sent:
-                title = "SENT"
-            case .Profile:
-                title = "PROFILE"
-            }
+        guard let newIndex = tabBar.items?.indexOf(item), let currentTabType = TabType(rawValue: newIndex) else {
+            return
+        }
+        
+        switch currentTabType {
+        case .Received:
+            title = "RECEIVED"
+        case .Sent:
+            title = "SENT"
+        case .Profile:
+            title = "PROFILE"
         }
     }
 }
