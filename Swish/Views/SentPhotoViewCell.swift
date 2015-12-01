@@ -22,7 +22,7 @@ class SentPhotoViewCell: UICollectionViewCell {
     }
     
     func initStatusImageViewWithPhotoState(photoState: PhotoState) {
-        let imgResourceName = photoState.sentStateImgResourceName
+        let imgResourceName = photoState.sentStateImgResId
         statusImageView.image = UIImage(named: imgResourceName)
     }
     
