@@ -53,7 +53,7 @@ enum PhotoState: String {
 // Resources
 extension PhotoState {
     
-    var sentStateImgResourceName: String {
+    var sentStateImgResId: String {
         switch self {
         case .Waiting:
             return "ic_sent_photo_waiting"
