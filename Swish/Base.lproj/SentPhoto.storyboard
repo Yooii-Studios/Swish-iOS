@@ -239,11 +239,11 @@
                                         </variation>
                                     </label>
                                     <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="KF7-NH-zqt">
-                                        <rect key="frame" x="167" y="0.0" width="40" height="40"/>
+                                        <rect key="frame" x="167" y="15" width="25" height="25"/>
                                         <animations/>
                                         <constraints>
-                                            <constraint firstAttribute="height" constant="40" id="MKP-fy-HsX"/>
-                                            <constraint firstAttribute="width" constant="40" id="eND-in-EIT"/>
+                                            <constraint firstAttribute="height" constant="25" id="MKP-fy-HsX"/>
+                                            <constraint firstAttribute="width" constant="25" id="eND-in-EIT"/>
                                         </constraints>
                                     </imageView>
                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Waiting" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Qhr-Q2-QUj">
@@ -262,7 +262,7 @@
                                     <constraint firstAttribute="trailing" secondItem="3Vf-0q-Gud" secondAttribute="trailing" constant="8" id="B5e-qC-PKW"/>
                                     <constraint firstAttribute="height" constant="114" id="Lhf-7z-RK4"/>
                                     <constraint firstItem="Qhr-Q2-QUj" firstAttribute="leading" secondItem="KF7-NH-zqt" secondAttribute="trailing" constant="8" id="M4b-2y-jXG"/>
-                                    <constraint firstItem="KF7-NH-zqt" firstAttribute="centerX" secondItem="X29-Jd-v56" secondAttribute="centerX" id="On8-ee-q4q"/>
+                                    <constraint firstItem="KF7-NH-zqt" firstAttribute="centerX" secondItem="X29-Jd-v56" secondAttribute="centerX" constant="-8" id="On8-ee-q4q"/>
                                     <constraint firstAttribute="trailing" secondItem="Qhr-Q2-QUj" secondAttribute="trailing" constant="8" id="QGP-JA-uQS"/>
                                     <constraint firstItem="Qhr-Q2-QUj" firstAttribute="leading" secondItem="X29-Jd-v56" secondAttribute="leading" constant="8" id="Rlv-V4-O4R"/>
                                     <constraint firstAttribute="bottom" secondItem="3Vf-0q-Gud" secondAttribute="bottom" constant="18" id="Xh0-vd-l7g"/>
@@ -279,7 +279,7 @@
                             </view>
                         </subviews>
                         <animations/>
-                        <color key="backgroundColor" cocoaTouchSystemColor="lightTextColor"/>
+                        <color key="backgroundColor" cocoaTouchSystemColor="groupTableViewBackgroundColor"/>
                         <constraints>
                             <constraint firstAttribute="trailing" secondItem="X29-Jd-v56" secondAttribute="trailing" id="20Q-t3-T23"/>
                             <constraint firstItem="X29-Jd-v56" firstAttribute="leading" secondItem="AZT-tq-mY1" secondAttribute="leading" id="6FA-l3-zdM"/>
@@ -290,9 +290,27 @@
                         </constraints>
                     </view>
                     <extendedEdge key="edgesForExtendedLayout" bottom="YES"/>
-                    <navigationItem key="navigationItem" title="Sent Photo" id="4Rd-KO-Oeh"/>
+                    <navigationItem key="navigationItem" title="Sent Photo" id="4Rd-KO-Oeh">
+                        <barButtonItem key="rightBarButtonItem" systemItem="cancel" id="uUj-SF-e58">
+                            <connections>
+                                <action selector="cancelButtonDidTap:" destination="zj9-Mq-5HG" id="pIJ-3M-S7H"/>
+                            </connections>
+                        </barButtonItem>
+                    </navigationItem>
                     <nil key="simulatedBottomBarMetrics"/>
                     <simulatedScreenMetrics key="simulatedDestinationMetrics" type="retina47"/>
+                    <connections>
+                        <outlet property="distanceLabel" destination="JMA-vH-Kqc" id="08g-9T-fPq"/>
+                        <outlet property="messageLabel" destination="EZD-ev-NLj" id="2ur-9v-IAb"/>
+                        <outlet property="photoCardView" destination="17A-m2-dCr" id="Xxn-jB-jud"/>
+                        <outlet property="photoImageView" destination="EdV-JN-h2q" id="zeA-x8-GvA"/>
+                        <outlet property="profileImageView" destination="urS-nD-At1" id="7gc-nP-RwQ"/>
+                        <outlet property="statusContentView" destination="X29-Jd-v56" id="HMc-6e-kIw"/>
+                        <outlet property="statusDescriptionLabel" destination="3Vf-0q-Gud" id="ABp-gQ-f0d"/>
+                        <outlet property="statusImageView" destination="KF7-NH-zqt" id="5Ru-XG-rQF"/>
+                        <outlet property="statusLabel" destination="Qhr-Q2-QUj" id="EEt-uf-nmU"/>
+                        <outlet property="userIdLabel" destination="rUl-6J-8Ls" id="ml5-te-iv6"/>
+                    </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="ptx-D5-G8V" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>

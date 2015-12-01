@@ -53,6 +53,35 @@ enum PhotoState: String {
 // Resources
 extension PhotoState {
     
+    var sentStateResId: String {
+        // TODO: 로컬라이징
+        switch self {
+        case .Waiting:
+            return "state_wait"
+        case .Delivered:
+            return "state_delivered"
+        case .Liked:
+            return "state_like"
+        case .Disliked:
+            return "state_dislike"
+        }
+    }
+    
+    var sentStateDescriptionResId: String {
+        // TODO: 로컬라이징
+        switch self {
+        case .Waiting:
+            return "state_detail_wait"
+        case .Delivered:
+            return "state_detail_delivered"
+        case .Liked:
+            return "state_detail_like"
+        case .Disliked:
+            return "state_detail_dislike"
+        }
+    }
+    
+    // TODO: ResourceName -> ResId로 바꾸어주자. 키값이기에 Id가 맞는 듯
     var sentStateImgResourceName: String {
         switch self {
         case .Waiting:
@@ -63,6 +92,19 @@ extension PhotoState {
             return "ic_sent_photo_like"
         case .Disliked:
             return "ic_sent_photo_dislike"
+        }
+    }
+    
+    var sentDetailStateImgResId: String {
+        switch self {
+        case .Waiting:
+            return "ic_photo_detail_waiting"
+        case .Delivered:
+            return "ic_photo_detail_delivered"
+        case .Liked:
+            return "ic_photo_detail_like"
+        case .Disliked:
+            return "ic_photo_detail_dislike"
         }
     }
 }
