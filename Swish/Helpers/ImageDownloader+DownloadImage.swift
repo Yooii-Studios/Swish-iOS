@@ -10,40 +10,25 @@ import Foundation
 import Alamofire
 import AlamofireImage
 
+private struct _ImageDownloader {
+    static var dispatchToken: dispatch_once_t = 0
+    static var instance: ImageDownloader?
+}
+
+private var imageDownloaderInstance: ImageDownloader {
+    dispatch_once(&_ImageDownloader.dispatchToken) {
+        _ImageDownloader.instance = ImageDownloader()
+    }
+    return _ImageDownloader.instance!
+}
+
 extension ImageDownloader {
     
     class func downloadImage(URLString: String, completion: UIImage? -> Void) {
         let URLRequest = NSURLRequest(URL: NSURL(string: URLString)!)
         
-        ImageDownloaderHolder.instance.imageDownloader.downloadImage(URLRequest: URLRequest) { response in
+        imageDownloaderInstance.downloadImage(URLRequest: URLRequest) { response in
             completion(response.result.value)
         }
-    }
-}
-
-private final class ImageDownloaderHolder {
-    
-    // MARK: - Singleton
-    
-    private struct Instance {
-        static var dispatchToken: dispatch_once_t = 0
-        static var instance: ImageDownloaderHolder?
-    }
-    
-    static var instance: ImageDownloaderHolder {
-        get {
-            dispatch_once(&Instance.dispatchToken) {
-                Instance.instance = ImageDownloaderHolder()
-            }
-            return Instance.instance!
-        }
-    }
-    
-    final var imageDownloader: ImageDownloader!
-    
-    // MARK: - Initializers
-    
-    private init() {
-        imageDownloader = ImageDownloader()
     }
 }
