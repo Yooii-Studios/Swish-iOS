@@ -88,7 +88,7 @@ class SentPhotoDetailViewController: UIViewController {
     }
     
     private func initActionView() {
-        
+        // TODO: 추후 protocol extension으로 구현하고 연동할 것
     }
     
     /*
