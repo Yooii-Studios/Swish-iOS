@@ -66,7 +66,6 @@ extension PhotoState {
             return "state_dislike"
         }
     }
-    
     var sentStateDescriptionResId: String {
         // TODO: 로컬라이징
         switch self {
@@ -80,9 +79,7 @@ extension PhotoState {
             return "state_detail_dislike"
         }
     }
-    
-    // TODO: ResourceName -> ResId로 바꾸어주자. 키값이기에 Id가 맞는 듯
-    var sentStateImgResourceName: String {
+    var sentStateImgResId: String {
         switch self {
         case .Waiting:
             return "ic_sent_photo_waiting"
@@ -94,7 +91,6 @@ extension PhotoState {
             return "ic_sent_photo_dislike"
         }
     }
-    
     var sentDetailStateImgResId: String {
         switch self {
         case .Waiting:
