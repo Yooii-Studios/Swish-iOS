@@ -28,6 +28,7 @@
 		577465C81BF2CFDA0093D97A /* WingsObserver.swift in Sources */ = {isa = PBXBuildFile; fileRef = 577465C71BF2CFDA0093D97A /* WingsObserver.swift */; };
 		5776B92C1BD08EAB009005B5 /* FileHelper.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5776B92B1BD08EAB009005B5 /* FileHelper.swift */; };
 		5776B92E1BD08F08009005B5 /* PhotoSender.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5776B92D1BD08F08009005B5 /* PhotoSender.swift */; };
+		5777C3611C0EB08600DE43B4 /* ImageDownloader+DownloadImage.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5777C3601C0EB08600DE43B4 /* ImageDownloader+DownloadImage.swift */; };
 		579673761B9FFE2000382247 /* SwishDatabase.swift in Sources */ = {isa = PBXBuildFile; fileRef = 579673751B9FFE2000382247 /* SwishDatabase.swift */; };
 		579673821B9FFE6500382247 /* Photo.swift in Sources */ = {isa = PBXBuildFile; fileRef = 579673801B9FFE6500382247 /* Photo.swift */; };
 		579673831B9FFE6500382247 /* PhotoState.swift in Sources */ = {isa = PBXBuildFile; fileRef = 579673811B9FFE6500382247 /* PhotoState.swift */; };
@@ -135,6 +136,7 @@
 		577465C71BF2CFDA0093D97A /* WingsObserver.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = WingsObserver.swift; sourceTree = "<group>"; };
 		5776B92B1BD08EAB009005B5 /* FileHelper.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FileHelper.swift; sourceTree = "<group>"; };
 		5776B92D1BD08F08009005B5 /* PhotoSender.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PhotoSender.swift; sourceTree = "<group>"; };
+		5777C3601C0EB08600DE43B4 /* ImageDownloader+DownloadImage.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "ImageDownloader+DownloadImage.swift"; sourceTree = "<group>"; };
 		579673751B9FFE2000382247 /* SwishDatabase.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SwishDatabase.swift; sourceTree = "<group>"; };
 		579673801B9FFE6500382247 /* Photo.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Photo.swift; sourceTree = "<group>"; };
 		579673811B9FFE6500382247 /* PhotoState.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PhotoState.swift; sourceTree = "<group>"; };
@@ -443,6 +445,7 @@
 				5772A7DF1BD626EA00A7F880 /* NSCache+LowMemory.swift */,
 				F2305B971BE23EC20056E087 /* UIView+Constraints.swift */,
 				57EED24F1BF2F1A700E464F1 /* Int+Extension.swift */,
+				5777C3601C0EB08600DE43B4 /* ImageDownloader+DownloadImage.swift */,
 				57A29A681C044DBD0016E265 /* SystemSettingsHelper.swift */,
 			);
 			path = Helpers;
@@ -689,6 +692,7 @@
 				57A095461BEB316F00333E6D /* WingsHelper.swift in Sources */,
 				570B87081BA8056B0093CEED /* SwishServer.swift in Sources */,
 				573713291BD7165A006B272A /* Timestamp.swift in Sources */,
+				5777C3611C0EB08600DE43B4 /* ImageDownloader+DownloadImage.swift in Sources */,
 				5796738B1B9FFE6C00382247 /* UserActivityRecord.swift in Sources */,
 				AEF32DDB1BA2FDA400EA00A9 /* MediaLoader.swift in Sources */,
 				F2C7CBD31BE1C53800ED429A /* DressingViewController.swift in Sources */,
