@@ -16,9 +16,7 @@ extension ImageDownloader {
         let URLRequest = NSURLRequest(URL: NSURL(string: URLString)!)
         
         ImageDownloaderHolder.instance.imageDownloader.downloadImage(URLRequest: URLRequest) { response in
-            if let image = response.result.value {
-                completion(image)
-            }
+            completion(response.result.value)
         }
     }
 }
