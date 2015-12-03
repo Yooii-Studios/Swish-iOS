@@ -97,6 +97,9 @@
 		F273C3AA1BFCB4BB007D047B /* MyProfile.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = F273C3A81BFCB4BB007D047B /* MyProfile.storyboard */; };
 		F28EF57E1BE8E9F200204C37 /* ReceivedPhotoCollectionViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = F28EF57D1BE8E9F200204C37 /* ReceivedPhotoCollectionViewController.swift */; };
 		F2C7CBD31BE1C53800ED429A /* DressingViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = F2C7CBD21BE1C53800ED429A /* DressingViewController.swift */; };
+		F2D8829E1C0F13FE00DF8C6D /* PhotoActionView.swift in Sources */ = {isa = PBXBuildFile; fileRef = F2D8829D1C0F13FE00DF8C6D /* PhotoActionView.swift */; };
+		F2D882A11C0F1B7100DF8C6D /* PhotoActionView.xib in Resources */ = {isa = PBXBuildFile; fileRef = F2D882A01C0F1B7100DF8C6D /* PhotoActionView.xib */; };
+		F2D882A31C0F1BEA00DF8C6D /* CircleButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = F2D882A21C0F1BEA00DF8C6D /* CircleButton.swift */; };
 		F2ECA5C81BFAE6E300E3AD93 /* SentPhotoCollectionViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = F2ECA5C71BFAE6E300E3AD93 /* SentPhotoCollectionViewController.swift */; };
 		F2ECA5CC1BFAE7FC00E3AD93 /* SentPhotoViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = F2ECA5CB1BFAE7FC00E3AD93 /* SentPhotoViewCell.swift */; };
 		F2F545201BD5E84500AEE02A /* ShareResult.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = F2F5451E1BD5E84500AEE02A /* ShareResult.storyboard */; };
@@ -212,6 +215,9 @@
 		F28EF57C1BE8BDBD00204C37 /* Swift Code Conventions.playground */ = {isa = PBXFileReference; lastKnownFileType = file.playground; path = "Swift Code Conventions.playground"; sourceTree = "<group>"; };
 		F28EF57D1BE8E9F200204C37 /* ReceivedPhotoCollectionViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ReceivedPhotoCollectionViewController.swift; sourceTree = "<group>"; };
 		F2C7CBD21BE1C53800ED429A /* DressingViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DressingViewController.swift; sourceTree = "<group>"; };
+		F2D8829D1C0F13FE00DF8C6D /* PhotoActionView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PhotoActionView.swift; sourceTree = "<group>"; };
+		F2D882A01C0F1B7100DF8C6D /* PhotoActionView.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = PhotoActionView.xib; sourceTree = "<group>"; };
+		F2D882A21C0F1BEA00DF8C6D /* CircleButton.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CircleButton.swift; sourceTree = "<group>"; };
 		F2ECA5C71BFAE6E300E3AD93 /* SentPhotoCollectionViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SentPhotoCollectionViewController.swift; sourceTree = "<group>"; };
 		F2ECA5CB1BFAE7FC00E3AD93 /* SentPhotoViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SentPhotoViewCell.swift; sourceTree = "<group>"; };
 		F2EDD338D07BE381CAD26509 /* Pods.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = Pods.release.xcconfig; path = "Pods/Target Support Files/Pods/Pods.release.xcconfig"; sourceTree = "<group>"; };
@@ -350,6 +356,7 @@
 				F245DCE31B9E7CC60072308B /* Views */,
 				F245DCE11B9E7CBA0072308B /* Controllers */,
 				F2F5451D1BD5E76B00AEE02A /* Storyboards */,
+				F2D8829F1C0F1B5000DF8C6D /* Xibs */,
 				F245DCB01B9E7B2D0072308B /* AppDelegate.swift */,
 				F264C66E1BDFFFE6001BE65C /* Swish-Bridging-Header.h */,
 				F28EF57C1BE8BDBD00204C37 /* Swift Code Conventions.playground */,
@@ -428,6 +435,8 @@
 				574E812E1BE7452B0037FA12 /* GADBannerView+Preload.swift */,
 				F2185E501BEA3B5D0062E4B1 /* ReceivedPhotoViewCell.swift */,
 				F2ECA5CB1BFAE7FC00E3AD93 /* SentPhotoViewCell.swift */,
+				F2D882A21C0F1BEA00DF8C6D /* CircleButton.swift */,
+				F2D8829D1C0F13FE00DF8C6D /* PhotoActionView.swift */,
 			);
 			path = Views;
 			sourceTree = "<group>";
@@ -449,6 +458,14 @@
 				57A29A681C044DBD0016E265 /* SystemSettingsHelper.swift */,
 			);
 			path = Helpers;
+			sourceTree = "<group>";
+		};
+		F2D8829F1C0F1B5000DF8C6D /* Xibs */ = {
+			isa = PBXGroup;
+			children = (
+				F2D882A01C0F1B7100DF8C6D /* PhotoActionView.xib */,
+			);
+			path = Xibs;
 			sourceTree = "<group>";
 		};
 		F2F5451D1BD5E76B00AEE02A /* Storyboards */ = {
@@ -554,6 +571,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				F273C3A51BFCB4A2007D047B /* ReceivedPhoto.storyboard in Resources */,
+				F2D882A11C0F1B7100DF8C6D /* PhotoActionView.xib in Resources */,
 				F23A7B1B1BA1D4140063233F /* MyInfo.storyboard in Resources */,
 				F273C3AA1BFCB4BB007D047B /* MyProfile.storyboard in Resources */,
 				F257A8A11BFDD0FD00BD56C8 /* PhotoMap.storyboard in Resources */,
@@ -644,6 +662,7 @@
 				F2261CAA1C0729D000C12729 /* SentPhotoDetailViewController.swift in Sources */,
 				57CC3F511C03019B00A04568 /* PhotoMapType.swift in Sources */,
 				5721F3FA1BD9C3CB00F0E733 /* SentPhotoStateLoader.swift in Sources */,
+				F2D882A31C0F1BEA00DF8C6D /* CircleButton.swift in Sources */,
 				5772A7DE1BD5F71E00A7F880 /* LocationManager.swift in Sources */,
 				5772A7E01BD626EA00A7F880 /* NSCache+LowMemory.swift in Sources */,
 				F2F545221BD5ED5500AEE02A /* ShareResultViewController.swift in Sources */,
@@ -666,6 +685,7 @@
 				57CC3F4F1C02EDD400A04568 /* PhotoPointAnnotation.swift in Sources */,
 				57F6283A1BA11D050008B23B /* DefaultObjectBuilder.swift in Sources */,
 				57E09ADB1BCB9351006A05DC /* MeManager.swift in Sources */,
+				F2D8829E1C0F13FE00DF8C6D /* PhotoActionView.swift in Sources */,
 				57D5450D1BDA5D4900C9CF6A /* PhotoHelper.swift in Sources */,
 				57C729E11BDF501700DDFFDA /* PhotoTrendsLoader.swift in Sources */,
 				5765CEF81BA2EC9C00DE6A05 /* KeychainItemWrapper.swift in Sources */,
