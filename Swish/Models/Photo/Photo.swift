@@ -280,7 +280,7 @@ enum DistanceUnit: String {
 
 extension Photo {
     
-    var deliveredDistanceString: String? {
+    var deliveredDistanceString: String {
         if let deliveredDistance = deliveredDistance {
             return "\(deliveredDistance) \(DistanceUnit.currentUnit.rawValue)"
         } else {
