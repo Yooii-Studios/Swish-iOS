@@ -19,8 +19,7 @@ class ReceivedPhotoViewCell: UICollectionViewCell {
             self.imageView.image = image
             self.userNameLabel.text = photo.sender.name
             self.messageLabel.text = photo.message
-            // TODO: 거리 관련 유틸리티 추후 구현해서 적용할 것
-            self.distanceLabel.text = "6230 km"
+            self.distanceLabel.text = photo.deliveredDistanceString
         }
     }
     

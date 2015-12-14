@@ -263,3 +263,54 @@ extension Photo {
         return UIImage(contentsOfFile: path)
     }
 }
+
+// MARK: - Delivered distance extension
+
+enum DistanceUnit: String {
+    
+    case Kilometers = "km"
+    case Miles = "mi"
+    
+    static var currentUnit: DistanceUnit {
+        let countryCode = NSLocale.currentLocale().objectForKey(NSLocaleCountryCode) as? String
+        
+        return countryCode == nil || countryCode! != "US" ? Kilometers : Miles
+    }
+}
+
+extension Photo {
+    
+    var deliveredDistanceString: String {
+        if let deliveredDistance = deliveredDistance {
+            return "\(deliveredDistance) \(DistanceUnit.currentUnit.rawValue)"
+        } else {
+            // TODO: 로컬라이징 필요
+            return "Your photo is still en route."
+        }
+    }
+    
+    private var deliveredDistance: Int? {
+        guard let arrivedLocation = arrivedLocation else {
+            return nil
+        }
+        let distanceInMeter = departLocation.distanceFromLocation(arrivedLocation)
+        
+        var distance = DistanceUnit.currentUnit == .Kilometers ? distanceInMeter.inKilometers : distanceInMeter.inMiles
+        if distance < 1 {
+            distance = 1
+        }
+        
+        return Int(distance)
+    }
+}
+
+private extension CLLocationDistance {
+    
+    var inKilometers: CLLocationDistance {
+        return self / 1000
+    }
+    
+    var inMiles: CLLocationDistance {
+        return self * 0.000621371
+    }
+}

@@ -53,14 +53,7 @@ class SentPhotoDetailViewController: UIViewController {
     }
     
     private func initDistanceLabel() {
-        // TODO: 마찬가지
-//        distanceLabel.text = photo
-        if photo.photoState != .Waiting {
-            // TODO: 사진 전송 거리, 동현이 모델 구현 후 추가해줄 것
-        } else {
-            // TODO: 로컬라이징
-            distanceLabel.text = "Your photo is still en route."
-        }
+        distanceLabel.text = photo.deliveredDistanceString
     }
     
     private func initStatusViews() {
