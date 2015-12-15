@@ -413,6 +413,7 @@
 				57CC3F4E1C02EDD400A04568 /* PhotoPointAnnotation.swift */,
 				57FB36451BF1D72E0085EAAB /* EnvironmentVariables.swift */,
 				57F628391BA11D050008B23B /* DefaultObjectBuilder.swift */,
+				57EC68ED1C1E9B0100CB07E5 /* ChatObserver.swift */,
 				5737132A1BD72BDA006B272A /* List+Bridge.swift */,
 				57E3EFF31BFD77D1000D1564 /* UIImage+Orientation.swift */,
 				57C7AA8D1BFDB97D008E10F6 /* UIImage+Scale.swift */,
@@ -421,7 +422,6 @@
 				57C7AA8B1BFDB152008E10F6 /* CGSize+Operator.swift */,
 				57A29A661C044CE00016E265 /* CLLocationManager+Authorization.swift */,
 				57EFC1971C05A347006CF2EF /* MKMapView+Zoom.swift */,
-				57EC68ED1C1E9B0100CB07E5 /* ChatObserver.swift */,
 			);
 			path = Models;
 			sourceTree = "<group>";
