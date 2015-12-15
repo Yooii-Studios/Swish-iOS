@@ -313,6 +313,7 @@
                     <connections>
                         <outlet property="distanceLabel" destination="JMA-vH-Kqc" id="08g-9T-fPq"/>
                         <outlet property="messageLabel" destination="EZD-ev-NLj" id="2ur-9v-IAb"/>
+                        <outlet property="photoActionView" destination="7uK-zm-txt" id="CZW-wm-kpw"/>
                         <outlet property="photoCardView" destination="17A-m2-dCr" id="Xxn-jB-jud"/>
                         <outlet property="photoImageView" destination="EdV-JN-h2q" id="zeA-x8-GvA"/>
                         <outlet property="profileImageView" destination="urS-nD-At1" id="7gc-nP-RwQ"/>

@@ -16,6 +16,7 @@ class PhotoActionView: NibDesignable {
     @IBOutlet var chatButton: CircleButton!
     @IBOutlet var unreadChatCountLabel: UILabel!
     
+    // TODO: 추후 UI작업을 하면서 필요할 때 다시 사용할지 몰라 주석처리
     /*
     // Only override drawRect: if you perform custom drawing.
     // An empty implementation adversely affects performance during animation.
@@ -24,7 +25,9 @@ class PhotoActionView: NibDesignable {
     }
     */
 
+    /*
     override func prepareForInterfaceBuilder() {
         
     }
+    */
 }

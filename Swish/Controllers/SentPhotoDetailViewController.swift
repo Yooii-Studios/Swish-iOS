@@ -8,7 +8,7 @@
 
 import UIKit
 
-class SentPhotoDetailViewController: UIViewController {
+class SentPhotoDetailViewController: UIViewController, PhotoActionType {
     
     // Photo
     @IBOutlet weak var photoCardView: UIView!
@@ -17,6 +17,9 @@ class SentPhotoDetailViewController: UIViewController {
     @IBOutlet weak var userIdLabel: UILabel!
     @IBOutlet weak var messageLabel: UILabel!
     @IBOutlet weak var distanceLabel: UILabel!
+    
+    // Photo Action
+    @IBOutlet weak var photoActionView: PhotoActionView!
     
     // Status
     @IBOutlet weak var statusContentView: UIView!
@@ -33,8 +36,15 @@ class SentPhotoDetailViewController: UIViewController {
 
         initPhotoCardView()
         initStatusViews()
-        initActionView()
+        setUpPhotoActionView()
     }
+    
+    override func viewWillAppear(animated: Bool) {
+        super.viewWillAppear(animated)
+        refreshUnreadChatCount()
+    }
+    
+    // MARK: - Init
     
     private func initPhotoCardView() {
         photo.loadImage { image in
@@ -87,10 +97,6 @@ class SentPhotoDetailViewController: UIViewController {
         }
     }
     
-    private func initActionView() {
-        // TODO: 추후 protocol extension으로 구현하고 연동할 것
-    }
-    
     /*
     // MARK: - Navigation
 
@@ -103,5 +109,15 @@ class SentPhotoDetailViewController: UIViewController {
     
     @IBAction func cancelButtonDidTap(sender: AnyObject) {
         dismissViewControllerAnimated(true, completion: nil)
+    }
+    
+    func mapButtonDidTap(sender: AnyObject) {
+        print("mapButtonDidTap")
+        showMapViewController()
+    }
+    
+    func chatButtonDidTap(sender: AnyObject) {
+        print("chatButtonDidTap")
+        showChatDialog()
     }
 }
