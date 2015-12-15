@@ -36,6 +36,17 @@ class SentPhotoDetailViewController: UIViewController {
         initActionView()
     }
     
+    override func viewWillAppear(animated: Bool) {
+        ChatObserver.observeUnreadMessageCountStreamForPhoto(photo) { unreadMessageCount in
+            // TODO: 읽지 않은 채팅 메시지 갯수 UI 업데이트 및 로그 삭제 필요
+            print("unreadMessageCount: \(unreadMessageCount)")
+        }
+    }
+    
+    override func viewWillDisappear(animated: Bool) {
+        ChatObserver.unobserveUnreadMessageCountStream(photo.id)
+    }
+    
     private func initPhotoCardView() {
         photo.loadImage { image in
             self.photoImageView.image = image
