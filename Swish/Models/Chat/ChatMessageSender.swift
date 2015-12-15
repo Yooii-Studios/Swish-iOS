@@ -26,7 +26,7 @@ import UIKit
 
 protocol ChatMessageSender {
     
-    var photoId: Photo.ID! { get }
+    var photoId: Photo.ID { get }
 }
 
 extension ChatMessageSender where Self: UIViewController {
