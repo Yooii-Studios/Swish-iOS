@@ -8,18 +8,13 @@
 
 import UIKit
 
-class SentPhotoViewCell: UICollectionViewCell {
+class SentPhotoViewCell: PhotoViewCell {
     
-    @IBOutlet weak var imageView: UIImageView!
-    @IBOutlet weak var messageLabel: UILabel!
     @IBOutlet weak var statusImageView: UIImageView!
     
-    func initWithPhoto(photo: Photo) {
-        photo.loadImage(imageType: .Thumbnail) { image in
-            self.imageView.image = image
-            self.messageLabel.text = photo.message
-            self.initStatusImageViewWithPhotoState(photo.photoState)
-        }
+    override func initWithPhoto(photo: Photo) {
+        super.initWithPhoto(photo)
+        self.initStatusImageViewWithPhotoState(photo.photoState)
     }
     
     func initStatusImageViewWithPhotoState(photoState: PhotoState) {
@@ -27,9 +22,8 @@ class SentPhotoViewCell: UICollectionViewCell {
         statusImageView.image = UIImage(named: imgResourceName)
     }
     
-    func clear() {
-        imageView.image = nil
-        messageLabel.text = nil
+    override func clear() {
+        super.clear()
         statusImageView.image = nil
     }
 }
