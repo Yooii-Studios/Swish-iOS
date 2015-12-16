@@ -232,12 +232,22 @@
                                 </constraints>
                                 <edgeInsets key="layoutMargins" top="0.0" left="0.0" bottom="0.0" right="0.0"/>
                             </view>
+                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="BfN-92-ELY" customClass="PhotoVoteView" customModule="Swish" customModuleProvider="target">
+                                <rect key="frame" x="99" y="473" width="178" height="79"/>
+                                <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                <constraints>
+                                    <constraint firstAttribute="width" constant="178" id="E49-w9-veg"/>
+                                    <constraint firstAttribute="height" constant="79" id="T8Y-Ts-zzL"/>
+                                </constraints>
+                            </view>
                         </subviews>
                         <color key="backgroundColor" cocoaTouchSystemColor="groupTableViewBackgroundColor"/>
                         <constraints>
+                            <constraint firstItem="FKG-hX-fGK" firstAttribute="top" secondItem="BfN-92-ELY" secondAttribute="bottom" constant="51" id="1AH-I4-eZZ"/>
                             <constraint firstAttribute="leading" secondItem="k8h-5D-daJ" secondAttribute="leading" constant="-20" id="AgI-58-xoU"/>
                             <constraint firstItem="k8h-5D-daJ" firstAttribute="top" secondItem="SRY-TF-pjP" secondAttribute="bottom" constant="20" id="MXd-ge-qpt"/>
                             <constraint firstAttribute="trailing" secondItem="k8h-5D-daJ" secondAttribute="trailing" constant="20" id="SH0-71-dKW"/>
+                            <constraint firstItem="BfN-92-ELY" firstAttribute="centerX" secondItem="aYg-yA-yzh" secondAttribute="centerX" id="UR6-SI-xXd"/>
                             <constraint firstItem="k8h-5D-daJ" firstAttribute="width" secondItem="k8h-5D-daJ" secondAttribute="height" multiplier="67:81" id="s7B-t8-Zrl"/>
                         </constraints>
                     </view>
