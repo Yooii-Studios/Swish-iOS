@@ -12,6 +12,7 @@
 import UIKit
 
 protocol PhotoActionType: class {
+    
     var photo: Photo! { get }
     var photoActionView: PhotoActionView! { get }
     
