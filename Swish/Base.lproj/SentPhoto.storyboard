@@ -198,12 +198,22 @@
                                         <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
                                         <nil key="highlightedColor"/>
                                     </label>
+                                    <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="7uK-zm-txt" customClass="PhotoActionView" customModule="Swish" customModuleProvider="target">
+                                        <rect key="frame" x="259" y="20" width="56" height="104"/>
+                                        <animations/>
+                                        <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
+                                        <constraints>
+                                            <constraint firstAttribute="width" secondItem="7uK-zm-txt" secondAttribute="height" multiplier="7:13" id="F0W-hj-R4t"/>
+                                            <constraint firstAttribute="width" constant="56" id="m6v-6z-FUF"/>
+                                        </constraints>
+                                    </view>
                                 </subviews>
                                 <animations/>
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                 <constraints>
                                     <constraint firstAttribute="trailing" secondItem="EZD-ev-NLj" secondAttribute="trailing" constant="8" id="2eT-Wa-wuK"/>
                                     <constraint firstAttribute="trailing" secondItem="JMA-vH-Kqc" secondAttribute="trailing" constant="8" id="5gq-rS-Kah"/>
+                                    <constraint firstItem="7uK-zm-txt" firstAttribute="top" secondItem="17A-m2-dCr" secondAttribute="top" constant="20" id="D7S-Jv-Hr8"/>
                                     <constraint firstItem="urS-nD-At1" firstAttribute="top" secondItem="EdV-JN-h2q" secondAttribute="bottom" constant="8" id="E5K-qc-jct"/>
                                     <constraint firstItem="rUl-6J-8Ls" firstAttribute="leading" secondItem="urS-nD-At1" secondAttribute="trailing" constant="8" id="QHh-zP-p9L"/>
                                     <constraint firstItem="urS-nD-At1" firstAttribute="leading" secondItem="17A-m2-dCr" secondAttribute="leading" constant="8" id="RrM-7k-XRf"/>
@@ -216,6 +226,7 @@
                                     <constraint firstItem="EZD-ev-NLj" firstAttribute="leading" secondItem="urS-nD-At1" secondAttribute="trailing" constant="8" id="hbX-u2-ClL"/>
                                     <constraint firstItem="JMA-vH-Kqc" firstAttribute="top" secondItem="EdV-JN-h2q" secondAttribute="bottom" constant="13" id="rF9-rP-8hx"/>
                                     <constraint firstItem="JMA-vH-Kqc" firstAttribute="baseline" secondItem="rUl-6J-8Ls" secondAttribute="baseline" id="uWh-vF-wu3"/>
+                                    <constraint firstAttribute="trailing" secondItem="7uK-zm-txt" secondAttribute="trailing" constant="20" id="wGF-6U-HpI"/>
                                     <constraint firstItem="JMA-vH-Kqc" firstAttribute="leading" secondItem="rUl-6J-8Ls" secondAttribute="trailing" constant="-2" id="yee-QO-Pbk"/>
                                 </constraints>
                                 <edgeInsets key="layoutMargins" top="0.0" left="0.0" bottom="0.0" right="0.0"/>
@@ -302,6 +313,7 @@
                     <connections>
                         <outlet property="distanceLabel" destination="JMA-vH-Kqc" id="08g-9T-fPq"/>
                         <outlet property="messageLabel" destination="EZD-ev-NLj" id="2ur-9v-IAb"/>
+                        <outlet property="photoActionView" destination="7uK-zm-txt" id="CZW-wm-kpw"/>
                         <outlet property="photoCardView" destination="17A-m2-dCr" id="Xxn-jB-jud"/>
                         <outlet property="photoImageView" destination="EdV-JN-h2q" id="zeA-x8-GvA"/>
                         <outlet property="profileImageView" destination="urS-nD-At1" id="7gc-nP-RwQ"/>
