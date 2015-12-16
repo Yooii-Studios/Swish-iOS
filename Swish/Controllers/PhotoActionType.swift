@@ -6,7 +6,8 @@
 //  Copyright © 2015년 Yooii Studios Co., LTD. All rights reserved.
 //
 //  Usage:
-//  PhotoActionType를 comfort하는 UIViewController 클래스의 viewWillAppear()에 refreshUnreadChatCount()을 불러줄 것
+//  PhotoActionType를 comfort하는 UIViewController 클래스의 viewDidLoad()에 setUpPhotoActionView()를 불러줄 것.
+//  또한 viewWillAppear()에 refreshUnreadChatCount()을 불러줄 것
 //
 
 import UIKit
