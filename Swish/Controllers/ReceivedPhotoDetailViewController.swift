@@ -1,16 +1,17 @@
 //
-//  SentPhotoDetailViewController.swift
+//  ReceivedPhotoDetailViewController.swift
 //  Swish
 //
-//  Created by Wooseong Kim on 2015. 11. 26..
+//  Created by Wooseong Kim on 2015. 12. 16..
 //  Copyright © 2015년 Yooii Studios Co., LTD. All rights reserved.
 //
 
 import UIKit
+import AlamofireImage
 
-class SentPhotoDetailViewController: UIViewController, PhotoActionType {
-    
-    // TODO: 우성이 PhotoCardView로 커스텀 뷰를 만들어 처리를 해줄 것
+class ReceivedPhotoDetailViewController: UIViewController, PhotoActionType {
+
+    // TODO: 우성이 protocol extension으로 만들던지, 커스텀뷰로 만들던지 중복을 줄일 필요가 있어 보임
     // Photo
     @IBOutlet weak var photoCardView: UIView!
     @IBOutlet weak var photoImageView: UIImageView!
@@ -22,21 +23,12 @@ class SentPhotoDetailViewController: UIViewController, PhotoActionType {
     // Photo Action
     @IBOutlet weak var photoActionView: PhotoActionView!
     
-    // Status
-    @IBOutlet weak var statusContentView: UIView!
-    @IBOutlet weak var statusImageView: UIImageView!
-    @IBOutlet weak var statusLabel: UILabel!
-    @IBOutlet weak var statusDescriptionLabel: UILabel!
-
     final var photo: Photo!
-    
-    // MARK: - View Cycle
     
     override func viewDidLoad() {
         super.viewDidLoad()
 
         initPhotoCardView()
-        initStatusViews()
         setUpPhotoActionView()
     }
     
@@ -48,47 +40,29 @@ class SentPhotoDetailViewController: UIViewController, PhotoActionType {
     // MARK: - Init
     
     private func initPhotoCardView() {
-        photo.loadImage { image in
-            self.photoImageView.image = image
-        }
-        // TODO: 동현에게 유저 프로필 이미지 어떻게 불러오는지 물어보고 처리할 것
-        //        profileImageView.image = photo.sender.profileUrl
-        
+        initPhotoImage()
         initUserViews()
         initDistanceLabel()
     }
     
+    private func initPhotoImage() {
+        photo.loadImage { image in
+            self.photoImageView.image = image
+        }
+    }
+    
     private func initUserViews() {
+        ImageDownloader.downloadImage(photo.sender.profileUrl) { image in
+            if let image = image {
+                self.profileImageView.image = image
+            }
+        }
         userIdLabel.text = photo.sender.name
         messageLabel.text = photo.message
     }
     
     private func initDistanceLabel() {
         distanceLabel.text = photo.deliveredDistanceString
-    }
-    
-    private func initStatusViews() {
-        // TODO: 추후 PhotoStateView로 래핑해줄 것
-        statusLabel.text = photo.photoState.sentStateResId
-        statusDescriptionLabel.text = photo.photoState.sentStateDescriptionResId
-        statusImageView.image = UIImage(named: photo.photoState.sentDetailStateImgResId)
-        
-        // TODO: Like한 유저 정보를 받을 수 있게 동현이 모델 구현 후 추가해줄 것, 좋아요를 한 유저의 Id를 항상 가지고 있게 구현할 예정
-        if photo.photoState == .Liked {
-            /*
-            let callback = OtherUserFetchCallback(
-                prepareCallback: { otherUser in
-                    
-                }, successCallback: { otherUser in
-                    
-                }, failureCallback: { userId in
-            })
-            
-            // receiverId 부분을 추후 수정해야 함
-            let fetchRequest = OtherUserFetchRequest(userId: , callback: callback)
-            OtherUserLoader.instance.loadOtherUserWithRequest(fetchRequest)
-            */
-        }
     }
     
     /*
@@ -100,10 +74,12 @@ class SentPhotoDetailViewController: UIViewController, PhotoActionType {
         // Pass the selected object to the new view controller.
     }
     */
-    
+
     @IBAction func cancelButtonDidTap(sender: AnyObject) {
         dismissViewControllerAnimated(true, completion: nil)
     }
+    
+    // MARK: - PhotoActionType 
     
     func mapButtonDidTap(sender: AnyObject) {
         print("mapButtonDidTap")
