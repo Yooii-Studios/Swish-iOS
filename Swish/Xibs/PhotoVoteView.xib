@@ -35,6 +35,14 @@
                         <constraint firstItem="QZ2-ml-hvw" firstAttribute="centerX" secondItem="AsY-pk-pXe" secondAttribute="centerX" id="u1h-hb-Gyr"/>
                         <constraint firstAttribute="width" secondItem="AsY-pk-pXe" secondAttribute="height" multiplier="1:1" id="zLa-qU-hAU"/>
                     </constraints>
+                    <userDefinedRuntimeAttributes>
+                        <userDefinedRuntimeAttribute type="color" keyPath="foregroundCircleColor">
+                            <color key="value" red="1" green="1" blue="1" alpha="1" colorSpace="calibratedRGB"/>
+                        </userDefinedRuntimeAttribute>
+                        <userDefinedRuntimeAttribute type="color" keyPath="backgroundCircleColor">
+                            <color key="value" red="0.18823529411764706" green="0.38823529411764707" blue="0.67450980392156867" alpha="1" colorSpace="calibratedRGB"/>
+                        </userDefinedRuntimeAttribute>
+                    </userDefinedRuntimeAttributes>
                 </view>
                 <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="N1G-rq-nAE" customClass="CircleButton" customModule="Swish" customModuleProvider="target">
                     <rect key="frame" x="99" y="0.0" width="79" height="79"/>
@@ -54,9 +62,17 @@
                         <constraint firstItem="Eze-6R-OuD" firstAttribute="centerY" secondItem="N1G-rq-nAE" secondAttribute="centerY" id="N0a-bl-AMx"/>
                         <constraint firstItem="Eze-6R-OuD" firstAttribute="centerX" secondItem="N1G-rq-nAE" secondAttribute="centerX" id="pzA-wZ-baM"/>
                     </constraints>
+                    <userDefinedRuntimeAttributes>
+                        <userDefinedRuntimeAttribute type="color" keyPath="foregroundCircleColor">
+                            <color key="value" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                        </userDefinedRuntimeAttribute>
+                        <userDefinedRuntimeAttribute type="color" keyPath="backgroundCircleColor">
+                            <color key="value" red="0.95294117647058818" green="0.4823529411764706" blue="0.44313725490196076" alpha="1" colorSpace="calibratedRGB"/>
+                        </userDefinedRuntimeAttribute>
+                    </userDefinedRuntimeAttributes>
                 </view>
             </subviews>
-            <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
+            <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
             <constraints>
                 <constraint firstItem="N1G-rq-nAE" firstAttribute="leading" secondItem="AsY-pk-pXe" secondAttribute="trailing" constant="20" id="2oi-SD-tO0"/>
                 <constraint firstItem="AsY-pk-pXe" firstAttribute="leading" secondItem="iN0-l3-epB" secondAttribute="leading" id="3jb-R7-NjZ"/>

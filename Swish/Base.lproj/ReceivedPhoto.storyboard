@@ -234,7 +234,7 @@
                             </view>
                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="BfN-92-ELY" customClass="PhotoVoteView" customModule="Swish" customModuleProvider="target">
                                 <rect key="frame" x="99" y="473" width="178" height="79"/>
-                                <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                <color key="backgroundColor" red="0.97413862179487176" green="0.87190408612110826" blue="0.35816969195128567" alpha="1" colorSpace="calibratedRGB"/>
                                 <constraints>
                                     <constraint firstAttribute="width" constant="178" id="E49-w9-veg"/>
                                     <constraint firstAttribute="height" constant="79" id="T8Y-Ts-zzL"/>
@@ -266,6 +266,7 @@
                         <outlet property="photoActionView" destination="NWl-Qq-K4A" id="phs-LB-7DS"/>
                         <outlet property="photoCardView" destination="k8h-5D-daJ" id="QMR-WU-6jk"/>
                         <outlet property="photoImageView" destination="mnJ-sL-vZI" id="mGb-WY-QM3"/>
+                        <outlet property="photoVoteView" destination="BfN-92-ELY" id="Y3Z-F5-2cU"/>
                         <outlet property="profileImageView" destination="xmk-lo-4fw" id="IOW-md-39n"/>
                         <outlet property="userIdLabel" destination="Egk-Np-OOB" id="3KD-R2-A5r"/>
                     </connections>

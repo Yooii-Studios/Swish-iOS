@@ -9,7 +9,7 @@
 import UIKit
 import AlamofireImage
 
-class ReceivedPhotoDetailViewController: UIViewController, PhotoActionType {
+class ReceivedPhotoDetailViewController: UIViewController, PhotoActionType, PhotoVoteType {
 
     // TODO: 우성이 protocol extension으로 만들던지, 커스텀뷰로 만들던지 중복을 줄일 필요가 있어 보임
     // Photo
@@ -20,8 +20,8 @@ class ReceivedPhotoDetailViewController: UIViewController, PhotoActionType {
     @IBOutlet weak var messageLabel: UILabel!
     @IBOutlet weak var distanceLabel: UILabel!
     
-    // Photo Action
     @IBOutlet weak var photoActionView: PhotoActionView!
+    @IBOutlet weak var photoVoteView: PhotoVoteView!
     
     final var photo: Photo!
     
@@ -30,11 +30,17 @@ class ReceivedPhotoDetailViewController: UIViewController, PhotoActionType {
 
         initPhotoCardView()
         setUpPhotoActionView()
+        setUpPhotoVoteView()
     }
     
     override func viewWillAppear(animated: Bool) {
         super.viewWillAppear(animated)
         refreshUnreadChatCount()
+    }
+    
+    override func viewWillDisappear(animated: Bool) {
+        super.viewWillDisappear(animated)
+        updatePhotoState()
     }
     
     // MARK: - Init
