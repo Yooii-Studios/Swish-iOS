@@ -14,6 +14,8 @@ struct ChatObserver {
     // KVO Streams
     private static var chatMessageStateStreams = Dictionary<ChatMessage, (Stream<AnyObject?>, Int)>()
     
+    // MARK: - ChatMessage State
+    
     static func observeChatMessageStateForChatMessage(chatMessage: ChatMessage, handler: ChatMessageSendState -> Void) {
         if chatMessageStateStreams[chatMessage] == nil {
             chatMessageStateStreams[chatMessage] = (KVO.startingStream(chatMessage, "stateRaw"), 1)

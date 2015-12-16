@@ -13,7 +13,10 @@ struct PhotoObserver {
     
     // KVO Streams
     private static var unreadMessageCountStreams = Dictionary<Photo.ID, (Stream<AnyObject?>, Int)>()
+    private static var chatMessagesStreams = Dictionary<Photo.ID, (Stream<(AnyObject?, NSKeyValueChange, NSIndexSet?)>, Int)>()
     private static var recentEventTimeStreams = Dictionary<Photo.ID, (Stream<AnyObject?>, Int)>()
+    
+    // MARK: - Unread Message Count
     
     static func observeUnreadMessageCountForPhoto(photo: Photo, handler: Int -> Void) {
         if unreadMessageCountStreams[photo.id] == nil {
@@ -36,6 +39,35 @@ struct PhotoObserver {
         }
         print("left unread message count observers: \(unreadMessageCountStreams.count)")
     }
+    
+    // MARK: - ChatMessages
+    
+    static func observeChatMessagesForPhoto(photo: Photo, handler: (index: Int) -> Void) {
+        if chatMessagesStreams[photo.id] == nil {
+            chatMessagesStreams[photo.id] = (KVO.detailedStream(photo, "chatMessages"), 1)
+        } else {
+            chatMessagesStreams[photo.id]!.1++
+        }
+        print("left chat message observers: \(chatMessagesStreams.count)")
+        chatMessagesStreams[photo.id]!.0 ~> { changedItem, operation, indexSet in
+            guard let indexSet = indexSet where operation == .Insertion else {
+                return
+            }
+            handler(index: indexSet.lastIndex)
+        }
+    }
+    
+    static func unobserveChatMessagesWithPhotoId(photoId: Photo.ID) {
+        chatMessagesStreams[photoId]?.0.cancel()
+        chatMessagesStreams[photoId]?.1--
+        
+        if chatMessagesStreams[photoId]?.1 <= 0 {
+            chatMessagesStreams[photoId] = nil
+        }
+        print("left chat message observers: \(chatMessagesStreams.count)")
+    }
+    
+    // MARK: - Recent Event Time
     
     static func observeRecentEventTimeForPhotos(photos: [Photo], handler: (Photo.ID, Photo.EventTime) -> Void) {
         for photo in photos {
