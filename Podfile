@@ -6,7 +6,7 @@ inhibit_all_warnings!
 pod 'DateTools'
 pod 'Alamofire', '~> 3.0.1'
 pod 'AlamofireImage', '~> 2.0'
-pod 'SnapKit', :git => 'https://github.com/SnapKit/SnapKit.git', :branch => 'swift-2.0'
+pod 'SnapKit', '~> 0.15.0'
 pod 'Realm'
 pod 'RealmSwift'
 pod 'SwiftyJSON', :git => 'https://github.com/SwiftyJSON/SwiftyJSON.git'

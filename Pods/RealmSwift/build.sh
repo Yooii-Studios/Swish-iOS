@@ -14,12 +14,12 @@ set -o pipefail
 set -e
 
 # You can override the version of the core library
-: ${REALM_CORE_VERSION:=0.94.0} # set to "current" to always use the current build
+: ${REALM_CORE_VERSION:=0.95.4} # set to "current" to always use the current build
 
 # You can override the xcmode used
 : ${XCMODE:=xcodebuild} # must be one of: xcodebuild (default), xcpretty, xctool
 
-PATH=/usr/local/bin:/usr/bin:/bin:/usr/libexec:$PATH
+PATH=/usr/libexec:$PATH
 
 if ! [ -z "${JENKINS_HOME}" ]; then
     XCPRETTY_PARAMS="--no-utf --report junit --output build/reports/junit.xml"
@@ -88,6 +88,8 @@ xcode() {
 }
 
 xc() {
+    # Logs xcodebuild output in realtime
+    : ${NSUnbufferedIO:=YES}
     if [[ "$XCMODE" == "xcodebuild" ]]; then
         xcode "$@"
     elif [[ "$XCMODE" == "xcpretty" ]]; then
@@ -99,6 +101,10 @@ xc() {
     elif [[ "$XCMODE" == "xctool" ]]; then
         xctool "$@"
     fi
+}
+
+copy_bcsymbolmap() {
+    find "$1" -name '*.bcsymbolmap' -type f -exec cp {} "$2" \;
 }
 
 xcrealm() {
@@ -135,6 +141,9 @@ build_ios_combined() {
     if [ -d $iphonesimulator_path/Modules/$module_name.swiftmodule ]; then
       cp $iphonesimulator_path/Modules/$module_name.swiftmodule/* $iphoneos_path/Modules/$module_name.swiftmodule/
     fi
+    
+    # Copy *.bcsymbolmap to .framework for submitting app with bitcode
+    copy_bcsymbolmap "$build_products_path/$config-iphoneos$scope_suffix" "$iphoneos_path"
 
     # Retrieve build products
     clean_retrieve $iphoneos_path $out_path $product_name
@@ -166,6 +175,9 @@ build_watchos_combined() {
     if [ -d $watchsimulator_path/Modules/$module_name.swiftmodule ]; then
       cp $watchsimulator_path/Modules/$module_name.swiftmodule/* $watchos_path/Modules/$module_name.swiftmodule/
     fi
+    
+    # Copy *.bcsymbolmap
+    copy_bcsymbolmap "$build_products_path/$config-watchos$scope_suffix" "$watchos_path"
 
     # Retrieve build products
     clean_retrieve $watchos_path $out_path $product_name
@@ -223,6 +235,44 @@ test_ios_devices() {
         $cmd "-scheme '$2' -configuration $configuration -destination 'id=$device' test" || failed=1
     done
     return $failed
+}
+
+######################################
+# Docs
+######################################
+
+build_docs() {
+    local language="$1"
+    local version=$(sh build.sh get-version)
+
+    local xcodebuild_arguments="--objc,Realm/Realm.h,-x,objective-c,-isysroot,$(xcrun --show-sdk-path),-I,$(pwd)"
+    local module="Realm"
+    local objc="--objc"
+
+    if [[ "$language" == "swift" ]]; then
+        : ${REALM_SWIFT_VERSION:=2.1}
+        ./build.sh set-swift-version
+        xcodebuild_arguments="-project,RealmSwift.xcodeproj,-scheme,RealmSwift"
+        module="RealmSwift"
+        objc=""
+    fi
+
+    touch Realm/RLMPlatform.h # jazzy will fail if it can't find all public header files
+    jazzy \
+      ${objc} \
+      --clean \
+      --author Realm \
+      --author_url https://realm.io \
+      --github_url https://github.com/realm/realm-cocoa \
+      --github-file-prefix https://github.com/realm/realm-cocoa/tree/v${version} \
+      --module-version ${version} \
+      --xcodebuild-arguments ${xcodebuild_arguments} \
+      --module ${module} \
+      --root-url https://realm.io/docs/${language}/${version}/api/ \
+      --output $(pwd)/docs/${language}_output \
+      --template-directory $(pwd)/docs/templates
+
+    rm Realm/RLMPlatform.h
 }
 
 ######################################
@@ -524,8 +574,8 @@ case "$COMMAND" in
     "verify-cocoapods")
         cd examples/installation
         # FIXME: tests are duplicated to work around https://github.com/realm/realm-cocoa/issues/2701
-        ./build.sh test-ios-objc-cocoapods || ./build.sh test-ios-objc-cocoapods || exit 1
-        ./build.sh test-ios-swift-cocoapods || ./build.sh test-ios-swift-cocoapods || exit 1
+        sh build.sh test-ios-objc-cocoapods || sh build.sh test-ios-objc-cocoapods || exit 1
+        sh build.sh test-ios-swift-cocoapods || sh build.sh test-ios-swift-cocoapods || exit 1
         ;;
 
     "verify-osx")
@@ -573,12 +623,15 @@ case "$COMMAND" in
         ;;
 
     "verify-docs")
-        sh scripts/build-docs.sh
-        if [ -s docs/swift_output/undocumented.txt ]; then
-          echo "Undocumented RealmSwift declarations:"
-          echo "$(cat docs/swift_output/undocumented.txt)"
-          exit 1
-        fi
+        sh build.sh docs
+        for lang in swift objc; do
+            undocumented="docs/${lang}_output/undocumented.txt"
+            if [ -s "$undocumented" ]; then
+              echo "Undocumented Realm $lang declarations:"
+              cat "$undocumented"
+              exit 1
+            fi
+        done
         exit 0
         ;;
 
@@ -589,11 +642,16 @@ case "$COMMAND" in
         exit 0
         ;;
 
+    "verify-swiftlint")
+        exit 0
+        ;;
+
     ######################################
     # Docs
     ######################################
     "docs")
-        sh scripts/build-docs.sh
+        build_docs objc
+        build_docs swift
         exit 0
         ;;
 
@@ -709,6 +767,38 @@ case "$COMMAND" in
           cp Realm/*.{h,hpp} include/Realm
           cp Realm/ObjectStore/*.hpp include/Realm
           touch include/Realm/RLMPlatform.h
+        fi
+        ;;
+
+    ######################################
+    # Continuous Integration
+    ######################################
+
+    "ci-pr")
+        mkdir -p build/reports
+
+        if [ "$target" = "docs" ]; then
+            sh build.sh set-swift-version
+            sh build.sh verify-docs
+        elif [ "$target" = "swiftlint" ]; then
+            sh build.sh verify-swiftlint
+        else
+            export sha=$ghprbSourceBranch
+            export REALM_SWIFT_VERSION=$swift_version
+            export CONFIGURATION=$configuration
+            export REALM_EXTRA_BUILD_ARGUMENTS='GCC_GENERATE_DEBUGGING_SYMBOLS=NO REALM_PREFIX_HEADER=Realm/RLMPrefix.h'
+            sh build.sh prelaunch-simulator
+            # Verify that no Realm files still exist
+            ! find ~/Library/Developer/CoreSimulator/Devices/ -name '*.realm' | grep -q .
+
+            sh build.sh verify-$target | tee build/build.log | xcpretty -r junit -o build/reports/junit.xml || \
+                (echo "\n\n***\nbuild/build.log\n***\n\n" && cat build/build.log && exit 1)
+        fi
+
+        if [ "$target" = "osx" ] && [ "$configuration" = "Debug" ]; then
+          gcovr -r . -f ".*Realm.*" -e ".*Tests.*" -e ".*core.*" --xml > build/reports/coverage-report.xml
+          WS=$(pwd | sed "s/\//\\\\\//g")
+          sed -i ".bak" "s/<source>\./<source>${WS}/" build/reports/coverage-report.xml
         fi
         ;;
 
