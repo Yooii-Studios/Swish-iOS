@@ -39,6 +39,7 @@
 		5796738E1B9FFE7200382247 /* ChatMessage.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5796738C1B9FFE7200382247 /* ChatMessage.swift */; };
 		5796738F1B9FFE7200382247 /* ChatMessageSendState.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5796738D1B9FFE7200382247 /* ChatMessageSendState.swift */; };
 		579D9D1A1C1FF3D500145CC8 /* PhotoViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 579D9D191C1FF3D500145CC8 /* PhotoViewCell.swift */; };
+		579D9D1E1C2135C700145CC8 /* PhotoObserver.swift in Sources */ = {isa = PBXBuildFile; fileRef = 579D9D1D1C2135C700145CC8 /* PhotoObserver.swift */; };
 		57A095411BEB293400333E6D /* Wings.swift in Sources */ = {isa = PBXBuildFile; fileRef = 57A095401BEB293400333E6D /* Wings.swift */; };
 		57A095431BEB2E9800333E6D /* BaseWingsTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 57A095421BEB2E9800333E6D /* BaseWingsTests.swift */; };
 		57A095461BEB316F00333E6D /* WingsHelper.swift in Sources */ = {isa = PBXBuildFile; fileRef = 57A095451BEB316F00333E6D /* WingsHelper.swift */; };
@@ -149,6 +150,7 @@
 		5796738C1B9FFE7200382247 /* ChatMessage.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ChatMessage.swift; sourceTree = "<group>"; };
 		5796738D1B9FFE7200382247 /* ChatMessageSendState.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ChatMessageSendState.swift; sourceTree = "<group>"; };
 		579D9D191C1FF3D500145CC8 /* PhotoViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PhotoViewCell.swift; sourceTree = "<group>"; };
+		579D9D1D1C2135C700145CC8 /* PhotoObserver.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PhotoObserver.swift; sourceTree = "<group>"; };
 		57A095401BEB293400333E6D /* Wings.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Wings.swift; sourceTree = "<group>"; };
 		57A095421BEB2E9800333E6D /* BaseWingsTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = BaseWingsTests.swift; sourceTree = "<group>"; };
 		57A095451BEB316F00333E6D /* WingsHelper.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = WingsHelper.swift; sourceTree = "<group>"; };
@@ -414,6 +416,7 @@
 				57FB36451BF1D72E0085EAAB /* EnvironmentVariables.swift */,
 				57F628391BA11D050008B23B /* DefaultObjectBuilder.swift */,
 				57EC68ED1C1E9B0100CB07E5 /* ChatObserver.swift */,
+				579D9D1D1C2135C700145CC8 /* PhotoObserver.swift */,
 				5737132A1BD72BDA006B272A /* List+Bridge.swift */,
 				57E3EFF31BFD77D1000D1564 /* UIImage+Orientation.swift */,
 				57C7AA8D1BFDB97D008E10F6 /* UIImage+Scale.swift */,
@@ -707,6 +710,7 @@
 				57DFE24C1BE0DA7A002BB5DB /* PhotoExchanger.swift in Sources */,
 				F2ECA5C81BFAE6E300E3AD93 /* SentPhotoCollectionViewController.swift in Sources */,
 				579673891B9FFE6C00382247 /* OtherUser.swift in Sources */,
+				579D9D1E1C2135C700145CC8 /* PhotoObserver.swift in Sources */,
 				57E3EFF81BFD8E1E000D1564 /* UIImage+Base64.swift in Sources */,
 				57A29A671C044CE00016E265 /* CLLocationManager+Authorization.swift in Sources */,
 				579D9D1A1C1FF3D500145CC8 /* PhotoViewCell.swift in Sources */,
