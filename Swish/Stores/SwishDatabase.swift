@@ -19,7 +19,7 @@ final class SwishDatabase {
     class func migrate() {
         let config = Realm.Configuration(
             // TODO: 출시 전에 버전 0으로 변경하자
-            schemaVersion: 33,
+            schemaVersion: 34,
             
             migrationBlock: { migration, oldSchemaVersion in
                 if (oldSchemaVersion < 1) {
@@ -57,6 +57,12 @@ final class SwishDatabase {
                 realm.delete(object)
             }
             break
+        }
+    }
+    
+    class func delete<T: Object>(objects: List<T>) {
+        write {
+            realm.delete(objects)
         }
     }
     
@@ -159,6 +165,13 @@ final class SwishDatabase {
         write {
             photo.id = serverId
             me().photos.append(photo)
+        }
+    }
+    
+    class func deletePhoto(photoId: Photo.ID) {
+        if let photo = photoWithId(photoId) {
+            deleteChatMessages(photo.chatMessages)
+            deleteForPrimaryKey(Photo.self, key: NSNumber(longLong: photoId))
         }
     }
     
@@ -268,12 +281,14 @@ final class SwishDatabase {
     class func saveChatMessage(photo: Photo, chatMessage: ChatMessage) {
         write {
             photo.chatMessages.append(chatMessage)
+            photo.recentEventTime = CFAbsoluteTimeGetCurrent()
         }
     }
     
     class func saveChatMessages(photo: Photo, chatMessages: Array<ChatMessage>) {
         write {
             photo.chatMessages.appendContentsOf(chatMessages)
+            photo.recentEventTime = CFAbsoluteTimeGetCurrent()
         }
     }
     
@@ -298,6 +313,10 @@ final class SwishDatabase {
     
     class func deleteChatMessage(victim: ChatMessage) {
         delete { return $0 == victim }
+    }
+    
+    class func deleteChatMessages(victims: List<ChatMessage>) {
+        delete(victims)
     }
     
     class func loadUnreadChatMessagesAndMarkAsRead(photoId: Photo.ID) -> Array<ChatMessage> {

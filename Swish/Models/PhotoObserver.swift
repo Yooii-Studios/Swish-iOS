@@ -13,6 +13,7 @@ struct PhotoObserver {
     
     // KVO Streams
     private static var unreadMessageCountStreams = Dictionary<Photo.ID, (Stream<AnyObject?>, Int)>()
+    private static var recentEventTimeStreams = Dictionary<Photo.ID, (Stream<AnyObject?>, Int)>()
     
     static func observeUnreadMessageCountStreamForPhoto(photo: Photo, handler: Int -> Void) {
         if unreadMessageCountStreams[photo.id] == nil {
@@ -36,5 +37,37 @@ struct PhotoObserver {
         print("left unread message count observers: \(unreadMessageCountStreams.count)")
     }
     
-    // TODO: count변경시 사진 정렬 위치 바꾸기 위한 스트림
+    static func observeRecentEventTimeStreamForPhotos(photos: [Photo], handler: (Photo.ID, Photo.EventTime) -> Void) {
+        for photo in photos {
+            observeRecentEventTimeStreamForPhoto(photo, handler: handler)
+        }
+    }
+    
+    static func observeRecentEventTimeStreamForPhoto(photo: Photo, handler: (Photo.ID, Photo.EventTime) -> Void) {
+        if recentEventTimeStreams[photo.id] == nil {
+            recentEventTimeStreams[photo.id] = (KVO.stream(photo, "recentEventTime"), 1)
+        } else {
+            recentEventTimeStreams[photo.id]!.1++
+        }
+        print("left recent event time observers: \(recentEventTimeStreams.count)")
+        recentEventTimeStreams[photo.id]!.0 ~> { eventTime in
+            handler(photo.id, eventTime as! Photo.EventTime)
+        }
+    }
+    
+    static func unobserveRecentEventTimeStreams(photos: [Photo]) {
+        for photo in photos {
+            unobserveRecentEventTimeStream(photo.id)
+        }
+    }
+    
+    static func unobserveRecentEventTimeStream(photoId: Photo.ID) {
+        recentEventTimeStreams[photoId]?.0.cancel()
+        recentEventTimeStreams[photoId]?.1--
+        
+        if recentEventTimeStreams[photoId]?.1 <= 0 {
+            recentEventTimeStreams[photoId] = nil
+        }
+        print("left recent event time observers: \(recentEventTimeStreams.count)")
+    }
 }
