@@ -15,7 +15,7 @@ struct PhotoObserver {
     private static var unreadMessageCountStreams = Dictionary<Photo.ID, (Stream<AnyObject?>, Int)>()
     private static var recentEventTimeStreams = Dictionary<Photo.ID, (Stream<AnyObject?>, Int)>()
     
-    static func observeUnreadMessageCountStreamForPhoto(photo: Photo, handler: Int -> Void) {
+    static func observeUnreadMessageCountForPhoto(photo: Photo, handler: Int -> Void) {
         if unreadMessageCountStreams[photo.id] == nil {
             unreadMessageCountStreams[photo.id] = (KVO.startingStream(photo, "unreadMessageCount"), 1)
         } else {
@@ -27,7 +27,7 @@ struct PhotoObserver {
         }
     }
     
-    static func unobserveUnreadMessageCountStream(photoId: Photo.ID) {
+    static func unobserveUnreadMessageCountWithPhotoId(photoId: Photo.ID) {
         unreadMessageCountStreams[photoId]?.0.cancel()
         unreadMessageCountStreams[photoId]?.1--
         
@@ -37,13 +37,13 @@ struct PhotoObserver {
         print("left unread message count observers: \(unreadMessageCountStreams.count)")
     }
     
-    static func observeRecentEventTimeStreamForPhotos(photos: [Photo], handler: (Photo.ID, Photo.EventTime) -> Void) {
+    static func observeRecentEventTimeForPhotos(photos: [Photo], handler: (Photo.ID, Photo.EventTime) -> Void) {
         for photo in photos {
-            observeRecentEventTimeStreamForPhoto(photo, handler: handler)
+            observeRecentEventTimeForPhoto(photo, handler: handler)
         }
     }
     
-    static func observeRecentEventTimeStreamForPhoto(photo: Photo, handler: (Photo.ID, Photo.EventTime) -> Void) {
+    private static func observeRecentEventTimeForPhoto(photo: Photo, handler: (Photo.ID, Photo.EventTime) -> Void) {
         if recentEventTimeStreams[photo.id] == nil {
             recentEventTimeStreams[photo.id] = (KVO.stream(photo, "recentEventTime"), 1)
         } else {
@@ -55,13 +55,13 @@ struct PhotoObserver {
         }
     }
     
-    static func unobserveRecentEventTimeStreams(photos: [Photo]) {
+    static func unobserveRecentEventTimeForPhotos(photos: [Photo]) {
         for photo in photos {
-            unobserveRecentEventTimeStream(photo.id)
+            unobserveRecentEventTimeWithPhotoId(photo.id)
         }
     }
     
-    static func unobserveRecentEventTimeStream(photoId: Photo.ID) {
+    private static func unobserveRecentEventTimeWithPhotoId(photoId: Photo.ID) {
         recentEventTimeStreams[photoId]?.0.cancel()
         recentEventTimeStreams[photoId]?.1--
         

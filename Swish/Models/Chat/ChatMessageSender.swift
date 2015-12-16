@@ -11,7 +11,8 @@
 //          }
 //
 //    3. PhotoViewCell.swift 파일 참조해서
-//       ChatObserver.observeChatMessageStateStream(바인딩시), ChatObserver.unobserveChatMessageStateStream(clear, deinit)
+//       ChatObserver.observeChatMessageStateForChatMessage(바인딩시),
+//       ChatObserver.unobserveChatMessageStateWithChatMessage(clear, deinit)
 //       적용
 //
 //

@@ -14,7 +14,7 @@ struct ChatObserver {
     // KVO Streams
     private static var chatMessageStateStreams = Dictionary<ChatMessage, (Stream<AnyObject?>, Int)>()
     
-    static func observeChatMessageStateStream(chatMessage: ChatMessage, handler: ChatMessageSendState -> Void) {
+    static func observeChatMessageStateForChatMessage(chatMessage: ChatMessage, handler: ChatMessageSendState -> Void) {
         if chatMessageStateStreams[chatMessage] == nil {
             chatMessageStateStreams[chatMessage] = (KVO.startingStream(chatMessage, "stateRaw"), 1)
         } else {
@@ -26,7 +26,7 @@ struct ChatObserver {
         }
     }
     
-    static func unobserveChatMessageStateStream(chatMessage: ChatMessage) {
+    static func unobserveChatMessageStateWithChatMessage(chatMessage: ChatMessage) {
         chatMessageStateStreams[chatMessage]?.0.cancel()
         chatMessageStateStreams[chatMessage]?.1--
         
