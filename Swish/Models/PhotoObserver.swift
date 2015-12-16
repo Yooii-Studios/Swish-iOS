@@ -12,8 +12,10 @@ import ReactKit
 struct PhotoObserver {
     
     // KVO Streams
+    // TODO: refactor(typealias + reduce repetition)
     private static var unreadMessageCountStreams = Dictionary<Photo.ID, (Stream<AnyObject?>, Int)>()
     private static var chatMessagesStreams = Dictionary<Photo.ID, (Stream<(AnyObject?, NSKeyValueChange, NSIndexSet?)>, Int)>()
+    private static var photoStateStreams = Dictionary<Photo.ID, (Stream<AnyObject?>, Int)>()
     private static var recentEventTimeStreams = Dictionary<Photo.ID, (Stream<AnyObject?>, Int)>()
     
     // MARK: - Unread Message Count
@@ -65,6 +67,42 @@ struct PhotoObserver {
             chatMessagesStreams[photoId] = nil
         }
         print("left chat message observers: \(chatMessagesStreams.count)")
+    }
+    
+    // MARK: - Photo State
+    
+    static func observePhotoStateForPhotos(photos: [Photo], handler: (id: Photo.ID, state: PhotoState) -> Void) {
+        for photo in photos {
+            observePhotoStateForPhoto(photo, handler: handler)
+        }
+    }
+    
+    static func observePhotoStateForPhoto(photo: Photo, handler: (id: Photo.ID, state: PhotoState) -> Void) {
+        if photoStateStreams[photo.id] == nil {
+            photoStateStreams[photo.id] = (KVO.stream(photo, "photoStateRaw"), 1)
+        } else {
+            photoStateStreams[photo.id]!.1++
+        }
+        print("left photo state observers: \(photoStateStreams.count)")
+        photoStateStreams[photo.id]!.0 ~> { photoStateRaw in
+            handler(id: photo.id, state: PhotoState(rawValue: photoStateRaw as! String)!)
+        }
+    }
+    
+    static func unobservePhotoStateForPhotos(photos: [Photo]) {
+        for photo in photos {
+            unobservePhotoStateWithPhotoId(photo.id)
+        }
+    }
+    
+    static func unobservePhotoStateWithPhotoId(photoId: Photo.ID) {
+        photoStateStreams[photoId]?.0.cancel()
+        photoStateStreams[photoId]?.1--
+        
+        if photoStateStreams[photoId]?.1 <= 0 {
+            photoStateStreams[photoId] = nil
+        }
+        print("left photo state observers: \(photoStateStreams.count)")
     }
     
     // MARK: - Recent Event Time
