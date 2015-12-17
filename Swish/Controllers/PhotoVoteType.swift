@@ -24,8 +24,6 @@ extension PhotoVoteType where Self: UIViewController {
     }
     
     final func updatePhotoState() {
-        // TODO: 화면에서 나갈 때 photoState를 업데이트 해 줘야 한다
-        // 동현에게 관련 로직 물어볼 것
-        print("photoState:", photo.photoState)
+        PhotoStateUpdater.instance.execute()
     }
 }

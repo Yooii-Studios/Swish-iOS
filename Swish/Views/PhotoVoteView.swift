@@ -70,13 +70,22 @@ class PhotoVoteView: NibDesignable {
     
     // TODO: 동현에게 두 버튼 액션 메서드 부분 이렇게 변경해놓고 viewWillDisappear()에서 처리하면 되는 것이 맞는지 물어보기
     final func likeButtonDidTap(sender: AnyObject) {
-        SwishDatabase.updatePhotoState(photoId, photoState: .Liked)
         setLikeButtonSelected()
+        updatePhotoState(.Liked)
     }
     
     final func dislikeButtonDidTap(sender: AnyObject) {
-        SwishDatabase.updatePhotoState(photoId, photoState: .Disliked)
         setDislikeButtonSelected()
+        updatePhotoState(.Disliked)
+    }
+    
+    private func updatePhotoState(photoState: PhotoState) {
+        // TODO: 안드로이드 로직에 delegate 사용되는 곳이 없는데 동현에게 물어보기
+        let photoStateUpdateRequest = PhotoStateUpdateRequest(photoId: photoId, state: photoState, delegate: nil)
+        PhotoStateUpdater.instance.registerUpdateRequest(photoStateUpdateRequest)
+        
+        // TODO: 해당부분 동현과 얘기해서 처리하기(KVO 관련)
+//        SwishDatabase.updatePhotoState(photoId, photoState: .Disliked)
     }
     
     /*
