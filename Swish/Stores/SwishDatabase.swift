@@ -199,33 +199,23 @@ final class SwishDatabase {
     }
     
     class func receivedPhotos() -> Array<Photo> {
-        let myself = me()
+        let myId = me().id
         return objects {
-            let photoState = $0.photoState
-            return $0.sender.id != myself.id && photoState != .Disliked
-        }
+            return $0.sender.id != myId && $0.photoState != .Disliked
+        }.sort { return $0.recentEventTime > $1.recentEventTime }
     }
     
     class func sentPhotos() -> Array<Photo> {
-        let myself = me()
-        return objects {
-            return $0.sender.id == myself.id
-        }
+        return me().photos.sort { return $0.recentEventTime > $1.recentEventTime }
     }
     
+    // sentPhotos() 메서드와 중복이 있지만 퍼포먼스를 고려해 우선적으로 filter를 적용하기 위해 수정하지 않음
     class func deliveredSentPhotos() -> Array<Photo> {
-        let myself = me()
-        return objects {
-            return $0.sender.id == myself.id && $0.photoState != .Waiting
-        }
+        return me().photos.filter { $0.photoState != .Waiting }.sort { return $0.recentEventTime > $1.recentEventTime }
     }
     
     class func unreadMessageCount(id: Photo.ID) -> Int {
         return photoWithId(id)?.unreadMessageCount ?? 0
-//        if let photo = photoWithId(id) {
-//            return photo.unreadMessageCount
-//        }
-//        return 0
     }
     
     class func markChatRoomOpened(id: Photo.ID) {
@@ -246,6 +236,7 @@ final class SwishDatabase {
         writePhoto(id, block: {
             (photo: Photo) in
             photo.unreadMessageCount += 1
+            photo.recentEventTime = CFAbsoluteTimeGetCurrent()
         })
     }
     
