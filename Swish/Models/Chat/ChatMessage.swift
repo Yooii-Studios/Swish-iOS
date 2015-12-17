@@ -9,7 +9,7 @@
 import Foundation
 import RealmSwift
 
-final class ChatMessage: Object {
+final class ChatMessage: Object, Hashable {
     
     private static let defaultState = ChatMessageSendState.None
     private static let invalidReceivedTime = NSTimeInterval.NaN
@@ -74,6 +74,12 @@ final class ChatMessage: Object {
     
     override static func ignoredProperties() -> [String] {
         return ["state", "sender", "receiver", "receivedDate"]
+    }
+    
+    override var hashValue: Int {
+        get {
+            return "\(photo.id),\(message),\(receivedDate.timeIntervalSince1970)".hashValue
+        }
     }
 }
 

@@ -25,9 +25,11 @@ private var canUseThumbnail: Bool {
 class Photo: Object {
     
     typealias ID = Int64
+    typealias EventTime = CFTimeInterval
     
     static let InvalidId: Photo.ID = -1
     static let InvalidMessage = ""
+    static let InvalidTime = EventTime.NaN
     
     private static let InvalidName = ""
     private static let DefaultPhotoState = PhotoState.Waiting
@@ -40,6 +42,7 @@ class Photo: Object {
     dynamic var fileName = InvalidName
     dynamic var unreadMessageCount = 0
     dynamic var hasOpenedChatRoom = false
+    dynamic var recentEventTime = InvalidTime
     let chatMessages = List<ChatMessage>()
     var hasBlockedChat: Bool {
         get {
@@ -117,6 +120,7 @@ class Photo: Object {
     private convenience init(id: ID) {
         self.init()
         self.id = id
+        self.recentEventTime = CFAbsoluteTimeGetCurrent()
     }
     
     private convenience init(intId: Int) {
