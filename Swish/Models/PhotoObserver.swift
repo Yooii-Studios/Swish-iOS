@@ -89,7 +89,11 @@ struct PhotoObserver {
         }
     }
     
-    static func unobservePhotoStateForPhotos(photos: [Photo]) {
+    static func unobservePhotoStateForPhotos(photos: [Photo]?) {
+        guard let photos = photos else {
+            return
+        }
+        
         for photo in photos {
             unobservePhotoStateWithPhotoId(photo.id)
         }
@@ -125,7 +129,11 @@ struct PhotoObserver {
         }
     }
     
-    static func unobserveRecentEventTimeForPhotos(photos: [Photo]) {
+    static func unobserveRecentEventTimeForPhotos(photos: [Photo]?) {
+        guard let photos = photos else {
+            return
+        }
+        
         for photo in photos {
             unobserveRecentEventTimeWithPhotoId(photo.id)
         }
