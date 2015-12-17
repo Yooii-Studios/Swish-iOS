@@ -104,12 +104,12 @@ class SentPhotoDetailViewController: UIViewController, PhotoActionType {
         dismissViewControllerAnimated(true, completion: nil)
     }
     
-    func mapButtonDidTap(sender: AnyObject) {
+    final func mapButtonDidTap(sender: AnyObject) {
         print("mapButtonDidTap")
         showMapViewController()
     }
     
-    func chatButtonDidTap(sender: AnyObject) {
+    final func chatButtonDidTap(sender: AnyObject) {
         print("chatButtonDidTap")
         showChatDialog()
     }
