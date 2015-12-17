@@ -25,6 +25,7 @@
 		5772A7DC1BD5F23F00A7F880 /* PhotoReceiver.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5772A7DB1BD5F23F00A7F880 /* PhotoReceiver.swift */; };
 		5772A7DE1BD5F71E00A7F880 /* LocationManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5772A7DD1BD5F71E00A7F880 /* LocationManager.swift */; };
 		5772A7E01BD626EA00A7F880 /* NSCache+LowMemory.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5772A7DF1BD626EA00A7F880 /* NSCache+LowMemory.swift */; };
+		5773646D1C22F69D007EA7B5 /* RealmObjectObservable.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5773646C1C22F69D007EA7B5 /* RealmObjectObservable.swift */; };
 		577465C81BF2CFDA0093D97A /* WingsObserver.swift in Sources */ = {isa = PBXBuildFile; fileRef = 577465C71BF2CFDA0093D97A /* WingsObserver.swift */; };
 		5776B92C1BD08EAB009005B5 /* FileHelper.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5776B92B1BD08EAB009005B5 /* FileHelper.swift */; };
 		5776B92E1BD08F08009005B5 /* PhotoSender.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5776B92D1BD08F08009005B5 /* PhotoSender.swift */; };
@@ -136,6 +137,7 @@
 		5772A7DB1BD5F23F00A7F880 /* PhotoReceiver.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PhotoReceiver.swift; sourceTree = "<group>"; };
 		5772A7DD1BD5F71E00A7F880 /* LocationManager.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LocationManager.swift; sourceTree = "<group>"; };
 		5772A7DF1BD626EA00A7F880 /* NSCache+LowMemory.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "NSCache+LowMemory.swift"; sourceTree = "<group>"; };
+		5773646C1C22F69D007EA7B5 /* RealmObjectObservable.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RealmObjectObservable.swift; sourceTree = "<group>"; };
 		577465C71BF2CFDA0093D97A /* WingsObserver.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = WingsObserver.swift; sourceTree = "<group>"; };
 		5776B92B1BD08EAB009005B5 /* FileHelper.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FileHelper.swift; sourceTree = "<group>"; };
 		5776B92D1BD08F08009005B5 /* PhotoSender.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PhotoSender.swift; sourceTree = "<group>"; };
@@ -253,6 +255,16 @@
 				1329CF0406A3CA7D132A3E08 /* Pods.framework */,
 			);
 			name = Frameworks;
+			sourceTree = "<group>";
+		};
+		57295A4A1C2284F600E50AF7 /* Observer */ = {
+			isa = PBXGroup;
+			children = (
+				57EC68ED1C1E9B0100CB07E5 /* ChatObserver.swift */,
+				579D9D1D1C2135C700145CC8 /* PhotoObserver.swift */,
+				5773646C1C22F69D007EA7B5 /* RealmObjectObservable.swift */,
+			);
+			path = Observer;
 			sourceTree = "<group>";
 		};
 		579673721B9FFB6400382247 /* Stores */ = {
@@ -412,11 +424,10 @@
 				5796737E1B9FFE3A00382247 /* User */,
 				5796737D1B9FFE3800382247 /* Chat */,
 				57A095441BEB311D00333E6D /* Wings */,
+				57295A4A1C2284F600E50AF7 /* Observer */,
 				57CC3F4E1C02EDD400A04568 /* PhotoPointAnnotation.swift */,
 				57FB36451BF1D72E0085EAAB /* EnvironmentVariables.swift */,
 				57F628391BA11D050008B23B /* DefaultObjectBuilder.swift */,
-				57EC68ED1C1E9B0100CB07E5 /* ChatObserver.swift */,
-				579D9D1D1C2135C700145CC8 /* PhotoObserver.swift */,
 				5737132A1BD72BDA006B272A /* List+Bridge.swift */,
 				57E3EFF31BFD77D1000D1564 /* UIImage+Orientation.swift */,
 				57C7AA8D1BFDB97D008E10F6 /* UIImage+Scale.swift */,
@@ -694,6 +705,7 @@
 				579673881B9FFE6C00382247 /* Me.swift in Sources */,
 				57C173ED1BDE3EFC0084DF8D /* ChatMessageSender.swift in Sources */,
 				5737132B1BD72BDA006B272A /* List+Bridge.swift in Sources */,
+				5773646D1C22F69D007EA7B5 /* RealmObjectObservable.swift in Sources */,
 				F20CC6761BDB878F00075088 /* SegueHandlerType.swift in Sources */,
 				579673821B9FFE6500382247 /* Photo.swift in Sources */,
 				5796738F1B9FFE7200382247 /* ChatMessageSendState.swift in Sources */,
