@@ -31,6 +31,14 @@ class PhotoVoteView: NibDesignable {
         }
     }
     
+    private func setUpTapGestures() {
+        let likeButtonTapGesture = UITapGestureRecognizer(target: self, action: "likeButtonDidTap:")
+        likeButton.addGestureRecognizer(likeButtonTapGesture)
+        
+        let dislikeButtonTapGesture = UITapGestureRecognizer(target: self, action: "dislikeButtonDidTap:")
+        dislikeButton.addGestureRecognizer(dislikeButtonTapGesture)
+    }
+    
     private func setLikeButtonSelected() {
         // TODO: imageView 부분은 CircleButton xib 리팩터링 이후 구현 필요
         likeButton.setSelected(true)
@@ -58,14 +66,6 @@ class PhotoVoteView: NibDesignable {
     
     private func setDislikeButtonDisabled() {
         dislikeButton.setDisabled()
-    }
-    
-    private func setUpTapGestures() {
-        let likeButtonTapGesture = UITapGestureRecognizer(target: self, action: "likeButtonDidTap:")
-        likeButton.addGestureRecognizer(likeButtonTapGesture)
-        
-        let dislikeButtonTapGesture = UITapGestureRecognizer(target: self, action: "dislikeButtonDidTap:")
-        dislikeButton.addGestureRecognizer(dislikeButtonTapGesture)
     }
     
     // TODO: 동현에게 두 버튼 액션 메서드 부분 이렇게 변경해놓고 viewWillDisappear()에서 처리하면 되는 것이 맞는지 물어보기
