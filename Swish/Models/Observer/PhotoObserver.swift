@@ -1,5 +1,22 @@
 //
 //  PhotoObserver.swift
+//   Usage:
+//    1. Observe / Unobserve 등록
+//    ex.1) View Controller
+//      override func viewDidLoad() {
+//          super.viewDidLoad()
+//          ...
+//          PhotoObserver.observeUnreadMessageCountForPhoto(photo) { [unowned self] unreadCount in
+//              print("\(self.photoId)s unread message count: \(unreadCount)")
+//          }
+//      }
+//      
+//      deinit {
+//          PhotoObserver.unobserveUnreadMessageCountWithPhotoId(photoId)
+//      }
+//
+//    ex.2) UICollectionViewCell: PhotoViewCell.swift 참조
+//
 //  Swish
 //
 //  Created by 정동현 on 2015. 12. 16..
@@ -26,12 +43,10 @@ struct PhotoObserver: RealmObjectObservable {
         observeWithKey(photo.id, intoStreams: &unreadMessageCountStreams,
             createStreamClosure: { return KVO.startingStream(photo, "unreadMessageCount") },
             handler: { handler($0 as! Int) })
-        print("left unread message count observers: \(unreadMessageCountStreams.count)")
     }
     
     static func unobserveUnreadMessageCountWithPhotoId(photoId: Photo.ID) {
         unobserveWithKey(photoId, fromStream: &unreadMessageCountStreams)
-        print("left unread message count observers: \(unreadMessageCountStreams.count)")
     }
     
     // MARK: - ChatMessages
@@ -45,12 +60,10 @@ struct PhotoObserver: RealmObjectObservable {
                 }
                 handler(index: indexSet.lastIndex)
         })
-        print("left chat message observers: \(chatMessagesStreams.count)")
     }
     
     static func unobserveChatMessagesWithPhotoId(photoId: Photo.ID) {
         unobserveWithKey(photoId, fromStream: &chatMessagesStreams)
-        print("left chat message observers: \(chatMessagesStreams.count)")
     }
     
     // MARK: - Photo State
@@ -65,7 +78,6 @@ struct PhotoObserver: RealmObjectObservable {
         observeWithKey(photo.id, intoStreams: &photoStateStreams,
             createStreamClosure: { return KVO.stream(photo, "photoStateRaw") },
             handler: { handler(id: photo.id, state: PhotoState(rawValue: $0 as! String)!) })
-        print("left photo state observers: \(photoStateStreams.count)")
     }
     
     static func unobservePhotoStateForPhotos(photos: [Photo]?) {
@@ -80,7 +92,6 @@ struct PhotoObserver: RealmObjectObservable {
     
     static func unobservePhotoStateWithPhotoId(photoId: Photo.ID) {
         unobserveWithKey(photoId, fromStream: &photoStateStreams)
-        print("left photo state observers: \(photoStateStreams.count)")
     }
     
     // MARK: - Recent Event Time
@@ -95,7 +106,6 @@ struct PhotoObserver: RealmObjectObservable {
         observeWithKey(photo.id, intoStreams: &recentEventTimeStreams,
             createStreamClosure: { return KVO.stream(photo, "recentEventTime") },
             handler: { handler(photo.id, $0 as! Photo.EventTime) })
-        print("left recent event time observers: \(recentEventTimeStreams.count)")
     }
     
     static func unobserveRecentEventTimeForPhotos(photos: [Photo]?) {
@@ -110,6 +120,5 @@ struct PhotoObserver: RealmObjectObservable {
     
     private static func unobserveRecentEventTimeWithPhotoId(photoId: Photo.ID) {
         unobserveWithKey(photoId, fromStream: &recentEventTimeStreams)
-        print("left recent event time observers: \(recentEventTimeStreams.count)")
     }
 }

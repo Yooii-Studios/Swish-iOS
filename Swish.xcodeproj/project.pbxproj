@@ -260,9 +260,9 @@
 		57295A4A1C2284F600E50AF7 /* Observer */ = {
 			isa = PBXGroup;
 			children = (
+				5773646C1C22F69D007EA7B5 /* RealmObjectObservable.swift */,
 				57EC68ED1C1E9B0100CB07E5 /* ChatObserver.swift */,
 				579D9D1D1C2135C700145CC8 /* PhotoObserver.swift */,
-				5773646C1C22F69D007EA7B5 /* RealmObjectObservable.swift */,
 			);
 			path = Observer;
 			sourceTree = "<group>";

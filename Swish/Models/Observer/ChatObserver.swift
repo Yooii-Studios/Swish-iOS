@@ -1,5 +1,7 @@
 //
 //  ChatObserver.swift
+//   Usage: PhotoObserver.swift 참조
+//
 //  Swish
 //
 //  Created by 정동현 on 2015. 12. 14..
@@ -22,11 +24,9 @@ struct ChatObserver: RealmObjectObservable {
         observeWithKey(chatMessage, intoStreams: &chatMessageStateStreams,
             createStreamClosure: { return KVO.startingStream(chatMessage, "stateRaw") },
             handler: { handler(ChatMessageSendState(rawValue: $0 as! String)!) })
-        print("left chat state observers: \(chatMessageStateStreams.count)")
     }
     
     static func unobserveChatMessageStateWithChatMessage(chatMessage: ChatMessage) {
         unobserveWithKey(chatMessage, fromStream: &chatMessageStateStreams)
-        print("left chat state observers: \(chatMessageStateStreams.count)")
     }
 }
