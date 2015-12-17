@@ -13,7 +13,6 @@
 import UIKit
 
 protocol PhotoVoteType {
-
     var photo: Photo! { get }
     var photoVoteView: PhotoVoteView! { get }
 }
