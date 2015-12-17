@@ -8,8 +8,9 @@
 
 import UIKit
 
-class SentPhotoDetailViewController: UIViewController {
+class SentPhotoDetailViewController: UIViewController, PhotoActionType {
     
+    // TODO: 우성이 PhotoCardView로 커스텀 뷰를 만들어 처리를 해줄 것
     // Photo
     @IBOutlet weak var photoCardView: UIView!
     @IBOutlet weak var photoImageView: UIImageView!
@@ -17,6 +18,9 @@ class SentPhotoDetailViewController: UIViewController {
     @IBOutlet weak var userIdLabel: UILabel!
     @IBOutlet weak var messageLabel: UILabel!
     @IBOutlet weak var distanceLabel: UILabel!
+    
+    // Photo Action
+    @IBOutlet weak var photoActionView: PhotoActionView!
     
     // Status
     @IBOutlet weak var statusContentView: UIView!
@@ -33,19 +37,15 @@ class SentPhotoDetailViewController: UIViewController {
 
         initPhotoCardView()
         initStatusViews()
-        initActionView()
+        setUpPhotoActionView()
     }
     
     override func viewWillAppear(animated: Bool) {
-        ChatObserver.observeUnreadMessageCountStreamForPhoto(photo) { unreadMessageCount in
-            // TODO: 읽지 않은 채팅 메시지 갯수 UI 업데이트 및 로그 삭제 필요
-            print("unreadMessageCount: \(unreadMessageCount)")
-        }
+        super.viewWillAppear(animated)
+        refreshUnreadChatCount()
     }
     
-    override func viewWillDisappear(animated: Bool) {
-        ChatObserver.unobserveUnreadMessageCountStream(photo.id)
-    }
+    // MARK: - Init
     
     private func initPhotoCardView() {
         photo.loadImage { image in
@@ -91,10 +91,6 @@ class SentPhotoDetailViewController: UIViewController {
         }
     }
     
-    private func initActionView() {
-        // TODO: 추후 protocol extension으로 구현하고 연동할 것
-    }
-    
     /*
     // MARK: - Navigation
 
@@ -107,5 +103,15 @@ class SentPhotoDetailViewController: UIViewController {
     
     @IBAction func cancelButtonDidTap(sender: AnyObject) {
         dismissViewControllerAnimated(true, completion: nil)
+    }
+    
+    final func mapButtonDidTap(sender: AnyObject) {
+        print("mapButtonDidTap")
+        showMapViewController()
+    }
+    
+    final func chatButtonDidTap(sender: AnyObject) {
+        print("chatButtonDidTap")
+        showChatDialog()
     }
 }
