@@ -34,15 +34,12 @@ class ReceivedPhotoCollectionViewController: UIViewController, UICollectionViewD
     }
     
     override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?) {
-        // TODO: ReceivedPhotoViewController 구현 후 SeugeHandlerType과 함께 추가 구현 필요
-        /*
-        if segue.identifier == "" {
-            let indexPaths = collectionView.indexPathsForSelectedItems()
-            let indexPath = indexPaths![0]
-            
-            let viewController = segue.destinationViewController as! ReceivedPhotoViewController
+        guard let cell = sender as? UICollectionViewCell, let indexPath = photoCollectionView.indexPathForCell(cell) else {
+            return
         }
-        */
+        let navigationViewController = segue.destinationViewController as! UINavigationController
+        let detailViewController = navigationViewController.topViewController as! ReceivedPhotoDetailViewController
+        detailViewController.photo = receivedPhotos[indexPath.row]
     }
     
     // MARK: - IBAction

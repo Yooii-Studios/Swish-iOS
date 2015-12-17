@@ -10,6 +10,7 @@ import UIKit
 
 class SentPhotoDetailViewController: UIViewController, PhotoActionType {
     
+    // TODO: 우성이 PhotoCardView로 커스텀 뷰를 만들어 처리를 해줄 것
     // Photo
     @IBOutlet weak var photoCardView: UIView!
     @IBOutlet weak var photoImageView: UIImageView!
