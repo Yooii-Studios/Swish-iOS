@@ -8,37 +8,23 @@
 
 import Foundation
 import ReactKit
-
-typealias ReferenceCount = Int
-
-enum BaseStreams<Key: Hashable, Value> {
-    typealias T = Dictionary<Key, (Stream<Value>, ReferenceCount)>
-}
+import SwiftTask
 
 protocol RealmObjectObservable {}
 
 extension RealmObjectObservable {
     
-    static func observeWithKey<Key: Hashable, Result>(key: Key,
-        inout intoStreams streams: BaseStreams<Key, Result>.T,
-        createStreamClosure: () -> Stream<Result>, handler: Result -> Void) {
-            if streams[key] == nil {
-                streams[key] = (createStreamClosure(), 1)
-            } else {
-                streams[key]!.1++
-            }
-            streams[key]!.0 ~> { result in
-                handler(result)
-            }
+    static func stream(object: NSObject, property: String, owner: NSObject, handler: AnyObject? -> Void) -> Canceller? {
+        return KVO.stream(object, property).ownedBy(owner) ~> handler
     }
     
-    static func unobserveWithKey<Key: Hashable, Result>(key: Key,
-        inout fromStream stream: BaseStreams<Key, Result>.T) {
-            stream[key]?.0.cancel()
-            stream[key]?.1--
-            
-            if stream[key]?.1 <= 0 {
-                stream[key] = nil
-            }
+    static func startingStream(object: NSObject, property: String, owner: NSObject, handler: AnyObject? -> Void)
+        -> Canceller? {
+            return KVO.startingStream(object, property).ownedBy(owner) ~> handler
+    }
+    
+    static func detailedStream(object: NSObject, property: String, owner: NSObject,
+        handler: (AnyObject?, NSKeyValueChange, NSIndexSet?) -> Void) -> Canceller? {
+            return KVO.detailedStream(object, property).ownedBy(owner) ~> handler
     }
 }
