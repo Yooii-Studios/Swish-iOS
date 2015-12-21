@@ -10,6 +10,8 @@ import UIKit
 import CoreData
 import DeviceUtil
 
+typealias NotificationInfo = [NSObject: AnyObject]
+
 @UIApplicationMain
 class AppDelegate: UIResponder, UIApplicationDelegate {
     

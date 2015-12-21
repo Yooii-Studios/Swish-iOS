@@ -141,6 +141,15 @@ final class SwishDatabase {
         }
     }
     
+    class func updateMyLevelInfo(userLevelInfo: UserLevelInfo) {
+        write {
+            let me = self.me()
+            me.level = userLevelInfo.level
+            me.totalExpForNextLevel = userLevelInfo.totalExpToNextLevel
+            me.currentExp = userLevelInfo.currentExp
+        }
+    }
+    
     // MARK: - OtherUser
     
     class func otherUser(id: User.ID) -> OtherUser? {
@@ -295,6 +304,7 @@ final class SwishDatabase {
     class func saveChatMessage(photo: Photo, chatMessage: ChatMessage) {
         write {
             photo.chatMessages.append(chatMessage)
+            photo.hasOpenedChatRoom = true
             photo.recentEventTime = CFAbsoluteTimeGetCurrent()
         }
     }
@@ -302,6 +312,7 @@ final class SwishDatabase {
     class func saveChatMessages(photo: Photo, chatMessages: Array<ChatMessage>) {
         write {
             photo.chatMessages.appendContentsOf(chatMessages)
+            photo.hasOpenedChatRoom = true
             photo.recentEventTime = CFAbsoluteTimeGetCurrent()
         }
     }
