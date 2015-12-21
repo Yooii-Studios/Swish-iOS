@@ -8,6 +8,8 @@
     <objects>
         <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner" customClass="CircleButton" customModule="Swish" customModuleProvider="target">
             <connections>
+                <outlet property="backgroundView" destination="iN0-l3-epB" id="4Ov-Bv-aL1"/>
+                <outlet property="foregroundView" destination="ett-Mr-07N" id="nFS-tE-Q7O"/>
                 <outlet property="imageView" destination="UJO-Nt-4je" id="Gdc-RY-1rW"/>
             </connections>
         </placeholder>
@@ -16,20 +18,38 @@
             <rect key="frame" x="0.0" y="0.0" width="80" height="80"/>
             <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
             <subviews>
-                <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" horizontalCompressionResistancePriority="1000" verticalCompressionResistancePriority="1000" translatesAutoresizingMaskIntoConstraints="NO" id="UJO-Nt-4je">
-                    <rect key="frame" x="15" y="15" width="50" height="50"/>
+                <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="ett-Mr-07N">
+                    <rect key="frame" x="8" y="8" width="64" height="64"/>
+                    <subviews>
+                        <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="ic_photo_like_inactive" translatesAutoresizingMaskIntoConstraints="NO" id="UJO-Nt-4je">
+                            <rect key="frame" x="15" y="15" width="34" height="34"/>
+                            <constraints>
+                                <constraint firstAttribute="height" relation="lessThanOrEqual" constant="34" id="T08-1t-NfX"/>
+                                <constraint firstAttribute="width" secondItem="UJO-Nt-4je" secondAttribute="height" multiplier="1:1" id="aPW-XW-gb8"/>
+                                <constraint firstAttribute="width" relation="lessThanOrEqual" constant="34" id="bUz-uu-0Vc"/>
+                            </constraints>
+                        </imageView>
+                    </subviews>
+                    <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                     <constraints>
-                        <constraint firstAttribute="width" secondItem="UJO-Nt-4je" secondAttribute="height" multiplier="1:1" id="aPW-XW-gb8"/>
+                        <constraint firstItem="UJO-Nt-4je" firstAttribute="centerY" secondItem="ett-Mr-07N" secondAttribute="centerY" id="1n9-sG-sH5"/>
+                        <constraint firstAttribute="bottom" relation="greaterThanOrEqual" secondItem="UJO-Nt-4je" secondAttribute="bottom" constant="8" id="7m1-w1-QfC"/>
+                        <constraint firstAttribute="trailing" relation="greaterThanOrEqual" secondItem="UJO-Nt-4je" secondAttribute="trailing" constant="8" id="FMq-KQ-d0C"/>
+                        <constraint firstItem="UJO-Nt-4je" firstAttribute="top" relation="greaterThanOrEqual" secondItem="ett-Mr-07N" secondAttribute="top" constant="8" id="W6u-gr-shP"/>
+                        <constraint firstItem="UJO-Nt-4je" firstAttribute="leading" relation="greaterThanOrEqual" secondItem="ett-Mr-07N" secondAttribute="leading" constant="8" id="Xaa-4e-gU4"/>
+                        <constraint firstAttribute="width" secondItem="ett-Mr-07N" secondAttribute="height" multiplier="1:1" id="etz-lX-gub"/>
+                        <constraint firstItem="UJO-Nt-4je" firstAttribute="centerX" secondItem="ett-Mr-07N" secondAttribute="centerX" id="tPj-z3-MJw"/>
                     </constraints>
-                </imageView>
+                </view>
             </subviews>
+            <color key="backgroundColor" red="0.18823529411764706" green="0.38823529411764707" blue="0.67450980392156867" alpha="1" colorSpace="calibratedRGB"/>
             <constraints>
-                <constraint firstItem="UJO-Nt-4je" firstAttribute="centerY" secondItem="iN0-l3-epB" secondAttribute="centerY" id="1d3-Zg-7rh"/>
-                <constraint firstItem="UJO-Nt-4je" firstAttribute="leading" secondItem="iN0-l3-epB" secondAttribute="leading" priority="999" constant="15" id="D5E-3c-ODx"/>
-                <constraint firstItem="UJO-Nt-4je" firstAttribute="top" secondItem="iN0-l3-epB" secondAttribute="top" priority="999" constant="15" id="Dh4-C5-CwW"/>
-                <constraint firstAttribute="trailing" secondItem="UJO-Nt-4je" secondAttribute="trailing" priority="999" constant="15" id="MMj-un-6G1"/>
-                <constraint firstItem="UJO-Nt-4je" firstAttribute="centerX" secondItem="iN0-l3-epB" secondAttribute="centerX" id="aOP-wE-Td0"/>
-                <constraint firstAttribute="bottom" secondItem="UJO-Nt-4je" secondAttribute="bottom" priority="999" constant="15" id="u03-Lu-c9w"/>
+                <constraint firstItem="ett-Mr-07N" firstAttribute="leading" secondItem="iN0-l3-epB" secondAttribute="leading" constant="8" id="3MW-NN-lKz"/>
+                <constraint firstAttribute="bottom" secondItem="ett-Mr-07N" secondAttribute="bottom" constant="8" id="8uI-jj-II9"/>
+                <constraint firstItem="ett-Mr-07N" firstAttribute="top" secondItem="iN0-l3-epB" secondAttribute="top" constant="8" id="Mno-Oy-YCg"/>
+                <constraint firstAttribute="trailing" secondItem="ett-Mr-07N" secondAttribute="trailing" constant="8" id="RK7-tX-SVs"/>
+                <constraint firstItem="ett-Mr-07N" firstAttribute="centerY" secondItem="iN0-l3-epB" secondAttribute="centerY" id="ZpU-KE-gkU"/>
+                <constraint firstItem="ett-Mr-07N" firstAttribute="centerX" secondItem="iN0-l3-epB" secondAttribute="centerX" id="faW-Oq-q5v"/>
             </constraints>
             <nil key="simulatedStatusBarMetrics"/>
             <nil key="simulatedTopBarMetrics"/>
@@ -37,4 +57,7 @@
             <freeformSimulatedSizeMetrics key="simulatedDestinationMetrics"/>
         </view>
     </objects>
+    <resources>
+        <image name="ic_photo_like_inactive" width="37" height="37"/>
+    </resources>
 </document>
