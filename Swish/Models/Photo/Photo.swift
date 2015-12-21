@@ -147,7 +147,8 @@ class Photo: Object {
     }
     
     override static func ignoredProperties() -> [String] {
-        return ["hasBlockedChat", "chatRoomBlockState", "departLocation", "arrivedLocation", "photoState", "receiver"]
+        return ["hasBlockedChat", "chatRoomBlockState", "departLocation", "arrivedLocation", "photoState",
+            "receivedUserId"]
     }
 }
 
