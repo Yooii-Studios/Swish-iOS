@@ -98,9 +98,6 @@ class PhotoVoteView: NibDesignable {
     private func updatePhotoState(photoState: PhotoState) {
         let photoStateUpdateRequest = PhotoStateUpdateRequest(photoId: photoId, state: photoState)
         PhotoStateUpdater.instance.registerUpdateRequest(photoStateUpdateRequest)
-        
-        // TODO: 해당부분 동현과 얘기해서 처리하기(KVO 관련)
-//        SwishDatabase.updatePhotoState(photoId, photoState: .Disliked)
     }
     
     /*
