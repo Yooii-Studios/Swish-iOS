@@ -13,14 +13,22 @@ class ReceivedPhotoCollectionViewController: UIViewController, UICollectionViewD
 
     @IBOutlet weak var photoCollectionView: UICollectionView!
     
-    private var receivedPhotos: Array<Photo>!
+    private var receivedPhotos: Array<Photo> {
+        get {
+            return _receivedPhotos.filter({ return $0.photoState != .Disliked })
+        }
+    }
+    private(set) var _receivedPhotos: Array<Photo>!
     
     // MARK: - View Cycle
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        receivedPhotos = SwishDatabase.receivedPhotos()
+        _receivedPhotos = SwishDatabase.receivedPhotos()
         adjustCollectionViewCellSize()
+        PhotoObserver.observePhotoStateForPhotos(receivedPhotos, owner: self) { [unowned self] (id, state) -> Void in
+            self.photoCollectionView.reloadData()
+        }
     }
     
     private func adjustCollectionViewCellSize() {
