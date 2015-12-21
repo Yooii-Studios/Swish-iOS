@@ -17,8 +17,13 @@ class PhotoVoteView: NibDesignable {
     private var photoId: Photo.ID = -1
     
     final func setUpWithPhotoId(photoId: Photo.ID, withPhotoState photoState: PhotoState) {
+        setUpPhotoId(photoId)
         setUpButtonsWithPhotoState(photoState)
         setUpTapGestures()
+    }
+    
+    private func setUpPhotoId(photoId: Photo.ID) {
+        self.photoId = photoId
     }
     
     private func setUpButtonsWithPhotoState(photoState: PhotoState) {
@@ -80,8 +85,7 @@ class PhotoVoteView: NibDesignable {
     }
     
     private func updatePhotoState(photoState: PhotoState) {
-        // TODO: 안드로이드 로직에 delegate 사용되는 곳이 없는데 동현에게 물어보기
-        let photoStateUpdateRequest = PhotoStateUpdateRequest(photoId: photoId, state: photoState, delegate: nil)
+        let photoStateUpdateRequest = PhotoStateUpdateRequest(photoId: photoId, state: photoState)
         PhotoStateUpdater.instance.registerUpdateRequest(photoStateUpdateRequest)
         
         // TODO: 해당부분 동현과 얘기해서 처리하기(KVO 관련)
