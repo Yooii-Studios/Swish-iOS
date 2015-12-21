@@ -30,7 +30,7 @@
                             <rect key="frame" x="15" y="15" width="34" height="34"/>
                             <constraints>
                                 <constraint firstAttribute="width" secondItem="UJO-Nt-4je" secondAttribute="height" multiplier="1:1" id="aPW-XW-gb8"/>
-                                <constraint firstAttribute="width" constant="34" id="bUz-uu-0Vc"/>
+                                <constraint firstAttribute="width" priority="751" constant="34" id="bUz-uu-0Vc"/>
                             </constraints>
                         </imageView>
                     </subviews>
