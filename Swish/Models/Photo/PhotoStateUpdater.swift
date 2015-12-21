@@ -113,8 +113,8 @@ private struct PhotoStateUpdateInfo {
     var targetState: PhotoState
     
     init(request: PhotoStateUpdateRequest, previousPhotoState: PhotoState) {
-        photoId = request.photoId
+        self.photoId = request.photoId
         self.previousPhotoState = previousPhotoState
-        targetState = request.state
+        self.targetState = request.state
     }
 }
