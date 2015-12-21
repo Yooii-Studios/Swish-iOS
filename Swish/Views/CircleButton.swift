@@ -8,10 +8,11 @@
 
 import UIKit
 import SwiftyColor
+import NibDesignable
 
 // TODO: 추후 원형 버튼으로 만든 후 전체적인 색 관련 로직 수정해줄 것
 @IBDesignable
-class CircleButton: UIView {
+class CircleButton: NibDesignable {
 
     struct Color {
         static let unselectedBackground = 0xe1e1e1~
@@ -29,7 +30,19 @@ class CircleButton: UIView {
             backgroundColor = backgroundCircleColor
         }
     }
-    var imageView: UIImageView!
+    @IBInspectable var image: UIImage! {
+        didSet {
+            imageView.image = image
+        }
+    }
+    @IBInspectable var imageSize: Int = 40 {
+        didSet {
+            imageView.snp_updateConstraints { make in
+                make.size.equalTo(imageSize)
+            }
+        }
+    }
+    @IBOutlet var imageView: UIImageView!
     
     final func setSelected(isSelected: Bool) {
         if isSelected {
