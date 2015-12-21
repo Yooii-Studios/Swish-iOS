@@ -8,9 +8,14 @@
     <objects>
         <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner" customClass="CircleButton" customModule="Swish" customModuleProvider="target">
             <connections>
-                <outlet property="backgroundView" destination="iN0-l3-epB" id="4Ov-Bv-aL1"/>
+                <outlet property="backgroundView" destination="iN0-l3-epB" id="c5w-XG-h3Y"/>
+                <outlet property="bottomConstraint" destination="8uI-jj-II9" id="WiN-3R-2qp"/>
                 <outlet property="foregroundView" destination="ett-Mr-07N" id="nFS-tE-Q7O"/>
+                <outlet property="imageSizeConstraint" destination="bUz-uu-0Vc" id="XH8-vb-fPL"/>
                 <outlet property="imageView" destination="UJO-Nt-4je" id="Gdc-RY-1rW"/>
+                <outlet property="leadingConstraint" destination="3MW-NN-lKz" id="vZs-cT-FJx"/>
+                <outlet property="topConstraint" destination="Mno-Oy-YCg" id="bPV-t7-AxR"/>
+                <outlet property="trailingConstraint" destination="RK7-tX-SVs" id="Z2l-XO-0C4"/>
             </connections>
         </placeholder>
         <placeholder placeholderIdentifier="IBFirstResponder" id="-2" customClass="UIResponder"/>
@@ -24,9 +29,8 @@
                         <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="ic_photo_like_inactive" translatesAutoresizingMaskIntoConstraints="NO" id="UJO-Nt-4je">
                             <rect key="frame" x="15" y="15" width="34" height="34"/>
                             <constraints>
-                                <constraint firstAttribute="height" relation="lessThanOrEqual" constant="34" id="T08-1t-NfX"/>
                                 <constraint firstAttribute="width" secondItem="UJO-Nt-4je" secondAttribute="height" multiplier="1:1" id="aPW-XW-gb8"/>
-                                <constraint firstAttribute="width" relation="lessThanOrEqual" constant="34" id="bUz-uu-0Vc"/>
+                                <constraint firstAttribute="width" constant="34" id="bUz-uu-0Vc"/>
                             </constraints>
                         </imageView>
                     </subviews>
@@ -37,7 +41,6 @@
                         <constraint firstAttribute="trailing" relation="greaterThanOrEqual" secondItem="UJO-Nt-4je" secondAttribute="trailing" constant="8" id="FMq-KQ-d0C"/>
                         <constraint firstItem="UJO-Nt-4je" firstAttribute="top" relation="greaterThanOrEqual" secondItem="ett-Mr-07N" secondAttribute="top" constant="8" id="W6u-gr-shP"/>
                         <constraint firstItem="UJO-Nt-4je" firstAttribute="leading" relation="greaterThanOrEqual" secondItem="ett-Mr-07N" secondAttribute="leading" constant="8" id="Xaa-4e-gU4"/>
-                        <constraint firstAttribute="width" secondItem="ett-Mr-07N" secondAttribute="height" multiplier="1:1" id="etz-lX-gub"/>
                         <constraint firstItem="UJO-Nt-4je" firstAttribute="centerX" secondItem="ett-Mr-07N" secondAttribute="centerX" id="tPj-z3-MJw"/>
                     </constraints>
                 </view>
@@ -48,8 +51,6 @@
                 <constraint firstAttribute="bottom" secondItem="ett-Mr-07N" secondAttribute="bottom" constant="8" id="8uI-jj-II9"/>
                 <constraint firstItem="ett-Mr-07N" firstAttribute="top" secondItem="iN0-l3-epB" secondAttribute="top" constant="8" id="Mno-Oy-YCg"/>
                 <constraint firstAttribute="trailing" secondItem="ett-Mr-07N" secondAttribute="trailing" constant="8" id="RK7-tX-SVs"/>
-                <constraint firstItem="ett-Mr-07N" firstAttribute="centerY" secondItem="iN0-l3-epB" secondAttribute="centerY" id="ZpU-KE-gkU"/>
-                <constraint firstItem="ett-Mr-07N" firstAttribute="centerX" secondItem="iN0-l3-epB" secondAttribute="centerX" id="faW-Oq-q5v"/>
             </constraints>
             <nil key="simulatedStatusBarMetrics"/>
             <nil key="simulatedTopBarMetrics"/>

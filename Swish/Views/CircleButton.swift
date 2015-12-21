@@ -23,6 +23,12 @@ class CircleButton: NibDesignable {
     @IBOutlet var foregroundView: UIView!
     @IBOutlet var imageView: UIImageView!
     
+    @IBOutlet var leadingConstraint: NSLayoutConstraint!
+    @IBOutlet var topConstraint: NSLayoutConstraint!
+    @IBOutlet var trailingConstraint: NSLayoutConstraint!
+    @IBOutlet var bottomConstraint: NSLayoutConstraint!
+    @IBOutlet var imageSizeConstraint: NSLayoutConstraint!
+    
     @IBInspectable var backgroundCircleColor: UIColor! {
         didSet {
             backgroundView.backgroundColor = backgroundCircleColor
@@ -35,7 +41,10 @@ class CircleButton: NibDesignable {
     }
     @IBInspectable var strokeWidth: CGFloat = 8.0 {
         didSet {
-            setNeedsUpdateConstraints()
+            leadingConstraint.constant = strokeWidth
+            topConstraint.constant = strokeWidth
+            trailingConstraint.constant = strokeWidth
+            bottomConstraint.constant = strokeWidth
         }
     }
     @IBInspectable var image: UIImage = UIImage() {
@@ -45,7 +54,7 @@ class CircleButton: NibDesignable {
     }
     @IBInspectable var imageSize: CGFloat = 40 {
         didSet {
-            setNeedsUpdateConstraints()
+            imageSizeConstraint.constant = imageSize
         }
     }
     /*
@@ -79,22 +88,6 @@ class CircleButton: NibDesignable {
     }
     */
 
-    override func updateConstraints() {
-        foregroundView.snp_updateConstraints { make in
-            make.left.equalTo(backgroundView!.snp_left).offset(strokeWidth)
-            make.top.equalTo(backgroundView!.snp_top).offset(strokeWidth)
-            make.right.equalTo(backgroundView!.snp_right).offset(strokeWidth)
-            make.bottom.equalTo(backgroundView!.snp_bottom).offset(strokeWidth)
-//            let edgeInsets = UIEdgeInsetsMake(strokeWidth, strokeWidth, strokeWidth, strokeWidth)
-//            make.edges.equalTo(backgroundView!).inset(edgeInsets)
-        }
-        
-        imageView.snp_updateConstraints { make in
-            make.size.equalTo(imageSize)
-        }
-        
-        super.updateConstraints()
-    }
     override func prepareForInterfaceBuilder() {
         if image.size == CGSizeZero {
             let bundle = NSBundle(forClass: self.dynamicType)
