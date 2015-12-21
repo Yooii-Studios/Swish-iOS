@@ -8,12 +8,12 @@
 
 import Foundation
 
-enum PhotoState: String {
+enum PhotoState {
     
-    case Waiting = "Waiting"
-    case Delivered = "Delivered"
-    case Liked = "Liked"
-    case Disliked = "Disliked"
+    case Waiting
+    case Delivered
+    case Liked
+    case Disliked
     
     var key: Int {
         var key: Int

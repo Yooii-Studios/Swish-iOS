@@ -82,10 +82,10 @@ class Photo: Object {
     }
     var photoState: PhotoState {
         get {
-            return PhotoState(rawValue: photoStateRaw) ?? Photo.DefaultPhotoState
+            return PhotoState.findWithKey(photoStateKey) ?? Photo.DefaultPhotoState
         }
         set(newPhotoState) {
-            photoStateRaw = newPhotoState.rawValue
+            photoStateKey = newPhotoState.key
         }
     }
     var receiver: User? {
@@ -143,7 +143,7 @@ class Photo: Object {
     private dynamic var departLatitude = CLLocationDegrees.NaN
     private dynamic var departLongitude = CLLocationDegrees.NaN
     
-    private dynamic var photoStateRaw = DefaultPhotoState.rawValue
+    private dynamic var photoStateKey = DefaultPhotoState.key
     private dynamic var receivedUserId = User.InvalidId
     
     override static func primaryKey() -> String? {
