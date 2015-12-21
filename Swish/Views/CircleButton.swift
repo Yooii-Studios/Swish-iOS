@@ -47,7 +47,7 @@ class CircleButton: NibDesignable {
             bottomConstraint.constant = strokeWidth
         }
     }
-    @IBInspectable var image: UIImage = UIImage() {
+    @IBInspectable var image: UIImage! = UIImage() {
         didSet {
             imageView.image = image
         }
@@ -67,9 +67,9 @@ class CircleButton: NibDesignable {
     
     final func setSelected(isSelected: Bool) {
         if isSelected {
-            backgroundColor = backgroundCircleColor
+            backgroundView.backgroundColor = backgroundCircleColor
         } else {
-            backgroundColor = Color.unselectedBackground
+            backgroundView.backgroundColor = Color.unselectedBackground
         }
     }
     

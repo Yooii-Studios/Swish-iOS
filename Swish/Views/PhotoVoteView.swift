@@ -33,6 +33,8 @@ class PhotoVoteView: NibDesignable {
         } else if photoState == .Disliked {
             setLikeButtonDisabled()
             setDislikeButtonSelected()
+        } else {
+            setButtonsUnSelected()
         }
     }
     
@@ -45,13 +47,12 @@ class PhotoVoteView: NibDesignable {
     }
     
     private func setLikeButtonSelected() {
-        // TODO: imageView 부분은 CircleButton xib 리팩터링 이후 구현 필요
         likeButton.setSelected(true)
-//        likeButton.imageView.image = UIImage(named: "ic_photo_like_active")
+        likeButton.image = UIImage(named: "ic_photo_like_active")
         likeButton.userInteractionEnabled = false
         
         dislikeButton.setSelected(false)
-//        dislikeButton.imageView.image = UIImage(named: "ic_photo_dislike_inactive")
+        dislikeButton.image = UIImage(named: "ic_photo_dislike_inactive")
         dislikeButton.userInteractionEnabled = true
     }
     
@@ -61,16 +62,26 @@ class PhotoVoteView: NibDesignable {
     
     private func setDislikeButtonSelected() {
         likeButton.setSelected(false)
-//        likeButton.imageView.image = UIImage(named: "ic_photo_like_inactive")
+        likeButton.image = UIImage(named: "ic_photo_like_inactive")
         likeButton.userInteractionEnabled = true
         
         dislikeButton.setSelected(true)
-//        dislikeButton.imageView.image = UIImage(named: "ic_photo_dislike_active")
+        dislikeButton.image = UIImage(named: "ic_photo_dislike_active")
         dislikeButton.userInteractionEnabled = false
     }
     
     private func setDislikeButtonDisabled() {
         dislikeButton.setDisabled()
+    }
+    
+    private func setButtonsUnSelected() {
+        likeButton.setSelected(false)
+        likeButton.image = UIImage(named: "ic_photo_like_inactive")
+        likeButton.userInteractionEnabled = true
+        
+        dislikeButton.setSelected(false)
+        dislikeButton.image = UIImage(named: "ic_photo_dislike_inactive")
+        dislikeButton.userInteractionEnabled = true
     }
     
     // TODO: 동현에게 두 버튼 액션 메서드 부분 이렇게 변경해놓고 viewWillDisappear()에서 처리하면 되는 것이 맞는지 물어보기

@@ -17,29 +17,8 @@
             <rect key="frame" x="0.0" y="0.0" width="178" height="79"/>
             <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
             <subviews>
-                <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="N1G-rq-nAE" customClass="CircleButton" customModule="Swish" customModuleProvider="target">
-                    <rect key="frame" x="99" y="0.0" width="79" height="79"/>
-                    <color key="backgroundColor" red="1" green="0.24225560971864202" blue="0.4263944424446181" alpha="1" colorSpace="calibratedRGB"/>
-                    <constraints>
-                        <constraint firstAttribute="width" secondItem="N1G-rq-nAE" secondAttribute="height" multiplier="1:1" id="3rZ-4I-aop"/>
-                        <constraint firstAttribute="width" constant="79" id="Iku-I2-4WS"/>
-                    </constraints>
-                    <userDefinedRuntimeAttributes>
-                        <userDefinedRuntimeAttribute type="color" keyPath="foregroundCircleColor">
-                            <color key="value" white="1" alpha="1" colorSpace="calibratedWhite"/>
-                        </userDefinedRuntimeAttribute>
-                        <userDefinedRuntimeAttribute type="color" keyPath="backgroundCircleColor">
-                            <color key="value" red="0.95294117647058818" green="0.4823529411764706" blue="0.44313725490196076" alpha="1" colorSpace="calibratedRGB"/>
-                        </userDefinedRuntimeAttribute>
-                        <userDefinedRuntimeAttribute type="image" keyPath="image" value="ic_photo_dislike_inactive"/>
-                        <userDefinedRuntimeAttribute type="number" keyPath="imageSize">
-                            <integer key="value" value="45"/>
-                        </userDefinedRuntimeAttribute>
-                    </userDefinedRuntimeAttributes>
-                </view>
                 <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="AsY-pk-pXe" customClass="CircleButton" customModule="Swish" customModuleProvider="target">
                     <rect key="frame" x="0.0" y="0.0" width="79" height="79"/>
-                    <color key="backgroundColor" red="0.15886009494895492" green="0.42877959747804861" blue="1" alpha="1" colorSpace="calibratedRGB"/>
                     <constraints>
                         <constraint firstAttribute="width" constant="79" id="kHl-px-Fv7"/>
                         <constraint firstAttribute="width" secondItem="AsY-pk-pXe" secondAttribute="height" multiplier="1:1" id="zLa-qU-hAU"/>
@@ -51,9 +30,34 @@
                         <userDefinedRuntimeAttribute type="color" keyPath="backgroundCircleColor">
                             <color key="value" red="0.18823529411764706" green="0.38823529411764707" blue="0.67450980392156867" alpha="1" colorSpace="calibratedRGB"/>
                         </userDefinedRuntimeAttribute>
-                        <userDefinedRuntimeAttribute type="image" keyPath="image" value="ic_photo_like_inactive"/>
                         <userDefinedRuntimeAttribute type="number" keyPath="imageSize">
-                            <integer key="value" value="40"/>
+                            <real key="value" value="34"/>
+                        </userDefinedRuntimeAttribute>
+                        <userDefinedRuntimeAttribute type="image" keyPath="image" value="ic_photo_like_active"/>
+                        <userDefinedRuntimeAttribute type="number" keyPath="strokeWidth">
+                            <real key="value" value="8"/>
+                        </userDefinedRuntimeAttribute>
+                    </userDefinedRuntimeAttributes>
+                </view>
+                <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="N1G-rq-nAE" customClass="CircleButton" customModule="Swish" customModuleProvider="target">
+                    <rect key="frame" x="99" y="0.0" width="79" height="79"/>
+                    <constraints>
+                        <constraint firstAttribute="width" secondItem="N1G-rq-nAE" secondAttribute="height" multiplier="1:1" id="3rZ-4I-aop"/>
+                        <constraint firstAttribute="width" constant="79" id="Iku-I2-4WS"/>
+                    </constraints>
+                    <userDefinedRuntimeAttributes>
+                        <userDefinedRuntimeAttribute type="color" keyPath="foregroundCircleColor">
+                            <color key="value" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                        </userDefinedRuntimeAttribute>
+                        <userDefinedRuntimeAttribute type="color" keyPath="backgroundCircleColor">
+                            <color key="value" red="0.95294117647058818" green="0.4823529411764706" blue="0.44313725490196076" alpha="1" colorSpace="calibratedRGB"/>
+                        </userDefinedRuntimeAttribute>
+                        <userDefinedRuntimeAttribute type="image" keyPath="image" value="ic_photo_dislike_active"/>
+                        <userDefinedRuntimeAttribute type="number" keyPath="imageSize">
+                            <real key="value" value="38"/>
+                        </userDefinedRuntimeAttribute>
+                        <userDefinedRuntimeAttribute type="number" keyPath="strokeWidth">
+                            <real key="value" value="8"/>
                         </userDefinedRuntimeAttribute>
                     </userDefinedRuntimeAttributes>
                 </view>
@@ -62,7 +66,6 @@
             <constraints>
                 <constraint firstItem="N1G-rq-nAE" firstAttribute="leading" secondItem="AsY-pk-pXe" secondAttribute="trailing" constant="20" id="2oi-SD-tO0"/>
                 <constraint firstItem="AsY-pk-pXe" firstAttribute="leading" secondItem="iN0-l3-epB" secondAttribute="leading" id="3jb-R7-NjZ"/>
-                <constraint firstItem="N1G-rq-nAE" firstAttribute="width" secondItem="N1G-rq-nAE" secondAttribute="height" multiplier="1:1" id="E7G-f7-ILD"/>
                 <constraint firstItem="AsY-pk-pXe" firstAttribute="top" secondItem="iN0-l3-epB" secondAttribute="top" id="VON-dT-Wz1"/>
                 <constraint firstAttribute="trailing" secondItem="N1G-rq-nAE" secondAttribute="trailing" id="hX5-dy-fdp"/>
                 <constraint firstItem="N1G-rq-nAE" firstAttribute="top" secondItem="iN0-l3-epB" secondAttribute="top" id="r0M-ue-V0Y"/>
@@ -75,7 +78,7 @@
         </view>
     </objects>
     <resources>
-        <image name="ic_photo_dislike_inactive" width="43" height="43"/>
-        <image name="ic_photo_like_inactive" width="37" height="37"/>
+        <image name="ic_photo_dislike_active" width="43" height="43"/>
+        <image name="ic_photo_like_active" width="37" height="37"/>
     </resources>
 </document>
