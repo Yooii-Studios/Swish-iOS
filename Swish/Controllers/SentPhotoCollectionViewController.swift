@@ -34,7 +34,12 @@ class SentPhotoCollectionViewController: UIViewController {
     }
     
     override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?) {
-        // TODO: 디테일 컨트롤러 구현시 SegueHandlerType과 함께 추가 구현해줄 것
+        guard let cell = sender as? UICollectionViewCell, let indexPath = photoCollectionView.indexPathForCell(cell) else {
+            return
+        }
+        let navigationViewController = segue.destinationViewController as! UINavigationController
+        let detailViewController = navigationViewController.topViewController as! SentPhotoDetailViewController
+        detailViewController.photo = sentPhotos[indexPath.row]
     }
     
     // MARK: - IBAction

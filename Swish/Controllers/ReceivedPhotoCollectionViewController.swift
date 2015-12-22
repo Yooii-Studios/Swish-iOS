@@ -13,14 +13,22 @@ class ReceivedPhotoCollectionViewController: UIViewController, UICollectionViewD
 
     @IBOutlet weak var photoCollectionView: UICollectionView!
     
-    private var receivedPhotos: Array<Photo>!
+    private var receivedPhotos: Array<Photo> {
+        get {
+            return _receivedPhotos.filter({ return $0.photoState != .Disliked })
+        }
+    }
+    private(set) var _receivedPhotos: Array<Photo>!
     
     // MARK: - View Cycle
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        receivedPhotos = SwishDatabase.receivedPhotos()
+        _receivedPhotos = SwishDatabase.receivedPhotos()
         adjustCollectionViewCellSize()
+        PhotoObserver.observePhotoStateForPhotos(receivedPhotos, owner: self) { [unowned self] (id, state) -> Void in
+            self.photoCollectionView.reloadData()
+        }
     }
     
     private func adjustCollectionViewCellSize() {
@@ -34,15 +42,12 @@ class ReceivedPhotoCollectionViewController: UIViewController, UICollectionViewD
     }
     
     override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?) {
-        // TODO: ReceivedPhotoViewController 구현 후 SeugeHandlerType과 함께 추가 구현 필요
-        /*
-        if segue.identifier == "" {
-            let indexPaths = collectionView.indexPathsForSelectedItems()
-            let indexPath = indexPaths![0]
-            
-            let viewController = segue.destinationViewController as! ReceivedPhotoViewController
+        guard let cell = sender as? UICollectionViewCell, let indexPath = photoCollectionView.indexPathForCell(cell) else {
+            return
         }
-        */
+        let navigationViewController = segue.destinationViewController as! UINavigationController
+        let detailViewController = navigationViewController.topViewController as! ReceivedPhotoDetailViewController
+        detailViewController.photo = receivedPhotos[indexPath.row]
     }
     
     // MARK: - IBAction

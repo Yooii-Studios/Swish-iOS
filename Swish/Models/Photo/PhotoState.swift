@@ -8,12 +8,12 @@
 
 import Foundation
 
-enum PhotoState: String {
+enum PhotoState {
     
-    case Waiting = "Waiting"
-    case Delivered = "Delivered"
-    case Liked = "Liked"
-    case Disliked = "Disliked"
+    case Waiting
+    case Delivered
+    case Liked
+    case Disliked
     
     var key: Int {
         var key: Int
@@ -53,7 +53,33 @@ enum PhotoState: String {
 // Resources
 extension PhotoState {
     
-    var sentStateImgResourceName: String {
+    var sentStateResId: String {
+        // TODO: 로컬라이징
+        switch self {
+        case .Waiting:
+            return "state_wait"
+        case .Delivered:
+            return "state_delivered"
+        case .Liked:
+            return "state_like"
+        case .Disliked:
+            return "state_dislike"
+        }
+    }
+    var sentStateDescriptionResId: String {
+        // TODO: 로컬라이징
+        switch self {
+        case .Waiting:
+            return "state_detail_wait"
+        case .Delivered:
+            return "state_detail_delivered"
+        case .Liked:
+            return "state_detail_like"
+        case .Disliked:
+            return "state_detail_dislike"
+        }
+    }
+    var sentStateImgResId: String {
         switch self {
         case .Waiting:
             return "ic_sent_photo_waiting"
@@ -63,6 +89,18 @@ extension PhotoState {
             return "ic_sent_photo_like"
         case .Disliked:
             return "ic_sent_photo_dislike"
+        }
+    }
+    var sentDetailStateImgResId: String {
+        switch self {
+        case .Waiting:
+            return "ic_photo_detail_waiting"
+        case .Delivered:
+            return "ic_photo_detail_delivered"
+        case .Liked:
+            return "ic_photo_detail_like"
+        case .Disliked:
+            return "ic_photo_detail_dislike"
         }
     }
 }

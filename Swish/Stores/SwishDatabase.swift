@@ -19,10 +19,27 @@ final class SwishDatabase {
     class func migrate() {
         let config = Realm.Configuration(
             // TODO: 출시 전에 버전 0으로 변경하자
-            schemaVersion: 33,
+            schemaVersion: 37,
             
             migrationBlock: { migration, oldSchemaVersion in
-                if (oldSchemaVersion < 1) {
+                // TODO: 35버전에서 PhotoState의 rawValue가 제거됨. 출시 빌드에서 schemeVersion을 0으로 변경한다면 이 부분 제거되어야 함
+                if (oldSchemaVersion < 35) {
+                    migration.enumerate(Photo.className(), { oldObject, newObject in
+                        let oldPhotoStateRaw = oldObject!["photoStateRaw"] as! String
+                        
+                        var photoStateKey: Int!
+                        switch(oldPhotoStateRaw) {
+                        case "Delivered":
+                            photoStateKey = 1
+                        case "Liked":
+                            photoStateKey = 2
+                        case "Disliked":
+                            photoStateKey = 3
+                        default: // including "Waiting"
+                            photoStateKey = 0
+                        }
+                        newObject!["photoStateKey"] = photoStateKey
+                    })
                 }
         })
         Realm.Configuration.defaultConfiguration = config
@@ -57,6 +74,12 @@ final class SwishDatabase {
                 realm.delete(object)
             }
             break
+        }
+    }
+    
+    class func delete<T: Object>(objects: List<T>) {
+        write {
+            realm.delete(objects)
         }
     }
     
@@ -118,6 +141,15 @@ final class SwishDatabase {
         }
     }
     
+    class func updateMyLevelInfo(userLevelInfo: UserLevelInfo) {
+        write {
+            let me = self.me()
+            me.level = userLevelInfo.level
+            me.totalExpForNextLevel = userLevelInfo.totalExpToNextLevel
+            me.currentExp = userLevelInfo.currentExp
+        }
+    }
+    
     // MARK: - OtherUser
     
     class func otherUser(id: User.ID) -> OtherUser? {
@@ -162,6 +194,13 @@ final class SwishDatabase {
         }
     }
     
+    class func deletePhoto(photoId: Photo.ID) {
+        if let photo = photoWithId(photoId) {
+            deleteChatMessages(photo.chatMessages)
+            deleteForPrimaryKey(Photo.self, key: NSNumber(longLong: photoId))
+        }
+    }
+    
     class func updatePhoto(photoId: Photo.ID, _ update: (photo: Photo) -> ()) {
         let photo = photoWithId(photoId)
         if let photo = photo {
@@ -186,33 +225,23 @@ final class SwishDatabase {
     }
     
     class func receivedPhotos() -> Array<Photo> {
-        let myself = me()
+        let myId = me().id
         return objects {
-            let photoState = $0.photoState
-            return $0.sender.id != myself.id && photoState != .Disliked
-        }
+            return $0.sender.id != myId && $0.photoState != .Disliked
+        }.sort { return $0.recentEventTime > $1.recentEventTime }
     }
     
     class func sentPhotos() -> Array<Photo> {
-        let myself = me()
-        return objects {
-            return $0.sender.id == myself.id
-        }
+        return me().photos.sort { return $0.recentEventTime > $1.recentEventTime }
     }
     
+    // sentPhotos() 메서드와 중복이 있지만 퍼포먼스를 고려해 우선적으로 filter를 적용하기 위해 수정하지 않음
     class func deliveredSentPhotos() -> Array<Photo> {
-        let myself = me()
-        return objects {
-            return $0.sender.id == myself.id && $0.photoState != .Waiting
-        }
+        return me().photos.filter { $0.photoState != .Waiting }.sort { return $0.recentEventTime > $1.recentEventTime }
     }
     
     class func unreadMessageCount(id: Photo.ID) -> Int {
         return photoWithId(id)?.unreadMessageCount ?? 0
-//        if let photo = photoWithId(id) {
-//            return photo.unreadMessageCount
-//        }
-//        return 0
     }
     
     class func markChatRoomOpened(id: Photo.ID) {
@@ -233,6 +262,7 @@ final class SwishDatabase {
         writePhoto(id, block: {
             (photo: Photo) in
             photo.unreadMessageCount += 1
+            photo.recentEventTime = CFAbsoluteTimeGetCurrent()
         })
     }
     
@@ -257,6 +287,12 @@ final class SwishDatabase {
         })
     }
     
+    class func updatePhotoReceivedUserId(id: Photo.ID, receivedUserId userId: User.ID) {
+        writePhoto(id) { photo in
+            photo.receivedUserId = userId
+        }
+    }
+    
     // MARK: - Chat Message
     
     class func saveChatMessage(photoId: Photo.ID, chatMessage: ChatMessage) {
@@ -268,12 +304,16 @@ final class SwishDatabase {
     class func saveChatMessage(photo: Photo, chatMessage: ChatMessage) {
         write {
             photo.chatMessages.append(chatMessage)
+            photo.hasOpenedChatRoom = true
+            photo.recentEventTime = CFAbsoluteTimeGetCurrent()
         }
     }
     
     class func saveChatMessages(photo: Photo, chatMessages: Array<ChatMessage>) {
         write {
             photo.chatMessages.appendContentsOf(chatMessages)
+            photo.hasOpenedChatRoom = true
+            photo.recentEventTime = CFAbsoluteTimeGetCurrent()
         }
     }
     
@@ -298,6 +338,10 @@ final class SwishDatabase {
     
     class func deleteChatMessage(victim: ChatMessage) {
         delete { return $0 == victim }
+    }
+    
+    class func deleteChatMessages(victims: List<ChatMessage>) {
+        delete(victims)
     }
     
     class func loadUnreadChatMessagesAndMarkAsRead(photoId: Photo.ID) -> Array<ChatMessage> {

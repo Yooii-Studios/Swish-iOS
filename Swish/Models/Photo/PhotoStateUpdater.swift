@@ -8,8 +8,6 @@
 
 import Foundation
 
-typealias SuccessCallback = (photoId: Photo.ID, state: PhotoState) -> Void
-typealias FailureCallback = (photoId: Photo.ID) -> Void
 private typealias Updates = Dictionary<Photo.ID, PhotoStateUpdateInfo>
     
 final class PhotoStateUpdater {
@@ -17,7 +15,6 @@ final class PhotoStateUpdater {
     private let lockingQueue = dispatch_queue_create("com.yooiistudios.swish.photostateupdater", nil)
     private var pendingUpdates = Updates()
     private var executingUpdates = Updates()
-    private var additionalDelegates = [PhotoStateUpdateDelegate]()
     
     // MARK: - Singleton
     
@@ -62,22 +59,6 @@ final class PhotoStateUpdater {
         }
     }
     
-    final func registerDelegate(delegate: PhotoStateUpdateDelegate) {
-        sync {
-            if !self.additionalDelegates.contains({ $0 === delegate }) {
-                self.additionalDelegates.append(delegate)
-            }
-        }
-    }
-    
-    final func unregisterDelegate(delegate: PhotoStateUpdateDelegate) {
-        sync {
-            if let index = self.additionalDelegates.indexOf({ $0 === delegate }) {
-                self.additionalDelegates.removeAtIndex(index)
-            }
-        }
-    }
-    
     // MARK: - Helper functions
     
     private final func sync(block: () -> Void) {
@@ -91,31 +72,25 @@ final class PhotoStateUpdater {
     }
     
     private final func updatePendingUpdateInfoWithRequest(request: PhotoStateUpdateRequest) {
-        if var pendingUpdateInfo = pendingUpdates[request.photoId] {
-            pendingUpdateInfo.state = request.state
-            if let newDelegate = request.delegate
-                where !pendingUpdateInfo.delegates.contains({ $0 === newDelegate }) {
-                pendingUpdateInfo.delegates.append(newDelegate)
-            }
+        if pendingUpdates[request.photoId] != nil {
+            pendingUpdates[request.photoId]!.targetState = request.state
+            SwishDatabase.updatePhotoState(request.photoId, photoState: request.state)
         }
     }
     
     private final func createPendingUpdateInfoEntryWithRequest(request: PhotoStateUpdateRequest) {
-        pendingUpdates[request.photoId] = PhotoStateUpdateInfo(request: request)
+        let previousPhotoState = SwishDatabase.photoWithId(request.photoId)!.photoState
+        pendingUpdates[request.photoId] = PhotoStateUpdateInfo(request: request, previousPhotoState: previousPhotoState)
+        SwishDatabase.updatePhotoState(request.photoId, photoState: request.state)
     }
     
     private final func executeUpdate(updateInfo: PhotoStateUpdateInfo) {
-        if let previousPhotoState = SwishDatabase.photoWithId(updateInfo.photoId)?.photoState {
-            SwishDatabase.updatePhotoState(updateInfo.photoId, photoState: updateInfo.state)
-            PhotoServer.updatePhotoState(updateInfo.photoId, state: updateInfo.state,
-                onSuccess: { (result) -> () in
-                    self.notifySuccess(updateInfo)
-                }, onFail: { (error) -> () in
-                    SwishDatabase.updatePhotoState(updateInfo.photoId, photoState: previousPhotoState)
-                    self.notifyFailure(updateInfo)
-            })
-            executingUpdates[updateInfo.photoId] = updateInfo
-        }
+        PhotoServer.updatePhotoState(updateInfo.photoId, state: updateInfo.targetState,
+            onSuccess: { _ in
+            }, onFail: { _ in
+                SwishDatabase.updatePhotoState(updateInfo.photoId, photoState: updateInfo.previousPhotoState)
+        })
+        executingUpdates[updateInfo.photoId] = updateInfo
     }
     
     private final func cancelExecutingUpdate(updateInfo: PhotoStateUpdateInfo) {
@@ -124,59 +99,22 @@ final class PhotoStateUpdater {
             print("cancelExecutingUpdate: \(prevUpdateInfo.photoId)")
         }
     }
-    
-    private final func notifySuccess(updateInfo: PhotoStateUpdateInfo) {
-        let notifyBlock = { (delegate: PhotoStateUpdateDelegate) -> Void in
-            delegate.onSuccess(updateInfo.photoId, state: updateInfo.state)
-        }
-        iterateDelegates(updateInfo, block: notifyBlock)
-        iterateAdditionalDelegates(notifyBlock)
-    }
-    
-    private final func notifyFailure(updateInfo: PhotoStateUpdateInfo) {
-        let notifyBlock = { (delegate: PhotoStateUpdateDelegate) -> Void in
-            delegate.onFailure(updateInfo.photoId)
-        }
-        iterateDelegates(updateInfo, block: notifyBlock)
-        iterateAdditionalDelegates(notifyBlock)
-    }
-    
-    private final func iterateDelegates(updateInfo: PhotoStateUpdateInfo,
-        block: (delegate: PhotoStateUpdateDelegate) -> Void) {
-            for delegate in updateInfo.delegates {
-                block(delegate: delegate)
-            }
-    }
-    
-    private final func iterateAdditionalDelegates(block: (delegate: PhotoStateUpdateDelegate) -> Void) {
-        for delegate in additionalDelegates {
-            block(delegate: delegate)
-        }
-    }
-}
-
-protocol PhotoStateUpdateDelegate: class {
-    func onSuccess(photoId: Photo.ID, state: PhotoState)
-    func onFailure(photoId: Photo.ID)
 }
 
 struct PhotoStateUpdateRequest {
     let photoId: Photo.ID
     let state: PhotoState
-    let delegate: PhotoStateUpdateDelegate?
 }
 
 private struct PhotoStateUpdateInfo {
     
     let photoId: Photo.ID
-    var state: PhotoState
-    var delegates = [PhotoStateUpdateDelegate]()
+    var previousPhotoState: PhotoState
+    var targetState: PhotoState
     
-    init(request: PhotoStateUpdateRequest) {
-        photoId = request.photoId
-        state = request.state
-        if let delegate = request.delegate {
-            delegates.append(delegate)
-        }
+    init(request: PhotoStateUpdateRequest, previousPhotoState: PhotoState) {
+        self.photoId = request.photoId
+        self.previousPhotoState = previousPhotoState
+        self.targetState = request.state
     }
 }

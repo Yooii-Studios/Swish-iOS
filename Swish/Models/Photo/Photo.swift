@@ -25,9 +25,11 @@ private var canUseThumbnail: Bool {
 class Photo: Object {
     
     typealias ID = Int64
+    typealias EventTime = CFTimeInterval
     
     static let InvalidId: Photo.ID = -1
     static let InvalidMessage = ""
+    static let InvalidTime = EventTime.NaN
     
     private static let InvalidName = ""
     private static let DefaultPhotoState = PhotoState.Waiting
@@ -40,6 +42,7 @@ class Photo: Object {
     dynamic var fileName = InvalidName
     dynamic var unreadMessageCount = 0
     dynamic var hasOpenedChatRoom = false
+    dynamic var recentEventTime = InvalidTime
     let chatMessages = List<ChatMessage>()
     var hasBlockedChat: Bool {
         get {
@@ -79,26 +82,22 @@ class Photo: Object {
     }
     var photoState: PhotoState {
         get {
-            return PhotoState(rawValue: photoStateRaw) ?? Photo.DefaultPhotoState
+            return PhotoState.findWithKey(photoStateKey) ?? Photo.DefaultPhotoState
         }
         set(newPhotoState) {
-            photoStateRaw = newPhotoState.rawValue
+            photoStateKey = newPhotoState.key
         }
     }
-    var receiver: User? {
+    var receivedUserId: User.ID? {
         get {
-            let me = SwishDatabase.me()
-            var optionalReceiver: User?
-            if isSentPhoto {
-                optionalReceiver = receivedUserId != User.InvalidId
-                ? SwishDatabase.otherUser(receivedUserId) : nil
-            } else {
-                optionalReceiver = me
-            }
-            return optionalReceiver
+            return isSentPhoto
+                ? (_receivedUserId != User.InvalidId ? _receivedUserId : nil)
+                : SwishDatabase.me().id
         }
         set {
-            receivedUserId = newValue!.id
+            if isSentPhoto {
+                _receivedUserId = newValue ?? User.InvalidId
+            }
         }
     }
     var isSentPhoto: Bool {
@@ -117,6 +116,7 @@ class Photo: Object {
     private convenience init(id: ID) {
         self.init()
         self.id = id
+        self.recentEventTime = CFAbsoluteTimeGetCurrent()
     }
     
     private convenience init(intId: Int) {
@@ -139,15 +139,16 @@ class Photo: Object {
     private dynamic var departLatitude = CLLocationDegrees.NaN
     private dynamic var departLongitude = CLLocationDegrees.NaN
     
-    private dynamic var photoStateRaw = DefaultPhotoState.rawValue
-    private dynamic var receivedUserId = User.InvalidId
+    private dynamic var photoStateKey = DefaultPhotoState.key
+    private dynamic var _receivedUserId = User.InvalidId
     
     override static func primaryKey() -> String? {
         return "id"
     }
     
     override static func ignoredProperties() -> [String] {
-        return ["hasBlockedChat", "chatRoomBlockState", "departLocation", "arrivedLocation", "photoState", "receiver"]
+        return ["hasBlockedChat", "chatRoomBlockState", "departLocation", "arrivedLocation", "photoState",
+            "receivedUserId"]
     }
 }
 
@@ -261,5 +262,56 @@ extension Photo {
     private class func loadImageWithFileName(fileName: String) -> UIImage? {
         let path = FileHelper.filePathWithName(fileName, inDirectory: SubDirectory.Photos)
         return UIImage(contentsOfFile: path)
+    }
+}
+
+// MARK: - Delivered distance extension
+
+enum DistanceUnit: String {
+    
+    case Kilometers = "km"
+    case Miles = "mi"
+    
+    static var currentUnit: DistanceUnit {
+        let countryCode = NSLocale.currentLocale().objectForKey(NSLocaleCountryCode) as? String
+        
+        return countryCode == nil || countryCode! != "US" ? Kilometers : Miles
+    }
+}
+
+extension Photo {
+    
+    var deliveredDistanceString: String {
+        if let deliveredDistance = deliveredDistance {
+            return "\(deliveredDistance) \(DistanceUnit.currentUnit.rawValue)"
+        } else {
+            // TODO: 로컬라이징 필요
+            return "Your photo is still en route."
+        }
+    }
+    
+    private var deliveredDistance: Int? {
+        guard let arrivedLocation = arrivedLocation else {
+            return nil
+        }
+        let distanceInMeter = departLocation.distanceFromLocation(arrivedLocation)
+        
+        var distance = DistanceUnit.currentUnit == .Kilometers ? distanceInMeter.inKilometers : distanceInMeter.inMiles
+        if distance < 1 {
+            distance = 1
+        }
+        
+        return Int(distance)
+    }
+}
+
+private extension CLLocationDistance {
+    
+    var inKilometers: CLLocationDistance {
+        return self / 1000
+    }
+    
+    var inMiles: CLLocationDistance {
+        return self * 0.000621371
     }
 }

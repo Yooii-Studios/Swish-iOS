@@ -63,4 +63,8 @@ final class MeManager {
                     onFail?()
             })
     }
+    
+    class func saveMyLevelInfo(userLevelInfo: UserLevelInfo) {
+        SwishDatabase.updateMyLevelInfo(userLevelInfo)
+    }
 }

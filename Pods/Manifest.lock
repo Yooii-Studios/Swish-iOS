@@ -5,20 +5,22 @@ PODS:
   - CTAssetsPickerController (3.1.1):
     - PureLayout (~> 3.0.0)
   - DateTools (1.7.0)
-  - DeviceUtil (1.2.2)
-  - Google-Mobile-Ads-SDK (7.5.2)
+  - DeviceUtil (1.3.4)
+  - Google-Mobile-Ads-SDK (7.6.0)
+  - NibDesignable (2.2.0)
   - OAStackView (0.2.0)
   - PureLayout (3.0.1)
   - ReactKit (0.12.0):
     - SwiftTask (~> 4.0.0)
-  - Realm (0.96.2):
-    - Realm/Headers (= 0.96.2)
-  - Realm/Headers (0.96.2)
-  - RealmSwift (0.96.2):
-    - Realm (= 0.96.2)
-  - SnapKit (0.13.0)
+  - Realm (0.96.3):
+    - Realm/Headers (= 0.96.3)
+  - Realm/Headers (0.96.3)
+  - RealmSwift (0.96.3):
+    - Realm (= 0.96.3)
+  - SnapKit (0.15.0)
   - SwiftTask (4.0.0)
-  - SwiftyJSON (2.3.0)
+  - SwiftyColor (0.1.3)
+  - SwiftyJSON (2.3.2)
 
 DEPENDENCIES:
   - Alamofire (~> 3.0.1)
@@ -27,26 +29,22 @@ DEPENDENCIES:
   - DateTools
   - DeviceUtil
   - Google-Mobile-Ads-SDK
+  - NibDesignable
   - OAStackView
   - ReactKit
   - Realm
   - RealmSwift
-  - SnapKit (from `https://github.com/SnapKit/SnapKit.git`, branch `swift-2.0`)
+  - SnapKit (~> 0.15.0)
+  - SwiftyColor
   - SwiftyJSON (from `https://github.com/SwiftyJSON/SwiftyJSON.git`)
 
 EXTERNAL SOURCES:
-  SnapKit:
-    :branch: swift-2.0
-    :git: https://github.com/SnapKit/SnapKit.git
   SwiftyJSON:
     :git: https://github.com/SwiftyJSON/SwiftyJSON.git
 
 CHECKOUT OPTIONS:
-  SnapKit:
-    :commit: 4f19419528baa3dfaca20e26fea2be410ddc79e2
-    :git: https://github.com/SnapKit/SnapKit.git
   SwiftyJSON:
-    :commit: 3b5d0d4e0c19173b1bf0dc823bde25ad870f70c0
+    :commit: 8e618c8baf6323a5079c6549bb38d48357b31630
     :git: https://github.com/SwiftyJSON/SwiftyJSON.git
 
 SPEC CHECKSUMS:
@@ -54,15 +52,17 @@ SPEC CHECKSUMS:
   AlamofireImage: 5cecda9b1031f86067c89ddba1d91ead0a8c3f0e
   CTAssetsPickerController: 6fba9134a230656ffe34ac0effb0060a1ead65cb
   DateTools: 53288ee8b905fdc75897a1e6b5cc0144b14cba60
-  DeviceUtil: 6781344f19a7684796d3b2684a9cab5b285ebb3a
-  Google-Mobile-Ads-SDK: 24a8ddfc0bcfec281960c5d88f75327df0d86b00
+  DeviceUtil: 05d3d5877fea15293760e7863dcfce74a09e8cd3
+  Google-Mobile-Ads-SDK: 0290020329c61183c4685304264b73382bc49fb4
+  NibDesignable: a99475b490a3884dac7cb3bb2b21ee128b01ca91
   OAStackView: a05adfec3669a5187b968a8c0a2690ae517271b6
   PureLayout: f35f5384c9c4e4479df041dbe33ad7577b71ddfb
   ReactKit: a2b705e8a8674b9cb38b8112c07891df87e8e62b
-  Realm: 3ce8448151c571e90b85002d984d7f93f54fc8a3
-  RealmSwift: 485599fe54e35461c4a0daa7d01d8fbf11424873
-  SnapKit: 69fe274c71511df89a5591c11437a8b826bfa9eb
+  Realm: 145d3cdf78a03aee71bde5381ad7e542bd541720
+  RealmSwift: aab84968aad662f61f36473d1aea019f63481505
+  SnapKit: 4962eed2ee18e48cbd2b2292fffc57efe7235f87
   SwiftTask: 724ff63fc8bd9b366d242696d4aff098f6de3c3a
-  SwiftyJSON: 8d6b61a70277ef2a5d710d372e06e7e2d87fb9e4
+  SwiftyColor: bda7ad4a52c447aa8188cc55c27973285611124b
+  SwiftyJSON: 04ccea08915aa0109039157c7974cf0298da292a
 
 COCOAPODS: 0.39.0

@@ -20,9 +20,9 @@ struct ServerPhotoState {
     let photoId: Photo.ID
     let state: PhotoState
     let deliveredLocation: CLLocation?
+    let receivedUserId: User.ID?
     
     // 응답으로 들어오지만 사용되지 않는 정보. 향후 대비 가능성을 고려해 남겨둠.
-    //    let receivedUserId: User.ID?
     //    let receivedUserName: String?
     //    let receivedUserProfileImageUrl: String?
 }
@@ -185,22 +185,26 @@ final class PhotoServer {
             let id = photoStateJson["id"].int64Value
             let stateKey = photoStateJson["state"].intValue
             let state = PhotoState.findWithKey(stateKey)
-            
-            var location: CLLocation?
-            if state == .Delivered || state == .Liked || state == .Disliked {
-                let locationJson = photoStateJson["delivered_location"]
-                let latitude = locationJson["latitude"].doubleValue
-                let longitude = locationJson["longitude"].doubleValue
-                location = CLLocation(latitude: latitude, longitude: longitude)
+            var receivedUserId: User.ID?
+            if let receivedUserJson = photoStateJson["user_info"].dictionary,
+                let userId = receivedUserJson["id"]?.string {
+                    receivedUserId = userId
+                    // 응답으로 들어오지만 사용되지 않는 정보. 향후 대비 가능성을 고려해 남겨둠.
+//                    let receivedUserJson = photoStateJson["user_info"]
+//                    let userId = receivedUserJson["id"].stringValue
+//                    let userName = receivedUserJson["name"].stringValue
+//                    let userProfileImageUrl = receivedUserJson["profile_image_url"].stringValue
             }
             
-            // 응답으로 들어오지만 사용되지 않는 정보. 향후 대비 가능성을 고려해 남겨둠.
-//            let receivedUserJson = photoStateJson["user_info"]
-//            let userId = receivedUserJson["id"].stringValue
-//            let userName = receivedUserJson["name"].stringValue
-//            let userProfileImageUrl = receivedUserJson["profile_image_url"].stringValue
+            var location: CLLocation?
+            if let locationJson = photoStateJson["delivered_location"].dictionary,
+                let latitude = locationJson["latitude"]?.doubleValue,
+                let longitude = locationJson["longitude"]?.doubleValue {
+                    location = CLLocation(latitude: latitude, longitude: longitude)
+            }
             
-            let item = ServerPhotoState(photoId: id, state: state, deliveredLocation: location)
+            let item = ServerPhotoState(photoId: id, state: state, deliveredLocation: location,
+                receivedUserId: receivedUserId)
             items.append(item)
         }
         
