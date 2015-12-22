@@ -37,9 +37,9 @@ final class WingsHelper {
         increaseWings(1)
     }
     
-    final class func increaseWings(count: Int) {
+    final class func increaseWings(count: Int, allowingOverCharge: Bool = true) {
         refreshInternalState()
-        applyWingsAdditiveAndNotify(count)
+        applyWingsAdditiveAndNotify(count, allowingOverCharge: allowingOverCharge)
     }
     
     final class func useIgnoringException() {
@@ -102,15 +102,11 @@ final class WingsHelper {
     
     // MARK: - Add Wings
     
-    private class func applyWingsAdditiveAndNotify(additive: Int) {
+    private class func applyWingsAdditiveAndNotify(additive: Int, allowingOverCharge: Bool = true) {
         let prevWingCount = wings().lastWingCount
-        applyWingsAdditiveAllowingOverCharge(additive)
+        applyWingsAdditive(additive, allowingOverCharge: allowingOverCharge)
         
         saveTimestampWithPreviousWingCount(prevWingCount, currentWingCount: wings().lastWingCount)
-    }
-    
-    private class func applyWingsAdditiveAllowingOverCharge(additive: Int) {
-        applyWingsAdditive(additive, allowingOverCharge: true)
     }
     
     private class func applyWingAdditive(additive: Int) {

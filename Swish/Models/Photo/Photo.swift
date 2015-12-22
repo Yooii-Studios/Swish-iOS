@@ -82,26 +82,22 @@ class Photo: Object {
     }
     var photoState: PhotoState {
         get {
-            return PhotoState(rawValue: photoStateRaw) ?? Photo.DefaultPhotoState
+            return PhotoState.findWithKey(photoStateKey) ?? Photo.DefaultPhotoState
         }
         set(newPhotoState) {
-            photoStateRaw = newPhotoState.rawValue
+            photoStateKey = newPhotoState.key
         }
     }
-    var receiver: User? {
+    var receivedUserId: User.ID? {
         get {
-            let me = SwishDatabase.me()
-            var optionalReceiver: User?
-            if isSentPhoto {
-                optionalReceiver = receivedUserId != User.InvalidId
-                ? SwishDatabase.otherUser(receivedUserId) : nil
-            } else {
-                optionalReceiver = me
-            }
-            return optionalReceiver
+            return isSentPhoto
+                ? (_receivedUserId != User.InvalidId ? _receivedUserId : nil)
+                : SwishDatabase.me().id
         }
         set {
-            receivedUserId = newValue!.id
+            if isSentPhoto {
+                _receivedUserId = newValue ?? User.InvalidId
+            }
         }
     }
     var isSentPhoto: Bool {
@@ -143,15 +139,16 @@ class Photo: Object {
     private dynamic var departLatitude = CLLocationDegrees.NaN
     private dynamic var departLongitude = CLLocationDegrees.NaN
     
-    private dynamic var photoStateRaw = DefaultPhotoState.rawValue
-    private dynamic var receivedUserId = User.InvalidId
+    private dynamic var photoStateKey = DefaultPhotoState.key
+    private dynamic var _receivedUserId = User.InvalidId
     
     override static func primaryKey() -> String? {
         return "id"
     }
     
     override static func ignoredProperties() -> [String] {
-        return ["hasBlockedChat", "chatRoomBlockState", "departLocation", "arrivedLocation", "photoState", "receiver"]
+        return ["hasBlockedChat", "chatRoomBlockState", "departLocation", "arrivedLocation", "photoState",
+            "receivedUserId"]
     }
 }
 

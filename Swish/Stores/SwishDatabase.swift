@@ -19,10 +19,27 @@ final class SwishDatabase {
     class func migrate() {
         let config = Realm.Configuration(
             // TODO: 출시 전에 버전 0으로 변경하자
-            schemaVersion: 34,
+            schemaVersion: 37,
             
             migrationBlock: { migration, oldSchemaVersion in
-                if (oldSchemaVersion < 1) {
+                // TODO: 35버전에서 PhotoState의 rawValue가 제거됨. 출시 빌드에서 schemeVersion을 0으로 변경한다면 이 부분 제거되어야 함
+                if (oldSchemaVersion < 35) {
+                    migration.enumerate(Photo.className(), { oldObject, newObject in
+                        let oldPhotoStateRaw = oldObject!["photoStateRaw"] as! String
+                        
+                        var newPhotoStateRaw: Int!
+                        switch(oldPhotoStateRaw) {
+                        case "Delivered":
+                            newPhotoStateRaw = 1
+                        case "Liked":
+                            newPhotoStateRaw = 2
+                        case "Disliked":
+                            newPhotoStateRaw = 3
+                        default: // including "Waiting"
+                            newPhotoStateRaw = 0
+                        }
+                        newObject!["photoStateRaw"] = newPhotoStateRaw
+                    })
                 }
         })
         Realm.Configuration.defaultConfiguration = config
@@ -121,6 +138,15 @@ final class SwishDatabase {
         write {
             let me = self.me()
             me.userActivityRecord = record
+        }
+    }
+    
+    class func updateMyLevelInfo(userLevelInfo: UserLevelInfo) {
+        write {
+            let me = self.me()
+            me.level = userLevelInfo.level
+            me.totalExpForNextLevel = userLevelInfo.totalExpToNextLevel
+            me.currentExp = userLevelInfo.currentExp
         }
     }
     
@@ -261,6 +287,12 @@ final class SwishDatabase {
         })
     }
     
+    class func updatePhotoReceivedUserId(id: Photo.ID, receivedUserId userId: User.ID) {
+        writePhoto(id) { photo in
+            photo.receivedUserId = userId
+        }
+    }
+    
     // MARK: - Chat Message
     
     class func saveChatMessage(photoId: Photo.ID, chatMessage: ChatMessage) {
@@ -272,6 +304,7 @@ final class SwishDatabase {
     class func saveChatMessage(photo: Photo, chatMessage: ChatMessage) {
         write {
             photo.chatMessages.append(chatMessage)
+            photo.hasOpenedChatRoom = true
             photo.recentEventTime = CFAbsoluteTimeGetCurrent()
         }
     }
@@ -279,6 +312,7 @@ final class SwishDatabase {
     class func saveChatMessages(photo: Photo, chatMessages: Array<ChatMessage>) {
         write {
             photo.chatMessages.appendContentsOf(chatMessages)
+            photo.hasOpenedChatRoom = true
             photo.recentEventTime = CFAbsoluteTimeGetCurrent()
         }
     }

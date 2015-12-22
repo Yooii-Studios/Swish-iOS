@@ -73,21 +73,19 @@ class SentPhotoDetailViewController: UIViewController, PhotoActionType {
         statusDescriptionLabel.text = photo.photoState.sentStateDescriptionResId
         statusImageView.image = UIImage(named: photo.photoState.sentDetailStateImgResId)
         
-        // TODO: Like한 유저 정보를 받을 수 있게 동현이 모델 구현 후 추가해줄 것, 좋아요를 한 유저의 Id를 항상 가지고 있게 구현할 예정
-        if photo.photoState == .Liked {
-            /*
+        if let userId = photo.receivedUserId where photo.photoState == .Liked {
+            // TODO: UI 업데이트
             let callback = OtherUserFetchCallback(
                 prepareCallback: { otherUser in
-                    
+                    print("prepare: \(otherUser.name)")
                 }, successCallback: { otherUser in
-                    
+                    print("success: \(otherUser.name)")
                 }, failureCallback: { userId in
+                    print("failure: \(userId)")
             })
             
-            // receiverId 부분을 추후 수정해야 함
-            let fetchRequest = OtherUserFetchRequest(userId: , callback: callback)
+            let fetchRequest = OtherUserFetchRequest(userId: userId, callback: callback)
             OtherUserLoader.instance.loadOtherUserWithRequest(fetchRequest)
-            */
         }
     }
     

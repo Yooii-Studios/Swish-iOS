@@ -67,6 +67,9 @@ final class SentPhotoStateLoader {
                     $0.photoState = serverPhotoState.state
                     updatedPhotoIds.insert(serverPhotoState.photoId)
                 }
+                if let receivedUserId = serverPhotoState.receivedUserId {
+                    $0.receivedUserId = receivedUserId
+                }
                 if let deliveredLocation = serverPhotoState.deliveredLocation {
                     $0.arrivedLocation = deliveredLocation
                 }
