@@ -9,6 +9,7 @@
 import UIKit
 import NibDesignable
 
+@IBDesignable
 class PhotoVoteView: NibDesignable {
 
     @IBOutlet var likeButton: CircleButton!

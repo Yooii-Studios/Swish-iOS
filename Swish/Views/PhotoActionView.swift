@@ -9,6 +9,7 @@
 import UIKit
 import NibDesignable
 
+@IBDesignable
 class PhotoActionView: NibDesignable {
     
     @IBOutlet var mapButton: CircleButton!
