@@ -27,18 +27,18 @@ final class SwishDatabase {
                     migration.enumerate(Photo.className(), { oldObject, newObject in
                         let oldPhotoStateRaw = oldObject!["photoStateRaw"] as! String
                         
-                        var newPhotoStateRaw: Int!
+                        var photoStateKey: Int!
                         switch(oldPhotoStateRaw) {
                         case "Delivered":
-                            newPhotoStateRaw = 1
+                            photoStateKey = 1
                         case "Liked":
-                            newPhotoStateRaw = 2
+                            photoStateKey = 2
                         case "Disliked":
-                            newPhotoStateRaw = 3
+                            photoStateKey = 3
                         default: // including "Waiting"
-                            newPhotoStateRaw = 0
+                            photoStateKey = 0
                         }
-                        newObject!["photoStateRaw"] = newPhotoStateRaw
+                        newObject!["photoStateKey"] = photoStateKey
                     })
                 }
         })
