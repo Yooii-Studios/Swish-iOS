@@ -1,8 +1,8 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="9531" systemVersion="15B42" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="9531" systemVersion="15C50" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES">
     <dependencies>
         <deployment identifier="iOS"/>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="9529"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="9531"/>
         <capability name="Aspect ratio constraints" minToolsVersion="5.1"/>
     </dependencies>
     <objects>
@@ -19,20 +19,8 @@
             <subviews>
                 <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="AsY-pk-pXe" customClass="CircleButton" customModule="Swish" customModuleProvider="target">
                     <rect key="frame" x="0.0" y="0.0" width="79" height="79"/>
-                    <subviews>
-                        <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="ic_photo_like_inactive" translatesAutoresizingMaskIntoConstraints="NO" id="QZ2-ml-hvw">
-                            <rect key="frame" x="21" y="21" width="37" height="37"/>
-                            <constraints>
-                                <constraint firstAttribute="width" constant="37" id="Y6m-Sz-8p5"/>
-                                <constraint firstAttribute="width" secondItem="QZ2-ml-hvw" secondAttribute="height" multiplier="1:1" id="oDp-WS-2Cd"/>
-                            </constraints>
-                        </imageView>
-                    </subviews>
-                    <color key="backgroundColor" red="0.15886009494895492" green="0.42877959747804861" blue="1" alpha="1" colorSpace="calibratedRGB"/>
                     <constraints>
                         <constraint firstAttribute="width" constant="79" id="kHl-px-Fv7"/>
-                        <constraint firstItem="QZ2-ml-hvw" firstAttribute="centerY" secondItem="AsY-pk-pXe" secondAttribute="centerY" id="n9N-xG-NVf"/>
-                        <constraint firstItem="QZ2-ml-hvw" firstAttribute="centerX" secondItem="AsY-pk-pXe" secondAttribute="centerX" id="u1h-hb-Gyr"/>
                         <constraint firstAttribute="width" secondItem="AsY-pk-pXe" secondAttribute="height" multiplier="1:1" id="zLa-qU-hAU"/>
                     </constraints>
                     <userDefinedRuntimeAttributes>
@@ -42,25 +30,20 @@
                         <userDefinedRuntimeAttribute type="color" keyPath="backgroundCircleColor">
                             <color key="value" red="0.18823529411764706" green="0.38823529411764707" blue="0.67450980392156867" alpha="1" colorSpace="calibratedRGB"/>
                         </userDefinedRuntimeAttribute>
+                        <userDefinedRuntimeAttribute type="number" keyPath="imageSize">
+                            <real key="value" value="34"/>
+                        </userDefinedRuntimeAttribute>
+                        <userDefinedRuntimeAttribute type="image" keyPath="image" value="ic_photo_like_active"/>
+                        <userDefinedRuntimeAttribute type="number" keyPath="strokeWidth">
+                            <real key="value" value="8"/>
+                        </userDefinedRuntimeAttribute>
                     </userDefinedRuntimeAttributes>
                 </view>
                 <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="N1G-rq-nAE" customClass="CircleButton" customModule="Swish" customModuleProvider="target">
                     <rect key="frame" x="99" y="0.0" width="79" height="79"/>
-                    <subviews>
-                        <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="ic_photo_dislike_inactive" translatesAutoresizingMaskIntoConstraints="NO" id="Eze-6R-OuD">
-                            <rect key="frame" x="18" y="18" width="43" height="43"/>
-                            <constraints>
-                                <constraint firstAttribute="width" secondItem="Eze-6R-OuD" secondAttribute="height" multiplier="1:1" id="bMm-bU-0xk"/>
-                                <constraint firstAttribute="width" constant="43" id="hJS-bf-3mB"/>
-                            </constraints>
-                        </imageView>
-                    </subviews>
-                    <color key="backgroundColor" red="1" green="0.24225560971864202" blue="0.4263944424446181" alpha="1" colorSpace="calibratedRGB"/>
                     <constraints>
                         <constraint firstAttribute="width" secondItem="N1G-rq-nAE" secondAttribute="height" multiplier="1:1" id="3rZ-4I-aop"/>
                         <constraint firstAttribute="width" constant="79" id="Iku-I2-4WS"/>
-                        <constraint firstItem="Eze-6R-OuD" firstAttribute="centerY" secondItem="N1G-rq-nAE" secondAttribute="centerY" id="N0a-bl-AMx"/>
-                        <constraint firstItem="Eze-6R-OuD" firstAttribute="centerX" secondItem="N1G-rq-nAE" secondAttribute="centerX" id="pzA-wZ-baM"/>
                     </constraints>
                     <userDefinedRuntimeAttributes>
                         <userDefinedRuntimeAttribute type="color" keyPath="foregroundCircleColor">
@@ -69,6 +52,13 @@
                         <userDefinedRuntimeAttribute type="color" keyPath="backgroundCircleColor">
                             <color key="value" red="0.95294117647058818" green="0.4823529411764706" blue="0.44313725490196076" alpha="1" colorSpace="calibratedRGB"/>
                         </userDefinedRuntimeAttribute>
+                        <userDefinedRuntimeAttribute type="image" keyPath="image" value="ic_photo_dislike_active"/>
+                        <userDefinedRuntimeAttribute type="number" keyPath="imageSize">
+                            <real key="value" value="38"/>
+                        </userDefinedRuntimeAttribute>
+                        <userDefinedRuntimeAttribute type="number" keyPath="strokeWidth">
+                            <real key="value" value="8"/>
+                        </userDefinedRuntimeAttribute>
                     </userDefinedRuntimeAttributes>
                 </view>
             </subviews>
@@ -76,7 +66,6 @@
             <constraints>
                 <constraint firstItem="N1G-rq-nAE" firstAttribute="leading" secondItem="AsY-pk-pXe" secondAttribute="trailing" constant="20" id="2oi-SD-tO0"/>
                 <constraint firstItem="AsY-pk-pXe" firstAttribute="leading" secondItem="iN0-l3-epB" secondAttribute="leading" id="3jb-R7-NjZ"/>
-                <constraint firstItem="N1G-rq-nAE" firstAttribute="width" secondItem="N1G-rq-nAE" secondAttribute="height" multiplier="1:1" id="E7G-f7-ILD"/>
                 <constraint firstItem="AsY-pk-pXe" firstAttribute="top" secondItem="iN0-l3-epB" secondAttribute="top" id="VON-dT-Wz1"/>
                 <constraint firstAttribute="trailing" secondItem="N1G-rq-nAE" secondAttribute="trailing" id="hX5-dy-fdp"/>
                 <constraint firstItem="N1G-rq-nAE" firstAttribute="top" secondItem="iN0-l3-epB" secondAttribute="top" id="r0M-ue-V0Y"/>
@@ -89,7 +78,7 @@
         </view>
     </objects>
     <resources>
-        <image name="ic_photo_dislike_inactive" width="43" height="43"/>
-        <image name="ic_photo_like_inactive" width="37" height="37"/>
+        <image name="ic_photo_dislike_active" width="43" height="43"/>
+        <image name="ic_photo_like_active" width="37" height="37"/>
     </resources>
 </document>
