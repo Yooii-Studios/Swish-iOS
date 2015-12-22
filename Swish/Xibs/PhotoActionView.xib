@@ -1,8 +1,8 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="9060" systemVersion="15B42" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="9531" systemVersion="15C50" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES">
     <dependencies>
         <deployment identifier="iOS"/>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="9051"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="9529"/>
     </dependencies>
     <objects>
         <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner" customClass="PhotoActionView" customModule="Swish" customModuleProvider="target">
@@ -19,49 +19,44 @@
             <subviews>
                 <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="e3i-V4-zgl" customClass="CircleButton" customModule="Swish" customModuleProvider="target">
                     <rect key="frame" x="8" y="0.0" width="48" height="48"/>
-                    <subviews>
-                        <imageView userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="ic_photo_action_sending_location" translatesAutoresizingMaskIntoConstraints="NO" id="a0u-Ht-A4d">
-                            <rect key="frame" x="8" y="9" width="31" height="30"/>
-                            <animations/>
-                            <constraints>
-                                <constraint firstAttribute="height" constant="30" id="0dF-xt-Tz0"/>
-                                <constraint firstAttribute="width" constant="31" id="huk-u0-gDB"/>
-                            </constraints>
-                        </imageView>
-                    </subviews>
-                    <animations/>
-                    <color key="backgroundColor" red="0.094117647058823528" green="0.72549019607843135" blue="1" alpha="1" colorSpace="calibratedRGB"/>
                     <constraints>
-                        <constraint firstItem="a0u-Ht-A4d" firstAttribute="centerY" secondItem="e3i-V4-zgl" secondAttribute="centerY" id="2Lz-w2-BZ3"/>
-                        <constraint firstItem="a0u-Ht-A4d" firstAttribute="centerX" secondItem="e3i-V4-zgl" secondAttribute="centerX" id="GyV-r6-taC"/>
                         <constraint firstAttribute="height" constant="48" id="i5U-0t-2qJ"/>
                         <constraint firstAttribute="width" constant="48" id="ne7-2X-zcn"/>
                     </constraints>
+                    <userDefinedRuntimeAttributes>
+                        <userDefinedRuntimeAttribute type="image" keyPath="image" value="ic_photo_action_sending_location"/>
+                        <userDefinedRuntimeAttribute type="color" keyPath="foregroundCircleColor">
+                            <color key="value" red="0.094117647058823528" green="0.72549019607843135" blue="1" alpha="1" colorSpace="calibratedRGB"/>
+                        </userDefinedRuntimeAttribute>
+                        <userDefinedRuntimeAttribute type="number" keyPath="strokeWidth">
+                            <real key="value" value="0.0"/>
+                        </userDefinedRuntimeAttribute>
+                        <userDefinedRuntimeAttribute type="number" keyPath="imageSize">
+                            <real key="value" value="33"/>
+                        </userDefinedRuntimeAttribute>
+                    </userDefinedRuntimeAttributes>
                 </view>
                 <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="EXX-cM-xmm" customClass="CircleButton" customModule="Swish" customModuleProvider="target">
                     <rect key="frame" x="8" y="56" width="48" height="48"/>
-                    <subviews>
-                        <imageView userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="ic_photo_action_chat" translatesAutoresizingMaskIntoConstraints="NO" id="R8n-nJ-e4c">
-                            <rect key="frame" x="13" y="12" width="23" height="23"/>
-                            <animations/>
-                            <constraints>
-                                <constraint firstAttribute="height" constant="23" id="DZA-jp-bZ6"/>
-                                <constraint firstAttribute="width" constant="23" id="rWz-lV-PJ4"/>
-                            </constraints>
-                        </imageView>
-                    </subviews>
-                    <animations/>
-                    <color key="backgroundColor" red="0.16626307351100833" green="0.42769622229559412" blue="1" alpha="1" colorSpace="calibratedRGB"/>
                     <constraints>
-                        <constraint firstItem="R8n-nJ-e4c" firstAttribute="centerY" secondItem="EXX-cM-xmm" secondAttribute="centerY" id="JtZ-cw-93z"/>
-                        <constraint firstItem="R8n-nJ-e4c" firstAttribute="centerX" secondItem="EXX-cM-xmm" secondAttribute="centerX" id="Y0p-FU-exO"/>
                         <constraint firstAttribute="width" constant="48" id="d2O-7V-puS"/>
                         <constraint firstAttribute="height" constant="48" id="vXs-xC-vMu"/>
                     </constraints>
+                    <userDefinedRuntimeAttributes>
+                        <userDefinedRuntimeAttribute type="color" keyPath="foregroundCircleColor">
+                            <color key="value" red="0.16470588235294117" green="0.42745098039215684" blue="1" alpha="1" colorSpace="calibratedRGB"/>
+                        </userDefinedRuntimeAttribute>
+                        <userDefinedRuntimeAttribute type="number" keyPath="strokeWidth">
+                            <real key="value" value="0.0"/>
+                        </userDefinedRuntimeAttribute>
+                        <userDefinedRuntimeAttribute type="image" keyPath="image" value="ic_photo_action_chat"/>
+                        <userDefinedRuntimeAttribute type="number" keyPath="imageSize">
+                            <real key="value" value="24"/>
+                        </userDefinedRuntimeAttribute>
+                    </userDefinedRuntimeAttributes>
                 </view>
                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="3" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="1g6-3f-gbD">
                     <rect key="frame" x="0.0" y="52" width="20" height="20"/>
-                    <animations/>
                     <color key="backgroundColor" red="1" green="0.084040851152848539" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
                     <constraints>
                         <constraint firstAttribute="width" constant="20" id="3Z6-sN-SvN"/>
@@ -72,7 +67,6 @@
                     <nil key="highlightedColor"/>
                 </label>
             </subviews>
-            <animations/>
             <color key="backgroundColor" white="1" alpha="0.0" colorSpace="calibratedWhite"/>
             <constraints>
                 <constraint firstAttribute="trailing" secondItem="e3i-V4-zgl" secondAttribute="trailing" id="3xB-dH-inB"/>
@@ -89,7 +83,6 @@
         <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="z83-nK-yR1">
             <rect key="frame" x="0.0" y="0.0" width="42" height="21"/>
             <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-            <animations/>
             <fontDescription key="fontDescription" type="system" pointSize="17"/>
             <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
             <nil key="highlightedColor"/>
