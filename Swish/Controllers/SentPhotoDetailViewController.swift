@@ -40,11 +40,6 @@ class SentPhotoDetailViewController: UIViewController, PhotoActionType {
         setUpPhotoActionView()
     }
     
-    override func viewWillAppear(animated: Bool) {
-        super.viewWillAppear(animated)
-        refreshUnreadChatCount()
-    }
-    
     // MARK: - Init
     
     private func initPhotoCardView() {

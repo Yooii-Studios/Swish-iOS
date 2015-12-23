@@ -33,11 +33,6 @@ class ReceivedPhotoDetailViewController: UIViewController, PhotoActionType, Phot
         setUpPhotoVoteView()
     }
     
-    override func viewWillAppear(animated: Bool) {
-        super.viewWillAppear(animated)
-        refreshUnreadChatCount()
-    }
-    
     override func viewWillDisappear(animated: Bool) {
         super.viewWillDisappear(animated)
         updatePhotoState()
@@ -83,6 +78,18 @@ class ReceivedPhotoDetailViewController: UIViewController, PhotoActionType, Phot
 
     @IBAction func cancelButtonDidTap(sender: AnyObject) {
         dismissViewControllerAnimated(true, completion: nil)
+    }
+    
+    // TODO: 테스트 이후 최종적으로 삭제 필요
+    @IBAction func resetButtonDidTap(sender: AnyObject) {
+        SwishDatabase.updatePhotoState(photo.id, photoState: .Delivered)
+        // 원래 초기화에만 사용해야 하는 로직이지만 테스트를 위해서만 사용하고 추후 삭제 예정
+        setUpPhotoVoteView()
+    }
+    
+    // TODO: 테스트 이후 최종적으로 삭제 필요
+    @IBAction func increaseWingsButtonDidTap(sender: AnyObject) {
+        SwishDatabase.increaseUnreadChatCount(photo.id)
     }
     
     // MARK: - PhotoActionType 

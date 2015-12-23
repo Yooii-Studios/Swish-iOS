@@ -9,6 +9,9 @@
 //  PhotoActionType를 comfort하는 UIViewController 클래스의 viewDidLoad()에 setUpPhotoActionView()를 불러줄 것.
 //  또한 viewWillAppear()에 refreshUnreadChatCount()을 불러줄 것
 //
+//  TODO: 로직 변경 - KVO를 사용하면 refreshUnreadChatCount()를 불러줄 필요가 없을 것 같아 우선 관련 로직 삭제. 추후 채팅 VC 구현 후
+//  위 내용 확인하고 처리 및 주석 내용 변경할 것
+//
 
 import UIKit
 
@@ -24,14 +27,27 @@ protocol PhotoActionType {
 extension PhotoActionType where Self: UIViewController {
     
     final func setUpPhotoActionView() {
-        initUnreadCountReactStream()
         setUpMapButton()
         setUpChatButton()
+        observeUnreadCount()
+        observePhotoStateForChatButtonVisibility()
     }
     
-    private func initUnreadCountReactStream() {
-        // TODO: React Stream으로 사진의 카운트가 변경될 때 숫자를 변경해주게 구현
-        // 숫자가 0이라면 invisible, 있을 경우 visible과 숫자 변경
+    private func observeUnreadCount() {
+        PhotoObserver.observeUnreadMessageCountForPhoto(photo, owner: self) { [unowned self] (Int) -> Void in
+            self.refreshUnreadChatCount()
+        }
+    }
+    
+    // TODO: showChatButtonWithAnimation(), hideChatButtonWithAnimation() 구현 필요
+    private func observePhotoStateForChatButtonVisibility() {
+        PhotoObserver.observePhotoStateForPhoto(photo, owner: self) { [unowned self] (id, state) -> Void in
+            if state == .Liked {
+                self.photoActionView.chatButton.alpha = 1
+            } else {
+                self.photoActionView.chatButton.alpha = 0
+            }
+        }
     }
     
     private func setUpMapButton() {
@@ -52,16 +68,8 @@ extension PhotoActionType where Self: UIViewController {
             photoActionView.chatButton.alpha = 0
         }
         
-        // TODO: 사진이 Like나 Dislike상태이면 상태 변경 불가능하게 처리
-        // 이 부분은 받은 사진과 연관이 있는 부분이고, PhotoVoteType을 만들어서 연계해서 처리해야 할 듯
-        
         let singleTapGesture = UITapGestureRecognizer(target: self, action: "chatButtonDidTap:")
         photoActionView.chatButton.addGestureRecognizer(singleTapGesture)
-    }
-    
-    // TODO: photoState의 상태를 React로 KVO 처리해서 showChatButtonWithAnimation(), hideChatButtonWithAnimation() 구현 필요
-    private func initChatButtonReactStream() {
-        
     }
     
     private func showChatButtonWithAnimation() {
@@ -73,17 +81,17 @@ extension PhotoActionType where Self: UIViewController {
     }
     
     // TODO: 동현에게 안드로이드 handleReceivedMessage에 로직을 어떻게 처리할 건지에 대해 물어보기
-    final func refreshUnreadChatCount() {
+    private func refreshUnreadChatCount() {
          setUnreadChatCount(photo.unreadMessageCount)
     }
     
     private func setUnreadChatCount(count: Int) {
-        if count <= 0 {
-            photoActionView.unreadChatCountLabel.alpha = 0
-            photoActionView.unreadChatCountLabel.text = ""
-        } else {
+        if count > 0 && photoActionView.chatButton.alpha == 1 {
             photoActionView.unreadChatCountLabel.alpha = 1
             photoActionView.unreadChatCountLabel.text = String(count)
+        } else {
+            photoActionView.unreadChatCountLabel.alpha = 0
+            photoActionView.unreadChatCountLabel.text = ""
         }
     }
     
@@ -99,7 +107,7 @@ extension PhotoActionType where Self: UIViewController {
     }
     
     final func showChatDialog() {
-        // TODO: 채팅쪽 UX 구현과 함께 구현 예정
+        // TODO: 채팅쪽 UX 구현과 함께 구현 예정. Android의 ChatRoomOpener.start() 참고
         print("showChatDialog")
     }
 }
