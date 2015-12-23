@@ -11,7 +11,7 @@ import CoreLocation
 
 final class LocationManager {
     
-    static let dummyLocation = CLLocation(latitude: 127.001, longitude: 36.001)
+    static let dummyLocation = CLLocation(latitude: 36.01, longitude: 127.001)
     
     final class func requestLocation(block: (location: CLLocation) -> Void) {
         // TODO: 실제 로직 구현해야 함. 현재는 더미 위치 리턴하도록 구현해 둠

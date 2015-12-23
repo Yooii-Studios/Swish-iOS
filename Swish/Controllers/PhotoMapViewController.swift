@@ -30,6 +30,8 @@ class PhotoMapViewController: UIViewController, PhotoMapType {
     }
     
     override func viewDidAppear(animated: Bool) {
+        super.viewDidAppear(animated)
+        
         moveMapToInitialLocation()
         requestLocationAuthorization()
     }
@@ -60,11 +62,6 @@ class PhotoMapViewController: UIViewController, PhotoMapType {
     
     private func initPhotoMapTypeHandler() {
         photoMapTypeHandler = PhotoMapTypeHandler(photoMapType: self)
-    }
-    
-    private func moveMapToInitialLocation() {
-        let location = displayLocationOfPhoto(photos[0])
-        mapView.setCenterCoordinate(location.coordinate, withZoomLevel: photoMapViewZoomLevel, animationType: .Normal)
     }
 
     /*
