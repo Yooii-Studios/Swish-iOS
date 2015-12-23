@@ -85,7 +85,6 @@ class PhotoVoteView: NibDesignable {
         dislikeButton.userInteractionEnabled = true
     }
     
-    // TODO: 동현에게 두 버튼 액션 메서드 부분 이렇게 변경해놓고 viewWillDisappear()에서 처리하면 되는 것이 맞는지 물어보기
     final func likeButtonDidTap(sender: AnyObject) {
         setLikeButtonSelected()
         updatePhotoState(.Liked)
@@ -108,5 +107,4 @@ class PhotoVoteView: NibDesignable {
         // Drawing code
     }
     */
-
 }

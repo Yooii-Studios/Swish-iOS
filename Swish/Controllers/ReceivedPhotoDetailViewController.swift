@@ -85,6 +85,13 @@ class ReceivedPhotoDetailViewController: UIViewController, PhotoActionType, Phot
         dismissViewControllerAnimated(true, completion: nil)
     }
     
+    // TODO: 테스트 이후 최종적으로 삭제 필요
+    @IBAction func resetButtonDidTap(sender: AnyObject) {
+        SwishDatabase.updatePhotoState(photo.id, photoState: .Delivered)
+        // 원래 초기화에만 사용해야 하는 로직이지만 테스트를 위해서만 사용하고 추후 삭제 예정
+        setUpPhotoVoteView()
+    }
+    
     // MARK: - PhotoActionType 
     
     func mapButtonDidTap(sender: AnyObject) {
