@@ -107,7 +107,7 @@ extension PhotoActionType where Self: UIViewController {
     }
     
     final func showChatDialog() {
-        // TODO: 채팅쪽 UX 구현과 함께 구현 예정
+        // TODO: 채팅쪽 UX 구현과 함께 구현 예정. Android의 ChatRoomOpener.start() 참고
         print("showChatDialog")
     }
 }
