@@ -1,0 +1,57 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="9531" systemVersion="15C50" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" initialViewController="fdt-le-1ad">
+    <dependencies>
+        <deployment identifier="iOS"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="9529"/>
+        <capability name="Constraints to layout margins" minToolsVersion="6.0"/>
+    </dependencies>
+    <scenes>
+        <!--Splash View Controller-->
+        <scene sceneID="rvR-mj-3z6">
+            <objects>
+                <viewController id="fdt-le-1ad" customClass="SplashViewController" customModule="Swish" customModuleProvider="target" sceneMemberID="viewController">
+                    <layoutGuides>
+                        <viewControllerLayoutGuide type="top" id="FbU-Gv-zfS"/>
+                        <viewControllerLayoutGuide type="bottom" id="cPb-j9-Mlo"/>
+                    </layoutGuides>
+                    <view key="view" contentMode="scaleToFill" id="4XW-5L-hDl">
+                        <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Swish" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="OHR-9E-NjR">
+                                <rect key="frame" x="20" y="270" width="560" height="60"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="50"/>
+                                <color key="textColor" red="1" green="1" blue="1" alpha="1" colorSpace="calibratedRGB"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                        </subviews>
+                        <color key="backgroundColor" red="0.18823529411764706" green="0.38823529411764707" blue="0.67450980392156867" alpha="1" colorSpace="calibratedRGB"/>
+                        <constraints>
+                            <constraint firstItem="OHR-9E-NjR" firstAttribute="centerX" secondItem="4XW-5L-hDl" secondAttribute="centerX" id="5eD-4f-JAJ"/>
+                            <constraint firstAttribute="leadingMargin" secondItem="OHR-9E-NjR" secondAttribute="leading" id="9RE-IC-oaq"/>
+                            <constraint firstAttribute="trailingMargin" secondItem="OHR-9E-NjR" secondAttribute="trailing" id="EXJ-yf-7Vx"/>
+                            <constraint firstItem="OHR-9E-NjR" firstAttribute="centerY" secondItem="4XW-5L-hDl" secondAttribute="centerY" id="WFg-JH-wUa"/>
+                        </constraints>
+                    </view>
+                    <extendedEdge key="edgesForExtendedLayout"/>
+                    <nil key="simulatedStatusBarMetrics"/>
+                    <nil key="simulatedTopBarMetrics"/>
+                    <nil key="simulatedBottomBarMetrics"/>
+                    <connections>
+                        <segue destination="dHx-V8-nlf" kind="presentation" identifier="ShowMain" animates="NO" id="wBW-n3-7kZ"/>
+                    </connections>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="3X0-zp-iuh" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="404" y="461"/>
+        </scene>
+        <!--Main-->
+        <scene sceneID="bKS-OT-l3t">
+            <objects>
+                <viewControllerPlaceholder storyboardIdentifier="Main" storyboardName="Main" id="dHx-V8-nlf" sceneMemberID="viewController"/>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="53k-GM-zRH" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="902.5" y="461"/>
+        </scene>
+    </scenes>
+</document>
