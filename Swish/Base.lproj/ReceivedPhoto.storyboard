@@ -247,12 +247,21 @@
                                     <action selector="resetButtonDidTap:" destination="ze9-QO-jwu" eventType="touchUpInside" id="M4u-AQ-NtU"/>
                                 </connections>
                             </button>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Rxq-Xa-xre">
+                                <rect key="frame" x="296" y="484" width="59" height="30"/>
+                                <state key="normal" title="Increase"/>
+                                <connections>
+                                    <action selector="increaseWingsButtonDidTap:" destination="ze9-QO-jwu" eventType="touchUpInside" id="jGv-ov-pid"/>
+                                </connections>
+                            </button>
                         </subviews>
                         <color key="backgroundColor" cocoaTouchSystemColor="groupTableViewBackgroundColor"/>
                         <constraints>
                             <constraint firstItem="FKG-hX-fGK" firstAttribute="top" secondItem="BfN-92-ELY" secondAttribute="bottom" constant="51" id="1AH-I4-eZZ"/>
                             <constraint firstItem="XOU-SH-EWM" firstAttribute="bottom" secondItem="BfN-92-ELY" secondAttribute="bottom" id="4Fh-GJ-EDP"/>
                             <constraint firstAttribute="leading" secondItem="k8h-5D-daJ" secondAttribute="leading" constant="-20" id="AgI-58-xoU"/>
+                            <constraint firstItem="XOU-SH-EWM" firstAttribute="top" secondItem="Rxq-Xa-xre" secondAttribute="bottom" constant="8" id="Ien-fs-9a8"/>
+                            <constraint firstAttribute="trailing" secondItem="Rxq-Xa-xre" secondAttribute="trailing" constant="20" id="KtN-vK-XDt"/>
                             <constraint firstItem="k8h-5D-daJ" firstAttribute="top" secondItem="SRY-TF-pjP" secondAttribute="bottom" constant="20" id="MXd-ge-qpt"/>
                             <constraint firstAttribute="trailing" secondItem="k8h-5D-daJ" secondAttribute="trailing" constant="20" id="SH0-71-dKW"/>
                             <constraint firstAttribute="trailing" secondItem="XOU-SH-EWM" secondAttribute="trailing" constant="20" id="TBO-0J-pfu"/>

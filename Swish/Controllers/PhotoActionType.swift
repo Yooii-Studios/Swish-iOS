@@ -24,15 +24,18 @@ protocol PhotoActionType {
 extension PhotoActionType where Self: UIViewController {
     
     final func setUpPhotoActionView() {
-        initUnreadCountReactStream()
-        initChatButtonReactStream()
         setUpMapButton()
         setUpChatButton()
+        initUnreadCountReactStream()
+        initChatButtonReactStream()
     }
     
     private func initUnreadCountReactStream() {
-        // TODO: React Stream으로 사진의 카운트가 변경될 때 숫자를 변경해주게 구현
-        // 숫자가 0이라면 invisible, 있을 경우 visible과 숫자 변경
+        PhotoObserver.observeUnreadMessageCountForPhoto(photo, owner: self) { [unowned self] (Int) -> Void in
+            self.refreshUnreadChatCount()
+        }
+    }
+    
     // TODO: showChatButtonWithAnimation(), hideChatButtonWithAnimation() 구현 필요
     private func initChatButtonReactStream() {
         PhotoObserver.observePhotoStateForPhoto(photo, owner: self) { [unowned self] (id, state) -> Void in
@@ -75,17 +78,17 @@ extension PhotoActionType where Self: UIViewController {
     }
     
     // TODO: 동현에게 안드로이드 handleReceivedMessage에 로직을 어떻게 처리할 건지에 대해 물어보기
-    final func refreshUnreadChatCount() {
+    private func refreshUnreadChatCount() {
          setUnreadChatCount(photo.unreadMessageCount)
     }
     
     private func setUnreadChatCount(count: Int) {
-        if count <= 0 {
-            photoActionView.unreadChatCountLabel.alpha = 0
-            photoActionView.unreadChatCountLabel.text = ""
-        } else {
+        if count > 0 && photoActionView.chatButton.alpha == 1 {
             photoActionView.unreadChatCountLabel.alpha = 1
             photoActionView.unreadChatCountLabel.text = String(count)
+        } else {
+            photoActionView.unreadChatCountLabel.alpha = 0
+            photoActionView.unreadChatCountLabel.text = ""
         }
     }
     

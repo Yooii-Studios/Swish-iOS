@@ -92,6 +92,11 @@ class ReceivedPhotoDetailViewController: UIViewController, PhotoActionType, Phot
         setUpPhotoVoteView()
     }
     
+    // TODO: 테스트 이후 최종적으로 삭제 필요
+    @IBAction func increaseWingsButtonDidTap(sender: AnyObject) {
+        SwishDatabase.increaseUnreadChatCount(photo.id)
+    }
+    
     // MARK: - PhotoActionType 
     
     func mapButtonDidTap(sender: AnyObject) {
