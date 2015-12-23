@@ -25,6 +25,7 @@ extension PhotoActionType where Self: UIViewController {
     
     final func setUpPhotoActionView() {
         initUnreadCountReactStream()
+        initChatButtonReactStream()
         setUpMapButton()
         setUpChatButton()
     }
@@ -32,6 +33,15 @@ extension PhotoActionType where Self: UIViewController {
     private func initUnreadCountReactStream() {
         // TODO: React Stream으로 사진의 카운트가 변경될 때 숫자를 변경해주게 구현
         // 숫자가 0이라면 invisible, 있을 경우 visible과 숫자 변경
+    // TODO: showChatButtonWithAnimation(), hideChatButtonWithAnimation() 구현 필요
+    private func initChatButtonReactStream() {
+        PhotoObserver.observePhotoStateForPhoto(photo, owner: self) { [unowned self] (id, state) -> Void in
+            if state == .Liked {
+                self.photoActionView.chatButton.alpha = 1
+            } else {
+                self.photoActionView.chatButton.alpha = 0
+            }
+        }
     }
     
     private func setUpMapButton() {
@@ -52,16 +62,8 @@ extension PhotoActionType where Self: UIViewController {
             photoActionView.chatButton.alpha = 0
         }
         
-        // TODO: 사진이 Like나 Dislike상태이면 상태 변경 불가능하게 처리
-        // 이 부분은 받은 사진과 연관이 있는 부분이고, PhotoVoteType을 만들어서 연계해서 처리해야 할 듯
-        
         let singleTapGesture = UITapGestureRecognizer(target: self, action: "chatButtonDidTap:")
         photoActionView.chatButton.addGestureRecognizer(singleTapGesture)
-    }
-    
-    // TODO: photoState의 상태를 React로 KVO 처리해서 showChatButtonWithAnimation(), hideChatButtonWithAnimation() 구현 필요
-    private func initChatButtonReactStream() {
-        
     }
     
     private func showChatButtonWithAnimation() {
