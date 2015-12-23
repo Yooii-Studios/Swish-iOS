@@ -230,7 +230,7 @@
 		F266D9011B9F159D00BDEB75 /* MyInfoViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MyInfoViewController.swift; sourceTree = "<group>"; };
 		F266D9031B9F15D500BDEB75 /* PhotoPickerViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PhotoPickerViewController.swift; sourceTree = "<group>"; };
 		F273C3A41BFCB4A2007D047B /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/ReceivedPhoto.storyboard; sourceTree = "<group>"; };
-		F273C3A61BFCB4AF007D047B /* SentPhoto.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; name = SentPhoto.storyboard; path = Base.lproj/SentPhoto.storyboard; sourceTree = "<group>"; };
+		F273C3A61BFCB4AF007D047B /* SentPhoto.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = SentPhoto.storyboard; sourceTree = "<group>"; };
 		F273C3A91BFCB4BB007D047B /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/MyProfile.storyboard; sourceTree = "<group>"; };
 		F288C7E71C106C600058B569 /* PhotoActionType.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PhotoActionType.swift; sourceTree = "<group>"; };
 		F28EF57C1BE8BDBD00204C37 /* Swift Code Conventions.playground */ = {isa = PBXFileReference; lastKnownFileType = file.playground; path = "Swift Code Conventions.playground"; sourceTree = "<group>"; };
@@ -530,6 +530,7 @@
 				F257A89F1BFDD0FD00BD56C8 /* PhotoMap.storyboard */,
 			);
 			name = Storyboards;
+			path = Base.lproj;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -817,6 +818,7 @@
 				F23A7B171BA1D4070063233F /* Base */,
 			);
 			name = PhotoPicker.storyboard;
+			path = ..;
 			sourceTree = "<group>";
 		};
 		F23A7B191BA1D4140063233F /* MyInfo.storyboard */ = {
@@ -825,6 +827,7 @@
 				F23A7B1A1BA1D4140063233F /* Base */,
 			);
 			name = MyInfo.storyboard;
+			path = ..;
 			sourceTree = "<group>";
 		};
 		F23A7B1E1BA1DF250063233F /* Dressing.storyboard */ = {
@@ -833,6 +836,7 @@
 				F23A7B1F1BA1DF250063233F /* Base */,
 			);
 			name = Dressing.storyboard;
+			path = ..;
 			sourceTree = "<group>";
 		};
 		F245DCB41B9E7B2D0072308B /* Main.storyboard */ = {
@@ -841,6 +845,7 @@
 				F245DCB51B9E7B2D0072308B /* Base */,
 			);
 			name = Main.storyboard;
+			path = ..;
 			sourceTree = "<group>";
 		};
 		F245DCBC1B9E7B2D0072308B /* LaunchScreen.storyboard */ = {
@@ -849,6 +854,7 @@
 				F245DCBD1B9E7B2D0072308B /* Base */,
 			);
 			name = LaunchScreen.storyboard;
+			path = ..;
 			sourceTree = "<group>";
 		};
 		F257A89F1BFDD0FD00BD56C8 /* PhotoMap.storyboard */ = {
@@ -857,6 +863,7 @@
 				F257A8A01BFDD0FD00BD56C8 /* Base */,
 			);
 			name = PhotoMap.storyboard;
+			path = ..;
 			sourceTree = "<group>";
 		};
 		F273C3A31BFCB4A2007D047B /* ReceivedPhoto.storyboard */ = {
@@ -865,6 +872,7 @@
 				F273C3A41BFCB4A2007D047B /* Base */,
 			);
 			name = ReceivedPhoto.storyboard;
+			path = ..;
 			sourceTree = "<group>";
 		};
 		F273C3A81BFCB4BB007D047B /* MyProfile.storyboard */ = {
@@ -873,6 +881,7 @@
 				F273C3A91BFCB4BB007D047B /* Base */,
 			);
 			name = MyProfile.storyboard;
+			path = ..;
 			sourceTree = "<group>";
 		};
 		F2F5451E1BD5E84500AEE02A /* ShareResult.storyboard */ = {
@@ -881,6 +890,7 @@
 				F2F5451F1BD5E84500AEE02A /* Base */,
 			);
 			name = ShareResult.storyboard;
+			path = ..;
 			sourceTree = "<group>";
 		};
 /* End PBXVariantGroup section */
