@@ -29,18 +29,18 @@ extension PhotoActionType where Self: UIViewController {
     final func setUpPhotoActionView() {
         setUpMapButton()
         setUpChatButton()
-        initUnreadCountReactStream()
-        initChatButtonReactStream()
+        observeUnreadCount()
+        observePhotoStateForChatButtonVisibility()
     }
     
-    private func initUnreadCountReactStream() {
+    private func observeUnreadCount() {
         PhotoObserver.observeUnreadMessageCountForPhoto(photo, owner: self) { [unowned self] (Int) -> Void in
             self.refreshUnreadChatCount()
         }
     }
     
     // TODO: showChatButtonWithAnimation(), hideChatButtonWithAnimation() 구현 필요
-    private func initChatButtonReactStream() {
+    private func observePhotoStateForChatButtonVisibility() {
         PhotoObserver.observePhotoStateForPhoto(photo, owner: self) { [unowned self] (id, state) -> Void in
             if state == .Liked {
                 self.photoActionView.chatButton.alpha = 1
