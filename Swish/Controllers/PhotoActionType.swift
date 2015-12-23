@@ -9,6 +9,9 @@
 //  PhotoActionType를 comfort하는 UIViewController 클래스의 viewDidLoad()에 setUpPhotoActionView()를 불러줄 것.
 //  또한 viewWillAppear()에 refreshUnreadChatCount()을 불러줄 것
 //
+//  TODO: 로직 변경 - KVO를 사용하면 refreshUnreadChatCount()를 불러줄 필요가 없을 것 같아 우선 관련 로직 삭제. 추후 채팅 VC 구현 후
+//  위 내용 확인하고 처리 및 주석 내용 변경할 것
+//
 
 import UIKit
 

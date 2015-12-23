@@ -33,11 +33,6 @@ class ReceivedPhotoDetailViewController: UIViewController, PhotoActionType, Phot
         setUpPhotoVoteView()
     }
     
-    override func viewWillAppear(animated: Bool) {
-        super.viewWillAppear(animated)
-        refreshUnreadChatCount()
-    }
-    
     override func viewWillDisappear(animated: Bool) {
         super.viewWillDisappear(animated)
         updatePhotoState()
