@@ -33,6 +33,8 @@
 //          }
 //      }
 //
+//    4. 다음 사진을 보여줘야 할 경우 showNextPhoto() 메서드 호출(ex. 사진 뷰의 didTap)
+//
 //  Swish
 //
 //  Created by 정동현 on 2015. 12. 23..
