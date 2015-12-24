@@ -113,6 +113,8 @@
 		F2D882A11C0F1B7100DF8C6D /* PhotoActionView.xib in Resources */ = {isa = PBXBuildFile; fileRef = F2D882A01C0F1B7100DF8C6D /* PhotoActionView.xib */; };
 		F2D882A31C0F1BEA00DF8C6D /* CircleButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = F2D882A21C0F1BEA00DF8C6D /* CircleButton.swift */; };
 		F2E706221C27D3A9003CE154 /* CircleButton.xib in Resources */ = {isa = PBXBuildFile; fileRef = F2E706211C27D3A9003CE154 /* CircleButton.xib */; };
+		F2EA77AA1C2AB41100494C18 /* Splash.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = F2EA77A81C2AB41100494C18 /* Splash.storyboard */; };
+		F2EA77AC1C2AB53B00494C18 /* SplashViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = F2EA77AB1C2AB53B00494C18 /* SplashViewController.swift */; };
 		F2ECA5C81BFAE6E300E3AD93 /* SentPhotoCollectionViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = F2ECA5C71BFAE6E300E3AD93 /* SentPhotoCollectionViewController.swift */; };
 		F2ECA5CC1BFAE7FC00E3AD93 /* SentPhotoViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = F2ECA5CB1BFAE7FC00E3AD93 /* SentPhotoViewCell.swift */; };
 		F2F545201BD5E84500AEE02A /* ShareResult.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = F2F5451E1BD5E84500AEE02A /* ShareResult.storyboard */; };
@@ -244,6 +246,8 @@
 		F2D882A01C0F1B7100DF8C6D /* PhotoActionView.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = PhotoActionView.xib; sourceTree = "<group>"; };
 		F2D882A21C0F1BEA00DF8C6D /* CircleButton.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CircleButton.swift; sourceTree = "<group>"; };
 		F2E706211C27D3A9003CE154 /* CircleButton.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = CircleButton.xib; sourceTree = "<group>"; };
+		F2EA77A91C2AB41100494C18 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Splash.storyboard; sourceTree = "<group>"; };
+		F2EA77AB1C2AB53B00494C18 /* SplashViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SplashViewController.swift; sourceTree = "<group>"; };
 		F2ECA5C71BFAE6E300E3AD93 /* SentPhotoCollectionViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SentPhotoCollectionViewController.swift; sourceTree = "<group>"; };
 		F2ECA5CB1BFAE7FC00E3AD93 /* SentPhotoViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SentPhotoViewCell.swift; sourceTree = "<group>"; };
 		F2EDD338D07BE381CAD26509 /* Pods.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = Pods.release.xcconfig; path = "Pods/Target Support Files/Pods/Pods.release.xcconfig"; sourceTree = "<group>"; };
@@ -433,6 +437,7 @@
 				F288C7E71C106C600058B569 /* PhotoActionType.swift */,
 				F2A1C4FE1C21781800DE88F2 /* PhotoVoteType.swift */,
 				57EFC1951C055E19006CF2EF /* LocationServiceAuthorizable.swift */,
+				F2EA77AB1C2AB53B00494C18 /* SplashViewController.swift */,
 				F245DCB21B9E7B2D0072308B /* MainViewController.swift */,
 				F2C7CBD21BE1C53800ED429A /* DressingViewController.swift */,
 				F2F545211BD5ED5400AEE02A /* ShareResultViewController.swift */,
@@ -518,6 +523,8 @@
 		F2F5451D1BD5E76B00AEE02A /* Storyboards */ = {
 			isa = PBXGroup;
 			children = (
+				F245DCBC1B9E7B2D0072308B /* LaunchScreen.storyboard */,
+				F2EA77A81C2AB41100494C18 /* Splash.storyboard */,
 				F245DCB41B9E7B2D0072308B /* Main.storyboard */,
 				F23A7B1E1BA1DF250063233F /* Dressing.storyboard */,
 				F23A7B191BA1D4140063233F /* MyInfo.storyboard */,
@@ -525,7 +532,6 @@
 				F273C3A61BFCB4AF007D047B /* SentPhoto.storyboard */,
 				F273C3A81BFCB4BB007D047B /* MyProfile.storyboard */,
 				F23A7B161BA1D4070063233F /* PhotoPicker.storyboard */,
-				F245DCBC1B9E7B2D0072308B /* LaunchScreen.storyboard */,
 				F2F5451E1BD5E84500AEE02A /* ShareResult.storyboard */,
 				F257A89F1BFDD0FD00BD56C8 /* PhotoMap.storyboard */,
 			);
@@ -626,6 +632,7 @@
 				F245DCBE1B9E7B2D0072308B /* LaunchScreen.storyboard in Resources */,
 				F23A7B181BA1D4070063233F /* PhotoPicker.storyboard in Resources */,
 				F245DCBB1B9E7B2D0072308B /* Assets.xcassets in Resources */,
+				F2EA77AA1C2AB41100494C18 /* Splash.storyboard in Resources */,
 				F245DCB61B9E7B2D0072308B /* Main.storyboard in Resources */,
 				F2BDF9DF1C2144750031682B /* PhotoVoteView.xib in Resources */,
 				F273C3A71BFCB4AF007D047B /* SentPhoto.storyboard in Resources */,
@@ -697,6 +704,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				F2EA77AC1C2AB53B00494C18 /* SplashViewController.swift in Sources */,
 				F20E7CBA1BFDD55F005149C1 /* PhotoMapViewController.swift in Sources */,
 				57B348B61C28050A00AFBDED /* UserLevelInfo.swift in Sources */,
 				57EFC1961C055E19006CF2EF /* LocationServiceAuthorizable.swift in Sources */,
@@ -882,6 +890,14 @@
 			);
 			name = MyProfile.storyboard;
 			path = ..;
+			sourceTree = "<group>";
+		};
+		F2EA77A81C2AB41100494C18 /* Splash.storyboard */ = {
+			isa = PBXVariantGroup;
+			children = (
+				F2EA77A91C2AB41100494C18 /* Base */,
+			);
+			name = Splash.storyboard;
 			sourceTree = "<group>";
 		};
 		F2F5451E1BD5E84500AEE02A /* ShareResult.storyboard */ = {
