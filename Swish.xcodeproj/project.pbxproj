@@ -50,6 +50,7 @@
 		57B348B41C28026800AFBDED /* RateNotificationHandler.swift in Sources */ = {isa = PBXBuildFile; fileRef = 57B348B31C28026800AFBDED /* RateNotificationHandler.swift */; };
 		57B348B61C28050A00AFBDED /* UserLevelInfo.swift in Sources */ = {isa = PBXBuildFile; fileRef = 57B348B51C28050A00AFBDED /* UserLevelInfo.swift */; };
 		57C173ED1BDE3EFC0084DF8D /* ChatMessageSender.swift in Sources */ = {isa = PBXBuildFile; fileRef = 57C173EC1BDE3EFC0084DF8D /* ChatMessageSender.swift */; };
+		57C315FA1C2A645100AB7260 /* ReceivedPhotoDisplayable.swift in Sources */ = {isa = PBXBuildFile; fileRef = 57C315F91C2A645100AB7260 /* ReceivedPhotoDisplayable.swift */; };
 		57C729DC1BDF2C0D00DDFFDA /* ChatBlocker.swift in Sources */ = {isa = PBXBuildFile; fileRef = 57C729DB1BDF2C0D00DDFFDA /* ChatBlocker.swift */; };
 		57C729E11BDF501700DDFFDA /* PhotoTrendsLoader.swift in Sources */ = {isa = PBXBuildFile; fileRef = 57C729E01BDF501700DDFFDA /* PhotoTrendsLoader.swift */; };
 		57C7AA8C1BFDB152008E10F6 /* CGSize+Operator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 57C7AA8B1BFDB152008E10F6 /* CGSize+Operator.swift */; };
@@ -176,6 +177,7 @@
 		57B348B31C28026800AFBDED /* RateNotificationHandler.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RateNotificationHandler.swift; sourceTree = "<group>"; };
 		57B348B51C28050A00AFBDED /* UserLevelInfo.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UserLevelInfo.swift; sourceTree = "<group>"; };
 		57C173EC1BDE3EFC0084DF8D /* ChatMessageSender.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ChatMessageSender.swift; sourceTree = "<group>"; };
+		57C315F91C2A645100AB7260 /* ReceivedPhotoDisplayable.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ReceivedPhotoDisplayable.swift; sourceTree = "<group>"; };
 		57C729DB1BDF2C0D00DDFFDA /* ChatBlocker.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ChatBlocker.swift; sourceTree = "<group>"; };
 		57C729E01BDF501700DDFFDA /* PhotoTrendsLoader.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = PhotoTrendsLoader.swift; path = Swish/Models/Photo/PhotoTrendsLoader.swift; sourceTree = SOURCE_ROOT; };
 		57C7AA8B1BFDB152008E10F6 /* CGSize+Operator.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "CGSize+Operator.swift"; sourceTree = "<group>"; };
@@ -438,6 +440,7 @@
 				F2A1C4FE1C21781800DE88F2 /* PhotoVoteType.swift */,
 				57EFC1951C055E19006CF2EF /* LocationServiceAuthorizable.swift */,
 				F2EA77AB1C2AB53B00494C18 /* SplashViewController.swift */,
+				57C315F91C2A645100AB7260 /* ReceivedPhotoDisplayable.swift */,
 				F245DCB21B9E7B2D0072308B /* MainViewController.swift */,
 				F2C7CBD21BE1C53800ED429A /* DressingViewController.swift */,
 				F2F545211BD5ED5400AEE02A /* ShareResultViewController.swift */,
@@ -727,6 +730,7 @@
 				F2D882A31C0F1BEA00DF8C6D /* CircleButton.swift in Sources */,
 				5772A7DE1BD5F71E00A7F880 /* LocationManager.swift in Sources */,
 				5772A7E01BD626EA00A7F880 /* NSCache+LowMemory.swift in Sources */,
+				57C315FA1C2A645100AB7260 /* ReceivedPhotoDisplayable.swift in Sources */,
 				F2F545221BD5ED5500AEE02A /* ShareResultViewController.swift in Sources */,
 				579673761B9FFE2000382247 /* SwishDatabase.swift in Sources */,
 				5772A7DC1BD5F23F00A7F880 /* PhotoReceiver.swift in Sources */,
