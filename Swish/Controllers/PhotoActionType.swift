@@ -27,72 +27,7 @@ protocol PhotoActionType {
 extension PhotoActionType where Self: UIViewController {
     
     final func setUpPhotoActionView() {
-        setUpMapButton()
-        setUpChatButton()
-        observeUnreadCount()
-        observePhotoStateForChatButtonVisibility()
-    }
-    
-    private func observeUnreadCount() {
-        PhotoObserver.observeUnreadMessageCountForPhoto(photo, owner: self) { [unowned self] (Int) -> Void in
-            self.refreshUnreadChatCount()
-        }
-    }
-    
-    // TODO: showChatButtonWithAnimation(), hideChatButtonWithAnimation() 구현 필요
-    private func observePhotoStateForChatButtonVisibility() {
-        PhotoObserver.observePhotoStateForPhoto(photo, owner: self) { [unowned self] (id, state) -> Void in
-            if state == .Liked {
-                self.photoActionView.chatButton.alpha = 1
-            } else {
-                self.photoActionView.chatButton.alpha = 0
-            }
-        }
-    }
-    
-    private func setUpMapButton() {
-        if photo.photoState == .Delivered || photo.photoState == .Liked {
-            photoActionView.mapButton.alpha = 1
-        } else {
-            photoActionView.mapButton.alpha = 0
-        }
-        
-        let singleTapGesture = UITapGestureRecognizer(target: self, action: "mapButtonDidTap:")
-        photoActionView.mapButton.addGestureRecognizer(singleTapGesture)
-    }
-    
-    private func setUpChatButton() {
-        if photo.photoState == .Liked {
-            photoActionView.chatButton.alpha = 1
-        } else {
-            photoActionView.chatButton.alpha = 0
-        }
-        
-        let singleTapGesture = UITapGestureRecognizer(target: self, action: "chatButtonDidTap:")
-        photoActionView.chatButton.addGestureRecognizer(singleTapGesture)
-    }
-    
-    private func showChatButtonWithAnimation() {
-        print("showChatButtonWithAnimation")
-    }
-    
-    private func hideChatButtonWithAnimation() {
-        print("hideChatButtonWithAnimation")
-    }
-    
-    // TODO: 동현에게 안드로이드 handleReceivedMessage에 로직을 어떻게 처리할 건지에 대해 물어보기
-    private func refreshUnreadChatCount() {
-         setUnreadChatCount(photo.unreadMessageCount)
-    }
-    
-    private func setUnreadChatCount(count: Int) {
-        if count > 0 && photoActionView.chatButton.alpha == 1 {
-            photoActionView.unreadChatCountLabel.alpha = 1
-            photoActionView.unreadChatCountLabel.text = String(count)
-        } else {
-            photoActionView.unreadChatCountLabel.alpha = 0
-            photoActionView.unreadChatCountLabel.text = ""
-        }
+        photoActionView.setUpWithPhoto(photo)
     }
     
     final func showMapViewController() {
@@ -106,6 +41,7 @@ extension PhotoActionType where Self: UIViewController {
         showViewController(navigationViewController, sender: self)
     }
     
+    // TODO: 이름 변경하기. 안드로이드와 ChatRoomOpener 클래스를 똑같이 만드는 방법 or extension에 직접 구현을 고민하기
     final func showChatDialog() {
         // TODO: 채팅쪽 UX 구현과 함께 구현 예정. Android의 ChatRoomOpener.start() 참고
         print("showChatDialog")
