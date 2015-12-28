@@ -61,7 +61,7 @@ extension ReceivedPhotoDisplayable where Self: UIViewController {
     }
     
     func initReceivedPhotoDisplayable() {
-        initCurrentDisplayingPhotoWithIndex()
+        initCurrentDisplayingPhoto()
         showCurrentPhoto()
     }
     
@@ -70,7 +70,8 @@ extension ReceivedPhotoDisplayable where Self: UIViewController {
             initReceivedPhotoDisplayable()
         } else if let currentDisplayingPhoto = currentDisplayingPhoto
             where currentDisplayingPhoto.photoState == .Disliked {
-                showNextPhoto()
+                refreshCurrentDisplayingPhotoIndex()
+                showCurrentPhoto()
         }
     }
     
@@ -81,6 +82,19 @@ extension ReceivedPhotoDisplayable where Self: UIViewController {
     func showNextPhoto() {
         proceedToNextPhoto()
         displayReceivedPhoto(currentDisplayingPhoto)
+    }
+    
+    private func refreshCurrentDisplayingPhotoIndex() {
+        let receivedPhotos = self.receivedPhotos
+        let hasReceivedPhoto = receivedPhotos.count > 0
+        if let currentDisplayingPhotoIndex = currentDisplayingPhotoIndex where
+            currentDisplayingPhotoIndex <= receivedPhotos.count - 1 {
+                updateCurrentDisplayingPhotoWithIndex(currentDisplayingPhotoIndex)
+        } else if hasReceivedPhoto {
+            updateCurrentDisplayingPhotoWithIndex(0)
+        } else {
+            updateCurrentDisplayingPhotoWithIndex(nil)
+        }
     }
     
     private func proceedToNextPhoto() {
@@ -95,7 +109,7 @@ extension ReceivedPhotoDisplayable where Self: UIViewController {
         updateCurrentDisplayingPhotoWithIndex(nextPhotoIndex)
     }
     
-    private func initCurrentDisplayingPhotoWithIndex() {
+    private func initCurrentDisplayingPhoto() {
         if hasReceivedPhoto {
             updateCurrentDisplayingPhotoWithIndex(0)
         }
