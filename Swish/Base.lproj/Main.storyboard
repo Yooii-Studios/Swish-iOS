@@ -59,6 +59,9 @@
                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="XJU-rx-7Dp" userLabel="PhotoCardView" customClass="PhotoCardView" customModule="Swish" customModuleProvider="target">
                                 <rect key="frame" x="20" y="93" width="335" height="405"/>
                                 <color key="backgroundColor" cocoaTouchSystemColor="groupTableViewBackgroundColor"/>
+                                <constraints>
+                                    <constraint firstAttribute="width" secondItem="XJU-rx-7Dp" secondAttribute="height" multiplier="67:81" id="VNa-3c-aLM"/>
+                                </constraints>
                                 <edgeInsets key="layoutMargins" top="0.0" left="0.0" bottom="0.0" right="0.0"/>
                             </view>
                         </subviews>
@@ -71,7 +74,6 @@
                             <constraint firstItem="eDq-p4-cL7" firstAttribute="leading" secondItem="8bC-Xf-vdC" secondAttribute="leadingMargin" constant="30" id="MXO-qz-ARi"/>
                             <constraint firstItem="u3H-n2-e6j" firstAttribute="centerX" secondItem="8bC-Xf-vdC" secondAttribute="centerX" constant="1" id="Olj-60-3AT"/>
                             <constraint firstAttribute="trailing" secondItem="XJU-rx-7Dp" secondAttribute="trailing" constant="20" id="gkO-2Q-CEI"/>
-                            <constraint firstItem="XJU-rx-7Dp" firstAttribute="width" secondItem="XJU-rx-7Dp" secondAttribute="height" multiplier="67:81" id="h74-Pe-nec"/>
                             <constraint firstItem="eDq-p4-cL7" firstAttribute="top" secondItem="y3c-jy-aDJ" secondAttribute="bottom" constant="30" id="hzX-QF-gsO"/>
                             <constraint firstItem="XJU-rx-7Dp" firstAttribute="top" secondItem="y3c-jy-aDJ" secondAttribute="bottom" constant="73" id="mTz-gm-97v"/>
                             <constraint firstItem="wfy-db-euE" firstAttribute="top" secondItem="u3H-n2-e6j" secondAttribute="bottom" constant="50" id="t3Y-hT-X1J"/>
