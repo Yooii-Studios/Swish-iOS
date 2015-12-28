@@ -11,15 +11,7 @@ import AlamofireImage
 
 class ReceivedPhotoDetailViewController: UIViewController, PhotoActionType, PhotoVoteType {
 
-    // TODO: 우성이 protocol extension으로 만들던지, 커스텀뷰로 만들던지 중복을 줄일 필요가 있어 보임
-    // Photo
-    @IBOutlet weak var photoCardView: UIView!
-    @IBOutlet weak var photoImageView: UIImageView!
-    @IBOutlet weak var profileImageView: UIImageView!
-    @IBOutlet weak var userIdLabel: UILabel!
-    @IBOutlet weak var messageLabel: UILabel!
-    @IBOutlet weak var distanceLabel: UILabel!
-    
+    @IBOutlet weak var photoCardView: PhotoCardView!
     @IBOutlet weak var photoActionView: PhotoActionView!
     @IBOutlet weak var photoVoteView: PhotoVoteView!
     
@@ -28,7 +20,7 @@ class ReceivedPhotoDetailViewController: UIViewController, PhotoActionType, Phot
     override func viewDidLoad() {
         super.viewDidLoad()
 
-        initPhotoCardView()
+        setUpPhotoCardView()
         setUpPhotoActionView()
         setUpPhotoVoteView()
     }
@@ -40,30 +32,8 @@ class ReceivedPhotoDetailViewController: UIViewController, PhotoActionType, Phot
     
     // MARK: - Init
     
-    private func initPhotoCardView() {
-        initPhotoImage()
-        initUserViews()
-        initDistanceLabel()
-    }
-    
-    private func initPhotoImage() {
-        photo.loadImage { image in
-            self.photoImageView.image = image
-        }
-    }
-    
-    private func initUserViews() {
-        ImageDownloader.downloadImage(photo.sender.profileUrl) { image in
-            if let image = image {
-                self.profileImageView.image = image
-            }
-        }
-        userIdLabel.text = photo.sender.name
-        messageLabel.text = photo.message
-    }
-    
-    private func initDistanceLabel() {
-        distanceLabel.text = photo.deliveredDistanceString
+    private func setUpPhotoCardView() {
+        photoCardView.setUpWithPhoto(photo)
     }
     
     /*
