@@ -9,18 +9,12 @@
 import UIKit
 import SnapKit
 import CTAssetsPickerController
-import AlamofireImage
 
 final class MainViewController: UIViewController, UINavigationControllerDelegate, PhotoPickable, ReceivedPhotoDisplayable {
 
     // TODO: 우성이 protocol extension으로 만들던지, 커스텀뷰로 만들던지 중복을 줄일 필요가 있어 보임
     // Photo
-    @IBOutlet weak var photoCardView: UIView!
-    @IBOutlet weak var photoImageView: UIImageView!
-    @IBOutlet weak var profileImageView: UIImageView!
-    @IBOutlet weak var userIdLabel: UILabel!
-    @IBOutlet weak var messageLabel: UILabel!
-    @IBOutlet weak var distanceLabel: UILabel!
+    @IBOutlet weak var photoCardView: PhotoCardView!
     
     var currentDisplayingPhoto: Photo?
     var currentDisplayingPhotoIndex: Int?
@@ -89,37 +83,10 @@ final class MainViewController: UIViewController, UINavigationControllerDelegate
     
     final func displayReceivedPhoto(photo: Photo?) {
         if let photo = photo {
-            initPhotoCardView(photo)
+            photoCardView.setUpWithPhoto(photo)
         } else {
             // TODO: 사진이 없을 경우 환영 메시지 표시 추가 구현 필요
         }
-    }
-    
-    // TODO: 해당 로직 PhotoCardView로 리팩토링 필요
-    private func initPhotoCardView(photo: Photo) {
-        initPhotoImage(photo)
-        initUserViews(photo)
-        initDistanceLabel(photo)
-    }
-    
-    private func initPhotoImage(photo: Photo) {
-        photo.loadImage { image in
-            self.photoImageView.image = image
-        }
-    }
-    
-    private func initUserViews(photo: Photo) {
-        ImageDownloader.downloadImage(photo.sender.profileUrl) { image in
-            if let image = image {
-                self.profileImageView.image = image
-            }
-        }
-        userIdLabel.text = photo.sender.name
-        messageLabel.text = photo.message
-    }
-    
-    private func initDistanceLabel(photo: Photo) {
-        distanceLabel.text = photo.deliveredDistanceString
     }
     
     func photoCardViewDidTap(sender: AnyObject?) {
