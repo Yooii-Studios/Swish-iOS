@@ -112,19 +112,24 @@ final class PhotoTrendsLoader {
     
     typealias Callback = (photoTrends: PhotoTrends?) -> Void
     
+    private static let CacheInvalidationInterval: NSTimeInterval = 2 * 60 * 60
+    
     final class func load(callback: Callback) {
         if let cachedPhotoTrends = cachedPhotoTrends() {
             print("PhotoTrends cache hit.")
             callback(photoTrends: cachedPhotoTrends)
         } else {
+            print("PhotoTrends cache missed.")
             fetchFromServer(callback)
         }
     }
     
     final class func cachedPhotoTrends() -> PhotoTrends? {
+        let currentCalendar = NSCalendar.currentCalendar()
         if let photoTrends = SwishDatabase.photoTrends() where
-            NSCalendar.currentCalendar().isDateInToday(NSDate(timeIntervalSince1970: photoTrends.fetchedTimeMilli)) {
-                return photoTrends
+            currentCalendar.isDateInToday(NSDate(timeIntervalSince1970: photoTrends.fetchedTimeMilli)) &&
+                NSDate().timeIntervalSince1970 - photoTrends.fetchedTimeMilli < CacheInvalidationInterval {
+                    return photoTrends
         } else {
             return nil
         }
