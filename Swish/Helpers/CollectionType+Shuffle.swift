@@ -24,9 +24,11 @@ extension MutableCollectionType where Index == Int {
     
     // 컬랙션 타입이 스스로를 셔플
     mutating func shuffleInPlace() {
-        if count < 2 { return }
+        guard count > 1 else {
+            return
+        }
         
-        for i in 0..<count - 1 {
+        for i in 0..<(count - 1) {
             let j = Int(arc4random_uniform(UInt32(count - i))) + i
             guard i != j else { continue }
             swap(&self[i], &self[j])

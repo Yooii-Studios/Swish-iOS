@@ -124,7 +124,7 @@ final class PhotoTrendsLoader {
         }
     }
     
-    final class func cachedPhotoTrends() -> PhotoTrends? {
+    private final class func cachedPhotoTrends() -> PhotoTrends? {
         let currentCalendar = NSCalendar.currentCalendar()
         if let photoTrends = SwishDatabase.photoTrends() where
             currentCalendar.isDateInToday(NSDate(timeIntervalSince1970: photoTrends.fetchedTimeMilli)) &&
@@ -135,7 +135,7 @@ final class PhotoTrendsLoader {
         }
     }
     
-    final class func fetchFromServer(callback: Callback) {
+    private final class func fetchFromServer(callback: Callback) {
         PhotoServer.cancelFetchPhotoTrends()
         PhotoServer.photoTrendsResult({ (photoTrendsResult) -> Void in
             handleResult(photoTrendsResult, callback: callback)
@@ -145,7 +145,7 @@ final class PhotoTrendsLoader {
         })
     }
     
-    final class func handleResult(photoTrendsResult: PhotoTrendsResult, callback: Callback) {
+    private final class func handleResult(photoTrendsResult: PhotoTrendsResult, callback: Callback) {
         SwishDatabase.deleteAllPhotoTrends()
         
         var trendingPhotos = [TrendingPhoto]()
@@ -173,7 +173,7 @@ final class PhotoTrendsLoader {
     
     // MARK: - Helper functions
     
-    final class func convertPhotoTrendsResultToPhotoTrends(photoTrendsResult: PhotoTrendsResult,
+    private class func convertPhotoTrendsResultToPhotoTrends(photoTrendsResult: PhotoTrendsResult,
         _ handler: (trendingPhoto: TrendingPhoto, owner: OtherUser) -> Void) {
             for trendingPhotoResult in photoTrendsResult.trendingPhotoResults {
                 let photo = trendingPhotoResult.photo
