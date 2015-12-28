@@ -117,7 +117,7 @@ final class PhotoTrendsLoader {
     final class func load(callback: Callback) {
         if let cachedPhotoTrends = cachedPhotoTrends() {
             print("PhotoTrends cache hit.")
-            callback(photoTrends: cachedPhotoTrends)
+            notifyPhotoTrends(cachedPhotoTrends, callback: callback)
         } else {
             print("PhotoTrends cache missed.")
             fetchFromServer(callback)
@@ -141,7 +141,7 @@ final class PhotoTrendsLoader {
             handleResult(photoTrendsResult, callback: callback)
             }, onFail: {(error) -> Void in
                 print("\(error)")
-                callback(photoTrends: nil)
+                notifyPhotoTrends(nil, callback: callback)
         })
     }
     
@@ -157,7 +157,18 @@ final class PhotoTrendsLoader {
         }
         let photoTrends = PhotoTrends.create(photoTrendsResult.countryName, trendingPhotos: trendingPhotos)
         SwishDatabase.savePhotoTrends(photoTrends)
-        callback(photoTrends: photoTrends)
+        
+        notifyPhotoTrends(photoTrends, callback: callback)
+    }
+    
+    private class func notifyPhotoTrends(photoTrends: PhotoTrends?, callback: Callback) {
+        if let photoTrends = photoTrends {
+            let shuffledPhotoTrends = PhotoTrends.create(photoTrends.countryName,
+                trendingPhotos: photoTrends.trendingPhotos.shuffle())
+            callback(photoTrends: shuffledPhotoTrends)
+        } else {
+            callback(photoTrends: nil)
+        }
     }
     
     // MARK: - Helper functions
