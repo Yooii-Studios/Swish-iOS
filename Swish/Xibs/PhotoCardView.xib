@@ -20,7 +20,7 @@
             <rect key="frame" x="0.0" y="0.0" width="335" height="405"/>
             <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
             <subviews>
-                <imageView userInteractionEnabled="NO" contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="TestImage" translatesAutoresizingMaskIntoConstraints="NO" id="GS7-yZ-MKV" userLabel="Photo Image View">
+                <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="TestImage" translatesAutoresizingMaskIntoConstraints="NO" id="GS7-yZ-MKV" userLabel="Photo Image View">
                     <rect key="frame" x="0.0" y="0.0" width="335" height="335"/>
                     <constraints>
                         <constraint firstAttribute="width" secondItem="GS7-yZ-MKV" secondAttribute="height" multiplier="1:1" id="SIo-FT-ceh"/>
