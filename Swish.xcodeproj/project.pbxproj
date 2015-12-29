@@ -90,6 +90,8 @@
 		F23A7B181BA1D4070063233F /* PhotoPicker.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = F23A7B161BA1D4070063233F /* PhotoPicker.storyboard */; };
 		F23A7B1B1BA1D4140063233F /* MyInfo.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = F23A7B191BA1D4140063233F /* MyInfo.storyboard */; };
 		F23A7B201BA1DF250063233F /* Dressing.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = F23A7B1E1BA1DF250063233F /* Dressing.storyboard */; };
+		F23AC1A81C31060900757BC9 /* PhotoCardView.swift in Sources */ = {isa = PBXBuildFile; fileRef = F23AC1A71C31060900757BC9 /* PhotoCardView.swift */; };
+		F23AC1AA1C31061D00757BC9 /* PhotoCardView.xib in Resources */ = {isa = PBXBuildFile; fileRef = F23AC1A91C31061D00757BC9 /* PhotoCardView.xib */; };
 		F245DCB11B9E7B2D0072308B /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = F245DCB01B9E7B2D0072308B /* AppDelegate.swift */; };
 		F245DCB31B9E7B2D0072308B /* MainViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = F245DCB21B9E7B2D0072308B /* MainViewController.swift */; };
 		F245DCB61B9E7B2D0072308B /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = F245DCB41B9E7B2D0072308B /* Main.storyboard */; };
@@ -219,6 +221,8 @@
 		F23A7B171BA1D4070063233F /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/PhotoPicker.storyboard; sourceTree = "<group>"; };
 		F23A7B1A1BA1D4140063233F /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/MyInfo.storyboard; sourceTree = "<group>"; };
 		F23A7B1F1BA1DF250063233F /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Dressing.storyboard; sourceTree = "<group>"; };
+		F23AC1A71C31060900757BC9 /* PhotoCardView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PhotoCardView.swift; sourceTree = "<group>"; };
+		F23AC1A91C31061D00757BC9 /* PhotoCardView.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = PhotoCardView.xib; sourceTree = "<group>"; };
 		F245DCAD1B9E7B2D0072308B /* Swish.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Swish.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		F245DCB01B9E7B2D0072308B /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		F245DCB21B9E7B2D0072308B /* MainViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainViewController.swift; sourceTree = "<group>"; };
@@ -490,6 +494,7 @@
 				F2ECA5CB1BFAE7FC00E3AD93 /* SentPhotoViewCell.swift */,
 				579D9D191C1FF3D500145CC8 /* PhotoViewCell.swift */,
 				F2D882A21C0F1BEA00DF8C6D /* CircleButton.swift */,
+				F23AC1A71C31060900757BC9 /* PhotoCardView.swift */,
 				F2D8829D1C0F13FE00DF8C6D /* PhotoActionView.swift */,
 				F2BDF9E01C21448A0031682B /* PhotoVoteView.swift */,
 			);
@@ -520,6 +525,7 @@
 			isa = PBXGroup;
 			children = (
 				F2E706211C27D3A9003CE154 /* CircleButton.xib */,
+				F23AC1A91C31061D00757BC9 /* PhotoCardView.xib */,
 				F2D882A01C0F1B7100DF8C6D /* PhotoActionView.xib */,
 				F2BDF9DE1C2144750031682B /* PhotoVoteView.xib */,
 			);
@@ -631,6 +637,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				F273C3A51BFCB4A2007D047B /* ReceivedPhoto.storyboard in Resources */,
+				F23AC1AA1C31061D00757BC9 /* PhotoCardView.xib in Resources */,
 				F2D882A11C0F1B7100DF8C6D /* PhotoActionView.xib in Resources */,
 				F23A7B1B1BA1D4140063233F /* MyInfo.storyboard in Resources */,
 				F273C3AA1BFCB4BB007D047B /* MyProfile.storyboard in Resources */,
@@ -725,6 +732,7 @@
 				F2BDF9E11C21448A0031682B /* PhotoVoteView.swift in Sources */,
 				571935331BA3C4C800856400 /* UUIDHelper.swift in Sources */,
 				F2ECA5CC1BFAE7FC00E3AD93 /* SentPhotoViewCell.swift in Sources */,
+				F23AC1A81C31060900757BC9 /* PhotoCardView.swift in Sources */,
 				575354C51BE1F0000034F24E /* LocationTrackable.swift in Sources */,
 				57C7AA8C1BFDB152008E10F6 /* CGSize+Operator.swift in Sources */,
 				F2261CAA1C0729D000C12729 /* SentPhotoDetailViewController.swift in Sources */,
