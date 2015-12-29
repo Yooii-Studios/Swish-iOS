@@ -21,6 +21,7 @@ private let InvalidErrorCode = -1
 final class SwishServer {
     
     static let DefaultParser = { (result: JSON) -> JSON in return result }
+    // TODO: 릴리즈시 주소 변경
     static let Host = "http://yooiia.iptime.org:3000"
     private static let TagSeparator = "_"
     

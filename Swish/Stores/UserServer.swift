@@ -86,8 +86,10 @@ final class UserServer {
         image: UIImage? = nil) -> Param {
         var params = Param()
         params.updateValue(UUIDHelper.uuid(), forKey: "uuid")
-        // TODO: add gcm id
+        // TODO: APNS 토큰 적용
         params.updateValue("", forKey: "gcm_id")
+        // TODO: 서버에서 클라이언트 타입 구분하는 기능 추가되면 아래와 같이 적어 줄것
+//        params.updateValue("1", forKey: "client_type")
         if let name = name {
             params.updateValue(name, forKey: "name")
         }
