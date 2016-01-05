@@ -20,9 +20,12 @@
 //          photoMapTypeHandler = PhotoMapTypeHandler(photoMapType: self)
 //      }
 //
-//    3. viewDidAppear에서 requestLocationAuthorization() 호출
+//    3. viewDidAppear에서 moveMapToInitialLocation(), requestLocationAuthorization() 호출
 //    ex)
 //      override func viewDidAppear(animated: Bool) {
+//          super.viewDidAppear(animated)
+//
+//          moveMapToInitialLocation()
 //          requestLocationAuthorization()
 //      }
 //    4. 필요한 곳에서 아래의 메서드 사용
@@ -141,6 +144,14 @@ extension PhotoMapType where Self: UIViewController {
     
     func initPhotoMapView() {
         addAnnotations()
+    }
+    
+    func moveMapToInitialLocation() {
+        if photos.count > 0 {
+            let location = displayLocationOfPhoto(photos[0])
+            mapView.setCenterCoordinate(location.coordinate, withZoomLevel: photoMapViewZoomLevel,
+                animationType: .Normal)
+        }
     }
     
     private func addAnnotations() {

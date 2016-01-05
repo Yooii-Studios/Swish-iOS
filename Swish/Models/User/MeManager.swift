@@ -41,12 +41,12 @@ final class MeManager {
     }
     
     class func updateMyProfileImage(image: UIImage,
-        onSuccess: ((String) -> ())? = nil, onFail: DefaultCallback? = nil) {
+        onSuccess: ((profileImageUrl: String) -> ())? = nil, onFail: DefaultCallback? = nil) {
             let userId = SwishDatabase.me().id
             UserServer.updateMyProfileImage(userId, image: image,
                 onSuccess: { (profileImageUrl) -> () in
                     SwishDatabase.updateMyProfileImage(profileImageUrl)
-                    onSuccess?(profileImageUrl)
+                    onSuccess?(profileImageUrl: profileImageUrl)
                 }, onFail: { (error) -> () in
                     onFail?()
             })

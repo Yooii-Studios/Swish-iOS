@@ -54,7 +54,7 @@ struct PhotoObserver: RealmObjectObservable {
     
     static func observePhotoStateForPhoto(photo: Photo, owner: NSObject,
         handler: (id: Photo.ID, state: PhotoState) -> Void) -> Canceller? {
-            return stream(photo, property: "photoStateRaw", owner: owner) {
+            return stream(photo, property: "photoStateKey", owner: owner) {
                 handler(id: photo.id, state: PhotoState.findWithKey($0 as! Int))
             }
     }

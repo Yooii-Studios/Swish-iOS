@@ -10,8 +10,15 @@ import UIKit
 import SnapKit
 import CTAssetsPickerController
 
-final class MainViewController: UIViewController, UINavigationControllerDelegate, PhotoPickable {
+final class MainViewController: UIViewController, UINavigationControllerDelegate, PhotoPickable, ReceivedPhotoDisplayable {
 
+    // TODO: 우성이 protocol extension으로 만들던지, 커스텀뷰로 만들던지 중복을 줄일 필요가 있어 보임
+    // Photo
+    @IBOutlet weak var photoCardView: PhotoCardView!
+    
+    var currentDisplayingPhoto: Photo?
+    var currentDisplayingPhotoIndex: Int?
+    
     final var photoPickerHandler: PhotoPickerHandler?
     
     override func viewDidLoad() {
@@ -20,6 +27,18 @@ final class MainViewController: UIViewController, UINavigationControllerDelegate
         photoPickerHandler = PhotoPickerHandler() { image in
             self.showDressingViewContoller(image)
         }
+        
+        initReceivedPhotoDisplayable()
+        initPhotoCardView()
+    }
+    
+    private func initPhotoCardView() {
+        let singleTapGesture = UITapGestureRecognizer(target: self, action: "photoCardViewDidTap:")
+        photoCardView.addGestureRecognizer(singleTapGesture)
+    }
+    
+    override func viewWillAppear(animated: Bool) {
+        refreshReceivedPhotoDisplayable()
     }
     
     // FIXME: 메서드 이름 변경하고 Photo Trends가 될 예정
@@ -58,5 +77,19 @@ final class MainViewController: UIViewController, UINavigationControllerDelegate
         // 둘 중 한 가지 방식으로 해결해야 하는데, show는 completion 핸들러가 없어서 곤란. Picker 화면에서 바로 드레싱을 띄우고 싶음
 //        presentViewController(navigationViewController, animated: true, completion: nil)
         showViewController(navigationViewController, sender: self)
+    }
+    
+    // MARK: - Received Photos
+    
+    final func displayReceivedPhoto(photo: Photo?) {
+        if let photo = photo {
+            photoCardView.setUpWithPhoto(photo)
+        } else {
+            // TODO: 사진이 없을 경우 환영 메시지 표시 추가 구현 필요
+        }
+    }
+    
+    func photoCardViewDidTap(sender: AnyObject?) {
+        showNextPhoto()
     }
 }

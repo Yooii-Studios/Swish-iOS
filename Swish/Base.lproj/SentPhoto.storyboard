@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="9531" systemVersion="15B42" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" initialViewController="kpT-gb-fLe">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="9531" systemVersion="15C50" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" initialViewController="kpT-gb-fLe">
     <dependencies>
         <deployment identifier="iOS"/>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="9529"/>
@@ -144,46 +144,9 @@
                         <rect key="frame" x="0.0" y="64" width="375" height="603"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="17A-m2-dCr">
+                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="17A-m2-dCr" customClass="PhotoCardView" customModule="Swish" customModuleProvider="target">
                                 <rect key="frame" x="20" y="20" width="335" height="405"/>
                                 <subviews>
-                                    <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="EdV-JN-h2q">
-                                        <rect key="frame" x="0.0" y="0.0" width="335" height="335"/>
-                                        <constraints>
-                                            <constraint firstAttribute="width" secondItem="EdV-JN-h2q" secondAttribute="height" multiplier="1:1" id="Hdx-ZH-M4d"/>
-                                        </constraints>
-                                    </imageView>
-                                    <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="urS-nD-At1">
-                                        <rect key="frame" x="8" y="343" width="50" height="50"/>
-                                        <constraints>
-                                            <constraint firstAttribute="width" constant="50" id="0hE-Dz-Swd"/>
-                                            <constraint firstAttribute="height" constant="50" id="jIJ-Tk-8dN"/>
-                                        </constraints>
-                                    </imageView>
-                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalCompressionResistancePriority="751" verticalCompressionResistancePriority="751" text="UserId" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="rUl-6J-8Ls">
-                                        <rect key="frame" x="66" y="348" width="144" height="21"/>
-                                        <constraints>
-                                            <constraint firstAttribute="height" constant="21" id="1oL-AT-aXX"/>
-                                        </constraints>
-                                        <fontDescription key="fontDescription" style="UICTFontTextStyleCaption1"/>
-                                        <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
-                                        <nil key="highlightedColor"/>
-                                    </label>
-                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Your photo is still en route." textAlignment="right" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="JMA-vH-Kqc">
-                                        <rect key="frame" x="208" y="348" width="119" height="19"/>
-                                        <fontDescription key="fontDescription" type="system" pointSize="9"/>
-                                        <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
-                                        <nil key="highlightedColor"/>
-                                    </label>
-                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Hello" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="EZD-ev-NLj">
-                                        <rect key="frame" x="66" y="372" width="261" height="21"/>
-                                        <constraints>
-                                            <constraint firstAttribute="height" constant="21" id="Bq9-N4-nHc"/>
-                                        </constraints>
-                                        <fontDescription key="fontDescription" style="UICTFontTextStyleCaption1"/>
-                                        <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
-                                        <nil key="highlightedColor"/>
-                                    </label>
                                     <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="7uK-zm-txt" customClass="PhotoActionView" customModule="Swish" customModuleProvider="target">
                                         <rect key="frame" x="259" y="20" width="56" height="104"/>
                                         <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
@@ -195,23 +158,9 @@
                                 </subviews>
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                 <constraints>
-                                    <constraint firstAttribute="trailing" secondItem="EZD-ev-NLj" secondAttribute="trailing" constant="8" id="2eT-Wa-wuK"/>
-                                    <constraint firstAttribute="trailing" secondItem="JMA-vH-Kqc" secondAttribute="trailing" constant="8" id="5gq-rS-Kah"/>
                                     <constraint firstItem="7uK-zm-txt" firstAttribute="top" secondItem="17A-m2-dCr" secondAttribute="top" constant="20" id="D7S-Jv-Hr8"/>
-                                    <constraint firstItem="urS-nD-At1" firstAttribute="top" secondItem="EdV-JN-h2q" secondAttribute="bottom" constant="8" id="E5K-qc-jct"/>
-                                    <constraint firstItem="rUl-6J-8Ls" firstAttribute="leading" secondItem="urS-nD-At1" secondAttribute="trailing" constant="8" id="QHh-zP-p9L"/>
-                                    <constraint firstItem="urS-nD-At1" firstAttribute="leading" secondItem="17A-m2-dCr" secondAttribute="leading" constant="8" id="RrM-7k-XRf"/>
-                                    <constraint firstAttribute="width" secondItem="17A-m2-dCr" secondAttribute="height" multiplier="67:81" id="X60-iY-rjr"/>
-                                    <constraint firstItem="EZD-ev-NLj" firstAttribute="top" secondItem="rUl-6J-8Ls" secondAttribute="bottom" constant="3" id="XDc-mj-hvn"/>
-                                    <constraint firstItem="EdV-JN-h2q" firstAttribute="top" secondItem="17A-m2-dCr" secondAttribute="top" id="Z4S-jw-WJI"/>
-                                    <constraint firstItem="rUl-6J-8Ls" firstAttribute="top" secondItem="EdV-JN-h2q" secondAttribute="bottom" constant="13" id="bbk-RO-w1i"/>
-                                    <constraint firstItem="EdV-JN-h2q" firstAttribute="leading" secondItem="17A-m2-dCr" secondAttribute="leading" id="exB-3I-3s4"/>
-                                    <constraint firstAttribute="trailing" secondItem="EdV-JN-h2q" secondAttribute="trailing" id="fBZ-TJ-zXb"/>
-                                    <constraint firstItem="EZD-ev-NLj" firstAttribute="leading" secondItem="urS-nD-At1" secondAttribute="trailing" constant="8" id="hbX-u2-ClL"/>
-                                    <constraint firstItem="JMA-vH-Kqc" firstAttribute="top" secondItem="EdV-JN-h2q" secondAttribute="bottom" constant="13" id="rF9-rP-8hx"/>
-                                    <constraint firstItem="JMA-vH-Kqc" firstAttribute="baseline" secondItem="rUl-6J-8Ls" secondAttribute="baseline" id="uWh-vF-wu3"/>
+                                    <constraint firstAttribute="width" secondItem="17A-m2-dCr" secondAttribute="height" multiplier="67:81" id="VOX-M4-YPa"/>
                                     <constraint firstAttribute="trailing" secondItem="7uK-zm-txt" secondAttribute="trailing" constant="20" id="wGF-6U-HpI"/>
-                                    <constraint firstItem="JMA-vH-Kqc" firstAttribute="leading" secondItem="rUl-6J-8Ls" secondAttribute="trailing" constant="-2" id="yee-QO-Pbk"/>
                                 </constraints>
                                 <edgeInsets key="layoutMargins" top="0.0" left="0.0" bottom="0.0" right="0.0"/>
                             </view>
@@ -290,17 +239,12 @@
                     <nil key="simulatedBottomBarMetrics"/>
                     <simulatedScreenMetrics key="simulatedDestinationMetrics" type="retina47"/>
                     <connections>
-                        <outlet property="distanceLabel" destination="JMA-vH-Kqc" id="08g-9T-fPq"/>
-                        <outlet property="messageLabel" destination="EZD-ev-NLj" id="2ur-9v-IAb"/>
                         <outlet property="photoActionView" destination="7uK-zm-txt" id="CZW-wm-kpw"/>
                         <outlet property="photoCardView" destination="17A-m2-dCr" id="Xxn-jB-jud"/>
-                        <outlet property="photoImageView" destination="EdV-JN-h2q" id="zeA-x8-GvA"/>
-                        <outlet property="profileImageView" destination="urS-nD-At1" id="7gc-nP-RwQ"/>
                         <outlet property="statusContentView" destination="X29-Jd-v56" id="HMc-6e-kIw"/>
                         <outlet property="statusDescriptionLabel" destination="3Vf-0q-Gud" id="ABp-gQ-f0d"/>
                         <outlet property="statusImageView" destination="KF7-NH-zqt" id="5Ru-XG-rQF"/>
                         <outlet property="statusLabel" destination="Qhr-Q2-QUj" id="EEt-uf-nmU"/>
-                        <outlet property="userIdLabel" destination="rUl-6J-8Ls" id="ml5-te-iv6"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="ptx-D5-G8V" userLabel="First Responder" sceneMemberID="firstResponder"/>

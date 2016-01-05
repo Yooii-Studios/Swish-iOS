@@ -10,16 +10,8 @@ import UIKit
 
 class SentPhotoDetailViewController: UIViewController, PhotoActionType {
     
-    // TODO: 우성이 PhotoCardView로 커스텀 뷰를 만들어 처리를 해줄 것
-    // Photo
-    @IBOutlet weak var photoCardView: UIView!
-    @IBOutlet weak var photoImageView: UIImageView!
-    @IBOutlet weak var profileImageView: UIImageView!
-    @IBOutlet weak var userIdLabel: UILabel!
-    @IBOutlet weak var messageLabel: UILabel!
-    @IBOutlet weak var distanceLabel: UILabel!
-    
-    // Photo Action
+    // Photo Views
+    @IBOutlet weak var photoCardView: PhotoCardView!
     @IBOutlet weak var photoActionView: PhotoActionView!
     
     // Status
@@ -35,39 +27,18 @@ class SentPhotoDetailViewController: UIViewController, PhotoActionType {
     override func viewDidLoad() {
         super.viewDidLoad()
 
-        initPhotoCardView()
-        initStatusViews()
+        setUpPhotoCardView()
+        setUpStatusViews()
         setUpPhotoActionView()
-    }
-    
-    override func viewWillAppear(animated: Bool) {
-        super.viewWillAppear(animated)
-        refreshUnreadChatCount()
     }
     
     // MARK: - Init
     
-    private func initPhotoCardView() {
-        photo.loadImage { image in
-            self.photoImageView.image = image
-        }
-        // TODO: 동현에게 유저 프로필 이미지 어떻게 불러오는지 물어보고 처리할 것
-        //        profileImageView.image = photo.sender.profileUrl
-        
-        initUserViews()
-        initDistanceLabel()
+    private func setUpPhotoCardView() {
+        photoCardView.setUpWithPhoto(photo)
     }
     
-    private func initUserViews() {
-        userIdLabel.text = photo.sender.name
-        messageLabel.text = photo.message
-    }
-    
-    private func initDistanceLabel() {
-        distanceLabel.text = photo.deliveredDistanceString
-    }
-    
-    private func initStatusViews() {
+    private func setUpStatusViews() {
         // TODO: 추후 PhotoStateView로 래핑해줄 것
         statusLabel.text = photo.photoState.sentStateResId
         statusDescriptionLabel.text = photo.photoState.sentStateDescriptionResId

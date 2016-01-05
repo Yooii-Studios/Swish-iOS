@@ -21,7 +21,7 @@ class PhotoCollectionMapViewController: UIViewController, PhotoMapType {
     final var photoType: PhotoType!
     var photos: [Photo]!
     var photoMapViewZoomLevel: MapViewZoomLevel = PhotoMapMinZoomLevel
-    var photoMapUserLocationTrackType: PhotoMapUserLocationTrackType? = .OneShot
+    var photoMapUserLocationTrackType: PhotoMapUserLocationTrackType? = .None
     var photoMapTypeHandler: PhotoMapTypeHandler!
     
     // MARK: - ViewController Lifecycle
@@ -35,6 +35,9 @@ class PhotoCollectionMapViewController: UIViewController, PhotoMapType {
     }
     
     override func viewDidAppear(animated: Bool) {
+        super.viewDidAppear(animated)
+        
+        moveMapToInitialLocation()
         requestLocationAuthorization()
     }
 

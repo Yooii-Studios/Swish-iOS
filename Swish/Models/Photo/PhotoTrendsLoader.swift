@@ -112,35 +112,40 @@ final class PhotoTrendsLoader {
     
     typealias Callback = (photoTrends: PhotoTrends?) -> Void
     
+    private static let CacheInvalidationInterval: NSTimeInterval = 2 * 60 * 60
+    
     final class func load(callback: Callback) {
         if let cachedPhotoTrends = cachedPhotoTrends() {
             print("PhotoTrends cache hit.")
-            callback(photoTrends: cachedPhotoTrends)
+            notifyPhotoTrends(cachedPhotoTrends, callback: callback)
         } else {
+            print("PhotoTrends cache missed.")
             fetchFromServer(callback)
         }
     }
     
-    final class func cachedPhotoTrends() -> PhotoTrends? {
+    private final class func cachedPhotoTrends() -> PhotoTrends? {
+        let currentCalendar = NSCalendar.currentCalendar()
         if let photoTrends = SwishDatabase.photoTrends() where
-            NSCalendar.currentCalendar().isDateInToday(NSDate(timeIntervalSince1970: photoTrends.fetchedTimeMilli)) {
-                return photoTrends
+            currentCalendar.isDateInToday(NSDate(timeIntervalSince1970: photoTrends.fetchedTimeMilli)) &&
+                NSDate().timeIntervalSince1970 - photoTrends.fetchedTimeMilli < CacheInvalidationInterval {
+                    return photoTrends
         } else {
             return nil
         }
     }
     
-    final class func fetchFromServer(callback: Callback) {
+    private final class func fetchFromServer(callback: Callback) {
         PhotoServer.cancelFetchPhotoTrends()
         PhotoServer.photoTrendsResult({ (photoTrendsResult) -> Void in
             handleResult(photoTrendsResult, callback: callback)
             }, onFail: {(error) -> Void in
                 print("\(error)")
-                callback(photoTrends: nil)
+                notifyPhotoTrends(nil, callback: callback)
         })
     }
     
-    final class func handleResult(photoTrendsResult: PhotoTrendsResult, callback: Callback) {
+    private final class func handleResult(photoTrendsResult: PhotoTrendsResult, callback: Callback) {
         SwishDatabase.deleteAllPhotoTrends()
         
         var trendingPhotos = [TrendingPhoto]()
@@ -152,12 +157,23 @@ final class PhotoTrendsLoader {
         }
         let photoTrends = PhotoTrends.create(photoTrendsResult.countryName, trendingPhotos: trendingPhotos)
         SwishDatabase.savePhotoTrends(photoTrends)
-        callback(photoTrends: photoTrends)
+        
+        notifyPhotoTrends(photoTrends, callback: callback)
+    }
+    
+    private class func notifyPhotoTrends(photoTrends: PhotoTrends?, callback: Callback) {
+        if let photoTrends = photoTrends {
+            let shuffledPhotoTrends = PhotoTrends.create(photoTrends.countryName,
+                trendingPhotos: photoTrends.trendingPhotos.shuffle())
+            callback(photoTrends: shuffledPhotoTrends)
+        } else {
+            callback(photoTrends: nil)
+        }
     }
     
     // MARK: - Helper functions
     
-    final class func convertPhotoTrendsResultToPhotoTrends(photoTrendsResult: PhotoTrendsResult,
+    private class func convertPhotoTrendsResultToPhotoTrends(photoTrendsResult: PhotoTrendsResult,
         _ handler: (trendingPhoto: TrendingPhoto, owner: OtherUser) -> Void) {
             for trendingPhotoResult in photoTrendsResult.trendingPhotoResults {
                 let photo = trendingPhotoResult.photo

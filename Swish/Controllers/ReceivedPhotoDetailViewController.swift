@@ -11,15 +11,7 @@ import AlamofireImage
 
 class ReceivedPhotoDetailViewController: UIViewController, PhotoActionType, PhotoVoteType {
 
-    // TODO: 우성이 protocol extension으로 만들던지, 커스텀뷰로 만들던지 중복을 줄일 필요가 있어 보임
-    // Photo
-    @IBOutlet weak var photoCardView: UIView!
-    @IBOutlet weak var photoImageView: UIImageView!
-    @IBOutlet weak var profileImageView: UIImageView!
-    @IBOutlet weak var userIdLabel: UILabel!
-    @IBOutlet weak var messageLabel: UILabel!
-    @IBOutlet weak var distanceLabel: UILabel!
-    
+    @IBOutlet weak var photoCardView: PhotoCardView!
     @IBOutlet weak var photoActionView: PhotoActionView!
     @IBOutlet weak var photoVoteView: PhotoVoteView!
     
@@ -28,14 +20,9 @@ class ReceivedPhotoDetailViewController: UIViewController, PhotoActionType, Phot
     override func viewDidLoad() {
         super.viewDidLoad()
 
-        initPhotoCardView()
+        setUpPhotoCardView()
         setUpPhotoActionView()
         setUpPhotoVoteView()
-    }
-    
-    override func viewWillAppear(animated: Bool) {
-        super.viewWillAppear(animated)
-        refreshUnreadChatCount()
     }
     
     override func viewWillDisappear(animated: Bool) {
@@ -45,30 +32,8 @@ class ReceivedPhotoDetailViewController: UIViewController, PhotoActionType, Phot
     
     // MARK: - Init
     
-    private func initPhotoCardView() {
-        initPhotoImage()
-        initUserViews()
-        initDistanceLabel()
-    }
-    
-    private func initPhotoImage() {
-        photo.loadImage { image in
-            self.photoImageView.image = image
-        }
-    }
-    
-    private func initUserViews() {
-        ImageDownloader.downloadImage(photo.sender.profileUrl) { image in
-            if let image = image {
-                self.profileImageView.image = image
-            }
-        }
-        userIdLabel.text = photo.sender.name
-        messageLabel.text = photo.message
-    }
-    
-    private func initDistanceLabel() {
-        distanceLabel.text = photo.deliveredDistanceString
+    private func setUpPhotoCardView() {
+        photoCardView.setUpWithPhoto(photo)
     }
     
     /*
@@ -83,6 +48,18 @@ class ReceivedPhotoDetailViewController: UIViewController, PhotoActionType, Phot
 
     @IBAction func cancelButtonDidTap(sender: AnyObject) {
         dismissViewControllerAnimated(true, completion: nil)
+    }
+    
+    // TODO: 테스트 이후 최종적으로 삭제 필요
+    @IBAction func resetButtonDidTap(sender: AnyObject) {
+        SwishDatabase.updatePhotoState(photo.id, photoState: .Delivered)
+        // 원래 초기화에만 사용해야 하는 로직이지만 테스트를 위해서만 사용하고 추후 삭제 예정
+        setUpPhotoVoteView()
+    }
+    
+    // TODO: 테스트 이후 최종적으로 삭제 필요
+    @IBAction func increaseWingsButtonDidTap(sender: AnyObject) {
+        SwishDatabase.increaseUnreadChatCount(photo.id)
     }
     
     // MARK: - PhotoActionType 
