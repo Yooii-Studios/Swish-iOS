@@ -104,4 +104,9 @@ class SentPhotoDetailViewController: UIViewController, PhotoActionType {
         }
         setUpStatusViews()
     }
+    
+    // TODO: 채팅 메시지 증가 테스트. 추후 삭제 필요
+    @IBAction func increaseChatCountButtonDidTap(sender: AnyObject) {
+        SwishDatabase.increaseUnreadChatCount(photo.id)
+    }
 }
