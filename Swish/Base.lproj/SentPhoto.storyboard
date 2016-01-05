@@ -213,18 +213,60 @@
                                     </mask>
                                 </variation>
                             </view>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="KKo-fV-wGb">
+                                <rect key="frame" x="16" y="451" width="52" height="30"/>
+                                <state key="normal" title="Waiting"/>
+                                <connections>
+                                    <action selector="waitingButtonDidTap:" destination="zj9-Mq-5HG" eventType="touchUpInside" id="9Wx-8J-P2L"/>
+                                </connections>
+                            </button>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="c0b-35-pfF">
+                                <rect key="frame" x="281" y="451" width="78" height="30"/>
+                                <state key="normal" title="Like/Dislike"/>
+                                <connections>
+                                    <action selector="likeDislikeButtonDidTap:" destination="zj9-Mq-5HG" eventType="touchUpInside" id="f6J-gm-UIa"/>
+                                </connections>
+                            </button>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="kiA-rR-Fv8">
+                                <rect key="frame" x="155" y="451" width="65" height="30"/>
+                                <state key="normal" title="Delivered"/>
+                                <connections>
+                                    <action selector="deliveredButtonDidTap:" destination="zj9-Mq-5HG" eventType="touchUpInside" id="PCf-KX-3hA"/>
+                                </connections>
+                            </button>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="sfk-YO-bQM">
+                                <rect key="frame" x="300" y="413" width="59" height="30"/>
+                                <state key="normal" title="Increase"/>
+                                <connections>
+                                    <action selector="increaseChatCountButtonDidTap:" destination="zj9-Mq-5HG" eventType="touchUpInside" id="w6o-ZV-B8Q"/>
+                                </connections>
+                            </button>
                         </subviews>
                         <color key="backgroundColor" cocoaTouchSystemColor="groupTableViewBackgroundColor"/>
                         <constraints>
+                            <constraint firstAttribute="trailingMargin" secondItem="c0b-35-pfF" secondAttribute="trailing" id="1uC-hw-QJr"/>
                             <constraint firstAttribute="trailing" secondItem="X29-Jd-v56" secondAttribute="trailing" id="20Q-t3-T23"/>
                             <constraint firstItem="X29-Jd-v56" firstAttribute="leading" secondItem="AZT-tq-mY1" secondAttribute="leading" id="6FA-l3-zdM"/>
+                            <constraint firstItem="c0b-35-pfF" firstAttribute="top" secondItem="kiA-rR-Fv8" secondAttribute="top" id="E0f-Zp-snp"/>
                             <constraint firstItem="84U-08-n4v" firstAttribute="top" secondItem="X29-Jd-v56" secondAttribute="bottom" id="LDk-4v-KOW"/>
                             <constraint firstItem="7uK-zm-txt" firstAttribute="trailing" secondItem="17A-m2-dCr" secondAttribute="trailing" constant="-20" id="LSH-Za-iGB"/>
+                            <constraint firstItem="kiA-rR-Fv8" firstAttribute="centerX" secondItem="AZT-tq-mY1" secondAttribute="centerX" id="Qc1-zI-u0n"/>
                             <constraint firstAttribute="leading" secondItem="17A-m2-dCr" secondAttribute="leading" constant="-20" id="ThX-al-8nM"/>
+                            <constraint firstItem="kiA-rR-Fv8" firstAttribute="top" secondItem="KKo-fV-wGb" secondAttribute="top" id="dve-xG-jA4"/>
+                            <constraint firstItem="KKo-fV-wGb" firstAttribute="top" secondItem="17A-m2-dCr" secondAttribute="bottom" constant="26" id="hlT-i9-MvC"/>
+                            <constraint firstItem="c0b-35-pfF" firstAttribute="leading" secondItem="17A-m2-dCr" secondAttribute="trailing" constant="-78" id="j3l-IB-80l"/>
+                            <constraint firstAttribute="leadingMargin" secondItem="KKo-fV-wGb" secondAttribute="leading" id="j9Y-9b-Rcs"/>
                             <constraint firstItem="17A-m2-dCr" firstAttribute="top" secondItem="VpU-3f-WcL" secondAttribute="bottom" constant="20" id="l0n-gU-TLg"/>
                             <constraint firstAttribute="trailing" secondItem="17A-m2-dCr" secondAttribute="trailing" constant="20" id="m1Y-Jd-1mE"/>
+                            <constraint firstItem="c0b-35-pfF" firstAttribute="top" secondItem="sfk-YO-bQM" secondAttribute="bottom" constant="8" id="rke-Ge-aqk"/>
                             <constraint firstItem="7uK-zm-txt" firstAttribute="top" secondItem="17A-m2-dCr" secondAttribute="top" constant="20" id="wdh-qL-sqG"/>
+                            <constraint firstItem="sfk-YO-bQM" firstAttribute="trailing" secondItem="c0b-35-pfF" secondAttribute="trailing" id="yxK-WG-Kq1"/>
                         </constraints>
+                        <variation key="default">
+                            <mask key="constraints">
+                                <exclude reference="j3l-IB-80l"/>
+                            </mask>
+                        </variation>
                     </view>
                     <extendedEdge key="edgesForExtendedLayout" bottom="YES"/>
                     <navigationItem key="navigationItem" title="Sent Photo" id="4Rd-KO-Oeh">

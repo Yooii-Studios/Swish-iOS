@@ -83,4 +83,30 @@ class SentPhotoDetailViewController: UIViewController, PhotoActionType {
         print("chatButtonDidTap")
         showChatDialog()
     }
+    
+    // MARK: - Debug
+    // TODO: 사진 상태를 업데이트받는 상황을 테스트, setUpStatusView()는 추후 뷰를 리팩토링 하는 방식으로 중복 제거 필요
+    @IBAction func waitingButtonDidTap(sender: AnyObject) {
+        SwishDatabase.updatePhotoState(photo.id, photoState: .Waiting)
+        setUpStatusViews()
+    }
+    
+    @IBAction func deliveredButtonDidTap(sender: AnyObject) {
+        SwishDatabase.updatePhotoState(photo.id, photoState: .Delivered)
+        setUpStatusViews()
+    }
+    
+    @IBAction func likeDislikeButtonDidTap(sender: AnyObject) {
+        if photo.photoState == .Liked {
+            SwishDatabase.updatePhotoState(photo.id, photoState: .Disliked)
+        } else {
+            SwishDatabase.updatePhotoState(photo.id, photoState: .Liked)
+        }
+        setUpStatusViews()
+    }
+    
+    // TODO: 채팅 메시지 증가 테스트. 추후 삭제 필요
+    @IBAction func increaseChatCountButtonDidTap(sender: AnyObject) {
+        SwishDatabase.increaseUnreadChatCount(photo.id)
+    }
 }

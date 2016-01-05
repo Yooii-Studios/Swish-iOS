@@ -53,26 +53,35 @@ class PhotoActionView: NibDesignable {
         }
     }
     
-    // TODO: showChatButtonWithAnimation(), hideChatButtonWithAnimation() 구현 필요
+    // TODO: 맵, 챗 버튼 관련 애니메이션 추가 구현 필요
     private func observePhotoStateForChatButtonVisibility(photo: Photo) {
         PhotoObserver.observePhotoStateForPhoto(photo, owner: self) { [unowned self] (id, state) -> Void in
             if state == .Liked {
                 self.showChatButtonWithAnimation()
+            } else if state == .Delivered {
+                self.showMapButtonWithAnimation()
             } else {
                 self.hideChatButtonWithAnimation()
             }
         }
     }
     
-    // TODO: 두 애니메이션 메서드 추후 구현 필요
+    // TODO: 네 애니메이션 메서드 추후 보강 구현 필요
+    private func showMapButtonWithAnimation() {
+        mapButton.alpha = 1
+    }
+    
+    private func hideMapButtonWithAnimation() {
+        mapButton.alpha = 0
+    }
+    
     private func showChatButtonWithAnimation() {
         print("showChatButtonWithAnimation")
-        self.chatButton.alpha = 1
-    }
+        chatButton.alpha = 1    }
     
     private func hideChatButtonWithAnimation() {
         print("hideChatButtonWithAnimation")
-        self.chatButton.alpha = 0
+        chatButton.alpha = 0
     }
     
     // TODO: 동현에게 안드로이드 handleReceivedMessage에 로직을 어떻게 처리할 건지에 대해 물어보기
