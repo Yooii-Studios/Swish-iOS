@@ -62,7 +62,7 @@ class SentPhotoDetailViewController: UIViewController, PhotoActionType {
     }
     
     // MARK: - Debug
-    // TODO: 사진 상태를 업데이트받는 상황을 테스트, setUpStatusView()는 추후 뷰를 리팩토링 하는 방식으로 중복 제거 필요
+    // TODO: 사진 상태를 업데이트받는 상황을 테스트
     @IBAction func waitingButtonDidTap(sender: AnyObject) {
         SwishDatabase.updatePhotoState(photo.id, photoState: .Waiting)
         setUpStatusViews()
