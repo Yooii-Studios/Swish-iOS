@@ -13,12 +13,7 @@ class SentPhotoDetailViewController: UIViewController, PhotoActionType {
     // Photo Views
     @IBOutlet weak var photoCardView: PhotoCardView!
     @IBOutlet weak var photoActionView: PhotoActionView!
-    
-    // Status
-    @IBOutlet weak var statusContentView: UIView!
-    @IBOutlet weak var statusImageView: UIImageView!
-    @IBOutlet weak var statusLabel: UILabel!
-    @IBOutlet weak var statusDescriptionLabel: UILabel!
+    @IBOutlet weak var photoStatusView: PhotoStatusView!
 
     final var photo: Photo!
     
@@ -28,8 +23,8 @@ class SentPhotoDetailViewController: UIViewController, PhotoActionType {
         super.viewDidLoad()
 
         setUpPhotoCardView()
-        setUpStatusViews()
         setUpPhotoActionView()
+        setUpStatusViews()
     }
     
     // MARK: - Init
@@ -39,25 +34,7 @@ class SentPhotoDetailViewController: UIViewController, PhotoActionType {
     }
     
     private func setUpStatusViews() {
-        // TODO: 추후 PhotoStateView로 래핑해줄 것
-        statusLabel.text = photo.photoState.sentStateResId
-        statusDescriptionLabel.text = photo.photoState.sentStateDescriptionResId
-        statusImageView.image = UIImage(named: photo.photoState.sentDetailStateImgResId)
-        
-        if let userId = photo.receivedUserId where photo.photoState == .Liked {
-            // TODO: UI 업데이트
-            let callback = OtherUserFetchCallback(
-                prepareCallback: { otherUser in
-                    print("prepare: \(otherUser.name)")
-                }, successCallback: { otherUser in
-                    print("success: \(otherUser.name)")
-                }, failureCallback: { userId in
-                    print("failure: \(userId)")
-            })
-            
-            let fetchRequest = OtherUserFetchRequest(userId: userId, callback: callback)
-            OtherUserLoader.instance.loadOtherUserWithRequest(fetchRequest)
-        }
+        photoStatusView.setUpWithPhoto(photo)
     }
     
     /*
