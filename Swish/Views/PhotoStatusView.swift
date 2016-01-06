@@ -19,7 +19,19 @@ class PhotoStatusView: NibDesignable {
     @IBOutlet weak var statusDescriptionLabel: UILabel!
     
     final func setUpWithPhoto(photo: Photo) {
-        // TODO: 추후 PhotoStateView로 래핑해줄 것
+        updateViewsWithPhoto(photo)
+        observePhotoState(photo)
+    }
+    
+    private func observePhotoState(photo: Photo) {
+        PhotoObserver.observePhotoStateForPhoto(photo, owner: self) { [unowned self] (id, state) -> Void in
+            if let updatedPhoto = SwishDatabase.photoWithId(id) {
+                self.updateViewsWithPhoto(updatedPhoto)
+            }
+        }
+    }
+    
+    private func updateViewsWithPhoto(photo: Photo) {
         statusLabel.text = photo.photoState.sentStateResId
         statusDescriptionLabel.text = photo.photoState.sentStateDescriptionResId
         statusImageView.image = UIImage(named: photo.photoState.sentDetailStateImgResId)

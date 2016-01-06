@@ -57,10 +57,16 @@ class PhotoActionView: NibDesignable {
     private func observePhotoStateForVisibility(photo: Photo) {
         PhotoObserver.observePhotoStateForPhoto(photo, owner: self) { [unowned self] (id, state) -> Void in
             if state == .Liked {
+                if self.mapButton.alpha == 0 {
+                    self.showMapButtonWithAnimation()
+                }
                 self.showChatButtonWithAnimation()
             } else if state == .Delivered {
                 self.showMapButtonWithAnimation()
             } else {
+                if photo.isSentPhoto {
+                    self.hideMapButtonWithAnimation()
+                }
                 self.hideChatButtonWithAnimation()
             }
         }
