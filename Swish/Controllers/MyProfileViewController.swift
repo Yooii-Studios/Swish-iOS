@@ -13,6 +13,7 @@ class MyProfileViewController: UIViewController {
 
     @IBOutlet weak var profileImageView: UIImageView!
     @IBOutlet weak var nameLabel: UILabel!
+    @IBOutlet weak var aboutLabel: UILabel!
     
     @IBOutlet weak var sentPhotoCountLabel: UILabel!
     @IBOutlet weak var likedPhotoCountLabel: UILabel!
@@ -26,7 +27,7 @@ class MyProfileViewController: UIViewController {
     
     private func initUI() {
         initUserImageView()
-        initUserLabel()
+        initUserLabels()
         initUserActivityView()
     }
     
@@ -38,8 +39,9 @@ class MyProfileViewController: UIViewController {
         }
     }
     
-    private func initUserLabel() {
+    private func initUserLabels() {
         nameLabel.text = MeManager.me().name
+        aboutLabel.text = MeManager.me().about
     }
     
     private func initUserActivityView() {

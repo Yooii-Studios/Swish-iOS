@@ -39,13 +39,13 @@
                                         <rect key="frame" x="0.0" y="0.0" width="124" height="80"/>
                                         <subviews>
                                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="122" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="kPb-6G-mBa">
-                                                <rect key="frame" x="8" y="14" width="108" height="28"/>
-                                                <fontDescription key="fontDescription" type="system" weight="semibold" pointSize="23"/>
+                                                <rect key="frame" x="8" y="14" width="108" height="32"/>
+                                                <fontDescription key="fontDescription" type="system" weight="semibold" pointSize="26"/>
                                                 <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
                                                 <nil key="highlightedColor"/>
                                             </label>
                                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Sent" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="976-vY-O5C">
-                                                <rect key="frame" x="8" y="46" width="108" height="18"/>
+                                                <rect key="frame" x="8" y="50" width="108" height="18"/>
                                                 <fontDescription key="fontDescription" style="UICTFontTextStyleCallout"/>
                                                 <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
                                                 <nil key="highlightedColor"/>
@@ -72,13 +72,13 @@
                                         <rect key="frame" x="126" y="0.0" width="123" height="80"/>
                                         <subviews>
                                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="83" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="br3-f4-uWa">
-                                                <rect key="frame" x="8" y="14" width="108" height="28"/>
-                                                <fontDescription key="fontDescription" type="system" weight="semibold" pointSize="23"/>
+                                                <rect key="frame" x="8" y="14" width="108" height="32"/>
+                                                <fontDescription key="fontDescription" type="system" weight="semibold" pointSize="26"/>
                                                 <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
                                                 <nil key="highlightedColor"/>
                                             </label>
                                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Like" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="kA0-1w-ZBG">
-                                                <rect key="frame" x="8" y="46" width="108" height="18"/>
+                                                <rect key="frame" x="8" y="50" width="108" height="18"/>
                                                 <fontDescription key="fontDescription" style="UICTFontTextStyleCallout"/>
                                                 <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
                                                 <nil key="highlightedColor"/>
@@ -98,13 +98,13 @@
                                         <rect key="frame" x="251" y="0.0" width="124" height="80"/>
                                         <subviews>
                                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="21" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Xzq-CX-szs">
-                                                <rect key="frame" x="8" y="14" width="108" height="28"/>
-                                                <fontDescription key="fontDescription" type="system" weight="semibold" pointSize="23"/>
+                                                <rect key="frame" x="8" y="14" width="108" height="32"/>
+                                                <fontDescription key="fontDescription" type="system" weight="semibold" pointSize="26"/>
                                                 <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
                                                 <nil key="highlightedColor"/>
                                             </label>
                                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Dislike" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="8TB-0E-EXo">
-                                                <rect key="frame" x="8" y="46" width="108" height="18"/>
+                                                <rect key="frame" x="8" y="50" width="108" height="18"/>
                                                 <fontDescription key="fontDescription" style="UICTFontTextStyleCallout"/>
                                                 <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
                                                 <nil key="highlightedColor"/>
@@ -151,24 +151,44 @@
                                     <constraint firstAttribute="bottom" secondItem="d2K-zg-Dhe" secondAttribute="bottom" id="zcC-8g-rnW"/>
                                 </constraints>
                             </view>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="hY0-YW-6JS">
+                                <rect key="frame" x="280" y="20" width="75" height="30"/>
+                                <state key="normal" title="Edit Profile"/>
+                                <connections>
+                                    <segue destination="cxC-wk-8cC" kind="show" id="jc3-Ge-ld1"/>
+                                </connections>
+                            </button>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="I enjoy cycling and would like to go out cycling with someone :)" textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="YwM-fY-oPS">
+                                <rect key="frame" x="12" y="299" width="351" height="41"/>
+                                <fontDescription key="fontDescription" style="UICTFontTextStyleBody"/>
+                                <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
+                                <nil key="highlightedColor"/>
+                            </label>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                         <constraints>
+                            <constraint firstItem="hY0-YW-6JS" firstAttribute="top" secondItem="lbp-VH-BXP" secondAttribute="bottom" constant="20" id="6sc-uI-MXb"/>
                             <constraint firstItem="gUf-5z-39F" firstAttribute="top" secondItem="LWm-K3-Y3J" secondAttribute="bottom" constant="27" id="AhX-uK-71V"/>
                             <constraint firstItem="LWm-K3-Y3J" firstAttribute="top" secondItem="lbp-VH-BXP" secondAttribute="bottom" constant="100" id="BWN-En-AYM"/>
+                            <constraint firstAttribute="trailingMargin" secondItem="YwM-fY-oPS" secondAttribute="trailing" constant="-4" id="FJE-ed-wPC"/>
                             <constraint firstAttribute="leadingMargin" secondItem="gUf-5z-39F" secondAttribute="leading" id="Kqs-l7-nfV"/>
+                            <constraint firstItem="YwM-fY-oPS" firstAttribute="leading" secondItem="y4V-Mq-vl4" secondAttribute="leadingMargin" constant="-4" id="LD3-49-O6r"/>
                             <constraint firstAttribute="trailingMargin" secondItem="gUf-5z-39F" secondAttribute="trailing" id="Lq0-UU-089"/>
+                            <constraint firstItem="YwM-fY-oPS" firstAttribute="top" secondItem="gUf-5z-39F" secondAttribute="bottom" constant="26" id="TEY-u7-xbi"/>
                             <constraint firstItem="AE7-N3-ZAq" firstAttribute="leading" secondItem="y4V-Mq-vl4" secondAttribute="leading" id="aW1-hN-Rqu"/>
                             <constraint firstAttribute="trailing" secondItem="AE7-N3-ZAq" secondAttribute="trailing" id="byG-56-psK"/>
                             <constraint firstItem="LWm-K3-Y3J" firstAttribute="centerX" secondItem="y4V-Mq-vl4" secondAttribute="centerX" id="r8x-WW-Sdy"/>
                             <constraint firstItem="68S-ul-TrW" firstAttribute="top" secondItem="AE7-N3-ZAq" secondAttribute="bottom" constant="41" id="s5R-KM-e5A"/>
+                            <constraint firstAttribute="trailing" secondItem="hY0-YW-6JS" secondAttribute="trailing" constant="20" id="xyB-Zm-hAf"/>
                         </constraints>
                     </view>
+                    <extendedEdge key="edgesForExtendedLayout" bottom="YES"/>
                     <tabBarItem key="tabBarItem" title="Profile" id="dDF-zE-htf"/>
                     <simulatedNavigationBarMetrics key="simulatedTopBarMetrics" translucent="NO" prompted="NO"/>
                     <simulatedTabBarMetrics key="simulatedBottomBarMetrics"/>
                     <simulatedScreenMetrics key="simulatedDestinationMetrics" type="retina47"/>
                     <connections>
+                        <outlet property="aboutLabel" destination="YwM-fY-oPS" id="2xb-Ii-frc"/>
                         <outlet property="dislikedPhotoCountLabel" destination="Xzq-CX-szs" id="jYR-Bw-XnK"/>
                         <outlet property="likedPhotoCountLabel" destination="br3-f4-uWa" id="cVN-cB-1vl"/>
                         <outlet property="nameLabel" destination="gUf-5z-39F" id="qEc-2Z-fVa"/>
@@ -179,6 +199,24 @@
                 <placeholder placeholderIdentifier="IBFirstResponder" id="wUL-2g-7AE" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="2975.5" y="1660.5"/>
+        </scene>
+        <!--View Controller-->
+        <scene sceneID="2kv-5e-lcE">
+            <objects>
+                <viewController id="cxC-wk-8cC" sceneMemberID="viewController">
+                    <layoutGuides>
+                        <viewControllerLayoutGuide type="top" id="6Fz-Ws-OT5"/>
+                        <viewControllerLayoutGuide type="bottom" id="GMV-2e-cj5"/>
+                    </layoutGuides>
+                    <view key="view" contentMode="scaleToFill" id="O3c-SZ-zIw">
+                        <rect key="frame" x="0.0" y="64" width="375" height="603"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                    </view>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="7GJ-eR-1Ms" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="3548.5" y="1660.5"/>
         </scene>
     </scenes>
     <resources>
