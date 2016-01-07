@@ -200,10 +200,10 @@
             </objects>
             <point key="canvasLocation" x="2975.5" y="1660.5"/>
         </scene>
-        <!--View Controller-->
+        <!--My Profile Edit View Controller-->
         <scene sceneID="2kv-5e-lcE">
             <objects>
-                <viewController id="cxC-wk-8cC" sceneMemberID="viewController">
+                <viewController id="cxC-wk-8cC" customClass="MyProfileEditViewController" customModule="Swish" customModuleProvider="target" sceneMemberID="viewController">
                     <layoutGuides>
                         <viewControllerLayoutGuide type="top" id="6Fz-Ws-OT5"/>
                         <viewControllerLayoutGuide type="bottom" id="GMV-2e-cj5"/>
@@ -211,8 +211,74 @@
                     <view key="view" contentMode="scaleToFill" id="O3c-SZ-zIw">
                         <rect key="frame" x="0.0" y="64" width="375" height="603"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="6cf-7a-h6G" userLabel="Profile Image Button">
+                                <rect key="frame" x="122" y="46" width="130" height="130"/>
+                                <constraints>
+                                    <constraint firstAttribute="width" constant="130" id="Ld9-YZ-gDs"/>
+                                    <constraint firstAttribute="width" secondItem="6cf-7a-h6G" secondAttribute="height" multiplier="1:1" id="a8H-QK-gOL"/>
+                                </constraints>
+                                <state key="normal" image="img_profile_default"/>
+                                <connections>
+                                    <action selector="changePhotoButtonDidTap:" destination="cxC-wk-8cC" eventType="touchUpInside" id="mFx-qB-Bmb"/>
+                                </connections>
+                            </button>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="rIZ-3z-KGg" userLabel="Change Photo Button">
+                                <rect key="frame" x="208" y="145" width="44" height="44"/>
+                                <state key="normal" image="ic_my_profile_change_photo"/>
+                                <connections>
+                                    <action selector="changePhotoButtonDidTap:" destination="cxC-wk-8cC" eventType="touchUpInside" id="pBO-7I-h7g"/>
+                                </connections>
+                            </button>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Nickname" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="eEB-75-8Ub">
+                                <rect key="frame" x="16" y="230" width="343" height="26"/>
+                                <fontDescription key="fontDescription" style="UICTFontTextStyleTitle2"/>
+                                <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                            <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="1Ap-pL-kzO" userLabel="Nickname Text Field">
+                                <rect key="frame" x="12" y="264" width="351" height="30"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                                <textInputTraits key="textInputTraits"/>
+                            </textField>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="About" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="ZLj-xp-1Uu">
+                                <rect key="frame" x="12" y="344" width="351" height="26"/>
+                                <fontDescription key="fontDescription" style="UICTFontTextStyleTitle2"/>
+                                <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                            <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="uMl-k3-tnr" userLabel="About Text Field">
+                                <rect key="frame" x="12" y="385" width="351" height="30"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                                <textInputTraits key="textInputTraits"/>
+                            </textField>
+                        </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                        <constraints>
+                            <constraint firstItem="6cf-7a-h6G" firstAttribute="top" secondItem="6Fz-Ws-OT5" secondAttribute="bottom" constant="46" id="6bR-JM-7dB"/>
+                            <constraint firstAttribute="trailingMargin" secondItem="1Ap-pL-kzO" secondAttribute="trailing" constant="-4" id="GOn-rt-1Yo"/>
+                            <constraint firstItem="eEB-75-8Ub" firstAttribute="top" secondItem="6cf-7a-h6G" secondAttribute="bottom" constant="54" id="Hj3-ie-H1l"/>
+                            <constraint firstItem="rIZ-3z-KGg" firstAttribute="leading" secondItem="6cf-7a-h6G" secondAttribute="trailing" constant="-44" id="KUY-XP-UAN"/>
+                            <constraint firstAttribute="trailingMargin" secondItem="ZLj-xp-1Uu" secondAttribute="trailing" constant="-4" id="MJ5-eS-r50"/>
+                            <constraint firstItem="uMl-k3-tnr" firstAttribute="top" secondItem="ZLj-xp-1Uu" secondAttribute="bottom" constant="15" id="Qc4-Tz-bkb"/>
+                            <constraint firstItem="ZLj-xp-1Uu" firstAttribute="top" secondItem="1Ap-pL-kzO" secondAttribute="bottom" constant="50" id="UqX-nY-lU5"/>
+                            <constraint firstAttribute="leadingMargin" secondItem="eEB-75-8Ub" secondAttribute="leading" id="aeX-48-3Sv"/>
+                            <constraint firstItem="1Ap-pL-kzO" firstAttribute="top" secondItem="eEB-75-8Ub" secondAttribute="bottom" constant="8" id="hG8-cu-bXb"/>
+                            <constraint firstItem="1Ap-pL-kzO" firstAttribute="leading" secondItem="O3c-SZ-zIw" secondAttribute="leadingMargin" constant="-4" id="im5-S1-mg2"/>
+                            <constraint firstItem="ZLj-xp-1Uu" firstAttribute="leading" secondItem="O3c-SZ-zIw" secondAttribute="leadingMargin" constant="-4" id="nGD-eL-LOy"/>
+                            <constraint firstItem="rIZ-3z-KGg" firstAttribute="top" secondItem="6cf-7a-h6G" secondAttribute="bottom" constant="-31" id="o91-Oc-iEO"/>
+                            <constraint firstItem="6cf-7a-h6G" firstAttribute="centerX" secondItem="O3c-SZ-zIw" secondAttribute="centerX" id="ofc-2q-jn0"/>
+                            <constraint firstAttribute="trailingMargin" secondItem="uMl-k3-tnr" secondAttribute="trailing" constant="-4" id="sFl-Dk-yaL"/>
+                            <constraint firstItem="uMl-k3-tnr" firstAttribute="leading" secondItem="O3c-SZ-zIw" secondAttribute="leadingMargin" constant="-4" id="vhT-JF-GMi"/>
+                            <constraint firstAttribute="trailingMargin" secondItem="eEB-75-8Ub" secondAttribute="trailing" id="wmS-YK-7Cz"/>
+                        </constraints>
                     </view>
+                    <extendedEdge key="edgesForExtendedLayout" bottom="YES"/>
+                    <connections>
+                        <outlet property="aboutTextField" destination="uMl-k3-tnr" id="TXz-FZ-IVh"/>
+                        <outlet property="nameTextField" destination="1Ap-pL-kzO" id="tgO-7X-vgA"/>
+                        <outlet property="profileImageButton" destination="6cf-7a-h6G" id="a8d-Nd-Fdz"/>
+                    </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="7GJ-eR-1Ms" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
@@ -220,6 +286,7 @@
         </scene>
     </scenes>
     <resources>
+        <image name="ic_my_profile_change_photo" width="44" height="44"/>
         <image name="img_profile_default" width="171" height="171"/>
     </resources>
 </document>
