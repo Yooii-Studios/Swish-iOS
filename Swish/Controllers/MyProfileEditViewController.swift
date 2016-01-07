@@ -9,11 +9,13 @@
 import UIKit
 import AlamofireImage
 
-class MyProfileEditViewController: UIViewController {
+class MyProfileEditViewController: UIViewController, PhotoPickable {
 
     @IBOutlet weak var profileImageButton: UIButton!
     @IBOutlet weak var nameTextField: UITextField!
     @IBOutlet weak var aboutTextField: UITextField!
+    
+    final var photoPickerHandler: PhotoPickerHandler?
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -46,7 +48,13 @@ class MyProfileEditViewController: UIViewController {
     }
 
     @IBAction func changePhotoButtonDidTap(sender: AnyObject) {
-        print("changePhotoButtonDidTap")
+        if photoPickerHandler == nil {
+            photoPickerHandler = PhotoPickerHandler() { image in
+                self.profileImageButton.setImage(image, forState: .Normal)
+                MeManager.updateMyProfileImage(image)
+            }
+        }
+        presentPhotoPickerControllerModally()
     }
     
     /*
