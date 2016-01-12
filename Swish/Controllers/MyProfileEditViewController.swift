@@ -29,7 +29,8 @@ class MyProfileEditViewController: UIViewController, PhotoPickable {
     override func willMoveToParentViewController(parent: UIViewController?) {
         if parent == nil {
             // "Back button pressed"
-            print("willMoveToParentViewController")
+            // TODO: 추후 바로 설정하지 말고 예외 처리 필요
+            MeManager.updateMe(self.nameTextField.text, about: self.aboutTextField.text, onSuccess: nil, onFail: nil)
         }
     }
     

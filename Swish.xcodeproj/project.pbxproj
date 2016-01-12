@@ -83,6 +83,7 @@
 		AEF32DDF1BA301A200EA00A9 /* PhotoCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = AEF32DDE1BA301A200EA00A9 /* PhotoCollectionViewCell.swift */; };
 		F20CC6761BDB878F00075088 /* SegueHandlerType.swift in Sources */ = {isa = PBXBuildFile; fileRef = F20CC6751BDB878F00075088 /* SegueHandlerType.swift */; };
 		F20E7CBA1BFDD55F005149C1 /* PhotoMapViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = F20E7CB91BFDD55F005149C1 /* PhotoMapViewController.swift */; };
+		F20E9E7C1C44C9CD007ECEE6 /* MeObserver.swift in Sources */ = {isa = PBXBuildFile; fileRef = F20E9E7B1C44C9CD007ECEE6 /* MeObserver.swift */; };
 		F2185E511BEA3B5D0062E4B1 /* ReceivedPhotoViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = F2185E501BEA3B5D0062E4B1 /* ReceivedPhotoViewCell.swift */; };
 		F2261CAA1C0729D000C12729 /* SentPhotoDetailViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = F2261CA91C0729D000C12729 /* SentPhotoDetailViewController.swift */; };
 		F2305B981BE23EC20056E087 /* UIView+Constraints.swift in Sources */ = {isa = PBXBuildFile; fileRef = F2305B971BE23EC20056E087 /* UIView+Constraints.swift */; };
@@ -218,6 +219,7 @@
 		C0256DF10FDFE7249524B3FB /* Pods.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = Pods.debug.xcconfig; path = "Pods/Target Support Files/Pods/Pods.debug.xcconfig"; sourceTree = "<group>"; };
 		F20CC6751BDB878F00075088 /* SegueHandlerType.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = SegueHandlerType.swift; path = ../Helpers/SegueHandlerType.swift; sourceTree = "<group>"; };
 		F20E7CB91BFDD55F005149C1 /* PhotoMapViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PhotoMapViewController.swift; sourceTree = "<group>"; };
+		F20E9E7B1C44C9CD007ECEE6 /* MeObserver.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MeObserver.swift; sourceTree = "<group>"; };
 		F2185E501BEA3B5D0062E4B1 /* ReceivedPhotoViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ReceivedPhotoViewCell.swift; sourceTree = "<group>"; };
 		F2261CA91C0729D000C12729 /* SentPhotoDetailViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SentPhotoDetailViewController.swift; sourceTree = "<group>"; };
 		F2305B971BE23EC20056E087 /* UIView+Constraints.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "UIView+Constraints.swift"; sourceTree = "<group>"; };
@@ -307,6 +309,7 @@
 				5773646C1C22F69D007EA7B5 /* RealmObjectObservable.swift */,
 				57EC68ED1C1E9B0100CB07E5 /* ChatObserver.swift */,
 				579D9D1D1C2135C700145CC8 /* PhotoObserver.swift */,
+				F20E9E7B1C44C9CD007ECEE6 /* MeObserver.swift */,
 			);
 			path = Observer;
 			sourceTree = "<group>";
@@ -821,6 +824,7 @@
 				579673891B9FFE6C00382247 /* OtherUser.swift in Sources */,
 				579D9D1E1C2135C700145CC8 /* PhotoObserver.swift in Sources */,
 				57E3EFF81BFD8E1E000D1564 /* UIImage+Base64.swift in Sources */,
+				F20E9E7C1C44C9CD007ECEE6 /* MeObserver.swift in Sources */,
 				57A29A671C044CE00016E265 /* CLLocationManager+Authorization.swift in Sources */,
 				579D9D1A1C1FF3D500145CC8 /* PhotoViewCell.swift in Sources */,
 			);
