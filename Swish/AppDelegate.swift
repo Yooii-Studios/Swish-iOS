@@ -9,6 +9,7 @@
 import UIKit
 import CoreData
 import DeviceUtil
+import IQKeyboardManagerSwift
 
 typealias NotificationInfo = [NSObject: AnyObject]
 
@@ -20,8 +21,13 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
     func application(application: UIApplication, didFinishLaunchingWithOptions launchOptions: [NSObject: AnyObject]?) -> Bool {
         // Override point for customization after application launch.
         SwishDatabase.migrate()
-        
+        initIQKeyboardManager()
         return true
+    }
+    
+    private func initIQKeyboardManager() {
+        IQKeyboardManager.sharedManager().enable = true
+        IQKeyboardManager.sharedManager().shouldToolbarUsesTextFieldTintColor = true
     }
     
     func applicationWillResignActive(application: UIApplication) {
