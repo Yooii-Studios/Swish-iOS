@@ -113,7 +113,7 @@
 }
 
 - (BOOL)isViewLastItem:(UIView*)view excludingItem:(UIView*)excludingItem {
-  NSArray<__kindof UIView *> *visible = [self currentVisibleViews];
+  NSArray *visible = [self currentVisibleViews];
   NSInteger index = [visible indexOfObject:view];
   NSInteger exclutedIndex = [visible indexOfObject:excludingItem];
   

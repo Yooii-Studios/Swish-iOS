@@ -9,7 +9,7 @@ PODS:
   - Google-Mobile-Ads-SDK (7.6.0)
   - IQKeyboardManagerSwift (3.3.5)
   - NibDesignable (2.2.0)
-  - OAStackView (1.0.0)
+  - OAStackView (0.2.0)
   - PureLayout (3.0.1)
   - ReactKit (0.12.0):
     - SwiftTask (~> 4.0.0)
@@ -34,6 +34,7 @@ DEPENDENCIES:
   - NibDesignable
   - OAStackView
   - ReactKit
+  - Realm
   - RealmSwift
   - SnapKit (~> 0.15.0)
   - SwiftyColor
@@ -45,7 +46,7 @@ EXTERNAL SOURCES:
 
 CHECKOUT OPTIONS:
   SwiftyJSON:
-    :commit: 929539eb6a3304eaa9153ca44041a78b85bf2ee5
+    :commit: 8e618c8baf6323a5079c6549bb38d48357b31630
     :git: https://github.com/SwiftyJSON/SwiftyJSON.git
 
 SPEC CHECKSUMS:
@@ -57,7 +58,7 @@ SPEC CHECKSUMS:
   Google-Mobile-Ads-SDK: 0290020329c61183c4685304264b73382bc49fb4
   IQKeyboardManagerSwift: 17f1ebf3fe07f7905369c6dca2da1051b6fea805
   NibDesignable: a99475b490a3884dac7cb3bb2b21ee128b01ca91
-  OAStackView: 05467abf2d30c2c55e87e81e003cd3940da8bc05
+  OAStackView: a05adfec3669a5187b968a8c0a2690ae517271b6
   PureLayout: f35f5384c9c4e4479df041dbe33ad7577b71ddfb
   ReactKit: a2b705e8a8674b9cb38b8112c07891df87e8e62b
   Realm: b498a6fb9d288b171ff98d0e2d4384c295be8990
