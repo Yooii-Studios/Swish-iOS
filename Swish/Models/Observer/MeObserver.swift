@@ -12,9 +12,9 @@ import SwiftTask
 struct MeObserver: RealmObjectObservable {
     
     static func observeProfileUrl(owner: NSObject, handler: String -> Void) -> Canceller? {
-            return startingStream(MeManager.me(), property: "profileUrl", owner: owner) {
-                handler($0 as! String)
-            }
+        return startingStream(MeManager.me(), property: "profileUrl", owner: owner) {
+            handler($0 as! String)
+        }
     }
     
     static func observeName(owner: NSObject, handler: String -> Void) -> Canceller? {
