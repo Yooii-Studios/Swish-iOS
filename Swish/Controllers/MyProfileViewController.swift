@@ -52,10 +52,38 @@ class MyProfileViewController: UIViewController {
     }
     
     private func initUserActivityView() {
-        let userActivityRecord = MeManager.me().userActivityRecord
+        setUserActivityRecordsInVisible()
+        fetchUserActivityRecords()
+    }
+    
+    private func setUserActivityRecordsInVisible() {
+        // 스토리보드에서 미리 alpha = 0을 할 수 있지만 폰트 스타일 조절을 위해 여기에서 처리
+        sentPhotoCountLabel.alpha = 0
+        likedPhotoCountLabel.alpha = 0
+        dislikedPhotoCountLabel.alpha = 0
+    }
+    
+    private func fetchUserActivityRecords() {
+        UserServer.activityRecordWith(MeManager.me().id,
+            onSuccess: { userActivityRecord in
+                self.setUserActivityRecord(userActivityRecord)
+            }, onFail: { (error) -> () in
+                self.setUserActivityRecord(MeManager.me().userActivityRecord)
+        })
+    }
+    
+    private func setUserActivityRecord(userActivityRecord: UserActivityRecord) {
         sentPhotoCountLabel.text = String(userActivityRecord.sentPhotoCount)
         likedPhotoCountLabel.text = String(userActivityRecord.likedPhotoCount)
         dislikedPhotoCountLabel.text = String(userActivityRecord.dislikedPhotoCount)
+        
+        setUserActivityRecordsVisible()
+    }
+    
+    private func setUserActivityRecordsVisible() {
+        sentPhotoCountLabel.alpha = 1
+        likedPhotoCountLabel.alpha = 1
+        dislikedPhotoCountLabel.alpha = 1
     }
 
     /*
