@@ -65,30 +65,47 @@ protocol PhotoPickable {
 
 extension PhotoPickable where Self: UIViewController {
 
+    private func createPickerController() -> CTAssetsPickerController{
+        // init
+        let picker = CTAssetsPickerController()
+        picker.delegate = self.photoPickerHandler
+        
+        // set default album (Camera Roll)
+        picker.defaultAssetCollection = PHAssetCollectionSubtype.SmartAlbumUserLibrary
+        
+        // create options for fetching photo only
+        let fetchOptions = PHFetchOptions()
+        fetchOptions.predicate = NSPredicate(format: "mediaType == %d", PHAssetMediaType.Image.rawValue)
+        
+        // assign options
+        picker.assetsFetchOptions = fetchOptions
+        
+        if UI_USER_INTERFACE_IDIOM() == UIUserInterfaceIdiom.Pad {
+            picker.modalPresentationStyle = UIModalPresentationStyle.FormSheet
+        }
+        
+        return picker
+    }
+    
     final func showPhotoPickerContoller() {
         PHPhotoLibrary.requestAuthorization { (status: PHAuthorizationStatus) -> Void in
             if status == PHAuthorizationStatus.Authorized {
                 dispatch_async(dispatch_get_main_queue()) {
                     // TODO: 불필요한 주석일 순 있으나 샘플 프로젝트를 계속 활용해 가야 하기에 마지막 마무리 후 일괄적으로 삭제 예정
-                    // init
-                    let picker = CTAssetsPickerController()
-                    picker.delegate = self.photoPickerHandler
-                    
-                    // set default album (Camera Roll)
-                    picker.defaultAssetCollection = PHAssetCollectionSubtype.SmartAlbumUserLibrary
-                    
-                    // create options for fetching photo only
-                    let fetchOptions = PHFetchOptions()
-                    fetchOptions.predicate = NSPredicate(format: "mediaType == %d", PHAssetMediaType.Image.rawValue)
-                    
-                    // assign options
-                    picker.assetsFetchOptions = fetchOptions
-                    
-                    if UI_USER_INTERFACE_IDIOM() == UIUserInterfaceIdiom.Pad {
-                        picker.modalPresentationStyle = UIModalPresentationStyle.FormSheet
-                    }
-                    
+                    let picker = self.createPickerController()
                     self.showViewController(picker, sender: self)
+                }
+            }
+        }
+    }
+    
+    final func presentPhotoPickerControllerModally() {
+        PHPhotoLibrary.requestAuthorization { (status: PHAuthorizationStatus) -> Void in
+            if status == PHAuthorizationStatus.Authorized {
+                dispatch_async(dispatch_get_main_queue()) {
+                    // TODO: 불필요한 주석일 순 있으나 샘플 프로젝트를 계속 활용해 가야 하기에 마지막 마무리 후 일괄적으로 삭제 예정
+                    let picker = self.createPickerController()
+                    self.presentViewController(picker, animated: true, completion: nil)
                 }
             }
         }

@@ -1,0 +1,71 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="9531" systemVersion="15C50" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES">
+    <dependencies>
+        <deployment identifier="iOS"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="9529"/>
+    </dependencies>
+    <objects>
+        <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner" customClass="PhotoStatusView" customModule="Swish" customModuleProvider="target">
+            <connections>
+                <outlet property="statusDescriptionLabel" destination="f9V-Xs-2eI" id="NRN-I9-RdG"/>
+                <outlet property="statusImageView" destination="dMj-54-OUV" id="ZJC-m2-WCy"/>
+                <outlet property="statusLabel" destination="9tS-dh-ZKK" id="qRz-nU-eqZ"/>
+            </connections>
+        </placeholder>
+        <placeholder placeholderIdentifier="IBFirstResponder" id="-2" customClass="UIResponder"/>
+        <view contentMode="scaleToFill" id="iN0-l3-epB">
+            <rect key="frame" x="0.0" y="0.0" width="375" height="114"/>
+            <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+            <subviews>
+                <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="ic_photo_detail_waiting" translatesAutoresizingMaskIntoConstraints="NO" id="dMj-54-OUV">
+                    <rect key="frame" x="175" y="16" width="25" height="25"/>
+                    <constraints>
+                        <constraint firstAttribute="width" constant="25" id="BLs-4N-z8m"/>
+                        <constraint firstAttribute="height" constant="25" id="Vhb-6B-lbc"/>
+                    </constraints>
+                </imageView>
+                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Waiting" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="9tS-dh-ZKK">
+                    <rect key="frame" x="0.0" y="51" width="375" height="21"/>
+                    <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                    <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
+                    <nil key="highlightedColor"/>
+                </label>
+                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Wating for delivery" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="f9V-Xs-2eI">
+                    <rect key="frame" x="0.0" y="78" width="375" height="21"/>
+                    <constraints>
+                        <constraint firstAttribute="width" constant="359" id="39G-wf-tDJ"/>
+                    </constraints>
+                    <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                    <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
+                    <nil key="highlightedColor"/>
+                    <variation key="default">
+                        <mask key="constraints">
+                            <exclude reference="39G-wf-tDJ"/>
+                        </mask>
+                    </variation>
+                </label>
+            </subviews>
+            <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
+            <constraints>
+                <constraint firstAttribute="trailing" secondItem="9tS-dh-ZKK" secondAttribute="trailing" id="3c3-90-MGl"/>
+                <constraint firstItem="f9V-Xs-2eI" firstAttribute="leading" secondItem="iN0-l3-epB" secondAttribute="leading" id="5UQ-up-aEL"/>
+                <constraint firstAttribute="trailing" secondItem="f9V-Xs-2eI" secondAttribute="trailing" id="FN5-yx-ZvJ"/>
+                <constraint firstItem="dMj-54-OUV" firstAttribute="centerX" secondItem="iN0-l3-epB" secondAttribute="centerX" id="IxF-87-USE"/>
+                <constraint firstItem="9tS-dh-ZKK" firstAttribute="centerX" secondItem="dMj-54-OUV" secondAttribute="centerX" id="RWk-Vp-Lsa"/>
+                <constraint firstItem="f9V-Xs-2eI" firstAttribute="centerX" secondItem="iN0-l3-epB" secondAttribute="centerX" id="bBk-Zr-keC"/>
+                <constraint firstItem="f9V-Xs-2eI" firstAttribute="top" secondItem="9tS-dh-ZKK" secondAttribute="bottom" constant="6" id="ft5-fI-IQK"/>
+                <constraint firstItem="dMj-54-OUV" firstAttribute="top" secondItem="iN0-l3-epB" secondAttribute="top" constant="16" id="hJH-8Q-6tv"/>
+                <constraint firstItem="9tS-dh-ZKK" firstAttribute="leading" secondItem="iN0-l3-epB" secondAttribute="leading" id="oEr-l4-0jy"/>
+                <constraint firstItem="9tS-dh-ZKK" firstAttribute="top" secondItem="dMj-54-OUV" secondAttribute="bottom" constant="10" id="omD-Ik-D3x"/>
+            </constraints>
+            <nil key="simulatedStatusBarMetrics"/>
+            <nil key="simulatedTopBarMetrics"/>
+            <nil key="simulatedBottomBarMetrics"/>
+            <freeformSimulatedSizeMetrics key="simulatedDestinationMetrics"/>
+            <point key="canvasLocation" x="546.5" y="212"/>
+        </view>
+    </objects>
+    <resources>
+        <image name="ic_photo_detail_waiting" width="31" height="31"/>
+    </resources>
+</document>
