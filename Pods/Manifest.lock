@@ -34,7 +34,6 @@ DEPENDENCIES:
   - NibDesignable
   - OAStackView
   - ReactKit
-  - Realm
   - RealmSwift
   - SnapKit (~> 0.15.0)
   - SwiftyColor
