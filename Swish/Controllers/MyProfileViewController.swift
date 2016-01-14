@@ -32,10 +32,11 @@ class MyProfileViewController: UIViewController {
     }
     
     private func initUserImageView() {
-        MeObserver.observeProfileUrl(self, handler: { [unowned self] profileUrl in
-            ImageDownloader.downloadImage(profileUrl) { [unowned self] image in
+        
+        MeObserver.observeProfileUrl(self, handler: { profileUrl in
+            ImageDownloader.downloadImage(profileUrl) { [weak self] image in
                 if let image = image {
-                    self.profileImageView.image = image
+                    self?.profileImageView.image = image
                 }
             }
         })
