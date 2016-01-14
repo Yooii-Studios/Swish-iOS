@@ -8,7 +8,7 @@
 
 import UIKit
 
-final class DressingViewController: UIViewController, SegueHandlerType {
+final class DressingViewController: UIViewController, SegueHandlerType, LocationTrackable {
     
     private let AdUnitId = "ca-app-pub-2310680050309555/3617770227"
     
@@ -17,6 +17,9 @@ final class DressingViewController: UIViewController, SegueHandlerType {
         case UnwindToMain
         case ShowShareResult
     }
+    
+    var locationTrackType: LocationTrackType = .OneShot
+    var locationTrackHandler: LocationTrackHandler!
     
     @IBOutlet weak var testImageView: UIImageView!
     @IBOutlet weak var textField: UITextField!
@@ -33,6 +36,7 @@ final class DressingViewController: UIViewController, SegueHandlerType {
         super.viewDidLoad()
         testImageView?.image = image
         initMediumAdView()
+        initLocationHandler()
     }
     
     // MARK: - Init
@@ -46,6 +50,10 @@ final class DressingViewController: UIViewController, SegueHandlerType {
             make.bottom.equalTo(self.view)
             make.centerX.equalTo(self.view)
         }
+    }
+    
+    private func initLocationHandler() {
+        locationTrackHandler = LocationTrackHandler(delegate: self)
     }
 
     // MARK: - Navigation
@@ -66,6 +74,14 @@ final class DressingViewController: UIViewController, SegueHandlerType {
     // MARK: - IBAction 
     
     @IBAction func shareButtonDidTap(sender: AnyObject) {
+        requestLocationUpdate()
+    }
+    
+    final func locationDidUpdate(location: CLLocation) {
+        sharePhoto()
+    }
+    
+    private func sharePhoto() {
         // TODO: 우선 대충만 구현, 추후 보강 필요
         upscaleViews { _ in
             self.downScaleAndTranslate { _ in
