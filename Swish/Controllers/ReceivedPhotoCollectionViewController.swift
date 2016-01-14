@@ -26,8 +26,8 @@ class ReceivedPhotoCollectionViewController: UIViewController, UICollectionViewD
         super.viewDidLoad()
         _receivedPhotos = SwishDatabase.receivedPhotos()
         adjustCollectionViewCellSize()
-        PhotoObserver.observePhotoStateForPhotos(receivedPhotos, owner: self) { [unowned self] (id, state) -> Void in
-            self.photoCollectionView.reloadData()
+        PhotoObserver.observePhotoStateForPhotos(receivedPhotos, owner: self) { [weak self] (id, state) -> Void in
+            self?.photoCollectionView.reloadData()
         }
     }
     
