@@ -48,26 +48,26 @@ class PhotoActionView: NibDesignable {
     }
     
     private func observeUnreadCountForUpdatingLabel(photo: Photo) {
-        PhotoObserver.observeUnreadMessageCountForPhoto(photo, owner: self) { [unowned self] (Int) -> Void in
-            self.setUnreadChatCount(photo.unreadMessageCount)
+        PhotoObserver.observeUnreadMessageCountForPhoto(photo, owner: self) { [weak self] (Int) -> Void in
+            self?.setUnreadChatCount(photo.unreadMessageCount)
         }
     }
     
     // TODO: 맵, 챗 버튼 관련 애니메이션 추가 구현 필요
     private func observePhotoStateForVisibility(photo: Photo) {
-        PhotoObserver.observePhotoStateForPhoto(photo, owner: self) { [unowned self] (id, state) -> Void in
+        PhotoObserver.observePhotoStateForPhoto(photo, owner: self) { [weak self] (id, state) -> Void in
             if state == .Liked {
-                if self.mapButton.alpha == 0 {
-                    self.showMapButtonWithAnimation()
+                if self?.mapButton.alpha == 0 {
+                    self?.showMapButtonWithAnimation()
                 }
-                self.showChatButtonWithAnimation()
+                self?.showChatButtonWithAnimation()
             } else if state == .Delivered {
-                self.showMapButtonWithAnimation()
+                self?.showMapButtonWithAnimation()
             } else {
                 if photo.isSentPhoto {
-                    self.hideMapButtonWithAnimation()
+                    self?.hideMapButtonWithAnimation()
                 }
-                self.hideChatButtonWithAnimation()
+                self?.hideChatButtonWithAnimation()
             }
         }
     }

@@ -32,22 +32,23 @@ class MyProfileViewController: UIViewController {
     }
     
     private func initUserImageView() {
-        MeObserver.observeProfileUrl(self, handler: { [unowned self] profileUrl in
-            ImageDownloader.downloadImage(profileUrl) { [unowned self] image in
+        
+        MeObserver.observeProfileUrl(self, handler: { profileUrl in
+            ImageDownloader.downloadImage(profileUrl) { [weak self] image in
                 if let image = image {
-                    self.profileImageView.image = image
+                    self?.profileImageView.image = image
                 }
             }
         })
     }
     
     private func initUserLabels() {
-        MeObserver.observeName(self, handler: { [unowned self] name in
-            self.nameLabel.text = name
+        MeObserver.observeName(self, handler: { [weak self] name in
+            self?.nameLabel.text = name
         })
         
-        MeObserver.observeAbout(self, handler: { [unowned self] about in
-            self.aboutLabel.text = about
+        MeObserver.observeAbout(self, handler: { [weak self] about in
+            self?.aboutLabel.text = about
         })
     }
     

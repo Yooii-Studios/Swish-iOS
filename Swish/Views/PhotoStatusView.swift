@@ -24,9 +24,9 @@ class PhotoStatusView: NibDesignable {
     }
     
     private func observePhotoState(photo: Photo) {
-        PhotoObserver.observePhotoStateForPhoto(photo, owner: self) { [unowned self] (id, state) -> Void in
+        PhotoObserver.observePhotoStateForPhoto(photo, owner: self) { [weak self] (id, state) -> Void in
             if let updatedPhoto = SwishDatabase.photoWithId(id) {
-                self.updateViewsWithPhoto(updatedPhoto)
+                self?.updateViewsWithPhoto(updatedPhoto)
             }
         }
     }
