@@ -61,16 +61,4 @@ class ReceivedPhotoDetailViewController: UIViewController, PhotoActionType, Phot
     @IBAction func increaseWingsButtonDidTap(sender: AnyObject) {
         SwishDatabase.increaseUnreadChatCount(photo.id)
     }
-    
-    // MARK: - PhotoActionType 
-    
-    func mapButtonDidTap(sender: AnyObject) {
-        print("mapButtonDidTap")
-        showMapViewController()
-    }
-    
-    func chatButtonDidTap(sender: AnyObject) {
-        print("chatButtonDidTap")
-        showChatDialog()
-    }
 }
