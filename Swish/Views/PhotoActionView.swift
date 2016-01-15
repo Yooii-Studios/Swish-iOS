@@ -31,9 +31,6 @@ class PhotoActionView: NibDesignable {
         } else {
             mapButton.alpha = 0
         }
-        
-        let singleTapGesture = UITapGestureRecognizer(target: self, action: "mapButtonDidTap:")
-        mapButton.addGestureRecognizer(singleTapGesture)
     }
     
     private func setUpChatButtonWithPhotoState(photoState: PhotoState) {
@@ -42,9 +39,6 @@ class PhotoActionView: NibDesignable {
         } else {
             chatButton.alpha = 0
         }
-        
-        let singleTapGesture = UITapGestureRecognizer(target: self, action: "chatButtonDidTap:")
-        chatButton.addGestureRecognizer(singleTapGesture)
     }
     
     private func observeUnreadCountForUpdatingLabel(photo: Photo) {

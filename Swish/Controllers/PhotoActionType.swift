@@ -19,15 +19,23 @@ protocol PhotoActionType {
     
     var photo: Photo! { get }
     var photoActionView: PhotoActionView! { get }
-    
-    func mapButtonDidTap(sender: AnyObject)
-    func chatButtonDidTap(sender: AnyObject)
 }
 
 extension PhotoActionType where Self: UIViewController {
     
     final func setUpPhotoActionView() {
         photoActionView.setUpWithPhoto(photo)
+        initButtonGestures()
+    }
+    
+    private func initButtonGestures() {
+        photoActionView.mapButton.tapped { _ in
+            self.showMapViewController()
+        }
+        
+        photoActionView.chatButton.tapped { _ in
+            self.showChatDialog()
+        }
     }
     
     final func showMapViewController() {
