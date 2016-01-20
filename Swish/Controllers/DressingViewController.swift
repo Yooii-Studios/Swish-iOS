@@ -7,6 +7,7 @@
 //
 
 import UIKit
+import MBProgressHUD
 
 final class DressingViewController: UIViewController, SegueHandlerType, LocationTrackable {
     
@@ -25,6 +26,7 @@ final class DressingViewController: UIViewController, SegueHandlerType, Location
     @IBOutlet weak var textField: UITextField!
     @IBOutlet weak var shareButton: UIButton!
     @IBOutlet var exchangeStatusLabel: UILabel!
+    var progressHUD: MBProgressHUD!
     
     final var image: UIImage!
     private var receivedPhoto: Photo?
@@ -36,6 +38,7 @@ final class DressingViewController: UIViewController, SegueHandlerType, Location
         super.viewDidLoad()
         testImageView?.image = image
         initMediumAdView()
+        initProgressHUD()
         initLocationHandler()
     }
     
@@ -50,6 +53,11 @@ final class DressingViewController: UIViewController, SegueHandlerType, Location
             make.bottom.equalTo(self.view)
             make.centerX.equalTo(self.view)
         }
+    }
+    
+    private func initProgressHUD() {
+        progressHUD = MBProgressHUD(view: self.navigationController?.view)
+        self.navigationController?.view.addSubview(progressHUD)
     }
     
     private func initLocationHandler() {
@@ -74,12 +82,14 @@ final class DressingViewController: UIViewController, SegueHandlerType, Location
     // MARK: - IBAction 
     
     @IBAction func shareButtonDidTap(sender: AnyObject) {
-        // TODO: 현재 위치를 가져오는데 시간이 걸릴 경우 예외처리 필요.
-        // UX적으로 아무런 동작이 없기에 유저는 버그라고 인식할 가능성 존재. Toast나 Alert 필요. "위치 가져오는 중..." 등의 문구 포함할 것
+        // 현재 위치를 가져오는데 시간이 걸릴 경우 Alert 대용으로 간단한 HUD를 추가. 추구 필요하면 문구도 넣을 것. ex)"위치 가져오는 중..."
+        // TODO: 그런데 바로 위치를 가져올 경우는 잠깐 나왔다 사라져서 좀 보기가 싫다. 나중에 더 원만한 처리를 고민해 보자. 
+        progressHUD.show(true)
         self.requestLocationUpdate()
     }
     
     final func locationDidUpdate(location: CLLocation) {
+        progressHUD.hide(true)
         sharePhotoWithLocation(location)
     }
     
