@@ -110,11 +110,11 @@ final class DressingViewController: UIViewController, SegueHandlerType, Location
     
     // MARK: - Photo Exchange
     
-        func exchangePhotoWithLocation(location: CLLocation, sendCompletion: PhotoExchanger.SendCompletion,
-            receiveCompletion: PhotoExchanger.ReceiveCompletion) {
-        let photo = Photo.create(message: textField.text!, departLocation: location)
-        PhotoExchanger.exchange(photo, image: self.image, departLocation: location, sendCompletion: sendCompletion,
-            receiveCompletion: receiveCompletion)
+    func exchangePhotoWithLocation(location: CLLocation, sendCompletion: PhotoExchanger.SendCompletion,
+        receiveCompletion: PhotoExchanger.ReceiveCompletion) {
+            let photo = Photo.create(message: textField.text!, departLocation: location)
+            PhotoExchanger.exchange(photo, image: self.image, departLocation: location, sendCompletion: sendCompletion,
+                receiveCompletion: receiveCompletion)
     }
     
     // MARK: - Animation
