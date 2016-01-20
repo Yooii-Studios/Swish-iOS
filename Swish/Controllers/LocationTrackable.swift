@@ -26,6 +26,9 @@
 //          stopUpdatingLocation()
 //      }
 //
+//    참고:
+//    CLLocationManager+Authorization에서 필요한 보충 메서드들 구현하고 있음
+//
 //  Swish
 //
 //  Created by 정동현 on 2015. 10. 29..

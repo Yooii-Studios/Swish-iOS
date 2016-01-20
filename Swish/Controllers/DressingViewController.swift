@@ -74,21 +74,23 @@ final class DressingViewController: UIViewController, SegueHandlerType, Location
     // MARK: - IBAction 
     
     @IBAction func shareButtonDidTap(sender: AnyObject) {
-        requestLocationUpdate()
+        // TODO: 현재 위치를 가져오는데 시간이 걸릴 경우 예외처리 필요.
+        // UX적으로 아무런 동작이 없기에 유저는 버그라고 인식할 가능성 존재. Toast나 Alert 필요. "위치 가져오는 중..." 등의 문구 포함할 것
+        self.requestLocationUpdate()
     }
     
     final func locationDidUpdate(location: CLLocation) {
-        sharePhoto()
+        sharePhotoWithLocation(location)
     }
     
-    private func sharePhoto() {
+    private func sharePhotoWithLocation(location: CLLocation) {
         // TODO: 우선 대충만 구현, 추후 보강 필요
         upscaleViews { _ in
             self.downScaleAndTranslate { _ in
                 self.moveNavigationBarAndShareButton { _ in
                     self.addExchangeStatusView()
                     self.showMediumAdView()
-                    self.exchangePhoto(
+                    self.exchangePhotoWithLocation(location,
                         sendCompletion: {
                             // TODO: 로컬라이징 필요
                             self.exchangeStatusLabel.text = "Receiving..."
@@ -108,10 +110,11 @@ final class DressingViewController: UIViewController, SegueHandlerType, Location
     
     // MARK: - Photo Exchange
     
-    func exchangePhoto(sendCompletion sendCompletion: PhotoExchanger.SendCompletion, receiveCompletion: PhotoExchanger.ReceiveCompletion) {
-        let photo = Photo.create(message: textField.text!, departLocation: LocationManager.dummyLocation)
-        PhotoExchanger.exchange(photo, image: self.image, departLocation: LocationManager.dummyLocation,
-            sendCompletion: sendCompletion, receiveCompletion: receiveCompletion)
+        func exchangePhotoWithLocation(location: CLLocation, sendCompletion: PhotoExchanger.SendCompletion,
+            receiveCompletion: PhotoExchanger.ReceiveCompletion) {
+        let photo = Photo.create(message: textField.text!, departLocation: location)
+        PhotoExchanger.exchange(photo, image: self.image, departLocation: location, sendCompletion: sendCompletion,
+            receiveCompletion: receiveCompletion)
     }
     
     // MARK: - Animation
