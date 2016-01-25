@@ -4,3 +4,4 @@
 
 #import <CTAssetsPickerController/CTAssetsPickerController.h>
 #import <GoogleMobileAds/GoogleMobileAds.h>
+#import <SVProgressHUD/SVProgressHUD.h>
