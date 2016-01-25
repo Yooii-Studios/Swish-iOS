@@ -82,7 +82,7 @@ final class DressingViewController: UIViewController, SegueHandlerType, Location
     }
     
     final func locationDidUpdate(location: CLLocation) {
-        SVProgressHUD.dismissWithDelay(1.0)
+        SVProgressHUD.dismiss()
         sharePhotoWithLocation(location)
     }
     
