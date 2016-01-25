@@ -17,4 +17,4 @@ pod 'ReactKit'
 pod 'NibDesignable'
 pod 'SwiftyColor'
 pod 'IQKeyboardManagerSwift'
-pod 'SVProgressHUD', :head #2016.1.22일 기준 최근 2.0 버전 베타를 만들고 있어서 우선 이렇게 사용하고 추후 2.0.0 정식 버전 사용할 것
+pod 'SVProgressHUD'#, :head #2016.1.22일 기준 최근 2.0 버전 베타를 만들고 있어서 우선 이렇게 사용하고 추후 2.0.0 정식 버전 사용할 것
