@@ -46,7 +46,7 @@ final class DressingViewController: UIViewController, SegueHandlerType, Location
         mediumAdView = GADBannerView.preloadedMediumAdViewWithUnitId(AdUnitId, rootViewController: self)
         mediumAdView.hidden = true
         
-        self.view.addSubview(mediumAdView)
+        view.addSubview(mediumAdView)
         mediumAdView.snp_makeConstraints { make in
             make.bottom.equalTo(self.view)
             make.centerX.equalTo(self.view)
@@ -64,7 +64,7 @@ final class DressingViewController: UIViewController, SegueHandlerType, Location
         case .ShowShareResult:
             let navigationViewController = segue.destinationViewController as! UINavigationController
             let shareResultViewController = navigationViewController.topViewController as! ShareResultViewController
-            shareResultViewController.receivedPhoto = self.receivedPhoto
+            shareResultViewController.receivedPhoto = receivedPhoto
             
         case .UnwindToMain:
             // TODO: 돌아가기 전 필요한 처리가 있다면 해줄 것
@@ -78,7 +78,7 @@ final class DressingViewController: UIViewController, SegueHandlerType, Location
         // 현재 위치를 가져오는데 시간이 걸릴 경우 Alert 대용으로 간단한 HUD를 추가. 추구 필요하면 문구도 넣을 것. ex)"위치 가져오는 중..."
         // TODO: 그런데 바로 위치를 가져올 경우는 잠깐 나왔다 사라져서 좀 보기가 싫다. 나중에 더 원만한 처리를 고민해 보자.
         SVProgressHUD.show()
-        self.requestLocationUpdate()
+        requestLocationUpdate()
     }
     
     final func locationDidUpdate(location: CLLocation) {
@@ -116,7 +116,7 @@ final class DressingViewController: UIViewController, SegueHandlerType, Location
     func exchangePhotoWithLocation(location: CLLocation, sendCompletion: PhotoExchanger.SendCompletion,
         receiveCompletion: PhotoExchanger.ReceiveCompletion) {
             let photo = Photo.create(message: textField.text!, departLocation: location)
-            PhotoExchanger.exchange(photo, image: self.image, departLocation: location, sendCompletion: sendCompletion,
+            PhotoExchanger.exchange(photo, image: image, departLocation: location, sendCompletion: sendCompletion,
                 receiveCompletion: receiveCompletion)
     }
     
