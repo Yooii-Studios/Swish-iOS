@@ -64,7 +64,7 @@ final class DressingViewController: UIViewController, SegueHandlerType, Location
         case .ShowShareResult:
             let navigationViewController = segue.destinationViewController as! UINavigationController
             let shareResultViewController = navigationViewController.topViewController as! ShareResultViewController
-            shareResultViewController.receivedPhoto = receivedPhoto
+            shareResultViewController.photo = receivedPhoto
             
         case .UnwindToMain:
             // TODO: 돌아가기 전 필요한 처리가 있다면 해줄 것

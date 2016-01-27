@@ -8,25 +8,40 @@
 
 import UIKit
 
-class ShareResultViewController: UIViewController, SegueHandlerType {
+class ShareResultViewController: UIViewController, SegueHandlerType, PhotoActionType, PhotoVoteType {
 
     // SegueHandlerType
     enum SegueIdentifier: String {
         case UnwindFromShareResultToMain
     }
     
-    @IBOutlet weak var testImageView: UIImageView!
-    final var receivedPhoto: Photo!
+    @IBOutlet weak var photoCardView: PhotoCardView!
+    @IBOutlet weak var photoActionView: PhotoActionView!
+    @IBOutlet weak var photoVoteView: PhotoVoteView!
+    
+    final var photo: Photo!
     
     // MARK: - View Cycle
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        receivedPhoto.loadImage { image in
-            self.testImageView?.image = image
-        }
+        
+        setUpPhotoCardView()
+        setUpPhotoActionView()
+        setUpPhotoVoteView()
     }
 
+    override func viewWillDisappear(animated: Bool) {
+        super.viewWillDisappear(animated)
+        updatePhotoState()
+    }
+    
+    // MARK: - Init
+    
+    private func setUpPhotoCardView() {
+        photoCardView.setUpWithPhoto(photo)
+    }
+    
     // MARK: - Navigation
 
     override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?) {
