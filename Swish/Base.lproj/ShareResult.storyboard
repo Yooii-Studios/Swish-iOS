@@ -1,8 +1,9 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="9531" systemVersion="15C50" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" initialViewController="5YB-mo-rDK">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="9531" systemVersion="15D21" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" initialViewController="5YB-mo-rDK">
     <dependencies>
         <deployment identifier="iOS"/>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="9529"/>
+        <capability name="Aspect ratio constraints" minToolsVersion="5.1"/>
     </dependencies>
     <scenes>
         <!--Share Result-->
@@ -14,23 +15,46 @@
                         <viewControllerLayoutGuide type="bottom" id="rcY-FB-Ih1"/>
                     </layoutGuides>
                     <view key="view" contentMode="scaleToFill" id="88R-ib-fjf">
-                        <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
+                        <rect key="frame" x="0.0" y="64" width="375" height="603"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="Wn4-UQ-k4a">
-                                <rect key="frame" x="175" y="102" width="250" height="250"/>
+                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="wAG-Bj-bPS" customClass="PhotoCardView" customModule="Swish" customModuleProvider="target">
+                                <rect key="frame" x="20" y="20" width="335" height="405"/>
+                                <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                 <constraints>
-                                    <constraint firstAttribute="width" constant="250" id="0uh-bg-utw"/>
-                                    <constraint firstAttribute="height" constant="250" id="kGh-f1-Elk"/>
+                                    <constraint firstAttribute="width" secondItem="wAG-Bj-bPS" secondAttribute="height" multiplier="67:81" id="OvD-2N-S0L"/>
                                 </constraints>
-                            </imageView>
+                                <edgeInsets key="layoutMargins" top="0.0" left="0.0" bottom="0.0" right="0.0"/>
+                            </view>
+                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="Jc9-bW-xeu" customClass="PhotoVoteView" customModule="Swish" customModuleProvider="target">
+                                <rect key="frame" x="99" y="473" width="178" height="79"/>
+                                <color key="backgroundColor" red="0.97413862179999999" green="0.87190408610000003" blue="0.35816969199999998" alpha="1" colorSpace="calibratedRGB"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="79" id="TrI-Rh-2eB"/>
+                                    <constraint firstAttribute="width" constant="178" id="bAN-FL-hC5"/>
+                                </constraints>
+                            </view>
+                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="IDa-Cv-dyh" customClass="PhotoActionView" customModule="Swish" customModuleProvider="target">
+                                <rect key="frame" x="279" y="40" width="56" height="104"/>
+                                <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
+                                <constraints>
+                                    <constraint firstAttribute="width" constant="56" id="4Th-RC-Y4t"/>
+                                    <constraint firstAttribute="width" secondItem="IDa-Cv-dyh" secondAttribute="height" multiplier="7:13" id="bi1-vy-7oR"/>
+                                </constraints>
+                            </view>
                         </subviews>
-                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                        <color key="backgroundColor" cocoaTouchSystemColor="groupTableViewBackgroundColor"/>
                         <constraints>
-                            <constraint firstItem="Wn4-UQ-k4a" firstAttribute="centerX" secondItem="88R-ib-fjf" secondAttribute="centerX" id="ZF0-vl-r2w"/>
-                            <constraint firstItem="Wn4-UQ-k4a" firstAttribute="top" secondItem="mfk-oE-Pzh" secondAttribute="bottom" constant="38" id="dfF-dc-O8r"/>
+                            <constraint firstItem="rcY-FB-Ih1" firstAttribute="top" secondItem="Jc9-bW-xeu" secondAttribute="bottom" constant="51" id="6Eq-I0-nc2"/>
+                            <constraint firstAttribute="leading" secondItem="wAG-Bj-bPS" secondAttribute="leading" constant="-20" id="N8o-fH-lVu"/>
+                            <constraint firstItem="Jc9-bW-xeu" firstAttribute="centerX" secondItem="88R-ib-fjf" secondAttribute="centerX" id="Xpz-Fr-Gxh"/>
+                            <constraint firstItem="wAG-Bj-bPS" firstAttribute="top" secondItem="mfk-oE-Pzh" secondAttribute="bottom" constant="20" id="gNQ-5D-hrw"/>
+                            <constraint firstItem="IDa-Cv-dyh" firstAttribute="top" secondItem="wAG-Bj-bPS" secondAttribute="top" constant="20" id="gou-5J-2eL"/>
+                            <constraint firstItem="IDa-Cv-dyh" firstAttribute="trailing" secondItem="wAG-Bj-bPS" secondAttribute="trailing" constant="-20" id="p4Q-QY-xQ5"/>
+                            <constraint firstAttribute="trailing" secondItem="wAG-Bj-bPS" secondAttribute="trailing" constant="20" id="tm7-ej-kQK"/>
                         </constraints>
                     </view>
+                    <extendedEdge key="edgesForExtendedLayout" bottom="YES"/>
                     <navigationItem key="navigationItem" title="Share Result" id="CT3-yU-fJr">
                         <barButtonItem key="rightBarButtonItem" systemItem="cancel" id="Emc-AH-E9m">
                             <connections>
@@ -39,15 +63,17 @@
                             </connections>
                         </barButtonItem>
                     </navigationItem>
-                    <simulatedNavigationBarMetrics key="simulatedTopBarMetrics" prompted="NO"/>
+                    <simulatedScreenMetrics key="simulatedDestinationMetrics" type="retina47"/>
                     <connections>
-                        <outlet property="testImageView" destination="Wn4-UQ-k4a" id="8h2-J5-NdW"/>
+                        <outlet property="photoActionView" destination="IDa-Cv-dyh" id="a3v-8X-GwE"/>
+                        <outlet property="photoCardView" destination="wAG-Bj-bPS" id="zFL-Ur-2lz"/>
+                        <outlet property="photoVoteView" destination="Jc9-bW-xeu" id="PK0-VY-DNK"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="WdI-SF-HJ1" userLabel="First Responder" sceneMemberID="firstResponder"/>
                 <exit id="f2j-Ot-0gd" userLabel="Exit" sceneMemberID="exit"/>
             </objects>
-            <point key="canvasLocation" x="1383" y="501"/>
+            <point key="canvasLocation" x="1387" y="501"/>
         </scene>
         <!--Navigation Controller-->
         <scene sceneID="YFe-VL-MKQ">
