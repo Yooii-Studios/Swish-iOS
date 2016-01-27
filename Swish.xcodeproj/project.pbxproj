@@ -108,6 +108,9 @@
 		F257A8A31BFDD1C800BD56C8 /* PhotoCollectionMapViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = F257A8A21BFDD1C800BD56C8 /* PhotoCollectionMapViewController.swift */; };
 		F266D9021B9F159D00BDEB75 /* MyInfoViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = F266D9011B9F159D00BDEB75 /* MyInfoViewController.swift */; };
 		F266D9041B9F15D500BDEB75 /* PhotoPickerViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = F266D9031B9F15D500BDEB75 /* PhotoPickerViewController.swift */; };
+		F26B578A1C47CC400000D95B /* UIView+ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = F26B57891C47CC400000D95B /* UIView+ViewController.swift */; };
+		F26B578D1C47D4EB0000D95B /* UIGestureRecognizer+Gestures.swift in Sources */ = {isa = PBXBuildFile; fileRef = F26B578B1C47D4EB0000D95B /* UIGestureRecognizer+Gestures.swift */; };
+		F26B578E1C47D4EB0000D95B /* UIView+Gestures.swift in Sources */ = {isa = PBXBuildFile; fileRef = F26B578C1C47D4EB0000D95B /* UIView+Gestures.swift */; };
 		F273C3A51BFCB4A2007D047B /* ReceivedPhoto.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = F273C3A31BFCB4A2007D047B /* ReceivedPhoto.storyboard */; };
 		F273C3A71BFCB4AF007D047B /* SentPhoto.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = F273C3A61BFCB4AF007D047B /* SentPhoto.storyboard */; };
 		F273C3AA1BFCB4BB007D047B /* MyProfile.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = F273C3A81BFCB4BB007D047B /* MyProfile.storyboard */; };
@@ -249,6 +252,9 @@
 		F264C66E1BDFFFE6001BE65C /* Swish-Bridging-Header.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "Swish-Bridging-Header.h"; sourceTree = "<group>"; };
 		F266D9011B9F159D00BDEB75 /* MyInfoViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MyInfoViewController.swift; sourceTree = "<group>"; };
 		F266D9031B9F15D500BDEB75 /* PhotoPickerViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PhotoPickerViewController.swift; sourceTree = "<group>"; };
+		F26B57891C47CC400000D95B /* UIView+ViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "UIView+ViewController.swift"; sourceTree = "<group>"; };
+		F26B578B1C47D4EB0000D95B /* UIGestureRecognizer+Gestures.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "UIGestureRecognizer+Gestures.swift"; sourceTree = "<group>"; };
+		F26B578C1C47D4EB0000D95B /* UIView+Gestures.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "UIView+Gestures.swift"; sourceTree = "<group>"; };
 		F273C3A41BFCB4A2007D047B /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/ReceivedPhoto.storyboard; sourceTree = "<group>"; };
 		F273C3A61BFCB4AF007D047B /* SentPhoto.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = SentPhoto.storyboard; sourceTree = "<group>"; };
 		F273C3A91BFCB4BB007D047B /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/MyProfile.storyboard; sourceTree = "<group>"; };
@@ -527,6 +533,9 @@
 				575354C21BE1CB7C0034F24E /* DeviceHelper.swift */,
 				5772A7DF1BD626EA00A7F880 /* NSCache+LowMemory.swift */,
 				F2305B971BE23EC20056E087 /* UIView+Constraints.swift */,
+				F26B57891C47CC400000D95B /* UIView+ViewController.swift */,
+				F26B578C1C47D4EB0000D95B /* UIView+Gestures.swift */,
+				F26B578B1C47D4EB0000D95B /* UIGestureRecognizer+Gestures.swift */,
 				57EED24F1BF2F1A700E464F1 /* Int+Extension.swift */,
 				5777C3601C0EB08600DE43B4 /* ImageDownloader+DownloadImage.swift */,
 				57A29A681C044DBD0016E265 /* SystemSettingsHelper.swift */,
@@ -736,12 +745,14 @@
 				F2EA77AC1C2AB53B00494C18 /* SplashViewController.swift in Sources */,
 				F20E7CBA1BFDD55F005149C1 /* PhotoMapViewController.swift in Sources */,
 				57B348B61C28050A00AFBDED /* UserLevelInfo.swift in Sources */,
+				F26B578A1C47CC400000D95B /* UIView+ViewController.swift in Sources */,
 				F23CF97E1C3E34CA00C36064 /* MyProfileEditViewController.swift in Sources */,
 				57EFC1961C055E19006CF2EF /* LocationServiceAuthorizable.swift in Sources */,
 				F2A1C4FF1C21781800DE88F2 /* PhotoVoteType.swift in Sources */,
 				577465C81BF2CFDA0093D97A /* WingsObserver.swift in Sources */,
 				F266D9041B9F15D500BDEB75 /* PhotoPickerViewController.swift in Sources */,
 				570FD2F71BAAB54E008CB163 /* UserServer.swift in Sources */,
+				F26B578E1C47D4EB0000D95B /* UIView+Gestures.swift in Sources */,
 				F28EF57E1BE8E9F200204C37 /* ReceivedPhotoCollectionViewController.swift in Sources */,
 				F2BDF9DD1C213B8A0031682B /* ReceivedPhotoDetailViewController.swift in Sources */,
 				57C7AA8E1BFDB97D008E10F6 /* UIImage+Scale.swift in Sources */,
@@ -807,6 +818,7 @@
 				5773646D1C22F69D007EA7B5 /* RealmObjectObservable.swift in Sources */,
 				F20CC6761BDB878F00075088 /* SegueHandlerType.swift in Sources */,
 				579673821B9FFE6500382247 /* Photo.swift in Sources */,
+				F26B578D1C47D4EB0000D95B /* UIGestureRecognizer+Gestures.swift in Sources */,
 				5796738F1B9FFE7200382247 /* ChatMessageSendState.swift in Sources */,
 				57EED2501BF2F1A700E464F1 /* Int+Extension.swift in Sources */,
 				F257A8A31BFDD1C800BD56C8 /* PhotoCollectionMapViewController.swift in Sources */,

@@ -20,9 +20,9 @@ class SplashViewController: UIViewController, SegueHandlerType {
         // TODO: 유저 등록 화면 구현 완료되면 해당 부분으로 아래 코드 옮긴 후 제거
         if !SwishDatabase.hasMe() {
             print("Registering Me to server...")
-            MeManager.registerMe(onSuccess: { [unowned self] me in
+            MeManager.registerMe(onSuccess: { [weak self] me in
                 print("Me registered. Now you can communicate with Swish server.")
-                self.showMain()
+                self?.showMain()
                 })
         } else {
             print("Me already registered. You can communicate with Swish server.")

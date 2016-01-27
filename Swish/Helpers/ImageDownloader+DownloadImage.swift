@@ -24,11 +24,11 @@ private var imageDownloaderInstance: ImageDownloader {
 
 extension ImageDownloader {
     
-    class func downloadImage(URLString: String, completion: UIImage? -> Void) {
+    class func downloadImage(URLString: String, completion: (UIImage? -> Void)? = nil) {
         let URLRequest = NSURLRequest(URL: NSURL(string: URLString)!)
         
         imageDownloaderInstance.downloadImage(URLRequest: URLRequest) { response in
-            completion(response.result.value)
+            completion?(response.result.value)
         }
     }
 }

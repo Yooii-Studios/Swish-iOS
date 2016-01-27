@@ -26,7 +26,7 @@
                         <constraint firstAttribute="width" secondItem="GS7-yZ-MKV" secondAttribute="height" multiplier="1:1" id="SIo-FT-ceh"/>
                     </constraints>
                 </imageView>
-                <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="img_profile_default" translatesAutoresizingMaskIntoConstraints="NO" id="aDW-Bo-GlV" userLabel="Profile Image View">
+                <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="img_profile_default_small" translatesAutoresizingMaskIntoConstraints="NO" id="aDW-Bo-GlV" userLabel="Profile Image View">
                     <rect key="frame" x="8" y="343" width="50" height="50"/>
                     <constraints>
                         <constraint firstAttribute="width" constant="50" id="7aj-Vh-Nx1"/>
@@ -84,6 +84,6 @@
     </objects>
     <resources>
         <image name="TestImage" width="640" height="480"/>
-        <image name="img_profile_default" width="171" height="171"/>
+        <image name="img_profile_default_small" width="50" height="50"/>
     </resources>
 </document>

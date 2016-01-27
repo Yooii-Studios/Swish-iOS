@@ -54,7 +54,7 @@ class MyProfileEditViewController: UIViewController, PhotoPickable {
                 self.profileImageButton.setImage(image, forState: .Normal)
                 MeManager.updateMyProfileImage(image, onSuccess: { profileImageUrl in
                     // 캐시에 미리 한 번 저장을 해 두기 위해서 읽기만 해 놓고 따로 UI변경은 하지 않음
-                    ImageDownloader.downloadImage(profileImageUrl, completion: { image in })
+                    ImageDownloader.downloadImage(profileImageUrl)
                 })
             }
         }

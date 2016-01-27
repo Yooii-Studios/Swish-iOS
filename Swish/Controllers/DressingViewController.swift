@@ -7,8 +7,9 @@
 //
 
 import UIKit
+import SVProgressHUD
 
-final class DressingViewController: UIViewController, SegueHandlerType {
+final class DressingViewController: UIViewController, SegueHandlerType, LocationTrackable {
     
     private let AdUnitId = "ca-app-pub-2310680050309555/3617770227"
     
@@ -17,6 +18,9 @@ final class DressingViewController: UIViewController, SegueHandlerType {
         case UnwindToMain
         case ShowShareResult
     }
+    
+    var locationTrackType: LocationTrackType = .OneShot
+    var locationTrackHandler: LocationTrackHandler!
     
     @IBOutlet weak var testImageView: UIImageView!
     @IBOutlet weak var textField: UITextField!
@@ -33,6 +37,7 @@ final class DressingViewController: UIViewController, SegueHandlerType {
         super.viewDidLoad()
         testImageView?.image = image
         initMediumAdView()
+        initLocationHandler()
     }
     
     // MARK: - Init
@@ -41,11 +46,15 @@ final class DressingViewController: UIViewController, SegueHandlerType {
         mediumAdView = GADBannerView.preloadedMediumAdViewWithUnitId(AdUnitId, rootViewController: self)
         mediumAdView.hidden = true
         
-        self.view.addSubview(mediumAdView)
+        view.addSubview(mediumAdView)
         mediumAdView.snp_makeConstraints { make in
             make.bottom.equalTo(self.view)
             make.centerX.equalTo(self.view)
         }
+    }
+    
+    private func initLocationHandler() {
+        locationTrackHandler = LocationTrackHandler(delegate: self)
     }
 
     // MARK: - Navigation
@@ -55,7 +64,7 @@ final class DressingViewController: UIViewController, SegueHandlerType {
         case .ShowShareResult:
             let navigationViewController = segue.destinationViewController as! UINavigationController
             let shareResultViewController = navigationViewController.topViewController as! ShareResultViewController
-            shareResultViewController.receivedPhoto = self.receivedPhoto
+            shareResultViewController.receivedPhoto = receivedPhoto
             
         case .UnwindToMain:
             // TODO: 돌아가기 전 필요한 처리가 있다면 해줄 것
@@ -66,13 +75,25 @@ final class DressingViewController: UIViewController, SegueHandlerType {
     // MARK: - IBAction 
     
     @IBAction func shareButtonDidTap(sender: AnyObject) {
+        // 현재 위치를 가져오는데 시간이 걸릴 경우 Alert 대용으로 간단한 HUD를 추가. 추구 필요하면 문구도 넣을 것. ex)"위치 가져오는 중..."
+        // TODO: 그런데 바로 위치를 가져올 경우는 잠깐 나왔다 사라져서 좀 보기가 싫다. 나중에 더 원만한 처리를 고민해 보자.
+        SVProgressHUD.show()
+        requestLocationUpdate()
+    }
+    
+    final func locationDidUpdate(location: CLLocation) {
+        SVProgressHUD.dismiss()
+        sharePhotoWithLocation(location)
+    }
+    
+    private func sharePhotoWithLocation(location: CLLocation) {
         // TODO: 우선 대충만 구현, 추후 보강 필요
         upscaleViews { _ in
             self.downScaleAndTranslate { _ in
                 self.moveNavigationBarAndShareButton { _ in
                     self.addExchangeStatusView()
                     self.showMediumAdView()
-                    self.exchangePhoto(
+                    self.exchangePhotoWithLocation(location,
                         sendCompletion: {
                             // TODO: 로컬라이징 필요
                             self.exchangeStatusLabel.text = "Receiving..."
@@ -92,10 +113,11 @@ final class DressingViewController: UIViewController, SegueHandlerType {
     
     // MARK: - Photo Exchange
     
-    func exchangePhoto(sendCompletion sendCompletion: PhotoExchanger.SendCompletion, receiveCompletion: PhotoExchanger.ReceiveCompletion) {
-        let photo = Photo.create(message: textField.text!, departLocation: LocationManager.dummyLocation)
-        PhotoExchanger.exchange(photo, image: self.image, departLocation: LocationManager.dummyLocation,
-            sendCompletion: sendCompletion, receiveCompletion: receiveCompletion)
+    func exchangePhotoWithLocation(location: CLLocation, sendCompletion: PhotoExchanger.SendCompletion,
+        receiveCompletion: PhotoExchanger.ReceiveCompletion) {
+            let photo = Photo.create(message: textField.text!, departLocation: location)
+            PhotoExchanger.exchange(photo, image: image, departLocation: location, sendCompletion: sendCompletion,
+                receiveCompletion: receiveCompletion)
     }
     
     // MARK: - Animation

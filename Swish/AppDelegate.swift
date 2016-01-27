@@ -9,7 +9,7 @@
 import UIKit
 import CoreData
 import DeviceUtil
-import IQKeyboardManagerSwift
+import IQKeyboardManager
 
 typealias NotificationInfo = [NSObject: AnyObject]
 

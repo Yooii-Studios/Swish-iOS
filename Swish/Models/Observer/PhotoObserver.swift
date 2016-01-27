@@ -6,8 +6,8 @@
 //      override func viewDidLoad() {
 //          super.viewDidLoad()
 //          ...
-//          PhotoObserver.observeUnreadMessageCountForPhoto(photo) { [unowned self] unreadCount in
-//              print("\(self.photoId)s unread message count: \(unreadCount)")
+//          PhotoObserver.observeUnreadMessageCountForPhoto(photo) { [weak self] unreadCount in
+//              print("\(self?.photoId)s unread message count: \(unreadCount)")
 //          }
 //      }
 //

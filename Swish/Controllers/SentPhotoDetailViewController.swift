@@ -51,16 +51,6 @@ class SentPhotoDetailViewController: UIViewController, PhotoActionType {
         dismissViewControllerAnimated(true, completion: nil)
     }
     
-    final func mapButtonDidTap(sender: AnyObject) {
-        print("mapButtonDidTap")
-        showMapViewController()
-    }
-    
-    final func chatButtonDidTap(sender: AnyObject) {
-        print("chatButtonDidTap")
-        showChatDialog()
-    }
-    
     // MARK: - Debug
     // TODO: 사진 상태를 업데이트받는 상황을 테스트
     @IBAction func waitingButtonDidTap(sender: AnyObject) {
