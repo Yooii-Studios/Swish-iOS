@@ -51,5 +51,30 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
     func applicationWillTerminate(application: UIApplication) {
         // Called when the application is about to terminate. Save data if appropriate. See also applicationDidEnterBackground:.
     }
+    
+    // MARK: - APNS
+    
+    func application(application: UIApplication, didRegisterForRemoteNotificationsWithDeviceToken deviceToken: NSData) {
+        let characterSet: NSCharacterSet = NSCharacterSet( charactersInString: "<>" )
+        let deviceTokenString: String = ( deviceToken.description as NSString )
+            .stringByTrimmingCharactersInSet( characterSet )
+            .stringByReplacingOccurrencesOfString( " ", withString: "" ) as String
+        UIApplication.sharedApplication().networkActivityIndicatorVisible = true
+        print("Token : ", deviceTokenString)
+//        APNSServer.postAPNSToken(deviceTokenString, onSuccess: { (_) -> () in
+//            UIApplication.sharedApplication().networkActivityIndicatorVisible = false
+//            }) { (error) -> () in
+//                print(error)
+//                UIApplication.sharedApplication().networkActivityIndicatorVisible = false
+//        }
+    }
+    
+    func application(application: UIApplication, didFailToRegisterForRemoteNotificationsWithError error: NSError) {
+        print("Fail to get token : \(error)")
+    }
+    
+    func application(application: UIApplication, didReceiveRemoteNotification userInfo: [NSObject : AnyObject]) {
+        print("Received notification: \(userInfo)")
+    }
 }
 
