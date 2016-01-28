@@ -82,12 +82,12 @@ final class DressingViewController: UIViewController, SegueHandlerType, Location
     
     final func locationDidUpdate(location: CLLocation) {
         dispatch_async(dispatch_get_global_queue(QOS_CLASS_USER_INITIATED, 0)) {
-            NSThread.sleepForTimeInterval(NSTimeInterval(1))
+            NSThread.sleepForTimeInterval(NSTimeInterval(0.5))
             dispatch_async(dispatch_get_main_queue()) {
                 SVProgressHUD.dismiss()
+                self.sharePhotoWithLocation(location)
             }
         }
-        sharePhotoWithLocation(location)
     }
     
     private func sharePhotoWithLocation(location: CLLocation) {
