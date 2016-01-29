@@ -51,5 +51,21 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
     func applicationWillTerminate(application: UIApplication) {
         // Called when the application is about to terminate. Save data if appropriate. See also applicationDidEnterBackground:.
     }
+    
+    // MARK: - APNS
+    
+    func application(application: UIApplication, didRegisterForRemoteNotificationsWithDeviceToken deviceToken: NSData) {
+        MeManager.updateMyDeviceToken(deviceToken.description)
+    }
+    
+    func application(application: UIApplication, didFailToRegisterForRemoteNotificationsWithError error: NSError) {
+        // TODO: Simulator의 경우를 제외하고는 이 쪽으로 Flow가 넘어오는 것을 본 적은 없지만, 만에 하나 있을 예외 처리를 위해 언젠가는 구현해야할듯
+        print("Fail to get token : \(error)")
+    }
+    
+    func application(application: UIApplication, didReceiveRemoteNotification userInfo: [NSObject : AnyObject]) {
+        // TODO: Like, Dislike, Chat 관련 알람을 처리해줘야함
+        print("Received notification: \(userInfo)")
+    }
 }
 

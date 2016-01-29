@@ -28,8 +28,16 @@ final class MainViewController: UIViewController, UINavigationControllerDelegate
             self.showDressingViewContoller(image)
         }
         
+        registerRemoteNotification()
+        
         initReceivedPhotoDisplayable()
         initPhotoCardView()
+    }
+    
+    private func registerRemoteNotification() {
+        let notificationSettings = UIUserNotificationSettings(forTypes: [.Badge, .Sound, .Alert], categories: nil)
+        UIApplication.sharedApplication().registerUserNotificationSettings(notificationSettings)
+        UIApplication.sharedApplication().registerForRemoteNotifications()
     }
     
     private func initPhotoCardView() {
