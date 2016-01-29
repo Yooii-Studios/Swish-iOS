@@ -40,7 +40,8 @@ final class UserServer {
             let url = "\(BaseClientUrl)/\(id)"
             let params = updateMyDeviceTokenParamsWith(deviceToken)
             
-            let httpRequest = HttpRequest<JSON>(method: .PATCH, url: url, parameters: params, parser: SwishServer.DefaultParser, onSuccess: onSuccess, onFail: onFail)
+            let httpRequest = HttpRequest<JSON>(method: .PATCH, url: url, parameters: params,
+                parser: SwishServer.DefaultParser, onSuccess: onSuccess, onFail: onFail)
             
             SwishServer.requestWith(httpRequest)
     }
