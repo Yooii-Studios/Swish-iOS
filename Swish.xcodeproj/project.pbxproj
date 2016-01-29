@@ -85,6 +85,8 @@
 		F20E7CBA1BFDD55F005149C1 /* PhotoMapViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = F20E7CB91BFDD55F005149C1 /* PhotoMapViewController.swift */; };
 		F20E9E7C1C44C9CD007ECEE6 /* MeObserver.swift in Sources */ = {isa = PBXBuildFile; fileRef = F20E9E7B1C44C9CD007ECEE6 /* MeObserver.swift */; };
 		F2185E511BEA3B5D0062E4B1 /* ReceivedPhotoViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = F2185E501BEA3B5D0062E4B1 /* ReceivedPhotoViewCell.swift */; };
+		F21C31CF1C5B0A6F00EF4D05 /* PhotoTrendsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = F21C31CE1C5B0A6F00EF4D05 /* PhotoTrendsViewController.swift */; };
+		F21C31D21C5B0A8100EF4D05 /* PhotoTrends.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = F21C31D01C5B0A8100EF4D05 /* PhotoTrends.storyboard */; };
 		F2261CAA1C0729D000C12729 /* SentPhotoDetailViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = F2261CA91C0729D000C12729 /* SentPhotoDetailViewController.swift */; };
 		F2305B981BE23EC20056E087 /* UIView+Constraints.swift in Sources */ = {isa = PBXBuildFile; fileRef = F2305B971BE23EC20056E087 /* UIView+Constraints.swift */; };
 		F23527FF1BE09E7C00CA614A /* PhotoPickable.swift in Sources */ = {isa = PBXBuildFile; fileRef = F23527FE1BE09E7C00CA614A /* PhotoPickable.swift */; };
@@ -224,6 +226,8 @@
 		F20E7CB91BFDD55F005149C1 /* PhotoMapViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PhotoMapViewController.swift; sourceTree = "<group>"; };
 		F20E9E7B1C44C9CD007ECEE6 /* MeObserver.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MeObserver.swift; sourceTree = "<group>"; };
 		F2185E501BEA3B5D0062E4B1 /* ReceivedPhotoViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ReceivedPhotoViewCell.swift; sourceTree = "<group>"; };
+		F21C31CE1C5B0A6F00EF4D05 /* PhotoTrendsViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PhotoTrendsViewController.swift; sourceTree = "<group>"; };
+		F21C31D11C5B0A8100EF4D05 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = PhotoTrends.storyboard; sourceTree = "<group>"; };
 		F2261CA91C0729D000C12729 /* SentPhotoDetailViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SentPhotoDetailViewController.swift; sourceTree = "<group>"; };
 		F2305B971BE23EC20056E087 /* UIView+Constraints.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "UIView+Constraints.swift"; sourceTree = "<group>"; };
 		F23527FE1BE09E7C00CA614A /* PhotoPickable.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PhotoPickable.swift; sourceTree = "<group>"; };
@@ -477,6 +481,7 @@
 				F257A8A21BFDD1C800BD56C8 /* PhotoCollectionMapViewController.swift */,
 				F23CF97B1C3CDBC900C36064 /* MyProfileViewController.swift */,
 				F23CF97D1C3E34CA00C36064 /* MyProfileEditViewController.swift */,
+				F21C31CE1C5B0A6F00EF4D05 /* PhotoTrendsViewController.swift */,
 			);
 			path = Controllers;
 			sourceTree = "<group>";
@@ -570,6 +575,7 @@
 				F23A7B161BA1D4070063233F /* PhotoPicker.storyboard */,
 				F2F5451E1BD5E84500AEE02A /* ShareResult.storyboard */,
 				F257A89F1BFDD0FD00BD56C8 /* PhotoMap.storyboard */,
+				F21C31D01C5B0A8100EF4D05 /* PhotoTrends.storyboard */,
 			);
 			name = Storyboards;
 			path = Base.lproj;
@@ -675,6 +681,7 @@
 				F2BDF9DF1C2144750031682B /* PhotoVoteView.xib in Resources */,
 				F273C3A71BFCB4AF007D047B /* SentPhoto.storyboard in Resources */,
 				F2F545201BD5E84500AEE02A /* ShareResult.storyboard in Resources */,
+				F21C31D21C5B0A8100EF4D05 /* PhotoTrends.storyboard in Resources */,
 				F23A7B201BA1DF250063233F /* Dressing.storyboard in Resources */,
 				F2E706221C27D3A9003CE154 /* CircleButton.xib in Resources */,
 			);
@@ -789,6 +796,7 @@
 				57E3EFF41BFD77D1000D1564 /* UIImage+Orientation.swift in Sources */,
 				57EFC1981C05A347006CF2EF /* MKMapView+Zoom.swift in Sources */,
 				57EC68EE1C1E9B0100CB07E5 /* ChatObserver.swift in Sources */,
+				F21C31CF1C5B0A6F00EF4D05 /* PhotoTrendsViewController.swift in Sources */,
 				F245DCB91B9E7B2D0072308B /* Swish.xcdatamodeld in Sources */,
 				579673831B9FFE6500382247 /* PhotoState.swift in Sources */,
 				57F3D5211BD86F9E00FE577C /* PhotoStateUpdater.swift in Sources */,
@@ -868,6 +876,14 @@
 /* End PBXTargetDependency section */
 
 /* Begin PBXVariantGroup section */
+		F21C31D01C5B0A8100EF4D05 /* PhotoTrends.storyboard */ = {
+			isa = PBXVariantGroup;
+			children = (
+				F21C31D11C5B0A8100EF4D05 /* Base */,
+			);
+			name = PhotoTrends.storyboard;
+			sourceTree = "<group>";
+		};
 		F23A7B161BA1D4070063233F /* PhotoPicker.storyboard */ = {
 			isa = PBXVariantGroup;
 			children = (

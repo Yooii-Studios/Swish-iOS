@@ -1,0 +1,52 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="9531" systemVersion="15D21" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" initialViewController="Zf9-gp-1dP">
+    <dependencies>
+        <deployment identifier="iOS"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="9529"/>
+    </dependencies>
+    <scenes>
+        <!--Photo Trends-->
+        <scene sceneID="6Sa-Ri-bWC">
+            <objects>
+                <viewController id="T0L-yQ-gcM" customClass="PhotoTrendsViewController" customModule="Swish" customModuleProvider="target" sceneMemberID="viewController">
+                    <layoutGuides>
+                        <viewControllerLayoutGuide type="top" id="hyv-iy-mTx"/>
+                        <viewControllerLayoutGuide type="bottom" id="cls-8C-9Y8"/>
+                    </layoutGuides>
+                    <view key="view" contentMode="scaleToFill" id="wtk-1j-ihg">
+                        <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                    </view>
+                    <navigationItem key="navigationItem" title="Photo Trends" id="GYe-vG-CaR">
+                        <barButtonItem key="rightBarButtonItem" title="Back" id="oyM-kN-EJp">
+                            <connections>
+                                <action selector="backButtonDidTap:" destination="T0L-yQ-gcM" id="xE9-rc-1gE"/>
+                            </connections>
+                        </barButtonItem>
+                    </navigationItem>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="tc6-v7-WOW" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="1197" y="392"/>
+        </scene>
+        <!--Navigation Controller-->
+        <scene sceneID="N8k-f8-HAk">
+            <objects>
+                <navigationController automaticallyAdjustsScrollViewInsets="NO" id="Zf9-gp-1dP" sceneMemberID="viewController">
+                    <toolbarItems/>
+                    <navigationBar key="navigationBar" contentMode="scaleToFill" id="gc7-Wl-7Sa">
+                        <rect key="frame" x="0.0" y="0.0" width="320" height="44"/>
+                        <autoresizingMask key="autoresizingMask"/>
+                    </navigationBar>
+                    <nil name="viewControllers"/>
+                    <connections>
+                        <segue destination="T0L-yQ-gcM" kind="relationship" relationship="rootViewController" id="OcO-t7-wyK"/>
+                    </connections>
+                </navigationController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="wGQ-PX-i3R" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="385" y="392"/>
+        </scene>
+    </scenes>
+</document>

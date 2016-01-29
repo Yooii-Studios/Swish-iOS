@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="9531" systemVersion="15C50" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" initialViewController="BYZ-38-t0r">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="9531" systemVersion="15D21" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" initialViewController="BYZ-38-t0r">
     <dependencies>
         <deployment identifier="iOS"/>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="9529"/>
@@ -19,24 +19,14 @@
                         <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="u3H-n2-e6j">
-                                <rect key="frame" x="148" y="587" width="81" height="30"/>
-                                <state key="normal" title="Pick Photos"/>
-                                <state key="highlighted">
-                                    <color key="titleColor" red="0.25098040699958801" green="0.0" blue="0.50196081399917603" alpha="1" colorSpace="calibratedRGB"/>
-                                </state>
-                                <connections>
-                                    <action selector="pickPhotoButtonDidTap:" destination="BYZ-38-t0r" eventType="touchUpInside" id="bWc-L8-NTz"/>
-                                </connections>
-                            </button>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Nt9-sb-Yqm">
-                                <rect key="frame" x="54" y="587" width="54" height="30"/>
-                                <state key="normal" title="Camera"/>
+                                <rect key="frame" x="31" y="587" width="92" height="30"/>
+                                <state key="normal" title="Photo Trends"/>
                                 <state key="highlighted">
                                     <color key="titleColor" red="0.25098040699958801" green="0.0" blue="0.50196081399917603" alpha="1" colorSpace="calibratedRGB"/>
                                 </state>
                                 <connections>
-                                    <action selector="cameraButtonDidTap:" destination="BYZ-38-t0r" eventType="touchUpInside" id="pc0-Ch-bI7"/>
+                                    <segue destination="5Pm-E6-ihm" kind="presentation" id="Dwm-Bp-cTL"/>
                                 </connections>
                             </button>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="38O-QE-yw0">
@@ -64,15 +54,25 @@
                                 </constraints>
                                 <edgeInsets key="layoutMargins" top="0.0" left="0.0" bottom="0.0" right="0.0"/>
                             </view>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="u3H-n2-e6j">
+                                <rect key="frame" x="157" y="587" width="81" height="30"/>
+                                <state key="normal" title="Pick Photos"/>
+                                <state key="highlighted">
+                                    <color key="titleColor" red="0.25098040699958801" green="0.0" blue="0.50196081399917603" alpha="1" colorSpace="calibratedRGB"/>
+                                </state>
+                                <connections>
+                                    <action selector="pickPhotoButtonDidTap:" destination="BYZ-38-t0r" eventType="touchUpInside" id="bWc-L8-NTz"/>
+                                </connections>
+                            </button>
                         </subviews>
                         <color key="backgroundColor" cocoaTouchSystemColor="groupTableViewBackgroundColor"/>
                         <constraints>
                             <constraint firstItem="38O-QE-yw0" firstAttribute="bottom" secondItem="u3H-n2-e6j" secondAttribute="bottom" id="Asq-1B-0vI"/>
-                            <constraint firstItem="38O-QE-yw0" firstAttribute="leading" secondItem="u3H-n2-e6j" secondAttribute="trailing" constant="40" id="BOZ-EK-3QG"/>
-                            <constraint firstItem="u3H-n2-e6j" firstAttribute="leading" secondItem="Nt9-sb-Yqm" secondAttribute="trailing" constant="40" id="CpT-cq-Oeh"/>
+                            <constraint firstItem="38O-QE-yw0" firstAttribute="leading" secondItem="u3H-n2-e6j" secondAttribute="trailing" constant="31" id="BOZ-EK-3QG"/>
+                            <constraint firstItem="u3H-n2-e6j" firstAttribute="leading" secondItem="Nt9-sb-Yqm" secondAttribute="trailing" constant="34" id="CpT-cq-Oeh"/>
                             <constraint firstItem="Nt9-sb-Yqm" firstAttribute="bottom" secondItem="u3H-n2-e6j" secondAttribute="bottom" id="G4v-uP-8bv"/>
                             <constraint firstItem="eDq-p4-cL7" firstAttribute="leading" secondItem="8bC-Xf-vdC" secondAttribute="leadingMargin" constant="30" id="MXO-qz-ARi"/>
-                            <constraint firstItem="u3H-n2-e6j" firstAttribute="centerX" secondItem="8bC-Xf-vdC" secondAttribute="centerX" constant="1" id="Olj-60-3AT"/>
+                            <constraint firstItem="u3H-n2-e6j" firstAttribute="centerX" secondItem="8bC-Xf-vdC" secondAttribute="centerX" constant="10" id="Olj-60-3AT"/>
                             <constraint firstAttribute="trailing" secondItem="XJU-rx-7Dp" secondAttribute="trailing" constant="20" id="gkO-2Q-CEI"/>
                             <constraint firstItem="eDq-p4-cL7" firstAttribute="top" secondItem="y3c-jy-aDJ" secondAttribute="bottom" constant="30" id="hzX-QF-gsO"/>
                             <constraint firstItem="XJU-rx-7Dp" firstAttribute="top" secondItem="y3c-jy-aDJ" secondAttribute="bottom" constant="73" id="mTz-gm-97v"/>
@@ -95,6 +95,14 @@
                 <placeholder placeholderIdentifier="IBFirstResponder" id="GnG-iz-cQv" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="1460" y="750"/>
+        </scene>
+        <!--PhotoTrends-->
+        <scene sceneID="iBU-OI-yjg">
+            <objects>
+                <viewControllerPlaceholder storyboardName="PhotoTrends" id="5Pm-E6-ihm" sceneMemberID="viewController"/>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="qvs-IT-HaS" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="292.5" y="1146"/>
         </scene>
         <!--Dressing-->
         <scene sceneID="ga2-Gb-K0f">
