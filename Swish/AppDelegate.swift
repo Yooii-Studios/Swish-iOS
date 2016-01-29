@@ -55,7 +55,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
     // MARK: - APNS
     
     func application(application: UIApplication, didRegisterForRemoteNotificationsWithDeviceToken deviceToken: NSData) {
-        MeManager.updateMyDeviceToken(RemoteNotificationHelper.trimDeviceToken(deviceToken))
+        MeManager.updateMyDeviceToken(deviceToken.description)
     }
     
     func application(application: UIApplication, didFailToRegisterForRemoteNotificationsWithError error: NSError) {
