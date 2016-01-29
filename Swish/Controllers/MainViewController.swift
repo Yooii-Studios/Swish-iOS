@@ -49,22 +49,6 @@ final class MainViewController: UIViewController, UINavigationControllerDelegate
         refreshReceivedPhotoDisplayable()
     }
     
-    // FIXME: 메서드 이름 변경하고 Photo Trends가 될 예정
-    @IBAction func cameraButtonDidTap(sender: UIButton!) {
-        /*
-        NSLog("cameraButtonDidTap")
-        if UIImagePickerController.isSourceTypeAvailable(UIImagePickerControllerSourceType.Camera) {
-            let imagePickerController = UIImagePickerController()
-            imagePickerController.delegate = self
-            imagePickerController.sourceType = UIImagePickerControllerSourceType.Camera
-            imagePickerController.allowsEditing = false
-            showViewController(imagePickerController, sender: self)
-        } else {
-            NSLog("cameraNotAvailable")
-        }
-        */
-    }
-    
     @IBAction func pickPhotoButtonDidTap(sender: UIButton!) {
         showPhotoPickerContoller()
     }

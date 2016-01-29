@@ -22,7 +22,10 @@ final class SwishServer {
     
     static let DefaultParser = { (result: JSON) -> JSON in return result }
     // TODO: 릴리즈시 주소 변경
+    // Debug
     static let Host = "http://yooiia.iptime.org:3000"
+    // Release
+//    static let Host = "http://swish-env.elasticbeanstalk.com"
     private static let TagSeparator = "_"
     
     private var requests = Dictionary<String, HttpRequestProtocol>()
