@@ -61,6 +61,13 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
             .stringByReplacingOccurrencesOfString( " ", withString: "" ) as String
         UIApplication.sharedApplication().networkActivityIndicatorVisible = true
         print("Token : ", deviceTokenString)
+        let userId = SwishDatabase.me().id
+        UserServer.updateMyDeviceToken(userId, deviceToken: deviceTokenString, onSuccess: { (result) -> () in
+            print(result)
+            }) { (error) -> () in
+                print(error)
+        }
+        
 //        APNSServer.postAPNSToken(deviceTokenString, onSuccess: { (_) -> () in
 //            UIApplication.sharedApplication().networkActivityIndicatorVisible = false
 //            }) { (error) -> () in
