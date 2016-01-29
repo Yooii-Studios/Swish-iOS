@@ -8,19 +8,49 @@
 
 import UIKit
 
-class PhotoTrendsViewController: UIViewController {
+class PhotoTrendsViewController: UIViewController, UITableViewDataSource {
 
+    @IBOutlet weak var tableView: UITableView!
+    private var photoTrends: PhotoTrends!
+    
     override func viewDidLoad() {
         super.viewDidLoad()
 
+        // TODO: 로컬러아징(Photo Trends 바 타이틀)
+        
+        tableView.dataSource = self
+        
         // Do any additional setup after loading the view.
+        PhotoTrendsLoader.load { (photoTrends) -> Void in
+            if let photoTrends = photoTrends {
+                self.photoTrends = photoTrends
+                self.tableView.reloadData()
+                self.title = photoTrends.country.name
+            }
+        }
     }
 
-    override func didReceiveMemoryWarning() {
-        super.didReceiveMemoryWarning()
-        // Dispose of any resources that can be recreated.
+    // MARK: - Table View
+    
+    final func tableView(tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
+        if let photoTrends = self.photoTrends {
+            return photoTrends.trendingPhotos.count
+        } else {
+            return 0
+        }
     }
     
+    final func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell {
+        let cell = dequeueReusableCell(tableView, atIndexPath: indexPath)
+        cell.clear()
+        cell.initWithPhotoTrend(self.photoTrends.trendingPhotos[indexPath.row])
+        return cell
+    }
+    
+    private func dequeueReusableCell(tableView: UITableView, atIndexPath indexPath: NSIndexPath) -> PhotoTrendsViewCell {
+        return tableView.dequeueReusableCellWithIdentifier("PhotoTrendsViewCell") as! PhotoTrendsViewCell
+    }
+
 
     /*
     // MARK: - Navigation

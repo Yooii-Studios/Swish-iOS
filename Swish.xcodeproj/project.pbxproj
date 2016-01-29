@@ -87,6 +87,7 @@
 		F2185E511BEA3B5D0062E4B1 /* ReceivedPhotoViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = F2185E501BEA3B5D0062E4B1 /* ReceivedPhotoViewCell.swift */; };
 		F21C31CF1C5B0A6F00EF4D05 /* PhotoTrendsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = F21C31CE1C5B0A6F00EF4D05 /* PhotoTrendsViewController.swift */; };
 		F21C31D21C5B0A8100EF4D05 /* PhotoTrends.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = F21C31D01C5B0A8100EF4D05 /* PhotoTrends.storyboard */; };
+		F21C31D41C5B246D00EF4D05 /* PhotoTrendsViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = F21C31D31C5B246D00EF4D05 /* PhotoTrendsViewCell.swift */; };
 		F2261CAA1C0729D000C12729 /* SentPhotoDetailViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = F2261CA91C0729D000C12729 /* SentPhotoDetailViewController.swift */; };
 		F2305B981BE23EC20056E087 /* UIView+Constraints.swift in Sources */ = {isa = PBXBuildFile; fileRef = F2305B971BE23EC20056E087 /* UIView+Constraints.swift */; };
 		F23527FF1BE09E7C00CA614A /* PhotoPickable.swift in Sources */ = {isa = PBXBuildFile; fileRef = F23527FE1BE09E7C00CA614A /* PhotoPickable.swift */; };
@@ -228,6 +229,7 @@
 		F2185E501BEA3B5D0062E4B1 /* ReceivedPhotoViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ReceivedPhotoViewCell.swift; sourceTree = "<group>"; };
 		F21C31CE1C5B0A6F00EF4D05 /* PhotoTrendsViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PhotoTrendsViewController.swift; sourceTree = "<group>"; };
 		F21C31D11C5B0A8100EF4D05 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = PhotoTrends.storyboard; sourceTree = "<group>"; };
+		F21C31D31C5B246D00EF4D05 /* PhotoTrendsViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PhotoTrendsViewCell.swift; sourceTree = "<group>"; };
 		F2261CA91C0729D000C12729 /* SentPhotoDetailViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SentPhotoDetailViewController.swift; sourceTree = "<group>"; };
 		F2305B971BE23EC20056E087 /* UIView+Constraints.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "UIView+Constraints.swift"; sourceTree = "<group>"; };
 		F23527FE1BE09E7C00CA614A /* PhotoPickable.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PhotoPickable.swift; sourceTree = "<group>"; };
@@ -522,6 +524,7 @@
 				F2D8829D1C0F13FE00DF8C6D /* PhotoActionView.swift */,
 				F2BDF9E01C21448A0031682B /* PhotoVoteView.swift */,
 				F23CF9761C3CB81400C36064 /* PhotoStatusView.swift */,
+				F21C31D31C5B246D00EF4D05 /* PhotoTrendsViewCell.swift */,
 			);
 			path = Views;
 			sourceTree = "<group>";
@@ -791,6 +794,7 @@
 				57B348B41C28026800AFBDED /* RateNotificationHandler.swift in Sources */,
 				5776B92E1BD08F08009005B5 /* PhotoSender.swift in Sources */,
 				57A29A691C044DBD0016E265 /* SystemSettingsHelper.swift in Sources */,
+				F21C31D41C5B246D00EF4D05 /* PhotoTrendsViewCell.swift in Sources */,
 				AEF32DDF1BA301A200EA00A9 /* PhotoCollectionViewCell.swift in Sources */,
 				5737132D1BD73101006B272A /* UserHelper.swift in Sources */,
 				57E3EFF41BFD77D1000D1564 /* UIImage+Orientation.swift in Sources */,
