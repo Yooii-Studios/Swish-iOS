@@ -16,11 +16,16 @@ class PhotoTrendsViewController: UIViewController, UITableViewDataSource {
     override func viewDidLoad() {
         super.viewDidLoad()
 
-        // TODO: 로컬러아징(Photo Trends 바 타이틀)
-        
+        // TODO: 로컬라이징(Photo Trends 바 타이틀)
+        initTableView()
+        initPhotoTrends()
+    }
+    
+    private func initTableView() {
         tableView.dataSource = self
-        
-        // Do any additional setup after loading the view.
+    }
+    
+    private func initPhotoTrends() {
         PhotoTrendsLoader.load { (photoTrends) -> Void in
             if let photoTrends = photoTrends {
                 self.photoTrends = photoTrends

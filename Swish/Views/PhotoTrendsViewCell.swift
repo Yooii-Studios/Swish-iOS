@@ -19,18 +19,35 @@ class PhotoTrendsViewCell: UITableViewCell {
     @IBOutlet weak var distanceLabel: UILabel!
     
     func initWithPhotoTrend(trendingPhoto: TrendingPhoto) {
-        ImageDownloader.downloadImage(trendingPhoto.imageUrl) { [weak self] image in
+        loadPhotoImageWithUrl(trendingPhoto.imageUrl)
+        initUserUI(trendingPhoto.owner)
+        initMessageLabel(trendingPhoto.message)
+        initDistanceLabel()
+    }
+    
+    private func loadPhotoImageWithUrl(url: String) {
+        ImageDownloader.downloadImage(url) { [weak self] image in
             if let image = image {
                 self?.photoImageView.image = image
             }
         }
-        userNameLabel.text = trendingPhoto.owner.name
-        ImageDownloader.downloadImage(trendingPhoto.owner.profileUrl) { [weak self] image in
+    }
+    
+    private func initUserUI(user: User) {
+        userNameLabel.text = user.name
+        ImageDownloader.downloadImage(user.profileUrl) { [weak self] image in
             if let image = image {
                 self?.userProfileImageView.image = image
             }
         }
-        messageLabel.text = trendingPhoto.message
+    }
+    
+    private func initMessageLabel(message: String) {
+        messageLabel.text = message
+    }
+    
+    private func initDistanceLabel() {
+        
     }
     
     func clear() {
