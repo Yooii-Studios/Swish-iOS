@@ -28,8 +28,16 @@ final class MainViewController: UIViewController, UINavigationControllerDelegate
             self.showDressingViewContoller(image)
         }
         
+        registerRemoteNotification()
+        
         initReceivedPhotoDisplayable()
         initPhotoCardView()
+    }
+    
+    private func registerRemoteNotification() {
+        let notificationSettings = UIUserNotificationSettings(forTypes: [.Badge, .Sound, .Alert], categories: nil)
+        UIApplication.sharedApplication().registerUserNotificationSettings(notificationSettings)
+        UIApplication.sharedApplication().registerForRemoteNotifications()
     }
     
     private func initPhotoCardView() {
@@ -39,10 +47,6 @@ final class MainViewController: UIViewController, UINavigationControllerDelegate
     
     override func viewWillAppear(animated: Bool) {
         refreshReceivedPhotoDisplayable()
-        
-        let notificationSettings = UIUserNotificationSettings(forTypes: [.Badge, .Sound, .Alert], categories: nil)
-        UIApplication.sharedApplication().registerUserNotificationSettings(notificationSettings)
-        UIApplication.sharedApplication().registerForRemoteNotifications()
     }
     
     // FIXME: 메서드 이름 변경하고 Photo Trends가 될 예정
