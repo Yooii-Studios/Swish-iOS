@@ -55,25 +55,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
     // MARK: - APNS
     
     func application(application: UIApplication, didRegisterForRemoteNotificationsWithDeviceToken deviceToken: NSData) {
-        let characterSet: NSCharacterSet = NSCharacterSet( charactersInString: "<>" )
-        let deviceTokenString: String = ( deviceToken.description as NSString )
-            .stringByTrimmingCharactersInSet( characterSet )
-            .stringByReplacingOccurrencesOfString( " ", withString: "" ) as String
-        UIApplication.sharedApplication().networkActivityIndicatorVisible = true
-        print("Token : ", deviceTokenString)
-        let userId = SwishDatabase.me().id
-        UserServer.updateMyDeviceToken(userId, deviceToken: deviceTokenString, onSuccess: { (result) -> () in
-            print(result)
-            }) { (error) -> () in
-                print(error)
-        }
-        
-//        APNSServer.postAPNSToken(deviceTokenString, onSuccess: { (_) -> () in
-//            UIApplication.sharedApplication().networkActivityIndicatorVisible = false
-//            }) { (error) -> () in
-//                print(error)
-//                UIApplication.sharedApplication().networkActivityIndicatorVisible = false
-//        }
+        MeManager.updateMyDeviceToken(RemoteNotificationHelper.trimDeviceToken(deviceToken))
     }
     
     func application(application: UIApplication, didFailToRegisterForRemoteNotificationsWithError error: NSError) {

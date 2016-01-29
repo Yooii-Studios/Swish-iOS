@@ -40,6 +40,17 @@ final class MeManager {
             })
     }
     
+    class func updateMyDeviceToken(deviceToken: String,
+        onSuccess: DefaultCallback? = nil, onFail: DefaultCallback? = nil) {
+            let userId = SwishDatabase.me().id
+            UserServer.updateMyDeviceToken(
+                userId,
+                deviceToken: deviceToken,
+                onSuccess: { _ in onSuccess?() },
+                onFail: { _ in onFail?() }
+            )
+    }
+    
     class func updateMyProfileImage(image: UIImage,
         onSuccess: ((profileImageUrl: String) -> ())? = nil, onFail: DefaultCallback? = nil) {
             let userId = SwishDatabase.me().id
