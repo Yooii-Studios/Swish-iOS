@@ -47,7 +47,7 @@ class PhotoTrendsViewCell: UITableViewCell {
     }
     
     private func initDistanceLabel() {
-        
+        // TODO: 추후 포토 트렌즈 VC의 현재 위치와 연계해 구현 필요
     }
     
     func clear() {
