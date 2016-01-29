@@ -26,7 +26,7 @@ class PhotoTrendsViewController: UIViewController, UITableViewDataSource {
     }
     
     private func initPhotoTrends() {
-        PhotoTrendsLoader.load { (photoTrends) -> Void in
+        PhotoTrendsLoader.load { photoTrends in
             if let photoTrends = photoTrends {
                 self.photoTrends = photoTrends
                 self.tableView.reloadData()
