@@ -104,6 +104,25 @@ final class TrendingPhoto: Object {
     }
 }
 
+extension TrendingPhoto {
+    
+    private func distanceFromLocation(location: CLLocation) -> Int {
+        let distanceInMeter = departLocation.distanceFromLocation(location)
+        
+        var distance = DistanceUnit.currentUnit == .Kilometers ? distanceInMeter.inKilometers : distanceInMeter.inMiles
+        if distance < 1 {
+            distance = 1
+        }
+        
+        return Int(distance)
+    }
+    
+    func distanceStringFromLocation(location: CLLocation) -> String {
+        let distance = distanceFromLocation(location)
+        return "\(distance) \(DistanceUnit.currentUnit.rawValue)"
+    }
+}
+
 struct PhotoTrendsCountry {
     let name: String
 }

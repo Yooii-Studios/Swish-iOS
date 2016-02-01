@@ -119,6 +119,7 @@
 		F273C3AA1BFCB4BB007D047B /* MyProfile.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = F273C3A81BFCB4BB007D047B /* MyProfile.storyboard */; };
 		F288C7E81C106C600058B569 /* PhotoActionType.swift in Sources */ = {isa = PBXBuildFile; fileRef = F288C7E71C106C600058B569 /* PhotoActionType.swift */; };
 		F28EF57E1BE8E9F200204C37 /* ReceivedPhotoCollectionViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = F28EF57D1BE8E9F200204C37 /* ReceivedPhotoCollectionViewController.swift */; };
+		F29CEBC91C5F2D4800F4ED55 /* CLLocationDistance+Unit.swift in Sources */ = {isa = PBXBuildFile; fileRef = F29CEBC81C5F2D4800F4ED55 /* CLLocationDistance+Unit.swift */; };
 		F2A1C4FF1C21781800DE88F2 /* PhotoVoteType.swift in Sources */ = {isa = PBXBuildFile; fileRef = F2A1C4FE1C21781800DE88F2 /* PhotoVoteType.swift */; };
 		F2BDF9DD1C213B8A0031682B /* ReceivedPhotoDetailViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = F2BDF9DC1C213B8A0031682B /* ReceivedPhotoDetailViewController.swift */; };
 		F2BDF9DF1C2144750031682B /* PhotoVoteView.xib in Resources */ = {isa = PBXBuildFile; fileRef = F2BDF9DE1C2144750031682B /* PhotoVoteView.xib */; };
@@ -267,6 +268,7 @@
 		F288C7E71C106C600058B569 /* PhotoActionType.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PhotoActionType.swift; sourceTree = "<group>"; };
 		F28EF57C1BE8BDBD00204C37 /* Swift Code Conventions.playground */ = {isa = PBXFileReference; lastKnownFileType = file.playground; path = "Swift Code Conventions.playground"; sourceTree = "<group>"; };
 		F28EF57D1BE8E9F200204C37 /* ReceivedPhotoCollectionViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ReceivedPhotoCollectionViewController.swift; sourceTree = "<group>"; };
+		F29CEBC81C5F2D4800F4ED55 /* CLLocationDistance+Unit.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "CLLocationDistance+Unit.swift"; sourceTree = "<group>"; };
 		F2A1C4FE1C21781800DE88F2 /* PhotoVoteType.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PhotoVoteType.swift; sourceTree = "<group>"; };
 		F2BDF9DC1C213B8A0031682B /* ReceivedPhotoDetailViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ReceivedPhotoDetailViewController.swift; sourceTree = "<group>"; };
 		F2BDF9DE1C2144750031682B /* PhotoVoteView.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = PhotoVoteView.xib; sourceTree = "<group>"; };
@@ -507,6 +509,7 @@
 				57C7AA8B1BFDB152008E10F6 /* CGSize+Operator.swift */,
 				57A29A661C044CE00016E265 /* CLLocationManager+Authorization.swift */,
 				57EFC1971C05A347006CF2EF /* MKMapView+Zoom.swift */,
+				F29CEBC81C5F2D4800F4ED55 /* CLLocationDistance+Unit.swift */,
 			);
 			path = Models;
 			sourceTree = "<group>";
@@ -794,6 +797,7 @@
 				57B348B41C28026800AFBDED /* RateNotificationHandler.swift in Sources */,
 				5776B92E1BD08F08009005B5 /* PhotoSender.swift in Sources */,
 				57A29A691C044DBD0016E265 /* SystemSettingsHelper.swift in Sources */,
+				F29CEBC91C5F2D4800F4ED55 /* CLLocationDistance+Unit.swift in Sources */,
 				F21C31D41C5B246D00EF4D05 /* PhotoTrendsViewCell.swift in Sources */,
 				AEF32DDF1BA301A200EA00A9 /* PhotoCollectionViewCell.swift in Sources */,
 				5737132D1BD73101006B272A /* UserHelper.swift in Sources */,

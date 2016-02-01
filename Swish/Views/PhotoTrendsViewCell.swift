@@ -18,11 +18,10 @@ class PhotoTrendsViewCell: UITableViewCell {
     @IBOutlet weak var messageLabel: UILabel!
     @IBOutlet weak var distanceLabel: UILabel!
     
-    func initWithPhotoTrend(trendingPhoto: TrendingPhoto) {
+    func initWithPhotoTrend(trendingPhoto: TrendingPhoto, withLocation location: CLLocation? = nil) {
         loadPhotoImageWithUrl(trendingPhoto.imageUrl)
         initUserUI(trendingPhoto.owner)
-        initMessageLabel(trendingPhoto.message)
-        initDistanceLabel()
+        initDistanceLabel(trendingPhoto, withLocation: location)
     }
     
     private func loadPhotoImageWithUrl(url: String) {
@@ -46,8 +45,10 @@ class PhotoTrendsViewCell: UITableViewCell {
         messageLabel.text = message
     }
     
-    private func initDistanceLabel() {
-        // TODO: 추후 포토 트렌즈 VC의 현재 위치와 연계해 구현 필요
+    private func initDistanceLabel(trendingPhoto: TrendingPhoto, withLocation location: CLLocation?) {
+        if let location = location {
+            distanceLabel.text = trendingPhoto.distanceStringFromLocation(location)
+        }
     }
     
     func clear() {

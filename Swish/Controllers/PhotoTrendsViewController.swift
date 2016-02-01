@@ -8,10 +8,14 @@
 
 import UIKit
 
-class PhotoTrendsViewController: UIViewController, UITableViewDataSource {
+class PhotoTrendsViewController: UIViewController, UITableViewDataSource, LocationTrackable {
 
     @IBOutlet weak var tableView: UITableView!
     private var photoTrends: PhotoTrends!
+    
+    var locationTrackType: LocationTrackType = .OneShot
+    var locationTrackHandler: LocationTrackHandler!
+    var currentLocation: CLLocation?
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -19,6 +23,7 @@ class PhotoTrendsViewController: UIViewController, UITableViewDataSource {
         // TODO: 로컬라이징(Photo Trends 바 타이틀)
         initTableView()
         initPhotoTrends()
+        initLocationHandler()
     }
     
     private func initTableView() {
@@ -34,6 +39,11 @@ class PhotoTrendsViewController: UIViewController, UITableViewDataSource {
             }
         }
     }
+    
+    private func initLocationHandler() {
+        locationTrackHandler = LocationTrackHandler(delegate: self)
+        requestLocationUpdate()
+    }
 
     // MARK: - Table View
     
@@ -48,7 +58,7 @@ class PhotoTrendsViewController: UIViewController, UITableViewDataSource {
     final func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell {
         let cell = dequeueReusableCell(tableView, atIndexPath: indexPath)
         cell.clear()
-        cell.initWithPhotoTrend(self.photoTrends.trendingPhotos[indexPath.row])
+        cell.initWithPhotoTrend(self.photoTrends.trendingPhotos[indexPath.row], withLocation: self.currentLocation)
         return cell
     }
     
@@ -56,6 +66,12 @@ class PhotoTrendsViewController: UIViewController, UITableViewDataSource {
         return tableView.dequeueReusableCellWithIdentifier("PhotoTrendsViewCell") as! PhotoTrendsViewCell
     }
 
+    // MARK: Location
+    
+    final func locationDidUpdate(location: CLLocation) {
+        self.currentLocation = location
+        self.tableView .reloadData()
+    }
 
     /*
     // MARK: - Navigation
@@ -67,6 +83,8 @@ class PhotoTrendsViewController: UIViewController, UITableViewDataSource {
     }
     */
 
+    
+    
     // MARK: - IBAction
     
     @IBAction func backButtonDidTap(sender: AnyObject) {

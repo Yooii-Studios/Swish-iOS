@@ -8,7 +8,6 @@
 
 import Foundation
 import RealmSwift
-import CoreLocation
 import SwiftyJSON
 
 enum ChatRoomBlockState: Int {
@@ -302,16 +301,5 @@ extension Photo {
         }
         
         return Int(distance)
-    }
-}
-
-private extension CLLocationDistance {
-    
-    var inKilometers: CLLocationDistance {
-        return self / 1000
-    }
-    
-    var inMiles: CLLocationDistance {
-        return self * 0.000621371
     }
 }
