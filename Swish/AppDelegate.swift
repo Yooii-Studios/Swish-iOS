@@ -18,22 +18,24 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
     
     var window: UIWindow?
     
-    func application(application: UIApplication, var didFinishLaunchingWithOptions launchOptions: [NSObject: AnyObject]?) -> Bool {
+    func application(application: UIApplication, didFinishLaunchingWithOptions launchOptions: [NSObject: AnyObject]?) -> Bool {
         // Override point for customization after application launch.
         SwishDatabase.migrate()
         initIQKeyboardManager()
-        
-        if let notificationInfo = launchOptions?[UIApplicationLaunchOptionsRemoteNotificationKey] as? NotificationInfo {
-            print("Launched from push notification")
-            handleRemoteNotification(notificationInfo, updateUI: false)
-        }
-        
+        handleLaunchOptions(launchOptions)
         return true
     }
     
     private func initIQKeyboardManager() {
         IQKeyboardManager.sharedManager().enable = true
         IQKeyboardManager.sharedManager().shouldToolbarUsesTextFieldTintColor = true
+    }
+    
+    private func handleLaunchOptions(launchOptions: [NSObject: AnyObject]?) {
+        if let notificationInfo = launchOptions?[UIApplicationLaunchOptionsRemoteNotificationKey] as? NotificationInfo {
+            print("Launch  from push notification")
+            handleRemoteNotification(notificationInfo, updateUI: false)
+        }
     }
     
     func applicationWillResignActive(application: UIApplication) {
@@ -70,14 +72,20 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
     }
     
     func application(application: UIApplication, didReceiveRemoteNotification userInfo: [NSObject : AnyObject]) {
-        handleRemoteNotification(userInfo, updateUI: true)
         print("Receive notification")
+        handleRemoteNotification(userInfo, updateUI: true)
     }
     
     func handleRemoteNotification(notificationInfo: NotificationInfo, updateUI: Bool) {
         // TODO: Like, Dislike, Chat 관련 알람을 처리해줘야함
         // TODO: Badge 관련 처리를 해줘야함
         print("Handle notification here: \(notificationInfo)")
+        let category = (notificationInfo["aps"] as! NotificationInfo)["category"] as! String
+        if category == "chat" {
+            ChatMessageNotificationHandler().handleUserInfo(notificationInfo)
+        } else if category == "like" || category == "dislike" {
+            RateNotificationHandler().handleUserInfo(notificationInfo)
+        }
     }
 }
 
