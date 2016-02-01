@@ -35,6 +35,17 @@ final class UserServer {
             SwishServer.requestWith(httpRequest)
     }
     
+    class func updateMyDeviceToken(id: User.ID, deviceToken: String,
+        onSuccess: DefaultSuccessCallback, onFail: FailCallback) {
+            let url = "\(BaseClientUrl)/\(id)"
+            let params = updateMyDeviceTokenParamsWith(deviceToken)
+            
+            let httpRequest = HttpRequest<JSON>(method: .PATCH, url: url, parameters: params,
+                parser: SwishServer.DefaultParser, onSuccess: onSuccess, onFail: onFail)
+            
+            SwishServer.requestWith(httpRequest)
+    }
+    
     class func updateMyProfileImage(id: User.ID, image: UIImage,
         onSuccess: (profileImageUrl: String) -> (), onFail: FailCallback) {
             let url = "\(BaseClientUrl)/\(id)/update_profile_image"
@@ -88,8 +99,8 @@ final class UserServer {
         params.updateValue(UUIDHelper.uuid(), forKey: "uuid")
         // TODO: APNS 토큰 적용
         params.updateValue("", forKey: "gcm_id")
-        // TODO: 서버에서 클라이언트 타입 구분하는 기능 추가되면 아래와 같이 적어 줄것
-//        params.updateValue("1", forKey: "client_type")
+        // 1 = iOS
+        params.updateValue("1", forKey: "client_type")
         if let name = name {
             params.updateValue(name, forKey: "name")
         }
@@ -114,6 +125,13 @@ final class UserServer {
             params.updateValue(about, forKey: "about")
         }
         
+        return params
+    }
+    
+    private class func updateMyDeviceTokenParamsWith(deviceToken: String) -> Param {
+        var params = Param()
+        params.updateValue(deviceToken, forKey: "gcm_registeration_id")
+
         return params
     }
     
