@@ -58,12 +58,7 @@ class PhotoTrendsViewController: UIViewController, UITableViewDataSource, Locati
     final func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell {
         let cell = dequeueReusableCell(tableView, atIndexPath: indexPath)
         cell.clear()
-        
-        if let location = self.currentLocation {
-            cell.initWithPhotoTrend(self.photoTrends.trendingPhotos[indexPath.row], withLocation: location)
-        } else {
-            cell.initWithPhotoTrend(self.photoTrends.trendingPhotos[indexPath.row])
-        }
+        cell.initWithPhotoTrend(self.photoTrends.trendingPhotos[indexPath.row], withLocation: self.currentLocation)
         return cell
     }
     
