@@ -44,6 +44,8 @@ class ChatViewController: UIViewController, UITableViewDataSource, ChatMessageSe
 //            }
             // 추후 해당 인덱스만 추가될 수 있게 로직 개선 필요
             self?.tableView.reloadData()
+            self?.tableView.scrollToRowAtIndexPath(NSIndexPath(forRow: index, inSection: 0), atScrollPosition:
+                UITableViewScrollPosition.Bottom, animated: true)
         }
     }
     
