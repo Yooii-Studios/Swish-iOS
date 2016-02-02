@@ -33,6 +33,9 @@ final class ChatMessage: Object, Hashable {
         let me = SwishDatabase.me()
         return sender == me ? SwishDatabase.otherUser(senderId)! : me
     }
+    var isMyMessage: Bool {
+        return senderId == SwishDatabase.me().id
+    }
     var receivedDate: NSDate {
         get {
             // FIXME: Creates an instance everytime when receivedDate is retrieved.

@@ -23,7 +23,7 @@
                                 <rect key="frame" x="0.0" y="0.0" width="600" height="536"/>
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                 <prototypes>
-                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" reuseIdentifier="DateDividerViewCell" id="AXS-l5-2Tv">
+                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" reuseIdentifier="DateDividerViewCell" id="AXS-l5-2Tv" customClass="DateDividerViewCell" customModule="Swish" customModuleProvider="target">
                                         <rect key="frame" x="0.0" y="28" width="600" height="44"/>
                                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="AXS-l5-2Tv" id="N6P-mV-Q0Q">
@@ -42,8 +42,11 @@
                                                 <constraint firstItem="b1n-FG-gn3" firstAttribute="centerY" secondItem="N6P-mV-Q0Q" secondAttribute="centerY" id="OzQ-aR-QgS"/>
                                             </constraints>
                                         </tableViewCellContentView>
+                                        <connections>
+                                            <outlet property="dateLabel" destination="b1n-FG-gn3" id="7QP-v9-AZa"/>
+                                        </connections>
                                     </tableViewCell>
-                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" reuseIdentifier="MyChat" id="3sp-Wr-wMK">
+                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" reuseIdentifier="MyChatViewCell" id="3sp-Wr-wMK" customClass="MyChatViewCell" customModule="Swish" customModuleProvider="target">
                                         <rect key="frame" x="0.0" y="72" width="600" height="44"/>
                                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="3sp-Wr-wMK" id="7jB-ox-d5Y">
@@ -62,8 +65,11 @@
                                                 <constraint firstItem="Mfe-8W-7Mm" firstAttribute="centerY" secondItem="7jB-ox-d5Y" secondAttribute="centerY" id="r6u-xt-ij9"/>
                                             </constraints>
                                         </tableViewCellContentView>
+                                        <connections>
+                                            <outlet property="messageLabel" destination="Mfe-8W-7Mm" id="3h3-vl-UiE"/>
+                                        </connections>
                                     </tableViewCell>
-                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" reuseIdentifier="OtherUserChatViewCell" id="8bR-1E-sGY">
+                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" reuseIdentifier="OtherUserChatViewCell" id="8bR-1E-sGY" customClass="OtherUserChatViewCell" customModule="Swish" customModuleProvider="target">
                                         <rect key="frame" x="0.0" y="116" width="600" height="44"/>
                                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="8bR-1E-sGY" id="kjZ-Qr-UFh">
@@ -82,6 +88,9 @@
                                                 <constraint firstAttribute="leadingMargin" secondItem="XwE-ha-JFr" secondAttribute="leading" id="hZY-CE-Vis"/>
                                             </constraints>
                                         </tableViewCellContentView>
+                                        <connections>
+                                            <outlet property="messageLabel" destination="XwE-ha-JFr" id="VR2-7I-l5A"/>
+                                        </connections>
                                     </tableViewCell>
                                 </prototypes>
                             </tableView>
@@ -147,6 +156,7 @@
                     <connections>
                         <outlet property="IQLayoutGuideConstraint" destination="zgJ-VB-HDD" id="Fu8-zx-xGT"/>
                         <outlet property="tableView" destination="cWE-C1-QBl" id="Z3V-sh-AhK"/>
+                        <outlet property="textField" destination="0QV-Cs-qgH" id="Y0S-2F-Q3v"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="b5c-9V-uTa" userLabel="First Responder" sceneMemberID="firstResponder"/>

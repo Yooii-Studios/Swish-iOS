@@ -8,17 +8,21 @@
 
 import UIKit
 
-class ChatViewController: UIViewController, UITableViewDataSource {
+class ChatViewController: UIViewController, UITableViewDataSource, ChatMessageSender {
 
     @IBOutlet weak var tableView: UITableView!
+    @IBOutlet weak var textField: UITextField!
+    
     var photo: Photo!
+    var photoId: Photo.ID {
+        return photo.id
+    }
     
     override func viewDidLoad() {
         super.viewDidLoad()
 
         // Uncomment the following line to preserve selection between presentations
-        self.title = photo.sender.name
-        
+        title = photo.sender.name
         initTableView()
     }
     
@@ -37,23 +41,34 @@ class ChatViewController: UIViewController, UITableViewDataSource {
     // MARK: - Table view data source
 
     final func numberOfSectionsInTableView(tableView: UITableView) -> Int {
-        // #warning Incomplete implementation, return the number of sections
-        return 0
+        return 1
     }
 
     final func tableView(tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        // #warning Incomplete implementation, return the number of rows
-        return 0
+        return photo.chatMessages.count
     }
 
     func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell {
-        let cell = tableView.dequeueReusableCellWithIdentifier("reuseIdentifier", forIndexPath: indexPath)
-
-        // Configure the cell...
-
-        return cell
+        // TODO: 추후 DateDivider UI 추가 필요
+        // TODO: 추후 각 셀 초기화 로직 리팩토링할 것
+        let chatMessage = photo.chatMessages[indexPath.row]
+        if chatMessage.isMyMessage {
+            let cell = tableView.dequeueReusableCellWithIdentifier("MyChatViewCell", forIndexPath: indexPath) as!
+            MyChatViewCell
+            
+            cell.messageLabel.text = chatMessage.message
+            
+            return cell
+        } else {
+            let cell = tableView.dequeueReusableCellWithIdentifier("OtherUserChatViewCell", forIndexPath: indexPath) as!
+            OtherUserChatViewCell
+            
+            cell.messageLabel.text = chatMessage.message
+            
+            return cell
+        }
     }
-
+    
     /*
     // MARK: - Navigation
 
@@ -80,6 +95,14 @@ class ChatViewController: UIViewController, UITableViewDataSource {
     }
     
     @IBAction func sendbuttonDidTap() {
+        if let message = textField.text {
+            let chatMessage = ChatMessage.create(message, senderId: MeManager.me().id)
+
+            // TODO: 나중에 APNS와 연결한 뒤 ChatMessageSender comfort해서 연결해줄 것. 그전에는 로컬 DB에만 저장해서 테스트
+            chatMessage.state = .Success
+            SwishDatabase.saveChatMessage(photo.id, chatMessage: chatMessage)
+        }
         
+        textField.text = ""
     }
 }

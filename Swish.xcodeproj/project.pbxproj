@@ -122,6 +122,9 @@
 		F29CEBC91C5F2D4800F4ED55 /* CLLocationDistance+Unit.swift in Sources */ = {isa = PBXBuildFile; fileRef = F29CEBC81C5F2D4800F4ED55 /* CLLocationDistance+Unit.swift */; };
 		F29CEBCC1C5F572B00F4ED55 /* Chat.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = F29CEBCA1C5F572B00F4ED55 /* Chat.storyboard */; };
 		F29CEBCE1C5F57A400F4ED55 /* ChatViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = F29CEBCD1C5F57A400F4ED55 /* ChatViewController.swift */; };
+		F29CEBD01C60C8F300F4ED55 /* DateDividerViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = F29CEBCF1C60C8F300F4ED55 /* DateDividerViewCell.swift */; };
+		F29CEBD21C60C90E00F4ED55 /* OtherUserChatViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = F29CEBD11C60C90E00F4ED55 /* OtherUserChatViewCell.swift */; };
+		F29CEBD41C60C91800F4ED55 /* MyChatViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = F29CEBD31C60C91800F4ED55 /* MyChatViewCell.swift */; };
 		F2A1C4FF1C21781800DE88F2 /* PhotoVoteType.swift in Sources */ = {isa = PBXBuildFile; fileRef = F2A1C4FE1C21781800DE88F2 /* PhotoVoteType.swift */; };
 		F2BDF9DD1C213B8A0031682B /* ReceivedPhotoDetailViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = F2BDF9DC1C213B8A0031682B /* ReceivedPhotoDetailViewController.swift */; };
 		F2BDF9DF1C2144750031682B /* PhotoVoteView.xib in Resources */ = {isa = PBXBuildFile; fileRef = F2BDF9DE1C2144750031682B /* PhotoVoteView.xib */; };
@@ -273,6 +276,9 @@
 		F29CEBC81C5F2D4800F4ED55 /* CLLocationDistance+Unit.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "CLLocationDistance+Unit.swift"; sourceTree = "<group>"; };
 		F29CEBCB1C5F572B00F4ED55 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Chat.storyboard; sourceTree = "<group>"; };
 		F29CEBCD1C5F57A400F4ED55 /* ChatViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ChatViewController.swift; sourceTree = "<group>"; };
+		F29CEBCF1C60C8F300F4ED55 /* DateDividerViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DateDividerViewCell.swift; sourceTree = "<group>"; };
+		F29CEBD11C60C90E00F4ED55 /* OtherUserChatViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = OtherUserChatViewCell.swift; sourceTree = "<group>"; };
+		F29CEBD31C60C91800F4ED55 /* MyChatViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MyChatViewCell.swift; sourceTree = "<group>"; };
 		F2A1C4FE1C21781800DE88F2 /* PhotoVoteType.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PhotoVoteType.swift; sourceTree = "<group>"; };
 		F2BDF9DC1C213B8A0031682B /* ReceivedPhotoDetailViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ReceivedPhotoDetailViewController.swift; sourceTree = "<group>"; };
 		F2BDF9DE1C2144750031682B /* PhotoVoteView.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = PhotoVoteView.xib; sourceTree = "<group>"; };
@@ -533,6 +539,9 @@
 				F2BDF9E01C21448A0031682B /* PhotoVoteView.swift */,
 				F23CF9761C3CB81400C36064 /* PhotoStatusView.swift */,
 				F21C31D31C5B246D00EF4D05 /* PhotoTrendsViewCell.swift */,
+				F29CEBCF1C60C8F300F4ED55 /* DateDividerViewCell.swift */,
+				F29CEBD11C60C90E00F4ED55 /* OtherUserChatViewCell.swift */,
+				F29CEBD31C60C91800F4ED55 /* MyChatViewCell.swift */,
 			);
 			path = Views;
 			sourceTree = "<group>";
@@ -810,6 +819,7 @@
 				AEF32DDF1BA301A200EA00A9 /* PhotoCollectionViewCell.swift in Sources */,
 				5737132D1BD73101006B272A /* UserHelper.swift in Sources */,
 				57E3EFF41BFD77D1000D1564 /* UIImage+Orientation.swift in Sources */,
+				F29CEBD41C60C91800F4ED55 /* MyChatViewCell.swift in Sources */,
 				57EFC1981C05A347006CF2EF /* MKMapView+Zoom.swift in Sources */,
 				57EC68EE1C1E9B0100CB07E5 /* ChatObserver.swift in Sources */,
 				F21C31CF1C5B0A6F00EF4D05 /* PhotoTrendsViewController.swift in Sources */,
@@ -826,6 +836,7 @@
 				57E2D9781BB28D8B008957C2 /* PhotoServer.swift in Sources */,
 				5796738E1B9FFE7200382247 /* ChatMessage.swift in Sources */,
 				5776B92C1BD08EAB009005B5 /* FileHelper.swift in Sources */,
+				F29CEBD01C60C8F300F4ED55 /* DateDividerViewCell.swift in Sources */,
 				F2305B981BE23EC20056E087 /* UIView+Constraints.swift in Sources */,
 				57E09ADD1BCBAA34006A05DC /* OtherUserLoader.swift in Sources */,
 				5796738A1B9FFE6C00382247 /* User.swift in Sources */,
@@ -858,6 +869,7 @@
 				57DFE24C1BE0DA7A002BB5DB /* PhotoExchanger.swift in Sources */,
 				F2ECA5C81BFAE6E300E3AD93 /* SentPhotoCollectionViewController.swift in Sources */,
 				579673891B9FFE6C00382247 /* OtherUser.swift in Sources */,
+				F29CEBD21C60C90E00F4ED55 /* OtherUserChatViewCell.swift in Sources */,
 				579D9D1E1C2135C700145CC8 /* PhotoObserver.swift in Sources */,
 				57E3EFF81BFD8E1E000D1564 /* UIImage+Base64.swift in Sources */,
 				F20E9E7C1C44C9CD007ECEE6 /* MeObserver.swift in Sources */,
