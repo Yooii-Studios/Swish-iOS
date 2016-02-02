@@ -10,6 +10,7 @@ import UIKit
 import CoreData
 import DeviceUtil
 import IQKeyboardManager
+import SwiftyJSON
 
 typealias NotificationInfo = [NSObject: AnyObject]
 
@@ -80,7 +81,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         // TODO: Like, Dislike, Chat 관련 알람을 처리해줘야함
         // TODO: Badge 관련 처리를 해줘야함
         print("Handle notification here: \(notificationInfo)")
-        let category = (notificationInfo["aps"] as! NotificationInfo)["category"] as! String
+        let category = JSON(notificationInfo)["aps"]["category"].stringValue
         if category == "chat" {
             ChatMessageNotificationHandler().handleUserInfo(notificationInfo)
         } else if category == "like" || category == "dislike" {
