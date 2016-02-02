@@ -4,6 +4,7 @@
         <deployment identifier="iOS"/>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="9529"/>
         <capability name="Constraints to layout margins" minToolsVersion="6.0"/>
+        <capability name="Navigation items with more than one left or right bar item" minToolsVersion="7.0"/>
     </dependencies>
     <scenes>
         <!--Chat View Controller-->
@@ -95,6 +96,9 @@
                                     <button opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" horizontalCompressionResistancePriority="751" verticalCompressionResistancePriority="751" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Sbc-AR-T3D">
                                         <rect key="frame" x="549" y="10" width="36" height="30"/>
                                         <state key="normal" title="Send"/>
+                                        <connections>
+                                            <action selector="sendbuttonDidTap" destination="Fnk-Je-rzy" eventType="touchUpInside" id="Sm6-vv-IN2"/>
+                                        </connections>
                                     </button>
                                 </subviews>
                                 <color key="backgroundColor" white="0.66666666666666663" alpha="1" colorSpace="calibratedWhite"/>
@@ -122,11 +126,23 @@
                     </view>
                     <extendedEdge key="edgesForExtendedLayout" bottom="YES"/>
                     <navigationItem key="navigationItem" id="wfT-B4-wdl">
-                        <barButtonItem key="rightBarButtonItem" systemItem="done" id="IeQ-3W-oUB">
-                            <connections>
-                                <action selector="backButtonDidTap" destination="Fnk-Je-rzy" id="hDr-3A-rYg"/>
-                            </connections>
-                        </barButtonItem>
+                        <rightBarButtonItems>
+                            <barButtonItem systemItem="done" id="IeQ-3W-oUB">
+                                <connections>
+                                    <action selector="backButtonDidTap" destination="Fnk-Je-rzy" id="hDr-3A-rYg"/>
+                                </connections>
+                            </barButtonItem>
+                            <barButtonItem title="Block" id="01C-l2-yOB">
+                                <connections>
+                                    <action selector="blockButtonDidTap" destination="Fnk-Je-rzy" id="OBC-wx-Ivq"/>
+                                </connections>
+                            </barButtonItem>
+                            <barButtonItem title="Image" id="2tT-zx-Kax">
+                                <connections>
+                                    <action selector="imageButtonDidTap" destination="Fnk-Je-rzy" id="PQg-mm-F9k"/>
+                                </connections>
+                            </barButtonItem>
+                        </rightBarButtonItems>
                     </navigationItem>
                     <connections>
                         <outlet property="IQLayoutGuideConstraint" destination="zgJ-VB-HDD" id="Fu8-zx-xGT"/>

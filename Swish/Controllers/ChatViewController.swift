@@ -70,4 +70,16 @@ class ChatViewController: UIViewController, UITableViewDataSource {
         view.endEditing(true)
         dismissViewControllerAnimated(true, completion: nil)
     }
+    
+    @IBAction func imageButtonDidTap() {
+        
+    }
+    
+    @IBAction func blockButtonDidTap() {
+        
+    }
+    
+    @IBAction func sendbuttonDidTap() {
+        
+    }
 }
