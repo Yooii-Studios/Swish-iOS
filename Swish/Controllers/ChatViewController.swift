@@ -38,6 +38,10 @@ class ChatViewController: UIViewController, UITableViewDataSource, ChatMessageSe
     
     private func initPhotoObserver() {
         PhotoObserver.observeChatMessagesForPhoto(photo, owner: self) { [weak self] index in
+            // TODO: 동현이 말대로 처리를 했는데 현재 죽고 있음. 물어보고 해결 필요
+//            if let photoId = self?.photo.id {
+//                SwishDatabase.updateAllChatRead(photoId)
+//            }
             // 추후 해당 인덱스만 추가될 수 있게 로직 개선 필요
             self?.tableView.reloadData()
         }

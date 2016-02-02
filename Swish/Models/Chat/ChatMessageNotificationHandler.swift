@@ -17,8 +17,6 @@ final class ChatMessageNotificationHandler {
         
         // TODO: 해당 photoId의 채팅방 화면이 최상위에 있다면 notify(local notification), 읽지 않은 메시지 갯수는 무조건 올려주기
 //        SwishDatabase.increaseUnreadChatCount(<#T##id: ID##ID#>)
-        // TODO: 채팅방 화면에서는 채팅을 받을 때마다 아래를 호출(이 파일에는 없어야 함)
-//        SwishDatabase.updateAllChatRead(<#T##id: ID##ID#>)
     }
     
     // MARK: - Parsers
