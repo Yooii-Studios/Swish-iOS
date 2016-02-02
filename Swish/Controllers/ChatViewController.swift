@@ -99,7 +99,10 @@ class ChatViewController: UIViewController, UITableViewDataSource, ChatMessageSe
     }
     
     @IBAction func blockButtonDidTap() {
-        
+        // TODO: 디버그용으로 추후 삭제 필요 
+        let chatMessage = ChatMessage.create("Test!", senderId: photo.sender.id)
+        chatMessage.state = .Success
+        SwishDatabase.saveChatMessage(photo.id, chatMessage: chatMessage)
     }
     
     @IBAction func sendbuttonDidTap() {
