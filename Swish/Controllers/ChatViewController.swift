@@ -21,20 +21,19 @@ class ChatViewController: UIViewController, UITableViewDataSource, ChatMessageSe
     override func viewDidLoad() {
         super.viewDidLoad()
 
-        // Uncomment the following line to preserve selection between presentations
-        title = photo.sender.name
+        initTitle()
         initTableView()
         initPhotoObserver()
     }
     
+    private func initTitle() {
+        title = photo.sender.name
+    }
+    
     private func initTableView() {
-        tableView.dataSource = self
-        
-        let tapGesture = UITapGestureRecognizer(target: self, action: Selector("hideKeyboard"))
-        tapGesture.cancelsTouchesInView = true
-        tableView.addGestureRecognizer(tapGesture)
-        
-        tableView.setContentOffset(CGPoint(x: 0, y: CGFloat.max), animated: false)
+        initDataSource()
+        initTableViewTapGesture()
+        scrollToBottom()
     }
     
     private func initPhotoObserver() {
@@ -44,8 +43,22 @@ class ChatViewController: UIViewController, UITableViewDataSource, ChatMessageSe
         }
     }
     
+    private func initDataSource() {
+        tableView.dataSource = self
+    }
+    
+    private func initTableViewTapGesture() {
+        let tapGesture = UITapGestureRecognizer(target: self, action: Selector("hideKeyboard"))
+        tapGesture.cancelsTouchesInView = true
+        tableView.addGestureRecognizer(tapGesture)
+    }
+    
     final func hideKeyboard() {
         view.endEditing(true)
+    }
+    
+    private func scrollToBottom() {
+        tableView.setContentOffset(CGPoint(x: 0, y: CGFloat.max), animated: false)
     }
 
     // MARK: - Table view data source
