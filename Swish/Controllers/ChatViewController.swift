@@ -33,6 +33,8 @@ class ChatViewController: UIViewController, UITableViewDataSource, ChatMessageSe
         let tapGesture = UITapGestureRecognizer(target: self, action: Selector("hideKeyboard"))
         tapGesture.cancelsTouchesInView = true
         tableView.addGestureRecognizer(tapGesture)
+        
+        tableView.setContentOffset(CGPoint(x: 0, y: CGFloat.max), animated: false)
     }
     
     private func initPhotoObserver() {
