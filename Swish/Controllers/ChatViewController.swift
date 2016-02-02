@@ -127,7 +127,7 @@ class ChatViewController: UIViewController, UITableViewDataSource, ChatMessageSe
     }
     
     @IBAction func sendbuttonDidTap() {
-        if let message = textField.text {
+        if let message = textField.text where message.characters.count > 0 {
             let chatMessage = ChatMessage.create(message, senderId: MeManager.me().id)
 
             // TODO: 나중에 APNS와 연결한 뒤 ChatMessageSender comfort해서 연결해줄 것. 그전에는 로컬 DB에만 저장해서 테스트
