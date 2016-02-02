@@ -18,7 +18,20 @@ class ChatViewController: UIViewController, UITableViewDataSource {
 
         // Uncomment the following line to preserve selection between presentations
         self.title = photo.sender.name
-        self.tableView.dataSource = self
+        
+        initTableView()
+    }
+    
+    private func initTableView() {
+        tableView.dataSource = self
+        
+        let tapGesture = UITapGestureRecognizer(target: self, action: Selector("hideKeyboard"))
+        tapGesture.cancelsTouchesInView = true
+        tableView.addGestureRecognizer(tapGesture)
+    }
+    
+    final func hideKeyboard() {
+        view.endEditing(true)
     }
 
     // MARK: - Table view data source
