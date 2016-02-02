@@ -19,8 +19,8 @@
                         <rect key="frame" x="0.0" y="64" width="600" height="536"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" showsHorizontalScrollIndicator="NO" keyboardDismissMode="interactive" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="44" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="cWE-C1-QBl">
-                                <rect key="frame" x="0.0" y="0.0" width="600" height="536"/>
+                            <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" showsHorizontalScrollIndicator="NO" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="44" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="cWE-C1-QBl">
+                                <rect key="frame" x="0.0" y="0.0" width="600" height="486"/>
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                 <prototypes>
                                     <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" reuseIdentifier="DateDividerViewCell" id="AXS-l5-2Tv" customClass="DateDividerViewCell" customModule="Swish" customModuleProvider="target">
@@ -124,11 +124,11 @@
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                         <constraints>
+                            <constraint firstItem="ykp-cv-VVu" firstAttribute="top" secondItem="cWE-C1-QBl" secondAttribute="bottom" id="CSI-sT-zqy"/>
                             <constraint firstItem="ykp-cv-VVu" firstAttribute="leading" secondItem="IPj-38-3FM" secondAttribute="leading" id="gli-ma-PiR"/>
                             <constraint firstItem="cWE-C1-QBl" firstAttribute="leading" secondItem="IPj-38-3FM" secondAttribute="leading" id="iP8-gI-LpK"/>
                             <constraint firstAttribute="trailing" secondItem="ykp-cv-VVu" secondAttribute="trailing" id="jvu-sm-x9s"/>
                             <constraint firstItem="cWE-C1-QBl" firstAttribute="top" secondItem="DOp-gB-ijf" secondAttribute="bottom" id="qac-fv-DlA"/>
-                            <constraint firstItem="J4J-Rt-bar" firstAttribute="top" secondItem="cWE-C1-QBl" secondAttribute="bottom" id="u9d-DO-XmN"/>
                             <constraint firstAttribute="trailing" secondItem="cWE-C1-QBl" secondAttribute="trailing" id="wfK-B8-0hs"/>
                             <constraint firstItem="J4J-Rt-bar" firstAttribute="top" secondItem="ykp-cv-VVu" secondAttribute="bottom" id="zgJ-VB-HDD"/>
                         </constraints>
