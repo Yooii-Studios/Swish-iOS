@@ -24,6 +24,7 @@ class ChatViewController: UIViewController, UITableViewDataSource, ChatMessageSe
         // Uncomment the following line to preserve selection between presentations
         title = photo.sender.name
         initTableView()
+        initPhotoObserver()
     }
     
     private func initTableView() {
@@ -32,6 +33,13 @@ class ChatViewController: UIViewController, UITableViewDataSource, ChatMessageSe
         let tapGesture = UITapGestureRecognizer(target: self, action: Selector("hideKeyboard"))
         tapGesture.cancelsTouchesInView = true
         tableView.addGestureRecognizer(tapGesture)
+    }
+    
+    private func initPhotoObserver() {
+        PhotoObserver.observeChatMessagesForPhoto(photo, owner: self) { [weak self] index in
+            // 추후 해당 인덱스만 추가될 수 있게 로직 개선 필요
+            self?.tableView.reloadData()
+        }
     }
     
     final func hideKeyboard() {
