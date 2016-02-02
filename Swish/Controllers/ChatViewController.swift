@@ -54,6 +54,7 @@ class ChatViewController: UIViewController, UITableViewDataSource {
     // MARK: - IBAction
     
     @IBAction func backButtonDidTap() {
+        view.endEditing(true)
         dismissViewControllerAnimated(true, completion: nil)
     }
 }
