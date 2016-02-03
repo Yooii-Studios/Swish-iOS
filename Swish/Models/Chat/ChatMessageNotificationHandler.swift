@@ -12,9 +12,9 @@ import SwiftyJSON
 final class ChatMessageNotificationHandler {
     
     final func handleUserInfo(notificationInfo: NotificationInfo) {
-        let chatMessageInfoJSON = JSON(notificationInfo)["message"]
-        let photoId = parsePhotoIdFromUserInfo(chatMessageInfoJSON)
-        let chatMessage = parseChatMessageFromUserInfo(chatMessageInfoJSON)
+        let chatMessageJSON = JSON(notificationInfo)["message"]
+        let photoId = parsePhotoIdFromUserInfo(chatMessageJSON)
+        let chatMessage = parseChatMessageFromUserInfo(chatMessageJSON)
         
         SwishDatabase.saveChatMessage(photoId, chatMessage: chatMessage)
         // TODO: 해당 photoId의 채팅방 화면이 최상위에 있다면 notify(local notification), 읽지 않은 메시지 갯수는 무조건 올려주기
@@ -26,12 +26,12 @@ final class ChatMessageNotificationHandler {
     // MARK: - Parsers
     // TODO: apns가 셋업 되면 실제 파싱으로 변경
     
-    private func parsePhotoIdFromUserInfo(chatMessageInfoJSON: JSON) -> Photo.ID {
-        return chatMessageInfoJSON["photo"]["id"].int64Value
+    private func parsePhotoIdFromUserInfo(chatMessageJSON: JSON) -> Photo.ID {
+        return chatMessageJSON["photo"]["id"].int64Value
     }
     
-    private func parseChatMessageFromUserInfo(chatMessageInfoJSON: JSON) -> ChatMessage {
-        return ChatMessage.create(chatMessageInfoJSON["content"].stringValue,
-            senderId: chatMessageInfoJSON["sender"]["id"].stringValue)
+    private func parseChatMessageFromUserInfo(chatMessageJSON: JSON) -> ChatMessage {
+        return ChatMessage.create(chatMessageJSON["content"].stringValue,
+            senderId: chatMessageJSON["sender"]["id"].stringValue)
     }
 }
