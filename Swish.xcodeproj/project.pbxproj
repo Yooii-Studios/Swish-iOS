@@ -519,9 +519,9 @@
 			children = (
 				AEF32DDE1BA301A200EA00A9 /* PhotoCollectionViewCell.swift */,
 				574E812E1BE7452B0037FA12 /* GADBannerView+Preload.swift */,
+				579D9D191C1FF3D500145CC8 /* PhotoViewCell.swift */,
 				F2185E501BEA3B5D0062E4B1 /* ReceivedPhotoViewCell.swift */,
 				F2ECA5CB1BFAE7FC00E3AD93 /* SentPhotoViewCell.swift */,
-				579D9D191C1FF3D500145CC8 /* PhotoViewCell.swift */,
 				F2D882A21C0F1BEA00DF8C6D /* CircleButton.swift */,
 				F23AC1A71C31060900757BC9 /* PhotoCardView.swift */,
 				F2D8829D1C0F13FE00DF8C6D /* PhotoActionView.swift */,
