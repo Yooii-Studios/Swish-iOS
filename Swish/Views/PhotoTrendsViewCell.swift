@@ -18,7 +18,7 @@ class PhotoTrendsViewCell: UITableViewCell {
     @IBOutlet weak var messageLabel: UILabel!
     @IBOutlet weak var distanceLabel: UILabel!
     
-    func initWithPhotoTrend(trendingPhoto: TrendingPhoto, withLocation location: CLLocation? = nil) {
+    final func initWithPhotoTrend(trendingPhoto: TrendingPhoto, withLocation location: CLLocation? = nil) {
         loadPhotoImageWithUrl(trendingPhoto.imageUrl)
         initUserUI(trendingPhoto.owner)
         initDistanceLabel(trendingPhoto, withLocation: location)
@@ -51,7 +51,7 @@ class PhotoTrendsViewCell: UITableViewCell {
         }
     }
     
-    func clear() {
+    final func clear() {
         photoImageView.image = nil
         userProfileImageView.image = nil
         userNameLabel.text = nil

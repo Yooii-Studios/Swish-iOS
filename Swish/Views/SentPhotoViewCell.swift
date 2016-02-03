@@ -17,7 +17,7 @@ class SentPhotoViewCell: PhotoViewCell {
         self.initStatusImageViewWithPhotoState(photo.photoState)
     }
     
-    func initStatusImageViewWithPhotoState(photoState: PhotoState) {
+    final func initStatusImageViewWithPhotoState(photoState: PhotoState) {
         let imgResourceName = photoState.sentStateImgResId
         statusImageView.image = UIImage(named: imgResourceName)
     }
