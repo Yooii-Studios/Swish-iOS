@@ -86,7 +86,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         if category == "chat" {
             ChatMessageNotificationHandler().handleUserInfo(notificationInfo)
         } else if category == "like" || category == "dislike" {
-            RateNotificationHandler().handleUserInfo(notificationInfo)
+            RateNotificationHandler().handleNotificationInfo(notificationInfo)
         }
     }
 }

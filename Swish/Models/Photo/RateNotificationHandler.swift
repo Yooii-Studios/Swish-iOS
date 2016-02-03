@@ -7,21 +7,24 @@
 //
 
 import Foundation
+import SwiftyJSON
 
 final class RateNotificationHandler {
     
-    final func handleUserInfo(notificationInfo: NotificationInfo) {
-        saveUserLevelInfo(notificationInfo)
-        handleReceivedLikeOrDislike(notificationInfo)
+    final func handleNotificationInfo(notificationInfo: NotificationInfo) {
+        let userLevelJSON = JSON(notificationInfo)["current_level_info"]
+        let photoJSON = JSON(notificationInfo)["photo"]
+        saveUserLevelInfo(userLevelJSON)
+        handleReceivedLikeOrDislike(photoJSON)
         showLevelChangePopupIfNecessary()
     }
     
-    private final func saveUserLevelInfo(notificationInfo: NotificationInfo) {
-        MeManager.saveMyLevelInfo(parseUserLevelInfoFromUserInfo(notificationInfo))
+    private final func saveUserLevelInfo(userLevelJSON: JSON) {
+        MeManager.saveMyLevelInfo(parseUserLevelInfoFromUserInfo(userLevelJSON))
     }
     
-    private final func handleReceivedLikeOrDislike(notificationInfo: NotificationInfo) {
-        let rate = parseRateFromUserInfo(notificationInfo)
+    private final func handleReceivedLikeOrDislike(photoJSON: JSON) {
+        let rate = parseRateFromUserInfo(photoJSON)
         
         updatePhotoWithRate(rate)
         updateWingsWithRate(rate)
@@ -59,15 +62,21 @@ final class RateNotificationHandler {
     // MARK: - Parsers
     // TODO: apns가 셋업 되면 실제 파싱으로 변경
     
-    private func parseUserLevelInfoFromUserInfo(notificationInfo: NotificationInfo) -> UserLevelInfo {
-        return UserLevelInfo(level: -1, totalExpToNextLevel: -1, currentExp: -1)
+    private func parseUserLevelInfoFromUserInfo(userLevelJSON: JSON) -> UserLevelInfo {
+        return UserLevelInfo(level: userLevelJSON["level"].intValue,
+            totalExpToNextLevel: userLevelJSON["total_exp_for_next"].intValue,
+            currentExp: userLevelJSON["current_exp"].intValue)
     }
     
-    private func parseRateFromUserInfo(notificationInfo: NotificationInfo) -> Rate {
-        let photoId: Photo.ID = -1
-        let deliveredLatLng = CLLocation(latitude: 37.01, longitude: 127.01)
-        let likedUserId = "-1"
-        return Like(photoId: photoId, deliveredLatLng: deliveredLatLng, likedUserId: likedUserId)
+    private func parseRateFromUserInfo(photoJSON: JSON) -> Rate {
+        let photoId: Photo.ID = photoJSON["id"].int64Value
+        let deliveredLatLng = CLLocation(latitude: photoJSON["delivered_location"]["latitude"].doubleValue,
+            longitude: photoJSON["delivered_location"]["longitude"].doubleValue)
+        let likedUserId = photoJSON["user_info"]["id"].stringValue
+        
+        return photoJSON["state"].intValue == PhotoState.Liked.key ?
+            Like(photoId: photoId, deliveredLatLng: deliveredLatLng, likedUserId: likedUserId)
+            : Dislike(photoId: photoId, deliveredLatLng: deliveredLatLng)
     }
 }
 
