@@ -124,7 +124,7 @@
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                         <constraints>
-                            <constraint firstItem="ykp-cv-VVu" firstAttribute="top" secondItem="cWE-C1-QBl" secondAttribute="bottom" id="CSI-sT-zqy"/>
+                            <constraint firstItem="J4J-Rt-bar" firstAttribute="top" secondItem="cWE-C1-QBl" secondAttribute="bottom" constant="50" id="BOC-B0-QvB"/>
                             <constraint firstItem="ykp-cv-VVu" firstAttribute="leading" secondItem="IPj-38-3FM" secondAttribute="leading" id="gli-ma-PiR"/>
                             <constraint firstItem="cWE-C1-QBl" firstAttribute="leading" secondItem="IPj-38-3FM" secondAttribute="leading" id="iP8-gI-LpK"/>
                             <constraint firstAttribute="trailing" secondItem="ykp-cv-VVu" secondAttribute="trailing" id="jvu-sm-x9s"/>
@@ -156,6 +156,8 @@
                     <connections>
                         <outlet property="IQLayoutGuideConstraint" destination="zgJ-VB-HDD" id="Fu8-zx-xGT"/>
                         <outlet property="tableView" destination="cWE-C1-QBl" id="Z3V-sh-AhK"/>
+                        <outlet property="tableViewBottomConstraints" destination="BOC-B0-QvB" id="5RY-gd-NCV"/>
+                        <outlet property="tableViewTopConstraints" destination="qac-fv-DlA" id="E9l-cg-u7V"/>
                         <outlet property="textField" destination="0QV-Cs-qgH" id="Y0S-2F-Q3v"/>
                     </connections>
                 </viewController>
