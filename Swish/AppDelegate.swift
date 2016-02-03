@@ -30,6 +30,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
     private func initIQKeyboardManager() {
         IQKeyboardManager.sharedManager().enable = true
         IQKeyboardManager.sharedManager().shouldToolbarUsesTextFieldTintColor = true
+        IQKeyboardManager.sharedManager().disableToolbarInViewControllerClass(ChatViewController.self)
     }
     
     private func handleLaunchOptions(launchOptions: [NSObject: AnyObject]?) {
