@@ -129,19 +129,7 @@ class ChatViewController: UIViewController, UITableViewDataSource, ChatMessageSe
     @IBAction func sendbuttonDidTap() {
         if let message = textField.text where message.characters.count > 0 {
             let chatMessage = ChatMessage.create(message, senderId: MeManager.me().id)
-            
-            PhotoServer.sendChatMessage(
-                chatMessage,
-                onSuccess: { _ in
-                    chatMessage.state = .Success
-                    SwishDatabase.saveChatMessage(self.photoId, chatMessage: chatMessage)
-                },
-                onFail: { error in
-                    print(error)
-                    chatMessage.state = .Fail
-                    SwishDatabase.saveChatMessage(self.photoId, chatMessage: chatMessage)
-                }
-            )
+            sendChatMessage(chatMessage)
         }
         
         textField.text = ""
