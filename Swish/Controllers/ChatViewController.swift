@@ -20,6 +20,7 @@ class ChatViewController: UIViewController, UITableViewDataSource, ChatMessageSe
     var photoId: Photo.ID {
         return photo.id
     }
+    var isKeyboardAnimating: Bool = false
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -63,7 +64,9 @@ class ChatViewController: UIViewController, UITableViewDataSource, ChatMessageSe
     }
     
     final func hideKeyboard() {
-        view.endEditing(true)
+        if !isKeyboardAnimating {
+            view.endEditing(true)
+        }
     }
     
     private func scrollToBottom() {
@@ -73,11 +76,15 @@ class ChatViewController: UIViewController, UITableViewDataSource, ChatMessageSe
     private func initKeyboardObserver() {
         NSNotificationCenter.defaultCenter().addObserver(self, selector: Selector("keyboardWillShow:"),
             name:UIKeyboardWillShowNotification, object: nil)
+        NSNotificationCenter.defaultCenter().addObserver(self, selector: Selector("keyboardDidShow:"),
+            name:UIKeyboardDidShowNotification, object: nil)
         NSNotificationCenter.defaultCenter().addObserver(self, selector: Selector("keyboardWillHide:"),
             name:UIKeyboardWillHideNotification, object: nil)
     }
     
     final func keyboardWillShow(notification: NSNotification) {
+        isKeyboardAnimating = true
+        
         if isLastChatMessageVisible() {
             var info = notification.userInfo!
             let keyboardFrame: CGRect = (info[UIKeyboardFrameEndUserInfoKey] as! NSValue).CGRectValue()
@@ -92,6 +99,10 @@ class ChatViewController: UIViewController, UITableViewDataSource, ChatMessageSe
                 self.view.layoutIfNeeded()
                 }, completion: nil)
         }
+    }
+    
+    final func keyboardDidShow(notification: NSNotification) {
+        isKeyboardAnimating = false
     }
     
     final func keyboardWillHide(notification: NSNotification) {
