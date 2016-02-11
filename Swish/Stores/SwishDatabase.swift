@@ -99,7 +99,11 @@ final class SwishDatabase {
     }
     
     class func write(block: (() -> Void)) {
-        let _ = try? realm.write(block)
+        if realm.inWriteTransaction {
+            block()
+        } else {
+            let _ = try? realm.write(block)
+        }
     }
     
     // MARK: - Me

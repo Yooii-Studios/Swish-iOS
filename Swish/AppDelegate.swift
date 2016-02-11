@@ -10,6 +10,7 @@ import UIKit
 import CoreData
 import DeviceUtil
 import IQKeyboardManager
+import SwiftyJSON
 
 typealias NotificationInfo = [NSObject: AnyObject]
 
@@ -22,12 +23,21 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         // Override point for customization after application launch.
         SwishDatabase.migrate()
         initIQKeyboardManager()
+        handleLaunchOptions(launchOptions)
         return true
     }
     
     private func initIQKeyboardManager() {
         IQKeyboardManager.sharedManager().enable = true
         IQKeyboardManager.sharedManager().shouldToolbarUsesTextFieldTintColor = true
+        IQKeyboardManager.sharedManager().disableToolbarInViewControllerClass(ChatViewController.self)
+    }
+    
+    private func handleLaunchOptions(launchOptions: [NSObject: AnyObject]?) {
+        if let notificationInfo = launchOptions?[UIApplicationLaunchOptionsRemoteNotificationKey] as? NotificationInfo {
+            print("Launch  from push notification")
+            handleRemoteNotification(notificationInfo, updateUI: false)
+        }
     }
     
     func applicationWillResignActive(application: UIApplication) {
@@ -64,8 +74,20 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
     }
     
     func application(application: UIApplication, didReceiveRemoteNotification userInfo: [NSObject : AnyObject]) {
+        print("Receive notification")
+        handleRemoteNotification(userInfo, updateUI: true)
+    }
+    
+    func handleRemoteNotification(notificationInfo: NotificationInfo, updateUI: Bool) {
         // TODO: Like, Dislike, Chat 관련 알람을 처리해줘야함
-        print("Received notification: \(userInfo)")
+        // TODO: Badge 관련 처리를 해줘야함
+        print("Handle notification here: \(notificationInfo)")
+        let category = JSON(notificationInfo)["aps"]["category"].stringValue
+        if category == "chat" {
+            ChatMessageNotificationHandler().handleUserInfo(notificationInfo)
+        } else if category == "like" || category == "dislike" {
+            RateNotificationHandler().handleNotificationInfo(notificationInfo)
+        }
     }
 }
 

@@ -97,7 +97,7 @@ final class UserServer {
         image: UIImage? = nil) -> Param {
         var params = Param()
         params.updateValue(UUIDHelper.uuid(), forKey: "uuid")
-        // TODO: APNS 토큰 적용
+        // ???: Android는 서버 등록 시 유저 gcm id가 없을 경우 실패 처리 하므로, iOS에서는 등록 시 빈 문자열이라도 보내도록 구현
         params.updateValue("", forKey: "gcm_id")
         // 1 = iOS
         params.updateValue("1", forKey: "client_type")

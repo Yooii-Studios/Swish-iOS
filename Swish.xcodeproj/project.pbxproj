@@ -120,6 +120,11 @@
 		F288C7E81C106C600058B569 /* PhotoActionType.swift in Sources */ = {isa = PBXBuildFile; fileRef = F288C7E71C106C600058B569 /* PhotoActionType.swift */; };
 		F28EF57E1BE8E9F200204C37 /* ReceivedPhotoCollectionViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = F28EF57D1BE8E9F200204C37 /* ReceivedPhotoCollectionViewController.swift */; };
 		F29CEBC91C5F2D4800F4ED55 /* CLLocationDistance+Unit.swift in Sources */ = {isa = PBXBuildFile; fileRef = F29CEBC81C5F2D4800F4ED55 /* CLLocationDistance+Unit.swift */; };
+		F29CEBCC1C5F572B00F4ED55 /* Chat.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = F29CEBCA1C5F572B00F4ED55 /* Chat.storyboard */; };
+		F29CEBCE1C5F57A400F4ED55 /* ChatViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = F29CEBCD1C5F57A400F4ED55 /* ChatViewController.swift */; };
+		F29CEBD01C60C8F300F4ED55 /* DateDividerViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = F29CEBCF1C60C8F300F4ED55 /* DateDividerViewCell.swift */; };
+		F29CEBD21C60C90E00F4ED55 /* OtherUserChatViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = F29CEBD11C60C90E00F4ED55 /* OtherUserChatViewCell.swift */; };
+		F29CEBD41C60C91800F4ED55 /* MyChatViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = F29CEBD31C60C91800F4ED55 /* MyChatViewCell.swift */; };
 		F2A1C4FF1C21781800DE88F2 /* PhotoVoteType.swift in Sources */ = {isa = PBXBuildFile; fileRef = F2A1C4FE1C21781800DE88F2 /* PhotoVoteType.swift */; };
 		F2BDF9DD1C213B8A0031682B /* ReceivedPhotoDetailViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = F2BDF9DC1C213B8A0031682B /* ReceivedPhotoDetailViewController.swift */; };
 		F2BDF9DF1C2144750031682B /* PhotoVoteView.xib in Resources */ = {isa = PBXBuildFile; fileRef = F2BDF9DE1C2144750031682B /* PhotoVoteView.xib */; };
@@ -269,6 +274,11 @@
 		F28EF57C1BE8BDBD00204C37 /* Swift Code Conventions.playground */ = {isa = PBXFileReference; lastKnownFileType = file.playground; path = "Swift Code Conventions.playground"; sourceTree = "<group>"; };
 		F28EF57D1BE8E9F200204C37 /* ReceivedPhotoCollectionViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ReceivedPhotoCollectionViewController.swift; sourceTree = "<group>"; };
 		F29CEBC81C5F2D4800F4ED55 /* CLLocationDistance+Unit.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "CLLocationDistance+Unit.swift"; sourceTree = "<group>"; };
+		F29CEBCB1C5F572B00F4ED55 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Chat.storyboard; sourceTree = "<group>"; };
+		F29CEBCD1C5F57A400F4ED55 /* ChatViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ChatViewController.swift; sourceTree = "<group>"; };
+		F29CEBCF1C60C8F300F4ED55 /* DateDividerViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DateDividerViewCell.swift; sourceTree = "<group>"; };
+		F29CEBD11C60C90E00F4ED55 /* OtherUserChatViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = OtherUserChatViewCell.swift; sourceTree = "<group>"; };
+		F29CEBD31C60C91800F4ED55 /* MyChatViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MyChatViewCell.swift; sourceTree = "<group>"; };
 		F2A1C4FE1C21781800DE88F2 /* PhotoVoteType.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PhotoVoteType.swift; sourceTree = "<group>"; };
 		F2BDF9DC1C213B8A0031682B /* ReceivedPhotoDetailViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ReceivedPhotoDetailViewController.swift; sourceTree = "<group>"; };
 		F2BDF9DE1C2144750031682B /* PhotoVoteView.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = PhotoVoteView.xib; sourceTree = "<group>"; };
@@ -486,6 +496,7 @@
 				F23CF97B1C3CDBC900C36064 /* MyProfileViewController.swift */,
 				F23CF97D1C3E34CA00C36064 /* MyProfileEditViewController.swift */,
 				F21C31CE1C5B0A6F00EF4D05 /* PhotoTrendsViewController.swift */,
+				F29CEBCD1C5F57A400F4ED55 /* ChatViewController.swift */,
 			);
 			path = Controllers;
 			sourceTree = "<group>";
@@ -519,15 +530,18 @@
 			children = (
 				AEF32DDE1BA301A200EA00A9 /* PhotoCollectionViewCell.swift */,
 				574E812E1BE7452B0037FA12 /* GADBannerView+Preload.swift */,
+				579D9D191C1FF3D500145CC8 /* PhotoViewCell.swift */,
 				F2185E501BEA3B5D0062E4B1 /* ReceivedPhotoViewCell.swift */,
 				F2ECA5CB1BFAE7FC00E3AD93 /* SentPhotoViewCell.swift */,
-				579D9D191C1FF3D500145CC8 /* PhotoViewCell.swift */,
 				F2D882A21C0F1BEA00DF8C6D /* CircleButton.swift */,
 				F23AC1A71C31060900757BC9 /* PhotoCardView.swift */,
 				F2D8829D1C0F13FE00DF8C6D /* PhotoActionView.swift */,
 				F2BDF9E01C21448A0031682B /* PhotoVoteView.swift */,
 				F23CF9761C3CB81400C36064 /* PhotoStatusView.swift */,
 				F21C31D31C5B246D00EF4D05 /* PhotoTrendsViewCell.swift */,
+				F29CEBCF1C60C8F300F4ED55 /* DateDividerViewCell.swift */,
+				F29CEBD11C60C90E00F4ED55 /* OtherUserChatViewCell.swift */,
+				F29CEBD31C60C91800F4ED55 /* MyChatViewCell.swift */,
 			);
 			path = Views;
 			sourceTree = "<group>";
@@ -582,6 +596,7 @@
 				F2F5451E1BD5E84500AEE02A /* ShareResult.storyboard */,
 				F257A89F1BFDD0FD00BD56C8 /* PhotoMap.storyboard */,
 				F21C31D01C5B0A8100EF4D05 /* PhotoTrends.storyboard */,
+				F29CEBCA1C5F572B00F4ED55 /* Chat.storyboard */,
 			);
 			name = Storyboards;
 			path = Base.lproj;
@@ -685,6 +700,7 @@
 				F2EA77AA1C2AB41100494C18 /* Splash.storyboard in Resources */,
 				F245DCB61B9E7B2D0072308B /* Main.storyboard in Resources */,
 				F2BDF9DF1C2144750031682B /* PhotoVoteView.xib in Resources */,
+				F29CEBCC1C5F572B00F4ED55 /* Chat.storyboard in Resources */,
 				F273C3A71BFCB4AF007D047B /* SentPhoto.storyboard in Resources */,
 				F2F545201BD5E84500AEE02A /* ShareResult.storyboard in Resources */,
 				F21C31D21C5B0A8100EF4D05 /* PhotoTrends.storyboard in Resources */,
@@ -760,6 +776,7 @@
 				57B348B61C28050A00AFBDED /* UserLevelInfo.swift in Sources */,
 				F26B578A1C47CC400000D95B /* UIView+ViewController.swift in Sources */,
 				F23CF97E1C3E34CA00C36064 /* MyProfileEditViewController.swift in Sources */,
+				F29CEBCE1C5F57A400F4ED55 /* ChatViewController.swift in Sources */,
 				57EFC1961C055E19006CF2EF /* LocationServiceAuthorizable.swift in Sources */,
 				F2A1C4FF1C21781800DE88F2 /* PhotoVoteType.swift in Sources */,
 				577465C81BF2CFDA0093D97A /* WingsObserver.swift in Sources */,
@@ -802,6 +819,7 @@
 				AEF32DDF1BA301A200EA00A9 /* PhotoCollectionViewCell.swift in Sources */,
 				5737132D1BD73101006B272A /* UserHelper.swift in Sources */,
 				57E3EFF41BFD77D1000D1564 /* UIImage+Orientation.swift in Sources */,
+				F29CEBD41C60C91800F4ED55 /* MyChatViewCell.swift in Sources */,
 				57EFC1981C05A347006CF2EF /* MKMapView+Zoom.swift in Sources */,
 				57EC68EE1C1E9B0100CB07E5 /* ChatObserver.swift in Sources */,
 				F21C31CF1C5B0A6F00EF4D05 /* PhotoTrendsViewController.swift in Sources */,
@@ -818,6 +836,7 @@
 				57E2D9781BB28D8B008957C2 /* PhotoServer.swift in Sources */,
 				5796738E1B9FFE7200382247 /* ChatMessage.swift in Sources */,
 				5776B92C1BD08EAB009005B5 /* FileHelper.swift in Sources */,
+				F29CEBD01C60C8F300F4ED55 /* DateDividerViewCell.swift in Sources */,
 				F2305B981BE23EC20056E087 /* UIView+Constraints.swift in Sources */,
 				57E09ADD1BCBAA34006A05DC /* OtherUserLoader.swift in Sources */,
 				5796738A1B9FFE6C00382247 /* User.swift in Sources */,
@@ -850,6 +869,7 @@
 				57DFE24C1BE0DA7A002BB5DB /* PhotoExchanger.swift in Sources */,
 				F2ECA5C81BFAE6E300E3AD93 /* SentPhotoCollectionViewController.swift in Sources */,
 				579673891B9FFE6C00382247 /* OtherUser.swift in Sources */,
+				F29CEBD21C60C90E00F4ED55 /* OtherUserChatViewCell.swift in Sources */,
 				579D9D1E1C2135C700145CC8 /* PhotoObserver.swift in Sources */,
 				57E3EFF81BFD8E1E000D1564 /* UIImage+Base64.swift in Sources */,
 				F20E9E7C1C44C9CD007ECEE6 /* MeObserver.swift in Sources */,
@@ -962,6 +982,14 @@
 			);
 			name = MyProfile.storyboard;
 			path = ..;
+			sourceTree = "<group>";
+		};
+		F29CEBCA1C5F572B00F4ED55 /* Chat.storyboard */ = {
+			isa = PBXVariantGroup;
+			children = (
+				F29CEBCB1C5F572B00F4ED55 /* Base */,
+			);
+			name = Chat.storyboard;
 			sourceTree = "<group>";
 		};
 		F2EA77A81C2AB41100494C18 /* Splash.storyboard */ = {

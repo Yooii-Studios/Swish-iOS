@@ -51,7 +51,14 @@ extension PhotoActionType where Self: UIViewController {
     
     // TODO: 이름 변경하기. 안드로이드와 ChatRoomOpener 클래스를 똑같이 만드는 방법 or extension에 직접 구현을 고민하기
     final func showChatDialog() {
-        // TODO: 채팅쪽 UX 구현과 함께 구현 예정. Android의 ChatRoomOpener.start() 참고
-        print("showChatDialog")
+        // TODO: 추후 Android의 ChatRoomOpener.start() 참고해서 중간 다이얼로그 띄울 수 있게 구현
+        
+        let storyboard = UIStoryboard(name: "Chat", bundle: nil)
+        let navigationViewController = storyboard.instantiateInitialViewController() as! UINavigationController
+        let chatViewController = navigationViewController.topViewController as! ChatViewController
+        // TODO: 필요 세팅 해줄 것
+        chatViewController.photo = photo
+        
+        showViewController(navigationViewController, sender: self)
     }
 }
