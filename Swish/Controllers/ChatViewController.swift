@@ -82,6 +82,8 @@ class ChatViewController: UIViewController, UITableViewDataSource, ChatMessageSe
             name:UIKeyboardWillHideNotification, object: nil)
     }
     
+    // MARK: - Keyboard callbacks
+    
     final func keyboardWillShow(notification: NSNotification) {
         isKeyboardAnimating = true
         
