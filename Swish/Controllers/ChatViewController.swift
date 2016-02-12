@@ -85,9 +85,10 @@ class ChatViewController: UIViewController, UITableViewDataSource, ChatMessageSe
     final func keyboardWillShow(notification: NSNotification) {
         isKeyboardAnimating = true
         
+        let info = notification.userInfo!
+        let keyboardFrame: CGRect = (info[UIKeyboardFrameEndUserInfoKey] as! NSValue).CGRectValue()
+        
         if isLastChatMessageVisible() {
-            var info = notification.userInfo!
-            let keyboardFrame: CGRect = (info[UIKeyboardFrameEndUserInfoKey] as! NSValue).CGRectValue()
             let animationDuration = (info[UIKeyboardAnimationDurationUserInfoKey] as! NSNumber).doubleValue
             let animationCurve = (info[UIKeyboardAnimationCurveUserInfoKey] as! NSNumber).unsignedLongValue
             
@@ -98,6 +99,15 @@ class ChatViewController: UIViewController, UITableViewDataSource, ChatMessageSe
             UIView.animateWithDuration(animationDuration, delay: 0, options: options, animations: { _ in
                 self.view.layoutIfNeeded()
                 }, completion: nil)
+        } else {
+            var contentInsets: UIEdgeInsets
+            if (UIInterfaceOrientationIsPortrait(UIApplication.sharedApplication().statusBarOrientation)) {
+                contentInsets = UIEdgeInsetsMake(0.0, 0.0, keyboardFrame.size.height, 0.0)
+            } else {
+                contentInsets = UIEdgeInsetsMake(0.0, 0.0, keyboardFrame.size.width, 0.0);
+            }
+            tableView.contentInset = contentInsets;
+            tableView.scrollIndicatorInsets = contentInsets;
         }
     }
     
@@ -112,6 +122,8 @@ class ChatViewController: UIViewController, UITableViewDataSource, ChatMessageSe
         
         tableViewTopConstraints.constant = 0
         tableViewBottomConstraints.constant = (textField.superview?.frame.height)!
+        tableView.contentInset = UIEdgeInsetsZero
+        tableView.scrollIndicatorInsets = UIEdgeInsetsZero
         
         let options = UIViewAnimationOptions(rawValue: animationCurve)
         UIView.animateWithDuration(animationDuration, delay: 0, options: options, animations: { _ in
