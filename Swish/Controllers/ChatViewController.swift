@@ -106,10 +106,10 @@ class ChatViewController: UIViewController, UITableViewDataSource, ChatMessageSe
             if (UIInterfaceOrientationIsPortrait(UIApplication.sharedApplication().statusBarOrientation)) {
                 contentInsets = UIEdgeInsetsMake(0.0, 0.0, keyboardFrame.size.height, 0.0)
             } else {
-                contentInsets = UIEdgeInsetsMake(0.0, 0.0, keyboardFrame.size.width, 0.0);
+                contentInsets = UIEdgeInsetsMake(0.0, 0.0, keyboardFrame.size.width, 0.0)
             }
-            tableView.contentInset = contentInsets;
-            tableView.scrollIndicatorInsets = contentInsets;
+            tableView.contentInset = contentInsets
+            tableView.scrollIndicatorInsets = contentInsets
         }
     }
     
@@ -146,7 +146,7 @@ class ChatViewController: UIViewController, UITableViewDataSource, ChatMessageSe
     }
     
     deinit {
-        NSNotificationCenter.defaultCenter().removeObserver(self);
+        NSNotificationCenter.defaultCenter().removeObserver(self)
     }
 
     // MARK: - Table view data source
