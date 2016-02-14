@@ -95,7 +95,7 @@ class ChatViewController: UIViewController, UITableViewDataSource, ChatMessageSe
             let animationCurve = (info[UIKeyboardAnimationCurveUserInfoKey] as! NSNumber).unsignedLongValue
             
             tableViewTopConstraints.constant = -keyboardFrame.size.height
-            tableViewBottomConstraints.constant = self.tableViewBottomConstraints.constant + keyboardFrame.size.height
+            tableViewBottomConstraints.constant = tableViewBottomConstraints.constant + keyboardFrame.size.height
             
             let options = UIViewAnimationOptions(rawValue: animationCurve)
             UIView.animateWithDuration(animationDuration, delay: 0, options: options, animations: { _ in

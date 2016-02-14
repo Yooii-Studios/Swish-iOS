@@ -307,7 +307,7 @@ final class SwishDatabase {
     
     class func saveChatMessage(photo: Photo, chatMessage: ChatMessage) {
         write {
-            photo.chatMessages.append(chatMessage)
+            photo.chatMessages.insert(chatMessage, atIndex: 0)
             photo.hasOpenedChatRoom = true
             photo.recentEventTime = CFAbsoluteTimeGetCurrent()
         }
@@ -315,7 +315,9 @@ final class SwishDatabase {
     
     class func saveChatMessages(photo: Photo, chatMessages: Array<ChatMessage>) {
         write {
-            photo.chatMessages.appendContentsOf(chatMessages)
+            for chatMessage in chatMessages {
+                photo.chatMessages.insert(chatMessage, atIndex: 0)
+            }
             photo.hasOpenedChatRoom = true
             photo.recentEventTime = CFAbsoluteTimeGetCurrent()
         }
