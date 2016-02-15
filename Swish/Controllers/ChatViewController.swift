@@ -269,7 +269,10 @@ class ChatViewController: UIViewController, UITableViewDataSource, UITableViewDe
     }
     
     @IBAction func imageButtonDidTap() {
-        
+        let storyboard = UIStoryboard(name: "PhotoDetail", bundle: nil)
+        let photoDetailViewController = storyboard.instantiateInitialViewController() as! PhotoDetailViewController
+        photoDetailViewController.photoId = photoId
+        presentViewController(photoDetailViewController, animated: true, completion: nil)
     }
     
     @IBAction func blockButtonDidTap() {
