@@ -89,6 +89,7 @@
 		F21C31D21C5B0A8100EF4D05 /* PhotoTrends.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = F21C31D01C5B0A8100EF4D05 /* PhotoTrends.storyboard */; };
 		F21C31D41C5B246D00EF4D05 /* PhotoTrendsViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = F21C31D31C5B246D00EF4D05 /* PhotoTrendsViewCell.swift */; };
 		F2261CAA1C0729D000C12729 /* SentPhotoDetailViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = F2261CA91C0729D000C12729 /* SentPhotoDetailViewController.swift */; };
+		F23022CB1C6F2AA100AF8947 /* UITableView+Reload.swift in Sources */ = {isa = PBXBuildFile; fileRef = F23022CA1C6F2AA100AF8947 /* UITableView+Reload.swift */; };
 		F2305B981BE23EC20056E087 /* UIView+Constraints.swift in Sources */ = {isa = PBXBuildFile; fileRef = F2305B971BE23EC20056E087 /* UIView+Constraints.swift */; };
 		F23527FF1BE09E7C00CA614A /* PhotoPickable.swift in Sources */ = {isa = PBXBuildFile; fileRef = F23527FE1BE09E7C00CA614A /* PhotoPickable.swift */; };
 		F23A7B181BA1D4070063233F /* PhotoPicker.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = F23A7B161BA1D4070063233F /* PhotoPicker.storyboard */; };
@@ -237,6 +238,7 @@
 		F21C31D11C5B0A8100EF4D05 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = PhotoTrends.storyboard; sourceTree = "<group>"; };
 		F21C31D31C5B246D00EF4D05 /* PhotoTrendsViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PhotoTrendsViewCell.swift; sourceTree = "<group>"; };
 		F2261CA91C0729D000C12729 /* SentPhotoDetailViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SentPhotoDetailViewController.swift; sourceTree = "<group>"; };
+		F23022CA1C6F2AA100AF8947 /* UITableView+Reload.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "UITableView+Reload.swift"; sourceTree = "<group>"; };
 		F2305B971BE23EC20056E087 /* UIView+Constraints.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "UIView+Constraints.swift"; sourceTree = "<group>"; };
 		F23527FE1BE09E7C00CA614A /* PhotoPickable.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PhotoPickable.swift; sourceTree = "<group>"; };
 		F23A7B171BA1D4070063233F /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/PhotoPicker.storyboard; sourceTree = "<group>"; };
@@ -565,6 +567,7 @@
 				5777C3601C0EB08600DE43B4 /* ImageDownloader+DownloadImage.swift */,
 				57A29A681C044DBD0016E265 /* SystemSettingsHelper.swift */,
 				57B769BA1C310A0F0036FC24 /* CollectionType+Shuffle.swift */,
+				F23022CA1C6F2AA100AF8947 /* UITableView+Reload.swift */,
 			);
 			path = Helpers;
 			sourceTree = "<group>";
@@ -844,6 +847,7 @@
 				F23527FF1BE09E7C00CA614A /* PhotoPickable.swift in Sources */,
 				574E812F1BE7452B0037FA12 /* GADBannerView+Preload.swift in Sources */,
 				57A095411BEB293400333E6D /* Wings.swift in Sources */,
+				F23022CB1C6F2AA100AF8947 /* UITableView+Reload.swift in Sources */,
 				57FB36461BF1D72E0085EAAB /* EnvironmentVariables.swift in Sources */,
 				57C729DC1BDF2C0D00DDFFDA /* ChatBlocker.swift in Sources */,
 				F2185E511BEA3B5D0062E4B1 /* ReceivedPhotoViewCell.swift in Sources */,
