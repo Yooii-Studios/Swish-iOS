@@ -52,6 +52,7 @@ class ChatViewController: UIViewController, UITableViewDataSource, UITableViewDe
         tableView.reloadData() {
             self.isLoadingChatItems = false
             self.scrollToBottom()
+            SwishDatabase.updateAllChatRead(self.photoId)
         }
     }
     
