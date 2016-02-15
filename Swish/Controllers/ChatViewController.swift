@@ -84,7 +84,10 @@ class ChatViewController: UIViewController, UITableViewDataSource, ChatMessageSe
     }
     
     private func scrollToBottom() {
-        tableView.setContentOffset(CGPoint(x: 0, y: CGFloat.max), animated: false)
+        guard !chatMessages.isEmpty else { return }
+        
+        let lastIndexPath = NSIndexPath(forRow: chatMessages.count - 1, inSection: 0)
+        tableView.scrollToRowAtIndexPath(lastIndexPath, atScrollPosition: .None, animated: false)
     }
     
     private func initKeyboardObserver() {
