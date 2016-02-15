@@ -11,7 +11,7 @@ import UIKit
 class ChatViewController: UIViewController, UITableViewDataSource, UITableViewDelegate, ChatMessageSender {
 
     struct Metric {
-        static let ChatMessageFetchUnit: Int = 15
+        static let ChatMessageFetchAmount: Int = 15
     }
     
     @IBOutlet weak var tableView: UITableView!
@@ -47,7 +47,7 @@ class ChatViewController: UIViewController, UITableViewDataSource, UITableViewDe
     }
     
     private func initChatMessages() {
-        chatMessages = SwishDatabase.loadChatMessages(photoId, startIndex: 0, amount: Metric.ChatMessageFetchUnit)
+        chatMessages = SwishDatabase.loadChatMessages(photoId, startIndex: 0, amount: Metric.ChatMessageFetchAmount)
         
         tableView.reloadData() {
             self.isLoadingChatItems = false
@@ -221,7 +221,7 @@ class ChatViewController: UIViewController, UITableViewDataSource, UITableViewDe
         
         // TODO: var로 변경하고 날짜 구분 아이템 추가
         let olderChatItems = SwishDatabase.loadChatMessages(photoId, startIndex: chatMessages.count,
-            amount: Metric.ChatMessageFetchUnit)
+            amount: Metric.ChatMessageFetchAmount)
         
         dispatch_async(dispatch_get_global_queue(QOS_CLASS_USER_INITIATED, 0)) {
             self.chatMessages = self.chatMessages + olderChatItems
