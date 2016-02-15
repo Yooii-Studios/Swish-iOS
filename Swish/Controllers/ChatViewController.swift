@@ -11,7 +11,7 @@ import UIKit
 class ChatViewController: UIViewController, UITableViewDataSource, UITableViewDelegate, ChatMessageSender {
 
     struct Metric {
-        static let ChatMessageFetchAmount: Int = 15
+        static let ChatMessageFetchAmount: Int = 20
     }
     
     @IBOutlet weak var tableView: UITableView!
