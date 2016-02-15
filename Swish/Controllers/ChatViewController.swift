@@ -21,6 +21,8 @@ class ChatViewController: UIViewController, UITableViewDataSource, ChatMessageSe
         return photo.id
     }
     var isKeyboardAnimating: Bool = false
+    var isLoadingChatItems: Bool = true
+    var chatMessages: Array<ChatMessage>!
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -36,9 +38,18 @@ class ChatViewController: UIViewController, UITableViewDataSource, ChatMessageSe
     }
     
     private func initTableView() {
-        initDataSource()
+        initTableViewDelegates()
         initTableViewTapGesture()
-        scrollToBottom()
+        initChatMessages()
+    }
+    
+    private func initChatMessages() {
+        chatMessages = SwishDatabase.loadChatMessages(photoId, startIndex: 0, amount: Metric.ChatMessageFetchUnit)
+        
+        tableView.reloadData() {
+            self.isLoadingChatItems = false
+            self.scrollToBottom()
+        }
     }
     
     private func initPhotoObserver() {
@@ -138,7 +149,7 @@ class ChatViewController: UIViewController, UITableViewDataSource, ChatMessageSe
     
     private func isLastChatMessageVisible() -> Bool {
         if let paths = tableView.indexPathsForVisibleRows {
-            let chatMessageCount = photo.chatMessages.count
+            let chatMessageCount = chatMessages.count
             for indexPath in paths {
                 if indexPath.row == chatMessageCount - 1 || indexPath.row == chatMessageCount - 2 {
                     return true
@@ -159,13 +170,17 @@ class ChatViewController: UIViewController, UITableViewDataSource, ChatMessageSe
     }
 
     final func tableView(tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return photo.chatMessages.count
+        if let chatMessages = chatMessages {
+            return chatMessages.count
+        } else {
+            return 0
+        }
     }
 
     func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell {
         // TODO: 추후 DateDivider UI 추가 필요
         // TODO: 추후 각 셀 초기화 로직 리팩토링할 것
-        let chatMessage = photo.chatMessages[indexPath.row]
+        let chatMessage = chatMessages[chatMessages.count - 1 - indexPath.row]
         if chatMessage.isMyMessage {
             let cell = tableView.dequeueReusableCellWithIdentifier("MyChatViewCell", forIndexPath: indexPath) as!
             MyChatViewCell
