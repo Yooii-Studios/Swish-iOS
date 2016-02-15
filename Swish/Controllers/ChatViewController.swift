@@ -8,11 +8,14 @@
 
 import UIKit
 
-class ChatViewController: UIViewController, UITableViewDataSource, ChatMessageSender {
+class ChatViewController: UIViewController, UITableViewDataSource, UITableViewDelegate, ChatMessageSender {
 
+    struct Metric {
+        static let ChatMessageFetchUnit: Int = 15
+    }
+    
     @IBOutlet weak var tableView: UITableView!
     @IBOutlet weak var textField: UITextField!
-    
     @IBOutlet weak var tableViewTopConstraints: NSLayoutConstraint!
     @IBOutlet weak var tableViewBottomConstraints: NSLayoutConstraint!
     
@@ -67,8 +70,9 @@ class ChatViewController: UIViewController, UITableViewDataSource, ChatMessageSe
         }
     }
     
-    private func initDataSource() {
+    private func initTableViewDelegates() {
         tableView.dataSource = self
+        tableView.delegate = self
     }
     
     private func initTableViewTapGesture() {
@@ -199,6 +203,51 @@ class ChatViewController: UIViewController, UITableViewDataSource, ChatMessageSe
             
             return cell
         }
+    }
+    
+    func tableView(tableView: UITableView, willDisplayCell cell: UITableViewCell, forRowAtIndexPath indexPath: NSIndexPath) {
+        if indexPath.row == 0 && !isLoadingChatItems {
+            if photo.chatMessages.count != chatMessages.count {
+                loadMoreChatItems()
+            }
+        } else {
+            isLoadingChatItems = false
+        }
+    }
+    
+    private func loadMoreChatItems() {
+        guard !isLoadingChatItems else { return }
+        isLoadingChatItems = true
+        
+        // TODO: var로 변경하고 날짜 구분 아이템 추가
+        let olderChatItems = SwishDatabase.loadChatMessages(photoId, startIndex: chatMessages.count,
+            amount: Metric.ChatMessageFetchUnit)
+        
+        dispatch_async(dispatch_get_global_queue(QOS_CLASS_USER_INITIATED, 0)) {
+            self.chatMessages = self.chatMessages + olderChatItems
+            
+            // TODO: 날짜 구분 아이템 추가
+            // TODO: 전부 읽어와서 읽어올 예상 갯수보다 적으면 마지막 로딩, 날짜 구분선 넣어주기
+            // TODO: 안드로이드 로직 참고해서 여러 예외 상황 처리하고 날짜 구분선 넣을 것
+            
+            dispatch_async(dispatch_get_main_queue(), {
+                self.tableView.reloadData() {
+                    let olderChatItemsHeight = (0..<olderChatItems.count)
+                        .map { NSIndexPath(forRow: $0, inSection: 0) }
+                        .map { self.tableView(self.tableView, heightForRowAtIndexPath: $0) }
+                        .reduce(0, combine: +)
+                    
+                    self.tableView.contentOffset.y = olderChatItemsHeight
+                    self.isLoadingChatItems = false
+                }
+            })
+        }
+    }
+    
+    // TODO: 추후 UI가 들어갔을 때 이 부분을 순수히 계산으로 처리할 지, self-sizing으로 처리할 지 고민해야함
+    // 1줄 이상의 텍스트가 포함된 셀일 때 더욱 문제가 됨
+    func tableView(tableView: UITableView, heightForRowAtIndexPath indexPath: NSIndexPath) -> CGFloat {
+        return 44
     }
     
     /*
