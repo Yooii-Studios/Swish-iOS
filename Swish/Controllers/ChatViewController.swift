@@ -45,11 +45,14 @@ class ChatViewController: UIViewController, UITableViewDataSource, ChatMessageSe
         PhotoObserver.observeChatMessagesForPhoto(photo, owner: self) { [weak self] index in
             if let photoId = self?.photo.id {
                 SwishDatabase.updateAllChatRead(photoId)
+                self?.chatMessages.insert((self?.photo.chatMessages[index])!, atIndex: 0)
+                if let chatItemsCount = self?.chatMessages.count {
+                    self?.tableView.insertRowsAtIndexPaths([NSIndexPath(forRow: chatItemsCount - 1, inSection: 0)],
+                        withRowAnimation: .None)
+                    self?.tableView.scrollToRowAtIndexPath(NSIndexPath(forRow: chatItemsCount - 1, inSection: 0),
+                        atScrollPosition: .Bottom, animated: false)
+                }
             }
-            // 추후 해당 인덱스만 추가될 수 있게 로직 개선 필요
-            self?.tableView.reloadData()
-            self?.tableView.scrollToRowAtIndexPath(NSIndexPath(forRow: index, inSection: 0), atScrollPosition:
-                UITableViewScrollPosition.Bottom, animated: true)
         }
     }
     
