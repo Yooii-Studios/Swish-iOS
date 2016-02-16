@@ -36,7 +36,7 @@ final class SentPhotoStateLoader {
     
     // MARK: - Services
     
-    final func execute(onSuccess: SuccessCallback, onFailure: FailureCallback) {
+    final func execute(onSuccess: SuccessCallback? = nil, onFailure: FailureCallback? = nil) {
         cancel()
         executeFetch(onSuccess, onFailure: onFailure)
     }
@@ -47,14 +47,20 @@ final class SentPhotoStateLoader {
     
     // MARK: - Core functions
     
-    private func executeFetch(onSuccess: SuccessCallback, onFailure: FailureCallback) {
+    private func executeFetch(onSuccess: SuccessCallback?, onFailure: FailureCallback?) {
         PhotoServer.photoStatesWith(MeManager.me().id,
-            onSuccess: { (serverPhotoState) -> () in
-                onSuccess(updatedPhotoIds: self.parseUpdatedPhotoIds(serverPhotoState))
+            onSuccess: { serverPhotoState in
+                let updatedPhotoIds = self.parseUpdatedPhotoIds(serverPhotoState)
+                if let onSuccess = onSuccess {
+                    onSuccess(updatedPhotoIds: updatedPhotoIds)
+                }
             },
-            onFail: { (error) -> () in
-                onFailure()
-        })
+            onFail: { error in
+                if let onFailure = onFailure {
+                    onFailure()
+                }
+            }
+        )
     }
     
     // MARK: - Helper functions
