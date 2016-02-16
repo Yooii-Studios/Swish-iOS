@@ -10,6 +10,8 @@ import UIKit
 
 class OverflowViewController: UITableViewController {
 
+    private let FacebookUrl = "https://www.facebook.com/YooiiMooii"
+    
     override func viewDidLoad() {
         super.viewDidLoad()
 
@@ -58,6 +60,22 @@ class OverflowViewController: UITableViewController {
 
     override func tableView(tableView: UITableView, didSelectRowAtIndexPath indexPath: NSIndexPath) {
         tableView.deselectRowAtIndexPath(indexPath, animated: true)
+        
+        switch indexPath.row {
+        case 0:
+            break
+        case 1:
+            break
+        case 2:
+            // TODO: 출시 전 Rate 기능 구현할 것
+            break
+        case 3:
+            if let url = NSURL(string: FacebookUrl) {
+                UIApplication.sharedApplication().openURL(url)
+            }
+        default:
+            break
+        }
     }
     
     /*

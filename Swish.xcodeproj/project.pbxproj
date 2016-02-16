@@ -129,6 +129,7 @@
 		F2A1C4FF1C21781800DE88F2 /* PhotoVoteType.swift in Sources */ = {isa = PBXBuildFile; fileRef = F2A1C4FE1C21781800DE88F2 /* PhotoVoteType.swift */; };
 		F2A88B331C72C6F500D4E444 /* Overflow.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = F2A88B311C72C6F500D4E444 /* Overflow.storyboard */; };
 		F2A88B351C72C7CF00D4E444 /* OverflowViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = F2A88B341C72C7CF00D4E444 /* OverflowViewController.swift */; };
+		F2A88B371C730A4A00D4E444 /* UIApplication+Url.swift in Sources */ = {isa = PBXBuildFile; fileRef = F2A88B361C730A4A00D4E444 /* UIApplication+Url.swift */; };
 		F2BDF9DD1C213B8A0031682B /* ReceivedPhotoDetailViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = F2BDF9DC1C213B8A0031682B /* ReceivedPhotoDetailViewController.swift */; };
 		F2BDF9DF1C2144750031682B /* PhotoVoteView.xib in Resources */ = {isa = PBXBuildFile; fileRef = F2BDF9DE1C2144750031682B /* PhotoVoteView.xib */; };
 		F2BDF9E11C21448A0031682B /* PhotoVoteView.swift in Sources */ = {isa = PBXBuildFile; fileRef = F2BDF9E01C21448A0031682B /* PhotoVoteView.swift */; };
@@ -286,6 +287,7 @@
 		F2A1C4FE1C21781800DE88F2 /* PhotoVoteType.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PhotoVoteType.swift; sourceTree = "<group>"; };
 		F2A88B321C72C6F500D4E444 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Overflow.storyboard; sourceTree = "<group>"; };
 		F2A88B341C72C7CF00D4E444 /* OverflowViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = OverflowViewController.swift; sourceTree = "<group>"; };
+		F2A88B361C730A4A00D4E444 /* UIApplication+Url.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "UIApplication+Url.swift"; sourceTree = "<group>"; };
 		F2BDF9DC1C213B8A0031682B /* ReceivedPhotoDetailViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ReceivedPhotoDetailViewController.swift; sourceTree = "<group>"; };
 		F2BDF9DE1C2144750031682B /* PhotoVoteView.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = PhotoVoteView.xib; sourceTree = "<group>"; };
 		F2BDF9E01C21448A0031682B /* PhotoVoteView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PhotoVoteView.swift; sourceTree = "<group>"; };
@@ -573,6 +575,7 @@
 				57A29A681C044DBD0016E265 /* SystemSettingsHelper.swift */,
 				57B769BA1C310A0F0036FC24 /* CollectionType+Shuffle.swift */,
 				F23022CA1C6F2AA100AF8947 /* UITableView+Reload.swift */,
+				F2A88B361C730A4A00D4E444 /* UIApplication+Url.swift */,
 			);
 			path = Helpers;
 			sourceTree = "<group>";
@@ -798,6 +801,7 @@
 				57C7AA8E1BFDB97D008E10F6 /* UIImage+Scale.swift in Sources */,
 				F245DCB31B9E7B2D0072308B /* MainViewController.swift in Sources */,
 				F2BDF9E11C21448A0031682B /* PhotoVoteView.swift in Sources */,
+				F2A88B371C730A4A00D4E444 /* UIApplication+Url.swift in Sources */,
 				571935331BA3C4C800856400 /* UUIDHelper.swift in Sources */,
 				F2ECA5CC1BFAE7FC00E3AD93 /* SentPhotoViewCell.swift in Sources */,
 				F23AC1A81C31060900757BC9 /* PhotoCardView.swift in Sources */,
