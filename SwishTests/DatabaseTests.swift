@@ -89,7 +89,7 @@ class DatabaseTests: XCTestCase {
         var originalMessages = Array<ChatMessage>()
         for _ in 0...19 {
             let msg = createChatMessage(SwishDatabase.me().id)
-            originalMessages.append(msg)
+            originalMessages.insert(msg, atIndex: 0)
             SwishDatabase.saveChatMessage(photo, chatMessage: msg)
         }
         
@@ -110,7 +110,7 @@ class DatabaseTests: XCTestCase {
         var originalMessages = Array<ChatMessage>()
         for _ in 0...19 {
             let msg = createChatMessage(user.id)
-            originalMessages.append(msg)
+            originalMessages.insert(msg, atIndex: 0)
             SwishDatabase.saveChatMessage(photo, chatMessage: msg)
         }
         

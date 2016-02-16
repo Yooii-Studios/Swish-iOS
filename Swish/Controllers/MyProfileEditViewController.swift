@@ -58,7 +58,7 @@ class MyProfileEditViewController: UIViewController, PhotoPickable {
                 })
             }
         }
-        presentPhotoPickerControllerModally()
+        presentPhotoPickerContoller()
     }
     
     /*

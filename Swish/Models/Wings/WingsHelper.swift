@@ -210,6 +210,8 @@ final class WingsHelper {
     
     // MARK: - Check internal state
     
+    // 메서드 이해를 못해서 동현에게 물어본 결과 날개가 10개인 상황에서 13개를 사용했을 때 throw를 던지는지 확인하는 테스트
+    // 또한 Add, Use 둘 다에 사용되고 있어서 헷갈릴 수 있다는 걸 알아두자
     private class func checkApplyAdditiveWingsCountSuitable(additive: Int) throws {
         let currentWingsCount = wings().lastWingCount
         let targetWingsCount = currentWingsCount + additive

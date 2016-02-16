@@ -89,6 +89,7 @@
 		F21C31D21C5B0A8100EF4D05 /* PhotoTrends.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = F21C31D01C5B0A8100EF4D05 /* PhotoTrends.storyboard */; };
 		F21C31D41C5B246D00EF4D05 /* PhotoTrendsViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = F21C31D31C5B246D00EF4D05 /* PhotoTrendsViewCell.swift */; };
 		F2261CAA1C0729D000C12729 /* SentPhotoDetailViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = F2261CA91C0729D000C12729 /* SentPhotoDetailViewController.swift */; };
+		F23022CB1C6F2AA100AF8947 /* UITableView+Reload.swift in Sources */ = {isa = PBXBuildFile; fileRef = F23022CA1C6F2AA100AF8947 /* UITableView+Reload.swift */; };
 		F2305B981BE23EC20056E087 /* UIView+Constraints.swift in Sources */ = {isa = PBXBuildFile; fileRef = F2305B971BE23EC20056E087 /* UIView+Constraints.swift */; };
 		F23527FF1BE09E7C00CA614A /* PhotoPickable.swift in Sources */ = {isa = PBXBuildFile; fileRef = F23527FE1BE09E7C00CA614A /* PhotoPickable.swift */; };
 		F23A7B181BA1D4070063233F /* PhotoPicker.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = F23A7B161BA1D4070063233F /* PhotoPicker.storyboard */; };
@@ -126,10 +127,18 @@
 		F29CEBD21C60C90E00F4ED55 /* OtherUserChatViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = F29CEBD11C60C90E00F4ED55 /* OtherUserChatViewCell.swift */; };
 		F29CEBD41C60C91800F4ED55 /* MyChatViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = F29CEBD31C60C91800F4ED55 /* MyChatViewCell.swift */; };
 		F2A1C4FF1C21781800DE88F2 /* PhotoVoteType.swift in Sources */ = {isa = PBXBuildFile; fileRef = F2A1C4FE1C21781800DE88F2 /* PhotoVoteType.swift */; };
+		F2A88B331C72C6F500D4E444 /* Overflow.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = F2A88B311C72C6F500D4E444 /* Overflow.storyboard */; };
+		F2A88B351C72C7CF00D4E444 /* OverflowViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = F2A88B341C72C7CF00D4E444 /* OverflowViewController.swift */; };
+		F2A88B371C730A4A00D4E444 /* UIApplication+Url.swift in Sources */ = {isa = PBXBuildFile; fileRef = F2A88B361C730A4A00D4E444 /* UIApplication+Url.swift */; };
+		F2A88B3D1C73114300D4E444 /* AboutSwishViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = F2A88B3C1C73114300D4E444 /* AboutSwishViewController.swift */; };
+		F2A88B3F1C73114E00D4E444 /* SettingsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = F2A88B3E1C73114E00D4E444 /* SettingsViewController.swift */; };
+		F2A88B411C73167E00D4E444 /* SwishInfoViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = F2A88B401C73167E00D4E444 /* SwishInfoViewController.swift */; };
 		F2BDF9DD1C213B8A0031682B /* ReceivedPhotoDetailViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = F2BDF9DC1C213B8A0031682B /* ReceivedPhotoDetailViewController.swift */; };
 		F2BDF9DF1C2144750031682B /* PhotoVoteView.xib in Resources */ = {isa = PBXBuildFile; fileRef = F2BDF9DE1C2144750031682B /* PhotoVoteView.xib */; };
 		F2BDF9E11C21448A0031682B /* PhotoVoteView.swift in Sources */ = {isa = PBXBuildFile; fileRef = F2BDF9E01C21448A0031682B /* PhotoVoteView.swift */; };
 		F2C7CBD31BE1C53800ED429A /* DressingViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = F2C7CBD21BE1C53800ED429A /* DressingViewController.swift */; };
+		F2C98B4A1C71D3E500D603A7 /* PhotoDetailViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = F2C98B491C71D3E500D603A7 /* PhotoDetailViewController.swift */; };
+		F2C98B4D1C71D3F800D603A7 /* PhotoDetail.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = F2C98B4B1C71D3F800D603A7 /* PhotoDetail.storyboard */; };
 		F2D8829E1C0F13FE00DF8C6D /* PhotoActionView.swift in Sources */ = {isa = PBXBuildFile; fileRef = F2D8829D1C0F13FE00DF8C6D /* PhotoActionView.swift */; };
 		F2D882A11C0F1B7100DF8C6D /* PhotoActionView.xib in Resources */ = {isa = PBXBuildFile; fileRef = F2D882A01C0F1B7100DF8C6D /* PhotoActionView.xib */; };
 		F2D882A31C0F1BEA00DF8C6D /* CircleButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = F2D882A21C0F1BEA00DF8C6D /* CircleButton.swift */; };
@@ -237,6 +246,7 @@
 		F21C31D11C5B0A8100EF4D05 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = PhotoTrends.storyboard; sourceTree = "<group>"; };
 		F21C31D31C5B246D00EF4D05 /* PhotoTrendsViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PhotoTrendsViewCell.swift; sourceTree = "<group>"; };
 		F2261CA91C0729D000C12729 /* SentPhotoDetailViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SentPhotoDetailViewController.swift; sourceTree = "<group>"; };
+		F23022CA1C6F2AA100AF8947 /* UITableView+Reload.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "UITableView+Reload.swift"; sourceTree = "<group>"; };
 		F2305B971BE23EC20056E087 /* UIView+Constraints.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "UIView+Constraints.swift"; sourceTree = "<group>"; };
 		F23527FE1BE09E7C00CA614A /* PhotoPickable.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PhotoPickable.swift; sourceTree = "<group>"; };
 		F23A7B171BA1D4070063233F /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/PhotoPicker.storyboard; sourceTree = "<group>"; };
@@ -280,10 +290,18 @@
 		F29CEBD11C60C90E00F4ED55 /* OtherUserChatViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = OtherUserChatViewCell.swift; sourceTree = "<group>"; };
 		F29CEBD31C60C91800F4ED55 /* MyChatViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MyChatViewCell.swift; sourceTree = "<group>"; };
 		F2A1C4FE1C21781800DE88F2 /* PhotoVoteType.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PhotoVoteType.swift; sourceTree = "<group>"; };
+		F2A88B321C72C6F500D4E444 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Overflow.storyboard; sourceTree = "<group>"; };
+		F2A88B341C72C7CF00D4E444 /* OverflowViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = OverflowViewController.swift; sourceTree = "<group>"; };
+		F2A88B361C730A4A00D4E444 /* UIApplication+Url.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "UIApplication+Url.swift"; sourceTree = "<group>"; };
+		F2A88B3C1C73114300D4E444 /* AboutSwishViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AboutSwishViewController.swift; sourceTree = "<group>"; };
+		F2A88B3E1C73114E00D4E444 /* SettingsViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SettingsViewController.swift; sourceTree = "<group>"; };
+		F2A88B401C73167E00D4E444 /* SwishInfoViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SwishInfoViewController.swift; sourceTree = "<group>"; };
 		F2BDF9DC1C213B8A0031682B /* ReceivedPhotoDetailViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ReceivedPhotoDetailViewController.swift; sourceTree = "<group>"; };
 		F2BDF9DE1C2144750031682B /* PhotoVoteView.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = PhotoVoteView.xib; sourceTree = "<group>"; };
 		F2BDF9E01C21448A0031682B /* PhotoVoteView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PhotoVoteView.swift; sourceTree = "<group>"; };
 		F2C7CBD21BE1C53800ED429A /* DressingViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DressingViewController.swift; sourceTree = "<group>"; };
+		F2C98B491C71D3E500D603A7 /* PhotoDetailViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PhotoDetailViewController.swift; sourceTree = "<group>"; };
+		F2C98B4C1C71D3F800D603A7 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = PhotoDetail.storyboard; sourceTree = "<group>"; };
 		F2D8829D1C0F13FE00DF8C6D /* PhotoActionView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PhotoActionView.swift; sourceTree = "<group>"; };
 		F2D882A01C0F1B7100DF8C6D /* PhotoActionView.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = PhotoActionView.xib; sourceTree = "<group>"; };
 		F2D882A21C0F1BEA00DF8C6D /* CircleButton.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CircleButton.swift; sourceTree = "<group>"; };
@@ -497,6 +515,11 @@
 				F23CF97D1C3E34CA00C36064 /* MyProfileEditViewController.swift */,
 				F21C31CE1C5B0A6F00EF4D05 /* PhotoTrendsViewController.swift */,
 				F29CEBCD1C5F57A400F4ED55 /* ChatViewController.swift */,
+				F2A88B341C72C7CF00D4E444 /* OverflowViewController.swift */,
+				F2A88B3C1C73114300D4E444 /* AboutSwishViewController.swift */,
+				F2A88B401C73167E00D4E444 /* SwishInfoViewController.swift */,
+				F2A88B3E1C73114E00D4E444 /* SettingsViewController.swift */,
+				F2C98B491C71D3E500D603A7 /* PhotoDetailViewController.swift */,
 			);
 			path = Controllers;
 			sourceTree = "<group>";
@@ -565,6 +588,8 @@
 				5777C3601C0EB08600DE43B4 /* ImageDownloader+DownloadImage.swift */,
 				57A29A681C044DBD0016E265 /* SystemSettingsHelper.swift */,
 				57B769BA1C310A0F0036FC24 /* CollectionType+Shuffle.swift */,
+				F23022CA1C6F2AA100AF8947 /* UITableView+Reload.swift */,
+				F2A88B361C730A4A00D4E444 /* UIApplication+Url.swift */,
 			);
 			path = Helpers;
 			sourceTree = "<group>";
@@ -597,6 +622,8 @@
 				F257A89F1BFDD0FD00BD56C8 /* PhotoMap.storyboard */,
 				F21C31D01C5B0A8100EF4D05 /* PhotoTrends.storyboard */,
 				F29CEBCA1C5F572B00F4ED55 /* Chat.storyboard */,
+				F2A88B311C72C6F500D4E444 /* Overflow.storyboard */,
+				F2C98B4B1C71D3F800D603A7 /* PhotoDetail.storyboard */,
 			);
 			name = Storyboards;
 			path = Base.lproj;
@@ -656,6 +683,14 @@
 					F245DCAC1B9E7B2D0072308B = {
 						CreatedOnToolsVersion = 7.0;
 						DevelopmentTeam = AD75U9C2NK;
+						SystemCapabilities = {
+							com.apple.BackgroundModes = {
+								enabled = 1;
+							};
+							com.apple.Push = {
+								enabled = 1;
+							};
+						};
 					};
 					F245DCC31B9E7B2D0072308B = {
 						CreatedOnToolsVersion = 7.0;
@@ -693,10 +728,12 @@
 				F23A7B1B1BA1D4140063233F /* MyInfo.storyboard in Resources */,
 				F23CF9791C3CB9CD00C36064 /* PhotoStatusView.xib in Resources */,
 				F273C3AA1BFCB4BB007D047B /* MyProfile.storyboard in Resources */,
+				F2A88B331C72C6F500D4E444 /* Overflow.storyboard in Resources */,
 				F257A8A11BFDD0FD00BD56C8 /* PhotoMap.storyboard in Resources */,
 				F245DCBE1B9E7B2D0072308B /* LaunchScreen.storyboard in Resources */,
 				F23A7B181BA1D4070063233F /* PhotoPicker.storyboard in Resources */,
 				F245DCBB1B9E7B2D0072308B /* Assets.xcassets in Resources */,
+				F2C98B4D1C71D3F800D603A7 /* PhotoDetail.storyboard in Resources */,
 				F2EA77AA1C2AB41100494C18 /* Splash.storyboard in Resources */,
 				F245DCB61B9E7B2D0072308B /* Main.storyboard in Resources */,
 				F2BDF9DF1C2144750031682B /* PhotoVoteView.xib in Resources */,
@@ -788,7 +825,9 @@
 				57C7AA8E1BFDB97D008E10F6 /* UIImage+Scale.swift in Sources */,
 				F245DCB31B9E7B2D0072308B /* MainViewController.swift in Sources */,
 				F2BDF9E11C21448A0031682B /* PhotoVoteView.swift in Sources */,
+				F2A88B371C730A4A00D4E444 /* UIApplication+Url.swift in Sources */,
 				571935331BA3C4C800856400 /* UUIDHelper.swift in Sources */,
+				F2A88B411C73167E00D4E444 /* SwishInfoViewController.swift in Sources */,
 				F2ECA5CC1BFAE7FC00E3AD93 /* SentPhotoViewCell.swift in Sources */,
 				F23AC1A81C31060900757BC9 /* PhotoCardView.swift in Sources */,
 				575354C51BE1F0000034F24E /* LocationTrackable.swift in Sources */,
@@ -819,6 +858,7 @@
 				AEF32DDF1BA301A200EA00A9 /* PhotoCollectionViewCell.swift in Sources */,
 				5737132D1BD73101006B272A /* UserHelper.swift in Sources */,
 				57E3EFF41BFD77D1000D1564 /* UIImage+Orientation.swift in Sources */,
+				F2A88B351C72C7CF00D4E444 /* OverflowViewController.swift in Sources */,
 				F29CEBD41C60C91800F4ED55 /* MyChatViewCell.swift in Sources */,
 				57EFC1981C05A347006CF2EF /* MKMapView+Zoom.swift in Sources */,
 				57EC68EE1C1E9B0100CB07E5 /* ChatObserver.swift in Sources */,
@@ -844,20 +884,24 @@
 				F23527FF1BE09E7C00CA614A /* PhotoPickable.swift in Sources */,
 				574E812F1BE7452B0037FA12 /* GADBannerView+Preload.swift in Sources */,
 				57A095411BEB293400333E6D /* Wings.swift in Sources */,
+				F23022CB1C6F2AA100AF8947 /* UITableView+Reload.swift in Sources */,
 				57FB36461BF1D72E0085EAAB /* EnvironmentVariables.swift in Sources */,
 				57C729DC1BDF2C0D00DDFFDA /* ChatBlocker.swift in Sources */,
 				F2185E511BEA3B5D0062E4B1 /* ReceivedPhotoViewCell.swift in Sources */,
 				579673881B9FFE6C00382247 /* Me.swift in Sources */,
 				57C173ED1BDE3EFC0084DF8D /* ChatMessageSender.swift in Sources */,
+				F2A88B3D1C73114300D4E444 /* AboutSwishViewController.swift in Sources */,
 				5737132B1BD72BDA006B272A /* List+Bridge.swift in Sources */,
 				5773646D1C22F69D007EA7B5 /* RealmObjectObservable.swift in Sources */,
 				F20CC6761BDB878F00075088 /* SegueHandlerType.swift in Sources */,
 				579673821B9FFE6500382247 /* Photo.swift in Sources */,
 				F26B578D1C47D4EB0000D95B /* UIGestureRecognizer+Gestures.swift in Sources */,
+				F2A88B3F1C73114E00D4E444 /* SettingsViewController.swift in Sources */,
 				5796738F1B9FFE7200382247 /* ChatMessageSendState.swift in Sources */,
 				57EED2501BF2F1A700E464F1 /* Int+Extension.swift in Sources */,
 				F257A8A31BFDD1C800BD56C8 /* PhotoCollectionMapViewController.swift in Sources */,
 				57A095461BEB316F00333E6D /* WingsHelper.swift in Sources */,
+				F2C98B4A1C71D3E500D603A7 /* PhotoDetailViewController.swift in Sources */,
 				57B348B21C28002600AFBDED /* ChatMessageNotificationHandler.swift in Sources */,
 				570B87081BA8056B0093CEED /* SwishServer.swift in Sources */,
 				573713291BD7165A006B272A /* Timestamp.swift in Sources */,
@@ -992,6 +1036,22 @@
 			name = Chat.storyboard;
 			sourceTree = "<group>";
 		};
+		F2A88B311C72C6F500D4E444 /* Overflow.storyboard */ = {
+			isa = PBXVariantGroup;
+			children = (
+				F2A88B321C72C6F500D4E444 /* Base */,
+			);
+			name = Overflow.storyboard;
+			sourceTree = "<group>";
+		};
+		F2C98B4B1C71D3F800D603A7 /* PhotoDetail.storyboard */ = {
+			isa = PBXVariantGroup;
+			children = (
+				F2C98B4C1C71D3F800D603A7 /* Base */,
+			);
+			name = PhotoDetail.storyboard;
+			sourceTree = "<group>";
+		};
 		F2EA77A81C2AB41100494C18 /* Splash.storyboard */ = {
 			isa = PBXVariantGroup;
 			children = (
@@ -1030,6 +1090,7 @@
 				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
 				CLANG_WARN_UNREACHABLE_CODE = YES;
 				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				CODE_SIGN_IDENTITY = "";
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
 				COPY_PHASE_STRIP = NO;
 				DEBUG_INFORMATION_FORMAT = dwarf;
@@ -1056,6 +1117,7 @@
 				IPHONEOS_DEPLOYMENT_TARGET = 8.0;
 				MTL_ENABLE_DEBUG_INFO = YES;
 				ONLY_ACTIVE_ARCH = YES;
+				PROVISIONING_PROFILE = "6b0dbf5e-b642-4fa9-8450-2e1ed606e668";
 				SDKROOT = iphoneos;
 				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
 				TARGETED_DEVICE_FAMILY = "1,2";
@@ -1091,6 +1153,7 @@
 				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
 				CLANG_WARN_UNREACHABLE_CODE = YES;
 				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				CODE_SIGN_IDENTITY = "iPhone Distribution: Yooiistudios (AD75U9C2NK)";
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
 				COPY_PHASE_STRIP = NO;
 				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
@@ -1110,6 +1173,7 @@
 				GCC_WARN_UNUSED_VARIABLE = YES;
 				IPHONEOS_DEPLOYMENT_TARGET = 8.0;
 				MTL_ENABLE_DEBUG_INFO = NO;
+				PROVISIONING_PROFILE = "c4c7f33e-7bd8-4056-b3ce-7ac47fd44d14";
 				SDKROOT = iphoneos;
 				TARGETED_DEVICE_FAMILY = "1,2";
 				VALIDATE_PRODUCT = YES;
@@ -1134,12 +1198,14 @@
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CLANG_ENABLE_MODULES = YES;
 				CODE_SIGN_IDENTITY = "iPhone Developer";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
 				ENABLE_BITCODE = NO;
 				INFOPLIST_FILE = Swish/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 8.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
-				PRODUCT_BUNDLE_IDENTIFIER = com.yooiistudios.swish.Swish;
+				PRODUCT_BUNDLE_IDENTIFIER = com.yooiistudios.swish;
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				PROVISIONING_PROFILE = "";
 				SWIFT_OBJC_BRIDGING_HEADER = "Swish/Swish-Bridging-Header.h";
 				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
 			};
@@ -1152,12 +1218,14 @@
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CLANG_ENABLE_MODULES = YES;
 				CODE_SIGN_IDENTITY = "iPhone Developer";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
 				ENABLE_BITCODE = NO;
 				INFOPLIST_FILE = Swish/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 8.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
-				PRODUCT_BUNDLE_IDENTIFIER = com.yooiistudios.swish.Swish;
+				PRODUCT_BUNDLE_IDENTIFIER = com.yooiistudios.swish;
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				PROVISIONING_PROFILE = "";
 				SWIFT_OBJC_BRIDGING_HEADER = "Swish/Swish-Bridging-Header.h";
 				SWIFT_OPTIMIZATION_LEVEL = "-Owholemodule";
 			};
