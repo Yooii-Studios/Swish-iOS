@@ -87,23 +87,11 @@ extension PhotoPickable where Self: UIViewController {
         return picker
     }
     
-    final func showPhotoPickerContoller() {
+    final func presentPhotoPickerContoller() {
         PHPhotoLibrary.requestAuthorization { (status: PHAuthorizationStatus) -> Void in
             if status == PHAuthorizationStatus.Authorized {
                 dispatch_async(dispatch_get_main_queue()) {
-                    // TODO: 불필요한 주석일 순 있으나 샘플 프로젝트를 계속 활용해 가야 하기에 마지막 마무리 후 일괄적으로 삭제 예정
-                    let picker = self.createPickerController()
-                    self.showViewController(picker, sender: self)
-                }
-            }
-        }
-    }
-    
-    final func presentPhotoPickerControllerModally() {
-        PHPhotoLibrary.requestAuthorization { (status: PHAuthorizationStatus) -> Void in
-            if status == PHAuthorizationStatus.Authorized {
-                dispatch_async(dispatch_get_main_queue()) {
-                    // TODO: 불필요한 주석일 순 있으나 샘플 프로젝트를 계속 활용해 가야 하기에 마지막 마무리 후 일괄적으로 삭제 예정
+                    // TODO: 위쪽 주석이 불필요할 수 있으나 샘플 프로젝트를 계속 활용해 가야 하기에 마지막 마무리 후 일괄적으로 삭제 예정
                     let picker = self.createPickerController()
                     self.presentViewController(picker, animated: true, completion: nil)
                 }

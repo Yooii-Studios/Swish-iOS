@@ -50,7 +50,7 @@ final class MainViewController: UIViewController, UINavigationControllerDelegate
     }
     
     @IBAction func pickPhotoButtonDidTap(sender: UIButton!) {
-        showPhotoPickerContoller()
+        presentPhotoPickerContoller()
     }
     
     // TODO: 드레싱, 공유 결과에서 한번에 돌아오는 로직. 구분 될 필요가 없어서 공통으로 사용하게 했는데 추후 필요하면 나누어서 쓸 것
