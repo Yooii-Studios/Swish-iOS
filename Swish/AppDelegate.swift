@@ -11,6 +11,7 @@ import CoreData
 import DeviceUtil
 import IQKeyboardManager
 import SwiftyJSON
+import SwiftyColor
 
 typealias NotificationInfo = [NSObject: AnyObject]
 
@@ -23,6 +24,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         // Override point for customization after application launch.
         SwishDatabase.migrate()
         initIQKeyboardManager()
+        initNavigationBarAppearance()
         handleLaunchOptions(launchOptions)
         return true
     }
@@ -31,6 +33,11 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         IQKeyboardManager.sharedManager().enable = true
         IQKeyboardManager.sharedManager().shouldToolbarUsesTextFieldTintColor = true
         IQKeyboardManager.sharedManager().disableToolbarInViewControllerClass(ChatViewController.self)
+    }
+    
+    private func initNavigationBarAppearance() {
+        let navigationBarAppearace = UINavigationBar.appearance()
+        navigationBarAppearace.barStyle = .Black
     }
     
     private func handleLaunchOptions(launchOptions: [NSObject: AnyObject]?) {
