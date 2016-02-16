@@ -38,6 +38,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
     private func initNavigationBarAppearance() {
         let navigationBarAppearace = UINavigationBar.appearance()
         navigationBarAppearace.barStyle = .Black
+        navigationBarAppearace.translucent = false
     }
     
     private func handleLaunchOptions(launchOptions: [NSObject: AnyObject]?) {
