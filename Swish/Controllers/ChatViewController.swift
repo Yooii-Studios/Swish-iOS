@@ -11,7 +11,7 @@ import UIKit
 class ChatViewController: UIViewController, UITableViewDataSource, UITableViewDelegate, ChatMessageSender {
 
     struct Metric {
-        static let ChatMessageFetchAmount: Int = 15
+        static let ChatMessageFetchAmount: Int = 20
     }
     
     @IBOutlet weak var tableView: UITableView!
@@ -52,6 +52,7 @@ class ChatViewController: UIViewController, UITableViewDataSource, UITableViewDe
         tableView.reloadData() {
             self.isLoadingChatItems = false
             self.scrollToBottom()
+            SwishDatabase.updateAllChatRead(self.photoId)
         }
     }
     
@@ -268,7 +269,10 @@ class ChatViewController: UIViewController, UITableViewDataSource, UITableViewDe
     }
     
     @IBAction func imageButtonDidTap() {
-        
+        let storyboard = UIStoryboard(name: "PhotoDetail", bundle: nil)
+        let photoDetailViewController = storyboard.instantiateInitialViewController() as! PhotoDetailViewController
+        photoDetailViewController.photoId = photoId
+        presentViewController(photoDetailViewController, animated: true, completion: nil)
     }
     
     @IBAction func blockButtonDidTap() {
