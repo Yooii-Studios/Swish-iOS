@@ -25,6 +25,7 @@ class SentPhotoDetailViewController: UIViewController, PhotoActionType {
         setUpPhotoCardView()
         setUpPhotoActionView()
         setUpStatusViews()
+        setUpPhotoObserver()
     }
     
     // MARK: - Init
@@ -35,6 +36,13 @@ class SentPhotoDetailViewController: UIViewController, PhotoActionType {
     
     private func setUpStatusViews() {
         photoStatusView.setUpWithPhoto(photo)
+    }
+    
+    private func setUpPhotoObserver() {
+        PhotoObserver.observePhotoStateForPhoto(photo, owner: self) { [weak self] id, state in
+            self?.photoActionView.refreshWithPhotoState(state)
+            self?.photoStatusView.refreshWithPhoto(self!.photo)
+        }
     }
     
     /*

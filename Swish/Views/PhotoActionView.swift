@@ -25,6 +25,11 @@ class PhotoActionView: NibDesignable {
         observePhotoStateForVisibility(photo)
     }
     
+    final func refreshWithPhotoState(photoState: PhotoState) {
+        setUpMapButtonWithPhotoState(photoState)
+        setUpChatButtonWithPhotoState(photoState)
+    }
+    
     private func setUpMapButtonWithPhotoState(photoState: PhotoState) {
         if photoState == .Delivered || photoState == .Liked {
             mapButton.alpha = 1

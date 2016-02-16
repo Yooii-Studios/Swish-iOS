@@ -137,6 +137,8 @@
 		F2BDF9DF1C2144750031682B /* PhotoVoteView.xib in Resources */ = {isa = PBXBuildFile; fileRef = F2BDF9DE1C2144750031682B /* PhotoVoteView.xib */; };
 		F2BDF9E11C21448A0031682B /* PhotoVoteView.swift in Sources */ = {isa = PBXBuildFile; fileRef = F2BDF9E01C21448A0031682B /* PhotoVoteView.swift */; };
 		F2C7CBD31BE1C53800ED429A /* DressingViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = F2C7CBD21BE1C53800ED429A /* DressingViewController.swift */; };
+		F2C98B4A1C71D3E500D603A7 /* PhotoDetailViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = F2C98B491C71D3E500D603A7 /* PhotoDetailViewController.swift */; };
+		F2C98B4D1C71D3F800D603A7 /* PhotoDetail.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = F2C98B4B1C71D3F800D603A7 /* PhotoDetail.storyboard */; };
 		F2D8829E1C0F13FE00DF8C6D /* PhotoActionView.swift in Sources */ = {isa = PBXBuildFile; fileRef = F2D8829D1C0F13FE00DF8C6D /* PhotoActionView.swift */; };
 		F2D882A11C0F1B7100DF8C6D /* PhotoActionView.xib in Resources */ = {isa = PBXBuildFile; fileRef = F2D882A01C0F1B7100DF8C6D /* PhotoActionView.xib */; };
 		F2D882A31C0F1BEA00DF8C6D /* CircleButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = F2D882A21C0F1BEA00DF8C6D /* CircleButton.swift */; };
@@ -298,6 +300,8 @@
 		F2BDF9DE1C2144750031682B /* PhotoVoteView.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = PhotoVoteView.xib; sourceTree = "<group>"; };
 		F2BDF9E01C21448A0031682B /* PhotoVoteView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PhotoVoteView.swift; sourceTree = "<group>"; };
 		F2C7CBD21BE1C53800ED429A /* DressingViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DressingViewController.swift; sourceTree = "<group>"; };
+		F2C98B491C71D3E500D603A7 /* PhotoDetailViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PhotoDetailViewController.swift; sourceTree = "<group>"; };
+		F2C98B4C1C71D3F800D603A7 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = PhotoDetail.storyboard; sourceTree = "<group>"; };
 		F2D8829D1C0F13FE00DF8C6D /* PhotoActionView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PhotoActionView.swift; sourceTree = "<group>"; };
 		F2D882A01C0F1B7100DF8C6D /* PhotoActionView.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = PhotoActionView.xib; sourceTree = "<group>"; };
 		F2D882A21C0F1BEA00DF8C6D /* CircleButton.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CircleButton.swift; sourceTree = "<group>"; };
@@ -515,6 +519,7 @@
 				F2A88B3C1C73114300D4E444 /* AboutSwishViewController.swift */,
 				F2A88B401C73167E00D4E444 /* SwishInfoViewController.swift */,
 				F2A88B3E1C73114E00D4E444 /* SettingsViewController.swift */,
+				F2C98B491C71D3E500D603A7 /* PhotoDetailViewController.swift */,
 			);
 			path = Controllers;
 			sourceTree = "<group>";
@@ -618,6 +623,7 @@
 				F21C31D01C5B0A8100EF4D05 /* PhotoTrends.storyboard */,
 				F29CEBCA1C5F572B00F4ED55 /* Chat.storyboard */,
 				F2A88B311C72C6F500D4E444 /* Overflow.storyboard */,
+				F2C98B4B1C71D3F800D603A7 /* PhotoDetail.storyboard */,
 			);
 			name = Storyboards;
 			path = Base.lproj;
@@ -719,6 +725,7 @@
 				F245DCBE1B9E7B2D0072308B /* LaunchScreen.storyboard in Resources */,
 				F23A7B181BA1D4070063233F /* PhotoPicker.storyboard in Resources */,
 				F245DCBB1B9E7B2D0072308B /* Assets.xcassets in Resources */,
+				F2C98B4D1C71D3F800D603A7 /* PhotoDetail.storyboard in Resources */,
 				F2EA77AA1C2AB41100494C18 /* Splash.storyboard in Resources */,
 				F245DCB61B9E7B2D0072308B /* Main.storyboard in Resources */,
 				F2BDF9DF1C2144750031682B /* PhotoVoteView.xib in Resources */,
@@ -886,6 +893,7 @@
 				57EED2501BF2F1A700E464F1 /* Int+Extension.swift in Sources */,
 				F257A8A31BFDD1C800BD56C8 /* PhotoCollectionMapViewController.swift in Sources */,
 				57A095461BEB316F00333E6D /* WingsHelper.swift in Sources */,
+				F2C98B4A1C71D3E500D603A7 /* PhotoDetailViewController.swift in Sources */,
 				57B348B21C28002600AFBDED /* ChatMessageNotificationHandler.swift in Sources */,
 				570B87081BA8056B0093CEED /* SwishServer.swift in Sources */,
 				573713291BD7165A006B272A /* Timestamp.swift in Sources */,
@@ -1028,6 +1036,14 @@
 			name = Overflow.storyboard;
 			sourceTree = "<group>";
 		};
+        F2C98B4B1C71D3F800D603A7 /* PhotoDetail.storyboard */ = {
+            isa = PBXVariantGroup;
+            children = (
+                F2C98B4C1C71D3F800D603A7 /* Base */,
+            );
+            name = PhotoDetail.storyboard;
+            sourceTree = "<group>";
+        };
 		F2EA77A81C2AB41100494C18 /* Splash.storyboard */ = {
 			isa = PBXVariantGroup;
 			children = (
