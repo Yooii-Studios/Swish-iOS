@@ -19,13 +19,21 @@ class SentPhotoCollectionViewController: UIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        sentPhotos = SwishDatabase.sentPhotos()
+        initPhotos()
         adjustCollectionViewCellSize()
         refreshPhotoStates()
     }
     
     private func refreshPhotoStates() {
         SentPhotoStateLoader.instance.execute()
+    }
+    
+    private func initPhotos() {
+        sentPhotos = SwishDatabase.sentPhotos()
+        
+        PhotoObserver.observePhotoStateForPhotos(sentPhotos, owner: self) { [weak self] _ in
+            self?.photoCollectionView.reloadData()
+        }
     }
     
     private func adjustCollectionViewCellSize() {
