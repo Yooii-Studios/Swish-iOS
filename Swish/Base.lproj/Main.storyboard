@@ -1,10 +1,9 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="9531" systemVersion="15D21" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" initialViewController="BYZ-38-t0r">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="9532" systemVersion="15D21" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" initialViewController="BYZ-38-t0r">
     <dependencies>
         <deployment identifier="iOS"/>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="9529"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="9530"/>
         <capability name="Aspect ratio constraints" minToolsVersion="5.1"/>
-        <capability name="Constraints to layout margins" minToolsVersion="6.0"/>
     </dependencies>
     <scenes>
         <!--Main View Controller-->
@@ -39,13 +38,6 @@
                                     <segue destination="icq-7B-1aW" kind="show" id="i9h-l1-snm"/>
                                 </connections>
                             </button>
-                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="eDq-p4-cL7">
-                                <rect key="frame" x="46" y="50" width="113" height="30"/>
-                                <state key="normal" title="Dressing Screen"/>
-                                <connections>
-                                    <segue destination="Loa-El-XZR" kind="show" identifier="ShowDressing" id="vks-kS-Dea"/>
-                                </connections>
-                            </button>
                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="XJU-rx-7Dp" userLabel="PhotoCardView" customClass="PhotoCardView" customModule="Swish" customModuleProvider="target">
                                 <rect key="frame" x="20" y="93" width="335" height="405"/>
                                 <color key="backgroundColor" cocoaTouchSystemColor="groupTableViewBackgroundColor"/>
@@ -71,10 +63,8 @@
                             <constraint firstItem="38O-QE-yw0" firstAttribute="leading" secondItem="u3H-n2-e6j" secondAttribute="trailing" constant="31" id="BOZ-EK-3QG"/>
                             <constraint firstItem="u3H-n2-e6j" firstAttribute="leading" secondItem="Nt9-sb-Yqm" secondAttribute="trailing" constant="34" id="CpT-cq-Oeh"/>
                             <constraint firstItem="Nt9-sb-Yqm" firstAttribute="bottom" secondItem="u3H-n2-e6j" secondAttribute="bottom" id="G4v-uP-8bv"/>
-                            <constraint firstItem="eDq-p4-cL7" firstAttribute="leading" secondItem="8bC-Xf-vdC" secondAttribute="leadingMargin" constant="30" id="MXO-qz-ARi"/>
                             <constraint firstItem="u3H-n2-e6j" firstAttribute="centerX" secondItem="8bC-Xf-vdC" secondAttribute="centerX" constant="10" id="Olj-60-3AT"/>
                             <constraint firstAttribute="trailing" secondItem="XJU-rx-7Dp" secondAttribute="trailing" constant="20" id="gkO-2Q-CEI"/>
-                            <constraint firstItem="eDq-p4-cL7" firstAttribute="top" secondItem="y3c-jy-aDJ" secondAttribute="bottom" constant="30" id="hzX-QF-gsO"/>
                             <constraint firstItem="XJU-rx-7Dp" firstAttribute="top" secondItem="y3c-jy-aDJ" secondAttribute="bottom" constant="73" id="mTz-gm-97v"/>
                             <constraint firstItem="wfy-db-euE" firstAttribute="top" secondItem="u3H-n2-e6j" secondAttribute="bottom" constant="50" id="t3Y-hT-X1J"/>
                             <constraint firstAttribute="leading" secondItem="XJU-rx-7Dp" secondAttribute="leading" constant="-20" id="zNO-H9-9ko"/>
@@ -94,7 +84,7 @@
                 <viewControllerPlaceholder storyboardName="MyInfo" id="icq-7B-1aW" sceneMemberID="viewController"/>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="GnG-iz-cQv" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="1460" y="750"/>
+            <point key="canvasLocation" x="890" y="685"/>
         </scene>
         <!--PhotoTrends-->
         <scene sceneID="iBU-OI-yjg">
@@ -102,15 +92,7 @@
                 <viewControllerPlaceholder storyboardName="PhotoTrends" id="5Pm-E6-ihm" sceneMemberID="viewController"/>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="qvs-IT-HaS" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="292.5" y="1146"/>
-        </scene>
-        <!--Dressing-->
-        <scene sceneID="ga2-Gb-K0f">
-            <objects>
-                <viewControllerPlaceholder storyboardName="Dressing" id="Loa-El-XZR" sceneMemberID="viewController"/>
-                <placeholder placeholderIdentifier="IBFirstResponder" id="NDm-Kv-dtp" userLabel="First Responder" sceneMemberID="firstResponder"/>
-            </objects>
-            <point key="canvasLocation" x="504" y="1146"/>
+            <point key="canvasLocation" x="487.5" y="1158"/>
         </scene>
     </scenes>
 </document>

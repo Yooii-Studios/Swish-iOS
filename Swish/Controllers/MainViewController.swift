@@ -12,8 +12,6 @@ import CTAssetsPickerController
 
 final class MainViewController: UIViewController, UINavigationControllerDelegate, PhotoPickable, ReceivedPhotoDisplayable {
 
-    // TODO: 우성이 protocol extension으로 만들던지, 커스텀뷰로 만들던지 중복을 줄일 필요가 있어 보임
-    // Photo
     @IBOutlet weak var photoCardView: PhotoCardView!
     
     var currentDisplayingPhoto: Photo?
