@@ -1,5 +1,5 @@
 //
-//  OverflowViewController.swift
+//  AboutSwishViewController.swift
 //  Swish
 //
 //  Created by Wooseong Kim on 2016. 2. 16..
@@ -8,35 +8,38 @@
 
 import UIKit
 
-class OverflowViewController: UITableViewController {
+class AboutSwishViewController: UITableViewController {
 
-    private let FacebookUrl = "https://www.facebook.com/YooiiMooii"
-
-    // MARK: - Table view
+    override func viewDidLoad() {
+        super.viewDidLoad()
+        
+        // TODO: 로컬라이징
+        title = "About Swish"
+    }
+    
+    // MARK: - Table view 
 
     override func numberOfSectionsInTableView(tableView: UITableView) -> Int {
         return 1
     }
 
     override func tableView(tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return 4
+        return 3
     }
 
     override func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell {
-        let cell = tableView.dequeueReusableCellWithIdentifier("overflowCell", forIndexPath: indexPath)
+        let cell = tableView.dequeueReusableCellWithIdentifier("aboutSwishCell", forIndexPath: indexPath)
 
         let label = cell.viewWithTag(101) as! UILabel
         
         // TODO: 로컬라이징
         switch indexPath.row {
         case 0:
-            label.text = "About Swish"
+            label.text = "Swish Info"
         case 1:
-            label.text = "Settings"
+            label.text = "Recommend to your friends"
         case 2:
-            label.text = "Rate this app"
-        case 3:
-            label.text = "Like on Facebook"
+            label.text = "Credits"
         default:
             label.text = ""
         }
@@ -49,37 +52,25 @@ class OverflowViewController: UITableViewController {
         
         switch indexPath.row {
         case 0:
-            showAboutSwish()
+            showSwishInfo()
             break
         case 1:
-            showSettings()
+            // TODO: 친구에게 추천하기 기능 구현하기
             break
         case 2:
-            // TODO: 출시 전 Rate 기능 구현할 것
+            showCredit()
             break
-        case 3:
-            openFacebookPage()
         default:
             break
         }
     }
     
-    private func showAboutSwish() {
-        let storyboard = UIStoryboard(name: "Overflow", bundle: nil)
-        let viewController = storyboard.instantiateViewControllerWithIdentifier("AboutSwish")
-        showViewController(viewController, sender: self)
+    private func showSwishInfo() {
+        
     }
     
-    private func showSettings() {
-        let storyboard = UIStoryboard(name: "Overflow", bundle: nil)
-        let viewController = storyboard.instantiateViewControllerWithIdentifier("Settings")
-        showViewController(viewController, sender: self)
-    }
-    
-    private func openFacebookPage() {
-        if let url = NSURL(string: FacebookUrl) {
-            UIApplication.sharedApplication().openURL(url)
-        }
+    private func showCredit() {
+        
     }
     
     /*
