@@ -127,6 +127,8 @@
 		F29CEBD21C60C90E00F4ED55 /* OtherUserChatViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = F29CEBD11C60C90E00F4ED55 /* OtherUserChatViewCell.swift */; };
 		F29CEBD41C60C91800F4ED55 /* MyChatViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = F29CEBD31C60C91800F4ED55 /* MyChatViewCell.swift */; };
 		F2A1C4FF1C21781800DE88F2 /* PhotoVoteType.swift in Sources */ = {isa = PBXBuildFile; fileRef = F2A1C4FE1C21781800DE88F2 /* PhotoVoteType.swift */; };
+		F2A88B331C72C6F500D4E444 /* Overflow.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = F2A88B311C72C6F500D4E444 /* Overflow.storyboard */; };
+		F2A88B351C72C7CF00D4E444 /* OverflowViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = F2A88B341C72C7CF00D4E444 /* OverflowViewController.swift */; };
 		F2BDF9DD1C213B8A0031682B /* ReceivedPhotoDetailViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = F2BDF9DC1C213B8A0031682B /* ReceivedPhotoDetailViewController.swift */; };
 		F2BDF9DF1C2144750031682B /* PhotoVoteView.xib in Resources */ = {isa = PBXBuildFile; fileRef = F2BDF9DE1C2144750031682B /* PhotoVoteView.xib */; };
 		F2BDF9E11C21448A0031682B /* PhotoVoteView.swift in Sources */ = {isa = PBXBuildFile; fileRef = F2BDF9E01C21448A0031682B /* PhotoVoteView.swift */; };
@@ -282,6 +284,8 @@
 		F29CEBD11C60C90E00F4ED55 /* OtherUserChatViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = OtherUserChatViewCell.swift; sourceTree = "<group>"; };
 		F29CEBD31C60C91800F4ED55 /* MyChatViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MyChatViewCell.swift; sourceTree = "<group>"; };
 		F2A1C4FE1C21781800DE88F2 /* PhotoVoteType.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PhotoVoteType.swift; sourceTree = "<group>"; };
+		F2A88B321C72C6F500D4E444 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Overflow.storyboard; sourceTree = "<group>"; };
+		F2A88B341C72C7CF00D4E444 /* OverflowViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = OverflowViewController.swift; sourceTree = "<group>"; };
 		F2BDF9DC1C213B8A0031682B /* ReceivedPhotoDetailViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ReceivedPhotoDetailViewController.swift; sourceTree = "<group>"; };
 		F2BDF9DE1C2144750031682B /* PhotoVoteView.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = PhotoVoteView.xib; sourceTree = "<group>"; };
 		F2BDF9E01C21448A0031682B /* PhotoVoteView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PhotoVoteView.swift; sourceTree = "<group>"; };
@@ -499,6 +503,7 @@
 				F23CF97D1C3E34CA00C36064 /* MyProfileEditViewController.swift */,
 				F21C31CE1C5B0A6F00EF4D05 /* PhotoTrendsViewController.swift */,
 				F29CEBCD1C5F57A400F4ED55 /* ChatViewController.swift */,
+				F2A88B341C72C7CF00D4E444 /* OverflowViewController.swift */,
 			);
 			path = Controllers;
 			sourceTree = "<group>";
@@ -600,6 +605,7 @@
 				F257A89F1BFDD0FD00BD56C8 /* PhotoMap.storyboard */,
 				F21C31D01C5B0A8100EF4D05 /* PhotoTrends.storyboard */,
 				F29CEBCA1C5F572B00F4ED55 /* Chat.storyboard */,
+				F2A88B311C72C6F500D4E444 /* Overflow.storyboard */,
 			);
 			name = Storyboards;
 			path = Base.lproj;
@@ -696,6 +702,7 @@
 				F23A7B1B1BA1D4140063233F /* MyInfo.storyboard in Resources */,
 				F23CF9791C3CB9CD00C36064 /* PhotoStatusView.xib in Resources */,
 				F273C3AA1BFCB4BB007D047B /* MyProfile.storyboard in Resources */,
+				F2A88B331C72C6F500D4E444 /* Overflow.storyboard in Resources */,
 				F257A8A11BFDD0FD00BD56C8 /* PhotoMap.storyboard in Resources */,
 				F245DCBE1B9E7B2D0072308B /* LaunchScreen.storyboard in Resources */,
 				F23A7B181BA1D4070063233F /* PhotoPicker.storyboard in Resources */,
@@ -822,6 +829,7 @@
 				AEF32DDF1BA301A200EA00A9 /* PhotoCollectionViewCell.swift in Sources */,
 				5737132D1BD73101006B272A /* UserHelper.swift in Sources */,
 				57E3EFF41BFD77D1000D1564 /* UIImage+Orientation.swift in Sources */,
+				F2A88B351C72C7CF00D4E444 /* OverflowViewController.swift in Sources */,
 				F29CEBD41C60C91800F4ED55 /* MyChatViewCell.swift in Sources */,
 				57EFC1981C05A347006CF2EF /* MKMapView+Zoom.swift in Sources */,
 				57EC68EE1C1E9B0100CB07E5 /* ChatObserver.swift in Sources */,
@@ -994,6 +1002,14 @@
 				F29CEBCB1C5F572B00F4ED55 /* Base */,
 			);
 			name = Chat.storyboard;
+			sourceTree = "<group>";
+		};
+		F2A88B311C72C6F500D4E444 /* Overflow.storyboard */ = {
+			isa = PBXVariantGroup;
+			children = (
+				F2A88B321C72C6F500D4E444 /* Base */,
+			);
+			name = Overflow.storyboard;
 			sourceTree = "<group>";
 		};
 		F2EA77A81C2AB41100494C18 /* Splash.storyboard */ = {

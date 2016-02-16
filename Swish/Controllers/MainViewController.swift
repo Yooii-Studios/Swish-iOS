@@ -22,6 +22,8 @@ final class MainViewController: UIViewController, UINavigationControllerDelegate
     override func viewDidLoad() {
         super.viewDidLoad()
         
+        // TODO: 네비게이션 로고 커스터마이징 필요
+        
         photoPickerHandler = PhotoPickerHandler() { image in
             self.showDressingViewContoller(image)
         }
