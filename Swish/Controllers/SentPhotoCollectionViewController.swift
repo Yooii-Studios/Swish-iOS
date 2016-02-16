@@ -21,6 +21,11 @@ class SentPhotoCollectionViewController: UIViewController {
         super.viewDidLoad()
         sentPhotos = SwishDatabase.sentPhotos()
         adjustCollectionViewCellSize()
+        refreshPhotoStates()
+    }
+    
+    private func refreshPhotoStates() {
+        SentPhotoStateLoader.instance.execute()
     }
     
     private func adjustCollectionViewCellSize() {
@@ -32,6 +37,12 @@ class SentPhotoCollectionViewController: UIViewController {
         (photoCollectionView.collectionViewLayout as! UICollectionViewFlowLayout).itemSize =
             CGSize(width: itemWidth, height: itemWidth * 1.3)
     }
+    
+    deinit {
+        SentPhotoStateLoader.instance.cancel()
+    }
+    
+    // MARK: - Navigation 
     
     override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?) {
         guard let cell = sender as? UICollectionViewCell, let indexPath = photoCollectionView.indexPathForCell(cell) else {
