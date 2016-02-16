@@ -49,13 +49,13 @@ final class SentPhotoStateLoader {
     
     private func executeFetch(onSuccess: SuccessCallback?, onFailure: FailureCallback?) {
         PhotoServer.photoStatesWith(MeManager.me().id,
-            onSuccess: { (serverPhotoState) -> () in
+            onSuccess: { serverPhotoState in
                 let updatedPhotoIds = self.parseUpdatedPhotoIds(serverPhotoState)
                 if let onSuccess = onSuccess {
                     onSuccess(updatedPhotoIds: updatedPhotoIds)
                 }
             },
-            onFail: { (error) -> () in
+            onFail: { error in
                 if let onFailure = onFailure {
                     onFailure()
                 }
