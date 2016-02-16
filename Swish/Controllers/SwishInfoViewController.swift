@@ -1,5 +1,5 @@
 //
-//  AboutSwishViewController.swift
+//  SwishInfoViewController.swift
 //  Swish
 //
 //  Created by Wooseong Kim on 2016. 2. 16..
@@ -8,16 +8,16 @@
 
 import UIKit
 
-class AboutSwishViewController: UITableViewController {
+class SwishInfoViewController: UITableViewController {
 
     override func viewDidLoad() {
         super.viewDidLoad()
-        
+
         // TODO: 로컬라이징
-        title = "About Swish"
+        title = "Swish Info"
     }
-    
-    // MARK: - Table view 
+
+    // MARK: - Table view
 
     override func numberOfSectionsInTableView(tableView: UITableView) -> Int {
         return 1
@@ -28,51 +28,51 @@ class AboutSwishViewController: UITableViewController {
     }
 
     override func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell {
-        let cell = tableView.dequeueReusableCellWithIdentifier("aboutSwishCell", forIndexPath: indexPath)
-
+        var cell: UITableViewCell
+        
+        if indexPath.row == 0 || indexPath.row == 1 {
+            cell = tableView.dequeueReusableCellWithIdentifier("swishInfoCell", forIndexPath: indexPath)
+        } else {
+            cell = tableView.dequeueReusableCellWithIdentifier("versionCell", forIndexPath: indexPath)
+            setUpVersionCell(cell)
+        }
+        
         let label = cell.viewWithTag(101) as! UILabel
         
         // TODO: 로컬라이징
         switch indexPath.row {
         case 0:
-            label.text = "Swish Info"
+            label.text = "Yooii Studios"
         case 1:
-            label.text = "Recommend to your friends"
+            label.text = "License"
         case 2:
-            label.text = "Credits"
+            label.text = "Version"
         default:
             label.text = ""
         }
 
         return cell
     }
-
+    
+    private func setUpVersionCell(cell: UITableViewCell) {
+        let versionLabel = cell.viewWithTag(102) as! UILabel
+        versionLabel.text = NSBundle.mainBundle().infoDictionary?["CFBundleShortVersionString"] as? String
+    }
+    
     override func tableView(tableView: UITableView, didSelectRowAtIndexPath indexPath: NSIndexPath) {
         tableView.deselectRowAtIndexPath(indexPath, animated: true)
         
         switch indexPath.row {
         case 0:
-            showSwishInfo()
-            break
-        case 1:
-            // TODO: 친구에게 추천하기 기능 구현하기
-            break
-        case 2:
-            showCredit()
+            openYooiiHomepage()
             break
         default:
             break
         }
     }
     
-    private func showSwishInfo() {
-        let storyboard = UIStoryboard(name: "Overflow", bundle: nil)
-        let viewController = storyboard.instantiateViewControllerWithIdentifier("SwishInfo")
-        showViewController(viewController, sender: self)
-    }
-    
-    private func showCredit() {
-        
+    private func openYooiiHomepage() {
+        UIApplication.sharedApplication().openURL(NSURL(string: "http://yooiistudios.com")!)
     }
     
     /*

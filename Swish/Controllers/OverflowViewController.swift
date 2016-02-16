@@ -77,9 +77,7 @@ class OverflowViewController: UITableViewController {
     }
     
     private func openFacebookPage() {
-        if let url = NSURL(string: FacebookUrl) {
-            UIApplication.sharedApplication().openURL(url)
-        }
+        UIApplication.sharedApplication().openURL(NSURL(string: FacebookUrl)!)
     }
     
     /*
