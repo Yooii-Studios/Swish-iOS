@@ -7,6 +7,7 @@
 //
 
 import UIKit
+import Carte
 
 class SwishInfoViewController: UITableViewController {
 
@@ -66,6 +67,8 @@ class SwishInfoViewController: UITableViewController {
         case 0:
             openYooiiHomepage()
             break
+        case 1:
+            showLicense()
         default:
             break
         }
@@ -73,6 +76,13 @@ class SwishInfoViewController: UITableViewController {
     
     private func openYooiiHomepage() {
         UIApplication.sharedApplication().openURL(NSURL(string: "http://yooiistudios.com")!)
+    }
+    
+    private func showLicense() {
+        let carteViewController = CarteViewController()
+        // TODO: 추후 수열이가 머지해주면 해당 옵션 넣을 것
+//        carteViewController.isDoneButtonNeeded = false
+        showViewController(carteViewController, sender: self)
     }
     
     /*
