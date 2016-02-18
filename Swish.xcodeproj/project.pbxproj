@@ -639,7 +639,9 @@
 				521D6262CB576DD9DC8C1FAB /* Check Pods Manifest.lock */,
 				F245DCA91B9E7B2D0072308B /* Sources */,
 				F245DCAA1B9E7B2D0072308B /* Frameworks */,
+				F2C203BC1C7451EE0011A696 /* Carte Pre */,
 				F245DCAB1B9E7B2D0072308B /* Resources */,
+				F2C203BD1C7451FD0011A696 /* Carte Post */,
 				BF22361CE87D68DE7CA40655 /* Copy Pods Resources */,
 				01E9A6D8439623F564604A4F /* Embed Pods Frameworks */,
 			);
@@ -800,6 +802,34 @@
 			shellPath = /bin/sh;
 			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods/Pods-resources.sh\"\n";
 			showEnvVarsInLog = 0;
+		};
+		F2C203BC1C7451EE0011A696 /* Carte Pre */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			name = "Carte Pre";
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "ruby ${SRCROOT}/Pods/Carte/Carte/carte.rb pre";
+		};
+		F2C203BD1C7451FD0011A696 /* Carte Post */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			name = "Carte Post";
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "ruby ${SRCROOT}/Pods/Carte/Carte/carte.rb post";
 		};
 /* End PBXShellScriptBuildPhase section */
 
