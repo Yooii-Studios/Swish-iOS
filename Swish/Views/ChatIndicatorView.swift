@@ -12,13 +12,8 @@ import SwiftyColor
 
 @IBDesignable
 class ChatIndicatorView: NibDesignable {
-
-    struct Metric {
-        static let InnerMargin: CGFloat = 6
-        static let OuterMargin: CGFloat = 8
-    }
     
-    @IBOutlet var chatCountLabel: UILabel!
+    @IBOutlet weak var chatCountLabel: UILabel!
     @IBOutlet weak var iconTrailingConstraints: NSLayoutConstraint!
     @IBOutlet weak var labelTrailingConstraints: NSLayoutConstraint!
     
@@ -32,18 +27,13 @@ class ChatIndicatorView: NibDesignable {
             if photo.unreadMessageCount > 0 {
                 chatCountLabel.alpha = 1
                 chatCountLabel.text = String(photo.unreadMessageCount)
-//                iconTrailingConstraints.priority = 249
-//                iconTrailingConstraints.active = false
-//                labelTrailingConstraints.priority = 1000
+                labelTrailingConstraints.active = true
+                iconTrailingConstraints.active = false
             } else {
                 chatCountLabel.alpha = 0
-//                iconTrailingConstraints.active = true
-//                iconTrailingConstraints.priority = 1000
-//                iconTrailingConstraints.constant = Metric.OuterMargin
-//                labelTrailingConstraints.priority = 249
-//                chatCountLabel.removeAllConstraints()
+                labelTrailingConstraints.active = false
+                iconTrailingConstraints.active = true
             }
-//            layoutIfNeeded()
         } else {
             alpha = 0
         }

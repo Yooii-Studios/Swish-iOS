@@ -8,6 +8,7 @@
         <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner" customClass="ChatIndicatorView" customModule="Swish" customModuleProvider="target">
             <connections>
                 <outlet property="chatCountLabel" destination="QfC-8b-mGy" id="gpL-xf-CyM"/>
+                <outlet property="iconTrailingConstraints" destination="pHU-8a-hxH" id="wTS-Jg-flf"/>
                 <outlet property="labelTrailingConstraints" destination="GXF-a8-SHm" id="dlC-xx-O2P"/>
             </connections>
         </placeholder>
@@ -39,6 +40,7 @@
                 <constraint firstItem="3SM-vq-QHX" firstAttribute="top" secondItem="iN0-l3-epB" secondAttribute="top" constant="8" id="TCZ-Ni-qeN"/>
                 <constraint firstItem="QfC-8b-mGy" firstAttribute="leading" secondItem="3SM-vq-QHX" secondAttribute="trailing" constant="6" id="U1G-yZ-HqZ"/>
                 <constraint firstItem="QfC-8b-mGy" firstAttribute="top" secondItem="iN0-l3-epB" secondAttribute="top" id="d3B-Un-CL3"/>
+                <constraint firstAttribute="trailing" secondItem="3SM-vq-QHX" secondAttribute="trailing" priority="999" constant="8" id="pHU-8a-hxH"/>
             </constraints>
             <nil key="simulatedStatusBarMetrics"/>
             <freeformSimulatedSizeMetrics key="simulatedDestinationMetrics"/>
