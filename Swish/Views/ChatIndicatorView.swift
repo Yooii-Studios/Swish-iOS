@@ -32,7 +32,7 @@ class ChatIndicatorView: NibDesignable {
         layer.masksToBounds = true
     }
     
-    func initWithPhoto(photo: Photo) {
+    func setUpWithPhoto(photo: Photo) {
         if photo.hasOpenedChatRoom {
             alpha = 1
             

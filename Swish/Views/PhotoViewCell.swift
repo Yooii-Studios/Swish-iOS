@@ -23,7 +23,7 @@ class PhotoViewCell: UICollectionViewCell {
             self.messageLabel.text = photo.message
         }
         observeUnreadChatMessageCountForPhoto(photo)
-        chatIndicatorView.initWithPhoto(photo)
+        chatIndicatorView.setUpWithPhoto(photo)
     }
     
     func clear() {
