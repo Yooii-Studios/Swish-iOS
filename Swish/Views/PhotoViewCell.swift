@@ -13,6 +13,7 @@ class PhotoViewCell: UICollectionViewCell {
     
     @IBOutlet weak var imageView: UIImageView!
     @IBOutlet weak var messageLabel: UILabel!
+    @IBOutlet weak var chatIndicatorView: ChatIndicatorView!
     private var photoId: Photo.ID!
     private var observeCanceller: Canceller?
     
@@ -22,6 +23,7 @@ class PhotoViewCell: UICollectionViewCell {
             self.messageLabel.text = photo.message
         }
         observeUnreadChatMessageCountForPhoto(photo)
+        chatIndicatorView.initWithPhoto(photo)
     }
     
     func clear() {

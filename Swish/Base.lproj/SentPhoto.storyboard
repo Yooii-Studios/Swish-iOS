@@ -1,8 +1,8 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="9531" systemVersion="15C50" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" initialViewController="kpT-gb-fLe">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="9532" systemVersion="15D21" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" initialViewController="kpT-gb-fLe">
     <dependencies>
         <deployment identifier="iOS"/>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="9529"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="9530"/>
         <capability name="Aspect ratio constraints" minToolsVersion="5.1"/>
         <capability name="Constraints to layout margins" minToolsVersion="6.0"/>
     </dependencies>
@@ -65,31 +65,32 @@
                                                     <color key="textColor" red="0.36348356310000002" green="0.35199618259999998" blue="0.36392227560000001" alpha="1" colorSpace="calibratedRGB"/>
                                                     <nil key="highlightedColor"/>
                                                 </label>
+                                                <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="K5B-LF-YIT" customClass="ChatIndicatorView" customModule="Swish" customModuleProvider="target">
+                                                    <rect key="frame" x="126" y="12" width="42" height="28"/>
+                                                    <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                                </view>
                                             </subviews>
                                             <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
                                         </view>
                                         <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="calibratedRGB"/>
                                         <constraints>
                                             <constraint firstItem="xup-xT-YB0" firstAttribute="leading" secondItem="j5Q-GQ-QRW" secondAttribute="leadingMargin" constant="-8" id="9Lf-89-A5p"/>
+                                            <constraint firstAttribute="trailing" secondItem="K5B-LF-YIT" secondAttribute="trailing" constant="12" id="Fzz-Te-udJ"/>
                                             <constraint firstItem="xup-xT-YB0" firstAttribute="top" secondItem="j5Q-GQ-QRW" secondAttribute="topMargin" constant="-8" id="M5V-mS-NmR"/>
                                             <constraint firstAttribute="trailingMargin" secondItem="BdL-g3-ezK" secondAttribute="trailing" id="OJW-nZ-e8o"/>
                                             <constraint firstItem="lT6-gM-mhk" firstAttribute="bottom" secondItem="xup-xT-YB0" secondAttribute="bottom" id="RZj-fm-gTG"/>
                                             <constraint firstAttribute="leadingMargin" secondItem="BdL-g3-ezK" secondAttribute="leading" id="Svm-dj-pPE"/>
                                             <constraint firstItem="lT6-gM-mhk" firstAttribute="trailing" secondItem="xup-xT-YB0" secondAttribute="trailing" id="UI2-B2-QxW"/>
                                             <constraint firstAttribute="trailingMargin" secondItem="xup-xT-YB0" secondAttribute="trailing" constant="-8" id="ekR-Hy-2fx"/>
+                                            <constraint firstItem="K5B-LF-YIT" firstAttribute="top" secondItem="j5Q-GQ-QRW" secondAttribute="top" constant="12" id="fPc-gg-yYh"/>
                                             <constraint firstItem="lT6-gM-mhk" firstAttribute="leading" secondItem="xup-xT-YB0" secondAttribute="leading" id="fkP-j4-21s"/>
                                             <constraint firstItem="lT6-gM-mhk" firstAttribute="top" secondItem="xup-xT-YB0" secondAttribute="top" id="gSo-ua-udq"/>
                                             <constraint firstAttribute="bottomMargin" secondItem="BdL-g3-ezK" secondAttribute="bottom" constant="7" id="hE4-Jx-G55"/>
-                                            <constraint firstAttribute="bottomMargin" secondItem="BdL-g3-ezK" secondAttribute="bottom" id="hIn-Xh-gyG"/>
                                             <constraint firstItem="BdL-g3-ezK" firstAttribute="top" secondItem="xup-xT-YB0" secondAttribute="bottom" constant="17" id="rQb-iO-I84"/>
                                         </constraints>
                                         <size key="customSize" width="180" height="226"/>
-                                        <variation key="default">
-                                            <mask key="constraints">
-                                                <exclude reference="hIn-Xh-gyG"/>
-                                            </mask>
-                                        </variation>
                                         <connections>
+                                            <outlet property="chatIndicatorView" destination="K5B-LF-YIT" id="Gwo-bF-q4m"/>
                                             <outlet property="imageView" destination="xup-xT-YB0" id="zxj-sd-SMQ"/>
                                             <outlet property="messageLabel" destination="BdL-g3-ezK" id="6Bq-Xs-jYV"/>
                                             <outlet property="statusImageView" destination="wSe-t0-y29" id="Qmx-rN-NI1"/>
@@ -196,7 +197,7 @@
                                 </connections>
                             </button>
                         </subviews>
-                        <color key="backgroundColor" cocoaTouchSystemColor="groupTableViewBackgroundColor"/>
+                        <color key="backgroundColor" red="0.93725490199999995" green="0.93725490199999995" blue="0.95686274510000002" alpha="1" colorSpace="calibratedRGB"/>
                         <constraints>
                             <constraint firstAttribute="trailingMargin" secondItem="c0b-35-pfF" secondAttribute="trailing" id="1uC-hw-QJr"/>
                             <constraint firstAttribute="trailing" secondItem="X29-Jd-v56" secondAttribute="trailing" id="20Q-t3-T23"/>
