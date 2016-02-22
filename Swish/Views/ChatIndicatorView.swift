@@ -13,38 +13,46 @@ import SwiftyColor
 @IBDesignable
 class ChatIndicatorView: NibDesignable {
     
+    struct Metric {
+        static let CornerRadius: CGFloat = 12
+    }
+    
     @IBOutlet weak var chatCountLabel: UILabel!
     @IBOutlet weak var iconTrailingConstraints: NSLayoutConstraint!
     @IBOutlet weak var labelTrailingConstraints: NSLayoutConstraint!
     
-    func initWithPhoto(photo: Photo) {
+    required override init(frame: CGRect) {
+        super.init(frame: frame)
+    }
+    
+    required init?(coder aDecoder: NSCoder) {
+        super.init(coder: aDecoder)
         backgroundColor = 0x000000 ~ 29% // 4C
-        
+        layer.cornerRadius = Metric.CornerRadius
+        layer.masksToBounds = true
+    }
+    
+    func initWithPhoto(photo: Photo) {
         if photo.hasOpenedChatRoom {
             alpha = 1
             
-            // TODO: 채팅방은 열려있는 채 채팅이 있거나 없을 경우 constraints 처리가 필요
             if photo.unreadMessageCount > 0 {
                 chatCountLabel.alpha = 1
                 chatCountLabel.text = String(photo.unreadMessageCount)
+                
                 labelTrailingConstraints.active = true
+                labelTrailingConstraints.priority = UILayoutPriorityRequired
                 iconTrailingConstraints.active = false
             } else {
                 chatCountLabel.alpha = 0
+                
                 labelTrailingConstraints.active = false
                 iconTrailingConstraints.active = true
+                iconTrailingConstraints.priority = UILayoutPriorityRequired
             }
+            layoutIfNeeded()
         } else {
             alpha = 0
         }
     }
-    
-    /*
-    // Only override drawRect: if you perform custom drawing.
-    // An empty implementation adversely affects performance during animation.
-    override func drawRect(rect: CGRect) {
-        // Drawing code
-    }
-    */
-
 }

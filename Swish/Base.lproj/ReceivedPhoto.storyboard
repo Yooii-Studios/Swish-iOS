@@ -61,7 +61,7 @@
                                                     <nil key="highlightedColor"/>
                                                 </label>
                                                 <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="2LJ-1f-ZmK" customClass="ChatIndicatorView" customModule="Swish" customModuleProvider="target">
-                                                    <rect key="frame" x="126" y="12" width="42" height="28"/>
+                                                    <rect key="frame" x="122" y="12" width="46" height="24"/>
                                                     <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                                 </view>
                                             </subviews>
@@ -154,7 +154,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="T7g-XC-ubD" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="1702" y="1661"/>
+            <point key="canvasLocation" x="867" y="949"/>
         </scene>
         <!--Received Photo-->
         <scene sceneID="L4q-Zh-eFe">
@@ -239,7 +239,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="Srx-Cr-yVl" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="3286" y="1661"/>
+            <point key="canvasLocation" x="2450.5" y="948.5"/>
         </scene>
         <!--Navigation Controller-->
         <scene sceneID="z7n-EL-g8T">
@@ -257,7 +257,7 @@
                 </navigationController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="DNw-rd-9Mc" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="2474" y="1661"/>
+            <point key="canvasLocation" x="1639" y="949"/>
         </scene>
     </scenes>
 </document>
