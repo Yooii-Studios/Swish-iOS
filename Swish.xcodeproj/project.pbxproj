@@ -142,6 +142,8 @@
 		F2D8829E1C0F13FE00DF8C6D /* PhotoActionView.swift in Sources */ = {isa = PBXBuildFile; fileRef = F2D8829D1C0F13FE00DF8C6D /* PhotoActionView.swift */; };
 		F2D882A11C0F1B7100DF8C6D /* PhotoActionView.xib in Resources */ = {isa = PBXBuildFile; fileRef = F2D882A01C0F1B7100DF8C6D /* PhotoActionView.xib */; };
 		F2D882A31C0F1BEA00DF8C6D /* CircleButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = F2D882A21C0F1BEA00DF8C6D /* CircleButton.swift */; };
+		F2E133021C7AE05C003ACCE7 /* ChatIndicatorView.xib in Resources */ = {isa = PBXBuildFile; fileRef = F2E133011C7AE05C003ACCE7 /* ChatIndicatorView.xib */; };
+		F2E133041C7AE4B8003ACCE7 /* ChatIndicatorView.swift in Sources */ = {isa = PBXBuildFile; fileRef = F2E133031C7AE4B8003ACCE7 /* ChatIndicatorView.swift */; };
 		F2E706221C27D3A9003CE154 /* CircleButton.xib in Resources */ = {isa = PBXBuildFile; fileRef = F2E706211C27D3A9003CE154 /* CircleButton.xib */; };
 		F2EA77AA1C2AB41100494C18 /* Splash.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = F2EA77A81C2AB41100494C18 /* Splash.storyboard */; };
 		F2EA77AC1C2AB53B00494C18 /* SplashViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = F2EA77AB1C2AB53B00494C18 /* SplashViewController.swift */; };
@@ -305,6 +307,8 @@
 		F2D8829D1C0F13FE00DF8C6D /* PhotoActionView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PhotoActionView.swift; sourceTree = "<group>"; };
 		F2D882A01C0F1B7100DF8C6D /* PhotoActionView.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = PhotoActionView.xib; sourceTree = "<group>"; };
 		F2D882A21C0F1BEA00DF8C6D /* CircleButton.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CircleButton.swift; sourceTree = "<group>"; };
+		F2E133011C7AE05C003ACCE7 /* ChatIndicatorView.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = ChatIndicatorView.xib; sourceTree = "<group>"; };
+		F2E133031C7AE4B8003ACCE7 /* ChatIndicatorView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ChatIndicatorView.swift; sourceTree = "<group>"; };
 		F2E706211C27D3A9003CE154 /* CircleButton.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = CircleButton.xib; sourceTree = "<group>"; };
 		F2EA77A91C2AB41100494C18 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Splash.storyboard; sourceTree = "<group>"; };
 		F2EA77AB1C2AB53B00494C18 /* SplashViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SplashViewController.swift; sourceTree = "<group>"; };
@@ -565,6 +569,7 @@
 				F29CEBCF1C60C8F300F4ED55 /* DateDividerViewCell.swift */,
 				F29CEBD11C60C90E00F4ED55 /* OtherUserChatViewCell.swift */,
 				F29CEBD31C60C91800F4ED55 /* MyChatViewCell.swift */,
+				F2E133031C7AE4B8003ACCE7 /* ChatIndicatorView.swift */,
 			);
 			path = Views;
 			sourceTree = "<group>";
@@ -602,6 +607,7 @@
 				F2D882A01C0F1B7100DF8C6D /* PhotoActionView.xib */,
 				F2BDF9DE1C2144750031682B /* PhotoVoteView.xib */,
 				F23CF9781C3CB9CD00C36064 /* PhotoStatusView.xib */,
+				F2E133011C7AE05C003ACCE7 /* ChatIndicatorView.xib */,
 			);
 			path = Xibs;
 			sourceTree = "<group>";
@@ -734,6 +740,7 @@
 				F257A8A11BFDD0FD00BD56C8 /* PhotoMap.storyboard in Resources */,
 				F245DCBE1B9E7B2D0072308B /* LaunchScreen.storyboard in Resources */,
 				F23A7B181BA1D4070063233F /* PhotoPicker.storyboard in Resources */,
+				F2E133021C7AE05C003ACCE7 /* ChatIndicatorView.xib in Resources */,
 				F245DCBB1B9E7B2D0072308B /* Assets.xcassets in Resources */,
 				F2C98B4D1C71D3F800D603A7 /* PhotoDetail.storyboard in Resources */,
 				F2EA77AA1C2AB41100494C18 /* Splash.storyboard in Resources */,
@@ -864,6 +871,7 @@
 				57C7AA8C1BFDB152008E10F6 /* CGSize+Operator.swift in Sources */,
 				F23CF97C1C3CDBC900C36064 /* MyProfileViewController.swift in Sources */,
 				F2261CAA1C0729D000C12729 /* SentPhotoDetailViewController.swift in Sources */,
+				F2E133041C7AE4B8003ACCE7 /* ChatIndicatorView.swift in Sources */,
 				57CC3F511C03019B00A04568 /* PhotoMapType.swift in Sources */,
 				5721F3FA1BD9C3CB00F0E733 /* SentPhotoStateLoader.swift in Sources */,
 				F2D882A31C0F1BEA00DF8C6D /* CircleButton.swift in Sources */,
