@@ -7,9 +7,9 @@
     <objects>
         <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner" customClass="ChatIndicatorView" customModule="Swish" customModuleProvider="target">
             <connections>
-                <outlet property="chatCountLabel" destination="QfC-8b-mGy" id="gpL-xf-CyM"/>
                 <outlet property="iconTrailingConstraints" destination="pHU-8a-hxH" id="wTS-Jg-flf"/>
                 <outlet property="labelTrailingConstraints" destination="GXF-a8-SHm" id="dlC-xx-O2P"/>
+                <outlet property="unreadMessageCountLabel" destination="QfC-8b-mGy" id="Otc-Yu-wTj"/>
             </connections>
         </placeholder>
         <placeholder placeholderIdentifier="IBFirstResponder" id="-2" customClass="UIResponder"/>

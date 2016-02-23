@@ -17,7 +17,7 @@ class ChatIndicatorView: NibDesignable {
         static let CornerRadius: CGFloat = 12
     }
     
-    @IBOutlet weak var chatCountLabel: UILabel!
+    @IBOutlet weak var unreadMessageCountLabel: UILabel!
     @IBOutlet var iconTrailingConstraints: NSLayoutConstraint!
     @IBOutlet var labelTrailingConstraints: NSLayoutConstraint!
     
@@ -42,14 +42,14 @@ class ChatIndicatorView: NibDesignable {
     
     func setUnreadChatCount(unreadMessageCount: Int) {
         if unreadMessageCount > 0 {
-            chatCountLabel.alpha = 1
-            chatCountLabel.text = String(unreadMessageCount)
+            unreadMessageCountLabel.alpha = 1
+            unreadMessageCountLabel.text = String(unreadMessageCount)
             
             labelTrailingConstraints.active = true
             labelTrailingConstraints.priority = UILayoutPriorityRequired
             iconTrailingConstraints.active = false
         } else {
-            chatCountLabel.alpha = 0
+            unreadMessageCountLabel.alpha = 0
             
             iconTrailingConstraints.active = true
             iconTrailingConstraints.priority = UILayoutPriorityRequired
