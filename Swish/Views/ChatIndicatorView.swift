@@ -35,24 +35,26 @@ class ChatIndicatorView: NibDesignable {
     func setUpWithPhoto(photo: Photo) {
         if photo.hasOpenedChatRoom {
             alpha = 1
-            
-            if photo.unreadMessageCount > 0 {
-                chatCountLabel.alpha = 1
-                chatCountLabel.text = String(photo.unreadMessageCount)
-                
-                labelTrailingConstraints.active = true
-                labelTrailingConstraints.priority = UILayoutPriorityRequired
-                iconTrailingConstraints.active = false
-            } else {
-                chatCountLabel.alpha = 0
-                
-                labelTrailingConstraints.active = false
-                iconTrailingConstraints.active = true
-                iconTrailingConstraints.priority = UILayoutPriorityRequired
-            }
-            layoutIfNeeded()
         } else {
             alpha = 0
         }
+    }
+    
+    func setUnreadChatCount(unreadMessageCount: Int) {
+        if unreadMessageCount > 0 {
+            chatCountLabel.alpha = 1
+            chatCountLabel.text = String(unreadMessageCount)
+            
+            labelTrailingConstraints.active = true
+            labelTrailingConstraints.priority = UILayoutPriorityRequired
+            iconTrailingConstraints.active = false
+        } else {
+            chatCountLabel.alpha = 0
+            
+            iconTrailingConstraints.active = true
+            iconTrailingConstraints.priority = UILayoutPriorityRequired
+            labelTrailingConstraints.active = false
+        }
+        layoutIfNeeded()
     }
 }
