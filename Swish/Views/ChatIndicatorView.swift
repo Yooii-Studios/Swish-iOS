@@ -17,9 +17,9 @@ class ChatIndicatorView: NibDesignable {
         static let CornerRadius: CGFloat = 12
     }
     
-    @IBOutlet weak var chatCountLabel: UILabel!
-    @IBOutlet weak var iconTrailingConstraints: NSLayoutConstraint!
-    @IBOutlet weak var labelTrailingConstraints: NSLayoutConstraint!
+    @IBOutlet weak var unreadMessageCountLabel: UILabel!
+    @IBOutlet var iconTrailingConstraints: NSLayoutConstraint!
+    @IBOutlet var labelTrailingConstraints: NSLayoutConstraint!
     
     required override init(frame: CGRect) {
         super.init(frame: frame)
@@ -35,24 +35,26 @@ class ChatIndicatorView: NibDesignable {
     func setUpWithPhoto(photo: Photo) {
         if photo.hasOpenedChatRoom {
             alpha = 1
-            
-            if photo.unreadMessageCount > 0 {
-                chatCountLabel.alpha = 1
-                chatCountLabel.text = String(photo.unreadMessageCount)
-                
-                labelTrailingConstraints.active = true
-                labelTrailingConstraints.priority = UILayoutPriorityRequired
-                iconTrailingConstraints.active = false
-            } else {
-                chatCountLabel.alpha = 0
-                
-                labelTrailingConstraints.active = false
-                iconTrailingConstraints.active = true
-                iconTrailingConstraints.priority = UILayoutPriorityRequired
-            }
-            layoutIfNeeded()
         } else {
             alpha = 0
         }
+    }
+    
+    func setUnreadChatCount(unreadMessageCount: Int) {
+        if unreadMessageCount > 0 {
+            unreadMessageCountLabel.alpha = 1
+            unreadMessageCountLabel.text = String(unreadMessageCount)
+            
+            labelTrailingConstraints.active = true
+            labelTrailingConstraints.priority = UILayoutPriorityRequired
+            iconTrailingConstraints.active = false
+        } else {
+            unreadMessageCountLabel.alpha = 0
+            
+            iconTrailingConstraints.active = true
+            iconTrailingConstraints.priority = UILayoutPriorityRequired
+            labelTrailingConstraints.active = false
+        }
+        layoutIfNeeded()
     }
 }

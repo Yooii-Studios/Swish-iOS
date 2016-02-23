@@ -34,9 +34,9 @@ class PhotoViewCell: UICollectionViewCell {
     }
     
     private func observeUnreadChatMessageCountForPhoto(photo: Photo) {
-        observeCanceller = PhotoObserver.observeUnreadMessageCountForPhoto(photo, owner: self, handler: { unreadCount in
-            // TODO: 읽지 않은 채팅 메시지 갯수 UI 업데이트 및 로그 삭제 필요
-            print("\(photo.id)s unread message count: \(unreadCount)")
+        observeCanceller = PhotoObserver.observeUnreadMessageCountForPhoto(photo, owner: self,
+            handler: { [weak self] unreadCount in
+                self?.chatIndicatorView.setUnreadChatCount(unreadCount)
         })
     }
     
