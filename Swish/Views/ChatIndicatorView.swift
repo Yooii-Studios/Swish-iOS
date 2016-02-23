@@ -18,8 +18,8 @@ class ChatIndicatorView: NibDesignable {
     }
     
     @IBOutlet weak var chatCountLabel: UILabel!
-    @IBOutlet weak var iconTrailingConstraints: NSLayoutConstraint!
-    @IBOutlet weak var labelTrailingConstraints: NSLayoutConstraint!
+    @IBOutlet var iconTrailingConstraints: NSLayoutConstraint!
+    @IBOutlet var labelTrailingConstraints: NSLayoutConstraint!
     
     required override init(frame: CGRect) {
         super.init(frame: frame)
