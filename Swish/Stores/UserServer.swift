@@ -11,6 +11,8 @@ import UIKit
 import SwiftyJSON
 import RealmSwift
 
+typealias PhotoIDAndChatMessage = (photoId: Photo.ID, chatMessage: ChatMessage)
+
 final class UserServer {
     
     private static let BaseClientUrl = SwishServer.Host + "/clients"
@@ -91,6 +93,26 @@ final class UserServer {
             SwishServer.requestWith(httpRequest)
     }
     
+    class func getUnreadChatMessages(id: User.ID, onSuccess: (photoAndChatMessages: [PhotoIDAndChatMessage]) -> (),
+        onFail: FailCallback) {
+            let url = "\(BaseClientUrl)/\(id)/unread_chats"
+            let parser = { (resultJson: JSON) -> [PhotoIDAndChatMessage] in return unreadChatsFrom(resultJson) }
+            let httpRequest = HttpRequest<[PhotoIDAndChatMessage]>(
+                method: .GET, url: url, parser: parser, onSuccess: onSuccess, onFail: onFail)
+            
+            SwishServer.requestWith(httpRequest)
+    }
+    
+    class func makeChatMessagesRead(id: User.ID, readChatMessages: [ChatMessage], onSuccess: DefaultSuccessCallback,
+        onFail: FailCallback) {
+            let url = "\(BaseClientUrl)/\(id)/read_chats"
+            let params = updateChatMessagesWith(readChatMessages)
+            let httpRequest = HttpRequest<JSON>(method: .PATCH, url: url, parameters : params,
+                parser: SwishServer.DefaultParser, onSuccess: onSuccess, onFail: onFail)
+            
+            SwishServer.requestWith(httpRequest)
+    }
+    
     // MARK: - Params
     
     private class func registerMeParamsWith(name: String? = nil, about: String? = nil,
@@ -138,6 +160,12 @@ final class UserServer {
     private class func updateMyProfileImageParamsWith(image: UIImage) -> Param? {
         let encoded = image.base64EncodedString
         return encoded != nil ? [ "image_resource": encoded! ] : nil
+    }
+    
+    private class func updateChatMessagesWith(readChatMessages: [ChatMessage]) -> Param {
+        var params = Param()
+        params.updateValue(readChatMessages.map{ $0.serverId }, forKey: "read_chat_id")
+        return params
     }
     
     // MARK: - Parsers
@@ -192,5 +220,16 @@ final class UserServer {
             photoMetadataList.append(PhotoMetadata(url: url))
         }
         return photoMetadataList.count > 0 ? photoMetadataList : nil
+    }
+    
+    private class func unreadChatsFrom(resultJson: JSON) -> [PhotoIDAndChatMessage] {
+        var photoIdAndChatMessages: [PhotoIDAndChatMessage] = Array<PhotoIDAndChatMessage>()
+        for (_, messageDataJson) in resultJson {
+            let photoId = messageDataJson["photo_id"].int64Value
+            let chatMessage = ChatMessage.create(messageDataJson["content"].stringValue,
+                serverId: messageDataJson["id"].stringValue, senderId: messageDataJson["sender_id"].stringValue)
+            photoIdAndChatMessages.append((photoId, chatMessage))
+        }
+        return photoIdAndChatMessages
     }
 }

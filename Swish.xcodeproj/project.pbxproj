@@ -46,7 +46,6 @@
 		57A095461BEB316F00333E6D /* WingsHelper.swift in Sources */ = {isa = PBXBuildFile; fileRef = 57A095451BEB316F00333E6D /* WingsHelper.swift */; };
 		57A29A671C044CE00016E265 /* CLLocationManager+Authorization.swift in Sources */ = {isa = PBXBuildFile; fileRef = 57A29A661C044CE00016E265 /* CLLocationManager+Authorization.swift */; };
 		57A29A691C044DBD0016E265 /* SystemSettingsHelper.swift in Sources */ = {isa = PBXBuildFile; fileRef = 57A29A681C044DBD0016E265 /* SystemSettingsHelper.swift */; };
-		57B348B21C28002600AFBDED /* ChatMessageNotificationHandler.swift in Sources */ = {isa = PBXBuildFile; fileRef = 57B348B11C28002600AFBDED /* ChatMessageNotificationHandler.swift */; };
 		57B348B41C28026800AFBDED /* RateNotificationHandler.swift in Sources */ = {isa = PBXBuildFile; fileRef = 57B348B31C28026800AFBDED /* RateNotificationHandler.swift */; };
 		57B348B61C28050A00AFBDED /* UserLevelInfo.swift in Sources */ = {isa = PBXBuildFile; fileRef = 57B348B51C28050A00AFBDED /* UserLevelInfo.swift */; };
 		57B769BB1C310A0F0036FC24 /* CollectionType+Shuffle.swift in Sources */ = {isa = PBXBuildFile; fileRef = 57B769BA1C310A0F0036FC24 /* CollectionType+Shuffle.swift */; };
@@ -204,7 +203,6 @@
 		57A095451BEB316F00333E6D /* WingsHelper.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = WingsHelper.swift; sourceTree = "<group>"; };
 		57A29A661C044CE00016E265 /* CLLocationManager+Authorization.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "CLLocationManager+Authorization.swift"; sourceTree = "<group>"; };
 		57A29A681C044DBD0016E265 /* SystemSettingsHelper.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SystemSettingsHelper.swift; sourceTree = "<group>"; };
-		57B348B11C28002600AFBDED /* ChatMessageNotificationHandler.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ChatMessageNotificationHandler.swift; sourceTree = "<group>"; };
 		57B348B31C28026800AFBDED /* RateNotificationHandler.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RateNotificationHandler.swift; sourceTree = "<group>"; };
 		57B348B51C28050A00AFBDED /* UserLevelInfo.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UserLevelInfo.swift; sourceTree = "<group>"; };
 		57B769BA1C310A0F0036FC24 /* CollectionType+Shuffle.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "CollectionType+Shuffle.swift"; sourceTree = "<group>"; };
@@ -379,7 +377,6 @@
 				5796738D1B9FFE7200382247 /* ChatMessageSendState.swift */,
 				57C173EC1BDE3EFC0084DF8D /* ChatMessageSender.swift */,
 				57C729DB1BDF2C0D00DDFFDA /* ChatBlocker.swift */,
-				57B348B11C28002600AFBDED /* ChatMessageNotificationHandler.swift */,
 			);
 			path = Chat;
 			sourceTree = "<group>";
@@ -940,7 +937,6 @@
 				F257A8A31BFDD1C800BD56C8 /* PhotoCollectionMapViewController.swift in Sources */,
 				57A095461BEB316F00333E6D /* WingsHelper.swift in Sources */,
 				F2C98B4A1C71D3E500D603A7 /* PhotoDetailViewController.swift in Sources */,
-				57B348B21C28002600AFBDED /* ChatMessageNotificationHandler.swift in Sources */,
 				570B87081BA8056B0093CEED /* SwishServer.swift in Sources */,
 				573713291BD7165A006B272A /* Timestamp.swift in Sources */,
 				5777C3611C0EB08600DE43B4 /* ImageDownloader+DownloadImage.swift in Sources */,

@@ -75,7 +75,32 @@ final class MeManager {
             })
     }
     
+    class func fetchMyUnreadChatMessages() {
+        let userId = SwishDatabase.me().id
+        UserServer.getUnreadChatMessages(
+            userId,
+            onSuccess: { photoIdAndChatMessages in
+                saveChatMessages(photoIdAndChatMessages)
+                UserServer.makeChatMessagesRead(
+                    userId,
+                    readChatMessages: photoIdAndChatMessages.map{ $0.chatMessage },
+                    onSuccess: { _ in},
+                    onFail: { print($0) }
+                )
+            },
+            onFail: { print($0) }
+        )
+    }
+    
     class func saveMyLevelInfo(userLevelInfo: UserLevelInfo) {
         SwishDatabase.updateMyLevelInfo(userLevelInfo)
+    }
+    
+    private class func saveChatMessages(photoIdAndChatMessages: [PhotoIDAndChatMessage]) {
+        for photoIdAndChatMessage in photoIdAndChatMessages {
+            SwishDatabase.saveChatMessage(photoIdAndChatMessage.photoId,
+                chatMessage: photoIdAndChatMessage.chatMessage)
+            SwishDatabase.increaseUnreadChatCount(photoIdAndChatMessage.photoId)
+        }
     }
 }
