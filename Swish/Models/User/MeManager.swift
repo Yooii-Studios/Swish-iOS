@@ -87,6 +87,7 @@ final class MeManager {
                     onSuccess: { _ in},
                     onFail: { print($0) }
                 )
+                syncAppBadgeCount()
             },
             onFail: { print($0) }
         )
@@ -102,5 +103,9 @@ final class MeManager {
                 chatMessage: photoIdAndChatMessage.chatMessage)
             SwishDatabase.increaseUnreadChatCount(photoIdAndChatMessage.photoId)
         }
+    }
+    
+    private class func syncAppBadgeCount() {
+        UIApplication.sharedApplication().applicationIconBadgeNumber = SwishDatabase.allUnreadMessageCount()
     }
 }
