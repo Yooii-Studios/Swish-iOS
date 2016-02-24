@@ -19,7 +19,7 @@ final class SwishDatabase {
     class func migrate() {
         let config = Realm.Configuration(
             // TODO: 출시 전에 버전 0으로 변경하자
-            schemaVersion: 37,
+            schemaVersion: 38,
             
             migrationBlock: { migration, oldSchemaVersion in
                 // TODO: 35버전에서 PhotoState의 rawValue가 제거됨. 출시 빌드에서 schemeVersion을 0으로 변경한다면 이 부분 제거되어야 함
