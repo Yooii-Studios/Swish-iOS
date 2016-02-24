@@ -13,11 +13,11 @@ final class MeManager {
     
     typealias DefaultCallback = () -> ()
     
-    class func me() -> Me {
+    final class func me() -> Me {
         return SwishDatabase.me()
     }
     
-    class func registerMe(name: String? = nil, about: String? = nil, image: UIImage? = nil,
+    final class func registerMe(name: String? = nil, about: String? = nil, image: UIImage? = nil,
         onSuccess: ((me: Me) -> ())? = nil, onFail: DefaultCallback? = nil) {
             UserServer.registerMe(name, about: about, image: image,
                 onSuccess: { (me) -> () in
@@ -28,7 +28,7 @@ final class MeManager {
             })
     }
     
-    class func updateMe(name: String? = nil, about: String? = nil,
+    final class func updateMe(name: String? = nil, about: String? = nil,
         onSuccess: DefaultCallback? = nil, onFail: DefaultCallback? = nil) {
             let userId = SwishDatabase.me().id
             UserServer.updateMe(userId, name: name, about: about,
@@ -40,7 +40,7 @@ final class MeManager {
             })
     }
     
-    class func updateMyDeviceToken(deviceToken: String,
+    final class func updateMyDeviceToken(deviceToken: String,
         onSuccess: DefaultCallback? = nil, onFail: DefaultCallback? = nil) {
             let userId = SwishDatabase.me().id
             UserServer.updateMyDeviceToken(
@@ -51,7 +51,7 @@ final class MeManager {
             )
     }
     
-    class func updateMyProfileImage(image: UIImage,
+    final class func updateMyProfileImage(image: UIImage,
         onSuccess: ((profileImageUrl: String) -> ())? = nil, onFail: DefaultCallback? = nil) {
             let userId = SwishDatabase.me().id
             UserServer.updateMyProfileImage(userId, image: image,
@@ -63,7 +63,7 @@ final class MeManager {
             })
     }
     
-    class func updateMyActivityStatus(onSuccess: ((record: UserActivityRecord) -> ())? = nil,
+    final class func updateMyActivityStatus(onSuccess: ((record: UserActivityRecord) -> ())? = nil,
         onFail: DefaultCallback? = nil) {
             let userId = SwishDatabase.me().id
             UserServer.activityRecordWith(userId,
@@ -75,7 +75,7 @@ final class MeManager {
             })
     }
     
-    class func fetchMyUnreadChatMessages() {
+    final class func fetchMyUnreadChatMessages() {
         let userId = SwishDatabase.me().id
         UserServer.getUnreadChatMessages(
             userId,
@@ -93,11 +93,11 @@ final class MeManager {
         )
     }
     
-    class func saveMyLevelInfo(userLevelInfo: UserLevelInfo) {
+    final class func saveMyLevelInfo(userLevelInfo: UserLevelInfo) {
         SwishDatabase.updateMyLevelInfo(userLevelInfo)
     }
     
-    private class func saveChatMessages(photoIdAndChatMessages: [PhotoIDAndChatMessage]) {
+    final private class func saveChatMessages(photoIdAndChatMessages: [PhotoIDAndChatMessage]) {
         for photoIdAndChatMessage in photoIdAndChatMessages {
             SwishDatabase.saveChatMessage(photoIdAndChatMessage.photoId,
                 chatMessage: photoIdAndChatMessage.chatMessage)
@@ -105,7 +105,7 @@ final class MeManager {
         }
     }
     
-    private class func syncAppBadgeCount() {
+    final private class func syncAppBadgeCount() {
         UIApplication.sharedApplication().applicationIconBadgeNumber = SwishDatabase.allUnreadMessageCount()
     }
 }
