@@ -45,15 +45,13 @@ class ChatIndicatorView: NibDesignable {
             unreadMessageCountLabel.alpha = 1
             unreadMessageCountLabel.text = String(unreadMessageCount)
             
-            labelTrailingConstraints.active = true
-            labelTrailingConstraints.priority = UILayoutPriorityRequired
             iconTrailingConstraints.active = false
+            labelTrailingConstraints.active = true
         } else {
             unreadMessageCountLabel.alpha = 0
             
-            iconTrailingConstraints.active = true
-            iconTrailingConstraints.priority = UILayoutPriorityRequired
             labelTrailingConstraints.active = false
+            iconTrailingConstraints.active = true
         }
         layoutIfNeeded()
     }
