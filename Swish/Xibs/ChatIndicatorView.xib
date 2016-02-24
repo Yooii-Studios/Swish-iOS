@@ -35,7 +35,7 @@
             <constraints>
                 <constraint firstAttribute="bottom" secondItem="3SM-vq-QHX" secondAttribute="bottom" constant="6" id="6po-X8-T4t"/>
                 <constraint firstAttribute="bottom" secondItem="QfC-8b-mGy" secondAttribute="bottom" id="Clz-Ep-sF6"/>
-                <constraint firstAttribute="trailing" secondItem="QfC-8b-mGy" secondAttribute="trailing" constant="10" id="GXF-a8-SHm"/>
+                <constraint firstAttribute="trailing" secondItem="QfC-8b-mGy" secondAttribute="trailing" priority="999" constant="10" id="GXF-a8-SHm"/>
                 <constraint firstItem="3SM-vq-QHX" firstAttribute="leading" secondItem="iN0-l3-epB" secondAttribute="leading" constant="10" id="LMu-wl-NAl"/>
                 <constraint firstItem="3SM-vq-QHX" firstAttribute="top" secondItem="iN0-l3-epB" secondAttribute="top" constant="6" id="TCZ-Ni-qeN"/>
                 <constraint firstItem="QfC-8b-mGy" firstAttribute="leading" secondItem="3SM-vq-QHX" secondAttribute="trailing" constant="6" id="U1G-yZ-HqZ"/>

@@ -15,6 +15,8 @@ class ChatIndicatorView: NibDesignable {
     
     struct Metric {
         static let CornerRadius: CGFloat = 12
+        static let PriorityHigh: UILayoutPriority = 999
+        static let PriorityLow: UILayoutPriority = 249
     }
     
     @IBOutlet weak var unreadMessageCountLabel: UILabel!
@@ -45,15 +47,17 @@ class ChatIndicatorView: NibDesignable {
             unreadMessageCountLabel.alpha = 1
             unreadMessageCountLabel.text = String(unreadMessageCount)
             
-            labelTrailingConstraints.active = true
-            labelTrailingConstraints.priority = UILayoutPriorityRequired
             iconTrailingConstraints.active = false
+            iconTrailingConstraints.priority = Metric.PriorityLow
+            labelTrailingConstraints.active = true
+            labelTrailingConstraints.priority = Metric.PriorityHigh
         } else {
             unreadMessageCountLabel.alpha = 0
             
-            iconTrailingConstraints.active = true
-            iconTrailingConstraints.priority = UILayoutPriorityRequired
             labelTrailingConstraints.active = false
+            labelTrailingConstraints.priority = Metric.PriorityLow
+            iconTrailingConstraints.active = true
+            iconTrailingConstraints.priority = Metric.PriorityHigh
         }
         layoutIfNeeded()
     }
