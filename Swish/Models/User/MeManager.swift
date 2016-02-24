@@ -81,7 +81,7 @@ final class MeManager {
             userId,
             onSuccess: { photoIdAndChatMessages in
                 saveChatMessages(photoIdAndChatMessages)
-                UserServer.markChatMessagesReceived(
+                UserServer.markChatMessagesAsReceived(
                     userId,
                     receivedChatMessages: photoIdAndChatMessages.map{ $0.chatMessage },
                     onSuccess: { _ in},
