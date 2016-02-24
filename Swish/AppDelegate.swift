@@ -25,7 +25,6 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         SwishDatabase.migrate()
         initIQKeyboardManager()
         initNavigationBarAppearance()
-        handleLaunchOptions(launchOptions)
         return true
     }
     
@@ -39,13 +38,6 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         let navigationBarAppearace = UINavigationBar.appearance()
         navigationBarAppearace.barStyle = .Black
         navigationBarAppearace.translucent = false
-    }
-    
-    private func handleLaunchOptions(launchOptions: [NSObject: AnyObject]?) {
-        if let notificationInfo = launchOptions?[UIApplicationLaunchOptionsRemoteNotificationKey] as? NotificationInfo {
-            print("Launch  from push notification")
-            handleRemoteNotification(notificationInfo, updateUI: false)
-        }
     }
     
     func applicationWillResignActive(application: UIApplication) {
@@ -81,18 +73,21 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         print("Fail to get token : \(error)")
     }
     
-    func application(application: UIApplication, didReceiveRemoteNotification userInfo: [NSObject : AnyObject]) {
-        print("Receive notification")
-        handleRemoteNotification(userInfo, updateUI: true)
+    func application(application: UIApplication, didReceiveRemoteNotification userInfo: [NSObject : AnyObject],
+        fetchCompletionHandler completionHandler: (UIBackgroundFetchResult) -> Void) {
+            if application.applicationState == .Inactive {
+                handleRemoteNotification(userInfo, updateUI: true)
+            } else if application.applicationState == .Active && application.applicationState == .Background {
+                handleRemoteNotification(userInfo, updateUI: false)
+                completionHandler(.NewData);
+            }
     }
     
     func handleRemoteNotification(notificationInfo: NotificationInfo, updateUI: Bool) {
-        // TODO: Like, Dislike, Chat 관련 알람을 처리해줘야함
-        // TODO: Badge 관련 처리를 해줘야함
         print("Handle notification here: \(notificationInfo)")
         let category = JSON(notificationInfo)["aps"]["category"].stringValue
         if category == "chat" {
-            ChatMessageNotificationHandler().handleUserInfo(notificationInfo)
+            MeManager.fetchMyUnreadChatMessages()
         } else if category == "like" || category == "dislike" {
             RateNotificationHandler().handleNotificationInfo(notificationInfo)
         }
