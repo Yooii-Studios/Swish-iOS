@@ -103,10 +103,10 @@ final class UserServer {
             SwishServer.requestWith(httpRequest)
     }
     
-    class func makeChatMessagesRead(id: User.ID, readChatMessages: [ChatMessage], onSuccess: DefaultSuccessCallback,
+    class func makeChatMessagesReceived(id: User.ID, receivedChatMessages: [ChatMessage], onSuccess: DefaultSuccessCallback,
         onFail: FailCallback) {
-            let url = "\(BaseClientUrl)/\(id)/read_chats"
-            let params = updateChatMessagesWith(readChatMessages)
+            let url = "\(BaseClientUrl)/\(id)/receive_chats"
+            let params = updateChatMessagesWith(receivedChatMessages)
             let httpRequest = HttpRequest<JSON>(method: .PATCH, url: url, parameters : params,
                 parser: SwishServer.DefaultParser, onSuccess: onSuccess, onFail: onFail)
             
@@ -164,7 +164,7 @@ final class UserServer {
     
     private class func updateChatMessagesWith(readChatMessages: [ChatMessage]) -> Param {
         var params = Param()
-        params.updateValue(readChatMessages.map{ $0.serverId }, forKey: "read_chat_id")
+        params.updateValue(readChatMessages.map{ $0.serverId }, forKey: "received_chat_id")
         return params
     }
     
