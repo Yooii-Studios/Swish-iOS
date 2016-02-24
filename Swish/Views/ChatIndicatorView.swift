@@ -15,8 +15,8 @@ class ChatIndicatorView: NibDesignable {
     
     struct Metric {
         static let CornerRadius: CGFloat = 12
-        static let PriorityHigh = 999
-        static let PriorityLow = 249
+        static let PriorityHigh: UILayoutPriority = 999
+        static let PriorityLow: UILayoutPriority = 249
     }
     
     @IBOutlet weak var unreadMessageCountLabel: UILabel!
