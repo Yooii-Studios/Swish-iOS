@@ -52,7 +52,6 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
     
     func applicationWillEnterForeground(application: UIApplication) {
         // Called as part of the transition from the background to the inactive state; here you can undo many of the changes made on entering the background.
-        MeManager.fetchMyUnreadChatMessages()
     }
     
     func applicationDidBecomeActive(application: UIApplication) {
@@ -76,7 +75,9 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
     
     func application(application: UIApplication, didReceiveRemoteNotification userInfo: [NSObject : AnyObject],
         fetchCompletionHandler completionHandler: (UIBackgroundFetchResult) -> Void) {
-            if application.applicationState == .Active {
+            if application.applicationState == .Inactive {
+                handleRemoteNotification(userInfo, updateUI: true)
+            } else if application.applicationState == .Active && application.applicationState == .Background {
                 handleRemoteNotification(userInfo, updateUI: false)
                 completionHandler(.NewData);
             }
