@@ -103,7 +103,7 @@ final class UserServer {
             SwishServer.requestWith(httpRequest)
     }
     
-    class func makeChatMessagesReceived(id: User.ID, receivedChatMessages: [ChatMessage], onSuccess: DefaultSuccessCallback,
+    class func markChatMessagesReceived(id: User.ID, receivedChatMessages: [ChatMessage], onSuccess: DefaultSuccessCallback,
         onFail: FailCallback) {
             let url = "\(BaseClientUrl)/\(id)/receive_chats"
             let params = updateChatMessagesWith(receivedChatMessages)
