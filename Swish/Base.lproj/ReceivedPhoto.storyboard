@@ -104,7 +104,7 @@
                                         </variation>
                                         <connections>
                                             <outlet property="chatIndicatorView" destination="2LJ-1f-ZmK" id="YM0-SV-jUh"/>
-                                            <outlet property="distanceLabel" destination="gf8-Qq-8Sc" id="azi-e0-v6c"/>
+                                            <outlet property="departInfoLabel" destination="gf8-Qq-8Sc" id="ZKb-O2-gL7"/>
                                             <outlet property="imageView" destination="UIu-Xw-6O6" id="QRJ-xz-qUv"/>
                                             <outlet property="messageLabel" destination="zXm-Cx-IHM" id="YnW-Jv-TEi"/>
                                             <outlet property="userNameLabel" destination="Ojl-H0-ZRS" id="oFP-7I-RFX"/>

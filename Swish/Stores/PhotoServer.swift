@@ -51,7 +51,8 @@ final class PhotoServer {
         onSuccess: (photoResponses: Array<PhotoResponse>) -> (), onFail: FailCallback) {
             let params = photosParamWith(userId, departLocation: departLocation, photoCount: photoCount)
             let parser = { (resultJson: JSON) -> Array<PhotoResponse> in return photoResponsesFrom(resultJson) }
-            let httpRequest = HttpRequest<Array<PhotoResponse>>(method: .GET, url: BasePhotoUrl, parameters: params, parser: parser, onSuccess: onSuccess, onFail: onFail)
+            let httpRequest = HttpRequest<Array<PhotoResponse>>(method: .GET, url: BasePhotoUrl, parameters: params,
+                parser: parser, onSuccess: onSuccess, onFail: onFail)
             
             SwishServer.requestWith(httpRequest)
     }
@@ -251,11 +252,14 @@ final class PhotoServer {
                 let latitude = photoJson["latitude"].doubleValue
                 let longitude = photoJson["longitude"].doubleValue
                 let photoDepartLocation = CLLocation(latitude: latitude, longitude: longitude)
+                let photoDepartCountry = photoJson["country"].stringValue
                 
                 let photoId = photoJson["id"].int64Value
                 let photoMessage = photoJson["message"].stringValue
-                let photo = Photo.create(photoId, message: photoMessage, departLocation: photoDepartLocation)
+                let photo = Photo.create(photoId, message: photoMessage, departLocation: photoDepartLocation,
+                    departCountry: photoDepartCountry)
                 photo.photoState = .Delivered
+                
                 
                 let imageUrl = photoJson["url"].stringValue
                 
