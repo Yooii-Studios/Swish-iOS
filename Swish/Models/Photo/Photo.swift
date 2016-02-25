@@ -38,6 +38,7 @@ class Photo: Object {
     
     dynamic var id: Photo.ID = InvalidId
     dynamic var message = InvalidMessage
+    dynamic var departCountry: String?
     dynamic var fileName = InvalidName
     dynamic var unreadMessageCount = 0
     dynamic var hasOpenedChatRoom = false
@@ -122,11 +123,13 @@ class Photo: Object {
         self.init(id: ID(intId))
     }
     
-    final class func create(id: Photo.ID = InvalidId, message: String, departLocation: CLLocation) -> Photo {
-        let photo = Photo(id: id)
-        photo.message = message
-        photo.departLocation = departLocation
-        return photo
+    final class func create(id: Photo.ID = InvalidId, message: String,
+        departLocation: CLLocation, departCountry: String) -> Photo {
+            let photo = Photo(id: id)
+            photo.message = message
+            photo.departLocation = departLocation
+            photo.departCountry = departCountry
+            return photo
     }
     
     // MARK: - Realm support
