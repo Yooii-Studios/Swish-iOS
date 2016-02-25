@@ -47,14 +47,14 @@ class PhotoActionView: NibDesignable {
     }
     
     private func observeUnreadCountForUpdatingLabel(photo: Photo) {
-        PhotoObserver.observeUnreadMessageCountForPhoto(photo, owner: self) { [weak self] (Int) -> Void in
-            self?.setUnreadChatCount(photo.unreadMessageCount)
+        PhotoObserver.observeUnreadMessageCountForPhoto(photo, owner: self) { [weak self] unreadMessageCount in
+            self?.setUnreadMessageCount(unreadMessageCount)
         }
     }
     
     // TODO: 맵, 챗 버튼 관련 애니메이션 추가 구현 필요
     private func observePhotoStateForVisibility(photo: Photo) {
-        PhotoObserver.observePhotoStateForPhoto(photo, owner: self) { [weak self] (id, state) -> Void in
+        PhotoObserver.observePhotoStateForPhoto(photo, owner: self) { [weak self] _, state in
             if state == .Liked {
                 if self?.mapButton.alpha == 0 {
                     self?.showMapButtonWithAnimation()
@@ -91,7 +91,7 @@ class PhotoActionView: NibDesignable {
     
     // TODO: 동현에게 안드로이드 handleReceivedMessage에 로직을 어떻게 처리할 건지에 대해 물어보기
     
-    private func setUnreadChatCount(count: Int) {
+    private func setUnreadMessageCount(count: Int) {
         if count > 0 && chatButton.alpha == 1 {
             unreadChatCountLabel.alpha = 1
             unreadChatCountLabel.text = String(count)
@@ -100,21 +100,4 @@ class PhotoActionView: NibDesignable {
             unreadChatCountLabel.text = ""
         }
     }
-
-    // MARK: - UI Customize
-    
-    // TODO: 추후 UI작업을 하면서 필요할 때 다시 사용할지 몰라 주석처리
-    /*
-    // Only override drawRect: if you perform custom drawing.
-    // An empty implementation adversely affects performance during animation.
-    override func drawRect(rect: CGRect) {
-        // Drawing code
-    }
-    */
-
-    /*
-    override func prepareForInterfaceBuilder() {
-        
-    }
-    */
 }

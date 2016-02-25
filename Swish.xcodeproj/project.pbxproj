@@ -46,7 +46,6 @@
 		57A095461BEB316F00333E6D /* WingsHelper.swift in Sources */ = {isa = PBXBuildFile; fileRef = 57A095451BEB316F00333E6D /* WingsHelper.swift */; };
 		57A29A671C044CE00016E265 /* CLLocationManager+Authorization.swift in Sources */ = {isa = PBXBuildFile; fileRef = 57A29A661C044CE00016E265 /* CLLocationManager+Authorization.swift */; };
 		57A29A691C044DBD0016E265 /* SystemSettingsHelper.swift in Sources */ = {isa = PBXBuildFile; fileRef = 57A29A681C044DBD0016E265 /* SystemSettingsHelper.swift */; };
-		57B348B21C28002600AFBDED /* ChatMessageNotificationHandler.swift in Sources */ = {isa = PBXBuildFile; fileRef = 57B348B11C28002600AFBDED /* ChatMessageNotificationHandler.swift */; };
 		57B348B41C28026800AFBDED /* RateNotificationHandler.swift in Sources */ = {isa = PBXBuildFile; fileRef = 57B348B31C28026800AFBDED /* RateNotificationHandler.swift */; };
 		57B348B61C28050A00AFBDED /* UserLevelInfo.swift in Sources */ = {isa = PBXBuildFile; fileRef = 57B348B51C28050A00AFBDED /* UserLevelInfo.swift */; };
 		57B769BB1C310A0F0036FC24 /* CollectionType+Shuffle.swift in Sources */ = {isa = PBXBuildFile; fileRef = 57B769BA1C310A0F0036FC24 /* CollectionType+Shuffle.swift */; };
@@ -142,6 +141,8 @@
 		F2D8829E1C0F13FE00DF8C6D /* PhotoActionView.swift in Sources */ = {isa = PBXBuildFile; fileRef = F2D8829D1C0F13FE00DF8C6D /* PhotoActionView.swift */; };
 		F2D882A11C0F1B7100DF8C6D /* PhotoActionView.xib in Resources */ = {isa = PBXBuildFile; fileRef = F2D882A01C0F1B7100DF8C6D /* PhotoActionView.xib */; };
 		F2D882A31C0F1BEA00DF8C6D /* CircleButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = F2D882A21C0F1BEA00DF8C6D /* CircleButton.swift */; };
+		F2E133021C7AE05C003ACCE7 /* ChatIndicatorView.xib in Resources */ = {isa = PBXBuildFile; fileRef = F2E133011C7AE05C003ACCE7 /* ChatIndicatorView.xib */; };
+		F2E133041C7AE4B8003ACCE7 /* ChatIndicatorView.swift in Sources */ = {isa = PBXBuildFile; fileRef = F2E133031C7AE4B8003ACCE7 /* ChatIndicatorView.swift */; };
 		F2E706221C27D3A9003CE154 /* CircleButton.xib in Resources */ = {isa = PBXBuildFile; fileRef = F2E706211C27D3A9003CE154 /* CircleButton.xib */; };
 		F2EA77AA1C2AB41100494C18 /* Splash.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = F2EA77A81C2AB41100494C18 /* Splash.storyboard */; };
 		F2EA77AC1C2AB53B00494C18 /* SplashViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = F2EA77AB1C2AB53B00494C18 /* SplashViewController.swift */; };
@@ -202,7 +203,6 @@
 		57A095451BEB316F00333E6D /* WingsHelper.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = WingsHelper.swift; sourceTree = "<group>"; };
 		57A29A661C044CE00016E265 /* CLLocationManager+Authorization.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "CLLocationManager+Authorization.swift"; sourceTree = "<group>"; };
 		57A29A681C044DBD0016E265 /* SystemSettingsHelper.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SystemSettingsHelper.swift; sourceTree = "<group>"; };
-		57B348B11C28002600AFBDED /* ChatMessageNotificationHandler.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ChatMessageNotificationHandler.swift; sourceTree = "<group>"; };
 		57B348B31C28026800AFBDED /* RateNotificationHandler.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RateNotificationHandler.swift; sourceTree = "<group>"; };
 		57B348B51C28050A00AFBDED /* UserLevelInfo.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UserLevelInfo.swift; sourceTree = "<group>"; };
 		57B769BA1C310A0F0036FC24 /* CollectionType+Shuffle.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "CollectionType+Shuffle.swift"; sourceTree = "<group>"; };
@@ -305,6 +305,8 @@
 		F2D8829D1C0F13FE00DF8C6D /* PhotoActionView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PhotoActionView.swift; sourceTree = "<group>"; };
 		F2D882A01C0F1B7100DF8C6D /* PhotoActionView.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = PhotoActionView.xib; sourceTree = "<group>"; };
 		F2D882A21C0F1BEA00DF8C6D /* CircleButton.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CircleButton.swift; sourceTree = "<group>"; };
+		F2E133011C7AE05C003ACCE7 /* ChatIndicatorView.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = ChatIndicatorView.xib; sourceTree = "<group>"; };
+		F2E133031C7AE4B8003ACCE7 /* ChatIndicatorView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ChatIndicatorView.swift; sourceTree = "<group>"; };
 		F2E706211C27D3A9003CE154 /* CircleButton.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = CircleButton.xib; sourceTree = "<group>"; };
 		F2EA77A91C2AB41100494C18 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Splash.storyboard; sourceTree = "<group>"; };
 		F2EA77AB1C2AB53B00494C18 /* SplashViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SplashViewController.swift; sourceTree = "<group>"; };
@@ -375,7 +377,6 @@
 				5796738D1B9FFE7200382247 /* ChatMessageSendState.swift */,
 				57C173EC1BDE3EFC0084DF8D /* ChatMessageSender.swift */,
 				57C729DB1BDF2C0D00DDFFDA /* ChatBlocker.swift */,
-				57B348B11C28002600AFBDED /* ChatMessageNotificationHandler.swift */,
 			);
 			path = Chat;
 			sourceTree = "<group>";
@@ -565,6 +566,7 @@
 				F29CEBCF1C60C8F300F4ED55 /* DateDividerViewCell.swift */,
 				F29CEBD11C60C90E00F4ED55 /* OtherUserChatViewCell.swift */,
 				F29CEBD31C60C91800F4ED55 /* MyChatViewCell.swift */,
+				F2E133031C7AE4B8003ACCE7 /* ChatIndicatorView.swift */,
 			);
 			path = Views;
 			sourceTree = "<group>";
@@ -602,6 +604,7 @@
 				F2D882A01C0F1B7100DF8C6D /* PhotoActionView.xib */,
 				F2BDF9DE1C2144750031682B /* PhotoVoteView.xib */,
 				F23CF9781C3CB9CD00C36064 /* PhotoStatusView.xib */,
+				F2E133011C7AE05C003ACCE7 /* ChatIndicatorView.xib */,
 			);
 			path = Xibs;
 			sourceTree = "<group>";
@@ -639,7 +642,9 @@
 				521D6262CB576DD9DC8C1FAB /* Check Pods Manifest.lock */,
 				F245DCA91B9E7B2D0072308B /* Sources */,
 				F245DCAA1B9E7B2D0072308B /* Frameworks */,
+				F2C203BC1C7451EE0011A696 /* Carte Pre */,
 				F245DCAB1B9E7B2D0072308B /* Resources */,
+				F2C203BD1C7451FD0011A696 /* Carte Post */,
 				BF22361CE87D68DE7CA40655 /* Copy Pods Resources */,
 				01E9A6D8439623F564604A4F /* Embed Pods Frameworks */,
 			);
@@ -732,6 +737,7 @@
 				F257A8A11BFDD0FD00BD56C8 /* PhotoMap.storyboard in Resources */,
 				F245DCBE1B9E7B2D0072308B /* LaunchScreen.storyboard in Resources */,
 				F23A7B181BA1D4070063233F /* PhotoPicker.storyboard in Resources */,
+				F2E133021C7AE05C003ACCE7 /* ChatIndicatorView.xib in Resources */,
 				F245DCBB1B9E7B2D0072308B /* Assets.xcassets in Resources */,
 				F2C98B4D1C71D3F800D603A7 /* PhotoDetail.storyboard in Resources */,
 				F2EA77AA1C2AB41100494C18 /* Splash.storyboard in Resources */,
@@ -801,6 +807,34 @@
 			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods/Pods-resources.sh\"\n";
 			showEnvVarsInLog = 0;
 		};
+		F2C203BC1C7451EE0011A696 /* Carte Pre */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			name = "Carte Pre";
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "ruby ${SRCROOT}/Pods/Carte/Carte/carte.rb pre";
+		};
+		F2C203BD1C7451FD0011A696 /* Carte Post */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			name = "Carte Post";
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "ruby ${SRCROOT}/Pods/Carte/Carte/carte.rb post";
+		};
 /* End PBXShellScriptBuildPhase section */
 
 /* Begin PBXSourcesBuildPhase section */
@@ -834,6 +868,7 @@
 				57C7AA8C1BFDB152008E10F6 /* CGSize+Operator.swift in Sources */,
 				F23CF97C1C3CDBC900C36064 /* MyProfileViewController.swift in Sources */,
 				F2261CAA1C0729D000C12729 /* SentPhotoDetailViewController.swift in Sources */,
+				F2E133041C7AE4B8003ACCE7 /* ChatIndicatorView.swift in Sources */,
 				57CC3F511C03019B00A04568 /* PhotoMapType.swift in Sources */,
 				5721F3FA1BD9C3CB00F0E733 /* SentPhotoStateLoader.swift in Sources */,
 				F2D882A31C0F1BEA00DF8C6D /* CircleButton.swift in Sources */,
@@ -902,7 +937,6 @@
 				F257A8A31BFDD1C800BD56C8 /* PhotoCollectionMapViewController.swift in Sources */,
 				57A095461BEB316F00333E6D /* WingsHelper.swift in Sources */,
 				F2C98B4A1C71D3E500D603A7 /* PhotoDetailViewController.swift in Sources */,
-				57B348B21C28002600AFBDED /* ChatMessageNotificationHandler.swift in Sources */,
 				570B87081BA8056B0093CEED /* SwishServer.swift in Sources */,
 				573713291BD7165A006B272A /* Timestamp.swift in Sources */,
 				5777C3611C0EB08600DE43B4 /* ImageDownloader+DownloadImage.swift in Sources */,
@@ -1090,9 +1124,10 @@
 				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
 				CLANG_WARN_UNREACHABLE_CODE = YES;
 				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
-				CODE_SIGN_IDENTITY = "";
+				CODE_SIGN_IDENTITY = "iPhone Developer";
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
 				COPY_PHASE_STRIP = NO;
+				CURRENT_PROJECT_VERSION = 16;
 				DEBUG_INFORMATION_FORMAT = dwarf;
 				ENABLE_STRICT_OBJC_MSGSEND = YES;
 				ENABLE_TESTABILITY = YES;
@@ -1117,7 +1152,7 @@
 				IPHONEOS_DEPLOYMENT_TARGET = 8.0;
 				MTL_ENABLE_DEBUG_INFO = YES;
 				ONLY_ACTIVE_ARCH = YES;
-				PROVISIONING_PROFILE = "6b0dbf5e-b642-4fa9-8450-2e1ed606e668";
+				PROVISIONING_PROFILE = "c616b2d2-c5de-4e12-bc74-616eb784bfa0";
 				SDKROOT = iphoneos;
 				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
 				TARGETED_DEVICE_FAMILY = "1,2";
@@ -1156,6 +1191,7 @@
 				CODE_SIGN_IDENTITY = "iPhone Distribution: Yooiistudios (AD75U9C2NK)";
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
 				COPY_PHASE_STRIP = NO;
+				CURRENT_PROJECT_VERSION = 16;
 				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
 				ENABLE_NS_ASSERTIONS = NO;
 				ENABLE_STRICT_OBJC_MSGSEND = YES;
@@ -1173,7 +1209,7 @@
 				GCC_WARN_UNUSED_VARIABLE = YES;
 				IPHONEOS_DEPLOYMENT_TARGET = 8.0;
 				MTL_ENABLE_DEBUG_INFO = NO;
-				PROVISIONING_PROFILE = "c4c7f33e-7bd8-4056-b3ce-7ac47fd44d14";
+				PROVISIONING_PROFILE = "67096831-b56e-41c1-8e81-125af63cf3bb";
 				SDKROOT = iphoneos;
 				TARGETED_DEVICE_FAMILY = "1,2";
 				VALIDATE_PRODUCT = YES;

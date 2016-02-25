@@ -119,7 +119,8 @@ final class DressingViewController: UIViewController, SegueHandlerType, Location
     
     func exchangePhotoWithLocation(location: CLLocation, sendCompletion: PhotoExchanger.SendCompletion,
         receiveCompletion: PhotoExchanger.ReceiveCompletion) {
-            let photo = Photo.create(message: textField.text!, departLocation: location)
+            // TODO: 일단은 빈 문자열을 보내지만, 보내기 전에 ip를 통해 해당 국가를 파싱하는 로직 구현해서 정상적인 국가 이름을 전송해야함
+            let photo = Photo.create(message: textField.text!, departLocation: location, departCountry: "")
             PhotoExchanger.exchange(photo, image: image, departLocation: location, sendCompletion: sendCompletion,
                 receiveCompletion: receiveCompletion)
     }

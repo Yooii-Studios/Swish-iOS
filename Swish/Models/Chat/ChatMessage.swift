@@ -11,12 +11,15 @@ import RealmSwift
 
 final class ChatMessage: Object, Hashable {
     
+    typealias ServerID = String
+    
     private static let defaultState = ChatMessageSendState.None
     private static let invalidReceivedTime = NSTimeInterval.NaN
     
     // MARK: - Attributes
     
     dynamic var message = ""
+    dynamic var serverId = ""
     var state: ChatMessageSendState {
         get {
             return ChatMessageSendState(rawValue: stateRaw) ?? ChatMessage.defaultState
@@ -55,16 +58,17 @@ final class ChatMessage: Object, Hashable {
     
     // MARK: - Init
     
-    private convenience init(message: String, senderId: User.ID, eventTime: NSDate = NSDate()) {
+    private convenience init(message: String, serverId: ServerID, senderId: User.ID, eventTime: NSDate = NSDate()) {
         self.init()
         self.message = message
+        self.serverId = serverId
         self.senderId = senderId
         self.receivedDate = eventTime
     }
     
-    final class func create(message: String, senderId: User.ID,
+    final class func create(message: String, serverId: ServerID = "-1", senderId: User.ID,
         builder: (ChatMessage) -> () = RealmObjectBuilder.builder) -> ChatMessage {
-            let chatMessage = ChatMessage(message: message, senderId: senderId)
+            let chatMessage = ChatMessage(message: message, serverId: serverId, senderId: senderId)
             builder(chatMessage)
             return chatMessage
     }

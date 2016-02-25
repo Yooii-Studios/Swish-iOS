@@ -12,7 +12,7 @@ import SwiftyJSON
 
 typealias DefaultSuccessCallback = (result: JSON) -> ()
 typealias FailCallback = (error: SwishError) -> ()
-typealias Param = Dictionary<String, String>
+typealias Param = Dictionary<String, AnyObject>
 typealias Header = Dictionary<String, String>
 
 private let InvalidStatusCode = -1
@@ -164,7 +164,7 @@ final class HttpRequest<T>: HttpRequestProtocol {
     
     let method: Alamofire.Method
     let url: String
-    let parameters: Dictionary<String, String>
+    let parameters: Dictionary<String, AnyObject>
     let parser: Parser
     let onSuccess: SuccessCallback
     let onFail: FailCallback
@@ -179,7 +179,7 @@ final class HttpRequest<T>: HttpRequestProtocol {
     private var request: Request?
     
     init(method: Alamofire.Method, url: String,
-        parameters: Dictionary<String, String> = Dictionary<String, String>(),
+        parameters: Dictionary<String, AnyObject> = Dictionary<String, AnyObject>(),
         parser: Parser, onSuccess: SuccessCallback, onFail: FailCallback) {
             self.method = method
             self.url = url

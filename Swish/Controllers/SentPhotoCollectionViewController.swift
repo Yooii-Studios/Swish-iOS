@@ -31,8 +31,26 @@ class SentPhotoCollectionViewController: UIViewController {
     private func initPhotos() {
         sentPhotos = SwishDatabase.sentPhotos()
         
-        PhotoObserver.observePhotoStateForPhotos(sentPhotos, owner: self) { [weak self] _ in
-            self?.photoCollectionView.reloadData()
+        PhotoObserver.observePhotoStateForPhotos(sentPhotos, owner: self) { [weak self] photoId, _ in
+            for (index, photo) in (self?.sentPhotos)!.enumerate() {
+                if photo.id == photoId {
+                    self?.photoCollectionView.reloadItemsAtIndexPaths([NSIndexPath(forRow: index, inSection: 0)])
+                }
+            }
+        }
+        
+        PhotoObserver.observeRecentEventTimeForPhotos(sentPhotos, owner: self) { [weak self] photoId, eventTime in
+            for (index, photo) in (self?.sentPhotos)!.enumerate() {
+                if photo.id == photoId {
+                    if let targetPhoto = self?.sentPhotos.removeAtIndex(index) {
+                        self?.sentPhotos.insert(targetPhoto, atIndex: 0)
+                        
+                        let previousIndexPath = NSIndexPath(forRow:index, inSection: 0)
+                        let targetIndexPath = NSIndexPath(forRow:0, inSection: 0)
+                        self?.photoCollectionView.moveItemAtIndexPath(previousIndexPath, toIndexPath: targetIndexPath)
+                    }
+                }
+            }
         }
     }
     

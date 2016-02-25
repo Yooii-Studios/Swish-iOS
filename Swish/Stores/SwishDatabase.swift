@@ -19,7 +19,7 @@ final class SwishDatabase {
     class func migrate() {
         let config = Realm.Configuration(
             // TODO: 출시 전에 버전 0으로 변경하자
-            schemaVersion: 37,
+            schemaVersion: 39,
             
             migrationBlock: { migration, oldSchemaVersion in
                 // TODO: 35버전에서 PhotoState의 rawValue가 제거됨. 출시 빌드에서 schemeVersion을 0으로 변경한다면 이 부분 제거되어야 함
@@ -137,7 +137,7 @@ final class SwishDatabase {
             me.profileUrl = profileImageUrl
         }
     }
-    
+
     class func updateMyActivityRecord(record: UserActivityRecord) {
         write {
             let me = self.me()
@@ -228,6 +228,10 @@ final class SwishDatabase {
         return nil
     }
     
+    class func allPhotos() -> Array<Photo> {
+        return objects(Photo).sort { return $0.recentEventTime > $1.recentEventTime }
+    }
+    
     class func receivedPhotos() -> Array<Photo> {
         let myId = me().id
         return objects {
@@ -242,6 +246,10 @@ final class SwishDatabase {
     // sentPhotos() 메서드와 중복이 있지만 퍼포먼스를 고려해 우선적으로 filter를 적용하기 위해 수정하지 않음
     class func deliveredSentPhotos() -> Array<Photo> {
         return me().photos.filter { $0.photoState != .Waiting }.sort { return $0.recentEventTime > $1.recentEventTime }
+    }
+    
+    class func allUnreadMessageCount() -> Int {
+        return allPhotos().reduce(0, combine: { $0 + unreadMessageCount($1.id) })
     }
     
     class func unreadMessageCount(id: Photo.ID) -> Int {

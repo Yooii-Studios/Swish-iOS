@@ -2,6 +2,7 @@ PODS:
   - Alamofire (3.0.1)
   - AlamofireImage (2.0.0):
     - Alamofire (~> 3.0)
+  - Carte (0.2.3)
   - CTAssetsPickerController (3.1.1):
     - PureLayout (~> 3.0.0)
   - DateTools (1.7.0)
@@ -27,6 +28,7 @@ PODS:
 DEPENDENCIES:
   - Alamofire (~> 3.0.1)
   - AlamofireImage (~> 2.0)
+  - Carte
   - CTAssetsPickerController (~> 3.1.0)
   - DateTools
   - DeviceUtil
@@ -53,6 +55,7 @@ CHECKOUT OPTIONS:
 SPEC CHECKSUMS:
   Alamofire: 2457e1b2e6c46bb05c3a598c542b7bfd08893775
   AlamofireImage: 5cecda9b1031f86067c89ddba1d91ead0a8c3f0e
+  Carte: b7cdc00b51023629b0e3d3cb9b8c5c5738a6e09e
   CTAssetsPickerController: 6fba9134a230656ffe34ac0effb0060a1ead65cb
   DateTools: 53288ee8b905fdc75897a1e6b5cc0144b14cba60
   DeviceUtil: e5fe3663e4b9fc4c357ce8bcf1db258a17751f5c

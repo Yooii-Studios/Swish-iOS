@@ -34,6 +34,20 @@ class ReceivedPhotoCollectionViewController: UIViewController, UICollectionViewD
         PhotoObserver.observePhotoStateForPhotos(receivedPhotos, owner: self) { [weak self] _ in
             self?.photoCollectionView.reloadData()
         }
+        
+        PhotoObserver.observeRecentEventTimeForPhotos(receivedPhotos, owner: self) { [weak self] photoId, eventTime in
+            for (index, photo) in (self?.receivedPhotos)!.enumerate() {
+                if photo.id == photoId {
+                    if let targetPhoto = self?._receivedPhotos.removeAtIndex(index) {
+                        self?._receivedPhotos.insert(targetPhoto, atIndex: 0)
+
+                        let previousIndexPath = NSIndexPath(forRow:index, inSection: 0)
+                        let targetIndexPath = NSIndexPath(forRow:0, inSection: 0)
+                        self?.photoCollectionView.moveItemAtIndexPath(previousIndexPath, toIndexPath: targetIndexPath)
+                    }
+                }
+            }
+        }
     }
     
     private func adjustCollectionViewCellSize() {
