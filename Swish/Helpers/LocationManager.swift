@@ -12,6 +12,7 @@ import CoreLocation
 final class LocationManager {
     
     static let dummyLocation = CLLocation(latitude: 36.01, longitude: 127.001)
+    static var countryInfo: CountryInfo!
     
     final class func requestLocation(block: (location: CLLocation) -> Void) {
         // TODO: 실제 로직 구현해야 함. 현재는 더미 위치 리턴하도록 구현해 둠
@@ -21,5 +22,9 @@ final class LocationManager {
                 block(location: dummyLocation)
             }
         }
+    }
+    
+    final class func fetchCurrentCountryWithIP() {
+        OutsideAPIServer.requestCountryInfo({ self.countryInfo = $0 }, onFail: { print($0) })
     }
 }
