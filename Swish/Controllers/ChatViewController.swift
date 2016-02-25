@@ -110,29 +110,33 @@ class ChatViewController: UIViewController, UITableViewDataSource, UITableViewDe
         isKeyboardAnimating = true
         
         let info = notification.userInfo!
-        let keyboardFrame: CGRect = (info[UIKeyboardFrameEndUserInfoKey] as! NSValue).CGRectValue()
+        let keyboardHeight = (info[UIKeyboardFrameEndUserInfoKey] as! NSValue).CGRectValue().size.height
+        var contentInsets: UIEdgeInsets
         
         if isLastChatMessageVisible() {
-            let animationDuration = (info[UIKeyboardAnimationDurationUserInfoKey] as! NSNumber).doubleValue
-            let animationCurve = (info[UIKeyboardAnimationCurveUserInfoKey] as! NSNumber).unsignedLongValue
+            contentInsets = UIEdgeInsetsMake(keyboardHeight, 0, 0, 0)
+            tableView.contentInset = contentInsets
+            tableView.scrollIndicatorInsets = contentInsets
             
-            tableViewTopConstraints.constant = -keyboardFrame.size.height
-            tableViewBottomConstraints.constant = tableViewBottomConstraints.constant + keyboardFrame.size.height
-            
-            let options = UIViewAnimationOptions(rawValue: animationCurve)
-            UIView.animateWithDuration(animationDuration, delay: 0, options: options, animations: { _ in
-                self.view.layoutIfNeeded()
-                }, completion: nil)
+            animateTableViewWithKeyboardHeight(keyboardHeight, withInfo: info)
         } else {
-            var contentInsets: UIEdgeInsets
-            if (UIInterfaceOrientationIsPortrait(UIApplication.sharedApplication().statusBarOrientation)) {
-                contentInsets = UIEdgeInsetsMake(0.0, 0.0, keyboardFrame.size.height, 0.0)
-            } else {
-                contentInsets = UIEdgeInsetsMake(0.0, 0.0, keyboardFrame.size.width, 0.0)
-            }
+            contentInsets = UIEdgeInsetsMake(0, 0, keyboardHeight, 0)
             tableView.contentInset = contentInsets
             tableView.scrollIndicatorInsets = contentInsets
         }
+    }
+    
+    final func animateTableViewWithKeyboardHeight(keyboardHeight: CGFloat, withInfo info: [NSObject : AnyObject]) {
+        let animationDuration = (info[UIKeyboardAnimationDurationUserInfoKey] as! NSNumber).doubleValue
+        let animationCurve = (info[UIKeyboardAnimationCurveUserInfoKey] as! NSNumber).unsignedLongValue
+        
+        tableViewTopConstraints.constant = -keyboardHeight
+        tableViewBottomConstraints.constant = tableViewBottomConstraints.constant + keyboardHeight
+        
+        let options = UIViewAnimationOptions(rawValue: animationCurve)
+        UIView.animateWithDuration(animationDuration, delay: 0, options: options, animations: { _ in
+            self.view.layoutIfNeeded()
+            }, completion: nil)
     }
     
     final func keyboardDidShow(notification: NSNotification) {
