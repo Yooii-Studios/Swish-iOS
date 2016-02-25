@@ -34,7 +34,7 @@ platform :ios do
       force: true
     )
     gym(scheme: "Swish") # Build your app - more options available
-    pilot
+    pilot(wait_processing_interval: 60) # Interval in seconds to wait for iTunes Connect
   end
 
   desc "Deploy a new version to the App Store"
