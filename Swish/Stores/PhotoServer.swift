@@ -68,10 +68,12 @@ final class PhotoServer {
             SwishServer.requestWith(httpRequest)
     }
     
-    class func save(photo: Photo, userId: User.ID, image: UIImage, onSuccess: (id: Photo.ID) -> (), onFail: FailCallback) {
-        saveParamWith(photo, userId: userId, image: image) { params in
+    class func save(photo: Photo, userId: User.ID, currentCountryInfo: CountryInfo, image: UIImage,
+        onSuccess: (id: Photo.ID) -> (), onFail: FailCallback) {
+        saveParamWith(photo, userId: userId, currentCountryInfo: currentCountryInfo, image: image) { params in
             let parser = { (resultJson: JSON) -> Photo.ID in return serverPhotoIdFrom(resultJson) }
-            let httpRequest = HttpRequest<Photo.ID>(method: .POST, url: BasePhotoUrl, parameters: params, parser: parser, onSuccess: onSuccess, onFail: onFail)
+            let httpRequest = HttpRequest<Photo.ID>(method: .POST, url: BasePhotoUrl, parameters: params,
+                parser: parser, onSuccess: onSuccess, onFail: onFail)
             
             SwishServer.requestWith(httpRequest)
         }
@@ -133,19 +135,22 @@ final class PhotoServer {
     }
     
     // ImageHelper.base64EncodedStringWith(image)에서 약 500ms의 running time확인, 예외적으로 dispatch_async 적용
-    private class func saveParamWith(photo: Photo, userId: User.ID, image: UIImage, completion: (param: Param) -> Void) {
-        dispatch_async(dispatch_get_global_queue(QOS_CLASS_USER_INITIATED, 0)) {
-            let params: Param =  [
-                "user_id": userId,
-                "message": photo.message,
-                "latitude": photo.departLocation.coordinate.latitude.description,
-                "longitude": photo.departLocation.coordinate.longitude.description,
-                "image_resource": image.base64EncodedString
-            ]
-            dispatch_async(dispatch_get_main_queue()) {
-                completion(param: params)
+    private class func saveParamWith(photo: Photo, userId: User.ID, currentCountryInfo: CountryInfo, image: UIImage,
+        completion: (param: Param) -> Void) {
+            dispatch_async(dispatch_get_global_queue(QOS_CLASS_USER_INITIATED, 0)) {
+                let params: Param =  [
+                    "user_id": userId,
+                    "message": photo.message,
+                    "latitude": photo.departLocation.coordinate.latitude.description,
+                    "longitude": photo.departLocation.coordinate.longitude.description,
+                    "image_resource": image.base64EncodedString,
+                    "country_name": currentCountryInfo.name,
+                    "country_code": currentCountryInfo.code
+                ]
+                dispatch_async(dispatch_get_main_queue()) {
+                    completion(param: params)
+                }
             }
-        }
     }
     
     private class func sendChatMessageParamWith(chatMessage: ChatMessage) -> Param {

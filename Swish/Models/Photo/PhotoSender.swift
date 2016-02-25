@@ -37,16 +37,18 @@ final class PhotoSender {
         FileHelper.createPhotosDirectory()
         
         let senderId = MeManager.me().id
+        let currentCountryInfo = LocationManager.countryInfo
         var index = 0
         for photo in request.photos {
             let image = request.images[index]
-            PhotoServer.save(photo, userId: senderId, image: image, onSuccess: { (id) -> () in
-                photo.saveImage(image) {
-                    SwishDatabase.saveSentPhoto(photo, serverId: id)
-                    
-                    self.notifySuccess()
-                }
-                }, onFail: { (error) -> () in
+            PhotoServer.save(photo, userId: senderId, currentCountryInfo: currentCountryInfo, image: image,
+                onSuccess: { id in
+                    photo.saveImage(image) {
+                        SwishDatabase.saveSentPhoto(photo, serverId: id)
+                        
+                        self.notifySuccess()
+                    }
+                }, onFail: { error in
                     print(error)
                     self.notifyFailure()
             })
