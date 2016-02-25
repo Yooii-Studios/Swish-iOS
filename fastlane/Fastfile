@@ -24,10 +24,11 @@ platform :ios do
   desc "This will also make sure the profile is up to date"
   lane :testflight do
     increment_version_build_numbers
-    cert
+    cert(output_path: "fastlane/output")
     sigh(
       app_identifier: "com.yooiistudios.swish",
-      force: true
+      force: true,
+      output_path: "fastlane/output"
     )
     commit_version_bump(
       message: "Version bump by fastlane",
@@ -35,7 +36,8 @@ platform :ios do
     )
     gym(
       scheme: "Swish",
-      clean: true
+      clean: true,
+      output_directory: "fastlane/output"
     ) # Build your app
     pilot(wait_processing_interval: 60) # Interval in seconds to wait for iTunes Connect
   end
