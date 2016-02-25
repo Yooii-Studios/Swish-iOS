@@ -220,7 +220,7 @@ class DatabaseTests: XCTestCase {
         
         let postfixDouble = Double(postfix)
         let departLocation = CLLocation(latitude: 35.889972 + postfixDouble, longitude: 128.611332 + postfixDouble)
-        let photo = Photo.create(Photo.ID(-1), message: "msg\(postfix)", departLocation: departLocation)
+        let photo = Photo.create(Photo.ID(-1), message: "msg\(postfix)", departLocation: departLocation, departCountry: "Republic of Korea")
         photo.fileName = "fn\(postfix)"
         
         photo.unreadMessageCount = postfix
