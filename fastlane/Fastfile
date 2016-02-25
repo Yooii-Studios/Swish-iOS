@@ -23,7 +23,7 @@ platform :ios do
   desc "Submit a new Beta Build to Apple TestFlight"
   desc "This will also make sure the profile is up to date"
   lane :testflight do
-    increment_version_build_numbers_and_commit
+    increment_version_build_numbers
     cert
     sigh(
       app_identifier: "com.yooiistudios.swish",
