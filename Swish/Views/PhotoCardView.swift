@@ -17,14 +17,14 @@ class PhotoCardView: NibDesignable {
     @IBOutlet var profileImageView: UIImageView!
     @IBOutlet var userIdLabel: UILabel!
     @IBOutlet var messageLabel: UILabel!
-    @IBOutlet var distanceLabel: UILabel!
+    @IBOutlet var departInfoLabel: UILabel!
     
     // MARK: - Initalize
     
     final func setUpWithPhoto(photo: Photo) {
         setUpPhotoImage(photo)
         setUpUserViews(photo)
-        setUpDistanceLabel(photo)
+        setUpDepartInfoLabel(photo)
     }
     
     private func setUpPhotoImage(photo: Photo) {
@@ -43,8 +43,9 @@ class PhotoCardView: NibDesignable {
         messageLabel.text = photo.message
     }
     
-    private func setUpDistanceLabel(photo: Photo) {
-        distanceLabel.text = photo.deliveredDistanceString
+    private func setUpDepartInfoLabel(photo: Photo) {
+        departInfoLabel.text = (photo.departCountry ?? "").isEmpty ?
+                photo.deliveredDistanceString : photo.departCountry
     }
     
     /*
