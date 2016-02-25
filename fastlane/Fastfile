@@ -21,6 +21,20 @@ platform :ios do
     pilot
   end
 
+  lane :v do
+    project_file = 'Swish.xcodeproj'
+    # increment_build_number(xcodeproj: project_file) # version bump
+    # increment_build_number
+    prompt_text = "What's the next version number? (ex: x.x.x)"
+    version_number  = prompt(text: prompt_text)
+#    increment_version_number(version_number: version_number)
+    commit_version_bump(
+      message: "Version bump by fastlane",
+      xcodeproj: project_file
+    )
+
+  end
+
   desc "Deploy a new version to the App Store"
   lane :appstore do
     # match(type: "appstore")
