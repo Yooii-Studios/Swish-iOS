@@ -42,3 +42,7 @@ xcuserdata
 
 Carthage/Build
 
+# fastlane
+fastlane/.Fastfile.swp
+fastlane/README.md
+fastlane/report.xml
