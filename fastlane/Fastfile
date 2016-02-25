@@ -33,7 +33,10 @@ platform :ios do
       message: "Version bump by fastlane",
       force: true
     )
-    gym(scheme: "Swish") # Build your app - more options available
+    gym(
+      scheme: "Swish",
+      clean: true
+    ) # Build your app
     pilot(wait_processing_interval: 60) # Interval in seconds to wait for iTunes Connect
   end
 
