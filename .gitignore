@@ -46,3 +46,4 @@ Carthage/Build
 fastlane/.Fastfile.swp
 fastlane/README.md
 fastlane/report.xml
+fastlane/output/
