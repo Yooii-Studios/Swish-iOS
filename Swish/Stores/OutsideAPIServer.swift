@@ -12,19 +12,19 @@ import SwiftyJSON
 
 final class OutsideAPIServer {
     
-    typealias CountryInfoTup = (name: String, code: String)
+    typealias CountryInfoTuple = (name: String, code: String)
     
-    class func requestCountryInfo(onSuccess: (countryInfo: CountryInfoTup) -> (), onFail: FailCallback) {
+    class func requestCountryInfo(onSuccess onSuccess: (countryInfo: CountryInfoTuple) -> Void, onFail: FailCallback) {
             let url = "http://ip-api.com/json"
-            let parser = { (resultJson: JSON) -> CountryInfoTup in return countryInfoFrom(resultJson) }
-            let httpRequest = HttpRequest<CountryInfoTup>(method: .GET, url: url,
+            let parser = { (resultJson: JSON) -> CountryInfoTuple in return countryInfoFrom(resultJson) }
+            let httpRequest = HttpRequest<CountryInfoTuple>(method: .GET, url: url,
                 parser: parser, onSuccess: onSuccess, onFail: onFail)
             httpRequest.useAuthHeader = false
             
             SwishServer.requestWith(httpRequest)
     }
     
-    private class func countryInfoFrom(resultJson: JSON) -> CountryInfoTup {
+    private class func countryInfoFrom(resultJson: JSON) -> CountryInfoTuple {
         return (name: resultJson["country"].stringValue, code: resultJson["countryCode"].stringValue)
     }
 }

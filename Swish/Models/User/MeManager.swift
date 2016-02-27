@@ -94,10 +94,13 @@ final class MeManager {
     }
     
     final class func fetchCurrentCountryWithIP() {
-        OutsideAPIServer.requestCountryInfo({
-                CountryInfo.instance.name = $0.name
-                CountryInfo.instance.code = $0.code
-            }, onFail: { print($0) })
+        OutsideAPIServer.requestCountryInfo(
+            onSuccess: { countryInfo in
+                CountryInfo.instance.name = countryInfo.name
+                CountryInfo.instance.code = countryInfo.code
+            },
+            onFail: { print($0) }
+        )
     }
     
     final class func saveMyLevelInfo(userLevelInfo: UserLevelInfo) {
