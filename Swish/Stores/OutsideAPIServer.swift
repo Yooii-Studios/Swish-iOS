@@ -13,7 +13,7 @@ typealias CountryInfoTuple = (name: String, code: String)
 
 final class OutsideAPIServer {
     
-    class func requestCountryInfo(onSuccess onSuccess: (countryInfo: CountryInfoTuple) -> Void, onFail: FailCallback) {
+    class func requestCountryInfo(onSuccess onSuccess: (CountryInfoTuple) -> Void, onFail: FailCallback) {
             let url = "http://ip-api.com/json"
             let parser = { (resultJson: JSON) -> CountryInfoTuple in return countryInfoFrom(resultJson) }
             let httpRequest = HttpRequest<CountryInfoTuple>(method: .GET, url: url,
