@@ -77,6 +77,7 @@
 		57FB36461BF1D72E0085EAAB /* EnvironmentVariables.swift in Sources */ = {isa = PBXBuildFile; fileRef = 57FB36451BF1D72E0085EAAB /* EnvironmentVariables.swift */; };
 		85DC322EC01B0FA668E09AEF /* Pods.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 1329CF0406A3CA7D132A3E08 /* Pods.framework */; };
 		AE0ADE631C7F7BCB00A3B4C7 /* OutsideAPIServer.swift in Sources */ = {isa = PBXBuildFile; fileRef = AE0ADE621C7F7BCB00A3B4C7 /* OutsideAPIServer.swift */; };
+		AE5DE43B1C819E40005B0F71 /* CountryInfo.swift in Sources */ = {isa = PBXBuildFile; fileRef = AE5DE43A1C819E40005B0F71 /* CountryInfo.swift */; };
 		AEF32DD91BA2F66400EA00A9 /* Photos.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = AEF32DD81BA2F66400EA00A9 /* Photos.framework */; };
 		AEF32DDB1BA2FDA400EA00A9 /* MediaLoader.swift in Sources */ = {isa = PBXBuildFile; fileRef = AEF32DDA1BA2FDA400EA00A9 /* MediaLoader.swift */; };
 		AEF32DDF1BA301A200EA00A9 /* PhotoCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = AEF32DDE1BA301A200EA00A9 /* PhotoCollectionViewCell.swift */; };
@@ -233,6 +234,7 @@
 		57FB36401BF1AD070085EAAB /* XCTestCase+DelayedExecution.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "XCTestCase+DelayedExecution.swift"; sourceTree = "<group>"; };
 		57FB36451BF1D72E0085EAAB /* EnvironmentVariables.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = EnvironmentVariables.swift; sourceTree = "<group>"; };
 		AE0ADE621C7F7BCB00A3B4C7 /* OutsideAPIServer.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = OutsideAPIServer.swift; sourceTree = "<group>"; };
+		AE5DE43A1C819E40005B0F71 /* CountryInfo.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CountryInfo.swift; sourceTree = "<group>"; };
 		AEF32DD41BA2F1C000EA00A9 /* AssetsLibrary.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = AssetsLibrary.framework; path = System/Library/Frameworks/AssetsLibrary.framework; sourceTree = SDKROOT; };
 		AEF32DD81BA2F66400EA00A9 /* Photos.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Photos.framework; path = System/Library/Frameworks/Photos.framework; sourceTree = SDKROOT; };
 		AEF32DDA1BA2FDA400EA00A9 /* MediaLoader.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MediaLoader.swift; sourceTree = "<group>"; };
@@ -393,6 +395,7 @@
 				57E09ADC1BCBAA34006A05DC /* OtherUserLoader.swift */,
 				5737132C1BD73101006B272A /* UserHelper.swift */,
 				57B348B51C28050A00AFBDED /* UserLevelInfo.swift */,
+				AE5DE43A1C819E40005B0F71 /* CountryInfo.swift */,
 			);
 			path = User;
 			sourceTree = "<group>";
@@ -870,6 +873,7 @@
 				F2261CAA1C0729D000C12729 /* SentPhotoDetailViewController.swift in Sources */,
 				F2E133041C7AE4B8003ACCE7 /* ChatIndicatorView.swift in Sources */,
 				57CC3F511C03019B00A04568 /* PhotoMapType.swift in Sources */,
+				AE5DE43B1C819E40005B0F71 /* CountryInfo.swift in Sources */,
 				5721F3FA1BD9C3CB00F0E733 /* SentPhotoStateLoader.swift in Sources */,
 				F2D882A31C0F1BEA00DF8C6D /* CircleButton.swift in Sources */,
 				AE0ADE631C7F7BCB00A3B4C7 /* OutsideAPIServer.swift in Sources */,

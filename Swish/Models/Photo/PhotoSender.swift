@@ -37,7 +37,7 @@ final class PhotoSender {
         FileHelper.createPhotosDirectory()
         
         let senderId = MeManager.me().id
-        let currentCountryInfo = MeManager.countryInfo
+        let currentCountryInfo = CountryInfo.instance
         var index = 0
         for photo in request.photos {
             let image = request.images[index]

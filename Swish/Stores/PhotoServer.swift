@@ -138,15 +138,22 @@ final class PhotoServer {
     private class func saveParamWith(photo: Photo, userId: User.ID, currentCountryInfo: CountryInfo, image: UIImage,
         completion: (param: Param) -> Void) {
             dispatch_async(dispatch_get_global_queue(QOS_CLASS_USER_INITIATED, 0)) {
-                let params: Param =  [
+                var params: Param =  [
                     "user_id": userId,
                     "message": photo.message,
                     "latitude": photo.departLocation.coordinate.latitude.description,
                     "longitude": photo.departLocation.coordinate.longitude.description,
-                    "image_resource": image.base64EncodedString,
-                    "country_name": currentCountryInfo.name,
-                    "country_code": currentCountryInfo.code
+                    "image_resource": image.base64EncodedString
                 ]
+                
+                if let countryName = currentCountryInfo.name {
+                    params.updateValue(countryName, forKey: "country_name")
+                }
+                
+                if let countryCode = currentCountryInfo.code {
+                    params.updateValue(countryCode, forKey: "country_code")
+                }
+                
                 dispatch_async(dispatch_get_main_queue()) {
                     completion(param: params)
                 }

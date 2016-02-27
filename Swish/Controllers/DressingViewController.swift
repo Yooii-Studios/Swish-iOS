@@ -119,7 +119,7 @@ final class DressingViewController: UIViewController, SegueHandlerType, Location
     
     func exchangePhotoWithLocation(location: CLLocation, sendCompletion: PhotoExchanger.SendCompletion,
         receiveCompletion: PhotoExchanger.ReceiveCompletion) {
-            let currentCountryInfo = MeManager.countryInfo
+            let currentCountryInfo = CountryInfo.instance
             let photo =
             Photo.create(message: textField.text!, departLocation: location, departCountry: currentCountryInfo.name)
             

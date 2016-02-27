@@ -13,8 +13,6 @@ final class MeManager {
     
     typealias DefaultCallback = () -> ()
     
-    static var countryInfo: CountryInfo!
-    
     final class func me() -> Me {
         return SwishDatabase.me()
     }
@@ -96,7 +94,10 @@ final class MeManager {
     }
     
     final class func fetchCurrentCountryWithIP() {
-        OutsideAPIServer.requestCountryInfo({ self.countryInfo = $0 }, onFail: { print($0) })
+        OutsideAPIServer.requestCountryInfo({
+                CountryInfo.instance.name = $0.name
+                CountryInfo.instance.code = $0.code
+            }, onFail: { print($0) })
     }
     
     final class func saveMyLevelInfo(userLevelInfo: UserLevelInfo) {
