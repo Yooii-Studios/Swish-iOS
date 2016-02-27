@@ -13,16 +13,16 @@ final class PhotoExchanger {
     typealias SendCompletion = () -> Void
     typealias ReceiveCompletion = (photos: [Photo]?) -> Void
     
-    final class func exchange(photo: Photo, image: UIImage, departLocation: CLLocation, sendCompletion: SendCompletion,
-        receiveCompletion: ReceiveCompletion) {
+    final class func exchange(photo: Photo, image: UIImage,
+        sendCompletion: SendCompletion, receiveCompletion: ReceiveCompletion) {
             let photoSendRequest = createPhotoSendRequest(photo, image: image, completion: { sentPhotoCount in
                 sendCompletion()
                 guard sentPhotoCount > 0 else {
                     receiveCompletion(photos: nil)
                     return
                 }
-                let photoReceiveRequest = createPhotoReceiveRequest(sentPhotoCount, departLocation: departLocation,
-                    completion: receiveCompletion)
+                let photoReceiveRequest = createPhotoReceiveRequest(sentPhotoCount,
+                    departLocation: photo.departLocation, completion: receiveCompletion)
                 PhotoReceiver.execute(photoReceiveRequest)
             })
             PhotoSender.execute(photoSendRequest)

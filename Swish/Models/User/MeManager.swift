@@ -93,6 +93,16 @@ final class MeManager {
         )
     }
     
+    final class func fetchCurrentCountryWithIP() {
+        OutsideAPIServer.requestCountryInfo(
+            onSuccess: {
+                CountryInfo.instance.name = $0.name
+                CountryInfo.instance.code = $0.code
+            },
+            onFail: { print($0) }
+        )
+    }
+    
     final class func saveMyLevelInfo(userLevelInfo: UserLevelInfo) {
         SwishDatabase.updateMyLevelInfo(userLevelInfo)
     }

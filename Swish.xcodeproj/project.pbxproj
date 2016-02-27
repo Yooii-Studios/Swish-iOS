@@ -23,7 +23,6 @@
 		5765CEF81BA2EC9C00DE6A05 /* KeychainItemWrapper.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5765CEF71BA2EC9C00DE6A05 /* KeychainItemWrapper.swift */; };
 		576A81991BC7545A0064A70F /* StickerServer.swift in Sources */ = {isa = PBXBuildFile; fileRef = 576A81981BC7545A0064A70F /* StickerServer.swift */; };
 		5772A7DC1BD5F23F00A7F880 /* PhotoReceiver.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5772A7DB1BD5F23F00A7F880 /* PhotoReceiver.swift */; };
-		5772A7DE1BD5F71E00A7F880 /* LocationManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5772A7DD1BD5F71E00A7F880 /* LocationManager.swift */; };
 		5772A7E01BD626EA00A7F880 /* NSCache+LowMemory.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5772A7DF1BD626EA00A7F880 /* NSCache+LowMemory.swift */; };
 		5773646D1C22F69D007EA7B5 /* RealmObjectObservable.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5773646C1C22F69D007EA7B5 /* RealmObjectObservable.swift */; };
 		577465C81BF2CFDA0093D97A /* WingsObserver.swift in Sources */ = {isa = PBXBuildFile; fileRef = 577465C71BF2CFDA0093D97A /* WingsObserver.swift */; };
@@ -77,6 +76,8 @@
 		57FB36411BF1AD070085EAAB /* XCTestCase+DelayedExecution.swift in Sources */ = {isa = PBXBuildFile; fileRef = 57FB36401BF1AD070085EAAB /* XCTestCase+DelayedExecution.swift */; };
 		57FB36461BF1D72E0085EAAB /* EnvironmentVariables.swift in Sources */ = {isa = PBXBuildFile; fileRef = 57FB36451BF1D72E0085EAAB /* EnvironmentVariables.swift */; };
 		85DC322EC01B0FA668E09AEF /* Pods.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 1329CF0406A3CA7D132A3E08 /* Pods.framework */; };
+		AE0ADE631C7F7BCB00A3B4C7 /* OutsideAPIServer.swift in Sources */ = {isa = PBXBuildFile; fileRef = AE0ADE621C7F7BCB00A3B4C7 /* OutsideAPIServer.swift */; };
+		AE5DE43B1C819E40005B0F71 /* CountryInfo.swift in Sources */ = {isa = PBXBuildFile; fileRef = AE5DE43A1C819E40005B0F71 /* CountryInfo.swift */; };
 		AEF32DD91BA2F66400EA00A9 /* Photos.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = AEF32DD81BA2F66400EA00A9 /* Photos.framework */; };
 		AEF32DDB1BA2FDA400EA00A9 /* MediaLoader.swift in Sources */ = {isa = PBXBuildFile; fileRef = AEF32DDA1BA2FDA400EA00A9 /* MediaLoader.swift */; };
 		AEF32DDF1BA301A200EA00A9 /* PhotoCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = AEF32DDE1BA301A200EA00A9 /* PhotoCollectionViewCell.swift */; };
@@ -180,7 +181,6 @@
 		5765CEF71BA2EC9C00DE6A05 /* KeychainItemWrapper.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = KeychainItemWrapper.swift; sourceTree = "<group>"; };
 		576A81981BC7545A0064A70F /* StickerServer.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = StickerServer.swift; sourceTree = "<group>"; };
 		5772A7DB1BD5F23F00A7F880 /* PhotoReceiver.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PhotoReceiver.swift; sourceTree = "<group>"; };
-		5772A7DD1BD5F71E00A7F880 /* LocationManager.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LocationManager.swift; sourceTree = "<group>"; };
 		5772A7DF1BD626EA00A7F880 /* NSCache+LowMemory.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "NSCache+LowMemory.swift"; sourceTree = "<group>"; };
 		5773646C1C22F69D007EA7B5 /* RealmObjectObservable.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RealmObjectObservable.swift; sourceTree = "<group>"; };
 		577465C71BF2CFDA0093D97A /* WingsObserver.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = WingsObserver.swift; sourceTree = "<group>"; };
@@ -233,6 +233,8 @@
 		57F628391BA11D050008B23B /* DefaultObjectBuilder.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DefaultObjectBuilder.swift; sourceTree = "<group>"; };
 		57FB36401BF1AD070085EAAB /* XCTestCase+DelayedExecution.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "XCTestCase+DelayedExecution.swift"; sourceTree = "<group>"; };
 		57FB36451BF1D72E0085EAAB /* EnvironmentVariables.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = EnvironmentVariables.swift; sourceTree = "<group>"; };
+		AE0ADE621C7F7BCB00A3B4C7 /* OutsideAPIServer.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = OutsideAPIServer.swift; sourceTree = "<group>"; };
+		AE5DE43A1C819E40005B0F71 /* CountryInfo.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CountryInfo.swift; sourceTree = "<group>"; };
 		AEF32DD41BA2F1C000EA00A9 /* AssetsLibrary.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = AssetsLibrary.framework; path = System/Library/Frameworks/AssetsLibrary.framework; sourceTree = SDKROOT; };
 		AEF32DD81BA2F66400EA00A9 /* Photos.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Photos.framework; path = System/Library/Frameworks/Photos.framework; sourceTree = SDKROOT; };
 		AEF32DDA1BA2FDA400EA00A9 /* MediaLoader.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MediaLoader.swift; sourceTree = "<group>"; };
@@ -366,6 +368,7 @@
 				570FD2F61BAAB54E008CB163 /* UserServer.swift */,
 				57E2D9771BB28D8B008957C2 /* PhotoServer.swift */,
 				576A81981BC7545A0064A70F /* StickerServer.swift */,
+				AE0ADE621C7F7BCB00A3B4C7 /* OutsideAPIServer.swift */,
 			);
 			path = Stores;
 			sourceTree = "<group>";
@@ -392,6 +395,7 @@
 				57E09ADC1BCBAA34006A05DC /* OtherUserLoader.swift */,
 				5737132C1BD73101006B272A /* UserHelper.swift */,
 				57B348B51C28050A00AFBDED /* UserLevelInfo.swift */,
+				AE5DE43A1C819E40005B0F71 /* CountryInfo.swift */,
 			);
 			path = User;
 			sourceTree = "<group>";
@@ -578,7 +582,6 @@
 				5765CEF71BA2EC9C00DE6A05 /* KeychainItemWrapper.swift */,
 				571935321BA3C4C800856400 /* UUIDHelper.swift */,
 				AEF32DDA1BA2FDA400EA00A9 /* MediaLoader.swift */,
-				5772A7DD1BD5F71E00A7F880 /* LocationManager.swift */,
 				573713281BD7165A006B272A /* Timestamp.swift */,
 				575354C21BE1CB7C0034F24E /* DeviceHelper.swift */,
 				5772A7DF1BD626EA00A7F880 /* NSCache+LowMemory.swift */,
@@ -870,9 +873,10 @@
 				F2261CAA1C0729D000C12729 /* SentPhotoDetailViewController.swift in Sources */,
 				F2E133041C7AE4B8003ACCE7 /* ChatIndicatorView.swift in Sources */,
 				57CC3F511C03019B00A04568 /* PhotoMapType.swift in Sources */,
+				AE5DE43B1C819E40005B0F71 /* CountryInfo.swift in Sources */,
 				5721F3FA1BD9C3CB00F0E733 /* SentPhotoStateLoader.swift in Sources */,
 				F2D882A31C0F1BEA00DF8C6D /* CircleButton.swift in Sources */,
-				5772A7DE1BD5F71E00A7F880 /* LocationManager.swift in Sources */,
+				AE0ADE631C7F7BCB00A3B4C7 /* OutsideAPIServer.swift in Sources */,
 				5772A7E01BD626EA00A7F880 /* NSCache+LowMemory.swift in Sources */,
 				57C315FA1C2A645100AB7260 /* ReceivedPhotoDisplayable.swift in Sources */,
 				F2F545221BD5ED5500AEE02A /* ShareResultViewController.swift in Sources */,

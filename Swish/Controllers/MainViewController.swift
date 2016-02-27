@@ -32,6 +32,8 @@ final class MainViewController: UIViewController, UINavigationControllerDelegate
         
         initReceivedPhotoDisplayable()
         initPhotoCardView()
+        
+        MeManager.fetchCurrentCountryWithIP()
     }
     
     private func registerRemoteNotification() {
