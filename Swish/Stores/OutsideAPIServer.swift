@@ -9,21 +9,24 @@
 import Foundation
 import SwiftyJSON
 
-typealias CountryInfoTuple = (name: String, code: String)
+struct CountryInfoResponse {
+    let name: String
+    let code: String
+}
 
 final class OutsideAPIServer {
     
-    class func requestCountryInfo(onSuccess onSuccess: (CountryInfoTuple) -> Void, onFail: FailCallback) {
+    class func requestCountryInfo(onSuccess onSuccess: CountryInfoResponse -> Void, onFail: FailCallback) {
             let url = "http://ip-api.com/json"
-            let parser = { (resultJson: JSON) -> CountryInfoTuple in return countryInfoFrom(resultJson) }
-            let httpRequest = HttpRequest<CountryInfoTuple>(method: .GET, url: url,
+            let parser = { (resultJson: JSON) -> CountryInfoResponse in return countryInfoFrom(resultJson) }
+            let httpRequest = HttpRequest<CountryInfoResponse>(method: .GET, url: url,
                 parser: parser, onSuccess: onSuccess, onFail: onFail)
             httpRequest.useAuthHeader = false
             
             SwishServer.requestWith(httpRequest)
     }
     
-    private class func countryInfoFrom(resultJson: JSON) -> CountryInfoTuple {
-        return (name: resultJson["country"].stringValue, code: resultJson["countryCode"].stringValue)
+    private class func countryInfoFrom(resultJson: JSON) -> CountryInfoResponse {
+        return CountryInfoResponse(name: resultJson["country"].stringValue, code: resultJson["countryCode"].stringValue)
     }
 }
