@@ -23,7 +23,6 @@
 		5765CEF81BA2EC9C00DE6A05 /* KeychainItemWrapper.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5765CEF71BA2EC9C00DE6A05 /* KeychainItemWrapper.swift */; };
 		576A81991BC7545A0064A70F /* StickerServer.swift in Sources */ = {isa = PBXBuildFile; fileRef = 576A81981BC7545A0064A70F /* StickerServer.swift */; };
 		5772A7DC1BD5F23F00A7F880 /* PhotoReceiver.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5772A7DB1BD5F23F00A7F880 /* PhotoReceiver.swift */; };
-		5772A7DE1BD5F71E00A7F880 /* LocationManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5772A7DD1BD5F71E00A7F880 /* LocationManager.swift */; };
 		5772A7E01BD626EA00A7F880 /* NSCache+LowMemory.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5772A7DF1BD626EA00A7F880 /* NSCache+LowMemory.swift */; };
 		5773646D1C22F69D007EA7B5 /* RealmObjectObservable.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5773646C1C22F69D007EA7B5 /* RealmObjectObservable.swift */; };
 		577465C81BF2CFDA0093D97A /* WingsObserver.swift in Sources */ = {isa = PBXBuildFile; fileRef = 577465C71BF2CFDA0093D97A /* WingsObserver.swift */; };
@@ -181,7 +180,6 @@
 		5765CEF71BA2EC9C00DE6A05 /* KeychainItemWrapper.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = KeychainItemWrapper.swift; sourceTree = "<group>"; };
 		576A81981BC7545A0064A70F /* StickerServer.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = StickerServer.swift; sourceTree = "<group>"; };
 		5772A7DB1BD5F23F00A7F880 /* PhotoReceiver.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PhotoReceiver.swift; sourceTree = "<group>"; };
-		5772A7DD1BD5F71E00A7F880 /* LocationManager.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LocationManager.swift; sourceTree = "<group>"; };
 		5772A7DF1BD626EA00A7F880 /* NSCache+LowMemory.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "NSCache+LowMemory.swift"; sourceTree = "<group>"; };
 		5773646C1C22F69D007EA7B5 /* RealmObjectObservable.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RealmObjectObservable.swift; sourceTree = "<group>"; };
 		577465C71BF2CFDA0093D97A /* WingsObserver.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = WingsObserver.swift; sourceTree = "<group>"; };
@@ -581,7 +579,6 @@
 				5765CEF71BA2EC9C00DE6A05 /* KeychainItemWrapper.swift */,
 				571935321BA3C4C800856400 /* UUIDHelper.swift */,
 				AEF32DDA1BA2FDA400EA00A9 /* MediaLoader.swift */,
-				5772A7DD1BD5F71E00A7F880 /* LocationManager.swift */,
 				573713281BD7165A006B272A /* Timestamp.swift */,
 				575354C21BE1CB7C0034F24E /* DeviceHelper.swift */,
 				5772A7DF1BD626EA00A7F880 /* NSCache+LowMemory.swift */,
@@ -875,7 +872,6 @@
 				57CC3F511C03019B00A04568 /* PhotoMapType.swift in Sources */,
 				5721F3FA1BD9C3CB00F0E733 /* SentPhotoStateLoader.swift in Sources */,
 				F2D882A31C0F1BEA00DF8C6D /* CircleButton.swift in Sources */,
-				5772A7DE1BD5F71E00A7F880 /* LocationManager.swift in Sources */,
 				AE0ADE631C7F7BCB00A3B4C7 /* OutsideAPIServer.swift in Sources */,
 				5772A7E01BD626EA00A7F880 /* NSCache+LowMemory.swift in Sources */,
 				57C315FA1C2A645100AB7260 /* ReceivedPhotoDisplayable.swift in Sources */,
