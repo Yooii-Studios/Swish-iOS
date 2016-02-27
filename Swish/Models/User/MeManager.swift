@@ -95,9 +95,9 @@ final class MeManager {
     
     final class func fetchCurrentCountryWithIP() {
         OutsideAPIServer.requestCountryInfo(
-            onSuccess: { countryInfo in
-                CountryInfo.instance.name = countryInfo.name
-                CountryInfo.instance.code = countryInfo.code
+            onSuccess: {
+                CountryInfo.instance.name = $0.name
+                CountryInfo.instance.code = $0.code
             },
             onFail: { print($0) }
         )

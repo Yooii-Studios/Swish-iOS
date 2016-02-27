@@ -9,10 +9,9 @@
 import Foundation
 import SwiftyJSON
 
+typealias CountryInfoTuple = (name: String, code: String)
 
 final class OutsideAPIServer {
-    
-    typealias CountryInfoTuple = (name: String, code: String)
     
     class func requestCountryInfo(onSuccess onSuccess: (countryInfo: CountryInfoTuple) -> Void, onFail: FailCallback) {
             let url = "http://ip-api.com/json"
