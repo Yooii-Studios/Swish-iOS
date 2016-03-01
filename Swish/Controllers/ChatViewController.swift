@@ -65,28 +65,26 @@ class ChatViewController: UIViewController, UITableViewDataSource, UITableViewDe
             if let photoId = self?.photo.id {
                 SwishDatabase.updateAllChatRead(photoId)
                 
-                self?.chatItems.insert((self?.photo.chatMessages[index])!, atIndex: 0)
-                
-                var isChatDateDifferent: Bool = false
+                var isDateDifferent: Bool = false
                 let chatMessagesCount = self?.photo.chatMessages.count
                 if chatMessagesCount > 1 {
-                    let previousChatMessage = self?.photo.chatMessages[1]
-                    if previousChatMessage?.receivedDate.day() != NSDate().day() {
-                        isChatDateDifferent = true
+                    let previousLatestChatMessage = self?.photo.chatMessages[1]
+                    if previousLatestChatMessage?.receivedDate.day() != NSDate().day() {
+                        isDateDifferent = true
                     }
                 } else if chatMessagesCount == 1 {
-                    isChatDateDifferent = true
+                    isDateDifferent = true
                 }
                 
-                if isChatDateDifferent {
+                if isDateDifferent {
                     let chatDateDivider = ChatDateDivider(eventTime: NSDate())
-                    self?.chatItems.append(chatDateDivider)
+                    self?.chatItems.insert(chatDateDivider, atIndex: 0)
                 }
+                self?.chatItems.insert((self?.photo.chatMessages[index])!, atIndex: 0)
                 
                 if let chatItemsCount = self?.chatItems.count {
                     var indexPaths = [NSIndexPath(forRow: chatItemsCount - 1, inSection: 0)]
-                    
-                    if isChatDateDifferent {
+                    if isDateDifferent {
                         indexPaths.insert(NSIndexPath(forRow: chatItemsCount - 2, inSection: 0), atIndex: 0)
                     }
                     
@@ -257,18 +255,18 @@ class ChatViewController: UIViewController, UITableViewDataSource, UITableViewDe
             amount: Metric.ChatMessageFetchAmount)
         
         dispatch_async(dispatch_get_global_queue(QOS_CLASS_USER_INITIATED, 0)) {
-            // TODO: 날짜 구분 아이템 추가
-            // TODO: 전부 읽어와서 읽어올 예상 갯수보다 적으면 마지막 로딩, 날짜 구분선 넣어주기
-            // TODO: 안드로이드 로직 참고해서 여러 예외 상황 처리하고 날짜 구분선 넣을 것
-            
             let olderChatItems: Array<ChatItem> = olderChatMessages
-            self.chatItems = self.chatItems + olderChatItems
             
-            // TODO: 마지막 ChatItem 조사해서 날짜 구분선 또 넣어주기
+            // TODO: 날짜 구분 아이템 추가
             
             if olderChatItems.count < Metric.ChatMessageFetchAmount {
                 self.isAllChatMessagesLoaded = true
+                // TODO: 전부 읽어와서 읽어올 예상 갯수보다 적으면 마지막 로딩, 날짜 구분선 넣어주기
+                // TODO: 제일 첫 ChatItem 조사해서 날짜 구분선 또 넣어주기
+                // TODO: 안드로이드 로직 참고해서 여러 예외 상황 처리하고 날짜 구분선 넣을 것
             }
+            self.chatItems = self.chatItems + olderChatItems
+        
             dispatch_async(dispatch_get_main_queue(), {
                 self.tableView.reloadData() {
                     let olderChatItemsHeight = (0..<olderChatItems.count)
