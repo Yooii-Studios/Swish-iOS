@@ -26,6 +26,7 @@ class ChatViewController: UIViewController, UITableViewDataSource, UITableViewDe
     }
     var isKeyboardAnimating: Bool = false
     var isLoadingChatItems: Bool = true
+    var isAllChatMessagesLoaded: Bool = false
     var chatItems: Array<ChatItem>!
     
     override func viewDidLoad() {
@@ -242,16 +243,14 @@ class ChatViewController: UIViewController, UITableViewDataSource, UITableViewDe
     
     func tableView(tableView: UITableView, willDisplayCell cell: UITableViewCell, forRowAtIndexPath indexPath: NSIndexPath) {
         if indexPath.row == 0 && !isLoadingChatItems {
-            if photo.chatMessages.count != chatItems.count {
-                loadMoreChatItems()
-            }
+            loadMoreChatItems()
         } else {
             isLoadingChatItems = false
         }
     }
     
     private func loadMoreChatItems() {
-        guard !isLoadingChatItems else { return }
+        guard !isAllChatMessagesLoaded else { return }
         isLoadingChatItems = true
         
         let olderChatMessages = SwishDatabase.loadChatMessages(photoId, startIndex: chatItems.count,
@@ -267,6 +266,9 @@ class ChatViewController: UIViewController, UITableViewDataSource, UITableViewDe
             
             // TODO: 마지막 ChatItem 조사해서 날짜 구분선 또 넣어주기
             
+            if olderChatItems.count < Metric.ChatMessageFetchAmount {
+                self.isAllChatMessagesLoaded = true
+            }
             dispatch_async(dispatch_get_main_queue(), {
                 self.tableView.reloadData() {
                     let olderChatItemsHeight = (0..<olderChatItems.count)
