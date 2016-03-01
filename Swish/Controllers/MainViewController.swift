@@ -33,7 +33,7 @@ final class MainViewController: UIViewController, UINavigationControllerDelegate
         initReceivedPhotoDisplayable()
         initPhotoCardView()
         
-        MeManager.fetchCurrentCountryWithIP()
+        fetchMyData()
     }
     
     private func registerRemoteNotification() {
@@ -45,6 +45,11 @@ final class MainViewController: UIViewController, UINavigationControllerDelegate
     private func initPhotoCardView() {
         let singleTapGesture = UITapGestureRecognizer(target: self, action: "photoCardViewDidTap:")
         photoCardView.addGestureRecognizer(singleTapGesture)
+    }
+    
+    private func fetchMyData() {
+        MeManager.fetchMyUnreadChatMessages()
+        MeManager.fetchCurrentCountryWithIP()
     }
     
     override func viewWillAppear(animated: Bool) {
