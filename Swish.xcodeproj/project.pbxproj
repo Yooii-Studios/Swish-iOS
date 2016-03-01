@@ -118,6 +118,7 @@
 		F273C3A51BFCB4A2007D047B /* ReceivedPhoto.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = F273C3A31BFCB4A2007D047B /* ReceivedPhoto.storyboard */; };
 		F273C3A71BFCB4AF007D047B /* SentPhoto.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = F273C3A61BFCB4AF007D047B /* SentPhoto.storyboard */; };
 		F273C3AA1BFCB4BB007D047B /* MyProfile.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = F273C3A81BFCB4BB007D047B /* MyProfile.storyboard */; };
+		F27F3D741C8574EC00AB0481 /* ChatDateDivider.swift in Sources */ = {isa = PBXBuildFile; fileRef = F27F3D731C8574EC00AB0481 /* ChatDateDivider.swift */; };
 		F288C7E81C106C600058B569 /* PhotoActionType.swift in Sources */ = {isa = PBXBuildFile; fileRef = F288C7E71C106C600058B569 /* PhotoActionType.swift */; };
 		F28EF57E1BE8E9F200204C37 /* ReceivedPhotoCollectionViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = F28EF57D1BE8E9F200204C37 /* ReceivedPhotoCollectionViewController.swift */; };
 		F29CEBC91C5F2D4800F4ED55 /* CLLocationDistance+Unit.swift in Sources */ = {isa = PBXBuildFile; fileRef = F29CEBC81C5F2D4800F4ED55 /* CLLocationDistance+Unit.swift */; };
@@ -282,6 +283,7 @@
 		F273C3A41BFCB4A2007D047B /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/ReceivedPhoto.storyboard; sourceTree = "<group>"; };
 		F273C3A61BFCB4AF007D047B /* SentPhoto.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = SentPhoto.storyboard; sourceTree = "<group>"; };
 		F273C3A91BFCB4BB007D047B /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/MyProfile.storyboard; sourceTree = "<group>"; };
+		F27F3D731C8574EC00AB0481 /* ChatDateDivider.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ChatDateDivider.swift; sourceTree = "<group>"; };
 		F288C7E71C106C600058B569 /* PhotoActionType.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PhotoActionType.swift; sourceTree = "<group>"; };
 		F28EF57C1BE8BDBD00204C37 /* Swift Code Conventions.playground */ = {isa = PBXFileReference; lastKnownFileType = file.playground; path = "Swift Code Conventions.playground"; sourceTree = "<group>"; };
 		F28EF57D1BE8E9F200204C37 /* ReceivedPhotoCollectionViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ReceivedPhotoCollectionViewController.swift; sourceTree = "<group>"; };
@@ -376,6 +378,7 @@
 		5796737D1B9FFE3800382247 /* Chat */ = {
 			isa = PBXGroup;
 			children = (
+				F27F3D731C8574EC00AB0481 /* ChatDateDivider.swift */,
 				5796738C1B9FFE7200382247 /* ChatMessage.swift */,
 				5796738D1B9FFE7200382247 /* ChatMessageSendState.swift */,
 				57C173EC1BDE3EFC0084DF8D /* ChatMessageSender.swift */,
@@ -851,6 +854,7 @@
 				F26B578A1C47CC400000D95B /* UIView+ViewController.swift in Sources */,
 				F23CF97E1C3E34CA00C36064 /* MyProfileEditViewController.swift in Sources */,
 				F29CEBCE1C5F57A400F4ED55 /* ChatViewController.swift in Sources */,
+				F27F3D741C8574EC00AB0481 /* ChatDateDivider.swift in Sources */,
 				57EFC1961C055E19006CF2EF /* LocationServiceAuthorizable.swift in Sources */,
 				F2A1C4FF1C21781800DE88F2 /* PhotoVoteType.swift in Sources */,
 				577465C81BF2CFDA0093D97A /* WingsObserver.swift in Sources */,
