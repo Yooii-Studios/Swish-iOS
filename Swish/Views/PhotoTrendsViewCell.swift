@@ -37,6 +37,8 @@ class PhotoTrendsViewCell: UITableViewCell {
         ImageDownloader.downloadImage(user.profileUrl) { [weak self] image in
             if let image = image {
                 self?.userProfileImageView.image = image
+            } else {
+                self?.userProfileImageView.image = UIImage(named: "img_profile_default_small")
             }
         }
     }
