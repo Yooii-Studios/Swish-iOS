@@ -150,6 +150,8 @@
 		F2EA77AC1C2AB53B00494C18 /* SplashViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = F2EA77AB1C2AB53B00494C18 /* SplashViewController.swift */; };
 		F2ECA5C81BFAE6E300E3AD93 /* SentPhotoCollectionViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = F2ECA5C71BFAE6E300E3AD93 /* SentPhotoCollectionViewController.swift */; };
 		F2ECA5CC1BFAE7FC00E3AD93 /* SentPhotoViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = F2ECA5CB1BFAE7FC00E3AD93 /* SentPhotoViewCell.swift */; };
+		F2F498FF1C884B3400472B42 /* WingsCounterView.xib in Resources */ = {isa = PBXBuildFile; fileRef = F2F498FE1C884B3400472B42 /* WingsCounterView.xib */; };
+		F2F499011C884B6B00472B42 /* WingsCounterView.swift in Sources */ = {isa = PBXBuildFile; fileRef = F2F499001C884B6B00472B42 /* WingsCounterView.swift */; };
 		F2F545201BD5E84500AEE02A /* ShareResult.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = F2F5451E1BD5E84500AEE02A /* ShareResult.storyboard */; };
 		F2F545221BD5ED5500AEE02A /* ShareResultViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = F2F545211BD5ED5400AEE02A /* ShareResultViewController.swift */; };
 /* End PBXBuildFile section */
@@ -317,6 +319,8 @@
 		F2ECA5C71BFAE6E300E3AD93 /* SentPhotoCollectionViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SentPhotoCollectionViewController.swift; sourceTree = "<group>"; };
 		F2ECA5CB1BFAE7FC00E3AD93 /* SentPhotoViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SentPhotoViewCell.swift; sourceTree = "<group>"; };
 		F2EDD338D07BE381CAD26509 /* Pods.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = Pods.release.xcconfig; path = "Pods/Target Support Files/Pods/Pods.release.xcconfig"; sourceTree = "<group>"; };
+		F2F498FE1C884B3400472B42 /* WingsCounterView.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = WingsCounterView.xib; sourceTree = "<group>"; };
+		F2F499001C884B6B00472B42 /* WingsCounterView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = WingsCounterView.swift; sourceTree = "<group>"; };
 		F2F5451F1BD5E84500AEE02A /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/ShareResult.storyboard; sourceTree = "<group>"; };
 		F2F545211BD5ED5400AEE02A /* ShareResultViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ShareResultViewController.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
@@ -559,6 +563,7 @@
 		F245DCE31B9E7CC60072308B /* Views */ = {
 			isa = PBXGroup;
 			children = (
+				F2F499001C884B6B00472B42 /* WingsCounterView.swift */,
 				AEF32DDE1BA301A200EA00A9 /* PhotoCollectionViewCell.swift */,
 				574E812E1BE7452B0037FA12 /* GADBannerView+Preload.swift */,
 				579D9D191C1FF3D500145CC8 /* PhotoViewCell.swift */,
@@ -605,6 +610,7 @@
 		F2D8829F1C0F1B5000DF8C6D /* Xibs */ = {
 			isa = PBXGroup;
 			children = (
+				F2F498FE1C884B3400472B42 /* WingsCounterView.xib */,
 				F2E706211C27D3A9003CE154 /* CircleButton.xib */,
 				F23AC1A91C31061D00757BC9 /* PhotoCardView.xib */,
 				F2D882A01C0F1B7100DF8C6D /* PhotoActionView.xib */,
@@ -741,6 +747,7 @@
 				F273C3AA1BFCB4BB007D047B /* MyProfile.storyboard in Resources */,
 				F2A88B331C72C6F500D4E444 /* Overflow.storyboard in Resources */,
 				F257A8A11BFDD0FD00BD56C8 /* PhotoMap.storyboard in Resources */,
+				F2F498FF1C884B3400472B42 /* WingsCounterView.xib in Resources */,
 				F245DCBE1B9E7B2D0072308B /* LaunchScreen.storyboard in Resources */,
 				F23A7B181BA1D4070063233F /* PhotoPicker.storyboard in Resources */,
 				F2E133021C7AE05C003ACCE7 /* ChatIndicatorView.xib in Resources */,
@@ -912,6 +919,7 @@
 				57CC3F4F1C02EDD400A04568 /* PhotoPointAnnotation.swift in Sources */,
 				57F6283A1BA11D050008B23B /* DefaultObjectBuilder.swift in Sources */,
 				57E09ADB1BCB9351006A05DC /* MeManager.swift in Sources */,
+				F2F499011C884B6B00472B42 /* WingsCounterView.swift in Sources */,
 				F2D8829E1C0F13FE00DF8C6D /* PhotoActionView.swift in Sources */,
 				57D5450D1BDA5D4900C9CF6A /* PhotoHelper.swift in Sources */,
 				57C729E11BDF501700DDFFDA /* PhotoTrendsLoader.swift in Sources */,
