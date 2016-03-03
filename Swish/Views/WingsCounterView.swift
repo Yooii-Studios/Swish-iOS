@@ -23,13 +23,15 @@ class WingsCounterView: NibDesignable {
     
     required init?(coder aDecoder: NSCoder) {
         super.init(coder: aDecoder)
+        initViews()
+    }
+    
+    private func initViews() {
         backgroundColor = 0x000000 ~ 0%
-//        leftTimeLabel.layer.cornerRadius = leftTimeLabel.frame.height / 2
-//        leftTimeLabel.layer.cornerRadius = Metric.CornerRadius
-//        leftTimeLabel.layer.masksToBounds = true
-//        layer.cornerRadius = Metric.CornerRadius
-//        layer.masksToBounds = true
-        
+        makeRightCornerRounded()
+    }
+    
+    private func makeRightCornerRounded() {
         let radius = leftTimeLabel.frame.height / 2
         let maskPath = UIBezierPath(roundedRect: leftTimeLabel.bounds,
             byRoundingCorners: [.BottomRight, .TopRight],
@@ -39,13 +41,8 @@ class WingsCounterView: NibDesignable {
         shape.path = maskPath.CGPath
         leftTimeLabel.layer.mask = shape
     }
-    
-    /*
-    // Only override drawRect: if you perform custom drawing.
-    // An empty implementation adversely affects performance during animation.
-    override func drawRect(rect: CGRect) {
-        // Drawing code
-    }
-    */
 
+    override func prepareForInterfaceBuilder() {
+        initViews()
+    }
 }
