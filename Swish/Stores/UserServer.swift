@@ -113,6 +113,16 @@ final class UserServer {
             SwishServer.requestWith(httpRequest)
     }
     
+    class func markAllChatAsRead(id id: User.ID, photoId: Photo.ID, onSuccess: DefaultSuccessCallback,
+        onFail: FailCallback) {
+            let url = "\(BaseClientUrl)/\(id)/read_chats"
+            let params = updateChatMessageAsReadWith(photoId)
+            let httpRequest = HttpRequest<JSON>(method: .PATCH, url: url, parameters : params,
+                parser: SwishServer.DefaultParser, onSuccess: onSuccess, onFail: onFail)
+            
+            SwishServer.requestWith(httpRequest)
+    }
+    
     // MARK: - Params
     
     private class func registerMeParamsWith(name: String? = nil, about: String? = nil,
@@ -165,6 +175,13 @@ final class UserServer {
     private class func updateChatMessagesWith(readChatMessages: [ChatMessage]) -> Param {
         var params = Param()
         params.updateValue(readChatMessages.map{ $0.serverId }, forKey: "received_chat_id")
+        return params
+    }
+    
+    private class func updateChatMessageAsReadWith(photoId: Photo.ID) -> Param {
+        var params = Param()
+        params.updateValue(String(photoId), forKey: "photo_id")
+        
         return params
     }
     
