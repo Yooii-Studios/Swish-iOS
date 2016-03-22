@@ -18,7 +18,7 @@
             <rect key="frame" x="0.0" y="0.0" width="82" height="36"/>
             <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
             <subviews>
-                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="99:99" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="SIM-QS-mt7">
+                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="30:00" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="SIM-QS-mt7">
                     <rect key="frame" x="25" y="7" width="57" height="25"/>
                     <color key="backgroundColor" red="0.0" green="0.0" blue="0.0" alpha="0.40382543103448276" colorSpace="calibratedRGB"/>
                     <constraints>
