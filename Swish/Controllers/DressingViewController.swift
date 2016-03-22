@@ -76,6 +76,7 @@ final class DressingViewController: UIViewController, SegueHandlerType, Location
     
     @IBAction func shareButtonDidTap(sender: AnyObject) {
         // 현재 위치를 가져오는데 시간이 걸릴 경우 Alert 대용으로 간단한 HUD를 추가. 추구 필요하면 문구도 넣을 것. ex)"위치 가져오는 중..."
+        // TODO: 날개 개수를 파악해서 충분할 경우에만 전송 시작하게 구현
         SVProgressHUD.show()
         requestLocationUpdate()
     }
@@ -103,6 +104,11 @@ final class DressingViewController: UIViewController, SegueHandlerType, Location
                             self.exchangeStatusLabel.text = "Receiving..."
                         }, receiveCompletion: { photos in
                             if photos?.count > 0 {
+                                do {
+                                    try WingsHelper.use(2)
+                                } catch _ {
+                                    print("Failed to use wings when sending a photo")
+                                }
                                 self.receivedPhoto = photos?[0]
                                 self.performSegueWithIdentifier(.ShowShareResult, sender: self)
                             } else {

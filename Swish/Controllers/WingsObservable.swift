@@ -38,10 +38,10 @@ protocol WingsObservable {
 extension WingsObservable {
     
     func observeWingsChange() {
-        WingsObserver.instance.observeWingCountWithTag(tag: wingsObserverTag) { (wingCount) -> Void in
+        WingsObserver.instance.observeWingCountWithTag(tag: wingsObserverTag) { wingCount in
             self.wingsCountDidChange(wingCount)
         }
-        WingsObserver.instance.observeTimeLeftToChargeWithTag(tag: wingsObserverTag) { (timeLeftToCharge) -> Void in
+        WingsObserver.instance.observeTimeLeftToChargeWithTag(tag: wingsObserverTag) { timeLeftToCharge in
             self.wingsTimeLeftToChargeChange(timeLeftToCharge)
         }
     }
