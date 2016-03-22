@@ -42,6 +42,20 @@ class WingsCounterView: NibDesignable {
         leftTimeLabel.layer.mask = shape
     }
 
+    final func refreshWingsCount(wingsCount: Int) {
+        leftWingsLabel.text = String(wingsCount)
+    }
+    
+    final func refreshLeftTime(timeLeftInSec: Int?) {
+        if let time = timeLeftInSec {
+            let minutesString = String(format:("%02d"), time / 60)
+            let secondsString = String(format:("%02d"), time % 60)
+            leftTimeLabel.text = "\(minutesString):\(secondsString)"
+        } else {
+            leftTimeLabel.text = "30:00"
+        }
+    }
+    
     override func prepareForInterfaceBuilder() {
         initViews()
     }
