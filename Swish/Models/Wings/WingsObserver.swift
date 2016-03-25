@@ -18,7 +18,6 @@ final class WingsObserver {
     // MARK: - Attributes
     
     private var timer: NSTimer?
-    private let wings = SwishDatabase.wings()
     
     // KVO Streams
     private var registeredStreamsAndCancellers = Dictionary<String, (Stream<AnyObject?>, Canceller?)>()
@@ -49,7 +48,7 @@ final class WingsObserver {
     final func observeWingCountWithTag(tag rawTag: String, handler: (wingCount: Int) -> Void) {
         let wingTag = wingCountTagWithRawTag(rawTag)
         
-        let stream = KVO.startingStream(wings, "lastWingCount")
+        let stream = KVO.startingStream(SwishDatabase.wings(), "lastWingCount")
         let canceller = (stream ~> { wingCount in
             let wingCount = wingCount as! Int
             
@@ -67,7 +66,7 @@ final class WingsObserver {
     final func observeTimeLeftToChargeWithTag(tag rawTag: String, handler: (timeLeftToCharge: Int?) -> Void) {
         let timestampTag = timestampTagWithRawTag(rawTag)
         
-        let stream = KVO.startingStream(wings, "_lastTimestamp")
+        let stream = KVO.startingStream(SwishDatabase.wings(), "_lastTimestamp")
         let canceller = (stream ~> { lastWingCountTimestamp in
             defer { self.toggleTimerRunState() }
             
@@ -119,7 +118,7 @@ final class WingsObserver {
     // MARK: - Timer
     
     private func toggleTimerRunState() {
-        wings.isFullyCharged ? stopTimer() : startTimer()
+        SwishDatabase.wings().isFullyCharged ? stopTimer() : startTimer()
     }
     
     private func startTimer() {
