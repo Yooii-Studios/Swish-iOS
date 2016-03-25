@@ -21,7 +21,7 @@ final class WingsObserver {
     private let wings = SwishDatabase.wings()
     
     // KVO Streams
-    private var cancellers = Dictionary<String, Canceller>()
+    private var registeredStreamsAndCancellers = Dictionary<String, (Stream<AnyObject?>, Canceller?)>()
     private var recentWingCounts = Dictionary<String, Int>()
     
     // MARK: - Singleton
@@ -49,7 +49,7 @@ final class WingsObserver {
     final func observeWingCountWithTag(tag rawTag: String, handler: (wingCount: Int) -> Void) {
         let wingTag = wingCountTagWithRawTag(rawTag)
         
-        let stream = KVO.startingStream(wings, "lastWingCount").ownedBy(wings)
+        let stream = KVO.startingStream(wings, "lastWingCount")
         let canceller = (stream ~> { wingCount in
             let wingCount = wingCount as! Int
             
@@ -61,13 +61,13 @@ final class WingsObserver {
             }
             self.toggleTimerRunState()
         })
-        registerCanceller(canceller, ofTag: wingTag)
+        registerStream(stream, withCanceller: canceller, ofTag: wingTag)
     }
     
     final func observeTimeLeftToChargeWithTag(tag rawTag: String, handler: (timeLeftToCharge: Int?) -> Void) {
         let timestampTag = timestampTagWithRawTag(rawTag)
         
-        let stream = KVO.startingStream(wings, "_lastTimestamp").ownedBy(wings)
+        let stream = KVO.startingStream(wings, "_lastTimestamp")
         let canceller = (stream ~> { lastWingCountTimestamp in
             defer { self.toggleTimerRunState() }
             
@@ -80,12 +80,12 @@ final class WingsObserver {
             let timeLeftToCharge = Int(WingsHelper.chargingTime) - timePastSinceLastTimestamp
             handler(timeLeftToCharge: timeLeftToCharge)
         })
-        registerCanceller(canceller, ofTag: timestampTag)
+        registerStream(stream, withCanceller: canceller, ofTag: timestampTag)
     }
     
-    private func registerCanceller(canceller: Canceller?, ofTag tag: String) {
+    private func registerStream(stream: Stream<AnyObject?>, withCanceller canceller: Canceller?, ofTag tag: String) {
         cancelWithTag(tag)
-        cancellers[tag] = canceller
+        registeredStreamsAndCancellers[tag] = (stream, canceller)
     }
     
     // MARK: - Cancel
@@ -101,8 +101,8 @@ final class WingsObserver {
     }
     
     private func cancelWithTag(tag: String) {
-        if let previousCanceller = cancellers.removeValueForKey(tag) {
-            previousCanceller.cancel()
+        if let previousStreamInfo = registeredStreamsAndCancellers.removeValueForKey(tag)?.1 {
+            previousStreamInfo.cancel()
         }
     }
     
