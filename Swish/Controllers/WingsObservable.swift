@@ -32,7 +32,7 @@ protocol WingsObservable {
     var wingsObserverTag: String { get }
     
     func wingsCountDidChange(wingCount: Int)
-    func wingsTimeLeftToChargeChange(timeLeftToCharge: Int?)
+    func wingsTimeLeftToChargeChange(timeLeftToCharge: Int?) // 충전이 다 된 경우 시간이 아닌 nil을 반환
 }
 
 extension WingsObservable {

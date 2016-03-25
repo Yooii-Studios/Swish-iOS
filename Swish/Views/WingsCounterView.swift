@@ -44,6 +44,10 @@ class WingsCounterView: NibDesignable {
 
     final func refreshWingsCount(wingsCount: Int) {
         leftWingsLabel.text = String(wingsCount)
+        if wingsCount >= DefaultWingsCapacity {
+            // TODO: 로컬라이징
+            leftTimeLabel.text = "Full"
+        }
     }
     
     final func refreshLeftTime(timeLeftInSec: Int?) {
