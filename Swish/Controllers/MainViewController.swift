@@ -110,6 +110,8 @@ final class MainViewController: UIViewController, UINavigationControllerDelegate
     }
     
     func wingsTimeLeftToChargeChange(timeLeftToCharge: Int?) {
-        wingsCounterView.refreshLeftTime(timeLeftToCharge)
+        if let leftTime = timeLeftToCharge {
+            wingsCounterView.refreshLeftTime(leftTime)
+        }
     }
 }
