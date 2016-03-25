@@ -21,20 +21,6 @@ final class WingsObserver {
     private let wings = SwishDatabase.wings()
     
     // KVO Streams
-    private var wingCountMessageStream: Stream<AnyObject?> {
-        if _wingCountMessageStream == nil {
-            _wingCountMessageStream = KVO.startingStream(wings, "lastWingCount").ownedBy(wings)
-        }
-        return _wingCountMessageStream
-    }
-    private var lastTimestampMessageStream: Stream<AnyObject?> {
-        if _lastTimestampMessageStream == nil {
-            _lastTimestampMessageStream = KVO.startingStream(wings, "_lastTimestamp").ownedBy(wings)
-        }
-        return _lastTimestampMessageStream
-    }
-    private var _wingCountMessageStream: Stream<AnyObject?>!
-    private var _lastTimestampMessageStream: Stream<AnyObject?>!
     private var cancellers = Dictionary<String, Canceller>()
     private var recentWingCounts = Dictionary<String, Int>()
     
@@ -63,7 +49,8 @@ final class WingsObserver {
     final func observeWingCountWithTag(tag rawTag: String, handler: (wingCount: Int) -> Void) {
         let wingTag = wingCountTagWithRawTag(rawTag)
         
-        let canceller = (wingCountMessageStream ~> { wingCount in
+        let stream = KVO.startingStream(wings, "lastWingCount").ownedBy(wings)
+        let canceller = (stream ~> { wingCount in
             let wingCount = wingCount as! Int
             
             let recentWingCount = self.recentWingCounts[wingTag]
@@ -80,7 +67,8 @@ final class WingsObserver {
     final func observeTimeLeftToChargeWithTag(tag rawTag: String, handler: (timeLeftToCharge: Int?) -> Void) {
         let timestampTag = timestampTagWithRawTag(rawTag)
         
-        let canceller = (lastTimestampMessageStream ~> { lastWingCountTimestamp in
+        let stream = KVO.startingStream(wings, "_lastTimestamp").ownedBy(wings)
+        let canceller = (stream ~> { lastWingCountTimestamp in
             defer { self.toggleTimerRunState() }
             
             guard let lastWingCountTimestamp = (lastWingCountTimestamp as? Double)
