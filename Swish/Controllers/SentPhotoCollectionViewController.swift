@@ -56,7 +56,7 @@ class SentPhotoCollectionViewController: UIViewController {
     }
     
     private func initLongPressGestureRecognizer() {
-        let longPressRecognizer = UILongPressGestureRecognizer(target: self, action: "longPressRecognized:")
+        let longPressRecognizer = UILongPressGestureRecognizer(target: self, action: #selector(longPressRecognized(_:)))
         photoCollectionView.addGestureRecognizer(longPressRecognizer)
     }
     

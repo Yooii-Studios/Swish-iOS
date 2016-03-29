@@ -102,7 +102,7 @@ class ChatViewController: UIViewController, UITableViewDataSource, UITableViewDe
     }
     
     private func initTableViewTapGesture() {
-        let tapGesture = UITapGestureRecognizer(target: self, action: Selector("hideKeyboard"))
+        let tapGesture = UITapGestureRecognizer(target: self, action: #selector(hideKeyboard))
         tapGesture.cancelsTouchesInView = true
         tableView.addGestureRecognizer(tapGesture)
     }
@@ -121,11 +121,11 @@ class ChatViewController: UIViewController, UITableViewDataSource, UITableViewDe
     }
     
     private func initKeyboardObserver() {
-        NSNotificationCenter.defaultCenter().addObserver(self, selector: Selector("keyboardWillShow:"),
+        NSNotificationCenter.defaultCenter().addObserver(self, selector: #selector(keyboardWillShow(_:)),
             name:UIKeyboardWillShowNotification, object: nil)
-        NSNotificationCenter.defaultCenter().addObserver(self, selector: Selector("keyboardDidShow:"),
+        NSNotificationCenter.defaultCenter().addObserver(self, selector: #selector(keyboardDidShow(_:)),
             name:UIKeyboardDidShowNotification, object: nil)
-        NSNotificationCenter.defaultCenter().addObserver(self, selector: Selector("keyboardWillHide:"),
+        NSNotificationCenter.defaultCenter().addObserver(self, selector: #selector(keyboardWillHide(_:)),
             name:UIKeyboardWillHideNotification, object: nil)
     }
     

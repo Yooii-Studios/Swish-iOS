@@ -40,10 +40,10 @@ class PhotoVoteView: NibDesignable {
     }
     
     private func setUpTapGestures() {
-        let likeButtonTapGesture = UITapGestureRecognizer(target: self, action: "likeButtonDidTap:")
+        let likeButtonTapGesture = UITapGestureRecognizer(target: self, action: #selector(likeButtonDidTap(_:)))
         likeButton.addGestureRecognizer(likeButtonTapGesture)
         
-        let dislikeButtonTapGesture = UITapGestureRecognizer(target: self, action: "dislikeButtonDidTap:")
+        let dislikeButtonTapGesture = UITapGestureRecognizer(target: self, action: #selector(dislikeButtonDidTap(_:)))
         dislikeButton.addGestureRecognizer(dislikeButtonTapGesture)
     }
     

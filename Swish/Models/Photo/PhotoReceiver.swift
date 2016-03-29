@@ -104,7 +104,7 @@ final class PhotoReceiver {
     }
     
     private func updateState(result: Result) {
-        result.isSuccess() ? ++state.succeedCount : ++state.failedCount
+        result.isSuccess() ? (state.succeedCount += 1) : (state.failedCount += 1)
     }
     
     private func notifyCallbacks() {

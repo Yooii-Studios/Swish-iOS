@@ -50,11 +50,11 @@ final class WingsHelper {
         try use(1)
     }
     
-    final class func use(var count: Int) throws {
+    final class func use(count: Int) throws {
         refreshInternalState()
-        count = -abs(count)
-        try checkApplyAdditiveWingsCountSuitable(count)
-        applyWingsAdditiveAndNotify(count)
+        let absCount = -abs(count)
+        try checkApplyAdditiveWingsCountSuitable(absCount)
+        applyWingsAdditiveAndNotify(absCount)
     }
     
     final class func chargeToMax() {
@@ -167,7 +167,7 @@ final class WingsHelper {
         
         let chargeTimeIncludingPenalty = chargingTime
         if (remainingPenalty > 0 && timeToConsume > chargeTimeIncludingPenalty) {
-            chargedWingCount++
+            chargedWingCount += 1
             newTimestamp += chargeTimeIncludingPenalty
             
             // consume
@@ -194,18 +194,19 @@ final class WingsHelper {
     // 3.   Not Full    Full        Reset timestamp
     // 4.   Not Full    Not Full    Calculated timestamp
     private class func saveTimestampWithPreviousWingCount(previousWingCount: Int, currentWingCount: Int,
-        var timestamp: NSTimeInterval? = nil) {
-            let wings = self.wings()
-            if currentWingCount >= wings.capacity {
-                SwishDatabase.resetLastWingCountChangedTimestamp()
-            } else {
-                if previousWingCount >= wings.capacity {
-                    timestamp = CFAbsoluteTimeGetCurrent()
-                }
-                if let timestamp = timestamp {
-                    SwishDatabase.updateLastWingCountChangedTimestamp(timestamp)
-                }
+                                                          timestamp: NSTimeInterval? = nil) {
+        let wings = self.wings()
+        if currentWingCount >= wings.capacity {
+            SwishDatabase.resetLastWingCountChangedTimestamp()
+        } else {
+            var newTimestamp = timestamp
+            if previousWingCount >= wings.capacity {
+                newTimestamp = CFAbsoluteTimeGetCurrent()
             }
+            if let newTimestamp = newTimestamp {
+                SwishDatabase.updateLastWingCountChangedTimestamp(newTimestamp)
+            }
+        }
     }
     
     // MARK: - Check internal state

@@ -52,7 +52,7 @@ final class PhotoSender {
                     print(error)
                     self.notifyFailure()
             })
-            index++
+            index += 1
         }
     }
     
@@ -70,7 +70,7 @@ final class PhotoSender {
     }
     
     private func updateState(result: Result) {
-        result.isSuccess() ? ++state.succeedCount : ++state.failedCount
+        result.isSuccess() ? (state.succeedCount += 1) : (state.failedCount += 1)
     }
     
     private func notifyCallbacks() {
