@@ -189,12 +189,14 @@ prefix operator ++? {}
 prefix operator --? {}
 
 private prefix func ++?(inout zoomLevel: MapViewZoomLevel) -> MapViewZoomLevel {
-    zoomLevel = normalizeZoomLevel(++zoomLevel)
+    let targetZoomLevel = zoomLevel + 1
+    zoomLevel = normalizeZoomLevel(targetZoomLevel)
     return zoomLevel
 }
 
 private prefix func --?(inout zoomLevel: MapViewZoomLevel) -> MapViewZoomLevel {
-    zoomLevel = normalizeZoomLevel(--zoomLevel)
+    let targetZoomLevel = zoomLevel - 1
+    zoomLevel = normalizeZoomLevel(targetZoomLevel)
     return zoomLevel
 }
 
