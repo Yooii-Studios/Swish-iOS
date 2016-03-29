@@ -50,11 +50,11 @@ final class WingsHelper {
         try use(1)
     }
     
-    final class func use(var count: Int) throws {
+    final class func use(count: Int) throws {
         refreshInternalState()
-        count = -abs(count)
-        try checkApplyAdditiveWingsCountSuitable(count)
-        applyWingsAdditiveAndNotify(count)
+        let absCount = -abs(count)
+        try checkApplyAdditiveWingsCountSuitable(absCount)
+        applyWingsAdditiveAndNotify(absCount)
     }
     
     final class func chargeToMax() {
@@ -167,7 +167,7 @@ final class WingsHelper {
         
         let chargeTimeIncludingPenalty = chargingTime
         if (remainingPenalty > 0 && timeToConsume > chargeTimeIncludingPenalty) {
-            chargedWingCount++
+            chargedWingCount += 1
             newTimestamp += chargeTimeIncludingPenalty
             
             // consume

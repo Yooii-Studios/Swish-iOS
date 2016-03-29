@@ -52,7 +52,7 @@ final class PhotoSender {
                     print(error)
                     self.notifyFailure()
             })
-            index++
+            index += 1
         }
     }
     
