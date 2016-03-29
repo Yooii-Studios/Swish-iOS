@@ -1,10 +1,10 @@
 machine:
   xcode:
-    version: “7.3”
+    version: 7.3
 test:
   override:
     # 향후 CircleCI에서 XCTool v0.2.6 지원하게 되면 수정할 필요 있음
-    - ./xctool/bin/xctool
+    - xctool
       -reporter pretty
       -reporter junit:$CIRCLE_TEST_REPORTS/xcode/results.xml
       -reporter plain:$CIRCLE_ARTIFACTS/xctool.log
