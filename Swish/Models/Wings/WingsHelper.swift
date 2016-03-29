@@ -194,18 +194,19 @@ final class WingsHelper {
     // 3.   Not Full    Full        Reset timestamp
     // 4.   Not Full    Not Full    Calculated timestamp
     private class func saveTimestampWithPreviousWingCount(previousWingCount: Int, currentWingCount: Int,
-        var timestamp: NSTimeInterval? = nil) {
-            let wings = self.wings()
-            if currentWingCount >= wings.capacity {
-                SwishDatabase.resetLastWingCountChangedTimestamp()
-            } else {
-                if previousWingCount >= wings.capacity {
-                    timestamp = CFAbsoluteTimeGetCurrent()
-                }
-                if let timestamp = timestamp {
-                    SwishDatabase.updateLastWingCountChangedTimestamp(timestamp)
-                }
+                                                          timestamp: NSTimeInterval? = nil) {
+        let wings = self.wings()
+        if currentWingCount >= wings.capacity {
+            SwishDatabase.resetLastWingCountChangedTimestamp()
+        } else {
+            var newTimestamp = timestamp
+            if previousWingCount >= wings.capacity {
+                newTimestamp = CFAbsoluteTimeGetCurrent()
             }
+            if let newTimestamp = newTimestamp {
+                SwishDatabase.updateLastWingCountChangedTimestamp(newTimestamp)
+            }
+        }
     }
     
     // MARK: - Check internal state
