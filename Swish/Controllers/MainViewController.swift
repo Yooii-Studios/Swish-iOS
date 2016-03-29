@@ -47,7 +47,7 @@ final class MainViewController: UIViewController, UINavigationControllerDelegate
     }
     
     private func initPhotoCardView() {
-        let singleTapGesture = UITapGestureRecognizer(target: self, action: "photoCardViewDidTap:")
+        let singleTapGesture = UITapGestureRecognizer(target: self, action: #selector(photoCardViewDidTap(_:)))
         photoCardView.addGestureRecognizer(singleTapGesture)
     }
     

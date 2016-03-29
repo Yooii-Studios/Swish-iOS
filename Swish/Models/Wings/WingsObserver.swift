@@ -123,8 +123,8 @@ final class WingsObserver {
     
     private func startTimer() {
         if timer == nil {
-            timer = NSTimer.scheduledTimerWithTimeInterval(1.0, target: self, selector: "refreshWings", userInfo: nil,
-                repeats: true)
+            timer = NSTimer.scheduledTimerWithTimeInterval(1.0, target: self, selector: #selector(refreshWings),
+                                                           userInfo: nil, repeats: true)
         }
     }
     

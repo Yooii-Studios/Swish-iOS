@@ -302,7 +302,7 @@ class Responder: NSObject, UIGestureRecognizerDelegate {
     init(gesture: UIGestureRecognizer) {
         super.init()
         responders.setObject(self, forKey: gesture)
-        gesture.addTarget(self, action: "recognized:")
+        gesture.addTarget(self, action: #selector(recognized(_:)))
         gesture.delegate = self
     }
 
