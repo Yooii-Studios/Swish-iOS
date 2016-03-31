@@ -128,9 +128,10 @@ class CircleButton: NibDesignable {
     }
     
     override func prepareForInterfaceBuilder() {
-//        if image.size == CGSizeZero {
-//            let bundle = NSBundle(forClass: self.dynamicType)
-//            image = UIImage(named: "ic_photo_like_inactive", inBundle: bundle, compatibleWithTraitCollection: nil)
-//        }
+        backgroundColor = UIColor.clearColor()
+        if image.size == CGSizeZero {
+            let bundle = NSBundle(forClass: self.dynamicType)
+            image = UIImage(named: "ic_photo_like_inactive", inBundle: bundle, compatibleWithTraitCollection: nil)
+        }
     }
 }
