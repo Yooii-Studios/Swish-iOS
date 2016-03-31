@@ -9,42 +9,40 @@
 import UIKit
 import SwiftyColor
 import NibDesignable
+import UIColor_Hex_Swift
 
 // TODO: 추후 원형 버튼으로 만든 후 전체적인 색, 그림자 관련 로직 수정해줄 것
 @IBDesignable
-class CircleButton: NibDesignable {
+class CircleButton: UIView {
 
     struct Color {
         static let unselectedBackground = 0xe1e1e1~
         static let disabled = 0xebebeb~
+        static let shadow = UIColor(rgba: "#00000028")
     }
     
-    @IBOutlet var backgroundView: UIView!
-    @IBOutlet var foregroundView: UIView!
-    @IBOutlet var imageView: UIImageView!
-    
-    @IBOutlet var leadingConstraint: NSLayoutConstraint!
-    @IBOutlet var topConstraint: NSLayoutConstraint!
-    @IBOutlet var trailingConstraint: NSLayoutConstraint!
-    @IBOutlet var bottomConstraint: NSLayoutConstraint!
-    @IBOutlet var imageSizeConstraint: NSLayoutConstraint!
-    
-    @IBInspectable var backgroundCircleColor: UIColor! {
+    @IBInspectable var borderWidth: CGFloat = 0
+    @IBInspectable var circleBackgroundColor: UIColor! = UIColor.clearColor()
+    @IBInspectable var circleForegroundColor: UIColor! = UIColor.clearColor()
+    @IBInspectable var circleSelectedColor: UIColor! = UIColor.clearColor()
+    @IBInspectable var dropShadowEnabled: Bool = false {
         didSet {
-            backgroundView.backgroundColor = backgroundCircleColor
+            if dropShadowEnabled {
+                layer.masksToBounds = false
+                layer.shadowColor = Color.shadow.CGColor
+                layer.shadowOffset = CGSizeMake(1, 1);
+                layer.shadowOpacity = 1;
+                layer.shadowRadius = 1.0
+            }
         }
     }
-    @IBInspectable var foregroundCircleColor: UIColor! {
+    @IBInspectable var innerShadowEnabled: Bool = false
+    @IBInspectable var imageSize: CGFloat = 0 {
         didSet {
-            foregroundView.backgroundColor = foregroundCircleColor
-        }
-    }
-    @IBInspectable var strokeWidth: CGFloat = 8.0 {
-        didSet {
-            leadingConstraint.constant = strokeWidth
-            topConstraint.constant = strokeWidth
-            trailingConstraint.constant = strokeWidth
-            bottomConstraint.constant = strokeWidth
+            let x = self.frame.width / 2 - imageSize / 2
+            let y = self.frame.height / 2 - imageSize / 2
+            let frame = CGRect.init(x: x, y: y, width: imageSize, height: imageSize)
+            imageView.frame = frame
         }
     }
     @IBInspectable var image: UIImage! = UIImage() {
@@ -52,43 +50,85 @@ class CircleButton: NibDesignable {
             imageView.image = image
         }
     }
-    @IBInspectable var imageSize: CGFloat = 40 {
-        didSet {
-            imageSizeConstraint.constant = imageSize
-        }
+    private var imageView: UIImageView!
+    @IBInspectable var touchEffectEnabled: Bool = false
+    private var isTouchesBegan = false
+    
+    override init(frame: CGRect) {
+        super.init(frame: frame)
+        _init()
     }
-    /*
-    @IBInspectable var enableShadow: Bool = false {
-        didSet {
-            // TODO: 그림자 추후 구현 예정
-        }
+    
+    required init?(coder aDecoder: NSCoder) {
+        super.init(coder: aDecoder)
+        _init()
     }
-    */
+    
+    private func _init() {
+        backgroundColor = UIColor.clearColor()
+        initImageView()
+    }
+    
+    private func initImageView() {
+        imageView = UIImageView()
+        imageView.contentMode = UIViewContentMode.ScaleAspectFit
+        addSubview(imageView)
+    }
+
     
     final func setSelected(isSelected: Bool) {
         if isSelected {
-            backgroundView.backgroundColor = backgroundCircleColor
+            circleBackgroundColor = circleSelectedColor
         } else {
-            backgroundView.backgroundColor = Color.unselectedBackground
+            circleBackgroundColor = Color.unselectedBackground
         }
+        setNeedsDisplay()
     }
     
     final func setDisabled() {
         userInteractionEnabled = false
-        foregroundCircleColor = Color.disabled
-        backgroundCircleColor = Color.disabled
+        circleForegroundColor = Color.disabled
+        circleBackgroundColor = Color.disabled
+        innerShadowEnabled = false
     }
     
-    /*
-    // TODO: 그림자 관련 작업 시 필요해질 것 같아서 남김
-    // Only override drawRect: if you perform custom drawing.
-    // An empty implementation adversely affects performance during animation.
     override func drawRect(rect: CGRect) {
-        // Drawing code
+        drawCircle(rect, withColor: circleBackgroundColor)
+        
+        let insetRect = rect.insetBy(dx: borderWidth, dy: borderWidth)
+        if !isTouchesBegan || !touchEffectEnabled {
+            if innerShadowEnabled {
+                let shadowRect = insetRect.offsetBy(dx: 1, dy: 1)
+                drawCircle(shadowRect, withColor: Color.shadow)
+            }
+            drawCircle(insetRect, withColor: circleForegroundColor)
+        }
     }
-    */
+    
+    private func drawCircle(rect: CGRect, withColor color: UIColor) {
+        color.setFill()
+        let circlePath = UIBezierPath(ovalInRect: rect)
+        circlePath.fill()
+    }
 
+    override func touchesBegan(touches: Set<UITouch>, withEvent event: UIEvent?) {
+        if touches.first != nil {
+            isTouchesBegan = true
+            setNeedsDisplay()
+        }
+        super.touchesBegan(touches, withEvent: event)
+    }
+    
+    override func touchesEnded(touches: Set<UITouch>, withEvent event: UIEvent?) {
+        if touches.first != nil {
+            isTouchesBegan = false
+            setNeedsDisplay()
+        }
+        super.touchesEnded(touches, withEvent: event)
+    }
+    
     override func prepareForInterfaceBuilder() {
+        backgroundColor = UIColor.clearColor()
         if image.size == CGSizeZero {
             let bundle = NSBundle(forClass: self.dynamicType)
             image = UIImage(named: "ic_photo_like_inactive", inBundle: bundle, compatibleWithTraitCollection: nil)
