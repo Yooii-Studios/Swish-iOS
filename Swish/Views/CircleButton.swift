@@ -13,7 +13,7 @@ import UIColor_Hex_Swift
 
 // TODO: 추후 원형 버튼으로 만든 후 전체적인 색, 그림자 관련 로직 수정해줄 것
 @IBDesignable
-class CircleButton: NibDesignable {
+class CircleButton: UIView {
 
     struct Color {
         static let unselectedBackground = 0xe1e1e1~
