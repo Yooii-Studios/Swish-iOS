@@ -1,8 +1,8 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="9531" systemVersion="15C50" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="10116" systemVersion="15E65" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES">
     <dependencies>
         <deployment identifier="iOS"/>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="9529"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="10085"/>
     </dependencies>
     <objects>
         <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner" customClass="PhotoActionView" customModule="Swish" customModuleProvider="target">
@@ -25,15 +25,17 @@
                     </constraints>
                     <userDefinedRuntimeAttributes>
                         <userDefinedRuntimeAttribute type="image" keyPath="image" value="ic_photo_action_sending_location"/>
-                        <userDefinedRuntimeAttribute type="color" keyPath="foregroundCircleColor">
-                            <color key="value" red="0.094117647058823528" green="0.72549019607843135" blue="1" alpha="1" colorSpace="calibratedRGB"/>
+                        <userDefinedRuntimeAttribute type="number" keyPath="imageSize">
+                            <real key="value" value="27"/>
                         </userDefinedRuntimeAttribute>
-                        <userDefinedRuntimeAttribute type="number" keyPath="strokeWidth">
+                        <userDefinedRuntimeAttribute type="number" keyPath="borderWidth">
                             <real key="value" value="0.0"/>
                         </userDefinedRuntimeAttribute>
-                        <userDefinedRuntimeAttribute type="number" keyPath="imageSize">
-                            <real key="value" value="33"/>
+                        <userDefinedRuntimeAttribute type="color" keyPath="circleBackgroundColor">
+                            <color key="value" red="0.094117647060000004" green="0.72549019609999998" blue="1" alpha="1" colorSpace="calibratedRGB"/>
                         </userDefinedRuntimeAttribute>
+                        <userDefinedRuntimeAttribute type="boolean" keyPath="innerShadowEnabled" value="NO"/>
+                        <userDefinedRuntimeAttribute type="boolean" keyPath="dropShadowEnabled" value="YES"/>
                     </userDefinedRuntimeAttributes>
                 </view>
                 <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="EXX-cM-xmm" customClass="CircleButton" customModule="Swish" customModuleProvider="target">
@@ -43,16 +45,18 @@
                         <constraint firstAttribute="height" constant="48" id="vXs-xC-vMu"/>
                     </constraints>
                     <userDefinedRuntimeAttributes>
-                        <userDefinedRuntimeAttribute type="color" keyPath="foregroundCircleColor">
-                            <color key="value" red="0.16470588235294117" green="0.42745098039215684" blue="1" alpha="1" colorSpace="calibratedRGB"/>
-                        </userDefinedRuntimeAttribute>
-                        <userDefinedRuntimeAttribute type="number" keyPath="strokeWidth">
-                            <real key="value" value="0.0"/>
-                        </userDefinedRuntimeAttribute>
                         <userDefinedRuntimeAttribute type="image" keyPath="image" value="ic_photo_action_chat"/>
                         <userDefinedRuntimeAttribute type="number" keyPath="imageSize">
-                            <real key="value" value="24"/>
+                            <real key="value" value="23"/>
                         </userDefinedRuntimeAttribute>
+                        <userDefinedRuntimeAttribute type="number" keyPath="borderWidth">
+                            <real key="value" value="0.0"/>
+                        </userDefinedRuntimeAttribute>
+                        <userDefinedRuntimeAttribute type="color" keyPath="circleBackgroundColor">
+                            <color key="value" red="0.19215686274509802" green="0.47058823529411764" blue="0.67450980392156867" alpha="1" colorSpace="calibratedRGB"/>
+                        </userDefinedRuntimeAttribute>
+                        <userDefinedRuntimeAttribute type="boolean" keyPath="dropShadowEnabled" value="YES"/>
+                        <userDefinedRuntimeAttribute type="boolean" keyPath="innerShadowEnabled" value="NO"/>
                     </userDefinedRuntimeAttributes>
                 </view>
                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="3" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="1g6-3f-gbD">
@@ -80,13 +84,6 @@
             <freeformSimulatedSizeMetrics key="simulatedDestinationMetrics"/>
             <point key="canvasLocation" x="538" y="283"/>
         </view>
-        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="z83-nK-yR1">
-            <rect key="frame" x="0.0" y="0.0" width="42" height="21"/>
-            <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-            <fontDescription key="fontDescription" type="system" pointSize="17"/>
-            <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
-            <nil key="highlightedColor"/>
-        </label>
     </objects>
     <resources>
         <image name="ic_photo_action_chat" width="34" height="33"/>
