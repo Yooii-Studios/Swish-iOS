@@ -54,6 +54,11 @@ class CircleButton: NibDesignable {
     @IBInspectable var touchEffectEnabled: Bool = false
     private var isTouchesBegan = false
     
+    override init(frame: CGRect) {
+        super.init(frame: frame)
+        _init()
+    }
+    
     required init?(coder aDecoder: NSCoder) {
         super.init(coder: aDecoder)
         _init()
