@@ -24,6 +24,7 @@ class CircleButton: NibDesignable {
     @IBInspectable var borderWidth: CGFloat = 0
     @IBInspectable var circleBackgroundColor: UIColor! = UIColor.clearColor()
     @IBInspectable var circleForegroundColor: UIColor! = UIColor.clearColor()
+    @IBInspectable var circleSelectedColor: UIColor! = UIColor.clearColor()
     @IBInspectable var dropShadowEnabled: Bool = false {
         didSet {
             if dropShadowEnabled {
@@ -71,17 +72,19 @@ class CircleButton: NibDesignable {
 
     
     final func setSelected(isSelected: Bool) {
-//        if isSelected {
-//            backgroundView.backgroundColor = backgroundCircleColor
-//        } else {
-//            backgroundView.backgroundColor = Color.unselectedBackground
-//        }
+        if isSelected {
+            circleBackgroundColor = circleSelectedColor
+        } else {
+            circleBackgroundColor = Color.unselectedBackground
+        }
+        setNeedsDisplay()
     }
     
     final func setDisabled() {
-//        userInteractionEnabled = false
-//        foregroundCircleColor = Color.disabled
-//        backgroundCircleColor = Color.disabled
+        userInteractionEnabled = false
+        circleForegroundColor = Color.disabled
+        circleBackgroundColor = Color.disabled
+        innerShadowEnabled = false
     }
     
     override func drawRect(rect: CGRect) {

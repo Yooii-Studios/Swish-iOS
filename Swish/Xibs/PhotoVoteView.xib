@@ -39,6 +39,9 @@
                         <userDefinedRuntimeAttribute type="number" keyPath="borderWidth">
                             <real key="value" value="8"/>
                         </userDefinedRuntimeAttribute>
+                        <userDefinedRuntimeAttribute type="color" keyPath="circleSelectedColor">
+                            <color key="value" red="0.19215686274509802" green="0.47058823529411764" blue="0.67450980392156867" alpha="1" colorSpace="calibratedRGB"/>
+                        </userDefinedRuntimeAttribute>
                     </userDefinedRuntimeAttributes>
                 </view>
                 <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="N1G-rq-nAE" customClass="CircleButton" customModule="Swish" customModuleProvider="target">
@@ -62,6 +65,9 @@
                         <userDefinedRuntimeAttribute type="boolean" keyPath="innerShadowEnabled" value="YES"/>
                         <userDefinedRuntimeAttribute type="number" keyPath="borderWidth">
                             <real key="value" value="8"/>
+                        </userDefinedRuntimeAttribute>
+                        <userDefinedRuntimeAttribute type="color" keyPath="circleSelectedColor">
+                            <color key="value" red="0.95294117647058818" green="0.4823529411764706" blue="0.44313725490196076" alpha="1" colorSpace="calibratedRGB"/>
                         </userDefinedRuntimeAttribute>
                     </userDefinedRuntimeAttributes>
                 </view>
