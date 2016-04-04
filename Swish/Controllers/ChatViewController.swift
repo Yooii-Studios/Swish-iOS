@@ -59,6 +59,7 @@ class ChatViewController: UIViewController, UITableViewDataSource, UITableViewDe
             self.isLoadingChatItems = false
             self.scrollToBottom()
             SwishDatabase.updateAllChatRead(self.photoId)
+            MeManager.markAllChatOnPhotoAsRead(self.photoId)
         }
     }
     
