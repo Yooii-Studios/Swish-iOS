@@ -119,9 +119,9 @@ final class MeManager {
     
     final private class func saveChatMessages(photoIdAndChatMessages: [PhotoIDAndChatMessage]) {
         for photoIdAndChatMessage in photoIdAndChatMessages {
+            SwishDatabase.increaseUnreadChatCount(photoIdAndChatMessage.photoId)
             SwishDatabase.saveChatMessage(photoIdAndChatMessage.photoId,
                 chatMessage: photoIdAndChatMessage.chatMessage)
-            SwishDatabase.increaseUnreadChatCount(photoIdAndChatMessage.photoId)
         }
     }
     
