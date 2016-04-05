@@ -228,6 +228,10 @@ final class UserServer {
             let photoId = messageDataJson["photo_id"].int64Value
             let chatMessage = ChatMessage.create(messageDataJson["content"].stringValue,
                 serverId: messageDataJson["id"].stringValue, senderId: messageDataJson["sender_id"].stringValue)
+            let dateFormatter = NSDateFormatter()
+            dateFormatter.dateFormat = "yyyy-MM-dd'T'HH:mm:ss.SSSZ"
+            chatMessage.receivedDate = dateFormatter.dateFromString(messageDataJson["created_at"].stringValue)!
+            
             photoIdAndChatMessages.append((photoId, chatMessage))
         }
         return photoIdAndChatMessages
