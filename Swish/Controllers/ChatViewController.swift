@@ -32,6 +32,8 @@ class ChatViewController: UIViewController, UITableViewDataSource, UITableViewDe
     override func viewDidLoad() {
         super.viewDidLoad()
 
+        MeManager.fetchMyUnreadChatMessages()
+        
         initTitle()
         initTableView()
         initPhotoObserver()
@@ -57,6 +59,7 @@ class ChatViewController: UIViewController, UITableViewDataSource, UITableViewDe
             self.isLoadingChatItems = false
             self.scrollToBottom()
             SwishDatabase.updateAllChatRead(self.photoId)
+            MeManager.markAllChatOnPhotoAsRead(self.photoId)
         }
     }
     
@@ -64,6 +67,7 @@ class ChatViewController: UIViewController, UITableViewDataSource, UITableViewDe
         PhotoObserver.observeChatMessagesForPhoto(photo, owner: self) { [weak self] index in
             if let photoId = self?.photo.id {
                 SwishDatabase.updateAllChatRead(photoId)
+                MeManager.markAllChatOnPhotoAsRead(photoId)
                 
                 var isDateDifferent: Bool = false
                 let chatMessagesCount = self?.photo.chatMessages.count

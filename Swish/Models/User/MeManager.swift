@@ -93,6 +93,16 @@ final class MeManager {
         )
     }
     
+    final class func markAllChatOnPhotoAsRead(photoId: Photo.ID) {
+        let userId = SwishDatabase.me().id
+        UserServer.markAllChatAsRead(
+            id: userId,
+            photoId: photoId,
+            onSuccess: { _ in},
+            onFail: { print($0) }
+        )
+    }
+    
     final class func fetchCurrentCountryWithIP() {
         OutsideAPIServer.requestCountryInfo(
             onSuccess: {
@@ -109,9 +119,9 @@ final class MeManager {
     
     final private class func saveChatMessages(photoIdAndChatMessages: [PhotoIDAndChatMessage]) {
         for photoIdAndChatMessage in photoIdAndChatMessages {
+            SwishDatabase.increaseUnreadChatCount(photoIdAndChatMessage.photoId)
             SwishDatabase.saveChatMessage(photoIdAndChatMessage.photoId,
                 chatMessage: photoIdAndChatMessage.chatMessage)
-            SwishDatabase.increaseUnreadChatCount(photoIdAndChatMessage.photoId)
         }
     }
     
