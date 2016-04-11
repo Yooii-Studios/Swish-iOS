@@ -1,8 +1,8 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="9532" systemVersion="15D21" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" initialViewController="3Ta-iT-I78">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="10116" systemVersion="15E65" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" initialViewController="3Ta-iT-I78">
     <dependencies>
         <deployment identifier="iOS"/>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="9530"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="10085"/>
         <capability name="Aspect ratio constraints" minToolsVersion="5.1"/>
     </dependencies>
     <scenes>
@@ -18,6 +18,17 @@
                         <rect key="frame" x="0.0" y="64" width="375" height="603"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
+                            <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="c78-xC-3n9">
+                                <rect key="frame" x="0.0" y="0.0" width="375" height="603"/>
+                            </imageView>
+                            <visualEffectView opaque="NO" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="Zmx-6w-nmO">
+                                <rect key="frame" x="0.0" y="0.0" width="375" height="603"/>
+                                <view key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" id="KRe-Tt-3AH">
+                                    <rect key="frame" x="0.0" y="0.0" width="375" height="603"/>
+                                    <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                                </view>
+                                <blurEffect style="light"/>
+                            </visualEffectView>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Nt9-sb-Yqm">
                                 <rect key="frame" x="31" y="523" width="92" height="30"/>
                                 <state key="normal" title="Photo Trends"/>
@@ -65,17 +76,25 @@
                                 </constraints>
                             </view>
                         </subviews>
-                        <color key="backgroundColor" cocoaTouchSystemColor="groupTableViewBackgroundColor"/>
+                        <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="calibratedRGB"/>
                         <constraints>
+                            <constraint firstItem="Zmx-6w-nmO" firstAttribute="leading" secondItem="8bC-Xf-vdC" secondAttribute="leading" id="6SM-ux-N3N"/>
+                            <constraint firstAttribute="trailing" secondItem="c78-xC-3n9" secondAttribute="trailing" id="70J-0M-TY0"/>
+                            <constraint firstItem="c78-xC-3n9" firstAttribute="leading" secondItem="8bC-Xf-vdC" secondAttribute="leading" id="AhX-FZ-FWl"/>
                             <constraint firstItem="38O-QE-yw0" firstAttribute="bottom" secondItem="u3H-n2-e6j" secondAttribute="bottom" id="Asq-1B-0vI"/>
+                            <constraint firstItem="wfy-db-euE" firstAttribute="top" secondItem="Zmx-6w-nmO" secondAttribute="bottom" id="B5J-iy-kZt"/>
                             <constraint firstItem="38O-QE-yw0" firstAttribute="leading" secondItem="u3H-n2-e6j" secondAttribute="trailing" constant="31" id="BOZ-EK-3QG"/>
                             <constraint firstItem="u3H-n2-e6j" firstAttribute="leading" secondItem="Nt9-sb-Yqm" secondAttribute="trailing" constant="34" id="CpT-cq-Oeh"/>
+                            <constraint firstAttribute="trailing" secondItem="Zmx-6w-nmO" secondAttribute="trailing" id="EaJ-kW-dJr"/>
                             <constraint firstItem="Nt9-sb-Yqm" firstAttribute="bottom" secondItem="u3H-n2-e6j" secondAttribute="bottom" id="G4v-uP-8bv"/>
+                            <constraint firstItem="c78-xC-3n9" firstAttribute="top" secondItem="y3c-jy-aDJ" secondAttribute="bottom" id="OgH-j8-tgb"/>
                             <constraint firstItem="u3H-n2-e6j" firstAttribute="centerX" secondItem="8bC-Xf-vdC" secondAttribute="centerX" constant="10" id="Olj-60-3AT"/>
                             <constraint firstItem="XJU-rx-7Dp" firstAttribute="top" secondItem="60B-6d-vmT" secondAttribute="top" constant="-15" id="PVO-NV-Pku"/>
                             <constraint firstItem="60B-6d-vmT" firstAttribute="trailing" secondItem="XJU-rx-7Dp" secondAttribute="trailing" constant="-15" id="Wbx-8I-CpT"/>
                             <constraint firstAttribute="trailing" secondItem="XJU-rx-7Dp" secondAttribute="trailing" constant="20" id="gkO-2Q-CEI"/>
+                            <constraint firstItem="wfy-db-euE" firstAttribute="top" secondItem="c78-xC-3n9" secondAttribute="bottom" id="jK4-jE-uNw"/>
                             <constraint firstItem="XJU-rx-7Dp" firstAttribute="top" secondItem="y3c-jy-aDJ" secondAttribute="bottom" constant="20" id="mTz-gm-97v"/>
+                            <constraint firstItem="Zmx-6w-nmO" firstAttribute="top" secondItem="y3c-jy-aDJ" secondAttribute="bottom" id="qOv-a1-0sq"/>
                             <constraint firstItem="wfy-db-euE" firstAttribute="top" secondItem="u3H-n2-e6j" secondAttribute="bottom" constant="50" id="t3Y-hT-X1J"/>
                             <constraint firstAttribute="leading" secondItem="XJU-rx-7Dp" secondAttribute="leading" constant="-20" id="zNO-H9-9ko"/>
                         </constraints>
@@ -91,6 +110,7 @@
                     <simulatedNavigationBarMetrics key="simulatedTopBarMetrics" barStyle="black" translucent="NO" prompted="NO"/>
                     <simulatedScreenMetrics key="simulatedDestinationMetrics" type="retina47"/>
                     <connections>
+                        <outlet property="blurBackgroundImageView" destination="c78-xC-3n9" id="6Zp-kP-CmI"/>
                         <outlet property="photoCardView" destination="XJU-rx-7Dp" id="VT1-27-vUg"/>
                         <outlet property="wingsCounterView" destination="60B-6d-vmT" id="v0R-rI-Vy5"/>
                     </connections>
