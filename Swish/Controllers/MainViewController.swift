@@ -15,6 +15,7 @@ final class MainViewController: UIViewController, UINavigationControllerDelegate
 
     @IBOutlet weak var photoCardView: PhotoCardView!
     @IBOutlet weak var wingsCounterView: WingsCounterView!
+    @IBOutlet weak var blurBackgroundImageView: UIImageView!
     
     var currentDisplayingPhoto: Photo?
     var currentDisplayingPhotoIndex: Int?
@@ -97,6 +98,7 @@ final class MainViewController: UIViewController, UINavigationControllerDelegate
         } else {
             // TODO: 첫 시작 시 사진이 없을 경우 환영 메시지 표시 추가 구현 필요
         }
+        // TODO: 블러 이미지 표시
     }
     
     func photoCardViewDidTap(sender: AnyObject?) {
