@@ -95,14 +95,26 @@ final class MainViewController: UIViewController, UINavigationControllerDelegate
     final func displayReceivedPhoto(photo: Photo?) {
         if let photo = photo {
             photoCardView.setUpWithPhoto(photo)
+            blurBackgroundImageWithPhoto(photo)
         } else {
             // TODO: 첫 시작 시 사진이 없을 경우 환영 메시지 표시 추가 구현 필요
         }
-        // TODO: 블러 이미지 표시
     }
     
     func photoCardViewDidTap(sender: AnyObject?) {
         showNextPhoto()
+    }
+    
+    private func blurBackgroundImageWithPhoto(photo: Photo) {
+        // Blur
+        photo.loadImage { image in
+            self.blurBackgroundImageView.alpha = 0
+            self.blurBackgroundImageView.image = image
+            
+            UIView.animateWithDuration(0.7, animations: {
+                self.blurBackgroundImageView.alpha = 1
+            })
+        }
     }
     
     // MARK: - Wings
