@@ -113,6 +113,16 @@ final class UserServer {
             SwishServer.requestWith(httpRequest)
     }
     
+    class func markAllChatAsRead(id id: User.ID, photoId: Photo.ID, onSuccess: DefaultSuccessCallback,
+        onFail: FailCallback) {
+            let url = "\(BaseClientUrl)/\(id)/read_chats"
+            let params = updateChatMessageAsReadWith(photoId)
+            let httpRequest = HttpRequest<JSON>(method: .PATCH, url: url, parameters : params,
+                parser: SwishServer.DefaultParser, onSuccess: onSuccess, onFail: onFail)
+            
+            SwishServer.requestWith(httpRequest)
+    }
+    
     // MARK: - Params
     
     private class func registerMeParamsWith(name: String? = nil, about: String? = nil,
@@ -165,6 +175,13 @@ final class UserServer {
     private class func updateChatMessagesWith(readChatMessages: [ChatMessage]) -> Param {
         var params = Param()
         params.updateValue(readChatMessages.map{ $0.serverId }, forKey: "received_chat_id")
+        return params
+    }
+    
+    private class func updateChatMessageAsReadWith(photoId: Photo.ID) -> Param {
+        var params = Param()
+        params.updateValue(String(photoId), forKey: "photo_id")
+        
         return params
     }
     
@@ -228,6 +245,10 @@ final class UserServer {
             let photoId = messageDataJson["photo_id"].int64Value
             let chatMessage = ChatMessage.create(messageDataJson["content"].stringValue,
                 serverId: messageDataJson["id"].stringValue, senderId: messageDataJson["sender_id"].stringValue)
+            let dateFormatter = NSDateFormatter()
+            dateFormatter.dateFormat = "yyyy-MM-dd'T'HH:mm:ss.SSSZ"
+            chatMessage.receivedDate = dateFormatter.dateFromString(messageDataJson["created_at"].stringValue)!
+            
             photoIdAndChatMessages.append((photoId, chatMessage))
         }
         return photoIdAndChatMessages

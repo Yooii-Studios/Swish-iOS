@@ -56,6 +56,14 @@
                                 </constraints>
                                 <edgeInsets key="layoutMargins" top="0.0" left="0.0" bottom="0.0" right="0.0"/>
                             </view>
+                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="60B-6d-vmT" customClass="WingsCounterView" customModule="Swish" customModuleProvider="target">
+                                <rect key="frame" x="258" y="35" width="82" height="36"/>
+                                <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="36" id="BoT-aX-TTM"/>
+                                    <constraint firstAttribute="width" constant="82" id="YG7-px-1M8"/>
+                                </constraints>
+                            </view>
                         </subviews>
                         <color key="backgroundColor" cocoaTouchSystemColor="groupTableViewBackgroundColor"/>
                         <constraints>
@@ -64,6 +72,8 @@
                             <constraint firstItem="u3H-n2-e6j" firstAttribute="leading" secondItem="Nt9-sb-Yqm" secondAttribute="trailing" constant="34" id="CpT-cq-Oeh"/>
                             <constraint firstItem="Nt9-sb-Yqm" firstAttribute="bottom" secondItem="u3H-n2-e6j" secondAttribute="bottom" id="G4v-uP-8bv"/>
                             <constraint firstItem="u3H-n2-e6j" firstAttribute="centerX" secondItem="8bC-Xf-vdC" secondAttribute="centerX" constant="10" id="Olj-60-3AT"/>
+                            <constraint firstItem="XJU-rx-7Dp" firstAttribute="top" secondItem="60B-6d-vmT" secondAttribute="top" constant="-15" id="PVO-NV-Pku"/>
+                            <constraint firstItem="60B-6d-vmT" firstAttribute="trailing" secondItem="XJU-rx-7Dp" secondAttribute="trailing" constant="-15" id="Wbx-8I-CpT"/>
                             <constraint firstAttribute="trailing" secondItem="XJU-rx-7Dp" secondAttribute="trailing" constant="20" id="gkO-2Q-CEI"/>
                             <constraint firstItem="XJU-rx-7Dp" firstAttribute="top" secondItem="y3c-jy-aDJ" secondAttribute="bottom" constant="20" id="mTz-gm-97v"/>
                             <constraint firstItem="wfy-db-euE" firstAttribute="top" secondItem="u3H-n2-e6j" secondAttribute="bottom" constant="50" id="t3Y-hT-X1J"/>
@@ -82,6 +92,7 @@
                     <simulatedScreenMetrics key="simulatedDestinationMetrics" type="retina47"/>
                     <connections>
                         <outlet property="photoCardView" destination="XJU-rx-7Dp" id="VT1-27-vUg"/>
+                        <outlet property="wingsCounterView" destination="60B-6d-vmT" id="v0R-rI-Vy5"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="dkx-z0-nzr" sceneMemberID="firstResponder"/>
@@ -115,7 +126,6 @@
         <!--Navigation Controller-->
         <scene sceneID="ukE-Sa-RmK">
             <objects>
-                <placeholder placeholderIdentifier="IBFirstResponder" id="cHi-nV-CeB" userLabel="First Responder" sceneMemberID="firstResponder"/>
                 <navigationController automaticallyAdjustsScrollViewInsets="NO" id="3Ta-iT-I78" sceneMemberID="viewController">
                     <toolbarItems/>
                     <navigationBar key="navigationBar" contentMode="scaleToFill" id="BOg-po-3TG">
@@ -127,6 +137,7 @@
                         <segue destination="BYZ-38-t0r" kind="relationship" relationship="rootViewController" id="kj6-EE-efE"/>
                     </connections>
                 </navigationController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="cHi-nV-CeB" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="647" y="685"/>
         </scene>

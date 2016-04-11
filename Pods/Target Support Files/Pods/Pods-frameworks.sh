@@ -102,6 +102,7 @@ if [[ "$CONFIGURATION" == "Debug" ]]; then
   install_framework "Pods/SwiftTask.framework"
   install_framework "Pods/SwiftyColor.framework"
   install_framework "Pods/SwiftyJSON.framework"
+  install_framework "Pods/UIColor_Hex_Swift.framework"
 fi
 if [[ "$CONFIGURATION" == "Release" ]]; then
   install_framework "Pods/Alamofire.framework"
@@ -122,4 +123,5 @@ if [[ "$CONFIGURATION" == "Release" ]]; then
   install_framework "Pods/SwiftTask.framework"
   install_framework "Pods/SwiftyColor.framework"
   install_framework "Pods/SwiftyJSON.framework"
+  install_framework "Pods/UIColor_Hex_Swift.framework"
 fi

@@ -32,13 +32,13 @@ extension MKMapView {
                 }, animationType: animationType)
     }
     
-    func setZoomLevel(var coordinate: CLLocationCoordinate2D! = nil, zoomLevel: MapViewZoomLevel,
-        animationType: MapViewAnimationType) {
-            coordinate = coordinate ?? self.centerCoordinate
-            executeBlock({
-                let span = self.coordinateSpanWithCenterCoordinate(coordinate, zoomLevel: zoomLevel)
-                self.setRegion(MKCoordinateRegion(center: coordinate, span: span), animated: animationType.rawAnimated)
-                }, animationType: animationType)
+    func setZoomLevel(coordinate: CLLocationCoordinate2D! = nil, zoomLevel: MapViewZoomLevel,
+                      animationType: MapViewAnimationType) {
+        let targetCoordinate = coordinate ?? self.centerCoordinate
+        executeBlock({
+            let span = self.coordinateSpanWithCenterCoordinate(targetCoordinate, zoomLevel: zoomLevel)
+            self.setRegion(MKCoordinateRegion(center: targetCoordinate, span: span), animated: animationType.rawAnimated)
+            }, animationType: animationType)
     }
     
     private func executeBlock(block: () -> Void, animationType: MapViewAnimationType) {

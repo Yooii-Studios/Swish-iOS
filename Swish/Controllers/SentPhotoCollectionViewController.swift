@@ -20,6 +20,7 @@ class SentPhotoCollectionViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         initPhotos()
+        initLongPressGestureRecognizer()
         adjustCollectionViewCellSize()
         refreshPhotoStates()
     }
@@ -52,6 +53,11 @@ class SentPhotoCollectionViewController: UIViewController {
                 }
             }
         }
+    }
+    
+    private func initLongPressGestureRecognizer() {
+        let longPressRecognizer = UILongPressGestureRecognizer(target: self, action: #selector(longPressRecognized(_:)))
+        photoCollectionView.addGestureRecognizer(longPressRecognizer)
     }
     
     private func adjustCollectionViewCellSize() {
@@ -120,5 +126,35 @@ class SentPhotoCollectionViewController: UIViewController {
     func collectionView(collectionView: UICollectionView, didSelectItemAtIndexPath indexPath: NSIndexPath) {
         // TODO: ReceivedPhotoViewController 구현 후 SeugeHandlerType과 함께 추가 구현 필요
         //        self.performSegueWithIdentifier("", sender: self)
+    }
+    
+    // MARK: - Long Press
+    
+    func longPressRecognized(gestureRecognizer: UIGestureRecognizer) {
+        let longPressRecognizer = gestureRecognizer as! UILongPressGestureRecognizer
+        let locationInView = longPressRecognizer.locationInView(photoCollectionView)
+        let state = longPressRecognizer.state
+        
+        if let indexPath = photoCollectionView.indexPathForItemAtPoint(locationInView) where state == .Began {
+            showDeleteActinSheetWithIndexPath(indexPath)
+        }
+    }
+    
+    private func showDeleteActinSheetWithIndexPath(indexPath: NSIndexPath) {
+        // TODO: 로컬라이징
+        let alertController = UIAlertController(title: nil, message: "Do you really want to delete this photo?",
+            preferredStyle: .ActionSheet)
+        
+        let cancelAction = UIAlertAction(title: "Cancel", style: .Cancel, handler: nil)
+        alertController.addAction(cancelAction)
+        
+        let destroyAction = UIAlertAction(title: "Delete", style: .Destructive) { _ in
+            SwishDatabase.deletePhoto(self.sentPhotos[indexPath.row].id)
+            self.sentPhotos.removeAtIndex(indexPath.row)
+            self.photoCollectionView.deleteItemsAtIndexPaths([indexPath])
+        }
+        alertController.addAction(destroyAction)
+        
+        self.presentViewController(alertController, animated: true, completion: nil)
     }
 }

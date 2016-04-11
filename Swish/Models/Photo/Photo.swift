@@ -124,7 +124,7 @@ class Photo: Object {
     }
     
     final class func create(id: Photo.ID = InvalidId, message: String,
-        departLocation: CLLocation, departCountry: String) -> Photo {
+        departLocation: CLLocation, departCountry: String?) -> Photo {
             let photo = Photo(id: id)
             photo.message = message
             photo.departLocation = departLocation

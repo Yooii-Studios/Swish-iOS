@@ -266,6 +266,7 @@ final class SwishDatabase {
     class func updateAllChatRead(id: Photo.ID) {
         writePhoto(id, block: {
             (photo: Photo) in
+            UIApplication.sharedApplication().applicationIconBadgeNumber -= photo.unreadMessageCount
             photo.unreadMessageCount = 0
         })
     }

@@ -178,7 +178,7 @@ class DatabaseTests: XCTestCase {
             var cnt = 0
             let msg = SwishDatabase.loadChatMessages(photo.id, startIndex: count, amount: 1)[0]
             SwishDatabase.object({ (target: ChatMessage) -> Bool in
-                cnt++
+                cnt += 1
                 return target == msg
             })
             print("qwerasdf CNT: \(cnt)")
@@ -199,7 +199,8 @@ class DatabaseTests: XCTestCase {
     }
     
     func createOtherUser() -> OtherUser {
-        let postfix = "\(otherUserIndex++)"
+        otherUserIndex += 1
+        let postfix = "\(otherUserIndex)"
         return OtherUser.create("opId\(postfix)") {
             $0.name = "opName\(postfix)"
             $0.about = "opAbout\(postfix)"
@@ -236,12 +237,13 @@ class DatabaseTests: XCTestCase {
     }
     
     func createPhotoId() -> Photo.ID {
-        return Photo.ID(photoIndex++)
+        photoIndex += 1
+        return Photo.ID(photoIndex)
     }
     
     func createChatMessage(senderId: User.ID) -> ChatMessage {
-        let index = chatMessageIndex++
-        return ChatMessage.create("Blahblah \(index)", senderId: senderId) {
+        chatMessageIndex += 1
+        return ChatMessage.create("Blahblah \(chatMessageIndex)", senderId: senderId) {
             (chatMessage: ChatMessage) -> () in
             chatMessage.state = ChatMessageSendState.Sending
         }

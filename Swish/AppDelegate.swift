@@ -52,6 +52,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
     
     func applicationWillEnterForeground(application: UIApplication) {
         // Called as part of the transition from the background to the inactive state; here you can undo many of the changes made on entering the background.
+        MeManager.fetchMyUnreadChatMessages()
     }
     
     func applicationDidBecomeActive(application: UIApplication) {
@@ -75,9 +76,13 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
     
     func application(application: UIApplication, didReceiveRemoteNotification userInfo: [NSObject : AnyObject],
         fetchCompletionHandler completionHandler: (UIBackgroundFetchResult) -> Void) {
-            if application.applicationState == .Inactive {
-                handleRemoteNotification(userInfo, updateUI: true)
-            } else if application.applicationState == .Active && application.applicationState == .Background {
+            // TODO: 앱이 종료 되었을 때, Alert Badge를 누르고 들어올 경우에 Main을 거치지 않고 바로 해당 화면으로 이동해야할 가능성도
+            // 존재하기 때문에, 일단 코드를 남겨둠
+//            if application.applicationState == .Inactive {
+//                handleRemoteNotification(userInfo, updateUI: true)
+//            } else if application.applicationState == .Active && application.applicationState == .Background {
+            
+            if application.applicationState == .Active {
                 handleRemoteNotification(userInfo, updateUI: false)
                 completionHandler(.NewData);
             }

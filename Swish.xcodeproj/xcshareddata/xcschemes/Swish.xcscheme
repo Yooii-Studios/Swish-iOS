@@ -37,6 +37,11 @@
                BlueprintName = "SwishTests"
                ReferencedContainer = "container:Swish.xcodeproj">
             </BuildableReference>
+            <SkippedTests>
+               <Test
+                  Identifier = "ReactKitTests">
+               </Test>
+            </SkippedTests>
          </TestableReference>
       </Testables>
       <MacroExpansion>

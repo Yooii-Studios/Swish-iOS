@@ -10,14 +10,18 @@ import UIKit
 import SnapKit
 import CTAssetsPickerController
 
-final class MainViewController: UIViewController, UINavigationControllerDelegate, PhotoPickable, ReceivedPhotoDisplayable {
+final class MainViewController: UIViewController, UINavigationControllerDelegate, PhotoPickable,
+    ReceivedPhotoDisplayable, WingsObservable {
 
     @IBOutlet weak var photoCardView: PhotoCardView!
+    @IBOutlet weak var wingsCounterView: WingsCounterView!
     
     var currentDisplayingPhoto: Photo?
     var currentDisplayingPhotoIndex: Int?
     
     final var photoPickerHandler: PhotoPickerHandler?
+    
+    var wingsObserverTag: String = ""
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -32,6 +36,8 @@ final class MainViewController: UIViewController, UINavigationControllerDelegate
         
         initReceivedPhotoDisplayable()
         initPhotoCardView()
+        
+        fetchMyData()
     }
     
     private func registerRemoteNotification() {
@@ -41,12 +47,24 @@ final class MainViewController: UIViewController, UINavigationControllerDelegate
     }
     
     private func initPhotoCardView() {
-        let singleTapGesture = UITapGestureRecognizer(target: self, action: "photoCardViewDidTap:")
+        let singleTapGesture = UITapGestureRecognizer(target: self, action: #selector(photoCardViewDidTap(_:)))
         photoCardView.addGestureRecognizer(singleTapGesture)
     }
     
+    private func fetchMyData() {
+        MeManager.fetchMyUnreadChatMessages()
+        MeManager.fetchCurrentCountryWithIP()
+    }
+    
     override func viewWillAppear(animated: Bool) {
+        super.viewWillAppear(animated)
         refreshReceivedPhotoDisplayable()
+        observeWingsChange()
+    }
+    
+    override func viewWillDisappear(animated: Bool) {
+        stopObservingWingsChange()
+        super.viewWillDisappear(animated)
     }
     
     @IBAction func pickPhotoButtonDidTap(sender: UIButton!) {
@@ -77,11 +95,23 @@ final class MainViewController: UIViewController, UINavigationControllerDelegate
         if let photo = photo {
             photoCardView.setUpWithPhoto(photo)
         } else {
-            // TODO: 사진이 없을 경우 환영 메시지 표시 추가 구현 필요
+            // TODO: 첫 시작 시 사진이 없을 경우 환영 메시지 표시 추가 구현 필요
         }
     }
     
     func photoCardViewDidTap(sender: AnyObject?) {
         showNextPhoto()
+    }
+    
+    // MARK: - Wings
+    
+    func wingsCountDidChange(wingCount: Int) {
+        wingsCounterView.refreshWingsCount(wingCount)
+    }
+    
+    func wingsTimeLeftToChargeChange(timeLeftToCharge: Int?) {
+        if let leftTime = timeLeftToCharge {
+            wingsCounterView.refreshLeftTime(leftTime)
+        }
     }
 }

@@ -12,6 +12,8 @@ import SwiftTask
 
 final class WingsObserver {
     
+    private typealias Observee = (Stream<AnyObject?>, Canceller?)
+    
     private let WingCountTagPrefix = "ObserveWingCount_"
     private let TimestampTagPrefix = "ObserveTimestamp_"
     
@@ -21,21 +23,7 @@ final class WingsObserver {
     private let wings = SwishDatabase.wings()
     
     // KVO Streams
-    private var wingCountMessageStream: Stream<AnyObject?> {
-        if _wingCountMessageStream == nil {
-            _wingCountMessageStream = KVO.startingStream(wings, "lastWingCount").ownedBy(wings)
-        }
-        return _wingCountMessageStream
-    }
-    private var lastTimestampMessageStream: Stream<AnyObject?> {
-        if _lastTimestampMessageStream == nil {
-            _lastTimestampMessageStream = KVO.startingStream(wings, "_lastTimestamp").ownedBy(wings)
-        }
-        return _lastTimestampMessageStream
-    }
-    private var _wingCountMessageStream: Stream<AnyObject?>!
-    private var _lastTimestampMessageStream: Stream<AnyObject?>!
-    private var cancellers = Dictionary<String, Canceller>()
+    private var registeredStreamsAndCancellers = Dictionary<String, Observee>()
     private var recentWingCounts = Dictionary<String, Int>()
     
     // MARK: - Singleton
@@ -63,7 +51,8 @@ final class WingsObserver {
     final func observeWingCountWithTag(tag rawTag: String, handler: (wingCount: Int) -> Void) {
         let wingTag = wingCountTagWithRawTag(rawTag)
         
-        let canceller = (wingCountMessageStream ~> { wingCount in
+        let stream = KVO.startingStream(wings, "lastWingCount")
+        let canceller = (stream ~> { wingCount in
             let wingCount = wingCount as! Int
             
             let recentWingCount = self.recentWingCounts[wingTag]
@@ -74,13 +63,14 @@ final class WingsObserver {
             }
             self.toggleTimerRunState()
         })
-        registerCanceller(canceller, ofTag: wingTag)
+        registerStream(stream, withCanceller: canceller, ofTag: wingTag)
     }
     
     final func observeTimeLeftToChargeWithTag(tag rawTag: String, handler: (timeLeftToCharge: Int?) -> Void) {
         let timestampTag = timestampTagWithRawTag(rawTag)
         
-        let canceller = (lastTimestampMessageStream ~> { lastWingCountTimestamp in
+        let stream = KVO.startingStream(wings, "_lastTimestamp")
+        let canceller = (stream ~> { lastWingCountTimestamp in
             defer { self.toggleTimerRunState() }
             
             guard let lastWingCountTimestamp = (lastWingCountTimestamp as? Double)
@@ -92,12 +82,12 @@ final class WingsObserver {
             let timeLeftToCharge = Int(WingsHelper.chargingTime) - timePastSinceLastTimestamp
             handler(timeLeftToCharge: timeLeftToCharge)
         })
-        registerCanceller(canceller, ofTag: timestampTag)
+        registerStream(stream, withCanceller: canceller, ofTag: timestampTag)
     }
     
-    private func registerCanceller(canceller: Canceller?, ofTag tag: String) {
+    private func registerStream(stream: Stream<AnyObject?>, withCanceller canceller: Canceller?, ofTag tag: String) {
         cancelWithTag(tag)
-        cancellers[tag] = canceller
+        registeredStreamsAndCancellers[tag] = (stream, canceller)
     }
     
     // MARK: - Cancel
@@ -113,8 +103,8 @@ final class WingsObserver {
     }
     
     private func cancelWithTag(tag: String) {
-        if let previousCanceller = cancellers.removeValueForKey(tag) {
-            previousCanceller.cancel()
+        if let previousStreamInfo = registeredStreamsAndCancellers.removeValueForKey(tag)?.1 {
+            previousStreamInfo.cancel()
         }
     }
     
@@ -136,8 +126,8 @@ final class WingsObserver {
     
     private func startTimer() {
         if timer == nil {
-            timer = NSTimer.scheduledTimerWithTimeInterval(1.0, target: self, selector: "refreshWings", userInfo: nil,
-                repeats: true)
+            timer = NSTimer.scheduledTimerWithTimeInterval(1.0, target: self, selector: #selector(refreshWings),
+                                                           userInfo: nil, repeats: true)
         }
     }
     

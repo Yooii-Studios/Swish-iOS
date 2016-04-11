@@ -7,6 +7,7 @@
 //
 
 import UIKit
+import DateTools
 
 class ChatViewController: UIViewController, UITableViewDataSource, UITableViewDelegate, ChatMessageSender {
 
@@ -25,11 +26,14 @@ class ChatViewController: UIViewController, UITableViewDataSource, UITableViewDe
     }
     var isKeyboardAnimating: Bool = false
     var isLoadingChatItems: Bool = true
-    var chatMessages: Array<ChatMessage>!
+    var isAllChatMessagesLoaded: Bool = false
+    var chatItems: Array<ChatItem>!
     
     override func viewDidLoad() {
         super.viewDidLoad()
 
+        MeManager.fetchMyUnreadChatMessages()
+        
         initTitle()
         initTableView()
         initPhotoObserver()
@@ -47,12 +51,15 @@ class ChatViewController: UIViewController, UITableViewDataSource, UITableViewDe
     }
     
     private func initChatMessages() {
-        chatMessages = SwishDatabase.loadChatMessages(photoId, startIndex: 0, amount: Metric.ChatMessageFetchAmount)
+        chatItems = SwishDatabase.loadChatMessages(photoId, startIndex: 0, amount: Metric.ChatMessageFetchAmount)
+        
+        // TODO: 최초 DateDivider 추가해주기
         
         tableView.reloadData() {
             self.isLoadingChatItems = false
             self.scrollToBottom()
             SwishDatabase.updateAllChatRead(self.photoId)
+            MeManager.markAllChatOnPhotoAsRead(self.photoId)
         }
     }
     
@@ -60,10 +67,32 @@ class ChatViewController: UIViewController, UITableViewDataSource, UITableViewDe
         PhotoObserver.observeChatMessagesForPhoto(photo, owner: self) { [weak self] index in
             if let photoId = self?.photo.id {
                 SwishDatabase.updateAllChatRead(photoId)
-                self?.chatMessages.insert((self?.photo.chatMessages[index])!, atIndex: 0)
-                if let chatItemsCount = self?.chatMessages.count {
-                    self?.tableView.insertRowsAtIndexPaths([NSIndexPath(forRow: chatItemsCount - 1, inSection: 0)],
-                        withRowAnimation: .None)
+                MeManager.markAllChatOnPhotoAsRead(photoId)
+                
+                var isDateDifferent: Bool = false
+                let chatMessagesCount = self?.photo.chatMessages.count
+                if chatMessagesCount > 1 {
+                    let previousLatestChatMessage = self?.photo.chatMessages[1]
+                    if previousLatestChatMessage?.receivedDate.day() != NSDate().day() {
+                        isDateDifferent = true
+                    }
+                } else if chatMessagesCount == 1 {
+                    isDateDifferent = true
+                }
+                
+                if isDateDifferent {
+                    let chatDateDivider = ChatDateDivider(eventTime: NSDate())
+                    self?.chatItems.insert(chatDateDivider, atIndex: 0)
+                }
+                self?.chatItems.insert((self?.photo.chatMessages[index])!, atIndex: 0)
+                
+                if let chatItemsCount = self?.chatItems.count {
+                    var indexPaths = [NSIndexPath(forRow: chatItemsCount - 1, inSection: 0)]
+                    if isDateDifferent {
+                        indexPaths.insert(NSIndexPath(forRow: chatItemsCount - 2, inSection: 0), atIndex: 0)
+                    }
+                    
+                    self?.tableView.insertRowsAtIndexPaths(indexPaths, withRowAnimation: .None)
                     self?.tableView.scrollToRowAtIndexPath(NSIndexPath(forRow: chatItemsCount - 1, inSection: 0),
                         atScrollPosition: .Bottom, animated: false)
                 }
@@ -77,7 +106,7 @@ class ChatViewController: UIViewController, UITableViewDataSource, UITableViewDe
     }
     
     private func initTableViewTapGesture() {
-        let tapGesture = UITapGestureRecognizer(target: self, action: Selector("hideKeyboard"))
+        let tapGesture = UITapGestureRecognizer(target: self, action: #selector(hideKeyboard))
         tapGesture.cancelsTouchesInView = true
         tableView.addGestureRecognizer(tapGesture)
     }
@@ -89,18 +118,18 @@ class ChatViewController: UIViewController, UITableViewDataSource, UITableViewDe
     }
     
     private func scrollToBottom() {
-        guard !chatMessages.isEmpty else { return }
+        guard !chatItems.isEmpty else { return }
         
-        let lastIndexPath = NSIndexPath(forRow: chatMessages.count - 1, inSection: 0)
+        let lastIndexPath = NSIndexPath(forRow: chatItems.count - 1, inSection: 0)
         tableView.scrollToRowAtIndexPath(lastIndexPath, atScrollPosition: .None, animated: false)
     }
     
     private func initKeyboardObserver() {
-        NSNotificationCenter.defaultCenter().addObserver(self, selector: Selector("keyboardWillShow:"),
+        NSNotificationCenter.defaultCenter().addObserver(self, selector: #selector(keyboardWillShow(_:)),
             name:UIKeyboardWillShowNotification, object: nil)
-        NSNotificationCenter.defaultCenter().addObserver(self, selector: Selector("keyboardDidShow:"),
+        NSNotificationCenter.defaultCenter().addObserver(self, selector: #selector(keyboardDidShow(_:)),
             name:UIKeyboardDidShowNotification, object: nil)
-        NSNotificationCenter.defaultCenter().addObserver(self, selector: Selector("keyboardWillHide:"),
+        NSNotificationCenter.defaultCenter().addObserver(self, selector: #selector(keyboardWillHide(_:)),
             name:UIKeyboardWillHideNotification, object: nil)
     }
     
@@ -161,7 +190,7 @@ class ChatViewController: UIViewController, UITableViewDataSource, UITableViewDe
     
     private func isLastChatMessageVisible() -> Bool {
         if let paths = tableView.indexPathsForVisibleRows {
-            let chatMessageCount = chatMessages.count
+            let chatMessageCount = chatItems.count
             for indexPath in paths {
                 if indexPath.row == chatMessageCount - 1 || indexPath.row == chatMessageCount - 2 {
                     return true
@@ -182,29 +211,33 @@ class ChatViewController: UIViewController, UITableViewDataSource, UITableViewDe
     }
 
     final func tableView(tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        if let chatMessages = chatMessages {
-            return chatMessages.count
-        } else {
-            return 0
-        }
+        return chatItems?.count ?? 0
     }
 
     func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell {
         // TODO: 추후 DateDivider UI 추가 필요
         // TODO: 추후 각 셀 초기화 로직 리팩토링할 것
-        let chatMessage = chatMessages[chatMessages.count - 1 - indexPath.row]
-        if chatMessage.isMyMessage {
-            let cell = tableView.dequeueReusableCellWithIdentifier("MyChatViewCell", forIndexPath: indexPath) as!
-            MyChatViewCell
-            
-            cell.messageLabel.text = chatMessage.message
-            
-            return cell
+        let chatItem = chatItems[chatItems.count - 1 - indexPath.row]
+        
+        if let chatMessage = chatItem as? ChatMessage {
+            if chatMessage.isMyMessage {
+                let cell = tableView.dequeueReusableCellWithIdentifier("MyChatViewCell", forIndexPath: indexPath) as!
+                MyChatViewCell
+                cell.messageLabel.text = chatMessage.message
+                
+                return cell
+            } else {
+                let cell = tableView.dequeueReusableCellWithIdentifier("OtherUserChatViewCell", forIndexPath: indexPath)
+                    as! OtherUserChatViewCell
+                cell.messageLabel.text = chatMessage.message
+                
+                return cell
+            }
         } else {
-            let cell = tableView.dequeueReusableCellWithIdentifier("OtherUserChatViewCell", forIndexPath: indexPath) as!
-            OtherUserChatViewCell
-            
-            cell.messageLabel.text = chatMessage.message
+            let chatDateDivider = chatItem as! ChatDateDivider
+            let cell = tableView.dequeueReusableCellWithIdentifier("DateDividerViewCell", forIndexPath: indexPath) as!
+            DateDividerViewCell
+            cell.dateLabel.text = chatDateDivider.dateInfo
             
             return cell
         }
@@ -212,35 +245,40 @@ class ChatViewController: UIViewController, UITableViewDataSource, UITableViewDe
     
     func tableView(tableView: UITableView, willDisplayCell cell: UITableViewCell, forRowAtIndexPath indexPath: NSIndexPath) {
         if indexPath.row == 0 && !isLoadingChatItems {
-            if photo.chatMessages.count != chatMessages.count {
-                loadMoreChatItems()
-            }
+            loadMoreChatItems()
         } else {
             isLoadingChatItems = false
         }
     }
     
     private func loadMoreChatItems() {
-        guard !isLoadingChatItems else { return }
+        guard !isAllChatMessagesLoaded else { return }
         isLoadingChatItems = true
         
-        // TODO: var로 변경하고 날짜 구분 아이템 추가
-        let olderChatItems = SwishDatabase.loadChatMessages(photoId, startIndex: chatMessages.count,
+        let olderChatMessages = SwishDatabase.loadChatMessages(photoId, startIndex: chatItems.count,
             amount: Metric.ChatMessageFetchAmount)
         
         dispatch_async(dispatch_get_global_queue(QOS_CLASS_USER_INITIATED, 0)) {
-            self.chatMessages = self.chatMessages + olderChatItems
+            let olderChatItems: Array<ChatItem> = olderChatMessages
             
             // TODO: 날짜 구분 아이템 추가
-            // TODO: 전부 읽어와서 읽어올 예상 갯수보다 적으면 마지막 로딩, 날짜 구분선 넣어주기
-            // TODO: 안드로이드 로직 참고해서 여러 예외 상황 처리하고 날짜 구분선 넣을 것
             
+            if olderChatItems.count < Metric.ChatMessageFetchAmount {
+                self.isAllChatMessagesLoaded = true
+                // TODO: 전부 읽어와서 읽어올 예상 갯수보다 적으면 마지막 로딩, 날짜 구분선 넣어주기
+                // TODO: 제일 첫 ChatItem 조사해서 날짜 구분선 또 넣어주기
+                // TODO: 안드로이드 로직 참고해서 여러 예외 상황 처리하고 날짜 구분선 넣을 것
+            }
+            self.chatItems = self.chatItems + olderChatItems
+        
             dispatch_async(dispatch_get_main_queue(), {
                 self.tableView.reloadData() {
                     let olderChatItemsHeight = (0..<olderChatItems.count)
                         .map { NSIndexPath(forRow: $0, inSection: 0) }
                         .map { self.tableView(self.tableView, heightForRowAtIndexPath: $0) }
                         .reduce(0, combine: +)
+                    
+                    // TODO: 날짜구분선 높이도 더해줄 것
                     
                     self.tableView.contentOffset.y = olderChatItemsHeight
                     self.isLoadingChatItems = false
@@ -251,6 +289,7 @@ class ChatViewController: UIViewController, UITableViewDataSource, UITableViewDe
     
     // TODO: 추후 UI가 들어갔을 때 이 부분을 순수히 계산으로 처리할 지, self-sizing으로 처리할 지 고민해야함
     // 1줄 이상의 텍스트가 포함된 셀일 때 더욱 문제가 됨
+    // 또한 날짜 구분 셀의 높이도 따로 더해줘야 함
     func tableView(tableView: UITableView, heightForRowAtIndexPath indexPath: NSIndexPath) -> CGFloat {
         return 44
     }

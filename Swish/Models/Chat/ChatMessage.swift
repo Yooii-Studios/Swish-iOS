@@ -9,7 +9,9 @@
 import Foundation
 import RealmSwift
 
-final class ChatMessage: Object, Hashable {
+@objc protocol ChatItem {}
+
+final class ChatMessage: Object, Hashable, ChatItem {
     
     typealias ServerID = String
     
