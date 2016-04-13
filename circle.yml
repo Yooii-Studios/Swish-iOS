@@ -1,18 +1,20 @@
 machine:
   xcode:
     version: 7.3
+
+dependencies:
+  pre:
+    - gem install xcpretty --no-rdoc --no-ri --no-document --quiet
+
 test:
   override:
-    # 향후 CircleCI에서 XCTool v0.2.6 지원하게 되면 수정할 필요 있음
-    - xctool
-      -reporter pretty
-      -reporter junit:$CIRCLE_TEST_REPORTS/xcode/results.xml
-      -reporter plain:$CIRCLE_ARTIFACTS/xctool.log
+    - xcodebuild clean build test
+      -workspace Swish.xcworkspace
+      -scheme "Swish"
+      -sdk iphonesimulator
+      -destination 'platform=iOS Simulator,name=iPhone 6,OS=latest'
       CODE_SIGNING_REQUIRED=NO
       CODE_SIGN_IDENTITY=
       PROVISIONING_PROFILE=
-      -destination 'platform=iOS Simulator,name=iPhone 6,OS=latest'
-      -sdk iphonesimulator
-      -workspace Swish.xcworkspace
-      -scheme "Swish"
-      clean build build-tests run-tests
+      | xcpretty -c
+
