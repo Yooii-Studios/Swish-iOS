@@ -15,4 +15,4 @@ test:
       -sdk iphonesimulator
       -workspace Swish.xcworkspace
       -scheme "Swish"
-      build build-tests run-tests
+      clean build build-tests run-tests
