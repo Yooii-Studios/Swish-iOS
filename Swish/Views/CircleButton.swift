@@ -119,6 +119,16 @@ class CircleButton: UIView {
         super.touchesBegan(touches, withEvent: event)
     }
     
+    override func touchesCancelled(touches: Set<UITouch>?, withEvent event: UIEvent?) {
+        if let touches = touches {
+            if touches.first != nil {
+                isTouchesBegan = false
+                setNeedsDisplay()
+            }
+        }
+        super.touchesCancelled(touches, withEvent: event)
+    }
+    
     override func touchesEnded(touches: Set<UITouch>, withEvent event: UIEvent?) {
         if touches.first != nil {
             isTouchesBegan = false
