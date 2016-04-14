@@ -17,6 +17,10 @@ final class MainViewController: UIViewController, UINavigationControllerDelegate
     @IBOutlet weak var wingsCounterView: WingsCounterView!
     @IBOutlet weak var blurBackgroundImageView: UIImageView!
     
+    @IBOutlet weak var pickPhotoButton: CircleButton!
+    @IBOutlet weak var photoTrendsButton: CircleButton!
+    @IBOutlet weak var myInfoButton: CircleButton!
+    
     var currentDisplayingPhoto: Photo?
     var currentDisplayingPhotoIndex: Int?
     
@@ -37,6 +41,7 @@ final class MainViewController: UIViewController, UINavigationControllerDelegate
         
         initReceivedPhotoDisplayable()
         initPhotoCardView()
+        initButtons()
         
         fetchMyData()
     }
@@ -50,6 +55,24 @@ final class MainViewController: UIViewController, UINavigationControllerDelegate
     private func initPhotoCardView() {
         let singleTapGesture = UITapGestureRecognizer(target: self, action: #selector(photoCardViewDidTap(_:)))
         photoCardView.addGestureRecognizer(singleTapGesture)
+    }
+    
+    private func initButtons() {
+        photoTrendsButton.tapped { _ in
+            self.showViewControllerWithStoryboardName("PhotoTrends")
+        }
+        pickPhotoButton.tapped { _ in
+            self.pickPhotoButtonDidTap()
+        }
+        myInfoButton.tapped { _ in
+            self.showViewControllerWithStoryboardName("MyInfo")
+        }
+    }
+    
+    private func showViewControllerWithStoryboardName(storyboardName: String) {
+        let storyboard = UIStoryboard(name: storyboardName, bundle: nil)
+        let viewController = storyboard.instantiateInitialViewController()
+        self.showViewController(viewController!, sender: self)
     }
     
     private func fetchMyData() {
@@ -68,7 +91,7 @@ final class MainViewController: UIViewController, UINavigationControllerDelegate
         super.viewWillDisappear(animated)
     }
     
-    @IBAction func pickPhotoButtonDidTap(sender: UIButton!) {
+    @IBAction func pickPhotoButtonDidTap() {
         presentPhotoPickerContoller()
     }
     
