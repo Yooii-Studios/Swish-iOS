@@ -74,10 +74,10 @@
                                 </userDefinedRuntimeAttributes>
                             </view>
                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="mjh-ED-UlF" customClass="CircleButton" customModule="Swish" customModuleProvider="target">
-                                <rect key="frame" x="54" y="473" width="79" height="79"/>
+                                <rect key="frame" x="56" y="474" width="77" height="77"/>
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                 <constraints>
-                                    <constraint firstAttribute="width" constant="79" id="19d-uz-AGi"/>
+                                    <constraint firstAttribute="width" constant="77" id="19d-uz-AGi"/>
                                     <constraint firstAttribute="width" secondItem="mjh-ED-UlF" secondAttribute="height" multiplier="1:1" id="5KH-eM-7QA"/>
                                 </constraints>
                                 <userDefinedRuntimeAttributes>
@@ -102,11 +102,11 @@
                                 </userDefinedRuntimeAttributes>
                             </view>
                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="zFt-R9-pkk" customClass="CircleButton" customModule="Swish" customModuleProvider="target">
-                                <rect key="frame" x="243" y="473" width="79" height="79"/>
+                                <rect key="frame" x="243" y="474" width="77" height="77"/>
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                 <constraints>
                                     <constraint firstAttribute="width" secondItem="zFt-R9-pkk" secondAttribute="height" multiplier="1:1" id="sh3-2h-TKv"/>
-                                    <constraint firstAttribute="width" constant="79" id="tX6-6D-TTl"/>
+                                    <constraint firstAttribute="width" constant="77" id="tX6-6D-TTl"/>
                                 </constraints>
                                 <userDefinedRuntimeAttributes>
                                     <userDefinedRuntimeAttribute type="number" keyPath="borderWidth">
