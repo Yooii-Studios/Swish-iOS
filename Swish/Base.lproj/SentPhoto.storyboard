@@ -110,13 +110,40 @@
                                     <outlet property="delegate" destination="kpT-gb-fLe" id="PVF-C4-vJe"/>
                                 </connections>
                             </collectionView>
+                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="OEA-Kn-nlr" customClass="CircleButton" customModule="Swish" customModuleProvider="target">
+                                <rect key="frame" x="520" y="407" width="60" height="60"/>
+                                <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                <constraints>
+                                    <constraint firstAttribute="width" constant="60" id="Wrv-aJ-qeg"/>
+                                    <constraint firstAttribute="width" secondItem="OEA-Kn-nlr" secondAttribute="height" multiplier="1:1" id="hOA-nY-GBT"/>
+                                </constraints>
+                                <userDefinedRuntimeAttributes>
+                                    <userDefinedRuntimeAttribute type="color" keyPath="circleBackgroundColor">
+                                        <color key="value" red="0.2470588235" green="0.31764705879999999" blue="0.70980392160000005" alpha="0.79886853448275863" colorSpace="calibratedRGB"/>
+                                    </userDefinedRuntimeAttribute>
+                                    <userDefinedRuntimeAttribute type="number" keyPath="imageSize">
+                                        <real key="value" value="27"/>
+                                    </userDefinedRuntimeAttribute>
+                                    <userDefinedRuntimeAttribute type="image" keyPath="image" value="ic_map_white_24dp"/>
+                                    <userDefinedRuntimeAttribute type="boolean" keyPath="touchEffectEnabled" value="YES"/>
+                                    <userDefinedRuntimeAttribute type="number" keyPath="borderWidth">
+                                        <real key="value" value="0.0"/>
+                                    </userDefinedRuntimeAttribute>
+                                    <userDefinedRuntimeAttribute type="boolean" keyPath="dropShadowEnabled" value="YES"/>
+                                    <userDefinedRuntimeAttribute type="color" keyPath="circleForegroundColor">
+                                        <color key="value" red="0.2470588235" green="0.31764705879999999" blue="0.70980392160000005" alpha="1" colorSpace="calibratedRGB"/>
+                                    </userDefinedRuntimeAttribute>
+                                </userDefinedRuntimeAttributes>
+                            </view>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                         <constraints>
                             <constraint firstAttribute="trailingMargin" secondItem="kwe-Uw-roJ" secondAttribute="trailing" id="3OB-M3-cXj"/>
                             <constraint firstItem="KjY-5h-chR" firstAttribute="top" secondItem="1UD-CU-qaX" secondAttribute="bottom" id="75I-aZ-zWj"/>
+                            <constraint firstItem="KjY-5h-chR" firstAttribute="top" secondItem="OEA-Kn-nlr" secondAttribute="bottom" constant="20" id="B2H-kn-UNK"/>
                             <constraint firstAttribute="trailing" secondItem="1UD-CU-qaX" secondAttribute="trailing" id="NZq-bh-Fi2"/>
                             <constraint firstItem="1UD-CU-qaX" firstAttribute="top" secondItem="hh9-wz-63c" secondAttribute="bottom" id="Rmn-kC-Qoi"/>
+                            <constraint firstAttribute="trailing" secondItem="OEA-Kn-nlr" secondAttribute="trailing" constant="20" id="adl-JX-8Tc"/>
                             <constraint firstItem="1UD-CU-qaX" firstAttribute="leading" secondItem="tig-xB-y1x" secondAttribute="leading" id="iol-oU-7mW"/>
                             <constraint firstItem="KjY-5h-chR" firstAttribute="top" secondItem="kwe-Uw-roJ" secondAttribute="bottom" constant="20" id="zuJ-fH-C8L"/>
                         </constraints>
@@ -127,6 +154,7 @@
                     <simulatedTabBarMetrics key="simulatedBottomBarMetrics"/>
                     <connections>
                         <outlet property="photoCollectionView" destination="1UD-CU-qaX" id="ukX-7p-6mc"/>
+                        <outlet property="photoMapButton" destination="OEA-Kn-nlr" id="QzE-Rf-mbz"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="FGV-3i-7EE" userLabel="First Responder" sceneMemberID="firstResponder"/>
@@ -263,6 +291,7 @@
         </scene>
     </scenes>
     <resources>
+        <image name="ic_map_white_24dp" width="19" height="19"/>
         <image name="ic_sent_photo_waiting" width="49" height="49"/>
     </resources>
 </document>

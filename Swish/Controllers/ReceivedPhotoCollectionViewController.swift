@@ -12,6 +12,7 @@ import UIKit
 class ReceivedPhotoCollectionViewController: UIViewController, UICollectionViewDataSource, UICollectionViewDelegate {
 
     @IBOutlet weak var photoCollectionView: UICollectionView!
+    @IBOutlet weak var photoMapButton: CircleButton!
     
     private var receivedPhotos: Array<Photo> {
         get {
@@ -25,6 +26,7 @@ class ReceivedPhotoCollectionViewController: UIViewController, UICollectionViewD
     override func viewDidLoad() {
         super.viewDidLoad()
         initPhotos()
+        initPhotoMapButton()
         initLongPressGestureRecognizer()
         adjustCollectionViewCellSize()
     }
@@ -51,6 +53,20 @@ class ReceivedPhotoCollectionViewController: UIViewController, UICollectionViewD
         }
     }
     
+    private func initPhotoMapButton() {
+        photoMapButton.tapped { _ in
+            let storyboard = UIStoryboard(name: "PhotoMap", bundle: nil)
+            let navigationViewController =
+                storyboard.instantiateViewControllerWithIdentifier("PhotoCollectionMapNavController") as! UINavigationController
+            
+            let photoCollectionMapViewController = navigationViewController.topViewController
+                as! PhotoCollectionMapViewController
+            photoCollectionMapViewController.photoType = .Received
+            
+            self.showViewController(navigationViewController, sender: self)
+        }
+    }
+    
     private func initLongPressGestureRecognizer() {
         let longPressRecognizer = UILongPressGestureRecognizer(target: self, action: #selector(longPressRecognized(_:)))
         photoCollectionView.addGestureRecognizer(longPressRecognizer)
@@ -73,35 +89,6 @@ class ReceivedPhotoCollectionViewController: UIViewController, UICollectionViewD
         let navigationViewController = segue.destinationViewController as! UINavigationController
         let detailViewController = navigationViewController.topViewController as! ReceivedPhotoDetailViewController
         detailViewController.photo = receivedPhotos[indexPath.row]
-    }
-    
-    // MARK: - IBAction
-    
-    // Debug용: 코드 중복이 있어도 아래 메서드는 추후 삭제될 것이기에 문제되지 않을 듯
-    @IBAction func photoMapButtonDidTap(sender: AnyObject) {
-        let storyboard = UIStoryboard(name: "PhotoMap", bundle: nil)
-        let navigationViewController =
-        storyboard.instantiateViewControllerWithIdentifier("PhotoMapNavController") as! UINavigationController
-        
-        // TODO: 나중에 "보낸 사진 디테일 / 받은 사진 디테일"로 옮겨진 후 해당하는 사진 ID 넣을 것
-        // TODO: 보낸 사진의 경우 도착한 사진만 이 화면으로 들어갈 수 있게 구현해야 함
-        let photoMapViewController = navigationViewController.topViewController
-            as! PhotoMapViewController
-        photoMapViewController.photoId = -1
-        
-        showViewController(navigationViewController, sender: self)
-    }
-    
-    @IBAction func photoCollectionMapButtonDidTap(sender: AnyObject) {
-        let storyboard = UIStoryboard(name: "PhotoMap", bundle: nil)
-        let navigationViewController =
-        storyboard.instantiateViewControllerWithIdentifier("PhotoCollectionMapNavController") as! UINavigationController
-        
-        let photoCollectionMapViewController = navigationViewController.topViewController
-            as! PhotoCollectionMapViewController
-        photoCollectionMapViewController.photoType = .Received
-
-        showViewController(navigationViewController, sender: self)
     }
     
     // MARK: - UICollectionView DataSource
