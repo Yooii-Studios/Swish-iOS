@@ -21,6 +21,7 @@ class PhotoTrendsViewCell: UITableViewCell {
     final func initWithPhotoTrend(trendingPhoto: TrendingPhoto, withLocation location: CLLocation? = nil) {
         loadPhotoImageWithUrl(trendingPhoto.imageUrl)
         initUserUI(trendingPhoto.owner)
+        initMessageLabel(trendingPhoto.message)
         initDistanceLabel(trendingPhoto, withLocation: location)
     }
     
