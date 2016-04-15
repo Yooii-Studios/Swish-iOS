@@ -117,29 +117,38 @@
                                     <outlet property="delegate" destination="0bL-bm-v49" id="LC0-P7-00K"/>
                                 </connections>
                             </collectionView>
-                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="htn-YE-Kd8">
-                                <rect key="frame" x="433" y="437" width="147" height="30"/>
-                                <state key="normal" title="Photo Collection Map"/>
-                                <connections>
-                                    <action selector="photoCollectionMapButtonDidTap:" destination="0bL-bm-v49" eventType="touchUpInside" id="vNF-bA-Bg1"/>
-                                </connections>
-                            </button>
-                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="2cb-OL-eLn">
-                                <rect key="frame" x="505" y="399" width="75" height="30"/>
-                                <state key="normal" title="Photo Map"/>
-                                <connections>
-                                    <action selector="photoMapButtonDidTap:" destination="0bL-bm-v49" eventType="touchUpInside" id="0iZ-gV-Rgo"/>
-                                </connections>
-                            </button>
+                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="Lcp-wc-7il" customClass="CircleButton" customModule="Swish" customModuleProvider="target">
+                                <rect key="frame" x="520" y="407" width="60" height="60"/>
+                                <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                <constraints>
+                                    <constraint firstAttribute="width" constant="60" id="4FK-N8-98R"/>
+                                    <constraint firstAttribute="width" secondItem="Lcp-wc-7il" secondAttribute="height" multiplier="1:1" id="NfZ-sh-CsC"/>
+                                </constraints>
+                                <userDefinedRuntimeAttributes>
+                                    <userDefinedRuntimeAttribute type="color" keyPath="circleBackgroundColor">
+                                        <color key="value" red="0.2470588235" green="0.31764705879999999" blue="0.70980392160000005" alpha="0.79886853449999995" colorSpace="calibratedRGB"/>
+                                    </userDefinedRuntimeAttribute>
+                                    <userDefinedRuntimeAttribute type="number" keyPath="imageSize">
+                                        <real key="value" value="27"/>
+                                    </userDefinedRuntimeAttribute>
+                                    <userDefinedRuntimeAttribute type="image" keyPath="image" value="ic_map_white_24dp"/>
+                                    <userDefinedRuntimeAttribute type="boolean" keyPath="touchEffectEnabled" value="YES"/>
+                                    <userDefinedRuntimeAttribute type="number" keyPath="borderWidth">
+                                        <real key="value" value="0.0"/>
+                                    </userDefinedRuntimeAttribute>
+                                    <userDefinedRuntimeAttribute type="boolean" keyPath="dropShadowEnabled" value="YES"/>
+                                    <userDefinedRuntimeAttribute type="color" keyPath="circleForegroundColor">
+                                        <color key="value" red="0.2470588235" green="0.31764705879999999" blue="0.70980392160000005" alpha="1" colorSpace="calibratedRGB"/>
+                                    </userDefinedRuntimeAttribute>
+                                </userDefinedRuntimeAttributes>
+                            </view>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                         <constraints>
                             <constraint firstItem="qmh-DW-6UZ" firstAttribute="top" secondItem="ipd-BH-HKj" secondAttribute="bottom" id="FXi-EE-aTW"/>
                             <constraint firstItem="qmh-DW-6UZ" firstAttribute="leading" secondItem="A2d-50-Ary" secondAttribute="leading" id="Iwy-Gv-9k4"/>
-                            <constraint firstAttribute="trailingMargin" secondItem="2cb-OL-eLn" secondAttribute="trailing" id="aWk-ab-Ffs"/>
-                            <constraint firstAttribute="trailingMargin" secondItem="htn-YE-Kd8" secondAttribute="trailing" id="bgS-tW-92H"/>
-                            <constraint firstItem="BIV-nF-Mff" firstAttribute="top" secondItem="htn-YE-Kd8" secondAttribute="bottom" constant="20" id="h5n-IH-ada"/>
-                            <constraint firstItem="htn-YE-Kd8" firstAttribute="top" secondItem="2cb-OL-eLn" secondAttribute="bottom" constant="8" id="iIN-nE-ECB"/>
+                            <constraint firstAttribute="trailing" secondItem="Lcp-wc-7il" secondAttribute="trailing" constant="20" id="afU-f5-HUH"/>
+                            <constraint firstItem="BIV-nF-Mff" firstAttribute="top" secondItem="Lcp-wc-7il" secondAttribute="bottom" constant="20" id="b8B-Oa-mMI"/>
                             <constraint firstAttribute="trailing" secondItem="qmh-DW-6UZ" secondAttribute="trailing" id="tZF-ss-3nF"/>
                             <constraint firstItem="BIV-nF-Mff" firstAttribute="top" secondItem="qmh-DW-6UZ" secondAttribute="bottom" id="z7m-jM-qAw"/>
                         </constraints>
@@ -150,6 +159,7 @@
                     <simulatedTabBarMetrics key="simulatedBottomBarMetrics"/>
                     <connections>
                         <outlet property="photoCollectionView" destination="qmh-DW-6UZ" id="XrS-2M-rcc"/>
+                        <outlet property="photoMapButton" destination="Lcp-wc-7il" id="bPF-HM-srd"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="T7g-XC-ubD" userLabel="First Responder" sceneMemberID="firstResponder"/>
@@ -260,4 +270,7 @@
             <point key="canvasLocation" x="1639" y="949"/>
         </scene>
     </scenes>
+    <resources>
+        <image name="ic_map_white_24dp" width="19" height="19"/>
+    </resources>
 </document>

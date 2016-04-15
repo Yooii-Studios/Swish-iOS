@@ -12,6 +12,7 @@ import UIKit
 class SentPhotoCollectionViewController: UIViewController {
 
     @IBOutlet weak var photoCollectionView: UICollectionView!
+    @IBOutlet weak var photoMapButton: CircleButton!
 
     private var sentPhotos: Array<Photo>!
     
@@ -20,6 +21,7 @@ class SentPhotoCollectionViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         initPhotos()
+        initPhotoMapButton()
         initLongPressGestureRecognizer()
         adjustCollectionViewCellSize()
         refreshPhotoStates()
@@ -52,6 +54,20 @@ class SentPhotoCollectionViewController: UIViewController {
                     }
                 }
             }
+        }
+    }
+    
+    private func initPhotoMapButton() {
+        photoMapButton.tapped { _ in
+            let storyboard = UIStoryboard(name: "PhotoMap", bundle: nil)
+            let navigationViewController =
+                storyboard.instantiateViewControllerWithIdentifier("PhotoCollectionMapNavController") as! UINavigationController
+            
+            let photoCollectionMapViewController = navigationViewController.topViewController
+                as! PhotoCollectionMapViewController
+            photoCollectionMapViewController.photoType = .Sent
+            
+            self.showViewController(navigationViewController, sender: self)
         }
     }
     
